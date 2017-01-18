@@ -1,8 +1,13 @@
 package mcproject;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Restaurant {
+public class Restaurant implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 328765108652874254L;
 	private String restName = null;
 	private String restNumber = null;
 	private String restAddress = null;

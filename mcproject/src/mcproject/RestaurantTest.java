@@ -27,7 +27,7 @@ public class RestaurantTest {
 			System.out.println("1.음식 선택 | 2.식당 등록 | 3.식당 제거 | 4.식당 불러오기 | 5.식당 보여주기 | 6.종료");
 			System.out.println("------------------------------------");
 			System.out.print("선택 > ");
-
+//수정해봄
 			int selectNo = scan.nextInt();
 			if (selectNo == 1) {
 				selectFood();

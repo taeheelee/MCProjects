@@ -1,7 +1,7 @@
 
 public class Test {
 	public static void main(String[] args) {
-		char s = '정';
+		char s = 'a';
 		System.out.println(s);
 	}
 }

@@ -2,6 +2,7 @@
 public class Test {
 	public static void main(String[] args) {
 		char s = 'a';
-		System.out.println(s);
+		String tmp = "ddd";	
+		System.out.println(tmp +s);
 	}
 }

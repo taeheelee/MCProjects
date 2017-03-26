@@ -4,40 +4,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="management">
 	<insert id="insert" parameterType="management">
-		insert into 
+		insert into management values(0,#{code},#{date},#{weight})
 	</insert>
 	<update id="update" parameterType="management">
-		update board set 
+		update management set date=#{date], weight=#{weight} where management_idx=#{management_idx} 
 	</update>	
 	<delete id="delete" parameterType="int">
-		delete from board where board_idx=#{board_idx}
+		delete from management where management_idx=#{management_idx}
 	</delete>
-	<select id="selectOne" parameterType="int" resultType="board">
-		<!-- 게시글번호로 게시글하나 선택 -->
-		select * from board where board_idx=#{board_idx}
+	<select id="selectOne" parameterType="int" resultType="management">
+		select * from management where management_idx=#{management_idx}
 	</select>
-	<select id="selectBoardList" parameterType="int" resultType="board">
-		<!-- 게시판유형에 따른 게시글 보기 -->
-		select * from board where board_code=#{board_code} order by board_idx
+	<select id="selectList" parameterType="int" resultType="management">
+		select * from management where code=#{code} 
 	</select>
-	<select id="selectAll" resultType="board">
-		<!-- 게시글 전체보기 -->
-		select * from board order by board_idx
-	</select>
-	<select id="select_by_name" parameterType="String" resultType="board">
-		<!-- 글쓴이로 검색 -->
-		select * from board where writer=#{writer}
-	</select>
-	<select id="select_by_title" parameterType="String" resultType="board">
-		<!-- 글제목으로 검색 -->
-		select * from board where title=#{title}
-	</select>
-	<select id="select_by_keyword" parameterType="String" resultType="board">
-		<!-- 글내용으로 검색 -->
-		select * from board where content like #{content}
-	</select>
-	<select id="select_by_boastnum" resultType="board">
-		<!-- 좋아요 많은순으로 정렬 -->
-		select * from board order by boastnum desc
-	</select>
+	
 </mapper>

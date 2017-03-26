@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="dog_kind">
+	<insert id="insert" parameterType="Dog_kind">
+		insert into dog_kind values(#{kind}, #{dogSize}, 
+		#{adultWeight})
+	</insert>	
+	<update id="update" parameterType="Dog_kind">
+		update dog_kind set kind=#{kind}, dogSize=#{dogSize},
+		adultWeight=#{adultWeight}
+	</update>
+	<delete id="delete" parameterType="String">
+		delete from dog_kind where kind=#{kind}
+	</delete>
+	<select id="selectOne" parameterType="String" resultType="Dog_kind">
+		select * from dog_kind where kind=#{kind}
+	</select>
+	<select id="selectAll" resultType="Dog_kind">
+		select * from dog_kind
+	</select>
+</mapper>

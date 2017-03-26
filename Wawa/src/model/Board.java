@@ -1,7 +1,6 @@
 package model;
 
 public class Board {
-	//test
 	private int board_idx;
 	private int board_code;
 	private String title;

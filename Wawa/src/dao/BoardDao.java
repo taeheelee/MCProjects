@@ -113,4 +113,51 @@ public class BoardDao {
 			session.close();
 		}
 	}
+<<<<<<< HEAD
+=======
+	
+	//글쓴이로 검색
+	public List<Board> select_by_name(String name){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			return session.selectList("board.select_by_name", name);
+		}
+		finally {
+			session.close();
+		}
+	}
+	
+	//글제목으로 검색
+	public List<Board> select_by_title(String title){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			return session.selectList("board.select_by_title", title);
+		}
+		finally {
+			session.close();
+		}
+	}
+	//글내용으로 검색
+	public List<Board> select_by_keyword(String keyword){
+		SqlSession session = sqlSessionFactory.openSession();
+		String temp = "%"+keyword+"%";
+		try{
+			return session.selectList("board.select_by_keyword", temp);
+		}
+		finally {
+			session.close();
+		}
+	}
+	//좋아요 많은순으로 정렬
+	public List<Board> select_by_boastnum(){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			return session.selectList("board.select_by_boastnum");
+		}
+		finally {
+			session.close();
+		}
+	}
+	
+>>>>>>> branch 'master' of https://github.com/taeheelee/MCProjects.git
 }

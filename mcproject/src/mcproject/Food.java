@@ -22,6 +22,6 @@ public class Food {
 	}
 	@Override
 	public String toString() {
-		return "\n" + foodName + " : " + foodPrice + "\n";
+		return foodName + " : " + foodPrice;
 	}
 }

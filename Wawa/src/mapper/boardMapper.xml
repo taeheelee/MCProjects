@@ -9,6 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{weight},#{age},#{sex},#{phone},#{email},#{birthday},#{starpoint},#{boastnum})	
 	</insert>
 	<update id="update" parameterType="board">
+<<<<<<< HEAD
 		update board set board_code=#{board_code}, title=#{title},
 		writer=#{writer}, content=#{content}, readcount=#{readcount},
 		writedate=#{writedate}, category=#{category}, petname=#{petname},
@@ -31,5 +32,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectAll" resultType="board">
 		<!-- 게시글 전체보기 -->
 		select * from board
+=======
+		update board set board_code=#{board_code}, title=#{title},writer=#{writer}, content=#{content}, readcount=#{readcount},
+		writedate=#{writedate}, category=#{category}, petname=#{petname},
+		resist=#{resist}, lostdate=#{lostdate}, kind=#{kind}, 
+		weight=#{weight}, age=#{age}, sex=#{sex}, phone=#{phone},
+		email=#{email}, birthday=#{birthday}, starpoint=#{starpoint},
+		boastnum=#{boastnum} where board_idx=#{board_idx}
+	</update>	
+	<delete id="delete" parameterType="int">
+		delete from board where board_idx=#{board_idx}
+	</delete>
+	<select id="selectOne" parameterType="int" resultType="board">
+		<!-- 게시글번호로 게시글하나 선택 -->
+		select * from board where board_idx=#{board_idx}
+	</select>
+	<select id="selectBoardList" parameterType="int" resultType="board">
+		<!-- 게시판유형에 따른 게시글 보기 -->
+		select * from board where board_code=#{board_code} order by board_idx
+	</select>
+	<select id="selectAll" resultType="board">
+		<!-- 게시글 전체보기 -->
+		select * from board order by board_idx
+	</select>
+	<select id="select_by_name" parameterType="String" resultType="board">
+		<!-- 글쓴이로 검색 -->
+		select * from board where writer=#{writer}
+	</select>
+	<select id="select_by_title" parameterType="String" resultType="board">
+		<!-- 글제목으로 검색 -->
+		select * from board where title=#{title}
+	</select>
+	<select id="select_by_keyword" parameterType="String" resultType="board">
+		<!-- 글내용으로 검색 -->
+		select * from board where content like #{content}
+	</select>
+	<select id="select_by_boastnum" resultType="board">
+		<!-- 좋아요 많은순으로 정렬 -->
+		select * from board order by boastnum desc
+>>>>>>> branch 'master' of https://github.com/taeheelee/MCProjects.git
 	</select>
 </mapper>

@@ -2,6 +2,7 @@ package mcproject;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -13,19 +14,20 @@ import java.util.Scanner;
 public class RestaurantTest {
 	private static ObjectInputStream in = null;
 	private static ObjectOutputStream out = null;
+	
 	public static Scanner scan = new Scanner(System.in);
 	public static List<Restaurant> restArray = new ArrayList<Restaurant>();
 	
 	public static void main(String[] args) {
-		
+		load();
 		boolean run = true;
 
 		while (run) {
 			System.out.println("------------------------------------");
-			System.out.println("1.음식 선택 | 2.식당 등록 | 3.식당 제거 | 4.식당 불러오기 | 5.종료");
+			System.out.println("1.음식 선택 | 2.식당 등록 | 3.식당 제거 | 4.식당 불러오기 | 5.식당 보여주기 | 6.종료");
 			System.out.println("------------------------------------");
 			System.out.print("선택 > ");
-
+//수정해봄
 			int selectNo = scan.nextInt();
 			if (selectNo == 1) {
 				selectFood();
@@ -36,6 +38,9 @@ public class RestaurantTest {
 			} else if (selectNo == 4) {
 				loadRestaurant();
 			} else if (selectNo == 5) {
+				showRestaurantList();
+			} else if (selectNo == 6) {
+				save();
 				run = false;
 			}
 		}
@@ -121,7 +126,7 @@ public class RestaurantTest {
 
 	public static void load() {
 		try {
-			in = new ObjectInputStream(new FileInputStream("AccountInfo"));
+			in = new ObjectInputStream(new FileInputStream("RestaurantInfo.txt"));
 			restArray = (List<Restaurant>) in.readObject();
 		} catch (FileNotFoundException e) {
 			System.out.println("파일이 존재하지 않습니다.");
@@ -136,12 +141,27 @@ public class RestaurantTest {
 			try {
 			if(in != null)
 				in.close();
-			} catch ()
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 	
 	public static void save() {
-		
+		try {
+			out = new ObjectOutputStream(new FileOutputStream("RestaurantInfo.txt"));
+			out.writeObject(restArray);
+			out.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+				try {
+					if(out != null)
+						out.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+		}
 	}
 	public static void loadRestaurant() {
 		

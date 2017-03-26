@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="image">
+	<insert id="insert" parameterType="Image">
+		insert into Image values(#{img_idx}, #{physical_name}, 
+		#{name}, #{path})
+	</insert>	
+	<update id="update" parameterType="Image">
+		update Image set img_idx=#{img_idx}, physical_name=#{physical_name},
+		name=#{name}, path=#{path}
+	</update>
+	<delete>
+		delete from Image where img_idx=#{img_idx}
+	</delete>
+	<select id="selectOne" parameterType="String" resultType="Image">
+		select * from Image where img_idx=#{img_idx}
+	</select>
+	<select id="selectAll" resultType="Image">
+		select * from Image
+	</select>
+</mapper>

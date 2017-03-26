@@ -104,7 +104,7 @@ public class BoardDao {
 	}
 	
 	//전체글보기
-	public List<Board> selectAll(){
+	public List<Board> selectAllBoard(){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
 			return session.selectList("board.selectAll");

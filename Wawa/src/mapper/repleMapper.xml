@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="reple">
+	<insert id="insert" parameterType="Reple">
+		insert into reple values(#{board_code}, #{board_idx}, #{nickname}, #{content})
+	</insert>
+	<update id="update" parameterType="Reple">
+		update reple set board_code=#{board_code}, board_idx=#{board_idx}, 
+		nickname=#{nickname}, content=#{content}
+	</update>
+	<delete id="delete" parameterType="int">
+		delete from reple where board_code=#{board_code}
+	</delete>
+	<select id="selectOne" parameterType="int" resultType="Reple">
+		select * from reple where board_code=#{board_code}
+	</select>
+	<select id="selectAll" resultType="reple">
+		select * from reple
+	</select>
+	<select id="select_by_nickname" parameterType="String" resultType="reple">
+		select * from reple where nickname=#{nickname}
+	</select>
+</mapper>

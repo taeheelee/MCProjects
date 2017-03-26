@@ -209,7 +209,7 @@ public class BoardDao {
 	}
 	
 	//사용자 ID로 해당 사용자 정보 받아오기
-	public UserInfo selectOne(String id){
+	public UserInfo selectOneUserInfo(String id){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
 			return session.selectOne("userinfo.select", id);

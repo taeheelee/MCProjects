@@ -104,7 +104,7 @@ public class BoardDao {
 	}
 	
 	//전체글보기
-	public List<Board> selectAll(){
+	public List<Board> selectAllBoard(){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
 			return session.selectList("board.selectAll");
@@ -113,8 +113,6 @@ public class BoardDao {
 			session.close();
 		}
 	}
-<<<<<<< HEAD
-=======
 	
 	//글쓴이로 검색
 	public List<Board> select_by_name(String name){
@@ -159,5 +157,4 @@ public class BoardDao {
 		}
 	}
 	
->>>>>>> branch 'master' of https://github.com/taeheelee/MCProjects.git
 }

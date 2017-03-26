@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import model.Board;
+import model.UserInfo;
 
 public class BoardDao {
 	private SqlSessionFactory sqlSessionFactory;
@@ -157,4 +158,74 @@ public class BoardDao {
 		}
 	}
 	
+	public boolean insertUserInfo(UserInfo userinfo){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			int result = session.insert("userinfo.insert", userinfo);
+			if(result > 0){
+				session.commit();
+				return true;
+			}
+			else{
+				session.rollback();
+				return false;
+			}
+		}
+		finally {
+			session.close();
+		}
+	}
+	
+	public boolean updateUserInfo(UserInfo userinfo){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			int result = session.update("userinfo.update", userinfo);
+			if(result > 0){
+				session.commit();
+				return true;
+			}else{
+				session.rollback();
+				return false;
+			}
+		}finally{
+			session.close();
+		}
+	}
+	
+	public boolean deleteUserInfo(String id){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			int result = session.delete("userinfo.delete", id);
+			if(result > 0){
+				session.commit();
+				return true;
+			}else {
+				session.rollback();
+				return false;
+			}
+		}finally {
+			session.close();
+		}
+	}
+	
+	//사용자 ID로 해당 사용자 정보 받아오기
+	public UserInfo selectOne(String id){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			return session.selectOne("userinfo.select", id);
+		}
+		finally {
+			session.close();
+		}
+	}
+	
+	public List<UserInfo> selectAllUserInfo() {
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			return session.selectList("userinfo.selectAll");
+		}
+		finally {
+			session.close();
+		}
+	}
 }

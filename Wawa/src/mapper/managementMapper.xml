@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into management values(0,#{code},#{date},#{weight})
 	</insert>
 	<update id="update" parameterType="management">
-		update management set date=#{date], weight=#{weight} where management_idx=#{management_idx} 
+		update management set date=#{date}, weight=#{weight} where management_idx=#{management_idx} 
 	</update>	
 	<delete id="delete" parameterType="int">
 		delete from management where management_idx=#{management_idx}

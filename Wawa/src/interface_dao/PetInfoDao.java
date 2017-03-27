@@ -13,7 +13,7 @@ public interface PetInfoDao {
 	
 	public HashMap<String, Object> selectPet();
 	
-	public List<HashMap<String, Object>> selectAll();
+	public List< HashMap<String, Object> > selectAll();
 	
 	public HashMap<String, Object> selectVaccine();
 	

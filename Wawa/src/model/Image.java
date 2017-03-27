@@ -39,7 +39,8 @@ public class Image {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "Image [img_idx=" + img_idx + ", physical_name=" + physical_name
+		return "Image [img_idx=" + img_idx + ", board_idx=" + board_idx
+				+ ", physical_name=" + physical_name
 				+ ", name=" + name + ", path=" + path +"]";
 	}
 }

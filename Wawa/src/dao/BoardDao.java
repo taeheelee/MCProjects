@@ -66,10 +66,10 @@ public class BoardDao {
 		}
 	}
 	
-	public boolean deleteBoard(int num){
+	public boolean deleteBoard(int board_idx){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			int result = session.delete("board.delete", num);
+			int result = session.delete("board.delete", board_idx);
 			if(result > 0){
 				session.commit();
 				return true;

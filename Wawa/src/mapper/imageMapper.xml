@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mapper namespace="image">
 	<insert id="insert" parameterType="Image">
-		insert into Image values(#{img_idx}, #{physical_name}, 
+		insert into Image values(0, #{board_idx} #{physical_name}, 
 		#{name}, #{path})
 	</insert>	
 	<update id="update" parameterType="Image">

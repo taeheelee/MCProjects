@@ -2,6 +2,7 @@ package model;
 
 public class Image {
 	private int img_idx;
+	private int board_idx;
 	private String physical_name;
 	private String name;
 	private String path;
@@ -10,6 +11,12 @@ public class Image {
 	}
 	public void setImg_idx(int img_idx) {
 		this.img_idx = img_idx;
+	}
+	public int getBoard_idx() {
+		return board_idx;
+	}
+	public void setBoard_idx(int board_idx) {
+		this.board_idx = board_idx;
 	}
 	public String getPhysical_name() {
 		return physical_name;

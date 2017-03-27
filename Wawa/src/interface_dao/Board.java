@@ -5,7 +5,7 @@ import java.util.List;
 public interface Board {
 	public boolean insertBoard(Board board);
 	public boolean updateBoard(Board board);	
-	public boolean deleteBoard(int num);
+	public boolean deleteBoard(int board_idx);
 	public Board selectOne(int board_idx);
 	public List<Board> selectBoardList(int board_code);
 	public List<Board> selectAll();

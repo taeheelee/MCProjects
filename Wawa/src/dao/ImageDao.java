@@ -1,6 +1,6 @@
 package dao;
 
-import java.io.Reader;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,8 +9,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import interface_dao.IImageDao;
 
-public class ImageDao {
+
+public class ImageDao implements IImageDao{
 	private SqlSessionFactory sqlSessionFactory;
 	private static ImageDao instance;
 	public static ImageDao getInstance() {
@@ -24,8 +26,8 @@ public class ImageDao {
 	public ImageDao() {
 		// TODO Auto-generated constructor stub
 		try{
-			Reader reader = Resources.getResourceAsReader("configuration.xml");
-			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+			InputStream is = Resources.getResourceAsStream("configuration.xml");
+			sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
 		}catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -35,7 +37,7 @@ public class ImageDao {
 	public int insertImage(HashMap<String, Object> params){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.ImageDao.class).insertImage(params);
+			return session.getMapper(interface_dao.IImageDao.class).insertImage(params);
 		}finally{
 			session.close();
 		}
@@ -44,7 +46,7 @@ public class ImageDao {
 	public int updateImage(HashMap<String, Object> params){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.ImageDao.class).updateImage(params);
+			return session.getMapper(interface_dao.IImageDao.class).updateImage(params);
 		}finally{
 			session.close();
 		}
@@ -53,7 +55,7 @@ public class ImageDao {
 	public int deleteImage(int img_idx){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.ImageDao.class).deleteImage(img_idx);
+			return session.getMapper(interface_dao.IImageDao.class).deleteImage(img_idx);
 		}finally{
 			session.close();
 		}
@@ -62,7 +64,7 @@ public class ImageDao {
 	public HashMap<String, Object> selectOneImage(int img_idx){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.ImageDao.class).selectOne(img_idx);
+			return session.getMapper(interface_dao.IImageDao.class).selectOneImage(img_idx);
 		}finally{
 			session.close();
 		}
@@ -71,7 +73,7 @@ public class ImageDao {
 	public List<HashMap<String, Object>> selectAllImage(){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.ImageDao.class).selectAll();
+			return session.getMapper(interface_dao.IImageDao.class).selectAllImage();
 		}finally{
 			session.close();
 		}

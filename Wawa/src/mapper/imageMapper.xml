@@ -2,13 +2,13 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="interface_dao.ImageDao">
+<mapper namespace="interface_dao.IImageDao">
 	<insert id="insertImage" parameterType="java.util.HashMap">
-		insert into image values(0, #{board_idx} #{physical_name}, 
+		insert into image values(0, #{board_idx}, #{physical_name}, 
 		#{name}, #{path})
 	</insert>	
 	<update id="updateImage" parameterType="java.util.HashMap">
-		update image set physical_name=#{physical_name},
+		update image set board_idx=#{board_idx}, physical_name=#{physical_name},
 		name=#{name}, path=#{path} where img_idx=#{img_idx}
 	</update>
 	<delete id="deleteImage" parameterType="int">

@@ -3,8 +3,6 @@ package interface_dao;
 import java.util.HashMap;
 import java.util.List;
 
-import model.Board;
-
 public interface IBoardDao {
 	public int insertBoard(HashMap<String, Object> params);
 	public int updateBoard(HashMap<String, Object> params);	

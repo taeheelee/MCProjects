@@ -20,5 +20,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		<mapper resource="mapper/boardMapper.xml"/>
 		<mapper resource="mapper/dog_kindMapper.xml"/>
 		<mapper resource="mapper/ImageMapper.xml"/>
+		<mapper resource="mapper/ImageMapper.xml"/>
 	</mappers>
 </configuration>

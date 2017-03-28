@@ -1,6 +1,6 @@
 package dao;
 
-import java.io.Reader;
+import java.io.InputStream;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
@@ -25,8 +25,8 @@ public class RepleDao {
 	public RepleDao() {
 		// TODO Auto-generated constructor stub
 		try{
-			Reader reader = Resources.getResourceAsReader("configuration.xml");
-			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+			InputStream is = Resources.getResourceAsStream("configuration.xml");
+			sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
 		}catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

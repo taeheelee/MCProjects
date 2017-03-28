@@ -1,7 +1,7 @@
 package dao;
 
 import java.io.IOException;
-import java.io.Reader;
+import java.io.InputStream;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
@@ -23,8 +23,8 @@ public class ManagementDao {
 
 	private ManagementDao(){
 		try {
-			Reader reader = Resources.getResourceAsReader("configuration.xml");
-			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+			InputStream is = Resources.getResourceAsStream("configuration.xml");
+			sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

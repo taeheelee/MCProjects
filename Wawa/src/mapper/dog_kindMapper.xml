@@ -2,14 +2,14 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="interface_dao.dog_kindDao">
+<mapper namespace="interface_dao.IDog_kindDao">
 	<insert id="insertDog_kind" parameterType="java.util.HashMap">
 		insert into dog_kind values(#{kind}, #{dogSize}, 
 		#{adultWeight})
 	</insert>	
 	<update id="updateDog_kind" parameterType="java.util.HashMap">
-		update dog_kind set kind=#{kind}, dogSize=#{dogSize},
-		adultWeight=#{adultWeight}
+		update dog_kind set dogSize=#{dogSize},
+		adultWeight=#{adultWeight} where kind=#{kind}
 	</update>
 	<delete id="deleteDog_kind" parameterType="String">
 		delete from dog_kind where kind=#{kind}

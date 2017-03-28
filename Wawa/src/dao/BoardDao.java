@@ -1,7 +1,7 @@
 package dao;
 
 import java.io.IOException;
-import java.io.Reader;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.List;
 
@@ -10,9 +10,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import interface_dao.IBoardDao;
 import model.UserInfo;
 
-public class BoardDao implements interface_dao.BoardDao{
+public class BoardDao implements IBoardDao{
 	private SqlSessionFactory sqlSessionFactory;
 	private static BoardDao instance;
 	
@@ -24,8 +25,8 @@ public class BoardDao implements interface_dao.BoardDao{
 
 	private BoardDao(){
 		try {
-			Reader reader = Resources.getResourceAsReader("configuration.xml");
-			sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+			InputStream is = Resources.getResourceAsStream("configuration.xml");
+			sqlSessionFactory = new SqlSessionFactoryBuilder().build(is);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -37,7 +38,7 @@ public class BoardDao implements interface_dao.BoardDao{
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.BoardDao.class).insertBoard(params);
+			return session.getMapper(interface_dao.IBoardDao.class).insertBoard(params);
 		}
 		finally {
 			session.close();
@@ -49,7 +50,7 @@ public class BoardDao implements interface_dao.BoardDao{
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.BoardDao.class).updateBoard(params);
+			return session.getMapper(interface_dao.IBoardDao.class).updateBoard(params);
 		}
 		finally {
 			session.close();
@@ -61,7 +62,7 @@ public class BoardDao implements interface_dao.BoardDao{
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.BoardDao.class).deleteBoard(board_idx);
+			return session.getMapper(interface_dao.IBoardDao.class).deleteBoard(board_idx);
 		}
 		finally {
 			session.close();
@@ -73,7 +74,7 @@ public class BoardDao implements interface_dao.BoardDao{
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.BoardDao.class).selectOneBoard(board_idx);
+			return session.getMapper(interface_dao.IBoardDao.class).selectOneBoard(board_idx);
 		}
 		finally {
 			session.close();
@@ -85,7 +86,7 @@ public class BoardDao implements interface_dao.BoardDao{
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.BoardDao.class).selectAllBoard();
+			return session.getMapper(interface_dao.IBoardDao.class).selectAllBoard();
 		}
 		finally {
 			session.close();
@@ -97,7 +98,7 @@ public class BoardDao implements interface_dao.BoardDao{
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.BoardDao.class).selectBoardList(board_code);
+			return session.getMapper(interface_dao.IBoardDao.class).selectBoardList(board_code);
 		}
 		finally {
 			session.close();
@@ -105,11 +106,11 @@ public class BoardDao implements interface_dao.BoardDao{
 	}
 	
 	//글쓴이로 검색
-	public List<HashMap<String, Object>> select_by_name(String name) {
+	public List<HashMap<String, Object>> select_by_name(HashMap<String, Object> params) {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.BoardDao.class).select_by_name(name);
+			return session.getMapper(interface_dao.IBoardDao.class).select_by_name(params);
 		}
 		finally {
 			session.close();
@@ -117,11 +118,11 @@ public class BoardDao implements interface_dao.BoardDao{
 	}
 	
 	//글제목으로 검색
-	public List<HashMap<String, Object>> select_by_title(String title) {
+	public List<HashMap<String, Object>> select_by_title(HashMap<String, Object> params) {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.BoardDao.class).select_by_title(title);
+			return session.getMapper(interface_dao.IBoardDao.class).select_by_title(params);
 		}
 		finally {
 			session.close();
@@ -129,11 +130,11 @@ public class BoardDao implements interface_dao.BoardDao{
 	}
 	
 	//내용으로 검색
-	public List<HashMap<String, Object>> select_by_keyword(String keyword) {
+	public List<HashMap<String, Object>> select_by_keyword(HashMap<String, Object> params) {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.BoardDao.class).select_by_keyword(keyword);
+			return session.getMapper(interface_dao.IBoardDao.class).select_by_keyword(params);
 		}
 		finally {
 			session.close();
@@ -145,7 +146,7 @@ public class BoardDao implements interface_dao.BoardDao{
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.BoardDao.class).select_by_boastnum();
+			return session.getMapper(interface_dao.IBoardDao.class).select_by_boastnum();
 		}
 		finally {
 			session.close();

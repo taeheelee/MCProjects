@@ -3,12 +3,12 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="interface_dao.BoardDao">
-	<insert id="insertBoard" parameterType="board">
+	<insert id="insertBoard" parameterType="java.util.HashMap">
 		insert into board values(0,#{board_code},#{title},#{writer},#{content},
 		0,now(),#{category},#{petname},#{resist},#{lostdate},#{kind},
 		#{weight},#{age},#{sex},#{phone},#{email},#{birthday},#{starpoint},#{boastnum})	
 	</insert>
-	<update id="updateBoard" parameterType="board">
+	<update id="updateBoard" parameterType="java.util.HashMap">
 		update board set board_code=#{board_code}, title=#{title},writer=#{writer}, content=#{content}, readcount=#{readcount},
 		writedate=#{writedate}, category=#{category}, petname=#{petname},
 		resist=#{resist}, lostdate=#{lostdate}, kind=#{kind}, 
@@ -19,31 +19,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteBoard" parameterType="int">
 		delete from board where board_idx=#{board_idx}
 	</delete>
-	<select id="selectOne" parameterType="int" resultType="board">
+	<select id="selectOneBoard" parameterType="int" resultType="java.util.HashMap">
 		<!-- 게시글번호로 게시글하나 선택 -->
 		select * from board where board_idx=#{board_idx}
 	</select>
-	<select id="selectBoardList" parameterType="int" resultType="board">
+	<select id="selectBoardList" parameterType="int" resultType="java.util.HashMap">
 		<!-- 게시판유형에 따른 게시글 보기 -->
 		select * from board where board_code=#{board_code} order by board_idx
 	</select>
-	<select id="selectAll" resultType="board">
+	<select id="selectAllBoard" resultType="java.util.HashMap">
 		<!-- 게시글 전체보기 -->
 		select * from board order by board_idx
 	</select>
-	<select id="select_by_name" parameterType="String" resultType="board">
+	<select id="select_by_name" parameterType="String" resultType="java.util.HashMap">
 		<!-- 글쓴이로 검색 -->
 		select * from board where writer like '%${writer}%'
 	</select>
-	<select id="select_by_title" parameterType="String" resultType="board">
+	<select id="select_by_title" parameterType="String" resultType="java.util.HashMap">
 		<!-- 글제목으로 검색 -->
 		select * from board where title like '%${title}%'
 	</select>
-	<select id="select_by_keyword" parameterType="String" resultType="board">
+	<select id="select_by_keyword" parameterType="String" resultType="java.util.HashMap">
 		<!-- 글내용으로 검색 -->
 		select * from board where content like '%${content}%'
 	</select>
-	<select id="select_by_boastnum" resultType="board">
+	<select id="select_by_boastnum" resultType="java.util.HashMap">
 		<!-- 좋아요 많은순으로 정렬 -->
 		select * from board order by boastnum desc
 	</select>

@@ -2,6 +2,7 @@ package dao;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
@@ -9,7 +10,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import model.Board;
 import model.UserInfo;
 
 public class BoardDao implements interface_dao.BoardDao{
@@ -33,11 +33,11 @@ public class BoardDao implements interface_dao.BoardDao{
 	}
 	
 	//게시글추가
-	public int insertBoard(Board board) {
+	public int insertBoard(HashMap<String, Object> params) {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.BoardDao.class).insertBoard(board);
+			return session.getMapper(interface_dao.BoardDao.class).insertBoard(params);
 		}
 		finally {
 			session.close();
@@ -45,11 +45,11 @@ public class BoardDao implements interface_dao.BoardDao{
 	}
 	
 	//게시글수정
-	public int updateBoard(Board board) {
+	public int updateBoard(HashMap<String, Object> params) {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.BoardDao.class).updateBoard(board);
+			return session.getMapper(interface_dao.BoardDao.class).updateBoard(params);
 		}
 		finally {
 			session.close();
@@ -57,7 +57,6 @@ public class BoardDao implements interface_dao.BoardDao{
 	}
 	
 	//게시글삭제
-
 	public int deleteBoard(int board_idx) {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
@@ -70,12 +69,11 @@ public class BoardDao implements interface_dao.BoardDao{
 	}
 	
 	//게시글 불러오기
-
-	public Board selectOne(int board_idx) {
+	public HashMap<String, Object> selectOneBoard(int board_idx) {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.BoardDao.class).selectOne(board_idx);
+			return session.getMapper(interface_dao.BoardDao.class).selectOneBoard(board_idx);
 		}
 		finally {
 			session.close();
@@ -83,11 +81,11 @@ public class BoardDao implements interface_dao.BoardDao{
 	}
 	
 	//전체글보기
-	public List<Board> selectAll() {
+	public List<HashMap<String, Object>> selectAllBoard() {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.BoardDao.class).selectAll();
+			return session.getMapper(interface_dao.BoardDao.class).selectAllBoard();
 		}
 		finally {
 			session.close();
@@ -95,7 +93,7 @@ public class BoardDao implements interface_dao.BoardDao{
 	}
 	
 	//게시판 유형에 맞는 게시글 모두 불러오기
-	public List<Board> selectBoardList(int board_code) {
+	public List<HashMap<String, Object>> selectBoardList(int board_code) {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
@@ -107,7 +105,7 @@ public class BoardDao implements interface_dao.BoardDao{
 	}
 	
 	//글쓴이로 검색
-	public List<Board> select_by_name(String name) {
+	public List<HashMap<String, Object>> select_by_name(String name) {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
@@ -119,7 +117,7 @@ public class BoardDao implements interface_dao.BoardDao{
 	}
 	
 	//글제목으로 검색
-	public List<Board> select_by_title(String title) {
+	public List<HashMap<String, Object>> select_by_title(String title) {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
@@ -131,7 +129,7 @@ public class BoardDao implements interface_dao.BoardDao{
 	}
 	
 	//내용으로 검색
-	public List<Board> select_by_keyword(String keyword) {
+	public List<HashMap<String, Object>> select_by_keyword(String keyword) {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
@@ -143,7 +141,7 @@ public class BoardDao implements interface_dao.BoardDao{
 	}
 
 	//좋아요 많은순으로 정렬
-	public List<Board> select_by_boastnum() {
+	public List<HashMap<String, Object>> select_by_boastnum() {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{

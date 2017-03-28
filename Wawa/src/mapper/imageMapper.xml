@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mapper namespace="image">
-	<insert id="insert" parameterType="Image">
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="interface_dao.ImageDao">
+	<insert id="insertImage" parameterType="java.util.HashMap">
 		insert into image values(0, #{board_idx} #{physical_name}, 
 		#{name}, #{path})
 	</insert>	
-	<update id="update" parameterType="Image">
+	<update id="updateImage" parameterType="java.util.HashMap">
 		update image set physical_name=#{physical_name},
 		name=#{name}, path=#{path} where img_idx=#{img_idx}
 	</update>
-	<delete>
+	<delete id="deleteImage" parameterType="int">
 		delete from image where img_idx=#{img_idx}
 	</delete>
-	<select id="selectOne" parameterType="int" resultType="Image">
+	<select id="selectOneImage" parameterType="int" resultType="java.util.HashMap">
 		select * from image where img_idx=#{img_idx}
 	</select>
-	<select id="selectAll" resultType="Image">
+	<select id="selectAllImage" resultType="java.util.HashMap">
 		select * from image
 	</select>
 </mapper>

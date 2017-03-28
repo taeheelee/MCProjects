@@ -1,6 +1,7 @@
 package dao;
 
 import java.io.Reader;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
@@ -8,7 +9,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import model.Image;
 
 public class ImageDao {
 	private SqlSessionFactory sqlSessionFactory;
@@ -32,67 +32,46 @@ public class ImageDao {
 		}
 	}
 	
-	public boolean insertImage(Image Image){
+	public int insertImage(HashMap<String, Object> params){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			int result = session.insert("Image.insert", Image);
-			if(result > 0){
-				session.commit();
-				return true;
-			}else{
-				session.rollback();
-				return false;
-			}
+			return session.getMapper(interface_dao.ImageDao.class).insertImage(params);
 		}finally{
 			session.close();
 		}
 	}
 	
-	public boolean updateImage(Image Image){
+	public int updateImage(HashMap<String, Object> params){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			int result = session.update("Image.update", Image);
-			if(result > 0){
-				session.commit();
-				return true;
-			}else {
-				session.rollback();
-				return false;
-			}
+			return session.getMapper(interface_dao.ImageDao.class).updateImage(params);
 		}finally{
 			session.close();
 		}
 	}
 
-	public boolean deleteImage(int img_idx){
+	public int deleteImage(int img_idx){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			int result = session.delete("Image.delete", img_idx);
-			if(result > 0){
-				session.commit();
-				return true;
-			}else {
-				session.rollback();
-				return false;
-			}
+			return session.getMapper(interface_dao.ImageDao.class).deleteImage(img_idx);
 		}finally{
 			session.close();
 		}
 	}
 	
-	public Image selectOneImage(int img_idx){
+	public HashMap<String, Object> selectOneImage(int img_idx){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.selectOne("Image.selectOne", img_idx);
+			return session.getMapper(interface_dao.ImageDao.class).selectOne(img_idx);
 		}finally{
 			session.close();
 		}
 	}
 	
-	public List<Image> selectAllImage(){
+	public List<HashMap<String, Object>> selectAllImage(){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.selectList("Image.selectAll");
+			return session.getMapper(interface_dao.ImageDao.class).selectAll();
 		}finally{
 			session.close();
 		}

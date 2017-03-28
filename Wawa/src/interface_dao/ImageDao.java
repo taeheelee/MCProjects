@@ -1,11 +1,12 @@
 package interface_dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface ImageDao {
-	public boolean insertImage(ImageDao Image);
-	public boolean updateImage(ImageDao Image);
-	public boolean deleteImage(int img_idx);
-	public ImageDao selectOne(int img_idx);
-	public List<ImageDao> selectAll();
+	public int insertImage(HashMap<String, Object> params);
+	public int updateImage(HashMap<String, Object> params);
+	public int deleteImage(int img_idx);
+	public HashMap<String, Object> selectOne(int img_idx);
+	public List<HashMap<String, Object>> selectAll();
 }

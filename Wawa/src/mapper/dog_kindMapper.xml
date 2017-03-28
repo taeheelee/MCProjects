@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mapper namespace="dog_kindDao">
-	<insert id="insert" parameterType="Dog_kind">
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="interface_dao.dog_kindDao">
+	<insert id="insertDog_kind" parameterType="java.util.HashMap">
 		insert into dog_kind values(#{kind}, #{dogSize}, 
 		#{adultWeight})
 	</insert>	
-	<update id="update" parameterType="Dog_kind">
+	<update id="updateDog_kind" parameterType="java.util.HashMap">
 		update dog_kind set kind=#{kind}, dogSize=#{dogSize},
 		adultWeight=#{adultWeight}
 	</update>
-	<delete id="delete" parameterType="String">
+	<delete id="deleteDog_kind" parameterType="String">
 		delete from dog_kind where kind=#{kind}
 	</delete>
-	<select id="selectOne" parameterType="String" resultType="Dog_kind">
+	<select id="selectOneDog_kind" parameterType="String" resultType="java.util.HashMap">
 		select * from dog_kind where kind=#{kind}
 	</select>
-	<select id="selectAll" resultType="Dog_kind">
+	<select id="selectAllDog_kind" resultType="java.util.HashMap">
 		select * from dog_kind
 	</select>
 </mapper>

@@ -1,6 +1,7 @@
 package dao;
 
 import java.io.Reader;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.io.Resources;
@@ -8,7 +9,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import model.Dog_kind;
 
 public class Dog_kindDao {
 	
@@ -33,67 +33,46 @@ public class Dog_kindDao {
 		}
 	}
 	
-	public boolean insertDog_kind(Dog_kind Dog_kind){
+	public int insertDog_kind(HashMap<String, Object> params){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			int result = session.insert("Dog_kind.insert", Dog_kind);
-			if(result > 0){
-				session.commit();
-				return true;
-			}else{
-				session.rollback();
-				return false;
-			}
+			return session.getMapper(interface_dao.Dog_kindDao.class).insertDog_kind(params);
 		}finally{
 			session.close();
 		}
 	}
 	
-	public boolean updateDog_kind(Dog_kind Dog_kind){
+	public int updateDog_kind(HashMap<String, Object> params){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			int result = session.update("Dog_kind.update", Dog_kind);
-			if(result > 0){
-				session.commit();
-				return true;
-			}else {
-				session.rollback();
-				return false;
-			}
+			return session.getMapper(interface_dao.Dog_kindDao.class).updateDog_kind(params);
 		}finally{
 			session.close();
 		}
 	}
 	
-	public boolean deleteDog_kind(String kind){
+	public int deleteDog_kind(String kind){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			int result = session.delete("Dog_kind.delete", kind);
-			if(result > 0){
-				session.commit();
-				return true;
-			}else {
-				session.rollback();
-				return false;
-			}
+			return session.getMapper(interface_dao.Dog_kindDao.class).deleteDog_kind(kind);
 		}finally{
 			session.close();
 		}
 	}
 	
-	public Dog_kind selectOneDog_kind(String nickname){
+	public HashMap<String, Object> selectOneDog_kind(String nickname){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.selectOne("Dog_kind.selectOne", nickname);
+			return session.getMapper(interface_dao.Dog_kindDao.class).selectOneDog_kind(nickname);
 		}finally{
 			session.close();
 		}
 	}
 	
-	public List<Dog_kind> selectAllDog_kind(){
+	public List<HashMap<String, Object>> selectAllDog_kind(){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.selectList("Dog_kind.selectAll");
+			return session.getMapper(interface_dao.Dog_kindDao.class).selectAllDog_kind();
 		}finally{
 			session.close();
 		}

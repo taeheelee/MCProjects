@@ -3,7 +3,7 @@ package interface_dao;
 import java.util.HashMap;
 import java.util.List;
 
-public interface PetInfoDao {
+public interface IPetInfoDao {
 	
 	public boolean insertPet();
 	

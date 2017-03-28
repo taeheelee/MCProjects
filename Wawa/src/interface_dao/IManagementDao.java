@@ -2,10 +2,10 @@ package interface_dao;
 
 import java.util.List;
 
-public interface ManagementDao {
-	public boolean insertManagement(ManagementDao management);
-	public boolean updateManagement(ManagementDao management);
+public interface IManagementDao {
+	public boolean insertManagement(IManagementDao management);
+	public boolean updateManagement(IManagementDao management);
 	public boolean deleteManagement(int management_idx);
-	public ManagementDao selectOne(int management_idx);
-	public List<ManagementDao> selectList(int code);
+	public IManagementDao selectOne(int management_idx);
+	public List<IManagementDao> selectList(int code);
 }

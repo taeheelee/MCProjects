@@ -1,6 +1,7 @@
 package commons;
 
 public class Constant {
+	//
 	public static String IDX = "idx";
 	public static String ID = "id";
 	public static String PASSWORD = "password";

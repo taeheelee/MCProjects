@@ -12,7 +12,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import model.Board;
 import model.UserInfo;
 
-public class BoardDao {
+public class BoardDao implements interface_dao.BoardDao{
 	private SqlSessionFactory sqlSessionFactory;
 	private static BoardDao instance;
 	
@@ -32,72 +32,50 @@ public class BoardDao {
 		}
 	}
 	
-	public boolean insertBoard(Board board){
+	//게시글추가
+	public int insertBoard(Board board) {
+		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			int result = session.insert("board.insert", board);
-			if(result > 0){
-				session.commit();
-				return true;
-			}
-			else{
-				session.rollback();
-				return false;
-			}
+			return session.getMapper(interface_dao.BoardDao.class).insertBoard(board);
 		}
 		finally {
 			session.close();
 		}
 	}
 	
-	public boolean updateBoard(Board board){
+	//게시글수정
+	public int updateBoard(Board board) {
+		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			int result = session.update("board.update", board);
-			if(result > 0){
-				session.commit();
-				return true;
-			}else{
-				session.rollback();
-				return false;
-			}
-		}finally{
-			session.close();
-		}
-	}
-	
-	public boolean deleteBoard(int board_idx){
-		SqlSession session = sqlSessionFactory.openSession();
-		try{
-			int result = session.delete("board.delete", board_idx);
-			if(result > 0){
-				session.commit();
-				return true;
-			}else {
-				session.rollback();
-				return false;
-			}
-		}finally {
-			session.close();
-		}
-	}
-	
-	//게시글 번호로 게시글 정보 가져오기
-	public Board selectOne(int board_idx){
-		SqlSession session = sqlSessionFactory.openSession();
-		try{
-			return session.selectOne("board.selectOne", board_idx);
+			return session.getMapper(interface_dao.BoardDao.class).updateBoard(board);
 		}
 		finally {
 			session.close();
 		}
 	}
 	
-	//게시판 유형에 맞는 게시글보기
-	public List<Board> selectBoardList(int board_code){
+	//게시글삭제
+
+	public int deleteBoard(int board_idx) {
+		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.selectList("board.selectBoardList", board_code);
+			return session.getMapper(interface_dao.BoardDao.class).deleteBoard(board_idx);
+		}
+		finally {
+			session.close();
+		}
+	}
+	
+	//게시글 불러오기
+
+	public Board selectOne(int board_idx) {
+		// TODO Auto-generated method stub
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			return session.getMapper(interface_dao.BoardDao.class).selectOne(board_idx);
 		}
 		finally {
 			session.close();
@@ -105,10 +83,23 @@ public class BoardDao {
 	}
 	
 	//전체글보기
-	public List<Board> selectAllBoard(){
+	public List<Board> selectAll() {
+		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.selectList("board.selectAll");
+			return session.getMapper(interface_dao.BoardDao.class).selectAll();
+		}
+		finally {
+			session.close();
+		}
+	}
+	
+	//게시판 유형에 맞는 게시글 모두 불러오기
+	public List<Board> selectBoardList(int board_code) {
+		// TODO Auto-generated method stub
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			return session.getMapper(interface_dao.BoardDao.class).selectBoardList(board_code);
 		}
 		finally {
 			session.close();
@@ -116,10 +107,11 @@ public class BoardDao {
 	}
 	
 	//글쓴이로 검색
-	public List<Board> select_by_name(String name){
+	public List<Board> select_by_name(String name) {
+		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.selectList("board.select_by_name", name);
+			return session.getMapper(interface_dao.BoardDao.class).select_by_name(name);
 		}
 		finally {
 			session.close();
@@ -127,36 +119,41 @@ public class BoardDao {
 	}
 	
 	//글제목으로 검색
-	public List<Board> select_by_title(String title){
+	public List<Board> select_by_title(String title) {
+		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.selectList("board.select_by_title", title);
+			return session.getMapper(interface_dao.BoardDao.class).select_by_title(title);
 		}
 		finally {
 			session.close();
 		}
 	}
-	//글내용으로 검색
-	public List<Board> select_by_keyword(String keyword){
+	
+	//내용으로 검색
+	public List<Board> select_by_keyword(String keyword) {
+		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
-		String temp = "%"+keyword+"%";
 		try{
-			return session.selectList("board.select_by_keyword", temp);
+			return session.getMapper(interface_dao.BoardDao.class).select_by_keyword(keyword);
 		}
 		finally {
 			session.close();
 		}
 	}
+
 	//좋아요 많은순으로 정렬
-	public List<Board> select_by_boastnum(){
+	public List<Board> select_by_boastnum() {
+		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.selectList("board.select_by_boastnum");
+			return session.getMapper(interface_dao.BoardDao.class).select_by_boastnum();
 		}
 		finally {
 			session.close();
 		}
 	}
+	
 	
 	public boolean insertUserInfo(UserInfo userinfo){
 		SqlSession session = sqlSessionFactory.openSession();
@@ -228,4 +225,5 @@ public class BoardDao {
 			session.close();
 		}
 	}
+
 }

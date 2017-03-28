@@ -1,7 +1,8 @@
 
 
-import dao.BoardDao;
+
 import dao.ManagementDao;
+import interface_dao.BoardDao;
 import model.Board;
 import model.Management;
 
@@ -18,7 +19,7 @@ public class Test {
 //		for(Management m : md.selectListManagement(123))
 //			System.out.println(m);
 		
-		BoardDao bd = BoardDao.getInstance();
+		BoardDao bd = dao.BoardDao.getInstance();
 		
 		Board board = new Board();
 		board.setBoard_code(1);
@@ -40,16 +41,16 @@ public class Test {
 		board.setBirthday("20160412");
 		board.setStarpoint(0);
 		board.setBoastnum(4);
-		bd.insertBoard(board);
 
-		//bd.updateBoard(board);
+		//bd.insertBoard(board);
+//		bd.updateBoard(board);
 		//bd.deleteBoard(1);
 		//System.out.println(bd.selectOne(1));
 		
 //		for(Board b : bd.selectBoardList(1))
 //			System.out.println(b);
 		
-		for(Board b : bd.selectAllBoard())
+		for(Board b : bd.selectAll())
 			System.out.println(b);
 		
 //		for(Board b : bd.select_by_keyword("용"))

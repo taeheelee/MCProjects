@@ -2,10 +2,12 @@ package interface_dao;
 
 import java.util.List;
 
-public interface Board {
-	public boolean insertBoard(Board board);
-	public boolean updateBoard(Board board);	
-	public boolean deleteBoard(int board_idx);
+import model.Board;
+
+public interface BoardDao {
+	public int insertBoard(Board board);
+	public int updateBoard(Board board);	
+	public int deleteBoard(int board_idx);
 	public Board selectOne(int board_idx);
 	public List<Board> selectBoardList(int board_code);
 	public List<Board> selectAll();

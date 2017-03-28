@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mapper namespace="dog_kind">
+<mapper namespace="dog_kindDao">
 	<insert id="insert" parameterType="Dog_kind">
 		insert into dog_kind values(#{kind}, #{dogSize}, 
 		#{adultWeight})

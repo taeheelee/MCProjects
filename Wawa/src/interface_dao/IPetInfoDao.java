@@ -3,19 +3,14 @@ package interface_dao;
 import java.util.HashMap;
 import java.util.List;
 
+
 public interface IPetInfoDao {
-	
-	public boolean insertPet();
-	
-	public boolean updatePet();
-	
-	public boolean deletePet();
-	
-	public HashMap<String, Object> selectPet();
-	
-	public List< HashMap<String, Object> > selectAll();
-	
+	public int insertPetInfo(HashMap<String, Object> params);
+	public int updatePetInfo(HashMap<String, Object> params);
+	public int deletePetInfo(int img_idx);
+	public HashMap<String, Object> selectPet(int idx);
+	public List<HashMap<String, Object>> selectAll();
 	public HashMap<String, Object> selectVaccine();
-	
+
 
 }

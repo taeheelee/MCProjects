@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import commons.Constant;
 import interface_dao.IBoardDao;
 import model.UserInfo;
 
@@ -32,7 +33,7 @@ public class BoardDao implements IBoardDao{
 			e.printStackTrace();
 		}
 	}
-	
+
 	//게시글추가
 	public int insertBoard(HashMap<String, Object> params) {
 		// TODO Auto-generated method stub

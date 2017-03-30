@@ -1,45 +1,89 @@
 package commons;
 
 public class Constant {
+	public class UserInfo{
+		public static final String IDX = "idx";
+		public static final String ID = "id";
+		public static final String PASSWORD = "password";
+		public static final String NICKNAME = "nickName";
+		public static final String SEX = "sex";
+		public static final String PHONE = "phone";
+		public static final String ADMINCHECK = "adminCheck";
+		public static final String EMAIL = "email";
+	}
+	public class PetInfo{
+		public static final String IDX = "idx";
+		public static final String RESIST = "resist";
+		public static final String ID = "id";
+		public static final String NAME = "name";
+		public static final String KIND = "kind";
+		public static final String BIRTHDAY = "birthday";
+		public static final String NEUTRAL = "neutral";
+		public static final String WEIGHT = "weight";
+		public static final String SEX = "sex";
+		public static final String GROOMINGSTART = "groomingStart";
+		public static final String GROOMINGPERIOD = "groomingPeriod";
+	}
 	
-	public static String IDX = "idx";
-	public static String ID = "id";
-	public static String PASSWORD = "password";
-	public static String NICKNAME = "nickName";
-	public static String SEX = "sex";
-	public static String PHONE = "phone";
-	public static String ADMINCHECK = "adminCheck";
-	public static String EMAIL = "email";
-	public static String RESIST = "resist";
-	public static String KIND = "kind";
-	public static String BIRTHDAY = "birthday";
-	public static String NEUTRAL = "neutral";
-	public static String WEIGHT = "weight";
-	public static String GROOMINGSTART = "groomingStart";
-	public static String GROOMINGPERIOD = "groomingPeriod";
-	public static String DATE = "date";
-	public static String BOARDCODE = "boardCode";
-	public static String BOARDIDX = "boardIdx";
-	public static String CONTETNT = "content";
-	public static String TITLE = "title";
-	public static String WRITER = "writer";
-	public static String READCOUNT = "readCount";
-	public static String WRITEDATE = "writeDate";
-	public static String CATEGORY = "category";
-	public static String LOSTDATE = "lostDate";
-	public static String AGE = "age";
-	public static String STARPOINT = "starPoint";
-	public static String LIKE = "like";
-	public static String DOGSIZE = "dogsize";
-	public static String ADULTWEIGHT = "adultWeight";
-	public static String VACCINECODE = "vaccineCode";
-	public static String REALSHOTDATE = "realShotDate";
-	public static String VACCINENAME = "vaccineName";
-	public static String VACCINEPERIOD = "vaccinePeriod";
-	public static String VACCINEAGE = "vaccineAge";
-	public static String IMGIDX = "imgIdx";
-	public static String PHYSICALNAME = "physicalName";
-	public static String PATH = "path";
+
+	public class Management{
+		public static final String IDX = "idx";
+		public static final String DATE = "date";
+		public static final String WEIGHT = "weight";
+	}
+	
+	public class Board{
+		
+		public static final String BOARDCODE = "boardCode";
+		public static final String BOARDIDX = "boardIdx";
+		public static final String TITLE = "title";
+		public static final String WRITER = "writer";
+		public static final String CONTETNT = "content";
+		public static final String READCOUNT = "readCount";
+		public static final String WRITEDATE = "writeDate";
+		public static final String CATEGORY = "category";
+		public static final String NAME = "name";
+		public static final String RESIST = "resist";
+		public static final String LOSTDATE = "lostDate";
+		public static final String KIND = "kind";
+		public static final String WEIGHT = "weight";
+		public static final String AGE = "age";
+		public static final String SEX = "sex";
+		public static final String PHONE = "phone";
+		public static final String EMAIL = "email";
+		public static final String BIRTHDAY = "birthday";
+		public static final String STARPOINT = "starPoint";
+		public static final String LIKE = "like";
+	}
+	
+	public class Dog_kind{
+		public static final String KIND = "kind";
+		public static final String DOGSIZE = "dogsize";
+		public static final String ADULTWEIGHT = "adultWeight";
+	}
+
+	public class Medical_manage{
+		public static final String IDX = "idx";
+		public static final String VACCINECODE = "vaccineCode";
+		public static final String REALSHOTDATE = "realShotDate";
+	}
+
+	public class VaccineInfo{
+		public static final String VACCINECODE = "vaccineCode";
+		public static final String VACCINENAME = "vaccineName";
+		public static final String VACCINEPERIOD = "vaccinePeriod";
+		public static final String VACCINEAGE = "vaccineAge";
+	}
+	
+	public class image{
+		public static final String IMGIDX = "imgIdx";
+		public static final String PHYSICALNAME = "physicalName";
+		public static final String NAME = "name";
+		public static final String PATH = "path";
+		
+	}
+	
+	
 	
 	
 }

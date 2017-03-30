@@ -59,11 +59,11 @@ public class BoardDao implements IBoardDao{
 	}
 	
 	//게시글삭제
-	public int deleteBoard(int board_idx) {
+	public int deleteBoard(int boardIdx) {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.IBoardDao.class).deleteBoard(board_idx);
+			return session.getMapper(interface_dao.IBoardDao.class).deleteBoard(boardIdx);
 		}
 		finally {
 			session.close();
@@ -71,11 +71,11 @@ public class BoardDao implements IBoardDao{
 	}
 	
 	//게시글 불러오기
-	public HashMap<String, Object> selectOneBoard(int board_idx) {
+	public HashMap<String, Object> selectOneBoard(int boardIdx) {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.IBoardDao.class).selectOneBoard(board_idx);
+			return session.getMapper(interface_dao.IBoardDao.class).selectOneBoard(boardIdx);
 		}
 		finally {
 			session.close();
@@ -95,11 +95,11 @@ public class BoardDao implements IBoardDao{
 	}
 	
 	//게시판 유형에 맞는 게시글 모두 불러오기
-	public List<HashMap<String, Object>> selectBoardList(int board_code) {
+	public List<HashMap<String, Object>> selectBoardList(int boardCode) {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.IBoardDao.class).selectBoardList(board_code);
+			return session.getMapper(interface_dao.IBoardDao.class).selectBoardList(boardCode);
 		}
 		finally {
 			session.close();

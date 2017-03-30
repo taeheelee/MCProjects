@@ -1,28 +1,21 @@
 package model;
 
 public class Image {
-	private int img_idx;
-	private int board_idx;
-	private String physical_name;
+	private int imgIdx;
+	private String physicalName;
 	private String name;
 	private String path;
-	public int getImg_idx() {
-		return img_idx;
+	public int getImgIdx() {
+		return imgIdx;
 	}
-	public void setImg_idx(int img_idx) {
-		this.img_idx = img_idx;
+	public void setImgIdx(int imgIdx) {
+		this.imgIdx = imgIdx;
 	}
-	public int getBoard_idx() {
-		return board_idx;
+	public String getPhysicalName() {
+		return physicalName;
 	}
-	public void setBoard_idx(int board_idx) {
-		this.board_idx = board_idx;
-	}
-	public String getPhysical_name() {
-		return physical_name;
-	}
-	public void setPhysical_name(String physical_name) {
-		this.physical_name = physical_name;
+	public void setPhysicalName(String physicalName) {
+		this.physicalName = physicalName;
 	}
 	public String getName() {
 		return name;
@@ -38,9 +31,8 @@ public class Image {
 	}
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return "Image [img_idx=" + img_idx + ", board_idx=" + board_idx
-				+ ", physical_name=" + physical_name
-				+ ", name=" + name + ", path=" + path +"]";
+		return "Image [imgIdx=" + imgIdx + ", physicalName=" + physicalName + ", name=" + name + ", path=" + path + "]";
 	}
+
+	
 }

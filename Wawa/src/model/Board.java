@@ -1,17 +1,17 @@
 package model;
 
 public class Board {
-	private int board_idx;
-	private int board_code;
+	private int boardIdx;
+	private int boardCode;
 	private String title;
 	private String writer;
 	private String content;
-	private String readcount;
-	private String writedate;
+	private String readCount;
+	private String writeDate;
 	private String category;
-	private String petname;
+	private String name;
 	private String resist;
-	private String lostdate;
+	private String lostDate;
 	private String kind;
 	private int weight;
 	private int age;
@@ -19,19 +19,19 @@ public class Board {
 	private String phone;
 	private String email;
 	private String birthday;
-	private int starpoint;
-	private int boastnum;
-	public int getBoard_idx() {
-		return board_idx;
+	private int starPoint;
+	private int likeCount;
+	public int getBoardIdx() {
+		return boardIdx;
 	}
-	public void setBoard_idx(int board_idx) {
-		this.board_idx = board_idx;
+	public void setBoardIdx(int boardIdx) {
+		this.boardIdx = boardIdx;
 	}
-	public int getBoard_code() {
-		return board_code;
+	public int getBoardCode() {
+		return boardCode;
 	}
-	public void setBoard_code(int board_code) {
-		this.board_code = board_code;
+	public void setBoardCode(int boardCode) {
+		this.boardCode = boardCode;
 	}
 	public String getTitle() {
 		return title;
@@ -51,17 +51,17 @@ public class Board {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getReadcount() {
-		return readcount;
+	public String getReadCount() {
+		return readCount;
 	}
-	public void setReadcount(String readcount) {
-		this.readcount = readcount;
+	public void setReadCount(String readCount) {
+		this.readCount = readCount;
 	}
-	public String getWritedate() {
-		return writedate;
+	public String getWriteDate() {
+		return writeDate;
 	}
-	public void setWritedate(String writedate) {
-		this.writedate = writedate;
+	public void setWriteDate(String writeDate) {
+		this.writeDate = writeDate;
 	}
 	public String getCategory() {
 		return category;
@@ -69,11 +69,11 @@ public class Board {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-	public String getPetname() {
-		return petname;
+	public String getName() {
+		return name;
 	}
-	public void setPetname(String petname) {
-		this.petname = petname;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getResist() {
 		return resist;
@@ -81,11 +81,11 @@ public class Board {
 	public void setResist(String resist) {
 		this.resist = resist;
 	}
-	public String getLostdate() {
-		return lostdate;
+	public String getLostDate() {
+		return lostDate;
 	}
-	public void setLostdate(String lostdate) {
-		this.lostdate = lostdate;
+	public void setLostDate(String lostDate) {
+		this.lostDate = lostDate;
 	}
 	public String getKind() {
 		return kind;
@@ -129,27 +129,27 @@ public class Board {
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
-	public int getStarpoint() {
-		return starpoint;
+	public int getStarPoint() {
+		return starPoint;
 	}
-	public void setStarpoint(int starpoint) {
-		this.starpoint = starpoint;
+	public void setStarPoint(int starPoint) {
+		this.starPoint = starPoint;
 	}
-	public int getBoastnum() {
-		return boastnum;
+	public int getLikeCount() {
+		return likeCount;
 	}
-	public void setBoastnum(int boastnum) {
-		this.boastnum = boastnum;
+	public void setLikeCount(int likeCount) {
+		this.likeCount = likeCount;
 	}
 	@Override
 	public String toString() {
-		return "Board [board_idx=" + board_idx + ", board_code=" + board_code + ", title=" + title + ", writer="
-				+ writer + ", content=" + content + ", readcount=" + readcount + ", writedate=" + writedate
-				+ ", category=" + category + ", petname=" + petname + ", resist=" + resist + ", lostdate=" + lostdate
-				+ ", kind=" + kind + ", weight=" + weight + ", age=" + age + ", sex=" + sex + ", phone=" + phone
-				+ ", email=" + email + ", birthday=" + birthday + ", starpoint=" + starpoint + ", boastnum=" + boastnum
-				+ "]";
+		return "Board [boardIdx=" + boardIdx + ", boardCode=" + boardCode + ", title=" + title + ", writer=" + writer
+				+ ", content=" + content + ", readCount=" + readCount + ", writeDate=" + writeDate + ", category="
+				+ category + ", name=" + name + ", resist=" + resist + ", lostDate=" + lostDate + ", kind=" + kind
+				+ ", weight=" + weight + ", age=" + age + ", sex=" + sex + ", phone=" + phone + ", email=" + email
+				+ ", birthday=" + birthday + ", starPoint=" + starPoint + ", likeCount=" + likeCount + "]";
 	}
+
 	
 	
 }

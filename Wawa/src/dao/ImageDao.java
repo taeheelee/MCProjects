@@ -52,19 +52,19 @@ public class ImageDao implements IImageDao{
 		}
 	}
 
-	public int deleteImage(int img_idx){
+	public int deleteImage(int imgIdx){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.IImageDao.class).deleteImage(img_idx);
+			return session.getMapper(interface_dao.IImageDao.class).deleteImage(imgIdx);
 		}finally{
 			session.close();
 		}
 	}
 	
-	public HashMap<String, Object> selectOneImage(int img_idx){
+	public HashMap<String, Object> selectOneImage(int imgIdx){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.IImageDao.class).selectOneImage(img_idx);
+			return session.getMapper(interface_dao.IImageDao.class).selectOneImage(imgIdx);
 		}finally{
 			session.close();
 		}

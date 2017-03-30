@@ -3,20 +3,23 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper>
-	<insert id="insertPetInfo" parameterType="petInfo">
-		insert into petInfo values(0, #{resist}, #{userid}, #{name}, #{kind}, #{birthday},
+	<insert id="insertPetInfo" parameterType="java.util.HashMap">
+		insert into petinfo values(0, #{resist}, #{id}, #{name}, #{kind}, #{birthday},
 		#{neutral}, #{weight}, #{sex}, #{groomingStart}, #{groomingPeriod})
 	</insert>
-	<select id="selectOne" parameterType="int" resultType="petInfo">
-		select * from petInfo where 
-	</select>
-	<select id="selectAll" resultType="java.util.hasmap">
-		select * from petInfo
-	</select>
 	<update id="updatePetInfo" parameterType="java.util.HashMap">
-		update petInfo set where 
+		update petinfo set resist=#{resist}, id=#{id}, name=#{name},
+		kind=#{kind}, birthday=#{birthday}, neutral=#{neutral}, weight=#{weight},
+		sex=#{sex}, groomingStart=#{groomingStart}, 
+		groomingPeriod=#{groomingPeriod} where idx=#{idx}
 	</update>
-	<delete id="deletePetInfo" parameterType="java.util.HashMap">
-		delete from petInfo where 
+	<delete id="deletePetinfo" parameterType="java.util.HashMap">
+		delete from petinfo where idx=#{idx}
 	</delete>
+	<select id="selectOne" parameterType="int" resultType="petInfo">
+		select * from petinfo where idx=#{idx}
+	</select>
+	<select id="selectAll" resultType="java.util.HashMap">
+		select * from petinfo
+	</select>
 </mapper>

@@ -1,12 +1,13 @@
 package interface_dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface IRepleDao {
-	public boolean insertReple(IRepleDao reple);
-	public boolean updateReple(IRepleDao reple);
-	public boolean deleteReple(int board_code);
-	public IRepleDao selectOne(String nickname);
-	public List<IRepleDao> selectAll();
-	public List<IRepleDao> select_by_nickname();
+	public int insertReple(HashMap<String, Object> params);
+	public int updateReple(HashMap<String, Object> params);
+	public int deleteReple(int repleIdx);
+	public HashMap<String, Object> selectOne(int repleIdx);
+	public List<HashMap<String, Object>> selectAll();
+	public List<HashMap<String, Object>> select_by_nickname(String nickname);
 }

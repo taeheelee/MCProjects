@@ -2,20 +2,23 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="interface_dao.IUserInfoDao">
-	<insert id="insertUserInfo" parameterType="java.util.HashMap">
-		insert into userinfo values(0,#{id},#{password},#{nickname},#{sex},#{phoneNum},#{admin_check},#{email})
+<mapper namespace="userInfo">
+	<insert id="insert" parameterType="java.util.HashMap">
+		insert into userinfo values(0,#{id},#{password},#{nickname},#{sex},
+		#{phone},#{adminCheck},#{email})
 	</insert>
-	<delete id="deleteUserInfo" parameterType="String">
-		delete from userinfo where id=#{id}
-	</delete>
-	<update id="updateUserInfo" parameterType="java.util.HashMap">
-		update userinfo set #{password},#{nickname},#{sex},#{phoneNum},#{admin_check},#{email} where id=#{id}
+	<update id="update" parameterType="java.util.HashMap">
+		update userinfo set id=#{id}, password=#{password}, nickname=#{nickname},
+		sex=#{sex}, phone=#{phone}, adminCheck=#{adminCheck}, email=#{email}
+		where idx=#{idx}
 	</update>
-	<select id="selectOneUserInfo" parameterType="String" resultType="java.util.HashMap">
-		select * from userinfo where id=#{id}
+	<delete id="delete" parameterType="int">
+		delete from userinfo where idx=#{idx}
+	</delete>
+	<select id="select" parameterType="int" resultType="java.util.HashMap">
+		select * from userinfo where idx=#{idx}
 	</select>
-	<select id="selectAllUserInfo" resultType="java.util.HashMap">
+	<select id="selectAll" resultType="java.util.HashMap">
 		select * from userinfo
 	</select>
 </mapper>

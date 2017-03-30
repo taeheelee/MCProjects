@@ -53,12 +53,12 @@ public class Constant {
 		public static final String EMAIL = "email";
 		public static final String BIRTHDAY = "birthday";
 		public static final String STARPOINT = "starPoint";
-		public static final String LIKE = "like";
+		public static final String LIKECOUNT = "likeCount";
 	}
 	
 	public class Dog_kind{
 		public static final String KIND = "kind";
-		public static final String DOGSIZE = "dogsize";
+		public static final String DOGSIZE = "dogSize";
 		public static final String ADULTWEIGHT = "adultWeight";
 	}
 

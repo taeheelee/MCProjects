@@ -47,4 +47,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<!-- 좋아요 많은순으로 정렬 -->
 		select * from board order by likeCount desc
 	</select>
+	<select id="selectBoardLimit" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		<!-- 한페이지에 보여줄 게시물 수  -->
+		select * from board limit #{skip}, #{count}
+	</select>
+	<select id="getBoardCount" resultType="int">
+		<!-- 총게시물 수 불러오기 -->
+		select count(*) from board
+	</select>
 </mapper>

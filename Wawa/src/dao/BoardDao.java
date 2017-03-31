@@ -226,4 +226,16 @@ public class BoardDao implements IBoardDao{
 		}
 	}
 
+	@Override
+	public List<HashMap<String, Object>> selectBoardLimit(HashMap<String, Object> params) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int getBoardCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

@@ -14,4 +14,6 @@ public interface IBoardDao {
 	public List<HashMap<String, Object>> select_by_title(HashMap<String, Object> params);
 	public List<HashMap<String, Object>> select_by_keyword(HashMap<String, Object> params);
 	public List<HashMap<String, Object>> select_by_boastnum();
+	public List<HashMap<String, Object>> selectBoardLimit(HashMap<String, Object> params);
+	public int getBoardCount();
 }

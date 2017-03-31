@@ -17,6 +17,7 @@ import interface_dao.IManagementDao;
 import interface_dao.IPetInfoDao;
 import interface_dao.IRepleDao;
 import interface_dao.IUserInfoDao;
+import interface_dao.IVaccineInfoDao;
 
 
 public class Test {
@@ -75,8 +76,16 @@ public class Test {
 //		for(HashMap<String, Object> u : ud.selectAllUserInfo())
 //			System.out.println(u);
 		
-		IPetInfoDao pd = context.getBean("petInfoDao", IPetInfoDao.class);
-		for(HashMap<String, Object> p : pd.selectAll())
-			System.out.println(p);
+//		IPetInfoDao pd = context.getBean("petInfoDao", IPetInfoDao.class);
+//		for(HashMap<String, Object> p : pd.selectAll())
+//			System.out.println(p);
+		
+//		IVaccineInfoDao vd = context.getBean("vaccineInfoDao", IVaccineInfoDao.class);
+//		params.put(Constant.VaccineInfo.VACCINENAME, "백신이름");
+//		params.put(Constant.VaccineInfo.VACCINEPERIOD, 365);
+//		params.put(Constant.VaccineInfo.VACCINEAGE, 3);
+//		vd.insertVaccine(params);
+//		for(HashMap<String, Object> v : vd.selectAll())
+//			System.out.println(v);
 	}
 }

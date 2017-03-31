@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="interface_dao.IVaccineInfoDao">
+	<insert id="insertVaccine" parameterType="java.util.HashMap">
+		insert into vaccineinfo values(0, #{vaccineName},
+		#{vaccinePeriod}, #{vaccineAge});
+	</insert>
+	<update id="updateVaccine" parameterType="java.util.HashMap">
+		update vaccineinfo set vaccineName=#{vaccineName},
+		vaccinePeriod=#{vaccinePeriod}, vaccineAge=#{vaccineAge}
+		where vaccineCode=#{vaccineCode}
+	</update>
+	<delete id="deleteVaccine" parameterType="int">
+		delete from vaccineinfo where vaccineCode=#{vaccineCode}
+	</delete>
+	<select id="selectOne" parameterType="int" resultType="java.util.HashMap">
+		select * from vaccineinfo where vaccineCode=#{vaccineCode}
+	</select>
+	<select id="selectAll" resultType="java.util.HashMap">
+		select * from vaccineinfo
+	</select>
+</mapper>

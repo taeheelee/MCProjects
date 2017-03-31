@@ -50,4 +50,9 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 		<property name="mapperInterface" value="interface_dao.IPetInfoDao"></property>
 	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="vaccineInfoDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+		<property name="mapperInterface" value="interface_dao.IVaccineInfoDao"></property>
+	</bean>
 </beans>

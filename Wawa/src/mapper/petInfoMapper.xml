@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deletePetinfo" parameterType="java.util.HashMap">
 		delete from petinfo where idx=#{idx}
 	</delete>
-	<select id="selectOne" parameterType="int" resultType="petInfo">
+	<select id="selectOne" parameterType="int" resultType="java.util.HashMap">
 		select * from petinfo where idx=#{idx}
 	</select>
 	<select id="selectAll" resultType="java.util.HashMap">

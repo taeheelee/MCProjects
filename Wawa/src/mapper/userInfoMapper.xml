@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="userInfo">
+<mapper namespace="interface_dao.IUserInfoDao">
 	<insert id="insert" parameterType="java.util.HashMap">
 		insert into userinfo values(0,#{id},#{password},#{nickname},#{sex},
 		#{phone},#{adminCheck},#{email})
@@ -15,10 +15,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete" parameterType="int">
 		delete from userinfo where idx=#{idx}
 	</delete>
-	<select id="select" parameterType="int" resultType="java.util.HashMap">
+	<select id="selectOneUserInfo" parameterType="int" resultType="java.util.HashMap">
 		select * from userinfo where idx=#{idx}
 	</select>
-	<select id="selectAll" resultType="java.util.HashMap">
+	<select id="selectAllUserInfo" resultType="java.util.HashMap">
 		select * from userinfo
 	</select>
 </mapper>

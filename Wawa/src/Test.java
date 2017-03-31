@@ -3,6 +3,9 @@
 
 import java.util.HashMap;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.GenericXmlApplicationContext;
+
 import commons.Constant;
 import dao.BoardDao;
 import dao.Dog_kindDao;
@@ -15,8 +18,8 @@ import interface_dao.IManagementDao;
 
 public class Test {
 	public static void main(String[] args) {
-		
-		IBoardDao bd = BoardDao.getInstance();
+		ApplicationContext context = new GenericXmlApplicationContext("applicationContext.xml");
+//		IBoardDao bd = context.getBean("boardDao", IBoardDao.class);
 		HashMap<String, Object> params = new HashMap<>();
 
 //		params.put(Constant.Board.BOARDCODE, 2);
@@ -40,7 +43,7 @@ public class Test {
 //		for(HashMap<String, Object> b : bd.selectAllBoard())
 //			System.out.println(b);
 		
-//		IDog_kindDao dd = Dog_kindDao.getInstance();
+//		IDog_kindDao dd = context.getBean("dog_kindDao", IDog_kindDao.class);
 //		params.put(Constant.Dog_kind.KIND, "불독2");
 //		params.put(Constant.Dog_kind.DOGSIZE, "소");
 //		params.put(Constant.Dog_kind.ADULTWEIGHT,10);
@@ -49,12 +52,16 @@ public class Test {
 //		for(HashMap<String, Object> d : dd.selectAllDog_kind())
 //			System.out.println(d);
 		
-//		IImageDao id = ImageDao.getInstance();
+//		IImageDao id = context.getBean("imageDao", IImageDao.class);
 //		params.put(Constant.image.PHYSICALNAME, "기하학");
 //		params.put(Constant.image.NAME, "화난개구리.jpg");
 //		params.put(Constant.image.PATH, "니문서");
 //		id.insertImage(params);
 //		for(HashMap<String, Object> i : id.selectAllImage())
 //			System.out.println(i);
+		
+//		IManagementDao md = context.getBean("managementDao", IManagementDao.class);
+//		for(HashMap<String, Object> m : md.selectList(1))
+//			System.out.println(m);
 	}
 }

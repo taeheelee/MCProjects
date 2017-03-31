@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper>
+<mapper namespace="interface_dao.IPetInfoDao">
 	<insert id="insertPetInfo" parameterType="java.util.HashMap">
 		insert into petinfo values(0, #{resist}, #{id}, #{name}, #{kind}, #{birthday},
 		#{neutral}, #{weight}, #{sex}, #{groomingStart}, #{groomingPeriod})

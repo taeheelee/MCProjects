@@ -14,6 +14,9 @@ import interface_dao.IBoardDao;
 import interface_dao.IDog_kindDao;
 import interface_dao.IImageDao;
 import interface_dao.IManagementDao;
+import interface_dao.IPetInfoDao;
+import interface_dao.IRepleDao;
+import interface_dao.IUserInfoDao;
 
 
 public class Test {
@@ -63,5 +66,17 @@ public class Test {
 //		IManagementDao md = context.getBean("managementDao", IManagementDao.class);
 //		for(HashMap<String, Object> m : md.selectList(1))
 //			System.out.println(m);
+		
+//		IRepleDao rd = context.getBean("repleDao", IRepleDao.class);
+//		for(HashMap<String, Object> r : rd.selectAll())
+//			System.out.println(r);
+		
+//		IUserInfoDao ud = context.getBean("userInfoDao", IUserInfoDao.class);
+//		for(HashMap<String, Object> u : ud.selectAllUserInfo())
+//			System.out.println(u);
+		
+		IPetInfoDao pd = context.getBean("petInfoDao", IPetInfoDao.class);
+		for(HashMap<String, Object> p : pd.selectAll())
+			System.out.println(p);
 	}
 }

@@ -18,13 +18,17 @@ import interface_dao.IPetInfoDao;
 import interface_dao.IRepleDao;
 import interface_dao.IUserInfoDao;
 import interface_dao.IVaccineInfoDao;
+import interface_service.IBoardService;
 
 
 public class Test {
 	public static void main(String[] args) {
 		ApplicationContext context = new GenericXmlApplicationContext("applicationContext.xml");
-//		IBoardDao bd = context.getBean("boardDao", IBoardDao.class);
-		HashMap<String, Object> params = new HashMap<>();
+		IBoardDao bd = context.getBean("boardDao", IBoardDao.class);
+//		HashMap<String, Object> params = new HashMap<>();
+//		IBoardService service = context.getBean("boardService",IBoardService.class);
+//		for(HashMap<String, Object> b : service.getBoardList(3))
+//			System.out.println(b);
 
 //		params.put(Constant.Board.BOARDCODE, 2);
 //		params.put(Constant.Board.TITLE, "제목이다요");
@@ -44,8 +48,8 @@ public class Test {
 //		params.put(Constant.Board.STARPOINT, 3);
 //		params.put(Constant.Board.LIKECOUNT, 99);
 //		bd.insertBoard(params);
-//		for(HashMap<String, Object> b : bd.selectAllBoard())
-//			System.out.println(b);
+		for(HashMap<String, Object> b : bd.selectAllBoard())
+			System.out.println(b);
 		
 //		IDog_kindDao dd = context.getBean("dog_kindDao", IDog_kindDao.class);
 //		params.put(Constant.Dog_kind.KIND, "불독2");

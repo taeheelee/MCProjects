@@ -6,10 +6,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertBoard" parameterType="java.util.HashMap">
 		insert into board values(0,#{boardCode},#{title},#{writer},#{content},
 		0,sysdate(),#{category},#{name},#{resist},#{lostDate},#{kind},
-		#{weight},#{age},#{sex},#{phone},#{email},#{birthday},#{starPoint},#{likeCount})	
+		#{weight},#{age},#{sex},#{phone},#{email},#{birthday},#{starPoint},0)	
 	</insert>
 	<update id="updateBoard" parameterType="java.util.HashMap">
-		update board set boardCode=#{boardCode}, title=#{title},writer=#{writer}, content=#{content}, readCount=#{readCount},
+		update board set title=#{title},writer=#{writer}, content=#{content}, readCount=#{readCount},
 		writeDate=#{writeDate}, category=#{category}, name=#{name},
 		resist=#{resist}, lostDate=#{lostDate}, kind=#{kind}, 
 		weight=#{weight}, age=#{age}, sex=#{sex}, phone=#{phone},

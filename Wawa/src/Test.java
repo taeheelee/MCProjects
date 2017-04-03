@@ -8,10 +8,10 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 
 import commons.Constant;
 import dao.BoardDao;
-import dao.Dog_kindDao;
+import dao.DogKindDao;
 import dao.ImageDao;
 import interface_dao.IBoardDao;
-import interface_dao.IDog_kindDao;
+import interface_dao.IDogKindDao;
 import interface_dao.IImageDao;
 import interface_dao.IManagementDao;
 import interface_dao.IPetInfoDao;

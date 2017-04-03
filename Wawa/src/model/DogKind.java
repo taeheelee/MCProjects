@@ -1,6 +1,6 @@
 package model;
 
-public class Dog_kind {
+public class DogKind {
 	private String kind;
 	private String dogSize;
 	private int adultWeight;

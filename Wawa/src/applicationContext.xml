@@ -23,7 +23,7 @@
 	
 	<bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="dog_kindDao">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-		<property name="mapperInterface" value="interface_dao.IDog_kindDao"></property>
+		<property name="mapperInterface" value="interface_dao.IDogKindDao"></property>
 	</bean>
 	
 	<bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="imageDao">

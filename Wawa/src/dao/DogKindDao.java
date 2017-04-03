@@ -9,22 +9,22 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import interface_dao.IDog_kindDao;
+import interface_dao.IDogKindDao;
 
 
-public class Dog_kindDao implements IDog_kindDao{
+public class DogKindDao implements IDogKindDao{
 	
 	private SqlSessionFactory sqlSessionFactory;
-	private static Dog_kindDao instance;
-	public static Dog_kindDao getInstance() {
+	private static DogKindDao instance;
+	public static DogKindDao getInstance() {
 		// TODO Auto-generated constructor stub
 		if(instance == null){
-			instance = new Dog_kindDao();
+			instance = new DogKindDao();
 		}
 		return instance;
 	}
 	
-	public Dog_kindDao() {
+	public DogKindDao() {
 		// TODO Auto-generated constructor stub
 		try{
 			InputStream is = Resources.getResourceAsStream("configuration.xml");
@@ -38,7 +38,7 @@ public class Dog_kindDao implements IDog_kindDao{
 	public int insertDog_kind(HashMap<String, Object> params){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.IDog_kindDao.class).insertDog_kind(params);
+			return session.getMapper(interface_dao.IDogKindDao.class).insertDog_kind(params);
 		}finally{
 			session.close();
 		}
@@ -47,7 +47,7 @@ public class Dog_kindDao implements IDog_kindDao{
 	public int updateDog_kind(HashMap<String, Object> params){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.IDog_kindDao.class).updateDog_kind(params);
+			return session.getMapper(interface_dao.IDogKindDao.class).updateDog_kind(params);
 		}finally{
 			session.close();
 		}
@@ -56,7 +56,7 @@ public class Dog_kindDao implements IDog_kindDao{
 	public int deleteDog_kind(String kind){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.IDog_kindDao.class).deleteDog_kind(kind);
+			return session.getMapper(interface_dao.IDogKindDao.class).deleteDog_kind(kind);
 		}finally{
 			session.close();
 		}
@@ -65,7 +65,7 @@ public class Dog_kindDao implements IDog_kindDao{
 	public HashMap<String, Object> selectOneDog_kind(String kind){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.IDog_kindDao.class).selectOneDog_kind(kind);
+			return session.getMapper(interface_dao.IDogKindDao.class).selectOneDog_kind(kind);
 		}finally{
 			session.close();
 		}
@@ -74,7 +74,7 @@ public class Dog_kindDao implements IDog_kindDao{
 	public List<HashMap<String, Object>> selectAllDog_kind(){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
-			return session.getMapper(interface_dao.IDog_kindDao.class).selectAllDog_kind();
+			return session.getMapper(interface_dao.IDogKindDao.class).selectAllDog_kind();
 		}finally{
 			session.close();
 		}

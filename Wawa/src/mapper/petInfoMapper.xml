@@ -2,7 +2,27 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="interface_dao.IPetInfoDao">
+<mapper namespace="interface_Dao.IPetInfoDao">
+<sql id="resist">
+	<choose>
+		<when test="resist != null">
+			#{resist}
+		</when>
+		<otherwise>
+			'등록번호 미입력'
+		</otherwise>
+	</choose>
+</sql>
+<sql id="weight">
+	<choose>
+		<when test="weight != null">
+			#{weight}
+		</when>
+		<otherwise>
+			0
+		</otherwise>
+	</choose>	
+</sql>
 	<insert id="insertPetInfo" parameterType="java.util.HashMap">
 		insert into petinfo values(0, #{resist}, #{id}, #{name}, #{kind}, #{birthday},
 		#{neutral}, #{weight}, #{sex}, #{groomingStart}, #{groomingPeriod})

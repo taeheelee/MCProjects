@@ -21,4 +21,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectAllUserInfo" resultType="java.util.HashMap">
 		select * from userinfo
 	</select>
+	<select id="selectBoardList" resultType="java.util.HashMap">
+		select b.boardIdx, b.boardCode, b.title, b.writeDate, b.readCount
+		from board b, userinfo u
+		where u.nickname = b.nickname and u.id = #{id}
+	</select>
 </mapper>

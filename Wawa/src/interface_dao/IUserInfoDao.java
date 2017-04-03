@@ -9,4 +9,5 @@ public interface IUserInfoDao {
 	public int deleteUserInfo(String id);
 	public HashMap<String, Object> selectOneUserInfo(String id);
 	public List<HashMap<String, Object>> selectAllUserInfo();
+	public List<HashMap<String, Object>> selectBoardList();
 }

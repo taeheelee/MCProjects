@@ -1,16 +1,20 @@
-#petInfo¿¡ ´ëÇÑ »ùÇÃ
-insert into petinfo values(0,'ABCDE1234567890','test','ÇÏ¶ûÀÌ','À£½ÃÄÚ±â','2016-12-25','Áß¼ºÈ­',2,'male','2017-11-20',60);
-insert into petinfo values(0,'BCDEF1234567890','test','Çªµ¹ÀÌ','Çªµé','2016-02-23','ÇØ´ç¾øÀ½',2,'female','2017-02-23',30);
-insert into petinfo values(0,'CDEFG1234567890','test','È²°õÀÌ','¸»Æ¼Áî','2015-08-20','Áß¼ºÈ­',2,'male','2017-08-20',90);
-insert into petinfo values(0,'DEFGH1234567890','test','¹Ì¹Ì','´Ú½ºÈÆÆ®','2016-12-01','ÇØ´ç¾øÀ½',2,'female','2016-12-20',30);
-insert into petinfo values(0,'DEFGH1234567890','test','¿Í¿Í','Ä¡¿Í¿Í','2015-09-13','ÇØ´ç¾øÀ½',2,'male','2017-08-20',60);
+ï»¿#petInfoì— ëŒ€í•œ ìƒ˜í”Œ
+insert into petinfo values(0,'ABCDE1234567890','test','í•˜ë‘ì´','ì›°ì‹œì½”ê¸°','2016-12-25','ì¤‘ì„±í™”',2,'male','2017-11-20',60);
+insert into petinfo values(0,'BCDEF1234567890','test','í‘¸ëŒì´','í‘¸ë“¤','2016-02-23','í•´ë‹¹ì—†ìŒ',2,'female','2017-02-23',30);
+insert into petinfo values(0,'CDEFG1234567890','test','í™©ê³°ì´','ë§í‹°ì¦ˆ','2015-08-20','ì¤‘ì„±í™”',2,'male','2017-08-20',90);
+insert into petinfo values(0,'DEFGH1234567890','test','ë¯¸ë¯¸','ë‹¥ìŠ¤í›ˆíŠ¸','2016-12-01','í•´ë‹¹ì—†ìŒ',2,'female','2016-12-20',30);
+insert into petinfo values(0,'DEFGH1234567890','test','ì™€ì™€','ì¹˜ì™€ì™€','2015-09-13','í•´ë‹¹ì—†ìŒ',2,'male','2017-08-20',60);
 
 
-#Ã¼Áß°ü¸®¿¡ ´ëÇÑ »ùÇÃ
+#ì²´ì¤‘ê´€ë¦¬ì— ëŒ€í•œ ìƒ˜í”Œ
 insert into management values(0, 1, '2017-01-18', 2.1);
 insert into management values(0, 1, '2017-03-27', 1.6);
 insert into management values(0, 3, '2017-03-27', 1.2);
 insert into management values(0, 4, '2017-03-27', 1.3);
 insert into management values(0, 5, '2017-03-27', 2.0);
+
+
+#ê°•ì•„ì§€ë³„ ì ‘ì¢…ë‚ ì§œì´ˆê¸° ê°’
+insert into medical_manage values(1,0101,'2017-01-31');
 
 

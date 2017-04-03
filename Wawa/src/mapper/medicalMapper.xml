@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="interface_dao.IMedicalDao">
+	<insert id="insertManagement" parameterType="java.util.HashMap">
+		insert into medical_manage values(#{code},#{vaccineCode},#{realShotDate})
+	</insert>
+	<update id="updateManagement" parameterType="java.util.HashMap">
+		update medical_manage set idx=#{idx}, vaccineCode=#{vaccineCode},
+		 realShotDate=#{realShotDate} where idx=#{idx} and vaccineCode=#{vaccineCode}
+	</update>	
+	<delete id="deleteManagement" parameterType="int">
+		delete from medical_manage where idx=#{idx} and vaccineCode=#{vaccineCode}
+	</delete>
+	<select id="selectRealShotDate" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select * from medical_manage where idx=#{idx} and vaccineCode=#{vaccineCode}
+	</select>
+</mapper>

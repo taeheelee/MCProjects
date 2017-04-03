@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from management where managementIdx=#{managementIdx}
 	</select>
 	<select id="selectList" parameterType="int" resultType="java.util.HashMap">
-		select * from management where idx=#{idx} 
+		select * from management where idx=#{idx} order by date asc
 	</select>
 	
 </mapper>

@@ -32,7 +32,11 @@ public interface IBoardService {
 	//제품리뷰
 	public boolean updateReviewBoard(int boardIdx, String title, String category, int starPoint, String content, String writer);
 	
+	//============================================================================================
+	//삭제
 	public boolean deleteBoard(int boardIdx);
+	//게시글보기
 	public HashMap<String, Object> readBoard(int boardIdx);
-	public List<HashMap<String, Object>> getBoardList(int page);
+	//
+	public HashMap<String, Object> getBoardList(int page);
 }

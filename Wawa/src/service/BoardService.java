@@ -241,7 +241,7 @@ public class BoardService implements IBoardService{
 	
 	//================================페이징 처리========================================================	
 	@Override
-	public List<HashMap<String, Object>> getBoardList(int page) {
+	public HashMap<String, Object> getBoardList(int page) {
 		// TODO Auto-generated method stub
 		//첫페이지 -> 맨앞페이지
 				int first = 1;
@@ -271,7 +271,7 @@ public class BoardService implements IBoardService{
 				result.put("current", page);
 				result.put("boardList", list);
 				
-				return (List<HashMap<String, Object>>) result.get("boardList");
+				return result;
 	}
 	
 	

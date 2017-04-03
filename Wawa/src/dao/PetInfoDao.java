@@ -49,7 +49,7 @@ public class PetInfoDao implements IPetInfoDao{
 		return 0;
 	}
 	@Override
-	public HashMap<String, Object> selectPet(int idx) {
+	public HashMap<String, Object> selectOne(int idx) {
 		// TODO Auto-generated method stub
 		return null;
 	}

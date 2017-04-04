@@ -40,7 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from petinfo where idx=#{idx}
 	</select>
 	<select id="selectPetList" parameterType="String" resultType="java.util.HashMap">
-		select * from petinfo where userid=#{userid}
+		select * from petinfo where id=#{id}
 	</select>
 	<select id="selectAll" resultType="java.util.HashMap">
 		select * from petinfo

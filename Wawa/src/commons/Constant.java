@@ -5,7 +5,7 @@ public class Constant {
 		public static final String IDX = "idx";
 		public static final String ID = "id";
 		public static final String PASSWORD = "password";
-		public static final String NICKNAME = "nickName";
+		public static final String NICKNAME = "nickname";
 		public static final String SEX = "sex";
 		public static final String PHONE = "phone";
 		public static final String ADMINCHECK = "adminCheck";
@@ -56,13 +56,13 @@ public class Constant {
 		public static final String LIKECOUNT = "likeCount";
 	}
 	
-	public class Dog_kind{
+	public class DogKind{
 		public static final String KIND = "kind";
 		public static final String DOGSIZE = "dogSize";
 		public static final String ADULTWEIGHT = "adultWeight";
 	}
 
-	public class Medical_manage{
+	public class MedicalManage{
 		public static final String IDX = "idx";
 		public static final String VACCINECODE = "vaccineCode";
 		public static final String REALSHOTDATE = "realShotDate";
@@ -83,7 +83,16 @@ public class Constant {
 		
 	}
 	
-	
+	public class Reple{
+		public static final String REPLEIDX = "repleIdx";
+		public static final String BOARDIDX = "boardIdx";
+		public static final String NICKNAME = "nickname";
+		public static final String CONTENT = "content";
+		public static final String WRITEDATE = "writeDate";
+		public static final String GROUPCODE = "groupCode";
+		public static final String GROUPSEQ = "groupSeq";
+		public static final String GROUPLV = "groupLv";
+	}
 	
 	
 }

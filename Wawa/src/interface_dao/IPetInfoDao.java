@@ -10,6 +10,5 @@ public interface IPetInfoDao {
 	public int deletePetInfo(int idx);
 	public HashMap<String, Object> selectOne(int idx);
 	public List<HashMap<String, Object>> selectAll();
-	public HashMap<String, Object> selectVaccine();
 
 }

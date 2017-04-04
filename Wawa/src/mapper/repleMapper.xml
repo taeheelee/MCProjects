@@ -3,25 +3,38 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="interface_dao.IRepleDao">
-	<insert id="insert" parameterType="java.util.HashMap">
-		insert into reple values(#{repleIdx}, #{boardIdx}, #{nickname}, #{content},
-		#{writedate}, #{groupCode}, #{groupSeq}, #{groupLv})
+	<insert id="insert" parameterType="java.util.HashMap"
+	useGeneratedKeys="true" keyProperty="repleIdx">
+		<!-- 댓글쓰기 -->
+		insert into reple values(0, #{boardIdx}, #{nickname}, #{content},
+		sysdate(), 0, 0, 0)
 	</insert>
 	<update id="update" parameterType="java.util.HashMap">
-		update reple set boardIdx=#{boardIdx}, nickname=#{nickname}, 
-		content=#{content}, writedate=#{writedate}, groupCode=#{groupCode},
-		groupSeq=#{groupSeq}, groupLv=#{groupLv} where repleIdx=#{repleIdx}
+		<!-- 댓글수정 -->
+		update reple set content=#{content} where repleIdx=#{repleIdx}
 	</update>
 	<delete id="delete" parameterType="int">
+		<!-- 댓글삭제 -->
 		delete from reple where repleIdx=#{repleIdx}
 	</delete>
 	<select id="selectOne" parameterType="int" resultType="java.util.HashMap">
+		<!-- 댓글하나받아오기 -->
 		select * from reple where repleIdx=#{repleIdx}
 	</select>
-	<select id="selectAll" resultType="java.util.HashMap">
-		select * from reple
+	<select id="selectRepleList" parameterType="int" resultType="java.util.HashMap">
+		<!-- 해당게시물의 댓글리스트 출력 -->
+		select * from reple where boardIdx=#{boardIdx} order by groupCode desc, groupSeq asc;
 	</select>
 	<select id="select_by_nickname" parameterType="String" resultType="java.util.HashMap">
+		<!-- 해당닉네임의 댓글 모두 출력 -->
 		select * from reple where nickname=#{nickname}
 	</select>
+	<update id="updateGroup" parameterType="java.util.HashMap">
+		update reple set groupCode=#{groupCode}, groupSeq=#{groupSeq}, groupLv=#{groupLv}
+		where repleIdx=#{repleIdx}
+	</update>
+	<update id="increaseGroupSeq" parameterType="java.util.HashMap">
+		update reple set groupSeq = groupSeq+1 
+		where groupCode = #{groupCode} and groupSeq > #{groupSeq}
+	</update>
 </mapper>

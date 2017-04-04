@@ -38,5 +38,5 @@ public interface IBoardService {
 	//게시글보기
 	public HashMap<String, Object> readBoard(int boardIdx);
 	//
-	public HashMap<String, Object> getBoardList(int page);
+	public HashMap<String, Object> getBoardList(int page, int boardCode);
 }

@@ -239,9 +239,9 @@ public class BoardService implements IBoardService{
 	}
 
 	
-	//================================페이징 처리========================================================	
+	//================================해당 게시판 게시물리스트, 페이징 처리========================================================	
 	@Override
-	public HashMap<String, Object> getBoardList(int page) {
+	public HashMap<String, Object> getBoardList(int page, int boardCode) {
 		// TODO Auto-generated method stub
 		//첫페이지 -> 맨앞페이지
 				int first = 1;
@@ -259,6 +259,7 @@ public class BoardService implements IBoardService{
 				int count = 10;
 				
 				HashMap<String, Object> params = new HashMap<>();
+				params.put(Constant.Board.BOARDCODE, boardCode);
 				params.put("skip", skip);
 				params.put("count", count);
 				List<HashMap<String, Object>> list = dao.selectBoardLimit(params);
@@ -273,10 +274,5 @@ public class BoardService implements IBoardService{
 				
 				return result;
 	}
-	
-	
-
-
-	
 	
 }

@@ -49,10 +49,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id="selectBoardLimit" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		<!-- 한페이지에 보여줄 게시물 수  -->
-		select * from board limit #{skip}, #{count}
+		select * from board where boardCode=#{boardCode} limit #{skip}, #{count}
 	</select>
 	<select id="getBoardCount" resultType="int">
 		<!-- 총게시물 수 불러오기 -->
-		select count(*) from board
+		select count(*) from board where boardCode=#{boardCode}
 	</select>
 </mapper>

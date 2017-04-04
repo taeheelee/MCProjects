@@ -5,7 +5,7 @@ public class Constant {
 		public static final String IDX = "idx";
 		public static final String ID = "id";
 		public static final String PASSWORD = "password";
-		public static final String NICKNAME = "nickName";
+		public static final String NICKNAME = "nickname";
 		public static final String SEX = "sex";
 		public static final String PHONE = "phone";
 		public static final String ADMINCHECK = "adminCheck";

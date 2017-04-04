@@ -18,9 +18,9 @@ public class DogKindService implements IDogKindService{
 	@Override
 	public boolean writeDogKind(String kind, String dogSize, double adultWeight) {
 		HashMap<String, Object> params = new HashMap<>();
-		params.put(Constant.Dog_kind.KIND, kind);
-		params.put(Constant.Dog_kind.DOGSIZE, dogSize);
-		params.put(Constant.Dog_kind.ADULTWEIGHT, adultWeight);
+		params.put(Constant.DogKind.KIND, kind);
+		params.put(Constant.DogKind.DOGSIZE, dogSize);
+		params.put(Constant.DogKind.ADULTWEIGHT, adultWeight);
 		int result = dao.insertDogKind(params);
 		if(result > 0)
 			return true;
@@ -31,9 +31,9 @@ public class DogKindService implements IDogKindService{
 	@Override
 	public boolean updateDogKind(String kind, String dogSize, double adultWeight) {
 		HashMap<String, Object> params = new HashMap<>();
-		params.put(Constant.Dog_kind.KIND, kind);
-		params.put(Constant.Dog_kind.DOGSIZE, dogSize);
-		params.put(Constant.Dog_kind.ADULTWEIGHT, adultWeight);
+		params.put(Constant.DogKind.KIND, kind);
+		params.put(Constant.DogKind.DOGSIZE, dogSize);
+		params.put(Constant.DogKind.ADULTWEIGHT, adultWeight);
 		int result = dao.updateDogKind(params);
 		if(result > 0)
 			return true;

@@ -4,9 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface IDogKindDao {
-	public int insertDog_kind(HashMap<String, Object> params);
-	public int updateDog_kind(HashMap<String, Object> params);
-	public int deleteDog_kind(String kind);
-	public HashMap<String, Object> selectOneDog_kind(String nickname);
-	public List<HashMap<String, Object>> selectAllDog_kind();	
+	public int insertDogKind(HashMap<String, Object> params);
+	public int updateDogKind(HashMap<String, Object> params);
+	public int deleteDogKind(String kind);
+	public HashMap<String, Object> selectOneDogKind(String nickname);
+	public List<HashMap<String, Object>> selectAllDogKind();	
 }

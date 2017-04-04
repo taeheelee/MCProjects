@@ -16,7 +16,7 @@ public class DogKindService implements IDogKindService{
 	IDogKindDao dao;
 
 	@Override
-	public boolean writeDogKind(String kind, String dogSize, double adultWeight) {
+	public boolean insertDogKind(String kind, String dogSize, double adultWeight) {
 		HashMap<String, Object> params = new HashMap<>();
 		params.put(Constant.DogKind.KIND, kind);
 		params.put(Constant.DogKind.DOGSIZE, dogSize);

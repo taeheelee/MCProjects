@@ -3,16 +3,16 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="interface_dao.IUserInfoDao">
-	<insert id="insert" parameterType="java.util.HashMap">
+	<insert id="insertUserInfo" parameterType="java.util.HashMap">
 		insert into userinfo values(0,#{id},#{password},#{nickname},#{sex},
 		#{phone},#{adminCheck},#{email})
 	</insert>
-	<update id="update" parameterType="java.util.HashMap">
+	<update id="updateUserInfo" parameterType="java.util.HashMap">
 		update userinfo set id=#{id}, password=#{password}, nickname=#{nickname},
 		sex=#{sex}, phone=#{phone}, adminCheck=#{adminCheck}, email=#{email}
 		where idx=#{idx}
 	</update>
-	<delete id="delete" parameterType="int">
+	<delete id="deleteUserInfo" parameterType="int">
 		delete from userinfo where idx=#{idx}
 	</delete>
 	<select id="selectOneUserInfo" parameterType="int" resultType="java.util.HashMap">

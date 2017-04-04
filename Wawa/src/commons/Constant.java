@@ -56,13 +56,13 @@ public class Constant {
 		public static final String LIKECOUNT = "likeCount";
 	}
 	
-	public class Dog_kind{
+	public class DogKind{
 		public static final String KIND = "kind";
 		public static final String DOGSIZE = "dogSize";
 		public static final String ADULTWEIGHT = "adultWeight";
 	}
 
-	public class Medical_manage{
+	public class MedicalManage{
 		public static final String IDX = "idx";
 		public static final String VACCINECODE = "vaccineCode";
 		public static final String REALSHOTDATE = "realShotDate";

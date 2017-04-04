@@ -83,7 +83,16 @@ public class Constant {
 		
 	}
 	
-	
+	public class Reple{
+		public static final String REPLEIDX = "repleIdx";
+		public static final String BOARDIDX = "boardIdx";
+		public static final String NICKNAME = "nickname";
+		public static final String CONTENT = "content";
+		public static final String WRITEDATE = "writeDate";
+		public static final String GROUPCODE = "groupCode";
+		public static final String GROUPSEQ = "groupSeq";
+		public static final String GROUPLV = "groupLv";
+	}
 	
 	
 }

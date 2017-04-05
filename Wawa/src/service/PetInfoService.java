@@ -18,7 +18,7 @@ public class PetInfoService implements IPetinfoService {
 	IPetInfoDao dao;
 	
 	@Override
-	public boolean insertPetInfo(int idx, String resist, String id, String name, String kid, Date birthday, String neutral,
+	public boolean insertPetInfo(int idx, String resist, String id, String name, String kind, Date birthday, String neutral,
 			double weight, String sex, Date groomingStart, int groomingPeriod) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> params = new HashMap<>();

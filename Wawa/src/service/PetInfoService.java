@@ -25,7 +25,7 @@ public class PetInfoService implements IPetinfoService {
 		params.put(Constant.PetInfo.RESIST, resist);
 		params.put(Constant.PetInfo.ID, id);
 		params.put(Constant.PetInfo.NAME, name);
-		params.put(Constant.PetInfo.KIND, kid);
+		params.put(Constant.PetInfo.KIND, kind);
 		params.put(Constant.PetInfo.BIRTHDAY, birthday);
 		params.put(Constant.PetInfo.NEUTRAL, neutral);
 		params.put(Constant.PetInfo.WEIGHT, weight);

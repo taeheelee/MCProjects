@@ -55,4 +55,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<!-- 총게시물 수 불러오기 -->
 		select count(*) from board where boardCode=#{boardCode}
 	</select>
+	<update id="increaseLikeCount" parameterType="int">
+		<!-- 좋아요 수 증가시키기 -->		
+		update board set likeCount=#{likeCount}
+	</update>
 </mapper>

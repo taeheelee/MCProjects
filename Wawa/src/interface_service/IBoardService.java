@@ -39,4 +39,6 @@ public interface IBoardService {
 	public HashMap<String, Object> readBoard(int boardIdx);
 	//
 	public HashMap<String, Object> getBoardList(int page, int boardCode);
+	//좋아요 수 증가
+	public boolean increaseBoastNum(int boardIdx);
 }

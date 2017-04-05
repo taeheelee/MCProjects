@@ -58,4 +58,9 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 		<property name="mapperInterface" value="interface_dao.IVaccineInfoDao"></property>
 	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="medicalDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+		<property name="mapperInterface" value="interface_dao.IMedicalDao"></property>
+	</bean>
 </beans>

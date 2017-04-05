@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public interface IPetinfoService {
-	public boolean insertPetInfo(int idx, String resist, String id, String name, String kind, 
+	public boolean insertPetInfo(int idx, String resist, String id, String name, String kid, 
 			Date birthday, String neutral, double weight, String sex, 
 			Date groomingStart, int groomingPeriod);
 	public boolean updatePetInfo(int idx, String resist, String id, String name, String kind, 

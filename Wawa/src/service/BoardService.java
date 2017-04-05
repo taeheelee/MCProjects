@@ -275,4 +275,19 @@ public class BoardService implements IBoardService{
 				return result;
 	}
 	
+	//================================좋아요 수 증가========================================================	
+	@Override
+	public boolean increaseBoastNum(int boardIdx) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> params = dao.selectOneBoard(boardIdx);
+		int likeCount = (int)params.get(Constant.Board.LIKECOUNT) + 1;
+		params.put("likeCount", likeCount);
+			
+		int result = dao.updateBoard(params);
+		if(result > 0) 
+			return true;
+		else 
+			return false;
+	}
+	
 }

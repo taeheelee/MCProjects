@@ -16,4 +16,5 @@ public interface IBoardDao {
 	public List<HashMap<String, Object>> select_by_boastnum();
 	public List<HashMap<String, Object>> selectBoardLimit(HashMap<String, Object> params);
 	public int getBoardCount();
+	public int increaseLikeCount(int boardIdx);
 }

@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update medical_manage set idx=#{idx}, vaccineCode=#{vaccineCode},
 		 realShotDate=#{realShotDate} where idx=#{idx} and vaccineCode=#{vaccineCode}
 	</update>	
-	<delete id="deleteManagement" parameterType="int">
+	<delete id="deleteManagement" parameterType="java.util.HashMap">
 		delete from medical_manage where idx=#{idx} and vaccineCode=#{vaccineCode}
 	</delete>
 	<select id="selectRealShotDate" parameterType="java.util.HashMap" resultType="java.util.HashMap">

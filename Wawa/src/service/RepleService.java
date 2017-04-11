@@ -31,20 +31,41 @@ public class RepleService implements IRepleService{
 			params.put(Constant.Reple.GROUPLV, 0);
 			result = dao.updateGroup(params);
 		}
+		//댓글(또는 댓글의 댓글..)일때
 		else{
-			HashMap<String, Object> parentReple = dao.selectOne(pIdx);
-			int groupCode = (int)parentReple.get(Constant.Reple.GROUPCODE);
-			int groupSeq = (int)parentReple.get(Constant.Reple.GROUPSEQ);
-			int groupLv = (int)parentReple.get(Constant.Reple.GROUPLV);
+			HashMap<String, Object> parentBoard = dao.selectOne(pIdx);
+			int groupCode = (int)parentBoard.get(Constant.Reple.GROUPCODE);
+			int groupSeq = (int)parentBoard.get(Constant.Reple.GROUPSEQ);
+			int groupLv = (int)parentBoard.get(Constant.Reple.GROUPLV);
+			int parentNum = (int)parentBoard.get("repleIdx");
+			int max = dao.selectMax(groupCode);
 			
-			HashMap<String, Object> params2 = new HashMap<>();
-			params2.put(Constant.Reple.GROUPCODE, groupCode);
-			params2.put(Constant.Reple.GROUPSEQ, groupSeq);
-			dao.increaseGroupSeq(params2);
-
-			params.put(Constant.Reple.GROUPCODE, parentReple.get(Constant.Reple.GROUPCODE));
-			params.put(Constant.Reple.GROUPSEQ, (int)parentReple.get(Constant.Reple.GROUPSEQ)+1);
-			params.put(Constant.Reple.GROUPLV, (int)parentReple.get(Constant.Reple.GROUPLV)+1);
+			params.put(Constant.Reple.GROUPCODE, groupCode);
+			params.put(Constant.Reple.GROUPLV, groupLv+1);
+			params.put("parentNum", parentNum);
+			
+			//댓글의댓글(혹은 그 이상)일때
+			if((int)parentBoard.get(Constant.Reple.GROUPLV) > 0){
+				HashMap<String, Object> params2 = new HashMap<>();
+				params2.put(Constant.Reple.GROUPCODE, groupCode);
+				params2.put(Constant.Reple.GROUPSEQ, groupSeq);
+				dao.increaseGroupSeq(params2);
+				
+				//댓글의 댓글(혹은 그 이상)이 하나일때
+				if(dao.selectParent(parentNum) == 0)
+					params.put(Constant.Reple.GROUPSEQ, groupSeq+1);
+				
+				//댓글의 댓글(혹은 그 이상)이 하나가 아닐때
+				else{
+					int param = (int)parentBoard.get("repleIdx");
+					dao.decreaseGroupSeq(param);
+					params.put(Constant.Reple.GROUPSEQ, groupSeq+dao.selectParent((int)parentBoard.get("repleIdx"))+1);
+				}
+			}
+			//그냥 댓글일때
+			else
+				params.put(Constant.Reple.GROUPSEQ, max+1);
+			//그룹업데이트!
 			result = dao.updateGroup(params);
 		}
 		if(result > 0)

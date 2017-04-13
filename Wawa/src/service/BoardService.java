@@ -289,5 +289,29 @@ public class BoardService implements IBoardService{
 		else 
 			return false;
 	}
+
+	@Override
+	public List<HashMap<String, Object>> getBoardByName(HashMap<String, Object> params) {
+		// TODO Auto-generated method stub
+		return dao.selectByName(params);
+	}
+
+	@Override
+	public List<HashMap<String, Object>> getBoardByTitle(HashMap<String, Object> params) {
+		// TODO Auto-generated method stub
+		return dao.selectByTitle(params);
+	}
+
+	@Override
+	public List<HashMap<String, Object>> getBoardByKeyword(HashMap<String, Object> params) {
+		// TODO Auto-generated method stub
+		return dao.selectByKeyword(params);
+	}
 	
+	@Override
+	public HashMap<String, Object> getBoardByBoardIdx(HashMap<String, Object> params) {
+		// TODO Auto-generated method stub
+		return dao.selectOneBoard((int)(params.get("boardIdx")));
+	}
+
 }

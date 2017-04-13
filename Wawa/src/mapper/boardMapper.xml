@@ -19,6 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteBoard" parameterType="int">
 		delete from board where boardIdx=#{boardIdx}
 	</delete>
+	
 	<select id="selectOneBoard" parameterType="int" resultType="java.util.HashMap">
 		<!-- 게시글번호로 게시글하나 선택 -->
 		select * from board where boardIdx=#{boardIdx}
@@ -31,19 +32,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<!-- 게시글 전체보기 -->
 		select * from board order by boardIdx
 	</select>
-	<select id="select_by_name" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	<select id="selectByName" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		<!-- 글쓴이로 검색 -->
 		select * from board where writer like '%${writer}%'
 	</select>
-	<select id="select_by_title" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	<select id="selectByTitle" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		<!-- 글제목으로 검색 -->
 		select * from board where title like '%${title}%'
 	</select>
-	<select id="select_by_keyword" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	<select id="selectByKeyword" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		<!-- 글내용으로 검색 -->
 		select * from board where content like '%${content}%'
 	</select>
-	<select id="select_by_boastnum" resultType="java.util.HashMap">
+	<select id="selectByBoastnum" resultType="java.util.HashMap">
 		<!-- 좋아요 많은순으로 정렬 -->
 		select * from board order by likeCount desc
 	</select>

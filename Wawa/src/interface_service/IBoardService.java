@@ -41,4 +41,12 @@ public interface IBoardService {
 	public HashMap<String, Object> getBoardList(int page, int boardCode);
 	//좋아요 수 증가
 	public boolean increaseBoastNum(int boardIdx);
+	
+	//이름으로 게시판 검색
+	public List<HashMap<String, Object>> getBoardByName(HashMap<String, Object> params);
+	//제목으로 게시판 검색
+	public List<HashMap<String, Object>> getBoardByTitle(HashMap<String, Object> params);
+	//키워드로 게시판 검색
+	public List<HashMap<String, Object>> getBoardByKeyword(HashMap<String, Object> params);
+	public HashMap<String, Object> getBoardByBoardIdx(HashMap<String, Object> params);
 }

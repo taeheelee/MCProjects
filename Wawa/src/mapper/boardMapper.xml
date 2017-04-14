@@ -26,11 +26,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where p.id=#{b.id}
 	</select>
 	<select id="selectBoardById" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-		select * from board where id=#{id}, boardCode=#{boardCode}
+		select * from board where id=#{id} and boardCode=#{boardCode}
 	</select>
 	<select id="selectOneBoard" parameterType="int" resultType="java.util.HashMap">
 		<!-- 게시글번호로 게시글하나 선택 -->
-		select * from board where boardIdx=#{boardIdx}, boardCode=#{boardCode}
+		select * from board where boardIdx=#{boardIdx}
 	</select>
 	<select id="selectBoardList" parameterType="int" resultType="java.util.HashMap">
 		<!-- 게시판유형에 따른 게시글 보기 -->
@@ -42,15 +42,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id="selectByName" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		<!-- 글쓴이로 검색 -->
-		select * from board where writer like '%${writer}%', boardCode=#{boardCode}
+		select * from board where writer like CONCAT('%',#{writer},'%') and boardCode=#{boardCode}
 	</select>
 	<select id="selectByTitle" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		<!-- 글제목으로 검색 -->
-		select * from board where title like '%${title}%', boardCode=#{boardCode}
+		select * from board where boardCode=#{boardCode} and 
+		category=#{category} and 
+		title like CONCAT('%',#{title},'%')
+		order by boardIdx desc limit #{skip}, #{count}
 	</select>
 	<select id="selectByKeyword" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		<!-- 글내용으로 검색 -->
-		select * from board where content like '%${content}%', boardCode="#{boardCode}"
+		select * from board where content like CONCAT('%',#{content},'%') and boardCode="#{boardCode}"
 	</select>
 	<select id="selectByBoastnum" resultType="java.util.HashMap">
 		<!-- 좋아요 많은순으로 정렬 -->
@@ -58,11 +61,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id="selectBoardLimit" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		<!-- 한페이지에 보여줄 게시물 수  -->
-		select * from board where boardCode=#{boardCode} limit #{skip}, #{count}
+		select * from board where boardCode=#{boardCode} order by boardIdx desc
+		limit #{skip}, #{count}
 	</select>
-	<select id="getBoardCount" resultType="int">
+	<select id="getBoardCount" parameterType="int" resultType="int">
 		<!-- 총게시물 수 불러오기 -->
 		select count(*) from board where boardCode=#{boardCode}
+	</select>
+	<select id="getSearchCount" parameterType="java.util.HashMap" resultType="int">
+		<!-- 제목검색 결과 게시물 수 불러오기 -->
+		select count(*) from board where boardCode=#{boardCode}
+		and category=#{category} 
+		and title like CONCAT('%',#{title},'%')
 	</select>
 	<update id="increaseLikeCount" parameterType="int">
 		<!-- 좋아요 수 증가시키기 -->		

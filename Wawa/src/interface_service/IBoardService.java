@@ -37,7 +37,7 @@ public interface IBoardService {
 	public boolean deleteBoard(int boardIdx);
 	//게시글보기
 	public HashMap<String, Object> readBoard(int boardIdx);
-	//
+	//게시글목록 및 페이징
 	public HashMap<String, Object> getBoardList(int page, int boardCode);
 	//좋아요 수 증가
 	public boolean increaseBoastNum(int boardIdx);
@@ -45,7 +45,7 @@ public interface IBoardService {
 	//이름으로 게시판 검색
 	public List<HashMap<String, Object>> getBoardByName(HashMap<String, Object> params);
 	//제목으로 게시판 검색
-	public List<HashMap<String, Object>> getBoardByTitle(HashMap<String, Object> params);
+	public HashMap<String, Object> getBoardByTitle(int type, String keyword, int page, int boardCode);
 	//키워드로 게시판 검색
 	public List<HashMap<String, Object>> getBoardByKeyword(HashMap<String, Object> params);
 	//게시판인덱스로 게시판 검색

@@ -250,7 +250,7 @@ public class BoardService implements IBoardService{
 				//끝페이지 -> 현재 보이는 마지막페이지
 				int end = ((page-1) / 10 + 1) *10;
 				//마지막페이지 -> 맨마지막페이지
-				int last = (dao.getBoardCount()-1)/10 + 1;
+				int last = (dao.getBoardCount(boardCode)-1)/10 + 1;
 				//마지막페이지가 끝페이지보다 작으면 end=last
 				end = last < end ? last : end;
 				//건너뛸 게시물 개수
@@ -297,9 +297,51 @@ public class BoardService implements IBoardService{
 	}
 
 	@Override
-	public List<HashMap<String, Object>> getBoardByTitle(HashMap<String, Object> params) {
+	public HashMap<String, Object> getBoardByTitle(int type, String keyword, int page, int boardCode) {
 		// TODO Auto-generated method stub
-		return dao.selectByTitle(params);
+		HashMap<String, Object> params = new HashMap<>();
+		params.put(Constant.Board.BOARDCODE, boardCode);
+		params.put(Constant.Board.TITLE, keyword);
+		if(type == 1)
+			params.put(Constant.Board.CATEGORY, "애견상식");
+		else if(type == 2)
+			params.put(Constant.Board.CATEGORY, "훈련정보");
+		else if(type == 3)
+			params.put(Constant.Board.CATEGORY, "애견간식레시피");
+		else if(type == 4)
+			params.put(Constant.Board.CATEGORY, "기타");
+		
+		int first = 1;
+
+		int start = (page-1) / 10 * 10 + 1;
+
+		int end = ((page-1) / 10 + 1) *10;
+
+		int last = (dao.getSearchCount(params)-1)/10 + 1;
+
+		end = last < end ? last : end;
+
+		int skip = (page-1) * 10;
+
+		int count = 10;
+		
+		params.put("skip", skip);
+		params.put("count", count);
+		
+		
+		List<HashMap<String, Object>> list = dao.selectByTitle(params);
+		
+		HashMap<String, Object> result = new HashMap<>();
+		result.put("first", first);
+		result.put("start", start);
+		result.put("end", end);
+		result.put("last", last);
+		result.put("current", page);
+		result.put("boardList", list);
+		result.put("type", type);
+		result.put("keyword", keyword);
+		
+		return result;
 	}
 
 	@Override

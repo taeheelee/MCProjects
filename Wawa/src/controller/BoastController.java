@@ -12,26 +12,25 @@ import org.springframework.web.servlet.ModelAndView;
 import interface_service.IBoardService;
 
 @Controller
-public class ReviewController {
-
+public class BoastController {
 	@Autowired
 	private IBoardService boardService;
 	
-	@RequestMapping("reviewMain.do")
-	public ModelAndView reviewMain(@RequestParam(defaultValue="1") int page, int boardCode){
+	@RequestMapping("boastMain.do")
+	public ModelAndView boastMain(@RequestParam(defaultValue="1") int page, int boardCode){
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> list = boardService.getBoardList(page, boardCode);
 		mav.addObject("result", list);
-		mav.setViewName("review");
+		mav.setViewName("boast");
 		return mav;
 	}
 	
 	@RequestMapping("search.do")
 	public ModelAndView search(HashMap<String, Object> params){
 		ModelAndView mav = new ModelAndView();
-		List<HashMap<String, Object>> list = boardService.getBoardByKeyword(params);
-		mav.addObject("result", list);
-		mav.setViewName("redirect:reviewMain.do");
+		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
+		mav.addObject("result", board);
+		mav.setViewName("redirect:boastMain.do");
 		return mav;
 	}
 	
@@ -40,19 +39,19 @@ public class ReviewController {
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
 		mav.addObject("result", board);
-		mav.setViewName("redirect:reviewMain.do");
+		mav.setViewName("redirect:boastMain.do");
 		return mav;
 	}
 	
-	@RequestMapping("writeForm.do")
+	@RequestMapping("writeForm.do") //writeForm.jsp로
 	public void writeForm(){}
 	
 	@RequestMapping("write.do")
-	public String write(int boardCode, String title, String category, 
-			int starPoint, String content, String writer){
+	public String write(int boardCode, String name, int age, String sex, 
+			String content, String writer){
 		ModelAndView mav = new ModelAndView();
-		if(boardService.writeReviewBoard(boardCode, title, category, starPoint, content, writer)){
-			return "redirect:reviewMain.do";
+		if(boardService.writeBoastBoard(boardCode, name, age, sex, content, writer)){
+			return "redirect:boastMain.do";
 		}else {
 			return "redirect:writeForm.do";
 		}
@@ -68,15 +67,15 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("update.do")
-	public String update(int boardIdx, String title, String category, String starPoint, content, writer){
-		boardService.updateReviewBoard(boardIdx, title, category, starPoint, content, writer);
-		return "redirect:reviewMain.do";
+	public String update(int boardIdx, String name, int age, String sex, String content, String writer){
+		boardService.updateBoastBoard(boardIdx, name, age, sex, content, writer);
+		return "redirect:boastMain.do";
 	}
 	
 	@RequestMapping("delete.do")
 	public String delete(int boardIdx){
 		boardService.deleteBoard(boardIdx);
-		return "redirect:reviewMain.do";
+		return "redirect:boastMain.do";
 	}
 	
 	@RequestMapping("uploadImage.do")
@@ -93,9 +92,4 @@ public class ReviewController {
 		return mav;
 	}
 	
-//	@RequestMapping("conform") //본인확인
-//	public ModelAndView conform(HashMap<String, Object> params){
-//	
-//	}
-
 }

@@ -1,37 +1,38 @@
 package controller;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.stereotype.Controller;
 
 import interface_service.IBoardService;
 
 @Controller
-public class ReviewController {
+public class LostController {
 
 	@Autowired
 	private IBoardService boardService;
 	
-	@RequestMapping("reviewMain.do")
-	public ModelAndView reviewMain(@RequestParam(defaultValue="1") int page, int boardCode){
+	@RequestMapping("lostMain.do")
+	public ModelAndView lostMain(@RequestParam(defaultValue="1") int page, int boardCode){
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> list = boardService.getBoardList(page, boardCode);
 		mav.addObject("result", list);
-		mav.setViewName("review");
+		mav.setViewName("lost");
 		return mav;
 	}
 	
 	@RequestMapping("search.do")
 	public ModelAndView search(HashMap<String, Object> params){
 		ModelAndView mav = new ModelAndView();
-		List<HashMap<String, Object>> list = boardService.getBoardByKeyword(params);
-		mav.addObject("result", list);
-		mav.setViewName("redirect:reviewMain.do");
+		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
+		mav.addObject("result", board);
+		mav.setViewName("lostMain.do");
 		return mav;
 	}
 	
@@ -40,19 +41,21 @@ public class ReviewController {
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
 		mav.addObject("result", board);
-		mav.setViewName("redirect:reviewMain.do");
+		mav.setViewName("redirect:lostMain.do");
 		return mav;
 	}
 	
 	@RequestMapping("writeForm.do")
-	public void writeForm(){}
+	public void WriteForm(){}
 	
 	@RequestMapping("write.do")
-	public String write(int boardCode, String title, String category, 
-			int starPoint, String content, String writer){
+	public String write(int boardCode, String category, String name,
+			String resist, String lostdate, String kind, String sex, int age, double weight,
+			String phone, String email, String content, String writer){
 		ModelAndView mav = new ModelAndView();
-		if(boardService.writeReviewBoard(boardCode, title, category, starPoint, content, writer)){
-			return "redirect:reviewMain.do";
+		if(boardService.writeDogFindBoard(boardCode, category, name, resist, lostdate, 
+				kind, sex, age, weight, phone, email, content, writer)){
+				return "redirect:lostMain.do";
 		}else {
 			return "redirect:writeForm.do";
 		}
@@ -68,17 +71,20 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("update.do")
-	public String update(int boardIdx, String title, String category, String starPoint, content, writer){
-		boardService.updateReviewBoard(boardIdx, title, category, starPoint, content, writer);
-		return "redirect:reviewMain.do";
+	public String update(int boardIdx, String category, String name, String resist, 
+			String lostdate, String kind, String sex, int age, double weight, String phone,
+			String email, String content, String writer){
+		boardService.updateDogFindBoard(boardIdx, category, name, resist, lostdate, 
+				kind, sex, age, weight, phone, email, content, writer);
+		return "redirect:lostMain.do";
 	}
 	
 	@RequestMapping("delete.do")
 	public String delete(int boardIdx){
 		boardService.deleteBoard(boardIdx);
-		return "redirect:reviewMain.do";
+		return "redirect:lostMain.do";	
 	}
-	
+
 	@RequestMapping("uploadImage.do")
 	public ModelAndView uploadImage(){
 		
@@ -93,9 +99,4 @@ public class ReviewController {
 		return mav;
 	}
 	
-//	@RequestMapping("conform") //본인확인
-//	public ModelAndView conform(HashMap<String, Object> params){
-//	
-//	}
-
 }

@@ -12,26 +12,26 @@ import org.springframework.web.servlet.ModelAndView;
 import interface_service.IBoardService;
 
 @Controller
-public class ReviewController {
+public class PartnerController {
 
 	@Autowired
 	private IBoardService boardService;
 	
-	@RequestMapping("reviewMain.do")
-	public ModelAndView reviewMain(@RequestParam(defaultValue="1") int page, int boardCode){
+	@RequestMapping("partnerMain.do")
+	public ModelAndView partnerMain(@RequestParam(defaultValue="1") int page, int boardCode){
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> list = boardService.getBoardList(page, boardCode);
 		mav.addObject("result", list);
-		mav.setViewName("review");
+		mav.setViewName("partner");
 		return mav;
 	}
 	
 	@RequestMapping("search.do")
 	public ModelAndView search(HashMap<String, Object> params){
 		ModelAndView mav = new ModelAndView();
-		List<HashMap<String, Object>> list = boardService.getBoardByKeyword(params);
-		mav.addObject("result", list);
-		mav.setViewName("redirect:reviewMain.do");
+		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
+		mav.addObject("result", board);
+		mav.setViewName("redirect:partnerMain.do");
 		return mav;
 	}
 	
@@ -40,7 +40,7 @@ public class ReviewController {
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
 		mav.addObject("result", board);
-		mav.setViewName("redirect:reviewMain.do");
+		mav.setViewName("redirect:partnerMain.do");
 		return mav;
 	}
 	
@@ -48,14 +48,30 @@ public class ReviewController {
 	public void writeForm(){}
 	
 	@RequestMapping("write.do")
-	public String write(int boardCode, String title, String category, 
-			int starPoint, String content, String writer){
+	public String write(int boardCode, String name, String kind, 
+			String sex, int age, double weight, String phone, String email, 
+			String content, String writer){
 		ModelAndView mav = new ModelAndView();
-		if(boardService.writeReviewBoard(boardCode, title, category, starPoint, content, writer)){
-			return "redirect:reviewMain.do";
+		if(boardService.writePartnerFindBoard(boardCode, name, kind, sex, age, 
+				weight, phone, email, content, writer)){
+			return "redirect:partnerMain.do";
 		}else {
 			return "redirect:writeForm.do";
 		}
+	}
+	
+	@RequestMapping("conform.do")
+	public ModelAndView conform(HashMap<String, Object> params){
+	
+	}
+	
+	@RequestMapping("getPetinfo.do")
+	public ModelAndView getPetinfo(String id){
+		ModelAndView mav = new ModelAndView();
+		List<HashMap<String, Object>> list = boardService.getPetInfo(id);
+		mav.addObject("result", list);
+		mav.setViewName("redirect:writeForm.do");
+		return mav;
 	}
 	
 	@RequestMapping("updateForm.do")
@@ -68,15 +84,17 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("update.do")
-	public String update(int boardIdx, String title, String category, String starPoint, content, writer){
-		boardService.updateReviewBoard(boardIdx, title, category, starPoint, content, writer);
-		return "redirect:reviewMain.do";
+	public String updatePartner(int boardIdx, String name, String kind, String sex, 
+			int age, double weight, String phone, String email, String content, String writer){
+		boardService.updatePartnerFindBoard(boardIdx, name, kind, sex, 
+				age, weight, phone, email, content, writer);
+		return "redirect:partnerMain.do";
 	}
 	
-	@RequestMapping("delete.do")
-	public String delete(int boardIdx){
+	@RequestMapping("deletePartner.do")
+	public String deletePartner(int boardIdx){
 		boardService.deleteBoard(boardIdx);
-		return "redirect:reviewMain.do";
+		return "redirect:parnerMain.do";
 	}
 	
 	@RequestMapping("uploadImage.do")
@@ -84,18 +102,4 @@ public class ReviewController {
 		
 	}
 	
-	@RequestMapping("getPetinfo.do")
-	public ModelAndView getPetinfo(String id){
-		ModelAndView mav = new ModelAndView();
-		List<HashMap<String, Object>> list = boardService.getPetInfo(id);
-		mav.addObject("result", list);
-		mav.setViewName("redirect:writeForm.do");
-		return mav;
-	}
-	
-//	@RequestMapping("conform") //본인확인
-//	public ModelAndView conform(HashMap<String, Object> params){
-//	
-//	}
-
 }

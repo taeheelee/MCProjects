@@ -314,4 +314,10 @@ public class BoardService implements IBoardService{
 		return dao.selectOneBoard((int)(params.get("boardIdx")));
 	}
 
+	@Override
+	public List<HashMap<String, Object>> getPetInfo(String id) {
+		// TODO Auto-generated method stub
+		return dao.selectPetinfo(id);
+	}
+
 }

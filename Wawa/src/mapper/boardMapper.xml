@@ -18,11 +18,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>	
 	<delete id="deleteBoard" parameterType="int">
 		delete from board where boardIdx=#{boardIdx}
-	</delete>
-	
+	</delete> 
+	<select id="selectPetinfo" parameterType="String" resultType="java.util.HashMap">
+		<!-- petinfo와 조인해서 애견정보 가져오기  -->
+		select idx, resist, name, kind, birthday, neutral, weight, weight,
+		sex, groomingStart, groomingPeriod from petinfo p, board b
+		where p.id=#{b.id}
+	</select>
+	<select id="selectBoardById" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select * from board where id=#{id}, boardCode=#{boardCode}
+	</select>
 	<select id="selectOneBoard" parameterType="int" resultType="java.util.HashMap">
 		<!-- 게시글번호로 게시글하나 선택 -->
-		select * from board where boardIdx=#{boardIdx}
+		select * from board where boardIdx=#{boardIdx}, boardCode=#{boardCode}
 	</select>
 	<select id="selectBoardList" parameterType="int" resultType="java.util.HashMap">
 		<!-- 게시판유형에 따른 게시글 보기 -->
@@ -34,15 +42,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id="selectByName" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		<!-- 글쓴이로 검색 -->
-		select * from board where writer like '%${writer}%'
+		select * from board where writer like '%${writer}%', boardCode=#{boardCode}
 	</select>
 	<select id="selectByTitle" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		<!-- 글제목으로 검색 -->
-		select * from board where title like '%${title}%'
+		select * from board where title like '%${title}%', boardCode=#{boardCode}
 	</select>
 	<select id="selectByKeyword" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		<!-- 글내용으로 검색 -->
-		select * from board where content like '%${content}%'
+		select * from board where content like '%${content}%', boardCode="#{boardCode}"
 	</select>
 	<select id="selectByBoastnum" resultType="java.util.HashMap">
 		<!-- 좋아요 많은순으로 정렬 -->

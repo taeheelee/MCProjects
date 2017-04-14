@@ -1,13 +1,19 @@
 package controller;
 
 import java.util.HashMap;
+import java.util.List;
+
+import javax.jws.WebParam.Mode;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import interface_service.IBoardService;
+import model.Board;
 
 @Controller
 public class InfoController {
@@ -15,12 +21,11 @@ public class InfoController {
 		private IBoardService boardService;
 	
 		@RequestMapping("infoMain.do")
-		public ModelAndView infoMain(int page, int boardCode){
+		public ModelAndView infoMain(@RequestParam(defaultValue="1") int page, int boardCode){
 			ModelAndView mav = new ModelAndView();
-			HashMap<String, Object> list
-				= boardService.getBoardList(page, boardCode);
+			HashMap<String, Object> list = boardService.getBoardList(page, boardCode);
 			mav.addObject("result", list);
-			mav.setViewName("infoMain"); // -> infoMain찾기
+			mav.setViewName("info"); // -> infoMain찾기
 			return mav;
 		}
 		
@@ -29,7 +34,7 @@ public class InfoController {
 			ModelAndView mav = new ModelAndView();
 			HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
 			mav.addObject("result", board);
-			mav.setViewName("infoMain.do");
+			mav.setViewName("redirect:infoMain.do");
 			return mav;
 		}
 		
@@ -38,73 +43,58 @@ public class InfoController {
 			ModelAndView mav = new ModelAndView();
 			HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
 			mav.addObject("result", board);
-			mav.setViewName("infoMain.do");
+			mav.setViewName("redirect:infoMain.do");
 			return mav;
 		}
 		
-		@RequestMapping("write.do")
-		public ModelAndView write(HashMap<String, Object> params){
+		@RequestMapping("writeForm.do") // -> writeForm.jsp로 이동
+		public void writeForm(){}
+		
+		@RequestMapping("write.do") // --> infoWrite.jsp
+		public String write(int boardCode, String title, String category, String content,
+				String writer){
 			ModelAndView mav = new ModelAndView();
-			boolean result = boardService.up
+			if(boardService.writeFreeBoard(boardCode, title, category, content, writer)){
+				return "redirect:infoMain.do"; // 성공시 메인으로 이동
+			}else {
+				return "redirect:writeForm.do"; //글쓰기 페이지에 머무름
+			}
 		}
 		
-		// ========== 게시판 메인
+		@RequestMapping("getPetinfo.do")
+		public ModelAndView getPetinfo(String id){
+			ModelAndView mav = new ModelAndView();
+			List<HashMap<String, Object>> list = boardService.getPetInfo(id);
+			mav.addObject("result", list);
+			mav.setViewName("redirect:writeForm.do");
+			return mav;
+		}
 		
-		@RequestMapping("infoDetail.do")
-		public ModelAndView infoDetail(HashMap<String, Object> params){
+		@RequestMapping("updateForm.do") // --> 수정화면으로 이동
+		public ModelAndView updateForm(HashMap<String, Object> params){
 			ModelAndView mav = new ModelAndView();
 			HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
 			mav.addObject("result", board);
-			mav.setViewName("infoDetail"); //infoDetail html 생성
+			mav.setViewName("updateForm");
 			return mav;
 		}
 		
-		public ModelAndView update(){
-			ModelAndView mav = new ModelAndView();
+		@RequestMapping("update.do")
+		public String update(int boardIdx, String title, String category, String content,
+				String writer){
+			boardService.updateFreeBoard(boardIdx, title, category, content, writer);
+			return "redirect:infoDetail.do";
 		}
 		
-		public ModelAndView delete(){
-			
+		@RequestMapping("delete.do")
+		public String delete(int boardIdx){
+			boardService.deleteBoard(boardIdx);
+			return "redirect:infoMain.do";
 		}
-		
-	
-		// =============== 게시판 상세보기
-		
-		@RequestMapping("infowrite.do")
-		public ModelAndView infoWrite(){
-			
-		}
-		
-		@RequestMapping("submit.do")
-		public ModelAndView submit(){
-			
-		}
-		
-		@RequestMapping("uploadImage.do")
-		public ModelAndView uploadImage(){
-			
-		}
-		
-		@RequestMapping("getInfo.do")
-		public ModelAndView getInfo(){
-			
-		}
-		
-		
-		// ============== 글쓰기
-		
-		@RequestMapping("infoUpdate.do")
-		public ModelAndView infoUpdate(){
-			
-		}
-	
 		
 		@RequestMapping("updateImage.do")
 		public ModelAndView updateImage(){
 			
 		}
 		
-		
-	
-		// ===== 글수정
 }

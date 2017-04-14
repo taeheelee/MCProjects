@@ -48,5 +48,8 @@ public interface IBoardService {
 	public List<HashMap<String, Object>> getBoardByTitle(HashMap<String, Object> params);
 	//키워드로 게시판 검색
 	public List<HashMap<String, Object>> getBoardByKeyword(HashMap<String, Object> params);
+	//게시판인덱스로 게시판 검색
 	public HashMap<String, Object> getBoardByBoardIdx(HashMap<String, Object> params);
+	// 펫정보 가져오기
+	public List<HashMap<String, Object>> getPetInfo(String id);
 }

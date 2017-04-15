@@ -27,8 +27,8 @@ public class LostController {
 		return mav;
 	}
 	
-	@RequestMapping("search.do")
-	public ModelAndView search(HashMap<String, Object> params){
+	@RequestMapping("lostSearch.do")
+	public ModelAndView lostSearch(HashMap<String, Object> params){
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
 		mav.addObject("result", board);
@@ -36,66 +36,66 @@ public class LostController {
 		return mav;
 	}
 	
-	@RequestMapping("viewDetail.do")
-	public ModelAndView viewDetail(HashMap<String, Object> params){
+	@RequestMapping("lostDetails.do")
+	public ModelAndView lostDetails(HashMap<String, Object> params){
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
 		mav.addObject("result", board);
-		mav.setViewName("redirect:lostMain.do");
+		mav.setViewName("lostDetails");
 		return mav;
 	}
 	
-	@RequestMapping("writeForm.do")
-	public void WriteForm(){}
+	@RequestMapping("lostWriteForm.do")
+	public void lostWriteForm(){}
 	
-	@RequestMapping("write.do")
-	public String write(int boardCode, String category, String name,
+	@RequestMapping("lostWrite.do")
+	public String lostWrite(int boardCode, String category, String name,
 			String resist, String lostdate, String kind, String sex, int age, double weight,
-			String phone, String email, String content, String writer){
+			String phone, String email, String title, String content, String writer){
 		ModelAndView mav = new ModelAndView();
 		if(boardService.writeDogFindBoard(boardCode, category, name, resist, lostdate, 
-				kind, sex, age, weight, phone, email, content, writer)){
+				kind, sex, age, weight, phone, email, title, content, writer)){
 				return "redirect:lostMain.do";
 		}else {
-			return "redirect:writeForm.do";
+			return "redirect:lostWriteForm.do";
 		}
 	}
 	
-	@RequestMapping("updateForm.do")
-	public ModelAndView updateForm(HashMap<String, Object> params){
+	@RequestMapping("lostUpdateForm.do")
+	public ModelAndView lostUpdateForm(HashMap<String, Object> params){
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
 		mav.addObject("result", board);
-		mav.setViewName("updateForm");
+		mav.setViewName("lostUpdateForm");
 		return mav;
-	}
+	} // petindx 추가!!!!!!!!!! dao에도 constant에도
 	
-	@RequestMapping("update.do")
-	public String update(int boardIdx, String category, String name, String resist, 
+	@RequestMapping("lostUpdate.do")
+	public String lostUpdate(int boardIdx, String category, String name, String resist, 
 			String lostdate, String kind, String sex, int age, double weight, String phone,
-			String email, String content, String writer){
+			String email, String content, String writer){ // 등록번호 추가 petname으로 수정 + petidx추가
 		boardService.updateDogFindBoard(boardIdx, category, name, resist, lostdate, 
 				kind, sex, age, weight, phone, email, content, writer);
 		return "redirect:lostMain.do";
 	}
 	
-	@RequestMapping("delete.do")
-	public String delete(int boardIdx){
+	@RequestMapping("lostDelete.do")
+	public String lostDelete(int boardIdx){
 		boardService.deleteBoard(boardIdx);
 		return "redirect:lostMain.do";	
 	}
 
-	@RequestMapping("uploadImage.do")
-	public ModelAndView uploadImage(){
+	@RequestMapping("lostUploadImage.do")
+	public ModelAndView lostUploadImage(){
 		
 	}
 	
-	@RequestMapping("getPetinfo.do")
-	public ModelAndView getPetinfo(String id){
+	@RequestMapping("lostGetPetinfo.do")
+	public ModelAndView lostGetPetinfo(String id){
 		ModelAndView mav = new ModelAndView();
 		List<HashMap<String, Object>> list = boardService.getPetInfo(id);
 		mav.addObject("result", list);
-		mav.setViewName("redirect:writeForm.do");
+		mav.setViewName("redirect:lostWriteForm.do");
 		return mav;
 	}
 	

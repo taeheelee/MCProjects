@@ -6,15 +6,15 @@ import java.util.List;
 public interface IBoardService {
 	//================================삽입========================================================
 	//뽐내기
-	public boolean writeBoastBoard(int boardCode, String name, int age, String sex, String content, String writer);
+	public boolean writeBoastBoard(int boardCode, String name, int age, String sex, String title, String content, String writer);
 	//자유게시판,애견정보상식
 	public boolean writeFreeBoard(int boardCode, String title, String category, String content, String writer);
 	//유기견찾기
-	public boolean writeDogFindBoard(int boardCode, String category, String name, String resist, String lostdate, 
-			String kind, String sex, int age, double weight, String phone, String email, String content, String writer);
+	public boolean writeDogFindBoard(int boardCode, String category, String name,String resist, String lostdate, 
+			String kind, String sex, int age, double weight, String phone, String email, String title, String content, String writer);
 	//짝꿍찾기
 	public boolean writePartnerFindBoard(int boardCode, String name, String kind, String sex, 
-			int age, double weight, String phone, String email, String content, String writer);
+			int age, double weight, String phone, String email, String title, String content, String writer);
 	//제품리뷰
 	public boolean writeReviewBoard(int boardCode, String title, String category, int starPoint, String content, String writer);
 	
@@ -52,4 +52,7 @@ public interface IBoardService {
 	public HashMap<String, Object> getBoardByBoardIdx(HashMap<String, Object> params);
 	// 펫정보 가져오기
 	public List<HashMap<String, Object>> getPetInfo(String id);
+
+	//본인확인
+	public boolean identifyUser(HashMap<String, Object> params);
 }

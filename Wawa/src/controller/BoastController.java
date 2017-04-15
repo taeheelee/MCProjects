@@ -25,7 +25,7 @@ public class BoastController {
 		return mav;
 	}
 	
-	@RequestMapping("search.do")
+	@RequestMapping("boastSearch.do")
 	public ModelAndView search(HashMap<String, Object> params){
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
@@ -34,61 +34,61 @@ public class BoastController {
 		return mav;
 	}
 	
-	@RequestMapping("viewDetail.do")
-	public ModelAndView viewDetail(HashMap<String, Object> params){
+	@RequestMapping("boastDetails.do")
+	public ModelAndView boastDetails(HashMap<String, Object> params){
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
 		mav.addObject("result", board);
-		mav.setViewName("redirect:boastMain.do");
+		mav.setViewName("boastDetails");
 		return mav;
 	}
 	
-	@RequestMapping("writeForm.do") //writeForm.jsp로
-	public void writeForm(){}
+	@RequestMapping("boastWriteForm.do") //writeForm.jsp로
+	public void boastWriteForm(){}
 	
-	@RequestMapping("write.do")
-	public String write(int boardCode, String name, int age, String sex, 
-			String content, String writer){
+	@RequestMapping("boastWrite.do")
+	public String boastWrite(int boardCode, String petname, int petage, String petsex, 
+			String title, String content, String writer){
 		ModelAndView mav = new ModelAndView();
-		if(boardService.writeBoastBoard(boardCode, name, age, sex, content, writer)){
+		if(boardService.writeBoastBoard(boardCode, petname, petage, petsex, title, content, writer)){
 			return "redirect:boastMain.do";
 		}else {
-			return "redirect:writeForm.do";
+			return "redirect:boastWriteForm.do";
 		}
 	}
 	
-	@RequestMapping("updateForm.do")
-	public ModelAndView updateForm(HashMap<String, Object> params){
+	@RequestMapping("boastUpdateForm.do")
+	public ModelAndView boastUpdateForm(HashMap<String, Object> params){
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
 		mav.addObject("result", board);
-		mav.setViewName("updateForm");
+		mav.setViewName("boastUpdateForm");
 		return mav;
 	}
 	
-	@RequestMapping("update.do")
-	public String update(int boardIdx, String name, int age, String sex, String content, String writer){
+	@RequestMapping("boastUpdate.do")
+	public String boastUpdate(int boardIdx, String name, int age, String sex, String content, String writer){
 		boardService.updateBoastBoard(boardIdx, name, age, sex, content, writer);
 		return "redirect:boastMain.do";
 	}
 	
-	@RequestMapping("delete.do")
-	public String delete(int boardIdx){
+	@RequestMapping("boastDelete.do")
+	public String boastDelete(int boardIdx){
 		boardService.deleteBoard(boardIdx);
 		return "redirect:boastMain.do";
 	}
 	
-	@RequestMapping("uploadImage.do")
-	public ModelAndView uploadImage(){
+	@RequestMapping("boastUploadImage.do")
+	public ModelAndView boastUploadImage(){
 		
 	}
 	
-	@RequestMapping("getPetinfo.do")
-	public ModelAndView getPetinfo(String id){
+	@RequestMapping("boastGetPetinfo.do")
+	public ModelAndView boastGetPetinfo(String id){
 		ModelAndView mav = new ModelAndView();
 		List<HashMap<String, Object>> list = boardService.getPetInfo(id);
 		mav.addObject("result", list);
-		mav.setViewName("redirect:writeForm.do");
+		mav.setViewName("redirect:boastWriteForm.do");
 		return mav;
 	}
 	

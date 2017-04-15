@@ -29,71 +29,71 @@ public class InfoController {
 			return mav;
 		}
 		
-		@RequestMapping("search.do")
-		public ModelAndView search(HashMap<String, Object> params){
+		@RequestMapping("infoSearch.do")
+		public ModelAndView infoSearch(HashMap<String, Object> params){
 			ModelAndView mav = new ModelAndView();
-			HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
-			mav.addObject("result", board);
+			List<HashMap<String, Object>> list = boardService.getBoardByKeyword(params);
+			mav.addObject("result", list);
 			mav.setViewName("redirect:infoMain.do");
 			return mav;
 		}
 		
-		@RequestMapping("viewDetail.do")
-		public ModelAndView viewDetail(HashMap<String, Object> params){
+		@RequestMapping("infoDetails.do")
+		public ModelAndView infoDetails(HashMap<String, Object> params){
 			ModelAndView mav = new ModelAndView();
 			HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
 			mav.addObject("result", board);
-			mav.setViewName("redirect:infoMain.do");
+			mav.setViewName("infoDetails");
 			return mav;
 		}
 		
-		@RequestMapping("writeForm.do") // -> writeForm.jsp로 이동
-		public void writeForm(){}
+		@RequestMapping("infoWriteForm.do") // -> writeForm.jsp로 이동
+		public void infoWriteForm(){}
 		
-		@RequestMapping("write.do") // --> infoWrite.jsp
-		public String write(int boardCode, String title, String category, String content,
+		@RequestMapping("infoWrite.do") // --> infoWrite.jsp
+		public String infoWrite(int boardCode, String title, String category, String content,
 				String writer){
 			ModelAndView mav = new ModelAndView();
 			if(boardService.writeFreeBoard(boardCode, title, category, content, writer)){
 				return "redirect:infoMain.do"; // 성공시 메인으로 이동
 			}else {
-				return "redirect:writeForm.do"; //글쓰기 페이지에 머무름
+				return "redirect:infoWriteForm.do"; //글쓰기 페이지에 머무름
 			}
 		}
 		
-		@RequestMapping("getPetinfo.do")
-		public ModelAndView getPetinfo(String id){
+		@RequestMapping("infoGetPetinfo.do")
+		public ModelAndView infoGetPetinfo(String id){
 			ModelAndView mav = new ModelAndView();
 			List<HashMap<String, Object>> list = boardService.getPetInfo(id);
 			mav.addObject("result", list);
-			mav.setViewName("redirect:writeForm.do");
+			mav.setViewName("redirect:infoWriteForm.do");
 			return mav;
 		}
 		
-		@RequestMapping("updateForm.do") // --> 수정화면으로 이동
-		public ModelAndView updateForm(HashMap<String, Object> params){
+		@RequestMapping("infoUpdateForm.do") // --> 수정화면으로 이동
+		public ModelAndView infoUpdateForm(HashMap<String, Object> params){
 			ModelAndView mav = new ModelAndView();
 			HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
 			mav.addObject("result", board);
-			mav.setViewName("updateForm");
+			mav.setViewName("infoUpdateForm");
 			return mav;
 		}
 		
-		@RequestMapping("update.do")
-		public String update(int boardIdx, String title, String category, String content,
+		@RequestMapping("infoUpdate.do")
+		public String infoUpdate(int boardIdx, String title, String category, String content,
 				String writer){
 			boardService.updateFreeBoard(boardIdx, title, category, content, writer);
-			return "redirect:infoDetail.do";
+			return "redirect:infoDetails.do";
 		}
 		
-		@RequestMapping("delete.do")
-		public String delete(int boardIdx){
+		@RequestMapping("infoDelete.do")
+		public String infoDelete(int boardIdx){
 			boardService.deleteBoard(boardIdx);
 			return "redirect:infoMain.do";
 		}
 		
-		@RequestMapping("updateImage.do")
-		public ModelAndView updateImage(){
+		@RequestMapping("infoUpdateImage.do")
+		public ModelAndView infoUpdateImage(){
 			
 		}
 		

@@ -26,8 +26,8 @@ public class ReviewController {
 		return mav;
 	}
 	
-	@RequestMapping("search.do")
-	public ModelAndView search(HashMap<String, Object> params){
+	@RequestMapping("reviewSearch.do")
+	public ModelAndView reviewSearch(HashMap<String, Object> params){
 		ModelAndView mav = new ModelAndView();
 		List<HashMap<String, Object>> list = boardService.getBoardByKeyword(params);
 		mav.addObject("result", list);
@@ -35,67 +35,71 @@ public class ReviewController {
 		return mav;
 	}
 	
-	@RequestMapping("viewDetail.do")
-	public ModelAndView viewDetail(HashMap<String, Object> params){
+	@RequestMapping("reviewDetails.do")
+	public ModelAndView reviewDetails(HashMap<String, Object> params){
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
 		mav.addObject("result", board);
-		mav.setViewName("redirect:reviewMain.do");
+		mav.setViewName("reviewDetails");
 		return mav;
 	}
 	
-	@RequestMapping("writeForm.do")
-	public void writeForm(){}
+	@RequestMapping("reviewWriteForm.do")
+	public void reviewWriteForm(){}
 	
-	@RequestMapping("write.do")
-	public String write(int boardCode, String title, String category, 
+	@RequestMapping("reviewWrite.do")
+	public String reviewWrite(int boardCode, String title, String category, 
 			int starPoint, String content, String writer){
 		ModelAndView mav = new ModelAndView();
 		if(boardService.writeReviewBoard(boardCode, title, category, starPoint, content, writer)){
 			return "redirect:reviewMain.do";
 		}else {
-			return "redirect:writeForm.do";
+			return "redirect:reviewWriteForm.do";
 		}
 	}
 	
-	@RequestMapping("updateForm.do")
-	public ModelAndView updateForm(HashMap<String, Object> params){
+	@RequestMapping("reviewUpdateForm.do")
+	public ModelAndView reviewUpdateForm(HashMap<String, Object> params){
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
 		mav.addObject("result", board);
-		mav.setViewName("updateForm");
+		mav.setViewName("reviewUpdateForm");
 		return mav;
 	}
 	
-	@RequestMapping("update.do")
-	public String update(int boardIdx, String title, String category, String starPoint, content, writer){
+	@RequestMapping("reviewUpdate.do")
+	public String reviewUpdate(int boardIdx, String title, String category, int starPoint, String content, String writer){
 		boardService.updateReviewBoard(boardIdx, title, category, starPoint, content, writer);
 		return "redirect:reviewMain.do";
 	}
 	
-	@RequestMapping("delete.do")
-	public String delete(int boardIdx){
+	@RequestMapping("reviewDelete.do")
+	public String reviewDelete(int boardIdx){
 		boardService.deleteBoard(boardIdx);
 		return "redirect:reviewMain.do";
 	}
 	
-	@RequestMapping("uploadImage.do")
-	public ModelAndView uploadImage(){
+	@RequestMapping("reviewUploadImage.do")
+	public ModelAndView reviewUploadImage(){
 		
 	}
 	
-	@RequestMapping("getPetinfo.do")
-	public ModelAndView getPetinfo(String id){
+	@RequestMapping("reviewGetPetinfo.do")
+	public ModelAndView reviewGetPetinfo(String id){
 		ModelAndView mav = new ModelAndView();
 		List<HashMap<String, Object>> list = boardService.getPetInfo(id);
 		mav.addObject("result", list);
-		mav.setViewName("redirect:writeForm.do");
+		mav.setViewName("redirect:reviewWriteForm.do");
 		return mav;
 	}
 	
-//	@RequestMapping("conform") //본인확인
-//	public ModelAndView conform(HashMap<String, Object> params){
-//	
-//	}
+	@RequestMapping("reviewConform") //본인확인
+	public String reviewConform(HashMap<String, Object> params){
+		if(boardService.identifyUser(params)){
+			return ""; // 본인 맞음
+		}else {
+			return ""; //본인 아님
+		}
+	}
 
 }

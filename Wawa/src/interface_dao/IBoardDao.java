@@ -20,5 +20,5 @@ public interface IBoardDao {
 	public int getSearchCount(HashMap<String, Object> params);
 	public int increaseLikeCount(int boardIdx);
 	public List<HashMap<String, Object>> selectPetinfo(String id);
-	
+	public String getUserPwd(String id);
 }

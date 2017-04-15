@@ -19,6 +19,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteBoard" parameterType="int">
 		delete from board where boardIdx=#{boardIdx}
 	</delete> 
+	<select id="getUserPwd" parameterType="String" resultType="String">
+		select password from userinfo u, board b where u.id = b.writer
+	</select>
 	<select id="selectPetinfo" parameterType="String" resultType="java.util.HashMap">
 		<!-- petinfo와 조인해서 애견정보 가져오기  -->
 		select idx, resist, name, kind, birthday, neutral, weight, weight,
@@ -53,7 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id="selectByKeyword" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		<!-- 글내용으로 검색 -->
-		select * from board where content like CONCAT('%',#{content},'%') and boardCode="#{boardCode}"
+		select * from board where content like CONCAT('%',#{content},'%') and boardCode="#{boardCode}" and category=#{category}
 	</select>
 	<select id="selectByBoastnum" resultType="java.util.HashMap">
 		<!-- 좋아요 많은순으로 정렬 -->

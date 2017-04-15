@@ -26,7 +26,7 @@ public class PartnerController {
 		return mav;
 	}
 	
-	@RequestMapping("search.do")
+	@RequestMapping("partnerSearch.do") // 수컷/암컷(강아지성별) + 강아지 이름으로 검색  
 	public ModelAndView search(HashMap<String, Object> params){
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
@@ -35,70 +35,74 @@ public class PartnerController {
 		return mav;
 	}
 	
-	@RequestMapping("viewDetail.do")
-	public ModelAndView viewDetail(HashMap<String, Object> params){
+	@RequestMapping("partnerDetails.do")
+	public ModelAndView partnerDetails(HashMap<String, Object> params){
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
 		mav.addObject("result", board);
-		mav.setViewName("redirect:partnerMain.do");
+		mav.setViewName("boastDetails");
 		return mav;
 	}
 	
-	@RequestMapping("writeForm.do")
-	public void writeForm(){}
+	@RequestMapping("partnerWriteForm.do")
+	public void partnerWriteForm(){}
 	
-	@RequestMapping("write.do")
-	public String write(int boardCode, String name, String kind, 
+	@RequestMapping("partnerWrite.do")
+	public String partnerWrite(int boardCode, String name, String kind, 
 			String sex, int age, double weight, String phone, String email, 
-			String content, String writer){
+			String title, String content, String writer){
 		ModelAndView mav = new ModelAndView();
 		if(boardService.writePartnerFindBoard(boardCode, name, kind, sex, age, 
-				weight, phone, email, content, writer)){
+				weight, phone, email, title, content, writer)){
 			return "redirect:partnerMain.do";
 		}else {
-			return "redirect:writeForm.do";
+			return "redirect:partnerWriteForm.do";
 		}
 	}
 	
-	@RequestMapping("conform.do")
-	public ModelAndView conform(HashMap<String, Object> params){
-	
+	@RequestMapping("partnerConform.do")
+	public String partnerConform(HashMap<String, Object> params){
+		if(boardService.identifyUser(params)){
+			return ""; // 본인 맞음
+		}else {
+			return ""; //본인 아님
+		}
 	}
 	
-	@RequestMapping("getPetinfo.do")
-	public ModelAndView getPetinfo(String id){
+	@RequestMapping("partnerGetPetinfo.do")
+	public ModelAndView partnerGetPetinfo(String id){
 		ModelAndView mav = new ModelAndView();
 		List<HashMap<String, Object>> list = boardService.getPetInfo(id);
 		mav.addObject("result", list);
-		mav.setViewName("redirect:writeForm.do");
+		mav.setViewName("redirect:partnerWriteForm.do");
 		return mav;
 	}
 	
-	@RequestMapping("updateForm.do")
-	public ModelAndView updateForm(HashMap<String, Object> params){
+	@RequestMapping("partnerUpdateForm.do")
+	public ModelAndView partnerUpdateForm(HashMap<String, Object> params){
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
 		mav.addObject("result", board);
-		mav.setViewName("updateForm");
+		mav.setViewName("partnerUpdateForm");
 		return mav;
 	}
 	
-	@RequestMapping("update.do")
-	public String updatePartner(int boardIdx, String name, String kind, String sex, 
+	@RequestMapping("partnerUpdate.do")
+	public String partnerUpdate(int boardIdx, String name, String kind, String sex, 
 			int age, double weight, String phone, String email, String content, String writer){
 		boardService.updatePartnerFindBoard(boardIdx, name, kind, sex, 
 				age, weight, phone, email, content, writer);
 		return "redirect:partnerMain.do";
 	}
 	
-	@RequestMapping("deletePartner.do")
-	public String deletePartner(int boardIdx){
+	@RequestMapping("partnerDelete.do")
+	public String partnerDelete(int boardIdx){
 		boardService.deleteBoard(boardIdx);
 		return "redirect:parnerMain.do";
 	}
 	
-	@RequestMapping("uploadImage.do")
-	public ModelAndView uploadImage(){
+	@RequestMapping("partnerUploadImage.do")
+	public ModelAndView partnerUploadImage(){
 		
 	}
 	

@@ -3,17 +3,17 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="interface_dao.IRepleDao">
-	<insert id="insert" parameterType="java.util.HashMap"
+	<insert id="insertReple" parameterType="java.util.HashMap"
 	useGeneratedKeys="true" keyProperty="repleIdx">
 		<!-- 댓글쓰기 -->
 		insert into reple values(0, #{boardIdx}, #{nickname}, #{content},
-		sysdate(), 0, 0, 0)
+		sysdate(), 0, 0, 0, 0)
 	</insert>
-	<update id="update" parameterType="java.util.HashMap">
+	<update id="updateReple" parameterType="java.util.HashMap">
 		<!-- 댓글수정 -->
 		update reple set content=#{content} where repleIdx=#{repleIdx}
 	</update>
-	<delete id="delete" parameterType="int">
+	<delete id="deleteReple" parameterType="int">
 		<!-- 댓글삭제-->
 		delete from reple where repleIdx=#{repleIdx}
 	</delete>
@@ -40,13 +40,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where groupCode = #{groupCode} and groupSeq > #{groupSeq}
 	</update>
 	<update id="decreaseGroupSeq" parameterType="int">
-		update board set groupSeq = groupSeq-1 
+		update reple set groupSeq = groupSeq-1 
 		where parentNum = #{parentNum}
 	</update>
 	<select id="selectMax" parameterType="int" resultType="int">
-		select max(groupSeq) from board where groupCode=#{groupCode}
+		select max(groupSeq) from reple where groupCode=#{groupCode}
 	</select>
 	<select id="selectParent" parameterType="int" resultType="int">
-		select count(*) from board where parentNum=#{parentNum}
+		select count(*) from reple where parentNum=#{parentNum}
 	</select>
 </mapper>

@@ -10,16 +10,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import interface_service.IBoardService;
+import interface_service.IRepleService;
 
 @Controller
 public class FreeBoardController {
 	@Autowired
-	private IBoardService service;
+	private IBoardService boardService;
+	@Autowired
+	private IRepleService repleService;
 	
 	@RequestMapping("freeboardMain.do")
 	public ModelAndView freeboardList(@RequestParam(defaultValue="1")int page){
 		ModelAndView mav = new ModelAndView();
-		mav.addAllObjects(service.getBoardList(page, 6));
+		mav.addAllObjects(boardService.getBoardList(page, 6));
 		mav.setViewName("freeboard");
 		return mav;
 	}
@@ -32,8 +35,10 @@ public class FreeBoardController {
 	@RequestMapping("freeboardDetail.do")
 	public ModelAndView freeboardDetails(int boardIdx){
 		ModelAndView mav = new ModelAndView();
-		HashMap<String, Object> params = service.readBoard(boardIdx);
-		mav.addObject("board", params);
+		HashMap<String, Object> board = boardService.readBoard(boardIdx);
+		List<HashMap<String, Object>> reple = repleService.selectRepleList(boardIdx);
+		mav.addObject("board", board);
+		mav.addObject("reple", reple);
 		mav.setViewName("freeboardDetails");
 		return mav;
 	}
@@ -41,7 +46,7 @@ public class FreeBoardController {
 	@RequestMapping("freeboardSearch.do")
 	public ModelAndView freeboardSearch(int type, String keyword, @RequestParam(defaultValue="1")int page){
 		ModelAndView mav = new ModelAndView();
-		mav.addAllObjects(service.getBoardByTitle(type, keyword, page, 6));
+		mav.addAllObjects(boardService.getBoardByTitle(type, keyword, page, 6));
 		mav.setViewName("freeboard");
 		return mav;
 	}

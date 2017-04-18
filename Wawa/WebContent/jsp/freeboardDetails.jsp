@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
   <head>
@@ -43,6 +44,23 @@
 	    $(document).ready(function() {
 	        $('#summernote').summernote();
 	    });
+  </script>
+  
+  <script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+  <script type="text/javascript">
+  	function reple(idx,repleIdx) {
+  		//alert($('#repleForm'+idx).text());
+		$('#repleForm'+idx).html("<form action='repleWrite.do'>"
+								 +"<textarea style='width: 85%; height: 100px' name='content'></textarea>"
+								 +"<input type='submit' value='답글작성'>"
+								 +"<input type='hidden' name='boardIdx' value='${board.boardIdx }'>"
+								 +"<input type='hidden' name='nickname' value='닉네임'>"
+								 +"<input type='hidden' name='pIdx' value='"+repleIdx+"'>"
+								 +"</form>");
+	}
   </script>
   
   </head>
@@ -154,6 +172,35 @@
                		
                 	
                 </div>
+                	<div>
+                		<h4>댓글</h4>
+						<c:forEach items="${reple }" var="reple" varStatus="st">
+							<table style="width: 100%" border="1">
+								<tr>
+								
+								<td align="left" width="25%">
+								<c:if test="${reple.groupLv > 0 }">
+									<c:forEach begin="1" end="${reple.groupLv }">
+										ㄴ
+									</c:forEach>
+								</c:if>
+								<b>${reple.nickname }</b>
+								</td>
+								<td align="left" width="50%">${reple.content }</td>
+								<td align="right" width="10%">${reple.writedate }</td>
+								<td width="10%"><a onclick="reple(${st.index},${reple.repleIdx })">답글달기</a></td>
+								</tr>
+								<tr><td colspan="4"><span id="repleForm${st.index }"></span></td></tr>
+							</table>
+						</c:forEach>
+	                	<form action="repleWrite.do">
+	                		<textarea style="width: 85%; height: 100px" name="content"></textarea>
+	                		<input type="hidden" name="boardIdx" value="${board.boardIdx }">
+	                		<input type="hidden" name="nickname" value="닉네임">
+	                		<input type="hidden" name="pIdx" value="0">
+							<input type="submit" value="댓글작성">
+						</form>
+					</div>
 			</div>
 		</div>
 	</div>

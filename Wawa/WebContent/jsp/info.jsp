@@ -107,15 +107,15 @@
 	                            <li><a href="medicalcare.html">나의 펫 메디컬케어</a></li>
 	                        </ul>
 	                    </li>
-                        <li><a href="/infoMain.do">애견정보/상식</a></li>
-                        <li><a href="/reviewMain.do">제품리뷰</a></li>
+                        <li><a href="infoMain.do?boardCode=1">애견정보/상식</a></li>
+                        <li><a href="reviewMain.do?boardCode=2">제품리뷰</a></li>
                         <li class="dropdown">
 	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">커뮤니티 <b class="caret"></b></a>
 	                        <ul class="dropdown-menu">
-	                            <li><a href="/boastMain.do">뽐내기</a></li>
-	                            <li><a href="/lostMain.do">유기견찾기</a></li>
-	                            <li><a href="/partnerMain.do">짝꿍찾기</a></li>
-	                            <li><a href="freeboard.html">자유게시판</a></li>	                            
+	                            <li><a href="/boastMain.do?boardCode=3">뽐내기</a></li>
+	                            <li><a href="lostMain.do?boardCode=4">유기견찾기</a></li>
+	                            <li><a href="partnerMain.do?boardCode=5">짝꿍찾기</a></li>
+	                            <li><a href="freeboard.html?boardCode=6">자유게시판</a></li>	                            
 	                        </ul>
 	                    </li>                            
                         <li><a href="location.html">위치정보</a></li>

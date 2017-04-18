@@ -17,11 +17,12 @@ public class BoastController {
 	@Autowired
 	private IBoardService boardService;
 	
-	@RequestMapping("boastMain.do")
-	public ModelAndView boastMain(@RequestParam(defaultValue="1") int page){
+	@RequestMapping("/boastMain.do")
+	public ModelAndView boastMain(@RequestParam(defaultValue="1") int page, int boardCode){
 		ModelAndView mav = new ModelAndView();
-		HashMap<String, Object> list = boardService.getBoardList(page,
-				Integer.parseInt(Constant.BoardCode.BOAST));
+		
+		System.out.println(page + "" +boardCode);
+		HashMap<String, Object> list = boardService.getBoardList(page, boardCode);
 		mav.addObject("result", list);
 		mav.setViewName("boast");
 		return mav;

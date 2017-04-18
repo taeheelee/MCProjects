@@ -101,15 +101,15 @@
 	                            <li><a href="medicalcare.html">나의 펫 메디컬케어</a></li>
 	                        </ul>
 	                    </li>
-                        <li><a href="/infoMain.do">애견정보/상식</a></li>
-                        <li><a href="/reviewMain.do">제품리뷰</a></li>
+                        <li><a href="/Wawa/infoMain.do?boardCode=1">애견정보/상식</a></li>
+                        <li><a href="/Wawa/reviewMain.do?boardCode=2">제품리뷰</a></li>
                         <li class="dropdown">
 	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">커뮤니티 <b class="caret"></b></a>
 	                        <ul class="dropdown-menu">
-	                            <li><a href="/boastMain.do">뽐내기</a></li>
-	                            <li><a href="/lostMain.do">유기견찾기</a></li>
-	                            <li><a href="/partnerMain.do">짝꿍찾기</a></li>
-	                            <li><a href="freeboard.html">자유게시판</a></li>	                            
+	                            <li><a href="/Wawa/boastMain.do?boardCode=3">뽐내기</a></li>
+	                            <li><a href="/Wawa/lostMain.do?boardCode=4">유기견찾기</a></li>
+	                            <li><a href="/Wawa/partnerMain.do?boardCode=5">짝꿍찾기</a></li>
+	                            <li><a href="/Wawa/freeboardMain.do?boardCode=6">자유게시판</a></li>	                            
 	                        </ul>
 	                    </li>                            
                         <li><a href="location.html">위치정보</a></li>
@@ -127,54 +127,14 @@
                         <h2>이달의 뽐내기</h2>
 <!--                         <div class="row"> -->
 						<div class="best3">
-							<!--         	<h2 class="sidebar-title">이달의 뽐내기 BEST 3</h2> -->
-							<!-- <div class="col-md-3 col-sm-6">
-								<div class="single-shop-product">
-									<div class="product-upper">
-										<img src="img/dog_10.jpg" alt="">
-									</div>
-									<h1 style="text-align: center; color: #FF7F27;">
-										BEST 1</a>
-									</h1>
-									<div class="product-carousel-price">
-										<ins>$899.00</ins>
-										<del>$999.00</del>
-									</div>
-
-									<div class="product-option-shop">
-										<a class="add_to_cart_button" data-quantity="1"
-											data-product_sku="" data-product_id="70" rel="nofollow"
-											href="/canvas/shop/?add-to-cart=70">Add to cart</a>
-									</div>
-								</div>
-							</div> -->
-						<!-- 	<div class="col-md-3 col-sm-6">
-								<div class="single-shop-product">
-									<div class="product-upper">
-										<img src="img/dog_04.jpg" alt="">
-									</div>
-									<h1 style="text-align: center; color: #FF7F27;">
-										BEST 2</a>
-									</h1>
-									<div class="product-carousel-price">
-										<ins>$899.00</ins>
-										<del>$999.00</del>
-									</div>
-
-									<div class="product-option-shop">
-										<a class="add_to_cart_button" data-quantity="1"
-											data-product_sku="" data-product_id="70" rel="nofollow"
-											href="/canvas/shop/?add-to-cart=70">Add to cart</a>
-									</div>
-								</div>
-							</div> -->
+						
 							<div class="col-md-3 col-sm-6">
 								<div class="single-product"><!-- 마우스오버 효과-->
 									<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 										<img src="img/dog_10.jpg" alt="">
 										<div class="product-hover">
-											<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-											<a href="" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
+											<a href="/Wawa/increaseLike.do" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
+											<a href="/Wawa/boastDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 										</div>
 								</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 										<h1 style="text-align: center; color: #FF7F27;">BEST 1</a></h1>
@@ -193,8 +153,8 @@
 									<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 										<img src="img/dog_04.jpg" alt="">
 										<div class="product-hover">
-											<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-											<a href="" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
+											<a href="/Wawa/increaseLike.do" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
+											<a href="/Wawa/boastDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 										</div>
 								</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 										<h1 style="text-align: center; color: #FF7F27;">BEST 2</a></h1>
@@ -213,8 +173,8 @@
 									<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 										<img src="img/dog_03.jpg" alt="">
 										<div class="product-hover">
-											<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-											<a href="" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
+											<a href="/Wawa/increaseLike.do" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
+											<a href="/Wawa/boastDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 										</div>
 								</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 										<h1 style="text-align: center; color: #FF7F27;">BEST 3</a></h1>
@@ -231,10 +191,7 @@
 			</div>
 
 		
-         
-
-         
-         
+        
 
         	
         	
@@ -258,12 +215,12 @@
 		
 		<div class="container" style="float: right;">				
 		
-				<form action="/boastSearch.do">
+				<form action="/Wawa/boastSearch.do">
 					<input type="text" placeholder="Search..">
 					<input type="submit" value="검색">
 				</form>
 
-			<input type="button" value="뽐내기 등록" onclick="location.href='/boastWriteForm.do'">
+			<input type="button" value="뽐내기 등록" onclick="location.href='/Wawa/boastWriteForm.do'">
 		</div>
 		
 		
@@ -274,7 +231,7 @@
 							<img src="img/dog_01.jpg" alt="" style="margin-bottom: 15px">
 							<div class="product-hover">
 								<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
+								<a href="/Wawa/boastSearch.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >
@@ -289,7 +246,7 @@
 							<img src="img/dog_02.jpg" alt="" style="margin-bottom: 15px">
 							<div class="product-hover">
 								<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
+								<a href="/Wawa/boastSearch.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >
@@ -304,7 +261,7 @@
 							<img src="img/dog_03.jpg" alt="" style="margin-bottom: 15px">
 							<div class="product-hover">
 								<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
+								<a href="/Wawa/boastSearch.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >
@@ -319,7 +276,7 @@
 							<img src="img/dog_04.jpg" alt="" style="margin-bottom: 15px">
 							<div class="product-hover">
 								<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
+								<a href="/Wawa/boastSearch.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >
@@ -334,7 +291,7 @@
 							<img src="img/dog_05.jpg" alt="" style="margin-bottom: 15px">
 							<div class="product-hover">
 								<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
+								<a href="/Wawa/boastSearch.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >
@@ -349,7 +306,7 @@
 							<img src="img/dog_06.jpg" alt="" style="margin-bottom: 15px">
 							<div class="product-hover">
 								<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
+								<a href="/Wawa/boastSearch.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >
@@ -364,7 +321,7 @@
 							<img src="img/dog_07.jpg" alt="" style="margin-bottom: 15px">
 							<div class="product-hover">
 								<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
+								<a href="/Wawa/boastSearch.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >
@@ -379,7 +336,7 @@
 							<img src="img/dog_08.jpg" alt="" style="margin-bottom: 15px">
 							<div class="product-hover">
 								<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
+								<a href="/Wawa/boastSearch.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >
@@ -394,7 +351,7 @@
 							<img src="img/dog_09.jpg" alt="" style="margin-bottom: 15px">
 							<div class="product-hover">
 								<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
+								<a href="/Wawa/boastSearch.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >
@@ -409,7 +366,7 @@
 							<img src="img/dog_10.jpg" alt="" style="margin-bottom: 15px">
 							<div class="product-hover">
 								<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
+								<a href="/Wawa/boastSearch.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >
@@ -424,7 +381,7 @@
 							<img src="img/dog_11.jpg" alt="" style="margin-bottom: 15px">
 							<div class="product-hover">
 								<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
+								<a href="/Wawa/boastSearch.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >
@@ -439,7 +396,7 @@
 							<img src="img/dog_12.jpg" alt="" style="margin-bottom: 15px">
 							<div class="product-hover">
 								<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
+								<a href="/Wawa/boastSearch.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >

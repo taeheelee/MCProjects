@@ -22,10 +22,10 @@ public class InfoController {
 		private IBoardService boardService;
 	
 		@RequestMapping("infoMain.do")
-		public ModelAndView infoMain(@RequestParam(defaultValue="1") int page,@RequestParam(defaultValue="1") int boardCode){
+		public ModelAndView infoMain(@RequestParam(defaultValue="1") int page, 
+				@RequestParam(defaultValue="1") int boardCode){
 			ModelAndView mav = new ModelAndView();
-			HashMap<String, Object> list = boardService.getBoardList(page, boardCode);
-			mav.addObject("result", list);
+			mav.addAllObjects(boardService.getBoardList(page, boardCode));
 			mav.setViewName("info"); // -> infoMain찾기
 			return mav;
 		}

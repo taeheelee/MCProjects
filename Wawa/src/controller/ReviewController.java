@@ -19,11 +19,10 @@ public class ReviewController {
 	private IBoardService boardService;
 	
 	@RequestMapping("reviewMain.do")
-	public ModelAndView reviewMain(@RequestParam(defaultValue="1") int page){
+	public ModelAndView reviewMain(@RequestParam(defaultValue="1") int page, 
+			@RequestParam(defaultValue="2") int boardCode){
 		ModelAndView mav = new ModelAndView();
-		HashMap<String, Object> list = boardService.getBoardList(page,
-				Integer.parseInt(Constant.BoardCode.REVIEW));
-		mav.addObject("result", list);
+		mav.addAllObjects(boardService.getBoardList(page, boardCode));
 		mav.setViewName("review");
 		return mav;
 	}

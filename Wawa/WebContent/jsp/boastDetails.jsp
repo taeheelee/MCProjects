@@ -107,15 +107,15 @@
 	                            <li><a href="medicalcare.html">나의 펫 메디컬케어</a></li>
 	                        </ul>
 	                    </li>
-                        <li><a href="/infoMain.do">애견정보/상식</a></li>
-                        <li><a href="/reviewMain.do">제품리뷰</a></li>
+                        <li><a href="/Wawa/infoMain.do">애견정보/상식</a></li>
+                        <li><a href="/Wawa/reviewMain.do">제품리뷰</a></li>
                         <li class="dropdown">
 	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">커뮤니티 <b class="caret"></b></a>
 	                        <ul class="dropdown-menu">
-	                            <li><a href="/boastMain.do">뽐내기</a></li>
-	                            <li><a href="/lostMain.do">유기견찾기</a></li>
-	                            <li><a href="/partnerMain.do">짝꿍찾기</a></li>
-	                            <li><a href="freeboard.html">자유게시판</a></li>	                            
+	                            <li><a href="/Wawa/boastMain.do">뽐내기</a></li>
+	                            <li><a href="/Wawa/lostMain.do">유기견찾기</a></li>
+	                            <li><a href="/Wawa/partnerMain.do">짝꿍찾기</a></li>
+	                            <li><a href="/Wawa/freeboardMain.do">자유게시판</a></li>	                            
 	                        </ul>
 	                    </li>                            
                         <li><a href="location.html">위치정보</a></li>
@@ -166,26 +166,26 @@
 							<td id="age">0년 0개월</td>
 						</tr>
 					</tbody>
+		
 				</table>
         		
-               	
-                <h4 style="color: gray; text-align: center;">[제목] 우리 귀요미 와와를 소개합니다</h4>
+<!--                	df -->
+                <h4 style="color: gray; text-align: center;" value="${result.title}">[제목] 우리 귀요미 와와를 소개합니다</h4>
                 <hr style="border: solid 1px; border-color: lightgray">  
                 <div id=boardcontents style="text-align: center">
-                	왼쪽을 봐도 귀요미<br>
-                	오른쪽을 봐도 귀요미<br>
-                	정면을 봐도 귀요미<br>
-                	뒷태를 봐도 귀요미<br>
-                	<br>
-                	똘망똘망한 눈<br>
-                	아찔한 치열<br>
+                	<h1 value="${result.content}"></h1>
+                
                 	
                 </div>
+<!--                 d -->
+
                 <hr style="border: solid 1px; border-color: lightgray"> 
                 <div style="text-align: center">
-                <input type="button" value="뒤로가기"  onClick="history.back();">
-                <input type="button" value="수정" onclick="location.href='/boastUpdateForm.do'">
-                <input type="button" value="삭제" onclick="location.href='/boastDelete.do'">
+                
+                
+                <input type="button" value="뒤로가기"  onClick="location.href='/Wawa/boastMain.do';">
+                <input type="button" value="수정" onclick="location.href='/Wawa/boastUpdateForm.do'">
+                <input type="button" value="삭제" onclick="location.href='/Wawa/boastDelete.do'">
                 </div>
 			</div>
 		</div>
@@ -194,7 +194,6 @@
 
    
 <!-- 여기부터 안에 들어가면 안되는 이유찾기  end-->     
-
 
 
     <div class="footer-top-area">

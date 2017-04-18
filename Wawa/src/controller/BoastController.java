@@ -11,21 +11,28 @@ import org.springframework.web.servlet.ModelAndView;
 
 import commons.Constant;
 import interface_service.IBoardService;
+import model.Board;
 
 @Controller
 public class BoastController {
 	@Autowired
 	private IBoardService boardService;
 	
-	@RequestMapping("/boastMain.do")
-	public ModelAndView boastMain(@RequestParam(defaultValue="1") int page, int boardCode){
+	@RequestMapping("boastMain.do")
+	public ModelAndView boastMain(@RequestParam(defaultValue="1") int page,
+			@RequestParam(defaultValue="3") int boardCode){
 		ModelAndView mav = new ModelAndView();
-		
-		System.out.println(page + "" +boardCode);
-		HashMap<String, Object> list = boardService.getBoardList(page, boardCode);
-		mav.addObject("result", list);
+		mav.addAllObjects(boardService.getBoardList(page, boardCode));
 		mav.setViewName("boast");
 		return mav;
+	}
+	
+	@RequestMapping("increaseLike.do")
+	public String increaseLike(HashMap<String, Object> params){
+		int likeNum = (int) params.get(Constant.Board.LIKECOUNT);
+		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
+		boardService.updateBoastBoard(boardIdx, name, age, sex, content, writer);
+		
 	}
 	
 	@RequestMapping("boastSearch.do")

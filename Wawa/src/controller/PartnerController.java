@@ -19,11 +19,10 @@ public class PartnerController {
 	private IBoardService boardService;
 	
 	@RequestMapping("partnerMain.do")
-	public ModelAndView partnerMain(@RequestParam(defaultValue="1") int page){
+	public ModelAndView partnerMain(@RequestParam(defaultValue="1") int page,
+			@RequestParam(defaultValue="5") int boardCode){
 		ModelAndView mav = new ModelAndView();
-		HashMap<String, Object> list = boardService.getBoardList(page, 
-				Integer.parseInt(Constant.BoardCode.PARTNER));
-		mav.addObject("result", list);
+		mav.addAllObjects(boardService.getBoardList(page, boardCode));
 		mav.setViewName("partner");
 		return mav;
 	}

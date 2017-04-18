@@ -100,15 +100,15 @@
 	                            <li><a href="medicalcare.html">나의 펫 메디컬케어</a></li>
 	                        </ul>
 	                    </li>
-                        <li><a href="/infoMain.do">애견정보/상식</a></li>
-                        <li><a href="/reviewMain.do">제품리뷰</a></li>
+                        <li><a href="/Wawa/infoMain.do?boardCode=1">애견정보/상식</a></li>
+                        <li><a href="/Wawa/reviewMain.do?boardCode=2">제품리뷰</a></li>
                         <li class="dropdown">
 	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">커뮤니티 <b class="caret"></b></a>
 	                        <ul class="dropdown-menu">
-	                            <li><a href="/boastMain.do">뽐내기</a></li>
-	                            <li><a href="/lostMain.do">유기견찾기</a></li>
-	                            <li><a href="/partnerMain.do">짝꿍찾기</a></li>
-	                            <li><a href="freeboard.html">자유게시판</a></li>	                            
+	                            <li><a href="/Wawa/boastMain.do?boardCode=3">뽐내기</a></li>
+	                            <li><a href="/Wawa/lostMain.do?boardCode=4">유기견찾기</a></li>
+	                            <li><a href="/Wawa/partnerMain.do?boardCode=5">짝꿍찾기</a></li>
+	                            <li><a href="/Wawa/freeboardMain.do?boardCode=6">자유게시판</a></li>	                            
 	                        </ul>
 	                    </li>                            
                         <li><a href="location.html">위치정보</a></li>
@@ -144,7 +144,7 @@
 
 				<div class="container" style="width :100% ;float: right;">
 
-				<form action="/partnerSearch.do">
+				<form action="/Wawa/partnerSearch.do">
 
 					<input type="radio" name="petsex" value="male"> 수컷
 					<input type="radio" name="petsex" value="female"> 암컷
@@ -153,7 +153,7 @@
 					<input type="submit" value="검색">
 				</form>
 								
-				<input type="button" value="짝꿍찾기 등록" onclick="location.href='/partnerWriteForm.do'">
+				<input type="button" value="짝꿍찾기 등록" onclick="location.href='/Wawa/partnerWriteForm.do'">
 				</div>
 		
 		</div>
@@ -167,7 +167,7 @@
 						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 							<img src="img/dog_14.jpg" alt="">
 							<div class="product-hover">
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세</a>
+								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
@@ -182,7 +182,7 @@
 						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 							<img src="img/dog_13.jpg" alt="">
 							<div class="product-hover">
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세</a>
+								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
@@ -197,7 +197,7 @@
 						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 							<img src="img/dog_12.jpg" alt="">
 							<div class="product-hover">
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세</a>
+								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
@@ -212,7 +212,7 @@
 						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 							<img src="img/dog_11.jpg" alt="">
 							<div class="product-hover">
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세</a>
+								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
@@ -227,7 +227,7 @@
 						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 							<img src="img/dog_10.jpg" alt="">
 							<div class="product-hover">
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세</a>
+								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
@@ -242,7 +242,7 @@
 						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 							<img src="img/dog_09.jpg" alt="">
 							<div class="product-hover">
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세</a>
+								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
@@ -257,7 +257,7 @@
 						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 							<img src="img/dog_08.jpg" alt="">
 							<div class="product-hover">
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세</a>
+								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
@@ -272,7 +272,7 @@
 						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 							<img src="img/dog_07.jpg" alt="">
 							<div class="product-hover">
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세</a>
+								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
@@ -287,7 +287,7 @@
 						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 							<img src="img/dog_06.jpg" alt="">
 							<div class="product-hover">
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세</a>
+								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
@@ -302,7 +302,7 @@
 						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 							<img src="img/dog_05.jpg" alt="">
 							<div class="product-hover">
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세</a>
+								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
@@ -317,7 +317,7 @@
 						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 							<img src="img/dog_04.jpg" alt="">
 							<div class="product-hover">
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세</a>
+								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
@@ -332,7 +332,7 @@
 						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 							<img src="img/dog_03.jpg" alt="">
 							<div class="product-hover">
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세</a>
+								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
@@ -347,7 +347,7 @@
 						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 							<img src="img/dog_02.jpg" alt="">
 							<div class="product-hover">
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세</a>
+								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
@@ -362,7 +362,7 @@
 						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 							<img src="img/dog_01.jpg" alt="">
 							<div class="product-hover">
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세</a>
+								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
@@ -377,7 +377,7 @@
 						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 							<img src="img/dog_14.jpg" alt="">
 							<div class="product-hover">
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세</a>
+								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
@@ -392,7 +392,7 @@
 						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 							<img src="img/dog_13.jpg" alt="">
 							<div class="product-hover">
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세</a>
+								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
@@ -407,7 +407,7 @@
 						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 							<img src="img/dog_12.jpg" alt="">
 							<div class="product-hover">
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세</a>
+								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
@@ -422,7 +422,7 @@
 						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 							<img src="img/dog_11.jpg" alt="">
 							<div class="product-hover">
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세</a>
+								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					<table border="1" style="width: 100%; font-size: small;text-align:center; " >

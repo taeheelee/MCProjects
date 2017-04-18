@@ -107,15 +107,15 @@
 	                            <li><a href="medicalcare.html">나의 펫 메디컬케어</a></li>
 	                        </ul>
 	                    </li>
-                        <li><a href="commonsense.html">애견정보/상식</a></li>
-                        <li><a href="review.html">제품리뷰</a></li>
+                        <li><a href="/Wawa/infoMain.do?boardCode=1">애견정보/상식</a></li>
+                        <li><a href="/Wawa/reviewMain.do?boardCode=2">제품리뷰</a></li>
                         <li class="dropdown">
 	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">커뮤니티 <b class="caret"></b></a>
 	                        <ul class="dropdown-menu">
-	                            <li><a href="boast.html">뽐내기</a></li>
-	                            <li><a href="wanted.html">유기견찾기</a></li>
-	                            <li><a href="propose.html">짝꿍찾기</a></li>
-	                            <li><a href="freeboard.html">자유게시판</a></li>	                            
+	                            <li><a href="/Wawa/boastMain.do?boardCode=3">뽐내기</a></li>
+	                            <li><a href="/Wawa/lostMain.do?boardCode=4">유기견찾기</a></li>
+	                            <li><a href="/Wawa/partnerMain.do?boardCode=5">짝꿍찾기</a></li>
+	                            <li><a href="/Wawa/freeboardMain.do?boardCode=6">자유게시판</a></li>	                            
 	                        </ul>
 	                    </li>                            
                         <li><a href="location.html">위치정보</a></li>
@@ -151,7 +151,7 @@
                          
                      
 
-                            <form action="/partnerUpdate.do" enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
+                            <form action="/Wawa/partnerUpdate.do" enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
 
 
                                 <div id="customer_details" class="col2-set" >

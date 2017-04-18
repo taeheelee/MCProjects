@@ -108,15 +108,15 @@
 	                            <li><a href="medicalcare.html">나의 펫 메디컬케어</a></li>
 	                        </ul>
 	                    </li>
-                        <li><a href="/infoMain.do">애견정보/상식</a></li>
-                        <li><a href="/reviewMain.do">제품리뷰</a></li>
+                        <li><a href="/Wawa/infoMain.do">애견정보/상식</a></li>
+                        <li><a href="/Wawa/reviewMain.do">제품리뷰</a></li>
                         <li class="dropdown">
 	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">커뮤니티 <b class="caret"></b></a>
 	                        <ul class="dropdown-menu">
-	                            <li><a href="/boastMain.do">뽐내기</a></li>
-	                            <li><a href="/lostMain.do">유기견찾기</a></li>
-	                            <li><a href="/partnerMain.do">짝꿍찾기</a></li>
-	                            <li><a href="freeboard.html">자유게시판</a></li>	                            
+	                            <li><a href="/Wawa/boastMain.do">뽐내기</a></li>
+	                            <li><a href="/Wawa/lostMain.do">유기견찾기</a></li>
+	                            <li><a href="/Wawa/partnerMain.do">짝꿍찾기</a></li>
+	                            <li><a href="/Wawa/freeboardMain.do">자유게시판</a></li>	                            
 	                        </ul>
 	                    </li>                            
                         <li><a href="location.html">위치정보</a></li>
@@ -152,7 +152,7 @@
                          
                      
 
-                            <form action="/infoUpdate.do" enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
+                            <form action="/Wawa/infoUpdate.do" enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
 
 
                                 <div id="customer_details" class="col2-set" >
@@ -200,7 +200,7 @@
 											</div>
 								</form>
 											<div class="form-row place-order" style="float: right">
-												<input type="button" id="delete"  onclick="location.href='/infoDelete.do?boardIdx='#{boardIdx}''" value="DELETE" />
+												<input type="button" id="delete"  onclick="location.href='/Wawa/infoDelete.do?boardIdx='#{boardIdx}'" value="DELETE" />
 											</div>
 
 

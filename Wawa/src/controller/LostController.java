@@ -19,10 +19,10 @@ public class LostController {
 	private IBoardService boardService;
 	
 	@RequestMapping("lostMain.do")
-	public ModelAndView lostMain(@RequestParam(defaultValue="1") int page){
+	public ModelAndView lostMain(@RequestParam(defaultValue="1") int page,
+			@RequestParam(defaultValue="4") int boardCode){
 		ModelAndView mav = new ModelAndView();
-		HashMap<String, Object> list = boardService.getBoardList(page, 4);
-		mav.addObject("result", list);
+		mav.addAllObjects(boardService.getBoardList(page, boardCode));
 		mav.setViewName("lost");
 		return mav;
 	}

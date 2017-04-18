@@ -100,15 +100,15 @@
 	                            <li><a href="medicalcare.html">나의 펫 메디컬케어</a></li>
 	                        </ul>
 	                    </li>
-                        <li><a href="/infoMain.do">애견정보/상식</a></li>
-                        <li><a href="/reviewMain.do">제품리뷰</a></li>
+                        <li><a href="/Wawa/infoMain.do?boardCode=1">애견정보/상식</a></li>
+                        <li><a href="/Wawa/reviewMain.do?boardCode=2">제품리뷰</a></li>
                         <li class="dropdown">
 	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">커뮤니티 <b class="caret"></b></a>
 	                        <ul class="dropdown-menu">
-	                            <li><a href="/boastMain.do">뽐내기</a></li>
-	                            <li><a href="/lostMain.do">유기견찾기</a></li>
-	                            <li><a href="/partnerMain.do">짝꿍찾기</a></li>
-	                            <li><a href="freeboard.html">자유게시판</a></li>	                            
+	                            <li><a href="/Wawa/boastMain.do?boardCode=3">뽐내기</a></li>
+	                            <li><a href="/Wawa/lostMain.do?boardCode=4">유기견찾기</a></li>
+	                            <li><a href="/Wawa/partnerMain.do?boardCode=5">짝꿍찾기</a></li>
+	                            <li><a href="/Wawa/freeboardMain.do">자유게시판</a></li>	                            
 	                        </ul>
 	                    </li>                            
                         <li><a href="location.html">위치정보</a></li>
@@ -144,11 +144,11 @@
 
 				<div class="container" style="float: right;">
 				
-				<form action="/partnerSearch.do">
+				<form action="/Wawa/partnerSearch.do">
 					<input type="text" placeholder="Search..">
 					<input type="submit" value="검색">
 				</form>
-				<input type="button" value="유기견 등록" onclick="location.href='/lostWriteForm.do'">
+				<input type="button" value="유기견 등록" onclick="location.href='/Wawa/lostWriteForm.do'">
 				</div>
 		
 		</div>
@@ -166,7 +166,7 @@
 						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 							<img src="img/dog_03.jpg" alt="">
 							<div class="product-hover">
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
+								<a href="/Wawa/lostDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					</div>
@@ -193,7 +193,7 @@
 						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 							<img src="img/dog_02.jpg" alt="">
 							<div class="product-hover">
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
+								<a href="/Wawa/lostDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					</div>
@@ -220,7 +220,7 @@
 						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 							<img src="img/dog_01.jpg" alt="">
 							<div class="product-hover">
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
+								<a href="/Wawa/lostDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					</div>
@@ -247,7 +247,7 @@
 						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 							<img src="img/dog_14.jpg" alt="">
 							<div class="product-hover">
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
+								<a href="/Wawa/lostDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					</div>
@@ -274,7 +274,7 @@
 						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 							<img src="img/dog_13.jpg" alt="">
 							<div class="product-hover">
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
+								<a href="/Wawa/lostDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					</div>
@@ -301,7 +301,7 @@
 						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 							<img src="img/dog_07.jpg" alt="">
 							<div class="product-hover">
-								<a href="" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
+								<a href="/Wawa/lostDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 							</div>
 						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 					</div>

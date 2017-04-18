@@ -107,15 +107,15 @@
 	                            <li><a href="medicalcare.html">나의 펫 메디컬케어</a></li>
 	                        </ul>
 	                    </li>
-                        <li><a href="/infoMain.do">애견정보/상식</a></li>
-                        <li><a href="/reviewMain.do">제품리뷰</a></li>
+                        <li><a href="/Wawa/infoMain.do?boardCode=1">애견정보/상식</a></li>
+                        <li><a href="/Wawa/reviewMain.do?boardCode=2">제품리뷰</a></li>
                         <li class="dropdown">
 	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">커뮤니티 <b class="caret"></b></a>
 	                        <ul class="dropdown-menu">
-	                            <li><a href="/boastMain.do">뽐내기</a></li>
-	                            <li><a href="/lostMain.do">유기견찾기</a></li>
-	                            <li><a href="/partnerMain.do">짝꿍찾기</a></li>
-	                            <li><a href="freeboard.html">자유게시판</a></li>	                            
+	                            <li><a href="/Wawa/boastMain.do?boardCode=3">뽐내기</a></li>
+	                            <li><a href="/Wawa/lostMain.do?boardCode=4">유기견찾기</a></li>
+	                            <li><a href="/Wawa/partnerMain.do?boardCode=5">짝꿍찾기</a></li>
+	                            <li><a href="/Wawa/freeboardMain.do?boardCode=6">자유게시판</a></li>	                            
 	                        </ul>
 	                    </li>                            
                         <li><a href="location.html">위치정보</a></li>
@@ -157,13 +157,7 @@
                                 <div id="customer_details" class="col2-set" >
                                     <div class="col-3">
                                     <h2 class="sidebar-title">제품리뷰 목록</h2>
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
+                       
                                     
     
 		<form method="post" action="#">
@@ -209,21 +203,17 @@
                         <td>2017-01-01</td>
                     </tr>
                   
-                     
-          
            
 				</tbody>
 			</table>
         </form>
                                     
                                     
-                                    
-                                    
                                               <p id="billing_country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated">
                                                 <label class="" for="billing_country">카테고리 <abbr title="required" class="required">*</abbr>
                                                 </label>
                                                 
-                                   <form action="/reviewSearch.do">
+                                   <form action="/Wawa/reviewSearch.do">
                                                 
                                                 <select class="country_to_state country_select" id="category" name="category">
                                                     <option selected="selected" value="GB">사료</option>
@@ -250,19 +240,13 @@
 											
 											</div>   
 												<div class="form-row place-order" style="float: right">
-												<input type="button" id="write" onclick="location.href='/reviewWriteForm.do'" value="WRITE" />
+												<input type="button" id="write" onclick="location.href='/Wawa/reviewWriteForm.do'" value="WRITE" />
 											</div>        
                                             
                                             
                                     </div>
 
-                                   
-
                                 </div>
-
-
-
-
  									
 
 				<div class="col-md-12">
@@ -289,22 +273,6 @@
 						</nav>
 					</div>
 				</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                              
 
                                    
                                 </div>

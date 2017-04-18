@@ -1,6 +1,15 @@
 package commons;
 
 public class Constant {
+	public class BoardCode{
+		public static final String INFO = "1";
+		public static final String REVIEW = "2";
+		public static final String BOAST = "3";
+		public static final String LOST = "4";
+		public static final String PARTNER = "5";
+		public static final String FREEBOARD = "6";
+	}
+	
 	public class UserInfo{
 		public static final String IDX = "idx";
 		public static final String ID = "id";

@@ -19,9 +19,9 @@ public class LostController {
 	private IBoardService boardService;
 	
 	@RequestMapping("lostMain.do")
-	public ModelAndView lostMain(@RequestParam(defaultValue="1") int page, int boardCode){
+	public ModelAndView lostMain(@RequestParam(defaultValue="1") int page){
 		ModelAndView mav = new ModelAndView();
-		HashMap<String, Object> list = boardService.getBoardList(page, boardCode);
+		HashMap<String, Object> list = boardService.getBoardList(page, 4);
 		mav.addObject("result", list);
 		mav.setViewName("lost");
 		return mav;
@@ -85,10 +85,10 @@ public class LostController {
 		return "redirect:lostMain.do";	
 	}
 
-	@RequestMapping("lostUploadImage.do")
-	public ModelAndView lostUploadImage(){
-		
-	}
+//	@RequestMapping("lostUploadImage.do")
+//	public ModelAndView lostUploadImage(){
+//		
+//	}
 	
 	@RequestMapping("lostGetPetinfo.do")
 	public ModelAndView lostGetPetinfo(String id){

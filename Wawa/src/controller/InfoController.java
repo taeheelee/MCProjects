@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import commons.Constant;
 import interface_service.IBoardService;
 import model.Board;
 
@@ -21,9 +22,10 @@ public class InfoController {
 		private IBoardService boardService;
 	
 		@RequestMapping("infoMain.do")
-		public ModelAndView infoMain(@RequestParam(defaultValue="1") int page, int boardCode){
+		public ModelAndView infoMain(@RequestParam(defaultValue="1") int page){
 			ModelAndView mav = new ModelAndView();
-			HashMap<String, Object> list = boardService.getBoardList(page, boardCode);
+			HashMap<String, Object> list = boardService.getBoardList(page, 
+					Integer.parseInt(Constant.BoardCode.INFO));
 			mav.addObject("result", list);
 			mav.setViewName("info"); // -> infoMain찾기
 			return mav;
@@ -92,9 +94,9 @@ public class InfoController {
 			return "redirect:infoMain.do";
 		}
 		
-		@RequestMapping("infoUpdateImage.do")
-		public ModelAndView infoUpdateImage(){
-			
-		}
+//		@RequestMapping("infoUpdateImage.do")
+//		public ModelAndView infoUpdateImage(){
+//			
+//		}
 		
 }

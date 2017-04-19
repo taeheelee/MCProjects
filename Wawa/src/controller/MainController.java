@@ -1,5 +1,8 @@
 package controller;
 
-public class MainController {
+import org.springframework.web.bind.annotation.RequestMapping;
 
+public class MainController {
+	@RequestMapping("main.do")
+	public void main(){}
 }

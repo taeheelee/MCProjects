@@ -24,14 +24,6 @@
     <link rel="stylesheet" href="css/owl.carousel.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/responsive.css">
-    
-    <!--   JQuery -->
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
-	<!-- summernote -->
-	<link rel="stylesheet" href="summernote/dist/summernote.css">
-    <script src="summernote/dist/summernote.js"></script>
-	<script src="summernote/dist/summernote.min.js"></script>
-	<script src="summernote/dist/lang/summernote-ko-KR.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -39,21 +31,9 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-      <script>
-	    $(document).ready(function() {
-	        $('#summernote').summernote();
-	    });
-  </script>
-  
   </head>
   <body>
-  
-  
-<!--   <div style="width: 50%; margin: 0 auto;"> -->
-<!--     <div id="summernote"><p>Hello Summernote</p><p>Hello Summernote</p><p>Hello Summernote</p><p>Hello Summernote</p></div> -->
-<!-- 	</div> -->
-	
-   
+      
 <div class="header-area">
         <div class="container">
             <div class="row">
@@ -113,15 +93,15 @@
 	                            <li><a href="medicalcare.html">나의 펫 메디컬케어</a></li>
 	                        </ul>
 	                    </li>
-                        <li><a href="/Wawa/infoMain.do?boardCode=1">애견정보/상식</a></li>
-                        <li><a href="/Wawa/reviewMain.do?boardCode=2">제품리뷰</a></li>
+                        <li><a href="commonsense.html">애견정보/상식</a></li>
+                        <li><a href="review.html">제품리뷰</a></li>
                         <li class="dropdown">
 	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">커뮤니티 <b class="caret"></b></a>
 	                        <ul class="dropdown-menu">
-	                            <li><a href="/Wawa/boastMain.do?boardCode=3">뽐내기</a></li>
-	                            <li><a href="/Wawa/lostMain.do?boardCode=4">유기견찾기</a></li>
-	                            <li><a href="/Wawa/partnerMain.do?boardCode=5">짝꿍찾기</a></li>
-	                            <li><a href="/Wawa/freeboardMain.do?boardCode=6">자유게시판</a></li>	                            
+	                            <li><a href="boast.html">뽐내기</a></li>
+	                            <li><a href="wanted.html">유기견찾기</a></li>
+	                            <li><a href="propose.html">짝꿍찾기</a></li>
+	                            <li><a href="freeboard.html">자유게시판</a></li>	                            
 	                        </ul>
 	                    </li>                            
                         <li><a href="location.html">위치정보</a></li>
@@ -136,16 +116,15 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="product-bit-title text-left">
-                        <h2>뽐내기</h2>
+                        <h2>회원가입</h2>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-
-    <div class="single-product-area">
+    
+    
+ <div class="single-product-area">
         <div class="zigzag-bottom"></div>
         <div class="container">
             <div class="row">
@@ -157,39 +136,40 @@
                          
                      
 
-                            
+                            <form enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
+
                                 <div id="customer_details" class="col2-set" >
                                     <div class="col-3">
-                                    <h2 class="sidebar-title">뽐내기 후보 등록하기</h2>
+                                    <h2 class="sidebar-title">회원 정보 입력</h2>
                                         <div class="woocommerce-billing-fields">
                                             
                                             
-             
+           
                                             
-                                          	
-             
-                                            
-                                            <!-- <div class="clear"></div> -->
-                                           
-                                            
-                                            
-                                            
-                                            
-                                            <div class="form-row place-order" style="float: right">
-	                                            <input type="button" id="petinfo" onclick="location.href='/Wawa/boastGetPetinfo.do'" value="애견정보 불러오기" />
-											</div>
-                                         
-                                           
-                                        <form action="/Wawa/boastWrite.do" enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
-                                
-											<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
-                                                <label class="" for="billing_state">애견 이름</label>
-                                                <input type="text" id="name" name="name" placeholder="" value="" class="input-text ">
+                                            <p id="billing_first_name_field" class="form-row form-row-first validate-required">
+                                                <label class="" for="billing_first_name">ID<abbr title="required" class="required">*</abbr>
+                                                </label>
+                                                <input type="text" value="" placeholder="" id="billing_first_name" name="billing_first_name" class="input-text ">
                                             </p>
                                             <br>
-                                            <p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
-                                                <label class="" for="billing_state">나이</label>
-                                                <input type="text" id="age" name="age" placeholder="" value="" class="input-text ">
+                                               <p id="billing_first_name_field" class="form-row form-row-first validate-required">
+                                                <label class="" for="billing_first_name">닉네임<abbr title="required" class="required">*</abbr>
+                                                </label>
+                                                <input type="text" value="" placeholder="" id="billing_first_name" name="billing_first_name" class="input-text ">
+                                            </p>
+                                            <br>
+
+                                         	<p id="billing_first_name_field" class="form-row form-row-first validate-required">
+                                                <label class="" for="billing_first_name">비밀번호<abbr title="required" class="required">*</abbr>
+                                                </label>
+                                                <input type="text" value="" placeholder="" id="billing_first_name" name="billing_first_name" class="input-text ">
+                                            </p>
+                                            <br>
+                                          
+                                            <p id="billing_first_name_field" class="form-row form-row-first validate-required">
+                                                <label class="" for="billing_first_name">비밀번호 확인<abbr title="required" class="required">*</abbr>
+                                                </label>
+                                                <input type="text" value="" placeholder="" id="billing_first_name" name="billing_first_name" class="input-text ">
                                             </p>
                                             <br>
                                             
@@ -198,68 +178,37 @@
 	                                            <div id="payment">
 													<ul class="payment_methods methods">
 														<li class="payment_method_paypal">
-															<input type="radio" data-order_button_text="Proceed to PayPal" value="male" name="sex" class="input-radio" id="sex"> 수컷
+															<input type="radio" data-order_button_text="Proceed to PayPal" value="male" name="payment_method" class="input-radio" id="payment_method_paypal"> 남자
 															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															<input type="radio" data-order_button_text="Proceed to PayPal" value="female" name="sex" class="input-radio" id="sex"> 암컷
+															<input type="radio" data-order_button_text="Proceed to PayPal" value="female" name="payment_method" class="input-radio" id="payment_method_paypal"> 여자
 														</li>
 													</ul>
 												</div>
                                             </p>
                                             <br>
                                             
-                                             <p id="billing_country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated">
-                                                <label class="" for="billing_country">품종 <abbr title="required" class="required">*</abbr>
-                                                </label>
-                                                <select class="country_to_state country_select" id="kind" name="kind">
-                                                    <option selected="selected" value="GB">치와와</option>
-                                                    <option value="DE">요크셔 테리어</option>
-                                                    <option value="GH">말티즈</option>
-                                                    <option value="SB">시츄</option>
-                                                    <option value="SO">비글</option>
-                                                    <option value="ZA">퍼그</option>
-                                                    <option value="GS">페키니즈</option>
-                                                    <option value="KR">미니어쳐 슈나우저</option>
-                                                    <option value="GE">기타 소형견</option>
-                                                    <option value="KR">기타 중형견</option>
-                                                    <option value="KR">기타 대형견</option>
-                                                </select>
-                                            </p>
-                                            <br>
                                             
-                                            	<p id="billing_first_name_field" class="form-row form-row-first validate-required">
-                                                <label class="" for="billing_first_name">애견 프로필 사진 등록 <abbr title="required" class="required">*</abbr>
-                                                </label>
-                                                <input type="text" value="" placeholder="" id="billing_first_name" name="billing_first_name" class="input-text ">
-                                            <div class="form-row place-order">
-												<input type="submit" data-value="Place order" value="ADD PHOTO" id="place_order" name="woocommerce_checkout_place_order" class="button alt" >
-
-											</div>
-                                            </p>
- 											   
-                                         	<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
-                                                <label class="" for="billing_state">글 제목</label>
-                                                <input type="text" id="title" name="title" placeholder="" value="" class="input-text ">
+                                         
+                                      
+                                            
+                                            
+											<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
+                                                <label class="" for="billing_state">연락처</label>
+                                                <input type="text" id="billing_state" name="billing_state" placeholder="" value="" class="input-text ">
                                             </p>
                                             <br>
-            
-											  <div style="width: 100%; margin: 0 auto;">
-											    <div id="summernote"><p>
-																<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-															</p></div>
-												</div>
-											<br>
-											
-											<br>
-											
+                                            	<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
+                                                <label class="" for="billing_state">이메일</label>
+                                                <input type="text" id="billing_state" name="billing_state" placeholder="" value="" class="input-text ">
+                                            </p>
+                                            <br>
+                                           
+
+<!--<div class="clear"></div> -->
+
+
 											<div class="form-row place-order" style="float: right">
-												<input type="submit" data-value="Place order" value="WRITE" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
-									</form>
-									
-									
-									
-									
-									
-									
+												<input type="submit" data-value="Place order" value="JOIN US" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
 											</div>
 
 
@@ -294,6 +243,7 @@
 
                                    
                                 </div>
+                            </form>
 
                         </div>                       
                     </div>                    
@@ -301,7 +251,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="footer-top-area">
         <div class="zigzag-bottom"></div>
@@ -359,10 +308,7 @@
                 </div>
             </div>
         </div>
-    </div><!-- footer-top-area end -->
-    
-    
-    
+    </div>
     <div class="footer-bottom-area">
         <div class="container">
             <div class="row">
@@ -385,7 +331,7 @@
     </div>
    
     <!-- Latest jQuery form server -->
-<!--     <script src="https://code.jquery.com/jquery.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery.min.js"></script>
     
     <!-- Bootstrap JS form CDN -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>

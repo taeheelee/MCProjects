@@ -23,6 +23,7 @@ public class LostController {
 			@RequestParam(defaultValue="4") int boardCode){
 		ModelAndView mav = new ModelAndView();
 		mav.addAllObjects(boardService.getBoardList(page, boardCode));
+		mav.addObject("boardCode", boardCode);
 		mav.setViewName("lost");
 		return mav;
 	}
@@ -68,7 +69,7 @@ public class LostController {
 		mav.addObject("result", board);
 		mav.setViewName("lostUpdateForm");
 		return mav;
-	} // petindx 추가!!!!!!!!!! dao에도 constant에도
+	} 
 	
 	@RequestMapping("lostUpdate.do")
 	public String lostUpdate(int boardIdx, String category, String name, String resist, 

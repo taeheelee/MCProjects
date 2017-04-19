@@ -169,21 +169,21 @@
                  
                                             
                                             <div class="form-row place-order" style="float: right">
-												<input type="button" id="petinfo" onclick="location.href='/boastGetPetinfo.do'" value="애견정보 불러오기" />
+												<input type="button" id="petinfo" onclick="location.href='/Wawa/boastGetPetinfo.do'" value="애견정보 불러오기" />
 											</div>
                                         
                                             
                                             
 											<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
                                                 <label class="" for="billing_state">애견 이름</label>
-                                                <input type="text" id="petname" name="petname" placeholder="" value="" class="input-text ">
+                                                <input type="text" id="name" name="name" placeholder="" value="" class="input-text ">
                                             </p>
                                             <br>
                                             
                                             
                                             <p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
                                                 <label class="" for="billing_state">나이</label>
-                                                <input type="text" id="petage" name="petage" placeholder="" value="" class="input-text ">
+                                                <input type="text" id="age" name="age" placeholder="" value="" class="input-text ">
                                             </p>
                                             <br>
                                             
@@ -192,9 +192,9 @@
 	                                            <div id="payment">
 													<ul class="payment_methods methods">
 														<li class="payment_method_paypal">
-															<input type="radio" data-order_button_text="Proceed to PayPal" value="male" name="petsex" class="input-radio" id="petsex"> 수컷
+															<input type="radio" data-order_button_text="Proceed to PayPal" value="male" name="sex" class="input-radio" id="sex"> 수컷
 															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															<input type="radio" data-order_button_text="Proceed to PayPal" value="female" name="petsex" class="input-radio" id="petsex"> 암컷
+															<input type="radio" data-order_button_text="Proceed to PayPal" value="female" name="sex" class="input-radio" id="sex"> 암컷
 														</li>
 													</ul>
 												</div>
@@ -204,7 +204,7 @@
                                              <p id="billing_country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated">
                                                 <label class="" for="billing_country">품종 <abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <select class="country_to_state country_select" id="petkind" name="petkind">
+                                                <select class="country_to_state country_select" id="kind" name="kind">
                                                     <option selected="selected" value="GB">치와와</option>
                                                     <option value="DE">요크셔 테리어</option>
                                                     <option value="GH">말티즈</option>

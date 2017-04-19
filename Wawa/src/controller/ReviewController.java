@@ -23,6 +23,7 @@ public class ReviewController {
 			@RequestParam(defaultValue="2") int boardCode){
 		ModelAndView mav = new ModelAndView();
 		mav.addAllObjects(boardService.getBoardList(page, boardCode));
+		mav.addObject("boardCode", boardCode);
 		mav.setViewName("review");
 		return mav;
 	}

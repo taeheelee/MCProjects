@@ -25,7 +25,7 @@ public class BoardService implements IBoardService{
 		params.put(Constant.Board.NAME, name);
 		params.put(Constant.Board.AGE, age);
 		params.put(Constant.Board.SEX, sex);
-		params.put(Constant.Board.CONTETNT, content);
+		params.put(Constant.Board.CONTENT, content);
 		params.put(Constant.Board.WRITER, writer);
 		int result = dao.insertBoard(params);
 		if(result > 0)
@@ -41,7 +41,7 @@ public class BoardService implements IBoardService{
 		params.put(Constant.Board.BOARDCODE, boardCode);
 		params.put(Constant.Board.TITLE, title);
 		params.put(Constant.Board.CATEGORY, category);
-		params.put(Constant.Board.CONTETNT, content);
+		params.put(Constant.Board.CONTENT, content);
 		params.put(Constant.Board.WRITER, writer);
 		int result = dao.insertBoard(params);
 		if(result > 0)
@@ -66,7 +66,7 @@ public class BoardService implements IBoardService{
 		params.put(Constant.Board.WEIGHT, weight);
 		params.put(Constant.Board.PHONE, phone);
 		params.put(Constant.Board.EMAIL, email);
-		params.put(Constant.Board.CONTETNT, content);
+		params.put(Constant.Board.CONTENT, content);
 		params.put(Constant.Board.WRITER, writer);
 		int result = dao.insertBoard(params);
 		if(result > 0)
@@ -88,7 +88,7 @@ public class BoardService implements IBoardService{
 		params.put(Constant.Board.WEIGHT, weight);
 		params.put(Constant.Board.PHONE, phone);
 		params.put(Constant.Board.EMAIL, email);
-		params.put(Constant.Board.CONTETNT, content);
+		params.put(Constant.Board.CONTENT, content);
 		params.put(Constant.Board.WRITER, writer);
 		int result = dao.insertBoard(params);
 		if(result > 0)
@@ -105,7 +105,7 @@ public class BoardService implements IBoardService{
 		params.put(Constant.Board.TITLE, title);
 		params.put(Constant.Board.CATEGORY, category);
 		params.put(Constant.Board.STARPOINT, starPoint);
-		params.put(Constant.Board.CONTETNT, content);
+		params.put(Constant.Board.CONTENT, content);
 		params.put(Constant.Board.WRITER, writer);
 		int result = dao.insertBoard(params);
 		if(result > 0)
@@ -124,7 +124,7 @@ public class BoardService implements IBoardService{
 		params.put(Constant.Board.NAME, name);
 		params.put(Constant.Board.AGE, age);
 		params.put(Constant.Board.SEX, sex);
-		params.put(Constant.Board.CONTETNT, content);
+		params.put(Constant.Board.CONTENT, content);
 		params.put(Constant.Board.WRITER, writer);
 		int result = dao.updateBoard(params);
 		if(result > 0)
@@ -140,7 +140,7 @@ public class BoardService implements IBoardService{
 		params.put(Constant.Board.BOARDIDX, boardIdx);
 		params.put(Constant.Board.TITLE, title);
 		params.put(Constant.Board.CATEGORY, category);
-		params.put(Constant.Board.CONTETNT, content);
+		params.put(Constant.Board.CONTENT, content);
 		params.put(Constant.Board.WRITER, writer);
 		int result = dao.updateBoard(params);
 		if(result > 0)
@@ -166,7 +166,7 @@ public class BoardService implements IBoardService{
 		params.put(Constant.Board.WEIGHT, weight);
 		params.put(Constant.Board.PHONE, phone);
 		params.put(Constant.Board.EMAIL, email);
-		params.put(Constant.Board.CONTETNT, content);
+		params.put(Constant.Board.CONTENT, content);
 		params.put(Constant.Board.WRITER, writer);
 		int result = dao.updateBoard(params);
 		if(result > 0)
@@ -188,7 +188,7 @@ public class BoardService implements IBoardService{
 		params.put(Constant.Board.WEIGHT, weight);
 		params.put(Constant.Board.PHONE, phone);
 		params.put(Constant.Board.EMAIL, email);
-		params.put(Constant.Board.CONTETNT, content);
+		params.put(Constant.Board.CONTENT, content);
 		params.put(Constant.Board.WRITER, writer);
 		int result = dao.updateBoard(params);
 		if(result > 0)
@@ -206,7 +206,7 @@ public class BoardService implements IBoardService{
 		params.put(Constant.Board.TITLE, title);
 		params.put(Constant.Board.CATEGORY, category);
 		params.put(Constant.Board.STARPOINT, starPoint);
-		params.put(Constant.Board.CONTETNT, content);
+		params.put(Constant.Board.CONTENT, content);
 		params.put(Constant.Board.WRITER, writer);
 		int result = dao.updateBoard(params);
 		if(result > 0)
@@ -351,9 +351,9 @@ public class BoardService implements IBoardService{
 	}
 	
 	@Override
-	public HashMap<String, Object> getBoardByBoardIdx(HashMap<String, Object> params) {
+	public HashMap<String, Object> getBoardByBoardIdx(int boardIdx) {
 		// TODO Auto-generated method stub
-		return dao.selectOneBoard((int)(params.get("boardIdx")));
+		return dao.selectOneBoard(boardIdx);
 	}
 
 	@Override

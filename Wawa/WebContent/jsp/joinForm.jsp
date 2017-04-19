@@ -1,13 +1,97 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>eElectronics - HTML eCommerce Template</title>
+    
+	<!-- ----- -->
+	
+    <script
+  	src="https://code.jquery.com/jquery-2.2.4.min.js"
+  	integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+ 	crossorigin="anonymous"></script>
+    
+    <script type="text/javascript">
+    	$(document).blur(function(){
+    		
+    		var regId = /^[A-Za-z0-9_-]{4,12}$/;
+    		var regPassword = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+ 			var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    		var reg
+ 			
+    		$('#id').blur(function(){
+    			
+    			if(!regId.test($('#id').val())){
+    				alert("아이디는 3-15자 이여야 하며 \n" 
+                            +"마침표, '-', '_'를 제외한 문자는 사용하실수 없습니다.");
+    			}
+    			
+    			var inputid = $('#id').val();
+   				$.ajax({
+   			     url : "idCheck.do",
+   			     type : 'GET',
+   			     data : 'id=' + inputid,
+   			     dataType: 'json',
+   			     success : function (data) {
+   			        if(data.result)
+   			        	alert('중복');
+   			        else 
+   			        	alert('사용가능'); 
+   			     },
+   			     error:function(){
+   			    	 alert('에러발생');
+   			     }
+   			 	});
+    		});
+    		
+    		$('#nickname').blur(function(){
+    			var inputnickname = $('#nickname').val();
+				$.ajax({
+					url : "nicknameCheck.do",
+					type : "GET",
+					data : 'nickname=' + inputnickname,
+					dataType : 'json',
+					success : function (data){
+						if(data.result)
+							alert('중복');
+						else
+							alert('사용가능');
+					},
+					error : function(){
+						alert('에러발생');
+					}
+				});
+    		});
+    
+		    $('#password').blur(function(){
+  				if(!regPassword.test($('#password').val())){
+  					alert('비밀번호 형식이 잘못되었습니다.\n' 
+  	                        +'(영문,숫자를 혼합하여 6~20자 이내)'); 
+  				}
+  			});
+  			
+  			$('#conformPassword').blur(function(){
+  				if($('#password').val() != $('#conformPassword').val()){
+  					alert('비밀번호가 일치하지 않습니다.');
+  				}
+  			});
+    		
+  			$('#phoneNum').blur(function(){
+  				
+  			});
+  			
+  			$('email').blur(function(){
+  				
+  			});
+  			
+    	});
+    </script>
+    
+	<!-- ------- -->
     
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
@@ -25,14 +109,6 @@
     <link rel="stylesheet" href="css/owl.carousel.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/responsive.css">
-    
-    <!--   JQuery -->
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
-	<!-- summernote -->
-	<link rel="stylesheet" href="summernote/dist/summernote.css">
-    <script src="summernote/dist/summernote.js"></script>
-	<script src="summernote/dist/summernote.min.js"></script>
-	<script src="summernote/dist/lang/summernote-ko-KR.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,42 +116,9 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-      <script>
-	    $(document).ready(function() {
-	        $('#summernote').summernote();
-	    });
-  </script>
-  
-  <script
-  src="https://code.jquery.com/jquery-2.2.4.min.js"
-  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-  crossorigin="anonymous"></script>
-  <script type="text/javascript">
-  	function reple(idx,repleIdx) {
-		$('#repleForm'+idx).html("<form action='repleWrite.do'>"
-								 +"<textarea style='width: 85%; height: 100px' name='content'></textarea>"
-								 +"<input type='submit' value='답글작성'>"
-								 +"<input type='hidden' name='boardIdx' value='${board.boardIdx }'>"
-								 +"<input type='hidden' name='nickname' value='닉네임'>"
-								 +"<input type='hidden' name='pIdx' value='"+repleIdx+"'>"
-								 +"</form>");
-	}
-  	
-  	function update(idx,repleIdx){
-  		$('#updateForm').text("");
-  		var text = $('#repleContent'+idx).text();
-  		$('#repleContent'+idx).html("<form action='repleUpdate.do'>"
-				 +"<textarea style='width: 85%; height: 100px' name='content'>"+text+"</textarea>"
-				 +"<input type='hidden' name='boardIdx' value='${board.boardIdx }'>"
-				 +"<input type='hidden' name='repleIdx' value='"+repleIdx+"'>"
-				 +"<input type='submit' value='수정'>"
-				 +"</form>")
-  	}
-  </script>
-  
   </head>
   <body>
-    
+      
 <div class="header-area">
         <div class="container">
             <div class="row">
@@ -135,15 +178,15 @@
 	                            <li><a href="medicalcare.html">나의 펫 메디컬케어</a></li>
 	                        </ul>
 	                    </li>
-                        <li><a href="commonsense.html">애견정보/상식</a></li>
-                        <li><a href="review.html">제품리뷰</a></li>
+                        <li><a href="/Wawa/infoMain.do?boardCode=1">애견정보/상식</a></li>
+                        <li><a href="/Wawa/reviewMain.do?boardCode=2">제품리뷰</a></li>
                         <li class="dropdown">
 	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">커뮤니티 <b class="caret"></b></a>
 	                        <ul class="dropdown-menu">
-	                            <li><a href="boast">뽐내기</a></li>
-	                            <li><a href="wanted.html">유기견찾기</a></li>
-	                            <li><a href="propose.html">짝꿍찾기</a></li>
-	                            <li><a href="freeboard.html">자유게시판</a></li>	                            
+	                            <li><a href="/Wawa/boastMain.do?boardCode=3">뽐내기</a></li>
+	                            <li><a href="/Wawa/lostMain.do?boardCode=4">유기견찾기</a></li>
+	                            <li><a href="/Wawa/partnerMain.do?boardCode=5">짝꿍찾기</a></li>
+	                            <li><a href="/Wawa/freeboardMain.do?boardCode=6">자유게시판</a></li>	                            
 	                        </ul>
 	                    </li>                            
                         <li><a href="location.html">위치정보</a></li>
@@ -158,68 +201,138 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="product-bit-title text-left">
-                        <h2>자유게시판</h2>
+                        <h2>회원가입</h2>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-
-<!-- 여기부터 안에 들어가면 안되는 이유찾기 -->
-    <div class="single-product-area">
+    
+    
+ <div class="single-product-area">
         <div class="zigzag-bottom"></div>
         <div class="container">
-        	<div class="col-md-55">
-    			<div class=""style="width: 100%; margin-bottom: 10px">
-                   <span style="font-size: medium;font-weight: bold; color: gray">${board.category }</span>
+            <div class="row">
+                
+                <div class="col-md-55">
+     
+                    <div class="product-content-right">
+                        <div class="woocommerce" >
+                         
+                     
+
+                            <form enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
+
+                                <div id="customer_details" class="col2-set" >
+                                    <div class="col-3">
+                                    <h2 class="sidebar-title">회원 정보 입력</h2>
+                                        <div class="woocommerce-billing-fields">
+                                            
+       									<form action="/Wawa/join.do">
+                                            
+                                            <p id="billing_first_name_field" class="form-row form-row-first validate-required">
+                                                <label class="" for="billing_first_name">ID<abbr title="required" class="required">*</abbr>
+                                                </label>
+                                                <input type="text" value="" placeholder="#숫자, 대문자, 소문자, 언더바(_),하이픈(-), 4~12자리" 
+                                                id="id" name="id" class="input-text ">
+                                            </p>
+                                            <br>
+                                               <p id="billing_first_name_field" class="form-row form-row-first validate-required">
+                                                <label class="" for="billing_first_name">닉네임<abbr title="required" class="required">*</abbr>
+                                                </label>
+                                                <input type="text" value="" placeholder="" id="nickname" name="nickname" class="input-text ">
+                                            </p>
+                                            <br>
+
+                                         	<p id="billing_first_name_field" class="form-row form-row-first validate-required">
+                                                <label class="" for="billing_first_name">비밀번호<abbr title="required" class="required">*</abbr>
+                                                </label>
+                                                <input type="text" value="" placeholder="#영문,숫자를 혼합하여 특수문자가능 6~20자6~20자리" 
+                                                id="password" name="password" class="input-text ">
+                                            </p>
+                                            <br>
+                                          
+                                            <p id="billing_first_name_field" class="form-row form-row-first validate-required">
+                                                <label class="" for="billing_first_name">비밀번호 확인<abbr title="required" class="required">*</abbr>
+                                                </label>
+                                                <input type="text" value="" placeholder="" id="conformPassword" name="conformPassword" class="input-text ">
+                                            </p>
+                                            <br>
+                                            
+                                            <p id="billing_first_name_field" class="form-row form-row-first validate-required">
+                                                <label class="" for="billing_first_name">성별 <abbr title="required" class="required">*</abbr></label>
+	                                            <div id="payment">
+													<ul class="payment_methods methods">
+														<li class="payment_method_paypal">
+															<input type="radio" data-order_button_text="Proceed to PayPal" value="male" name="sex" class="input-radio" id="sex"> 남자
+															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+															<input type="radio" data-order_button_text="Proceed to PayPal" value="female" name="sex" class="input-radio" id="sex"> 여자
+														</li>
+													</ul>
+												</div>
+                                            </p>
+                                            <br>
+                                            
+											<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
+                                                <label class="" for="billing_state">연락처</label>
+                                                <input type="text" id="phoneNum" name="phoneNum" placeholder="" value="" class="input-text ">
+                                            </p>
+                                            <br>
+                                            	<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
+                                                <label class="" for="billing_state">이메일</label>
+                                                <input type="text" id="email" name="email" placeholder="" value="" class="input-text ">
+                                            </p>
+                                            <br>
+                                           
+
+<!--<div class="clear"></div> -->
+
+
+											<div class="form-row place-order" style="float: right">
+												<input type="submit" data-value="Place order" value="JOIN US" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
+											</div>
+
+										</form>
+
+
+										</div>
+                                    </div>
+
+                                   
+
+                                </div>
+
+
+
+
+ 									
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                              
+
+                                   
+                                </div>
+                            </form>
+
+                        </div>                       
+                    </div>                    
                 </div>
-                <h2 class="sidebar-title">${board.title }</h2>
-                <hr style="border: solid 1px; border-color: lightgray">  
-                <h5 style="text-align: right">${board.writer }</h5> 
-                <div id=boardcontents style="text-align: center">
-                	${board.content }
-               		
-                	
-                </div>
-                	<div>
-                		<h4>댓글</h4>
-						<c:forEach items="${reple }" var="reple" varStatus="st">
-							<table style="width: 100%" border="1">
-								<tr>
-								
-								<td align="left" width="25%">
-								<c:if test="${reple.groupLv > 0 }">
-									<c:forEach begin="1" end="${reple.groupLv }">
-										ㄴ
-									</c:forEach>
-								</c:if>
-								<b>${reple.nickname }</b>
-								</td>
-								<td align="left" width="50%"><span id="repleContent${st.index }">${reple.content }</span><span id="updateForm"><a href="##" onclick="update(${st.index},${reple.repleIdx })">수정</a></span></td>
-								<td align="right" width="10%">${reple.writedate }</td>
-								<td width="10%"><a href="##" onclick="reple(${st.index},${reple.repleIdx })">답글달기</a></td>
-								</tr>
-								<tr><td colspan="4"><span id="repleForm${st.index }"></span></td></tr>
-							</table>
-						</c:forEach>
-	                	<form action="repleWrite.do">
-	                		<textarea style="width: 85%; height: 100px" name="content"></textarea>
-	                		<input type="hidden" name="boardIdx" value="${board.boardIdx }">
-	                		<input type="hidden" name="nickname" value="닉네임">
-	                		<input type="hidden" name="pIdx" value="0">
-							<input type="submit" value="댓글작성">
-						</form>
-					</div>
-			</div>
-		</div>
-	</div>
-
-
-   
-<!-- 여기부터 안에 들어가면 안되는 이유찾기  end-->     
-
-
+            </div>
+        </div>
+    </div>
 
     <div class="footer-top-area">
         <div class="zigzag-bottom"></div>
@@ -277,10 +390,7 @@
                 </div>
             </div>
         </div>
-    </div><!-- footer-top-area end -->
-    
-    
-    
+    </div>
     <div class="footer-bottom-area">
         <div class="container">
             <div class="row">
@@ -303,7 +413,7 @@
     </div>
    
     <!-- Latest jQuery form server -->
-<!--     <script src="https://code.jquery.com/jquery.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery.min.js"></script>
     
     <!-- Bootstrap JS form CDN -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>

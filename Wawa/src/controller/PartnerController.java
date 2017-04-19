@@ -23,6 +23,7 @@ public class PartnerController {
 			@RequestParam(defaultValue="5") int boardCode){
 		ModelAndView mav = new ModelAndView();
 		mav.addAllObjects(boardService.getBoardList(page, boardCode));
+		mav.addObject("boardCode", boardCode);
 		mav.setViewName("partner");
 		return mav;
 	}

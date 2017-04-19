@@ -40,9 +40,9 @@ public class InfoController {
 		}
 		
 		@RequestMapping("infoDetails.do")
-		public ModelAndView infoDetails(HashMap<String, Object> params){
+		public ModelAndView infoDetails(int boardIdx){
 			ModelAndView mav = new ModelAndView();
-			HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
+			HashMap<String, Object> board = boardService.getBoardByBoardIdx(boardIdx);
 			mav.addObject("result", board);
 			mav.setViewName("infoDetails");
 			return mav;
@@ -72,9 +72,9 @@ public class InfoController {
 		}
 		
 		@RequestMapping("infoUpdateForm.do") // --> 수정화면으로 이동
-		public ModelAndView infoUpdateForm(HashMap<String, Object> params){
+		public ModelAndView infoUpdateForm(int boardIdx){
 			ModelAndView mav = new ModelAndView();
-			HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
+			HashMap<String, Object> board = boardService.getBoardByBoardIdx(boardIdx);
 			mav.addObject("result", board);
 			mav.setViewName("infoUpdateForm");
 			return mav;

@@ -113,15 +113,15 @@
 	                            <li><a href="medicalcare.html">나의 펫 메디컬케어</a></li>
 	                        </ul>
 	                    </li>
-                        <li><a href="/Wawa/infoMain.do">애견정보/상식</a></li>
-                        <li><a href="/Wawa/reviewMain.do">제품리뷰</a></li>
+                        <li><a href="/Wawa/infoMain.do?boardCode=1">애견정보/상식</a></li>
+                        <li><a href="/Wawa/reviewMain.do?boardCode=2">제품리뷰</a></li>
                         <li class="dropdown">
 	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">커뮤니티 <b class="caret"></b></a>
 	                        <ul class="dropdown-menu">
-	                            <li><a href="/Wawa/boastMain.do">뽐내기</a></li>
-	                            <li><a href="/Wawa/lostMain.do">유기견찾기</a></li>
-	                            <li><a href="/Wawa/partnerMain.do">짝꿍찾기</a></li>
-	                            <li><a href="/Wawa/freeboardMain.do">자유게시판</a></li>	                            
+	                            <li><a href="/Wawa/boastMain.do?boardCode=3">뽐내기</a></li>
+	                            <li><a href="/Wawa/lostMain.do?boardCode=4">유기견찾기</a></li>
+	                            <li><a href="/Wawa/partnerMain.do?boardCode=5">짝꿍찾기</a></li>
+	                            <li><a href="/Wawa/freeboardMain.do?boardCode=6">자유게시판</a></li>	                            
 	                        </ul>
 	                    </li>                            
                         <li><a href="location.html">위치정보</a></li>
@@ -157,8 +157,7 @@
                          
                      
 
-                            <form action="/Wawa/boastWrite.do" enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
-
+                            
                                 <div id="customer_details" class="col2-set" >
                                     <div class="col-3">
                                     <h2 class="sidebar-title">뽐내기 후보 등록하기</h2>
@@ -179,19 +178,18 @@
                                             <div class="form-row place-order" style="float: right">
 	                                            <input type="button" id="petinfo" onclick="location.href='/Wawa/boastGetPetinfo.do'" value="애견정보 불러오기" />
 											</div>
+                                         
                                            
-                                            
-                                            
+                                        <form action="/Wawa/boastWrite.do" enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
+                                
 											<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
                                                 <label class="" for="billing_state">애견 이름</label>
-                                                <input type="text" id="petname" name="petname" placeholder="" value="" class="input-text ">
+                                                <input type="text" id="name" name="name" placeholder="" value="" class="input-text ">
                                             </p>
                                             <br>
-                                            
-                                            
                                             <p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
                                                 <label class="" for="billing_state">나이</label>
-                                                <input type="text" id="petage" name="petage" placeholder="" value="" class="input-text ">
+                                                <input type="text" id="age" name="age" placeholder="" value="" class="input-text ">
                                             </p>
                                             <br>
                                             
@@ -200,9 +198,9 @@
 	                                            <div id="payment">
 													<ul class="payment_methods methods">
 														<li class="payment_method_paypal">
-															<input type="radio" data-order_button_text="Proceed to PayPal" value="male" name="petsex" class="input-radio" id="petsex"> 수컷
+															<input type="radio" data-order_button_text="Proceed to PayPal" value="male" name="sex" class="input-radio" id="sex"> 수컷
 															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															<input type="radio" data-order_button_text="Proceed to PayPal" value="female" name="petsex" class="input-radio" id="petsex"> 암컷
+															<input type="radio" data-order_button_text="Proceed to PayPal" value="female" name="sex" class="input-radio" id="sex"> 암컷
 														</li>
 													</ul>
 												</div>
@@ -212,7 +210,7 @@
                                              <p id="billing_country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated">
                                                 <label class="" for="billing_country">품종 <abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <select class="country_to_state country_select" id="petkind" name="petkind">
+                                                <select class="country_to_state country_select" id="kind" name="kind">
                                                     <option selected="selected" value="GB">치와와</option>
                                                     <option value="DE">요크셔 테리어</option>
                                                     <option value="GH">말티즈</option>
@@ -243,25 +241,25 @@
                                                 <input type="text" id="title" name="title" placeholder="" value="" class="input-text ">
                                             </p>
                                             <br>
-                                            
-                   
-
-				 
-  <div style="width: 100%; margin: 0 auto;">
-    <div id="summernote"><p>
-					<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-				</p></div>
-	</div>
-<br>
-
-<br>
-
-<!--<div class="clear"></div> -->
-
-
+            
+											  <div style="width: 100%; margin: 0 auto;">
+											    <div id="summernote"><p>
+																<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+															</p></div>
+												</div>
+											<br>
+											
+											<br>
+											
 											<div class="form-row place-order" style="float: right">
 												<input type="submit" data-value="Place order" value="WRITE" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
-							</form>
+									</form>
+									
+									
+									
+									
+									
+									
 											</div>
 
 

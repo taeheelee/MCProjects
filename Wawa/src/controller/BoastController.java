@@ -23,44 +23,47 @@ public class BoastController {
 			@RequestParam(defaultValue="3") int boardCode){
 		ModelAndView mav = new ModelAndView();
 		mav.addAllObjects(boardService.getBoardList(page, boardCode));
+		mav.addObject("boardCode", boardCode);
 		mav.setViewName("boast");
 		return mav;
 	}
 	
 	@RequestMapping("increaseLike.do")
-	public String increaseLike(HashMap<String, Object> params){
-		int likeNum = (int) params.get(Constant.Board.LIKECOUNT);
-		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
-		boardService.updateBoastBoard(boardIdx, name, age, sex, content, writer);
-		
+	public String increaseLike(int boardIdx){
+		boardService.increaseBoastNum(boardIdx);
+		return "redirect:boastMain.do";
 	}
 	
 	@RequestMapping("boastSearch.do")
-	public ModelAndView boastSearch(HashMap<String, Object> params){
+	public ModelAndView boastSearch(int boardIdx){
 		ModelAndView mav = new ModelAndView();
-		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
+		HashMap<String, Object> board = boardService.getBoardByBoardIdx(boardIdx);
 		mav.addObject("result", board);
 		mav.setViewName("redirect:boastMain.do");
 		return mav;
 	}
 	
 	@RequestMapping("boastDetails.do")
-	public ModelAndView boastDetails(HashMap<String, Object> params){
+	public ModelAndView boastDetails(int boardIdx){
 		ModelAndView mav = new ModelAndView();
-		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
+		HashMap<String, Object> board = boardService.getBoardByBoardIdx(boardIdx);
 		mav.addObject("result", board);
 		mav.setViewName("boastDetails");
 		return mav;
 	}
 	
 	@RequestMapping("boastWriteForm.do") //writeForm.jsp로
-	public void boastWriteForm(){}
+	public ModelAndView boastWriteForm(@RequestParam(defaultValue="3") int boardCode){
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("boardCode", boardCode);
+		return mav;
+	}
 	
 	@RequestMapping("boastWrite.do")
-	public String boastWrite(int boardCode, String petname, int petage, String petsex, 
-			String title, String content, String writer){
+	public String boastWrite(@RequestParam(defaultValue="3") int boardCode, String name, int age, String sex, 
+			String title, String summernote, String writer){
 		ModelAndView mav = new ModelAndView();
-		if(boardService.writeBoastBoard(boardCode, petname, petage, petsex, title, content, writer)){
+		if(boardService.writeBoastBoard(boardCode, name, age, sex, title, summernote, writer)){
 			return "redirect:boastMain.do";
 		}else {
 			return "redirect:boastWriteForm.do";
@@ -68,17 +71,17 @@ public class BoastController {
 	}
 	
 	@RequestMapping("boastUpdateForm.do")
-	public ModelAndView boastUpdateForm(HashMap<String, Object> params){
+	public ModelAndView boastUpdateForm(int boardIdx){
 		ModelAndView mav = new ModelAndView();
-		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
+		HashMap<String, Object> board = boardService.getBoardByBoardIdx(boardIdx);
 		mav.addObject("result", board);
 		mav.setViewName("boastUpdateForm");
-		return mav;
+		return mav;	
 	}
 	
 	@RequestMapping("boastUpdate.do")
-	public String boastUpdate(int boardIdx, String name, int age, String sex, String content, String writer){
-		boardService.updateBoastBoard(boardIdx, name, age, sex, content, writer);
+	public String boastUpdate(int boardIdx, String name, int age, String sex, String summernote, String writer){
+		boardService.updateBoastBoard(boardIdx, name, age, sex, summernote, writer);
 		return "redirect:boastMain.do";
 	}
 	

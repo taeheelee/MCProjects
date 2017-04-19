@@ -12,8 +12,9 @@ public class MapController {
 		
 		ModelAndView mav = new ModelAndView();
 		String result = area + county + type;
-		mav.addObject("result", result);
+		mav.addObject("result", result); 
 		mav.setViewName("map_result");
 		return mav;
+		
 	}
 }

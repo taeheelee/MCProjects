@@ -18,18 +18,18 @@
     <script type="text/javascript">
     	$(document).ready(function(){
     		
-    		var regId = /^[A-Za-z0-9_-]{4,12}$/;
+    		var regId =  /^[a-z]+[a-z0-9]{5,19}$/g;
     		var regPassword = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
  			var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
     		var regPhoneNum =  /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
  			
-//     		$('#id').on('blur', function(){
+    		$('#id').blur(function(){
     			
-//     			if(!regId.test($('#id').val())){
-//     				alert("아이디는 3-15자 이여야 하며 \n" 
-//                             +"마침표, '-', '_'를 제외한 문자는 사용하실수 없습니다.");
-//     			}
+    			if(!regId.test($('#id').val())){
+    				$('#idError').html('<font color="red">아이디 오류 (영문자로 시작하는 6~20자 영문자 또는 숫자)</font>');
+    			}
     			
+    		});
 //     			var inputid = $('#id').val();
 //    				$.ajax({
 //    			     url : "idCheck.do",

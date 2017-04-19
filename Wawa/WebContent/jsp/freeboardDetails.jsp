@@ -52,7 +52,6 @@
   crossorigin="anonymous"></script>
   <script type="text/javascript">
   	function reple(idx,repleIdx) {
-  		//alert($('#repleForm'+idx).text());
 		$('#repleForm'+idx).html("<form action='repleWrite.do'>"
 								 +"<textarea style='width: 85%; height: 100px' name='content'></textarea>"
 								 +"<input type='submit' value='답글작성'>"
@@ -61,6 +60,17 @@
 								 +"<input type='hidden' name='pIdx' value='"+repleIdx+"'>"
 								 +"</form>");
 	}
+  	
+  	function update(idx,repleIdx){
+  		$('#updateForm').text("");
+  		var text = $('#repleContent'+idx).text();
+  		$('#repleContent'+idx).html("<form action='repleUpdate.do'>"
+				 +"<textarea style='width: 85%; height: 100px' name='content'>"+text+"</textarea>"
+				 +"<input type='hidden' name='boardIdx' value='${board.boardIdx }'>"
+				 +"<input type='hidden' name='repleIdx' value='"+repleIdx+"'>"
+				 +"<input type='submit' value='수정'>"
+				 +"</form>")
+  	}
   </script>
   
   </head>
@@ -186,9 +196,9 @@
 								</c:if>
 								<b>${reple.nickname }</b>
 								</td>
-								<td align="left" width="50%">${reple.content }</td>
+								<td align="left" width="50%"><span id="repleContent${st.index }">${reple.content }</span><span id="updateForm"><a href="##" onclick="update(${st.index},${reple.repleIdx })">수정</a></span></td>
 								<td align="right" width="10%">${reple.writedate }</td>
-								<td width="10%"><a onclick="reple(${st.index},${reple.repleIdx })">답글달기</a></td>
+								<td width="10%"><a href="##" onclick="reple(${st.index},${reple.repleIdx })">답글달기</a></td>
 								</tr>
 								<tr><td colspan="4"><span id="repleForm${st.index }"></span></td></tr>
 							</table>

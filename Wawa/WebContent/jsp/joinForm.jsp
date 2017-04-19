@@ -8,6 +8,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>eElectronics - HTML eCommerce Template</title>
     
+	<!-- ----- -->
+    <script
+  	src="https://code.jquery.com/jquery-2.2.4.min.js"
+  	integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+ 	crossorigin="anonymous"></script>
+    
+    <script type="text/javascript">
+    
+    </script>
+    
+	<!-- ------- -->
+    
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
@@ -93,15 +105,15 @@
 	                            <li><a href="medicalcare.html">나의 펫 메디컬케어</a></li>
 	                        </ul>
 	                    </li>
-                        <li><a href="commonsense.html">애견정보/상식</a></li>
-                        <li><a href="review.html">제품리뷰</a></li>
+                        <li><a href="/Wawa/infoMain.do?boardCode=1">애견정보/상식</a></li>
+                        <li><a href="/Wawa/reviewMain.do?boardCode=2">제품리뷰</a></li>
                         <li class="dropdown">
 	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">커뮤니티 <b class="caret"></b></a>
 	                        <ul class="dropdown-menu">
-	                            <li><a href="boast.html">뽐내기</a></li>
-	                            <li><a href="wanted.html">유기견찾기</a></li>
-	                            <li><a href="propose.html">짝꿍찾기</a></li>
-	                            <li><a href="freeboard.html">자유게시판</a></li>	                            
+	                            <li><a href="/Wawa/boastMain.do?boardCode=3">뽐내기</a></li>
+	                            <li><a href="/Wawa/lostMain.do?boardCode=4">유기견찾기</a></li>
+	                            <li><a href="/Wawa/partnerMain.do?boardCode=5">짝꿍찾기</a></li>
+	                            <li><a href="/Wawa/freeboardMain.do?boardCode=6">자유게시판</a></li>	                            
 	                        </ul>
 	                    </li>                            
                         <li><a href="location.html">위치정보</a></li>
@@ -143,33 +155,32 @@
                                     <h2 class="sidebar-title">회원 정보 입력</h2>
                                         <div class="woocommerce-billing-fields">
                                             
-                                            
-           
+       									<form action="/Wawa/join.do">
                                             
                                             <p id="billing_first_name_field" class="form-row form-row-first validate-required">
                                                 <label class="" for="billing_first_name">ID<abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="" id="billing_first_name" name="billing_first_name" class="input-text ">
+                                                <input type="text" value="" placeholder="" id="id" name="id" class="input-text ">
                                             </p>
                                             <br>
                                                <p id="billing_first_name_field" class="form-row form-row-first validate-required">
                                                 <label class="" for="billing_first_name">닉네임<abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="" id="billing_first_name" name="billing_first_name" class="input-text ">
+                                                <input type="text" value="" placeholder="" id="nickname" name="nickname" class="input-text ">
                                             </p>
                                             <br>
 
                                          	<p id="billing_first_name_field" class="form-row form-row-first validate-required">
                                                 <label class="" for="billing_first_name">비밀번호<abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="" id="billing_first_name" name="billing_first_name" class="input-text ">
+                                                <input type="text" value="" placeholder="" id="password" name="password" class="input-text ">
                                             </p>
                                             <br>
                                           
                                             <p id="billing_first_name_field" class="form-row form-row-first validate-required">
                                                 <label class="" for="billing_first_name">비밀번호 확인<abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="" id="billing_first_name" name="billing_first_name" class="input-text ">
+                                                <input type="text" value="" placeholder="" id="conformPassword" name="conformPassword" class="input-text ">
                                             </p>
                                             <br>
                                             
@@ -178,28 +189,23 @@
 	                                            <div id="payment">
 													<ul class="payment_methods methods">
 														<li class="payment_method_paypal">
-															<input type="radio" data-order_button_text="Proceed to PayPal" value="male" name="payment_method" class="input-radio" id="payment_method_paypal"> 남자
+															<input type="radio" data-order_button_text="Proceed to PayPal" value="male" name="sex" class="input-radio" id="sex"> 남자
 															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															<input type="radio" data-order_button_text="Proceed to PayPal" value="female" name="payment_method" class="input-radio" id="payment_method_paypal"> 여자
+															<input type="radio" data-order_button_text="Proceed to PayPal" value="female" name="sex" class="input-radio" id="sex"> 여자
 														</li>
 													</ul>
 												</div>
                                             </p>
                                             <br>
                                             
-                                            
-                                         
-                                      
-                                            
-                                            
 											<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
                                                 <label class="" for="billing_state">연락처</label>
-                                                <input type="text" id="billing_state" name="billing_state" placeholder="" value="" class="input-text ">
+                                                <input type="text" id="phoneNum" name="phoneNum" placeholder="" value="" class="input-text ">
                                             </p>
                                             <br>
                                             	<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
                                                 <label class="" for="billing_state">이메일</label>
-                                                <input type="text" id="billing_state" name="billing_state" placeholder="" value="" class="input-text ">
+                                                <input type="text" id="email" name="email" placeholder="" value="" class="input-text ">
                                             </p>
                                             <br>
                                            
@@ -211,6 +217,7 @@
 												<input type="submit" data-value="Place order" value="JOIN US" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
 											</div>
 
+										</form>
 
 
 										</div>

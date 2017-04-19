@@ -1,5 +1,4 @@
 package controller;
-
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +13,7 @@ public class MainController {
 	@Autowired
 	private IJoinService joinService;
 	
+	
 	@RequestMapping("main.do")
 	public void main(){}
 	
@@ -26,5 +26,6 @@ public class MainController {
 		joinService.join(id, password, nickname, sex, phoneNum, adminCheck, email);
 		return "redirect:main.do";
 	}
-	
 }
+	
+

@@ -17,4 +17,10 @@ public class RepleController {
 		service.writeReple(boardIdx, nickname, content, pIdx);
 		return "redirect:freeboardDetail.do?boardIdx="+boardIdx;
 	}
+	
+	@RequestMapping("repleUpdate.do")
+	public String repleUpdate(int boardIdx, int repleIdx, String content){
+		service.updateReple(repleIdx, content);
+		return "redirect:freeboardDetail.do?boardIdx="+boardIdx;
+	}
 }

@@ -8,10 +8,10 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MapController {
 	@RequestMapping("map.do")
-	public ModelAndView hello(String type, String local, String addr ){
+	public ModelAndView hello(String type, String area, String county ){
 		
 		ModelAndView mav = new ModelAndView();
-		String result = local + addr + type;
+		String result = area + county + type;
 		mav.addObject("result", result);
 		mav.setViewName("map_result");
 		return mav;

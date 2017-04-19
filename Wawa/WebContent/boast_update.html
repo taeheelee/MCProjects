@@ -77,9 +77,29 @@
                     </div>
                 </div>
                 
-                <div class="col-sm-6">
+                                <div class="col-sm-6" style="margin: 0">
                     <div class="shopping-item">
-                        <a href="cart.html">UserInfo - <span class="cart-amunt"> | PetName | age | ♂ or ♀<br>예방 접종 알림 D-?? 미용 주기 알림 D-??</span>  </a>
+                        <a href="cart.html">
+<table id="mini" style="margin-left: 5px;width:330px; height: 100px;">
+	<tr>
+		<td rowspan="4" style="width: 90px;" id="petmainimage"><img src="img/dog_12.jpg" alt=""style="width: 80px;height: 80px"></td>
+		<td colspan="3" id="nickname">username</td>
+	</tr>
+	<tr style="font-size: small;">
+		<td id="petname">강아지이름</td>
+		<td id="petsex">성별</td>
+		<td id="petage">0년00개월</td>
+	</tr>
+	<tr style="font-size: small;">
+		<td colspan="2">다음 예방접종</td>
+		<td id="dday" style="text-align: center;">D-00</td>
+	</tr>
+	<tr style="font-size: small;">
+		<td colspan="2">다음 미용예정</td>
+		<td id="grooming" style="text-align: center;">D-00</td>
+	</tr>
+</table>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -144,7 +164,7 @@
 
 
     <div class="single-product-area">
-        <div class="zigzag-bottom"></div>
+         
         <div class="container">
             <div class="row">
                 
@@ -191,13 +211,13 @@
                                             <br>
                                             
                                             
-                                            <p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
+<!--                                             <p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state"> -->
                                                 <label class="" for="billing_state">나이</label>
                                                 <input type="text" id="billing_state" name="billing_state" placeholder="" value="" class="input-text ">
-                                            </p>
+<!--                                             </p> -->
                                             <br>
                                             
-                                            <p id="billing_first_name_field" class="form-row form-row-first validate-required">
+<!--                                             <p id="billing_first_name_field" class="form-row form-row-first validate-required"> -->
                                                 <label class="" for="billing_first_name">성별 <abbr title="required" class="required">*</abbr></label>
 	                                            <div id="payment">
 													<ul class="payment_methods methods">
@@ -208,10 +228,10 @@
 														</li>
 													</ul>
 												</div>
-                                            </p>
+<!--                                             </p> -->
                                             <br>
                                             
-                                             <p id="billing_country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated">
+<!--                                              <p id="billing_country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated"> -->
                                                 <label class="" for="billing_country">품종 <abbr title="required" class="required">*</abbr>
                                                 </label>
                                                 <select class="country_to_state country_select" id="billing_country" name="billing_country">
@@ -227,23 +247,23 @@
                                                     <option value="KR">기타 중형견</option>
                                                     <option value="KR">기타 대형견</option>
                                                 </select>
-                                            </p>
+<!--                                             </p> -->
                                             <br>
                                             
-                                            	<p id="billing_first_name_field" class="form-row form-row-first validate-required">
-                                                <label class="" for="billing_first_name">애견 프로필 사진 등록 <abbr title="required" class="required">*</abbr>
+<!--                                             	<p id="billing_first_name_field" class="form-row form-row-first validate-required"> -->
+                                                <label class="" for="billing_first_name">뽐내기 메인 사진 등록 <abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="" id="billing_first_name" name="billing_first_name" class="input-text ">
-                                            <div class="form-row place-order">
-												<input type="submit" data-value="Place order" value="ADD PHOTO" id="place_order" name="woocommerce_checkout_place_order" class="button alt" >
-
-											</div>
-                                            </p>
+                                                <div class="file_input_div">
+													<input type="button" value="파일 선택" class="file_input_button" />
+													<input type="file" class="file_input_hidden" onchange="javascript:document.getElementById('fileName').value = this.value" />
+												</div>
+												<input type="text" id="fileName" class="file_input_textbox" readonly="readonly">
+<!--                                             </p> -->
  											   
-                                         <p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
+<!--                                          <p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state"> -->
                                                 <label class="" for="billing_state">글 제목</label>
                                                 <input type="text" id="billing_state" name="billing_state" placeholder="" value="" class="input-text ">
-                                            </p>
+<!--                                             </p> -->
                                             <br>
                                             
                         
@@ -263,11 +283,10 @@
 
 
 											<div class="form-row place-order" style="float: right">
+												<input type="submit" data-value="Place order" value="UPDATE" id="place_order" class="button alt">
 												<input type="submit" data-value="Place order" value="DELETE" id="place_order" class="button alt">
 											</div>
-											<div class="form-row place-order" style="float: right">
-												<input type="submit" data-value="Place order" value="UPDATE" id="place_order" class="button alt">
-											</div>
+										
 
 
 
@@ -312,13 +331,49 @@
 
 
     <div class="footer-top-area">
-        <div class="zigzag-bottom"></div>
         <div class="container">
             <div class="row">
+            
+            
+            
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-about-us">
-                        <h2>e<span>Electronics</span></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
+                     <h1><img src="img/paw-print.png" id="paw-print"><span>WAWA</span></h1>
+<!--                         <h2>e<span>Electronics</span></h2> -->
+                        <p>애완견 통합관리 커뮤니티</p>
+                    </div>
+                </div>
+                
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-menu">
+                        <h2 class="footer-wid-title">Explore WAWA</h2>
+                        <ul>
+                            <li><a href="#">찾아오시는 길</a></li>
+                            <li><a href="#">이벤트</a></li>
+                            <li><a href="#">개인정보취급방침</a></li>
+                            <li><a href="#">회원약관</a></li>
+                            <li><a href="#">사이트 문의 : 02-000-0000</a></li>
+                        </ul>                        
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-newsletter">
+                        <h2 class="footer-wid-title">News Letter</h2>
+                        <p>Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to your inbox!</p>
+                        <div class="newsletter-form">
+                            <form action="#">
+                                <input type="email" placeholder="Type your email">
+                                <input type="submit" value="Subscribe">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-about-us">
+                     	 <h2 class="footer-wid-title">SNS</h2>
                         <div class="footer-social">
                             <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
                             <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
@@ -326,74 +381,32 @@
                             <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
                             <a href="#" target="_blank"><i class="fa fa-pinterest"></i></a>
                         </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
                     </div>
                 </div>
                 
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-menu">
-                        <h2 class="footer-wid-title">User Navigation </h2>
-                        <ul>
-                            <li><a href="">My account</a></li>
-                            <li><a href="">Order history</a></li>
-                            <li><a href="">Wishlist</a></li>
-                            <li><a href="">Vendor contact</a></li>
-                            <li><a href="">Front page</a></li>
-                        </ul>                        
-                    </div>
-                </div>
                 
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-menu">
-                        <h2 class="footer-wid-title">Categories</h2>
-                        <ul>
-                            <li><a href="">Mobile Phone</a></li>
-                            <li><a href="">Home accesseries</a></li>
-                            <li><a href="">LED TV</a></li>
-                            <li><a href="">Computer</a></li>
-                            <li><a href="">Gadets</a></li>
-                        </ul>                        
-                    </div>
-                </div>
                 
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-newsletter">
-                        <h2 class="footer-wid-title">Newsletter</h2>
-                        <p>Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to your inbox!</p>
-                        <div class="newsletter-form">
-                            <input type="email" placeholder="Type your email">
-                            <input type="submit" value="Subscribe">
-                        </div>
-                    </div>
-                </div>
+                
+                
             </div>
         </div>
-    </div><!-- footer-top-area end -->
-    
-    
+    </div> <!-- End footer top area -->
     
     <div class="footer-bottom-area">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
                     <div class="copyright">
-                        <p>&copy; 2015 eElectronics. All Rights Reserved. Coded with <i class="fa fa-heart"></i> by <a href="http://wpexpand.com" target="_blank">WP Expand</a></p>
+                        <p>&copy; 2017 WAWA. All Rights Reserved.</p>
                     </div>
                 </div>
                 
-                <div class="col-md-4">
-                    <div class="footer-card-icon">
-                        <i class="fa fa-cc-discover"></i>
-                        <i class="fa fa-cc-mastercard"></i>
-                        <i class="fa fa-cc-paypal"></i>
-                        <i class="fa fa-cc-visa"></i>
-                    </div>
-                </div>
             </div>
         </div>
-    </div>
+    </div> <!-- End footer bottom area -->
    
-    <!-- Latest jQuery form server -->
-<!--     <script src="https://code.jquery.com/jquery.min.js"></script> -->
+
     
     <!-- Bootstrap JS form CDN -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>

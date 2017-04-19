@@ -1,3 +1,32 @@
+.file_input_textbox{
+	float: left;
+}
+.file_input_div{
+	position: relative;
+	width: 100px;
+	height: 23px;
+	overflow: hidden;
+}
+.file_input_button{
+	width: 100px;
+	position: absolute;
+	top: 0px;
+	background-color:  #ffc000;
+	color: #FFFFFF;
+	border-style: solid;
+}
+.file_input_hidden{
+	font-size: 45px;
+	position: absolute;
+	right: 0px;
+	top:0px;
+	opacity: 0;
+	filter : alpha(opacity=0);
+	-ms-filter : "alpha(opacity=0)";
+	khtml-opacity : 0;
+	-moz-opacity : 0;
+}
+
 .new-write input[type="button"]:hover {background: #222;border-color: #666}
 .new-write input[type="button"] {
     background: none repeat scroll 0 0 #ffc000;
@@ -644,7 +673,12 @@ width: 10px;
   padding: 20px 0 130px;
 }
 
-
+.sidebar-title2 {
+    color: #ffc000;
+    font-size: 25px;
+    margin-bottom: -30px;
+    text-transform: uppercase;
+}
 
 
 
@@ -661,13 +695,30 @@ input[type="text"], input[type="password"], input[type="email"], textarea {
     border: 1px solid #ddd;
     padding: 10px;
 }
-input[type="submit"], button[type=submit] {
+input[type="submit"], button[type=submit], input[type="file"],input[type="button"]{
     background: none repeat scroll 0 0 #ffc000;
     border: medium none;
     color: #fff;
-    padding: 11px 20px;
+    padding: 5px 20px;
     text-transform: uppercase;
 }
+input.upload {  
+  opacity: 0;       /*input type="file" tag 투명하게 처리*/
+  position: relative;
+}
+button.replace {    /*button tag 에 원하는 스타일 적용*/
+  position: absolute;
+  width: 200px;
+  height: 100px;
+  border-radius: 3px;
+  font-weight: 600;
+  border-color: transparent;
+  font-size: 25px;
+  background: hotpink;
+  color: #fff;
+  cursor: pointer;
+}
+
 input[type="submit"]:hover, button[type=submit]:hover {background-color: #222}
 .single-sidebar input[type="text"] {
     margin-bottom: 10px;

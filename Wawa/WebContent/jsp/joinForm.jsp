@@ -9,13 +9,86 @@
     <title>eElectronics - HTML eCommerce Template</title>
     
 	<!-- ----- -->
+	
     <script
   	src="https://code.jquery.com/jquery-2.2.4.min.js"
   	integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
  	crossorigin="anonymous"></script>
     
     <script type="text/javascript">
+    	$(document).blur(function(){
+    		
+    		var regId = /^[A-Za-z0-9_-]{4,12}$/;
+    		var regPassword = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+ 			var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    		var reg
+ 			
+    		$('#id').blur(function(){
+    			
+    			if(!regId.test($('#id').val())){
+    				alert("아이디는 3-15자 이여야 하며 \n" 
+                            +"마침표, '-', '_'를 제외한 문자는 사용하실수 없습니다.");
+    			}
+    			
+    			var inputid = $('#id').val();
+   				$.ajax({
+   			     url : "idCheck.do",
+   			     type : 'GET',
+   			     data : 'id=' + inputid,
+   			     dataType: 'json',
+   			     success : function (data) {
+   			        if(data.result)
+   			        	alert('중복');
+   			        else 
+   			        	alert('사용가능'); 
+   			     },
+   			     error:function(){
+   			    	 alert('에러발생');
+   			     }
+   			 	});
+    		});
+    		
+    		$('#nickname').blur(function(){
+    			var inputnickname = $('#nickname').val();
+				$.ajax({
+					url : "nicknameCheck.do",
+					type : "GET",
+					data : 'nickname=' + inputnickname,
+					dataType : 'json',
+					success : function (data){
+						if(data.result)
+							alert('중복');
+						else
+							alert('사용가능');
+					},
+					error : function(){
+						alert('에러발생');
+					}
+				});
+    		});
     
+		    $('#password').blur(function(){
+  				if(!regPassword.test($('#password').val())){
+  					alert('비밀번호 형식이 잘못되었습니다.\n' 
+  	                        +'(영문,숫자를 혼합하여 6~20자 이내)'); 
+  				}
+  			});
+  			
+  			$('#conformPassword').blur(function(){
+  				if($('#password').val() != $('#conformPassword').val()){
+  					alert('비밀번호가 일치하지 않습니다.');
+  				}
+  			});
+    		
+  			$('#phoneNum').blur(function(){
+  				
+  			});
+  			
+  			$('email').blur(function(){
+  				
+  			});
+  			
+    	});
     </script>
     
 	<!-- ------- -->
@@ -160,7 +233,8 @@
                                             <p id="billing_first_name_field" class="form-row form-row-first validate-required">
                                                 <label class="" for="billing_first_name">ID<abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="" id="id" name="id" class="input-text ">
+                                                <input type="text" value="" placeholder="#숫자, 대문자, 소문자, 언더바(_),하이픈(-), 4~12자리" 
+                                                id="id" name="id" class="input-text ">
                                             </p>
                                             <br>
                                                <p id="billing_first_name_field" class="form-row form-row-first validate-required">
@@ -173,7 +247,8 @@
                                          	<p id="billing_first_name_field" class="form-row form-row-first validate-required">
                                                 <label class="" for="billing_first_name">비밀번호<abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="" id="password" name="password" class="input-text ">
+                                                <input type="text" value="" placeholder="#영문,숫자를 혼합하여 특수문자가능 6~20자6~20자리" 
+                                                id="password" name="password" class="input-text ">
                                             </p>
                                             <br>
                                           

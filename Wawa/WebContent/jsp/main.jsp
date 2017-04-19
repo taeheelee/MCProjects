@@ -359,17 +359,13 @@
                         <td>2017-01-01</td>
                     </tr>
                   
-                     
-          
-           
 				</tbody>
 			</table>
         </form>
 
                                 
                     </div>
-                    
-                    
+       
                     
                 </div>
                 <div class="col-md-4">
@@ -391,9 +387,9 @@
 					</div>
 					<div class="col-md-6" id="wanted_content" style="padding: 0 0 0 15px;">
 					<table border="1" style="width: 100%; font-size: small;	" >
-						<tr><td>이름</td><td id="petname">이름</td></tr>
-						<tr><td>품종</td><td id="petkind">품종</td></tr>
-						<tr><td id="petsex">성별</td><td id="petage">몇개월</td></tr>
+						<tr><td>이름</td><td id="name">이름</td></tr>
+						<tr><td>품종</td><td id="kind">품종</td></tr>
+						<tr><td id="sex">성별</td><td id="age">몇개월</td></tr>
 						<tr><td colspan="2">잃어버린 장소</td></tr>
 						<tr><td colspan="2" id="place">OO동</td></tr>
 						<tr><td colspan="2">잃어버린 날짜</td></tr>
@@ -418,9 +414,9 @@
 					</div>
 					<div class="col-md-6" id="wanted_content" style="padding: 0 0 0 15px;">
 					<table border="1" style="width: 100%; font-size: small;	" >
-						<tr><td>이름</td><td id="petname">이름</td></tr>
-						<tr><td>품종</td><td id="petkind">품종</td></tr>
-						<tr><td id="petsex">성별</td><td id="petage">몇개월</td></tr>
+						<tr><td>이름</td><td id="name">이름</td></tr>
+						<tr><td>품종</td><td id="kind">품종</td></tr>
+						<tr><td id="sex">성별</td><td id="age">몇개월</td></tr>
 						<tr><td colspan="2">잃어버린 장소</td></tr>
 						<tr><td colspan="2" id="place">OO동</td></tr>
 						<tr><td colspan="2">잃어버린 날짜</td></tr>
@@ -445,9 +441,9 @@
 					</div>
 					<div class="col-md-6" id="wanted_content" style="padding: 0 0 0 15px;">
 					<table border="1" style="width: 100%; font-size: small;	" >
-						<tr><td>이름</td><td id="petname">이름</td></tr>
-						<tr><td>품종</td><td id="petkind">품종</td></tr>
-						<tr><td id="petsex">성별</td><td id="petage">몇개월</td></tr>
+						<tr><td>이름</td><td id="name">이름</td></tr>
+						<tr><td>품종</td><td id="kind">품종</td></tr>
+						<tr><td id="sex">성별</td><td id="age">몇개월</td></tr>
 						<tr><td colspan="2">잃어버린 장소</td></tr>
 						<tr><td colspan="2" id="place">OO동</td></tr>
 						<tr><td colspan="2">잃어버린 날짜</td></tr>
@@ -457,48 +453,7 @@
 					<hr style="border-color: black; border: solid 1px;margin: 5px 0">
 				</div>
 			</div>
-<!--                         <div class="single-wid-product"> -->
-<!--                             <a href="single-product.html"><img src="img/product-thumb-2.jpg" alt="" class="product-thumb"></a> -->
-<!--                             <h2><a href="single-product.html">Samsung gallaxy note 4</a></h2> -->
-<!--                             <div class="product-wid-rating"> -->
-<!--                                 <i class="fa fa-star"></i> -->
-<!--                                 <i class="fa fa-star"></i> -->
-<!--                                 <i class="fa fa-star"></i> -->
-<!--                                 <i class="fa fa-star"></i> -->
-<!--                                 <i class="fa fa-star"></i> -->
-<!--                             </div> -->
-<!--                             <div class="product-wid-price"> -->
-<!--                                 <ins>$400.00</ins> <del>$425.00</del> -->
-<!--                             </div>                             -->
-<!--                         </div> -->
-<!--                         <div class="single-wid-product"> -->
-<!--                             <a href="single-product.html"><img src="img/product-thumb-1.jpg" alt="" class="product-thumb"></a> -->
-<!--                             <h2><a href="single-product.html">Sony Smart Air Condtion</a></h2> -->
-<!--                             <div class="product-wid-rating"> -->
-<!--                                 <i class="fa fa-star"></i> -->
-<!--                                 <i class="fa fa-star"></i> -->
-<!--                                 <i class="fa fa-star"></i> -->
-<!--                                 <i class="fa fa-star"></i> -->
-<!--                                 <i class="fa fa-star"></i> -->
-<!--                             </div> -->
-<!--                             <div class="product-wid-price"> -->
-<!--                                 <ins>$400.00</ins> <del>$425.00</del> -->
-<!--                             </div>                             -->
-<!--                         </div> -->
-<!--                         <div class="single-wid-product"> -->
-<!--                             <a href="single-product.html"><img src="img/product-thumb-2.jpg" alt="" class="product-thumb"></a> -->
-<!--                             <h2><a href="single-product.html">Samsung gallaxy note 4</a></h2> -->
-<!--                             <div class="product-wid-rating"> -->
-<!--                                 <i class="fa fa-star"></i> -->
-<!--                                 <i class="fa fa-star"></i> -->
-<!--                                 <i class="fa fa-star"></i> -->
-<!--                                 <i class="fa fa-star"></i> -->
-<!--                                 <i class="fa fa-star"></i> -->
-<!--                             </div> -->
-<!--                             <div class="product-wid-price"> -->
-<!--                                 <ins>$400.00</ins> <del>$425.00</del> -->
-<!--                             </div>                             -->
-<!--                         </div> -->
+
                     </div>
                 </div>
 
@@ -557,7 +512,7 @@
                             <form action="#">
                                 <input type="email" placeholder="Type your email">
                                 <input type="submit" value="Subscribe">
-                            </form>
+                            </form>  
                         </div>
                     </div>
                 </div>

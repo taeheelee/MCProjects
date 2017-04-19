@@ -3,11 +3,13 @@ package service;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import interface_dao.IUserInfoDao;
 import interface_service.IJoinService;
 import model.UserInfo;
 
+@Service
 public class JoinService implements IJoinService{
 
 	@Autowired

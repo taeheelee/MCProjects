@@ -13,7 +13,6 @@ public class MainController {
 	@Autowired
 	private IJoinService joinService;
 	
-	
 	@RequestMapping("main.do")
 	public void main(){}
 	

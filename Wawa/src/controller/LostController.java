@@ -98,10 +98,10 @@ public class LostController {
 	}
 	
 	@RequestMapping("lostUpdateForm.do")
-	public ModelAndView lostUpdateForm(HashMap<String, Object> params){
+	public ModelAndView lostUpdateForm(){
 		ModelAndView mav = new ModelAndView();
-		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
-		mav.addObject("result", board);
+//		HashMap<String, Object> board = boardService.getBoardByBoardIdx(boardIdx);
+//		mav.addObject("board", board);
 		mav.setViewName("lostUpdateForm.tiles");
 		return mav;
 	} 

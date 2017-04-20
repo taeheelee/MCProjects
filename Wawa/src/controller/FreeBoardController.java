@@ -36,6 +36,12 @@ public class FreeBoardController {
 		String category = null;
 		if(categoryType == 1)
 			category = "애견상식";
+		else if(categoryType == 2)
+			category = "훈련정보";
+		else if(categoryType == 3)
+			category = "애견간식레시피";
+		else if(categoryType == 4)
+			category = "기타";
 		boardService.writeFreeBoard(boardCode, title, category, content, writer);
 		return "redirect:freeboardMain.do";
 			

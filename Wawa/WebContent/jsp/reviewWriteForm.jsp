@@ -30,7 +30,7 @@
 
 <!-- 여기부터 안에 들어가면 안되는 이유찾기 -->
     <div class="single-product-area">
-        <div class="zigzag-bottom"></div>
+<!--         <div class="zigzag-bottom"></div> -->
         <div class="container">
 <!--             <div class="row"> -->
                 

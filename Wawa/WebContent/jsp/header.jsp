@@ -33,7 +33,7 @@
 			<!--좌측 로고 -->
 			<div class="col-sm-6">
 				<div class="logo">
-					<h1><a href="index.html"><img src="img/paw-print.png" id="paw-print"><span>WAWA</span></a></h1>
+					<h1><a href="index.html"><img src="img/paw-print.png" id="paw-print"><span>WAWA!</span></a></h1>
 				</div>
 			</div>
 			<!-- 우측 미니애견정보창 -->

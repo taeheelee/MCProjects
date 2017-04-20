@@ -68,6 +68,7 @@ public class BoardService implements IBoardService{
 		params.put(Constant.Board.PHONE, phone);
 		params.put(Constant.Board.EMAIL, email);
 		params.put(Constant.Board.CONTENT, content);
+		params.put(Constant.Board.TITLE, title);
 		params.put(Constant.Board.WRITER, writer);
 		int result = dao.insertBoard(params);
 		if(result > 0)

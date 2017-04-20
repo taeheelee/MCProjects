@@ -1,11 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-  
+  <script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+  <script type="text/javascript">
+  	function reple(idx,repleIdx) {
+		$('#repleForm'+idx).html("<form action='repleWrite.do'>"
+								 +"<textarea style='width: 85%; height: 100px' name='content'></textarea>"
+								 +"<input type='submit' value='답글작성'>"
+								 +"<input type='hidden' name='boardIdx' value='${board.boardIdx }'>"
+								 +"<input type='hidden' name='boardCode' value='${board.boardCode }'>"
+								 +"<input type='hidden' name='nickname' value='닉네임'>"
+								 +"<input type='hidden' name='pIdx' value='"+repleIdx+"'>"
+								 +"</form>");
+	}
+  	
+  	function update(idx,repleIdx){
+  		$('#updateForm').text("");
+  		var text = $('#repleContent'+idx).text();
+  		$('#repleContent'+idx).html("<form action='repleUpdate.do'>"
+				 +"<textarea style='width: 85%; height: 100px' name='content'>"+text+"</textarea>"
+				 +"<input type='hidden' name='boardIdx' value='${board.boardIdx }'>"
+				 +"<input type='hidden' name='boardCode' value='${board.boardCode }'>"
+				 +"<input type='hidden' name='repleIdx' value='"+repleIdx+"'>"
+				 +"<input type='submit' value='수정'>"
+				 +"</form>")
+  	}
+  </script>
   </head>
   <body>
     
@@ -28,55 +56,80 @@
 <!--         <div class="zigzag-bottom"></div> -->
         <div class="container">
         	<div class="col-md-55">
-        		<h2 class="sidebar-title">찾고있어요 or 보호중입니다</h2>
+        		<h2 class="sidebar-title">${board.category }</h2>
         		
         		<table class="shop_table cart">
 	                <tbody>
 	                	<tr class="cart_item">
 	                		<td rowspan="5" style="width: 30%"><img src="img/dog_10.jpg" alt=""></td>
 	                        <td style="background-color: #f5f5f5">애견이름</td>
-							<td id="petname">이름</td>
+							<td id="petname">${board.name }</td>
 							<td style="background-color: #f5f5f5">등록번호</td>
-							<td id="등록번호">000001234512345</td>
+							<td id="등록번호">${board.resist }</td>
 	                    </tr>
 	                    <tr class="cart_item">
 							<td id="lostOrFind" style="background-color: #f5f5f5">잃어버린날짜</td>
-							<td id="loastdate">0000-00-00</td>
+							<td id="loastdate">${board.lostDate }</td>
 							<td style="background-color: #f5f5f5">품종/성별</td>
-							<td id="kindandsex"><span id="kind">품종</span><span id="petsex">(남)</span></td>
+							<td id="kindandsex"><span id="kind">${board.kind }</span><span id="petsex">(${board.sex })</span></td>
 						</tr>
 						<tr class="cart_item">
 							<td style="background-color: #f5f5f5">주인 연락처</td>
-							<td id="phonenumber">000-0000-0000</td>
+							<td id="phonenumber">${board.phone }</td>
 							<td style="background-color: #f5f5f5">애견 나이</td>
-							<td id="petage">0년 00개월</td>
+							<td id="petage">${board.age }</td>
 						</tr>
 						<tr class="cart_item">
 							<td style="background-color: #f5f5f5">e-mail</td>
-							<td id="email">e_mail@mail.com</td>
+							<td id="email">${board.email }</td>
 							<td style="background-color: #f5f5f5">애견 몸무게</td>
-							<td id="weight">0.0kg</td>
+							<td id="weight">${board.weight }kg</td>
 						</tr>
 					</tbody>
 				</table>
         		
                	
-                <h4 style="color: gray; text-align: center;">[제목] 애타게 찾고있습니다 [제목]</h4>
+                <h4 style="color: gray; text-align: center;">${board.title }</h4>
                 <hr style="border: solid 1px; border-color: lightgray">  
                 <div id=boardcontents style="text-align: center">
-                	갓 미용을 한 상태여서 털이 짧은 편이고,<br>
-                	까만 코 안에 흰점이 한개있습니다.<br>
-                	잃어버릴 당시 전화번호가 쓰여있는 목걸이를 착용중이였습니다.<br>
-                	<br>
-                	사람을 잘 따르는 편입니다.<br>
-                	이름을 알아듣습니다<br>
-                	
+                	${board.content }
                 </div>
                 <hr style="border: solid 1px; border-color: lightgray"> 
                 <div style="text-align: center">
                 <input type="button" value="뒤로가기" onClick="location.href='/Wawa/lostMain.do'">
                 <input type="button" value="수정" onclick="location.href='/Wawa/lostUpdateForm.do'">
                 <input type="button" value="삭제" onclick="location.href='/Wawa/lostDelete.do'">
+                </div>
+                
+                <div>
+                	<h4>댓글</h4>
+						<c:forEach items="${reple }" var="reple" varStatus="st">
+							<table style="width: 100%" border="1">
+								<tr>
+								
+								<td align="left" width="25%">
+								<c:if test="${reple.groupLv > 0 }">
+									<c:forEach begin="1" end="${reple.groupLv }">
+										ㄴ
+									</c:forEach>
+								</c:if>
+								<b>${reple.nickname }</b>
+								</td>
+								<td align="left" width="50%"><span id="repleContent${st.index }">${reple.content }</span><span id="updateForm"><a href="##" onclick="update(${st.index},${reple.repleIdx })">수정</a></span></td>
+								<td align="right" width="10%">${reple.writedate }</td>
+								<td width="10%"><a href="##" onclick="reple(${st.index},${reple.repleIdx })">답글달기</a></td>
+								</tr>
+								<tr><td colspan="4"><span id="repleForm${st.index }"></span></td></tr>
+							</table>
+						</c:forEach>
+	                	<form action="repleWrite.do">
+	                		<textarea style="width: 85%; height: 100px" name="content"></textarea>
+	                		<input type="hidden" name="boardIdx" value="${board.boardIdx }">
+	                		<input type="hidden" name="boardCode" value="${board.boardCode }">
+	                		<input type="hidden" name="nickname" value="닉네임">
+	                		<input type="hidden" name="pIdx" value="0">
+							<input type="submit" value="댓글작성">
+						</form>
                 </div>
 			</div>
 		</div>

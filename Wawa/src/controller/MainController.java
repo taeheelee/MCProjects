@@ -41,7 +41,7 @@ public class MainController {
 	public String joinForm(){
 		return "joinForm.tiles";
 	}
-	
+	 
 	@RequestMapping("join.do")
 	public String join(String id, String password, String nickname,
 			String sex, String phoneNum, int adminCheck, String email){

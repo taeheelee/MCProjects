@@ -40,9 +40,24 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
       <script>
-	    $(document).ready(function() {
-	        $('#summernote').summernote();
-	    });
+      $('#summernote').summernote({
+    	  height: 300,                 // set editor height
+    	  minHeight: null,             // set minimum height of editor
+    	  maxHeight: null,             // set maximum height of editor
+    	  focus: true                  // set focus to editable area after initializing summernote
+    	});
+/* 	    $(document).ready(function() {
+	    	$('#ok').click(function() {
+		        var content = $('#summernote').summernote('code');
+		    	$('#content').val(content);
+			});
+	    }); */
+  </script>
+  <script type="text/javascript">
+  	function content() {
+  		var content = $('#summernote').summernote('code');
+    	$('#content').val(content);
+	}
   </script>
   
   </head>
@@ -157,9 +172,11 @@
                          
                      
 
-                            <form enctype="multipart/form-data" action="freeboardWrite.do" class="checkout" method="post" name="checkout">
-
-
+                            <form enctype="multipart/form-data" action="freeboardWrite.do" class="checkout" method="get" name="checkout">
+								<input type="hidden" name="content" id="content">
+								<input type="hidden" name="boardCode" value="6">
+								<input type="hidden" name="writer" value="글쓴이">
+								
                                 <div id="customer_details" class="col2-set" >
                                     <div class="col-3">
                                     <h2 class="sidebar-title">글쓰기</h2>
@@ -168,18 +185,18 @@
                                             <p id="billing_country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated">
                                                 <label class="" for="billing_country">카테고리 <abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <select class="country_to_state country_select" id="billing_country" name="billing_country">
-                                                    <option selected="selected" value="GB">주저리주저리</option>
-                                                    <option value="DE">주저리주저리</option>
-                                                    <option value="DE">주저리주저리</option>
-                                                    <option value="DE">기타</option>
+                                                <select class="country_to_state country_select" id="billing_country" name="categoryType">
+                                                    <option selected="selected" value="1">애견상식</option>
+                                                    <option value="2">훈련정보</option>
+                                                    <option value="3">애견간식레시피</option>
+                                                    <option value="4">기타</option>
                                                 </select>
                                             </p>
                                             <br>
                                             
 											<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
                                                 <label class="" for="billing_state">글 제목<abbr title="required" class="required">*</abbr></label>
-                                                <input type="text" id="billing_state" name="billing_state" placeholder="" value="" class="input-text ">
+                                                <input type="text" id="billing_state" name="title" placeholder="" value="" class="input-text ">
                                             </p>
                                             <br>
                                             
@@ -201,7 +218,7 @@
 
 
 											<div class="form-row place-order" style="float: right">
-												<input type="submit" data-value="Place order" value="WRITE" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
+												<input type="submit" data-value="Place order" value="WRITE" onclick="return content()" name="woocommerce_checkout_place_order" class="button alt">
 											</div>
 
 

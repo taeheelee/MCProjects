@@ -28,10 +28,18 @@ public class FreeBoardController {
 	}
 	
 	@RequestMapping("freeboardWriteForm.do")
-	public String freeboardWrite(){
+	public String freeboardWriteForm(){
 		return "freeboardWrite";
 	}
-	
+	@RequestMapping("freeboardWrite.do")
+	public String freeboardWrite(int boardCode, String title, int categoryType, String content, String writer){
+		String category = null;
+		if(categoryType == 1)
+			category = "애견상식";
+		boardService.writeFreeBoard(boardCode, title, category, content, writer);
+		return "redirect:freeboardMain.do";
+			
+	}
 	@RequestMapping("freeboardDetail.do")
 	public ModelAndView freeboardDetails(int boardIdx){
 		ModelAndView mav = new ModelAndView();

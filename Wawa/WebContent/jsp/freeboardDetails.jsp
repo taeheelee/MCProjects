@@ -56,6 +56,7 @@
 								 +"<textarea style='width: 85%; height: 100px' name='content'></textarea>"
 								 +"<input type='submit' value='답글작성'>"
 								 +"<input type='hidden' name='boardIdx' value='${board.boardIdx }'>"
+								 +"<input type='hidden' name='boardCode' value='${board.boardCode }'>"
 								 +"<input type='hidden' name='nickname' value='닉네임'>"
 								 +"<input type='hidden' name='pIdx' value='"+repleIdx+"'>"
 								 +"</form>");
@@ -67,6 +68,7 @@
   		$('#repleContent'+idx).html("<form action='repleUpdate.do'>"
 				 +"<textarea style='width: 85%; height: 100px' name='content'>"+text+"</textarea>"
 				 +"<input type='hidden' name='boardIdx' value='${board.boardIdx }'>"
+				 +"<input type='hidden' name='boardCode' value='${board.boardCode }'>"
 				 +"<input type='hidden' name='repleIdx' value='"+repleIdx+"'>"
 				 +"<input type='submit' value='수정'>"
 				 +"</form>")
@@ -206,6 +208,7 @@
 	                	<form action="repleWrite.do">
 	                		<textarea style="width: 85%; height: 100px" name="content"></textarea>
 	                		<input type="hidden" name="boardIdx" value="${board.boardIdx }">
+	                		<input type="hidden" name="boardCode" value="${board.boardCode }">
 	                		<input type="hidden" name="nickname" value="닉네임">
 	                		<input type="hidden" name="pIdx" value="0">
 							<input type="submit" value="댓글작성">

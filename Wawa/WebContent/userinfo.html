@@ -159,36 +159,31 @@
             
               <div class="col-md-5">
 					<h2 class="sidebar-title2">기본정보</h2>
+						<form enctype="multipart/form-data" action="#" class="checkout"method="post" name="checkout">
 					<p style="text-align: right;"> 
-						<input type="button" value="수정하기">
-						<input type="button" value="회원탈퇴">
+						<input type="submit" value="수정하기">
+						<input type="submit" value="회원탈퇴">
+<!-- 						<input type="button" value="수정하기" onclick="location.href='#'"> -->
+<!-- 						<input type="button" value="회원탈퇴" onclick="location.href='#'"> -->
 					</p>
 					<div class="single-product-widget">
 
 						<!-- 요기사이에 -->
-						<form enctype="multipart/form-data" action="#" class="checkout"
-							method="post" name="checkout">
 
 							
 <div id="customer_details" class="col2-set">
-		<div class="col-md-12">
-	
-			<div class="woocommerce-billing-fields">
-
-
+	<div class="col-md-12" style="padding-left: 30px; padding-top: 30px;">
+		<div class="woocommerce-billing-fields">
 			<label class="" for="billing_first_name">아이디</label> 
-					<span id="userid">idididid</span>
-				
-				<br>
+			<span id="userid">idididid</span>
+			<br><br>
+			
 			<label class="" for="billing_first_name">닉네임 <abbr	title="required" class="required">*</abbr></label> 
-					<input type="text" value="" placeholder="" id="billing_first_name" name="billing_first_name" class="input-text ">
-			
-				<br>
+			<input type="text" value="" placeholder="" id="billing_first_name" name="billing_first_name" class="input-text ">
+			<br>
 
-			
-				
-				 <label class="">성별 </label>
-              <div id="payment">
+			<label class="">성별 </label>
+            <div id="payment">
 				<ul class="payment_methods methods">
 					<li class="payment_method_paypal">
 						<input type="radio" value="male" name="usersex"> 남자
@@ -197,31 +192,22 @@
 					</li>
 				</ul>
 			</div>
-<br>
-			<label class="" for="billing_state">비밀번호<abbr
-						title="required" class="required">*</abbr></label> <input type="password"
-						id="billing_state" name="billing_state"
-						placeholder="15자리 이내의 알파벳, 숫자, 특수문자" value="" class="input-text ">
-				
-				<br>
 
-			<label class="" for="billing_state">비밀번호 확인<abb망r
-						title="required" class="required">*</abbr></label> <input type="password"
-						id="billing_state" name="billing_state"
-						placeholder="15자리 이내의 알파벳, 숫자, 특수문자" value="" class="input-text ">
-			
-				<br>
+			<label class="" for="billing_state">비밀번호<abbr title="required" class="required">*</abbr></label> 
+			<input type="password" id="billing_state" name="billing_state" placeholder="15자리 이내의 알파벳, 숫자, 특수문자" value="" class="input-text ">
+			<br><br>
 
-				<label class="" for="billing_first_name">연락처 
-					</label> <input type="text" value="" placeholder="" id="billing_first_name"
-						name="billing_first_name" class="input-text ">
-				
-				<br>
-<label class="" for="billing_first_name">E-mail 
-					</label> <input type="text" value="" placeholder="" id="billing_first_name"
-						name="billing_first_name" class="input-text ">
+			<label class="" for="billing_state">비밀번호 확인<abbr title="required" class="required">*</abbr></label> 
+			<input type="password" id="billing_state" name="billing_state" placeholder="15자리 이내의 알파벳, 숫자, 특수문자" value="" class="input-text ">
+			<br><br>
+
+			<label class="" for="billing_first_name">연락처</label> 
+			<input type="text" value="" placeholder="" id="billing_first_name" name="billing_first_name" class="input-text ">
+			<br><br>
 			
-				<br> <br>
+			<label class="" for="billing_first_name">E-mail  </label> 
+			<input type="text" value="" placeholder="" id="billing_first_name" name="billing_first_name" class="input-text ">
+			<br><br>
 
 
 
@@ -232,13 +218,13 @@
 	</div>
 
 
-						</form>
                        
                        
                        
                       <!-- 요기사이에 -->
                        
                     </div>
+						</form>
                 </div>
             
             

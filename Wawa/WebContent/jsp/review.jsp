@@ -14,8 +14,7 @@
   </head>
   <body>
      
-    
-    <div class="product-big-title-area">
+     <div class="product-big-title-area">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -30,7 +29,7 @@
 
 <!-- 여기부터 안에 들어가면 안되는 이유찾기 -->
     <div class="single-product-area">
-<!--         <div class="zigzag-bottom"></div> -->
+         
         <div class="container">
 <!--             <div class="row"> -->
                 
@@ -46,8 +45,17 @@
 
                                 <div id="customer_details" class="col2-set" >
                                     <div class="col-3">
-                                    <h2 class="sidebar-title">제품리뷰 목록</h2>
-                       
+                                    <h2 class="sidebar-title2">제품리뷰 목록</h2>
+                                    <div class="form-row place-order" style="float: right">
+										<input type="button" data-value="Place order" value="WRITE" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
+	                                    <h2> &nbsp;</h2>
+									</div>  
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
                                     
     
 		<form method="post" action="#">
@@ -93,50 +101,50 @@
                         <td>2017-01-01</td>
                     </tr>
                   
+                     
+          
            
 				</tbody>
 			</table>
         </form>
                                     
                                     
-                                              <p id="billing_country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated">
-                                                <label class="" for="billing_country">카테고리 <abbr title="required" class="required">*</abbr>
-                                                </label>
-                                                
-                                   <form action="/Wawa/reviewSearch.do">
-                                                
-                                                <select class="country_to_state country_select" id="category" name="category">
-                                                    <option selected="selected" value="GB">사료</option>
-                                                    <option value="DE">간식</option>
-                                                    <option value="DE">영양제/건강/위생</option>
-                                                    <option value="DE">목욕/미용</option>
-                                                    <option value="DE">식기/배변</option>
-                                                    <option value="DE">장남감/하우스/이동장</option>
-                                                    <option value="DE">패션/줄/인식표</option>
-                                                    <option value="DE">기타</option>
-                                                </select>
-                                            </p>
-                                            <br>
                                     
-                             		<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
-                                                <label class="" for="billing_state">검색<abbr title="required" class="required">*</abbr></label>
-                                                <input type="text" id="billing_state" name="billing_state" placeholder="" value="" class="input-text ">
-                                            </p>
-                                            <br>
-                                	<div class="form-row place-order" style="float: right">
-												<input type="submit" data-value="Place order" value="SEARCH" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
-								</form>	
-											
-											
-											</div>   
-												<div class="form-row place-order" style="float: right">
-												<input type="button" id="write" onclick="location.href='/Wawa/reviewWriteForm.do'" value="WRITE" />
-											</div>        
+                                    
+                                            <label class="" for="billing_country">게시글 검색</label>
+                                    			<table style="width: 100%">
+                                    				<tr>
+                                    					<td width="20%">
+                                    						<select class="country_to_state country_select" id="billing_country" name="billing_country">
+			                                                    <option selected="selected" value="GB">애견상식</option>
+			                                                    <option value="DE">훈련정보</option>
+			                                                    <option value="DE">애견간식레시피</option>
+			                                                    <option value="DE">기타</option>
+			                                                </select>
+                                    					</td>
+                                    					<td width="3%">
+                                    					</td>
+                                    					<td width="62%">
+                                    						<input type="text" id="billing_state" name="billing_state" placeholder="Search..." value="" class="input-text ">
+                                    					</td>
+                                    					<td width="3%">
+                                    					</td>
+                                    					<td width="12%" align="right">
+                                    						<input type="submit" data-value="Place order" value="SEARCH" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
+                                    					</td>
+                                    				</tr>
+                                    			</table>     
                                             
                                             
                                     </div>
 
+                                   
+
                                 </div>
+
+
+
+
  									
 
 				<div class="col-md-12">
@@ -164,6 +172,22 @@
 					</div>
 				</div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                              
+
                                    
                                 </div>
                             </form>
@@ -175,7 +199,7 @@
         </div>
                 </div>
    
-<!-- 여기부터 안에 들어가면 안되는 이유찾기  end-->     
+<!-- 여기부터 안에 들어가면 안되는 이유찾기  end-->      
 
 
 

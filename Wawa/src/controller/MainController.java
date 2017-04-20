@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import interface_service.IMemberService;
@@ -43,11 +44,16 @@ public class MainController {
 		return "joinForm.tiles";
 	}
 	 
-	@RequestMapping("join.do")
+	@RequestMapping(method=RequestMethod.POST, value="join.do")
 	public String join(String id, String password, String nickname,
-			String sex, String phoneNum, int adminCheck, String email){
-		iMemberService.join(id, password, nickname, sex, phoneNum, adminCheck, email);
-		return "redirect:main.do";
+			String sex, String phoneNum, @RequestParam(defaultValue="0")int adminCheck, String email){
+		System.out.println(id + "컨트롤러에서 받아오는지");
+		int result = iMemberService.join(id, password, nickname, sex, phoneNum, adminCheck, email);
+//		return"";
+		if(result > 0)
+			return "redirect:main.do";			
+		else
+			return "redirect:joinForm.do";
 	}
 	
 	@RequestMapping("idCheck.do")
@@ -62,7 +68,7 @@ public class MainController {
 	@RequestMapping("nicknameCheck.do")
 	public 
 	@ResponseBody HashMap<String, Object> nicknameCheck(HttpServletResponse resp, String nickname){
-		System.out.println("nicknameCheck.do로 들어옴");
+		System.out.println(iMemberService.nicknameCheck(nickname));
 		HashMap<String, Object> response = new HashMap<>();
 		response.put("result", iMemberService.nicknameCheck(nickname));
 		return response;

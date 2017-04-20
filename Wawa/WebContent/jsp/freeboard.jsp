@@ -37,13 +37,14 @@
                          
                      
 
-                            <form enctype="multipart/form-data" action="freeboardSearch.do" class="checkout" method="get" name="checkout">
-
-
+                           
                                 <div id="customer_details" class="col2-set" >
                                     <div class="col-3">
-                                    <h2 class="sidebar-title">글 목록</h2>
-                                    
+                                     <h2 class="sidebar-title2">글 목록</h2>
+                                    <div class="form-row place-order" style="float: right">
+										<input type="button" value="WRITE">
+	                                    <h2> &nbsp;</h2>
+									</div>  
                                     
                                     
                                     
@@ -86,7 +87,7 @@
                                     
                                     
                                     
-                                              <p id="billing_country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated">
+                                             <!--  <p id="billing_country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated">
                                                 <label class="" for="billing_country">카테고리 <abbr title="required" class="required">*</abbr>
                                                 </label>
                                                 <select class="country_to_state country_select" id="type" name="type">
@@ -108,7 +109,38 @@
 											</div>   
 												<div class="form-row place-order" style="float: right">
 												<input type="button" onclick="location.href='freeboardWriteForm.do'" data-value="Place order" value="WRITE" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
-											</div>        
+											</div>  -->       
+                                            
+                                            
+                                            
+                                              <label class="" for="billing_country">게시글 검색</label>
+                                    		 <form enctype="multipart/form-data" action="freeboardSearch.do" class="checkout" method="get" name="checkout">
+
+
+                                    			<table style="width: 100%">
+                                    				<tr>
+                                    					<td width="20%">
+                                    						<select class="country_to_state country_select" id="billing_country" name="billing_country">
+			                                                    <option selected="selected" value="GB">애견상식</option>
+			                                                    <option value="DE">훈련정보</option>
+			                                                    <option value="DE">애견간식레시피</option>
+			                                                    <option value="DE">기타</option>
+			                                                </select>
+                                    					</td>
+                                    					<td width="3%">
+                                    					</td>
+                                    					<td width="62%">
+                                    						<input type="text" id="billing_state" name="keyword" placeholder="Search..." value="" class="input-text ">
+                                    					</td>
+                                    					<td width="3%">
+                                    					</td>
+                                    					<td width="12%" align="right">
+                                    						<input type="submit" value="SEARCH">
+                                    					</td>
+                                    				</tr>
+                                    			</table>  
+                                            </form>
+                                            
                                             
                                           				<div class="col-md-12">
 					<div class="product-pagination text-center">
@@ -194,7 +226,7 @@
 
                                    
                                 </div>
-                            </form>
+<!--                             </form> -->
 
 <!--                         </div>                        -->
 <!--                     </div>                     -->

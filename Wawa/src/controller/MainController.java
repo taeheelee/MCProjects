@@ -53,7 +53,7 @@ public class MainController {
 	@RequestMapping("idCheck.do")
 	public 
 	@ResponseBody HashMap<String, Object> idCheck(HttpServletResponse resp, String id){
-		System.out.println("idCheck.do로 들어옴");
+//		System.out.println("idCheck.do로 들어옴");
 		HashMap<String, Object> response = new HashMap<>();
 		response.put("result", iMemberService.checkId(id));
 		return response;

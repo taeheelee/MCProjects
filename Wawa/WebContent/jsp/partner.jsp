@@ -28,30 +28,31 @@
 
 
 	<div class="single-product-area">
-		
-
 		<div class="container">
-		                                 
-			<h3 class="sidebar-title">목록</h3>
-		</div>
-		
-		<div class="container">
-
-				<div class="container" style="width :100% ;float: right;">
-
-				<form action="/Wawa/partnerSearch.do">
-
+			<h2 class="sidebar-title2">Would you marry me? 결혼해듀오</h2>
+				<form action="/Wawa/partnerSearch.do" style="text-align: right;">
 					<input type="radio" name="petsex" value="male"> 수컷
 					<input type="radio" name="petsex" value="female"> 암컷
-								
+					<input type="text" name="petname" placeholder="Seach.."> 
+					<input type="submit" value="검색">
+					<input type="button" value="짝꿍찾기 등록" onclick="location.href='/Wawa/partnerWriteForm.do'">
+				</form>
+		</div>
+
+	<!-- 	<div class="container">                                 
+			<h3 class="sidebar-title">목록</h3>
+		</div>
+		<div class="container">
+				<div class="container" style="width :100% ;float: right;">
+				<form action="/Wawa/partnerSearch.do">
+					<input type="radio" name="petsex" value="male"> 수컷
+					<input type="radio" name="petsex" value="female"> 암컷	
 					<input type="text" name="petname" placeholder="Search..">
 					<input type="submit" value="검색">
 				</form>
-								
 				<input type="button" value="짝꿍찾기 등록" onclick="location.href='/Wawa/partnerWriteForm.do'">
 				</div>
-		
-		</div>
+		</div> -->
 
 		<div class="container" id="">
 

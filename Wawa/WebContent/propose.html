@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -64,9 +64,29 @@
                     </div>
                 </div>
                 
-                <div class="col-sm-6">
+                                <div class="col-sm-6" style="margin: 0">
                     <div class="shopping-item">
-                        <a href="cart.html">UserInfo - <span class="cart-amunt"> | PetName | age | ♂ or ♀<br>예방 접종 알림 D-?? 미용 주기 알림 D-??</span>  </a>
+                        <a href="cart.html">
+<table id="mini" style="margin-left: 5px;width:330px; height: 100px;">
+	<tr>
+		<td rowspan="4" style="width: 90px;" id="petmainimage"><img src="img/dog_12.jpg" alt=""style="width: 80px;height: 80px"></td>
+		<td colspan="3" id="nickname">username</td>
+	</tr>
+	<tr style="font-size: small;">
+		<td id="petname">강아지이름</td>
+		<td id="petsex">성별</td>
+		<td id="petage">0년00개월</td>
+	</tr>
+	<tr style="font-size: small;">
+		<td colspan="2">다음 예방접종</td>
+		<td id="dday" style="text-align: center;">D-00</td>
+	</tr>
+	<tr style="font-size: small;">
+		<td colspan="2">다음 미용예정</td>
+		<td id="grooming" style="text-align: center;">D-00</td>
+	</tr>
+</table>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -134,23 +154,16 @@
 		
 
 		<div class="container">
-		                                 
-			<h3 class="sidebar-title">목록</h3>
+			<h2 class="sidebar-title2">Would you marry me? 결혼해듀오</h2>
+				<p style="text-align: right;">
+					<input type="radio" name="petsex" value="male"> 수컷
+					<input type="radio" name="petsex" value="female"> 암컷
+					<input type="text" placeholder="Seach.."> 
+					<input type="button" value="검색">
+					<input type="button" value="짝꿍찾기 등록">
+				</p>
 		</div>
-		
-		<div class="container">
 
-				<div class="container" style="width :100% ;float: right;">
-
-				<input type="radio" name="petsex" value="male"> 수컷
-				<input type="radio" name="petsex" value="female"> 암컷
-				
-				<input type="text" placeholder="Seach..">
-				<input type="button" value="검색">
-				<input type="button" value="뽐내기 등록">
-				</div>
-		
-		</div>
 
 		<div class="container" id="">
 
@@ -461,17 +474,50 @@
 	</div>
 
 
-
-
-
-	<div class="footer-top-area">
-        <div class="zigzag-bottom"></div>
+<div class="footer-top-area">
         <div class="container">
             <div class="row">
+            
+            
+            
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-about-us">
-                        <h2>e<span>Electronics</span></h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
+                     <h1><img src="img/paw-print.png" id="paw-print"><span>WAWA</span></h1>
+<!--                         <h2>e<span>Electronics</span></h2> -->
+                        <p>애완견 통합관리 커뮤니티</p>
+                    </div>
+                </div>
+                
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-menu">
+                        <h2 class="footer-wid-title">Explore WAWA</h2>
+                        <ul>
+                            <li><a href="#">찾아오시는 길</a></li>
+                            <li><a href="#">이벤트</a></li>
+                            <li><a href="#">개인정보취급방침</a></li>
+                            <li><a href="#">회원약관</a></li>
+                            <li><a href="#">사이트 문의 : 02-000-0000</a></li>
+                        </ul>                        
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-newsletter">
+                        <h2 class="footer-wid-title">News Letter</h2>
+                        <p>Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to your inbox!</p>
+                        <div class="newsletter-form">
+                            <form action="#">
+                                <input type="email" placeholder="Type your email">
+                                <input type="submit" value="Subscribe">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-about-us">
+                     	 <h2 class="footer-wid-title">SNS</h2>
                         <div class="footer-social">
                             <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
                             <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
@@ -479,72 +525,32 @@
                             <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
                             <a href="#" target="_blank"><i class="fa fa-pinterest"></i></a>
                         </div>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
                     </div>
                 </div>
                 
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-menu">
-                        <h2 class="footer-wid-title">User Navigation </h2>
-                        <ul>
-                            <li><a href="">My account</a></li>
-                            <li><a href="">Order history</a></li>
-                            <li><a href="">Wishlist</a></li>
-                            <li><a href="">Vendor contact</a></li>
-                            <li><a href="">Front page</a></li>
-                        </ul>                        
-                    </div>
-                </div>
                 
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-menu">
-                        <h2 class="footer-wid-title">Categories</h2>
-                        <ul>
-                            <li><a href="">Mobile Phone</a></li>
-                            <li><a href="">Home accesseries</a></li>
-                            <li><a href="">LED TV</a></li>
-                            <li><a href="">Computer</a></li>
-                            <li><a href="">Gadets</a></li>
-                        </ul>                        
-                    </div>
-                </div>
                 
-                <div class="col-md-3 col-sm-6">
-                    <div class="footer-newsletter">
-                        <h2 class="footer-wid-title">Newsletter</h2>
-                        <p>Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to your inbox!</p>
-                        <div class="newsletter-form">
-                            <input type="email" placeholder="Type your email">
-                            <input type="submit" value="Subscribe">
-                        </div>
-                    </div>
-                </div>
+                
+                
             </div>
         </div>
-    </div>
+    </div> <!-- End footer top area -->
+    
     <div class="footer-bottom-area">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
                     <div class="copyright">
-                        <p>&copy; 2015 eElectronics. All Rights Reserved. Coded with <i class="fa fa-heart"></i> by <a href="http://wpexpand.com" target="_blank">WP Expand</a></p>
+                        <p>&copy; 2017 WAWA. All Rights Reserved.</p>
                     </div>
                 </div>
                 
-                <div class="col-md-4">
-                    <div class="footer-card-icon">
-                        <i class="fa fa-cc-discover"></i>
-                        <i class="fa fa-cc-mastercard"></i>
-                        <i class="fa fa-cc-paypal"></i>
-                        <i class="fa fa-cc-visa"></i>
-                    </div>
-                </div>
             </div>
         </div>
-    </div>
+    </div> <!-- End footer bottom area -->
    
-    <!-- Latest jQuery form server-->
-    <script src="https://code.jquery.com/jquery.min.js"></script>
-    
+
     
     <!-- Bootstrap JS form CDN -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -558,8 +564,5 @@
     
     <!-- Main Script -->
     <script src="js/main.js"></script>
-    
-<!-- tab form make sy -->
-    <script src="tab.js"></script>
   </body>
 </html>

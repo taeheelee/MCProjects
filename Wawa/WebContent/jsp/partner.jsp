@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -161,277 +162,23 @@
 		<div class="container" id="">
 
 
-
-			<div class="single-product col-md-2" style=" padding: 15px;">
-				<div class="col-md-11" style="background: #f4f4f4; padding : 15px 15px 5px 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_14.jpg" alt="">
-							<div class="product-hover">
-								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
-						<tr><td colspan="2" id="petname">이름</td></tr>
-						<tr><td id="petsex">성별</td><td id="petage">몇개월</td></tr>
-					</table>
-	
+			<c:forEach items="${boardList }" var="partner">
+				<div class="single-product col-md-2" style=" padding: 15px;">
+					<div class="col-md-11" style="background: #f4f4f4; padding : 15px 15px 5px 15px;width: 100%; margin: 0 auto;">
+							<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
+								<img src="img/dog_14.jpg" alt="">
+								<div class="product-hover">
+									<a href="partnerDetails.do?boardIdx=${partner.boardIdx }" class="view-details-link"><i class="fa fa-link"></i>상세</a>
+								</div>
+							</div><!--  마우스오버시 검정색 효과 범위 끝 -->
+						<table border="1" style="width: 100%; font-size: small;text-align:center; " >
+							<tr><td colspan="2" id="petname">이름: ${partner.name }</td></tr>
+							<tr><td id="petsex">${partner.sex }</td><td id="petage">${partner.age }</td></tr>
+						</table>
+		
+					</div>
 				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 15px;">
-				<div class="col-md-11" style="background: #f4f4f4; padding : 15px 15px 5px 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_13.jpg" alt="">
-							<div class="product-hover">
-								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
-						<tr><td colspan="2" id="petname">이름</td></tr>
-						<tr><td id="petsex">성별</td><td id="petage">몇개월</td></tr>
-					</table>
-	
-				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 15px;">
-				<div class="col-md-11" style="background: #f4f4f4; padding : 15px 15px 5px 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_12.jpg" alt="">
-							<div class="product-hover">
-								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
-						<tr><td colspan="2" id="petname">이름</td></tr>
-						<tr><td id="petsex">성별</td><td id="petage">몇개월</td></tr>
-					</table>
-	
-				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 15px;">
-				<div class="col-md-11" style="background: #f4f4f4; padding : 15px 15px 5px 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_11.jpg" alt="">
-							<div class="product-hover">
-								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
-						<tr><td colspan="2" id="petname">이름</td></tr>
-						<tr><td id="petsex">성별</td><td id="petage">몇개월</td></tr>
-					</table>
-	
-				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 15px;">
-				<div class="col-md-11" style="background: #f4f4f4; padding : 15px 15px 5px 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_10.jpg" alt="">
-							<div class="product-hover">
-								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
-						<tr><td colspan="2" id="petname">이름</td></tr>
-						<tr><td id="petsex">성별</td><td id="petage">몇개월</td></tr>
-					</table>
-	
-				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 15px;">
-				<div class="col-md-11" style="background: #f4f4f4; padding : 15px 15px 5px 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_09.jpg" alt="">
-							<div class="product-hover">
-								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
-						<tr><td colspan="2" id="petname">이름</td></tr>
-						<tr><td id="petsex">성별</td><td id="petage">몇개월</td></tr>
-					</table>
-	
-				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 15px;">
-				<div class="col-md-11" style="background: #f4f4f4; padding : 15px 15px 5px 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_08.jpg" alt="">
-							<div class="product-hover">
-								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
-						<tr><td colspan="2" id="petname">이름</td></tr>
-						<tr><td id="petsex">성별</td><td id="petage">몇개월</td></tr>
-					</table>
-	
-				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 15px;">
-				<div class="col-md-11" style="background: #f4f4f4; padding : 15px 15px 5px 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_07.jpg" alt="">
-							<div class="product-hover">
-								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
-						<tr><td colspan="2" id="petname">이름</td></tr>
-						<tr><td id="petsex">성별</td><td id="petage">몇개월</td></tr>
-					</table>
-	
-				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 15px;">
-				<div class="col-md-11" style="background: #f4f4f4; padding : 15px 15px 5px 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_06.jpg" alt="">
-							<div class="product-hover">
-								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
-						<tr><td colspan="2" id="petname">이름</td></tr>
-						<tr><td id="petsex">성별</td><td id="petage">몇개월</td></tr>
-					</table>
-	
-				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 15px;">
-				<div class="col-md-11" style="background: #f4f4f4; padding : 15px 15px 5px 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_05.jpg" alt="">
-							<div class="product-hover">
-								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
-						<tr><td colspan="2" id="petname">이름</td></tr>
-						<tr><td id="petsex">성별</td><td id="petage">몇개월</td></tr>
-					</table>
-	
-				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 15px;">
-				<div class="col-md-11" style="background: #f4f4f4; padding : 15px 15px 5px 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_04.jpg" alt="">
-							<div class="product-hover">
-								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
-						<tr><td colspan="2" id="petname">이름</td></tr>
-						<tr><td id="petsex">성별</td><td id="petage">몇개월</td></tr>
-					</table>
-	
-				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 15px;">
-				<div class="col-md-11" style="background: #f4f4f4; padding : 15px 15px 5px 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_03.jpg" alt="">
-							<div class="product-hover">
-								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
-						<tr><td colspan="2" id="petname">이름</td></tr>
-						<tr><td id="petsex">성별</td><td id="petage">몇개월</td></tr>
-					</table>
-	
-				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 15px;">
-				<div class="col-md-11" style="background: #f4f4f4; padding : 15px 15px 5px 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_02.jpg" alt="">
-							<div class="product-hover">
-								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
-						<tr><td colspan="2" id="petname">이름</td></tr>
-						<tr><td id="petsex">성별</td><td id="petage">몇개월</td></tr>
-					</table>
-	
-				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 15px;">
-				<div class="col-md-11" style="background: #f4f4f4; padding : 15px 15px 5px 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_01.jpg" alt="">
-							<div class="product-hover">
-								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
-						<tr><td colspan="2" id="petname">이름</td></tr>
-						<tr><td id="petsex">성별</td><td id="petage">몇개월</td></tr>
-					</table>
-	
-				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 15px;">
-				<div class="col-md-11" style="background: #f4f4f4; padding : 15px 15px 5px 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_14.jpg" alt="">
-							<div class="product-hover">
-								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
-						<tr><td colspan="2" id="petname">이름</td></tr>
-						<tr><td id="petsex">성별</td><td id="petage">몇개월</td></tr>
-					</table>
-	
-				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 15px;">
-				<div class="col-md-11" style="background: #f4f4f4; padding : 15px 15px 5px 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_13.jpg" alt="">
-							<div class="product-hover">
-								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
-						<tr><td colspan="2" id="petname">이름</td></tr>
-						<tr><td id="petsex">성별</td><td id="petage">몇개월</td></tr>
-					</table>
-	
-				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 15px;">
-				<div class="col-md-11" style="background: #f4f4f4; padding : 15px 15px 5px 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_12.jpg" alt="">
-							<div class="product-hover">
-								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
-						<tr><td colspan="2" id="petname">이름</td></tr>
-						<tr><td id="petsex">성별</td><td id="petage">몇개월</td></tr>
-					</table>
-	
-				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 15px;">
-				<div class="col-md-11" style="background: #f4f4f4; padding : 15px 15px 5px 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_11.jpg" alt="">
-							<div class="product-hover">
-								<a href="/Wawa/partnerDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table border="1" style="width: 100%; font-size: small;text-align:center; " >
-						<tr><td colspan="2" id="petname">이름</td></tr>
-						<tr><td id="petsex">성별</td><td id="petage">몇개월</td></tr>
-					</table>
-	
-				</div>
-			</div>	
+			</c:forEach>
 			
 			
 			<div class="row">
@@ -439,22 +186,51 @@
 					<div class="product-pagination text-center">
 						<nav>
 							<ul class="pagination">
-								<li><a href="#" aria-label="Previous"> <span
-										aria-hidden="true">&laquo;</span>
-								</a></li>
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#">6</a></li>
-								<li><a href="#">7</a></li>
-								<li><a href="#">8</a></li>
-								<li><a href="#">9</a></li>
-								<li><a href="#">10</a></li>
-								<li><a href="#" aria-label="Next"> <span
-										aria-hidden="true">&raquo;</span>
-								</a></li>
+								<c:if test="${current != 1 }">
+									<c:choose>
+										<c:when test="${keyword == null }">
+											<li><a href="partnerMain.do?page=${current-1 }" aria-label="Previous"> <span
+											aria-hidden="true">&laquo;</span>
+											</a></li>
+										</c:when>
+										<c:otherwise>
+											<li><a href="partnerSearch.do?page=${current-1 }&keyword=${keyword}&type=${type}" aria-label="Next"> <span
+											aria-hidden="true">&raquo;</span>
+											</a></li>
+										</c:otherwise>
+									</c:choose>
+								</c:if>
+								<c:forEach begin="${start }" end="${end }" var="page">
+									<c:choose>
+										<c:when test="${page==current }">
+											<li><a href="#">${page }</a></li>
+										</c:when>
+										<c:otherwise>
+											<c:choose>
+												<c:when test="${keyword == null }">
+													<li><a href="partnerMain.do?page=${page }">${page }</a></li>
+												</c:when>
+												<c:otherwise>
+													<li><a href="partnerSearch.do?page=${page }&keyword=${keyword}&type=${type}">${page }</a></li>
+												</c:otherwise>
+											</c:choose>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+								<c:if test="${current != last }">
+									<c:choose>
+										<c:when test="${keyword == null }">
+											<li><a href="partnerMain.do?page=${current+1 }" aria-label="Next"> <span
+											aria-hidden="true">&raquo;</span>
+											</a></li>
+										</c:when>
+										<c:otherwise>
+											<li><a href="partnerSearch.do?page=${current+1 }&keyword=${keyword}&type=${type}" aria-label="Next"> <span
+											aria-hidden="true">&raquo;</span>
+											</a></li>
+										</c:otherwise>
+									</c:choose>
+								</c:if>
 							</ul>
 						</nav>
 					</div>

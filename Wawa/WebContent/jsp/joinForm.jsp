@@ -36,12 +36,13 @@
   			     	data : 'id=' + inputid,
    			     	dataType: 'json',
 	   			    success : function (data) {
-	   			        if(data.result)
-	   			        	//alert('중복');
-	   			        	$('#idError').html('<font color="red">중복</font>');
-	   			        else 
+	   			    	//alert('sdsd');
+ 	   			        if(data.result)
 	   			        	//alert('사용가능'); 
-   			     			$('#idError.').html('<font color="red">사용가능</font>');
+    			     			$('#idError').html('<font color="red">사용가능</font>');
+ 	   			        else 
+ 	   			        	//alert('중복');
+ 	   			        	$('#idError').html('<font color="red">중복</font>');
 	   			    },
    			     	error:function(){
    			    	 	alert('에러발생');
@@ -49,23 +50,24 @@
    			 	});
     		});
     		
-    		$('#nickname').blur(function(){
+    		$('#test').blur(function(){
+    			
     			var inputNickname = $('#nickname').val();
-				$.ajax({
+				 $.ajax({
 					url : "nicknameCheck.do",
 					type : "GET",
 					data : 'nickname=' + inputNickname,
 					dataType : 'json',
 					success : function (data){
 						if(data.result)
-							alert('중복');
-						else
 							alert('사용가능');
+						else
+							alert('중복');
 					},
 					error : function(){
 						alert('에러발생');
 					}
-				});
+				}); 
     		});
 
 		    $('#password').blur(function(){
@@ -253,7 +255,7 @@
                                                <p id="billing_first_name_field" class="form-row form-row-first validate-required">
                                                 <label class="" for="billing_first_name">닉네임<abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="" id="nickname" name="nickname" class="input-text ">
+                                                <input type="text" id="test" name="nickname" class="input-text ">
                                                 <br>
                                                 <span id="cidError"></span>
                                             </p>

@@ -100,13 +100,12 @@
 		<div class="container">
 
 			<h2 class="sidebar-title2">뽐내기 후보 리스트</h2>
-				<p style="text-align: right;">
-				<form action="/Wawa/boastSearch.do">
-					<input type="text" placeholder="Seach.."> 
-					<input type="button" value="검색">
-									</form>
-					<input type="button" value="뽐내기 후보 등록" onclick="location.href='/Wawa/boastWriteForm.do'">
-				</p>
+					<form action="/Wawa/boastSearch.do" style="text-align: right;">
+						<input type="text" placeholder="Seach.."> 
+						<input type="submit" value="검색">
+						<input type="button" value="뽐내기 후보 등록" onclick="location.href='/Wawa/boastWriteForm.do'">
+					</form>
+				
 		</div>
 		
 

@@ -11,19 +11,21 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.Controller;
 
 import interface_service.IBoardService;
+import interface_service.IRepleService;
 
 @Controller
 public class LostController {
 
 	@Autowired
 	private IBoardService boardService;
+	@Autowired
+	private IRepleService repleService;
 	
 	@RequestMapping("lostMain.do")
 	public ModelAndView lostMain(@RequestParam(defaultValue="1") int page,
 			@RequestParam(defaultValue="4") int boardCode){
 		ModelAndView mav = new ModelAndView();
 		mav.addAllObjects(boardService.getBoardList(page, boardCode));
-		mav.addObject("boardCode", boardCode);
 		mav.setViewName("lost.tiles");
 		return mav;
 	}
@@ -38,28 +40,61 @@ public class LostController {
 	}
 	
 	@RequestMapping("lostDetails.do")
-	public ModelAndView lostDetails(HashMap<String, Object> params){
+	public ModelAndView lostDetails(int boardIdx){
 		ModelAndView mav = new ModelAndView();
-		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
-		mav.addObject("result", board);
+		HashMap<String, Object> board = boardService.getBoardByBoardIdx(boardIdx);
+		List<HashMap<String, Object>> reple = repleService.selectRepleList(boardIdx);
+		mav.addObject("board", board);
+		mav.addObject("reple", reple);
 		mav.setViewName("lostDetails.tiles");
 		return mav;
 	}
 	
 	@RequestMapping("lostWriteForm.do")
-	public void lostWriteForm(){}
+	public String lostWriteForm(){
+		return "lostWriteForm.tiles";
+	}
 	
 	@RequestMapping("lostWrite.do")
 	public String lostWrite(int boardCode, String category, String name,
-			String resist, String lostdate, String kind, String sex, int age, double weight,
+			String resist, String lostdate, String lostplace, String kind, String sex, int age, double weight,
 			String phone, String email, String title, String content, String writer){
-		ModelAndView mav = new ModelAndView();
-		if(boardService.writeDogFindBoard(boardCode, category, name, resist, lostdate, 
-				kind, sex, age, weight, phone, email, title, content, writer)){
+		if(category.equals("find"))
+			category = "찾고있어요";
+		else if(category.equals("protect"))
+			category = "보호중입니다";
+		
+		if(sex.equals("male"))
+			sex = "수컷";
+		else if(sex.equals("female"))
+			sex = "암컷";
+		
+		if(kind.equals("1"))
+			kind = "치와와";
+		else if(kind.equals("2"))
+			kind = "요크셔테리어";
+		else if(kind.equals("3"))
+			kind = "말티즈";
+		else if(kind.equals("4"))
+			kind = "시츄";
+		else if(kind.equals("5"))
+			kind = "비글";
+		else if(kind.equals("6"))
+			kind = "퍼그";
+		else if(kind.equals("7"))
+			kind = "페키니즈";
+		else if(kind.equals("8"))
+			kind = "미니어쳐 슈나우저";
+		else if(kind.equals("9"))
+			kind = "기타소형견";
+		else if(kind.equals("10"))
+			kind = "기타중형견";
+		else if(kind.equals("11"))
+			kind = "기타대형견";
+		
+		boardService.writeDogFindBoard(boardCode, category, name, resist, lostdate, lostplace, 
+				kind, sex, age, weight, phone, email, title, content, writer);
 				return "redirect:lostMain.do";
-		}else {
-			return "redirect:lostWriteForm.do";
-		}
 	}
 	
 	@RequestMapping("lostUpdateForm.do")

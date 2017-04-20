@@ -12,4 +12,6 @@ public interface IUserInfoDao {
 	public UserInfo selectOneUserInfo(String id);
 	public List<HashMap<String, Object>> selectAllUserInfo();
 	public List<HashMap<String, Object>> selectBoardList();
+	public String idCheck(String id);
+	public String nicknameCheck(String nickname);
 }

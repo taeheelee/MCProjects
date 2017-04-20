@@ -10,7 +10,7 @@ public interface IBoardService {
 	//자유게시판,애견정보상식
 	public boolean writeFreeBoard(int boardCode, String title, String category, String content, String writer);
 	//유기견찾기
-	public boolean writeDogFindBoard(int boardCode, String category, String name,String resist, String lostdate, 
+	public boolean writeDogFindBoard(int boardCode, String category, String name,String resist, String lostdate, String lostPlace,
 			String kind, String sex, int age, double weight, String phone, String email, String title, String content, String writer);
 	//짝꿍찾기
 	public boolean writePartnerFindBoard(int boardCode, String name, String kind, String sex, 

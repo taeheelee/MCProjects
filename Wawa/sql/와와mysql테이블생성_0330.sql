@@ -72,7 +72,8 @@ phone varchar(30),
 email varchar(30),
 birthday date,
 starPoint int,
-likeCount int
+likeCount int,
+lostPlace varchar(30)
 );
 
 create table reple(

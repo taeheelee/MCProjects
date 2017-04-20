@@ -5,7 +5,6 @@
 <tiles-definitions>
   <definition name="tiles" template="/jsp/layout.jsp">
     <put-attribute name="header" value="/jsp/header.jsp" />
-    <put-attribute name="side" value="/jsp/side.jsp" />
     <put-attribute name="body" value="" />
     <put-attribute name="footer" value="/jsp/footer.jsp" />
   </definition>

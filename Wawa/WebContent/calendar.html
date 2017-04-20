@@ -2,7 +2,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>풀캘린더</title>
+<!-- Google Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+    
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+<!--     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script> 
+    <link href="tabstyle.css" rel="stylesheet">
 <style type="text/css">
     body {
         margin :40px 10px;
@@ -18,12 +39,12 @@
 <link href="./fullcalendar-3.3.1/fullcalendar.css" rel="stylesheet"/>
 <link href="./fullcalendar-3.3.1/fullcalendar.print.css" rel="stylesheet" media="print"/>
 <script type="text/javascript" src="./fullcalendar-3.3.1/lib/moment.min.js"></script>
-<script type="text/javascript" src="./fullcalendar-3.3.1/lib/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="./fullcalendar-3.3.1/lib/jquery.min.js"></script> -->
 <script type="text/javascript" src="./fullcalendar-3.3.1/fullcalendar.js"></script>
 <script type="text/javascript">
     jQuery(document).ready(function() {
         jQuery("#calendar").fullCalendar({
-              defaultDate : "2016-05-12"
+              defaultDate : "2017-04-10"
             , editable : true
             , eventLimit : true
             , events: [
@@ -86,6 +107,612 @@
     });
 </script>
 <body>
+<div class="product-big-title-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-bit-title text-left">
+                        <h2>나의 펫 정보</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<div class="single-product-area">
+
+        <div class="container">
+        
+                <div class="col-md-88">
+
+     
+                <div class="form-row place-order" style="float: right">
+					<input type="button" value="펫 추가하기">
+				</div>  
+
+                                                    
+<ul id="tabs">
+	<li><a href="#" name="#tab1" style="font-size: 25px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;와와&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+	<li><a href="#" name="#tab2" style="font-size: 25px;">애견이름 2</a></li>
+	<li><a href="#" name="#tab3" style="font-size: 25px;">애견이름 3</a></li>
+	<li><a href="#" name="#tab4" style="font-size: 25px;">애견이름 4</a></li>
+	<li><a href="#" name="#tab5" style="font-size: 25px;">애견이름 5</a></li>
+</ul>
+<div id="content">
+	<div id="tab1">
+
+		<div class="col-md-3">
+			<p style="text-align: center;">
+			<img src="img/dog_09.jpg" alt=""style="width: 100%;">
+			</p>
+			<p style="text-align: center;">
+				<input type="button" value="메인펫으로 지정" style="width: 100%"><br><br>
+				<input type="button" value="펫 수정" style="width: 48%">
+				<input type="button" value="펫 삭제" style="width: 48%">
+			</p>
+			
+		</div>
+		<div class="col-md-9" style="font-size: 18px;">
+			<span style="font-weight: bold;">와와</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;(등록번호)<span>123451234512345</span>
+			<br> 
+			<span>치와와</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>남</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>중성화여부</span>&nbsp;&nbsp;<input type="button" value="짝꿍 찾으러가기 GO" style="font-size: small;">
+			<br> 
+			<span>생일 : 0000년 00월 00일 </span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>0년 0개월</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;사람나이 <span>00살</span> 
+			<br>
+			<span>00.0kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;해당견종 성견 평균무게 <span> 00kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;하루필요열량<span>000kcal</span>&nbsp;&nbsp;<input type="button" value="체중관리 GO" style="font-size: small;">
+			<br> 
+			적정 일일 산책량 <span>00km</span> 
+			<br> 
+			미용 주기 알림<span>D-00</span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;">
+			<br>
+			다음 예방 접종 시기 <span>백신명</span> <span>D-00</span>&nbsp;&nbsp;<input type="button" value="접종관리 GO" style="font-size: small;">
+			<br> <br> <br> 
+			<span>달력입니까?</span>
+							<form method="post" action="#">
+								<table cellspacing="0" class="shop_table cart">
+									<thead>
+										<tr>
+											<th>sun</th>
+											<th>mon</th>
+											<th>tue</th>
+											<th>wed</th>
+											<th>thu</th>
+											<th>fri</th>
+											<th>sat</th>
+
+
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr class="cart_item">
+											<td>1</td>
+											<td>2</td>
+											<td>3</td>
+											<td>4</td>
+											<td>5</td>
+											<td>6</td>
+											<td>7</td>
+										</tr>
+										<tr class="cart_item">
+											<td>8</td>
+											<td>9</td>
+											<td>10</td>
+											<td>11</td>
+											<td>12</td>
+											<td>13</td>
+											<td>14</td>
+										</tr>
+										<tr class="cart_item">
+											<td>15</td>
+											<td>16</td>
+											<td>17</td>
+											<td>18</td>
+											<td>19</td>
+											<td>20</td>
+											<td>21</td>
+										</tr>
+										<tr class="cart_item">
+											<td>22</td>
+											<td>23</td>
+											<td>24</td>
+											<td>25</td>
+											<td>26</td>
+											<td>27</td>
+											<td>28</td>
+										</tr>
+										<tr class="cart_item">
+											<td>29</td>
+											<td>30</td>
+											<td>31</td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+
+										</tr>
+
+
+
+
+									</tbody>
+								</table>
+							</form>
+
+
+
+
+						</div>
+
+
+					</div>
+
+
+
+<div id="tab2">
+	<div class="col-md-3">
+			<p style="text-align: center;">
+			<img src="img/dog_12.jpg" alt=""style="width: 100%;">
+			</p>
+			<p style="text-align: center;">
+				<input type="button" value="메인펫으로 지정" style="width: 100%"><br><br>
+				<input type="button" value="펫 수정" style="width: 48%">
+				<input type="button" value="펫 삭제" style="width: 48%">
+			</p>
+			
+		</div>
+		<div class="col-md-9" style="font-size: 18px;">
+			<span style="font-weight: bold;">와와</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;(등록번호)<span>123451234512345</span>
+			<br> 
+			<span>치와와</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>남</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>중성화여부</span>&nbsp;&nbsp;<input type="button" value="짝꿍 찾으러가기 GO" style="font-size: small;">
+			<br> 
+			<span>생일 : 0000년 00월 00일 </span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>0년 0개월</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;사람나이 <span>00살</span> 
+			<br>
+			<span>00.0kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;해당견종 성견 평균무게 <span> 00kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;하루필요열량<span>000kcal</span>&nbsp;&nbsp;<input type="button" value="체중관리 GO" style="font-size: small;">
+			<br> 
+			적정 일일 산책량 <span>00km</span> 
+			<br> 
+			미용 주기 알림<span>D-00</span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;">
+			<br>
+			다음 예방 접종 시기 <span>백신명</span> <span>D-00</span>&nbsp;&nbsp;<input type="button" value="접종관리 GO" style="font-size: small;">
+			<br> <br> <br> 
+			<span>달력입니까?</span>
+							<form method="post" action="#">
+								<table cellspacing="0" class="shop_table cart">
+									<thead>
+										<tr>
+											<th>sun</th>
+											<th>mon</th>
+											<th>tue</th>
+											<th>wed</th>
+											<th>thu</th>
+											<th>fri</th>
+											<th>sat</th>
+
+
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr class="cart_item">
+											<td>1</td>
+											<td>2</td>
+											<td>3</td>
+											<td>4</td>
+											<td>5</td>
+											<td>6</td>
+											<td>7</td>
+										</tr>
+										<tr class="cart_item">
+											<td>8</td>
+											<td>9</td>
+											<td>10</td>
+											<td>11</td>
+											<td>12</td>
+											<td>13</td>
+											<td>14</td>
+										</tr>
+										<tr class="cart_item">
+											<td>15</td>
+											<td>16</td>
+											<td>17</td>
+											<td>18</td>
+											<td>19</td>
+											<td>20</td>
+											<td>21</td>
+										</tr>
+										<tr class="cart_item">
+											<td>22</td>
+											<td>23</td>
+											<td>24</td>
+											<td>25</td>
+											<td>26</td>
+											<td>27</td>
+											<td>28</td>
+										</tr>
+										<tr class="cart_item">
+											<td>29</td>
+											<td>30</td>
+											<td>31</td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+
+										</tr>
+
+
+
+
+									</tbody>
+								</table>
+							</form>
+
+
+
+
+						</div>
+
+
+
+
+</div>
+<div id="tab3">
+	<div class="col-md-3">
+			<p style="text-align: center;">
+			<img src="img/dog_05.jpg" alt=""style="width: 100%;">
+			</p>
+			<p style="text-align: center;">
+				<input type="button" value="메인펫으로 지정" style="width: 100%"><br><br>
+				<input type="button" value="펫 수정" style="width: 48%">
+				<input type="button" value="펫 삭제" style="width: 48%">
+			</p>
+			
+		</div>
+		<div class="col-md-9" style="font-size: 18px;">
+			<span style="font-weight: bold;">와와</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;(등록번호)<span>123451234512345</span>
+			<br> 
+			<span>치와와</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>남</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>중성화여부</span>&nbsp;&nbsp;<input type="button" value="짝꿍 찾으러가기 GO" style="font-size: small;">
+			<br> 
+			<span>생일 : 0000년 00월 00일 </span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>0년 0개월</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;사람나이 <span>00살</span> 
+			<br>
+			<span>00.0kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;해당견종 성견 평균무게 <span> 00kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;하루필요열량<span>000kcal</span>&nbsp;&nbsp;<input type="button" value="체중관리 GO" style="font-size: small;">
+			<br> 
+			적정 일일 산책량 <span>00km</span> 
+			<br> 
+			미용 주기 알림<span>D-00</span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;">
+			<br>
+			다음 예방 접종 시기 <span>백신명</span> <span>D-00</span>&nbsp;&nbsp;<input type="button" value="접종관리 GO" style="font-size: small;">
+			<br> <br> <br> 
+			<span>달력입니까?</span>
+							<form method="post" action="#">
+								<table cellspacing="0" class="shop_table cart">
+									<thead>
+										<tr>
+											<th>sun</th>
+											<th>mon</th>
+											<th>tue</th>
+											<th>wed</th>
+											<th>thu</th>
+											<th>fri</th>
+											<th>sat</th>
+
+
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr class="cart_item">
+											<td>1</td>
+											<td>2</td>
+											<td>3</td>
+											<td>4</td>
+											<td>5</td>
+											<td>6</td>
+											<td>7</td>
+										</tr>
+										<tr class="cart_item">
+											<td>8</td>
+											<td>9</td>
+											<td>10</td>
+											<td>11</td>
+											<td>12</td>
+											<td>13</td>
+											<td>14</td>
+										</tr>
+										<tr class="cart_item">
+											<td>15</td>
+											<td>16</td>
+											<td>17</td>
+											<td>18</td>
+											<td>19</td>
+											<td>20</td>
+											<td>21</td>
+										</tr>
+										<tr class="cart_item">
+											<td>22</td>
+											<td>23</td>
+											<td>24</td>
+											<td>25</td>
+											<td>26</td>
+											<td>27</td>
+											<td>28</td>
+										</tr>
+										<tr class="cart_item">
+											<td>29</td>
+											<td>30</td>
+											<td>31</td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+
+										</tr>
+
+
+
+
+									</tbody>
+								</table>
+							</form>
+
+
+
+
+						</div>
+
+
+</div>
+<div id="tab4">
+	<div class="col-md-3">
+			<p style="text-align: center;">
+			<img src="img/dog_03.jpg" alt=""style="width: 100%;">
+			</p>
+			<p style="text-align: center;">
+				<input type="button" value="메인펫으로 지정" style="width: 100%"><br><br>
+				<input type="button" value="펫 수정" style="width: 48%">
+				<input type="button" value="펫 삭제" style="width: 48%">
+			</p>
+			
+		</div>
+		<div class="col-md-9" style="font-size: 18px;">
+			<span style="font-weight: bold;">와와</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;(등록번호)<span>123451234512345</span>
+			<br> 
+			<span>치와와</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>남</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>중성화여부</span>&nbsp;&nbsp;<input type="button" value="짝꿍 찾으러가기 GO" style="font-size: small;">
+			<br> 
+			<span>생일 : 0000년 00월 00일 </span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>0년 0개월</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;사람나이 <span>00살</span> 
+			<br>
+			<span>00.0kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;해당견종 성견 평균무게 <span> 00kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;하루필요열량<span>000kcal</span>&nbsp;&nbsp;<input type="button" value="체중관리 GO" style="font-size: small;">
+			<br> 
+			적정 일일 산책량 <span>00km</span> 
+			<br> 
+			미용 주기 알림<span>D-00</span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;">
+			<br>
+			다음 예방 접종 시기 <span>백신명</span> <span>D-00</span>&nbsp;&nbsp;<input type="button" value="접종관리 GO" style="font-size: small;">
+			<br> <br> <br> 
+			<span>달력입니까?</span>
+							<form method="post" action="#">
+								<table cellspacing="0" class="shop_table cart">
+									<thead>
+										<tr>
+											<th>sun</th>
+											<th>mon</th>
+											<th>tue</th>
+											<th>wed</th>
+											<th>thu</th>
+											<th>fri</th>
+											<th>sat</th>
+
+
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr class="cart_item">
+											<td>1</td>
+											<td>2</td>
+											<td>3</td>
+											<td>4</td>
+											<td>5</td>
+											<td>6</td>
+											<td>7</td>
+										</tr>
+										<tr class="cart_item">
+											<td>8</td>
+											<td>9</td>
+											<td>10</td>
+											<td>11</td>
+											<td>12</td>
+											<td>13</td>
+											<td>14</td>
+										</tr>
+										<tr class="cart_item">
+											<td>15</td>
+											<td>16</td>
+											<td>17</td>
+											<td>18</td>
+											<td>19</td>
+											<td>20</td>
+											<td>21</td>
+										</tr>
+										<tr class="cart_item">
+											<td>22</td>
+											<td>23</td>
+											<td>24</td>
+											<td>25</td>
+											<td>26</td>
+											<td>27</td>
+											<td>28</td>
+										</tr>
+										<tr class="cart_item">
+											<td>29</td>
+											<td>30</td>
+											<td>31</td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+
+										</tr>
+
+
+
+
+									</tbody>
+								</table>
+							</form>
+
+
+
+
+						</div>
+
+
+</div>
+<div id="tab5">
+	<div class="col-md-3">
+			<p style="text-align: center;">
+			<img src="img/dog_01.jpg" alt=""style="width: 100%;">
+			</p>
+			<p style="text-align: center;">
+				<input type="button" value="메인펫으로 지정" style="width: 100%"><br><br>
+				<input type="button" value="펫 수정" style="width: 48%">
+				<input type="button" value="펫 삭제" style="width: 48%">
+			</p>
+			
+		</div>
+		<div class="col-md-9" style="font-size: 18px;">
+			<span style="font-weight: bold;">와와</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;(등록번호)<span>123451234512345</span>
+			<br> 
+			<span>치와와</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>남</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>중성화여부</span>&nbsp;&nbsp;<input type="button" value="짝꿍 찾으러가기 GO" style="font-size: small;">
+			<br> 
+			<span>생일 : 0000년 00월 00일 </span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>0년 0개월</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;사람나이 <span>00살</span> 
+			<br>
+			<span>00.0kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;해당견종 성견 평균무게 <span> 00kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;하루필요열량<span>000kcal</span>&nbsp;&nbsp;<input type="button" value="체중관리 GO" style="font-size: small;">
+			<br> 
+			적정 일일 산책량 <span>00km</span> 
+			<br> 
+			미용 주기 알림<span>D-00</span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;">
+			<br>
+			다음 예방 접종 시기 <span>백신명</span> <span>D-00</span>&nbsp;&nbsp;<input type="button" value="접종관리 GO" style="font-size: small;">
+			<br> <br> <br> 
+			<span>달력입니까?</span>  <div id="calendar"></div>
+							<form method="post" action="#">
+								<table cellspacing="0" class="shop_table cart">
+									<thead>
+										<tr>
+											<th>sun</th>
+											<th>mon</th>
+											<th>tue</th>
+											<th>wed</th>
+											<th>thu</th>
+											<th>fri</th>
+											<th>sat</th>
+
+
+										</tr>
+									</thead>
+									<tbody>
+
+										<tr class="cart_item">
+											<td>1</td>
+											<td>2</td>
+											<td>3</td>
+											<td>4</td>
+											<td>5</td>
+											<td>6</td>
+											<td>7</td>
+										</tr>
+										<tr class="cart_item">
+											<td>8</td>
+											<td>9</td>
+											<td>10</td>
+											<td>11</td>
+											<td>12</td>
+											<td>13</td>
+											<td>14</td>
+										</tr>
+										<tr class="cart_item">
+											<td>15</td>
+											<td>16</td>
+											<td>17</td>
+											<td>18</td>
+											<td>19</td>
+											<td>20</td>
+											<td>21</td>
+										</tr>
+										<tr class="cart_item">
+											<td>22</td>
+											<td>23</td>
+											<td>24</td>
+											<td>25</td>
+											<td>26</td>
+											<td>27</td>
+											<td>28</td>
+										</tr>
+										<tr class="cart_item">
+											<td>29</td>
+											<td>30</td>
+											<td>31</td>
+											<td></td>
+											<td></td>
+											<td></td>
+											<td></td>
+
+										</tr>
+
+
+
+
+									</tbody>
+								</table>
+							</form>
+
+
+
+
+						</div>
+
+
+</div>
+</div><!-- tab end -->
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+            
+        </div>
+        </div>
+    </div>
     <div id="calendar"></div>
+    
+    
+    
+        <!-- Latest jQuery form server-->
+<!--     <script src="https://code.jquery.com/jquery.min.js"></script> -->
+    
+    
+    <!-- Bootstrap JS form CDN -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    
+    <!-- jQuery sticky menu -->
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.sticky.js"></script>
+    
+    <!-- jQuery easing -->
+    <script src="js/jquery.easing.1.3.min.js"></script>
+    
+    <!-- Main Script -->
+    <script src="js/main.js"></script>
+    
+<!-- tab form make sy -->
+    <script src="tab.js"></script>
 </body>
 </html>

@@ -60,7 +60,17 @@ public class MemberService implements IMemberService{
 	@Override
 	public boolean checkId(String id) {
 		// TODO Auto-generated method stub
-		return false;
+//		System.out.println(userinfoDao.idCheck(id) + "서비스");
+		if(dao.idCheck(id) == null) 
+			return true;
+		else 
+			return false;
 	}
 
+	@Override
+	public boolean nicknameCheck(String nickname) {
+		// TODO Auto-generated method stub
+		if(dao.nicknameCheck(nickname) == null) return true;
+		else return false;
+	}
 }

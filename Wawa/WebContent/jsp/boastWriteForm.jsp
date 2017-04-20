@@ -5,6 +5,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	  $(document).ready(function() {
+	      $('#summernote').summernote({
+	    	  height : 500
+	      });
+	      	$('#ok').click(function() {
+				var content = $('#summernote').summernote('code');
+				$('#content').val(content);	
+			});
+	  });
+	</script>
 </head>
   <body>
   
@@ -64,8 +75,11 @@
 											</div>
                                          
                                            
-                                        <form action="/Wawa/boastWrite.do" enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
-                                
+                                        <form action="boastWrite.do" enctype="multipart/form-data" class="checkout" method="get" name="checkout">
+                                			<input type="hidden" name="content" id="content">
+											<input type="hidden" name="boardCode" value="3">
+											<input type="hidden" name="writer" value="글쓴이">
+											
 											<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
                                                 <label class="" for="billing_state">애견 이름</label>
                                                 <input type="text" id="name" name="name" placeholder="" value="" class="input-text ">
@@ -95,17 +109,17 @@
                                                 <label class="" for="billing_country">품종 <abbr title="required" class="required">*</abbr>
                                                 </label>
                                                 <select class="country_to_state country_select" id="kind" name="kind">
-                                                    <option selected="selected" value="GB">치와와</option>
-                                                    <option value="DE">요크셔 테리어</option>
-                                                    <option value="GH">말티즈</option>
-                                                    <option value="SB">시츄</option>
-                                                    <option value="SO">비글</option>
-                                                    <option value="ZA">퍼그</option>
-                                                    <option value="GS">페키니즈</option>
-                                                    <option value="KR">미니어쳐 슈나우저</option>
-                                                    <option value="GE">기타 소형견</option>
-                                                    <option value="KR">기타 중형견</option>
-                                                    <option value="KR">기타 대형견</option>
+                                                    <option selected="selected" value="1">치와와</option>
+                                                    <option value="2">요크셔 테리어</option>
+                                                    <option value="3">말티즈</option>
+                                                    <option value="4">시츄</option>
+                                                    <option value="5">비글</option>
+                                                    <option value="6">퍼그</option>
+                                                    <option value="7">페키니즈</option>
+                                                    <option value="8">미니어쳐 슈나우저</option>
+                                                    <option value="9">기타 소형견</option>
+                                                    <option value="10">기타 중형견</option>
+                                                    <option value="11">기타 대형견</option>
                                                 </select>
                                             </p>
                                             <br>
@@ -113,9 +127,9 @@
                                             	<p id="billing_first_name_field" class="form-row form-row-first validate-required">
                                                 <label class="" for="billing_first_name">애견 프로필 사진 등록 <abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="" id="billing_first_name" name="billing_first_name" class="input-text ">
+                                                
                                             <div class="form-row place-order">
-												<input type="submit" data-value="Place order" value="ADD PHOTO" id="place_order" name="woocommerce_checkout_place_order" class="button alt" >
+												<input type="button" data-value="Place order" value="ADD PHOTO" id="place_order" name="woocommerce_checkout_place_order" class="button alt" >
 
 											</div>
                                             </p>
@@ -127,16 +141,14 @@
                                             <br>
             
 											  <div style="width: 100%; margin: 0 auto;">
-											    <div id="summernote"><p>
-																<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-															</p></div>
+											    <div id="summernote"></div>
 												</div>
 											<br>
 											
 											<br>
 											
 											<div class="form-row place-order" style="float: right">
-												<input type="submit" data-value="Place order" value="WRITE" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
+												<input type="submit" data-value="Place order" value="WRITE" id="ok" name="woocommerce_checkout_place_order" class="button alt">
 									</form>
 									
 									

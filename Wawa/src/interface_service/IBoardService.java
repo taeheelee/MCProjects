@@ -6,7 +6,7 @@ import java.util.List;
 public interface IBoardService {
 	//================================삽입========================================================
 	//뽐내기
-	public boolean writeBoastBoard(int boardCode, String name, int age, String sex, String title, String content, String writer);
+	public boolean writeBoastBoard(int boardCode, String name, int age, String kind, String sex, String title, String content, String writer);
 	//자유게시판,애견정보상식
 	public boolean writeFreeBoard(int boardCode, String title, String category, String content, String writer);
 	//유기견찾기

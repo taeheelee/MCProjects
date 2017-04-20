@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,220 +104,83 @@
 					<form action="/Wawa/boastSearch.do" style="text-align: right;">
 						<input type="text" placeholder="Seach.."> 
 						<input type="submit" value="검색">
-						<input type="button" value="뽐내기 후보 등록" onclick="location.href='/Wawa/boastWriteForm.do'">
+						<input type="button" value="뽐내기 후보 등록" onclick="location.href='boastWriteForm.do'">
 					</form>
 				
 		</div>
 		
 
 		
-		
-		<div class="container">
-			<div class="single-product col-md-2" style=" padding: 10px;">
-				<div class="col-md-11 boast-list-petname" style="background: #f4f4f4; padding : 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_01.jpg" alt="" style="margin-bottom: 15px">
-							<div class="product-hover">
-								<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-								<a href="/Wawa/boastSearch.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >
-						<tr><td id="petname" style="color: white; font-weight: bold; font-size: large;"><span>와와</span>(<span id="petsex">♂</span>)<span id="petage">2</span>살</td></tr>
-						<tr><td id="like">♥좋아요 <span style="font-weight: bold">10</span>개</td></tr>
-					</table>
+			<div class="container">
+				<c:forEach items="${boardList }" var="boast">
+				<div class="single-product col-md-2" style=" padding: 10px;">
+					<div class="col-md-11 boast-list-petname" style="background: #f4f4f4; padding : 15px;width: 100%; margin: 0 auto;">
+							<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
+								<img src="img/dog_01.jpg" alt="" style="margin-bottom: 15px">
+								<div class="product-hover">
+									<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
+									<a href="boastDetails.do?boardIdx=${boast.boardIdx }" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
+								</div>
+							</div><!--  마우스오버시 검정색 효과 범위 끝 -->
+						<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >
+							<tr><td id="petname" style="color: white; font-weight: bold; font-size: large;"><span>${boast.name }</span>(<span id="petsex">${boast.sex }</span>)<span id="petage">${boast.age }</span>살</td></tr>
+							<tr><td id="like">♥좋아요 <span style="font-weight: bold">${boast.likeCount }</span>개</td></tr>
+						</table>
+					</div>
 				</div>
+				</c:forEach>
 			</div>
-			<div class="single-product col-md-2" style=" padding: 10px;">
-				<div class="col-md-11 boast-list-petname" style="background: #f4f4f4; padding : 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_02.jpg" alt="" style="margin-bottom: 15px">
-							<div class="product-hover">
-								<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-								<a href="/Wawa/boastSearch.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >
-						<tr><td id="petname" style="color: white; font-weight: bold; font-size: large;"><span>와와</span>(<span id="petsex">♂</span>)<span id="petage">2</span>살</td></tr>
-						<tr><td id="like">♥좋아요 <span style="font-weight: bold">10</span>개</td></tr>
-					</table>
-				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 10px;">
-				<div class="col-md-11 boast-list-petname" style="background: #f4f4f4; padding : 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_03.jpg" alt="" style="margin-bottom: 15px">
-							<div class="product-hover">
-								<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-								<a href="/Wawa/boastSearch.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >
-						<tr><td id="petname" style="color: white; font-weight: bold; font-size: large;"><span>와와</span>(<span id="petsex">♂</span>)<span id="petage">2</span>살</td></tr>
-						<tr><td id="like">♥좋아요 <span style="font-weight: bold">10</span>개</td></tr>
-					</table>
-				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 10px;">
-				<div class="col-md-11 boast-list-petname" style="background: #f4f4f4; padding : 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_04.jpg" alt="" style="margin-bottom: 15px">
-							<div class="product-hover">
-								<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-								<a href="/Wawa/boastSearch.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >
-						<tr><td id="petname" style="color: white; font-weight: bold; font-size: large;"><span>와와</span>(<span id="petsex">♂</span>)<span id="petage">2</span>살</td></tr>
-						<tr><td id="like">♥좋아요 <span style="font-weight: bold">10</span>개</td></tr>
-					</table>
-				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 10px;">
-				<div class="col-md-11 boast-list-petname" style="background: #f4f4f4; padding : 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_05.jpg" alt="" style="margin-bottom: 15px">
-							<div class="product-hover">
-								<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-								<a href="/Wawa/boastSearch.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >
-						<tr><td id="petname" style="color: white; font-weight: bold; font-size: large;"><span>와와</span>(<span id="petsex">♂</span>)<span id="petage">2</span>살</td></tr>
-						<tr><td id="like">♥좋아요 <span style="font-weight: bold">10</span>개</td></tr>
-					</table>
-				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 10px;">
-				<div class="col-md-11 boast-list-petname" style="background: #f4f4f4; padding : 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_06.jpg" alt="" style="margin-bottom: 15px">
-							<div class="product-hover">
-								<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-								<a href="/Wawa/boastSearch.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >
-						<tr><td id="petname" style="color: white; font-weight: bold; font-size: large;"><span>와와</span>(<span id="petsex">♂</span>)<span id="petage">2</span>살</td></tr>
-						<tr><td id="like">♥좋아요 <span style="font-weight: bold">10</span>개</td></tr>
-					</table>
-				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 10px;">
-				<div class="col-md-11 boast-list-petname" style="background: #f4f4f4; padding : 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_07.jpg" alt="" style="margin-bottom: 15px">
-							<div class="product-hover">
-								<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-								<a href="/Wawa/boastSearch.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >
-						<tr><td id="petname" style="color: white; font-weight: bold; font-size: large;"><span>와와</span>(<span id="petsex">♂</span>)<span id="petage">2</span>살</td></tr>
-						<tr><td id="like">♥좋아요 <span style="font-weight: bold">10</span>개</td></tr>
-					</table>
-				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 10px;">
-				<div class="col-md-11 boast-list-petname" style="background: #f4f4f4; padding : 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_08.jpg" alt="" style="margin-bottom: 15px">
-							<div class="product-hover">
-								<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-								<a href="/Wawa/boastSearch.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >
-						<tr><td id="petname" style="color: white; font-weight: bold; font-size: large;"><span>와와</span>(<span id="petsex">♂</span>)<span id="petage">2</span>살</td></tr>
-						<tr><td id="like">♥좋아요 <span style="font-weight: bold">10</span>개</td></tr>
-					</table>
-				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 10px;">
-				<div class="col-md-11 boast-list-petname" style="background: #f4f4f4; padding : 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_09.jpg" alt="" style="margin-bottom: 15px">
-							<div class="product-hover">
-								<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-								<a href="/Wawa/boastSearch.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >
-						<tr><td id="petname" style="color: white; font-weight: bold; font-size: large;"><span>와와</span>(<span id="petsex">♂</span>)<span id="petage">2</span>살</td></tr>
-						<tr><td id="like">♥좋아요 <span style="font-weight: bold">10</span>개</td></tr>
-					</table>
-				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 10px;">
-				<div class="col-md-11 boast-list-petname" style="background: #f4f4f4; padding : 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_10.jpg" alt="" style="margin-bottom: 15px">
-							<div class="product-hover">
-								<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-								<a href="/Wawa/boastSearch.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >
-						<tr><td id="petname" style="color: white; font-weight: bold; font-size: large;"><span>와와</span>(<span id="petsex">♂</span>)<span id="petage">2</span>살</td></tr>
-						<tr><td id="like">♥좋아요 <span style="font-weight: bold">10</span>개</td></tr>
-					</table>
-				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 10px;">
-				<div class="col-md-11 boast-list-petname" style="background: #f4f4f4; padding : 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_11.jpg" alt="" style="margin-bottom: 15px">
-							<div class="product-hover">
-								<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-								<a href="/Wawa/boastSearch.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >
-						<tr><td id="petname" style="color: white; font-weight: bold; font-size: large;"><span>와와</span>(<span id="petsex">♂</span>)<span id="petage">2</span>살</td></tr>
-						<tr><td id="like">♥좋아요 <span style="font-weight: bold">10</span>개</td></tr>
-					</table>
-				</div>
-			</div>
-			<div class="single-product col-md-2" style=" padding: 10px;">
-				<div class="col-md-11 boast-list-petname" style="background: #f4f4f4; padding : 15px;width: 100%; margin: 0 auto;">
-						<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-							<img src="img/dog_12.jpg" alt="" style="margin-bottom: 15px">
-							<div class="product-hover">
-								<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-								<a href="/Wawa/boastSearch.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
-							</div>
-						</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-					<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >
-						<tr><td id="petname" style="color: white; font-weight: bold; font-size: large;"><span>와와</span>(<span id="petsex">♂</span>)<span id="petage">2</span>살</td></tr>
-						<tr><td id="like">♥좋아요 <span style="font-weight: bold">10</span>개</td></tr>
-					</table>
-				</div>
-			</div>
-			
-		</div>
-		
 		
 		<div class="row">
 				<div class="col-md-12">
 					<div class="product-pagination text-center">
 						<nav>
 							<ul class="pagination">
-								<li><a href="#" aria-label="Previous"> <span
-										aria-hidden="true">&laquo;</span>
-								</a></li>
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#">6</a></li>
-								<li><a href="#">7</a></li>
-								<li><a href="#">8</a></li>
-								<li><a href="#">9</a></li>
-								<li><a href="#">10</a></li>
-								<li><a href="#" aria-label="Next"> <span
-										aria-hidden="true">&raquo;</span>
-								</a></li>
+								<c:if test="${current != 1 }">
+									<c:choose>
+										<c:when test="${keyword == null }">
+											<li><a href="boastMain.do?page=${current-1 }" aria-label="Previous"> <span
+											aria-hidden="true">&laquo;</span>
+											</a></li>
+										</c:when>
+										<c:otherwise>
+											<li><a href="boastSearch.do?page=${current-1 }&keyword=${keyword}&type=${type}" aria-label="Next"> <span
+											aria-hidden="true">&raquo;</span>
+											</a></li>
+										</c:otherwise>
+									</c:choose>
+								</c:if>
+								<c:forEach begin="${start }" end="${end }" var="page">
+									<c:choose>
+										<c:when test="${page==current }">
+											<li><a href="#">${page }</a></li>
+										</c:when>
+										<c:otherwise>
+											<c:choose>
+												<c:when test="${keyword == null }">
+													<li><a href="boastMain.do?page=${page }">${page }</a></li>
+												</c:when>
+												<c:otherwise>
+													<li><a href="boastSearch.do?page=${page }&keyword=${keyword}&type=${type}">${page }</a></li>
+												</c:otherwise>
+											</c:choose>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+								<c:if test="${current != last }">
+									<c:choose>
+										<c:when test="${keyword == null }">
+											<li><a href="boastMain.do?page=${current+1 }" aria-label="Next"> <span
+											aria-hidden="true">&raquo;</span>
+											</a></li>
+										</c:when>
+										<c:otherwise>
+											<li><a href="boastSearch.do?page=${current+1 }&keyword=${keyword}&type=${type}" aria-label="Next"> <span
+											aria-hidden="true">&raquo;</span>
+											</a></li>
+										</c:otherwise>
+									</c:choose>
+								</c:if>
 							</ul>
 						</nav>
 					</div>

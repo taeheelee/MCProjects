@@ -11,19 +11,21 @@ import org.springframework.web.servlet.ModelAndView;
 
 import commons.Constant;
 import interface_service.IBoardService;
+import interface_service.IRepleService;
 import model.Board;
 
 @Controller
 public class BoastController {
 	@Autowired
 	private IBoardService boardService;
+	@Autowired
+	private IRepleService repleService;
 	
 	@RequestMapping("boastMain.do")
 	public ModelAndView boastMain(@RequestParam(defaultValue="1") int page,
 			@RequestParam(defaultValue="3") int boardCode){
 		ModelAndView mav = new ModelAndView();
 		mav.addAllObjects(boardService.getBoardList(page, boardCode));
-		mav.addObject("boardCode", boardCode);
 		mav.setViewName("boast.tiles");
 		return mav;
 	}
@@ -47,27 +49,50 @@ public class BoastController {
 	public ModelAndView boastDetails(int boardIdx){
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(boardIdx);
-		mav.addObject("result", board);
+		List<HashMap<String, Object>> reple = repleService.selectRepleList(boardIdx);
+		mav.addObject("board", board);
+		mav.addObject("reple", reple);
 		mav.setViewName("boastDetails.tiles");
 		return mav;
 	}
 	
 	@RequestMapping("boastWriteForm.do") //writeForm.jsp로
-	public ModelAndView boastWriteForm(@RequestParam(defaultValue="3") int boardCode){
-		ModelAndView mav = new ModelAndView();
-		mav.addObject("boardCode", boardCode);
-		return mav;
+	public String boastWriteForm(){
+		return "boastWriteForm.tiles";
 	}
 	
 	@RequestMapping("boastWrite.do")
-	public String boastWrite(@RequestParam(defaultValue="3") int boardCode, String name, int age, String sex, 
-			String title, String summernote, String writer){
-		ModelAndView mav = new ModelAndView();
-		if(boardService.writeBoastBoard(boardCode, name, age, sex, title, summernote, writer)){
-			return "redirect:boastMain.do";
-		}else {
-			return "redirect:boastWriteForm.do";
-		}
+	public String boastWrite(int boardCode, String name, int age, String kind, String sex, 
+			String title, String content, String writer){
+		if(sex.equals("male"))
+			sex = "수컷";
+		else if(sex.equals("female"))
+			sex = "암컷";
+		
+		if(kind.equals("1"))
+			kind = "치와와";
+		else if(kind.equals("2"))
+			kind = "요크셔테리어";
+		else if(kind.equals("3"))
+			kind = "말티즈";
+		else if(kind.equals("4"))
+			kind = "시츄";
+		else if(kind.equals("5"))
+			kind = "비글";
+		else if(kind.equals("6"))
+			kind = "퍼그";
+		else if(kind.equals("7"))
+			kind = "페키니즈";
+		else if(kind.equals("8"))
+			kind = "미니어쳐 슈나우저";
+		else if(kind.equals("9"))
+			kind = "기타소형견";
+		else if(kind.equals("10"))
+			kind = "기타중형견";
+		else if(kind.equals("11"))
+			kind = "기타대형견";
+		boardService.writeBoastBoard(boardCode, name, age, kind, sex, title, content, writer);
+		return "redirect:boastMain.do";
 	}
 	
 	@RequestMapping("boastUpdateForm.do")

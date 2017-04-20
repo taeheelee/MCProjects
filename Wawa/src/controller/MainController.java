@@ -31,7 +31,7 @@ public class MainController {
 		}
 		return "redirect:main.do";
 	}
-	
+	 
 	@RequestMapping("main.do")
 	public String main(){
 		return "main.tiles";

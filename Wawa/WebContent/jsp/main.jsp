@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -64,31 +65,41 @@
                     </div>
                 </div>
                 
+      <c:choose>
+		<c:when test="${sessionScope.id == null }">
+		</c:when>
+		<c:otherwise>
                 <div class="col-sm-6" style="margin: 0">
                     <div class="shopping-item">
                         <a href="cart.html">
                         <table id="mini" style="margin-left: 5px;width:330px; height: 100px;">
-	<tr>
-		<td rowspan="4" style="width: 90px;"><img src="img/dog_12.jpg" alt=""style="width: 80px;height: 80px"></td>
-		<td colspan="3">username</td>
-	</tr>
-	<tr style="font-size: small;">
-		<td>강아지이름</td>
-		<td>성별</td>
-		<td>0년00개월</td>
-	</tr>
-	<tr style="font-size: small;">
-		<td colspan="2">다음 예방접종</td>
-		<td id="dday" style="text-align: center;">D-00</td>
-	</tr>
-	<tr style="font-size: small;">
-		<td colspan="2">다음 미용예정</td>
-		<td id="" style="text-align: center;">D-00</td>
-	</tr>
-</table>
+							<tr>
+								<td rowspan="4" style="width: 90px;"><img src="img/dog_12.jpg" alt=""style="width: 80px;height: 80px"></td>
+								<td colspan="3">${sessionScope.name }</td>
+							</tr>
+							<tr style="font-size: small;">
+								<td>${sessionScope.petName }</td>
+								<td>${sessionScope.sex }</td>
+								<td>0년00개월</td>
+							</tr>
+							<tr style="font-size: small;">
+								<td colspan="2">다음 예방접종</td>
+								<td id="dday" style="text-align: center;">D-00</td>
+							</tr>
+							<tr style="font-size: small;">
+								<td colspan="2">다음 미용예정</td>
+								<td id="" style="text-align: center;">D-00</td>
+							</tr>
+						</table>
                         </a>
                     </div>
                 </div>
+		</c:otherwise>
+	</c:choose>
+	
+                
+                
+
             </div>
         </div>
     </div> <!-- End site branding area -->

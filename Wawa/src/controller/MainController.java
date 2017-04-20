@@ -19,7 +19,7 @@ public class MainController {
 	
 	@RequestMapping("loginForm.do")
 	public String loginForm(){
-		return "login";
+		return "main.tiles";
 	}
 	@RequestMapping(method=RequestMethod.POST, value="login.do")
 	public String login(HttpSession session, String id, String pw){
@@ -33,10 +33,14 @@ public class MainController {
 	}
 	
 	@RequestMapping("main.do")
-	public void main(){}
+	public String main(){
+		return "main.tiles";
+	}
 	
 	@RequestMapping("joinForm.do")
-	public void joinForm(){}
+	public String joinForm(){
+		return "joinForm.tiles";
+	}
 	
 	@RequestMapping("join.do")
 	public String join(String id, String password, String nickname,

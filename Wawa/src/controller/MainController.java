@@ -19,7 +19,7 @@ public class MainController {
 	
 	@RequestMapping("loginForm.do")
 	public String loginForm(){
-		return "main.tiles";
+		return "loginForm.tiles";
 	}
 	@RequestMapping(method=RequestMethod.POST, value="login.do")
 	public String login(HttpSession session, String id, String pw){

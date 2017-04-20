@@ -96,24 +96,20 @@
 
 
 	<div class="single-product-area">
-		<div class="zigzag-bottom"></div>
 
 		<div class="container">
-		                                 
-			<h3 class="sidebar-title">뽐내기 후보 리스트</h3>
-			<!-- <div class="row"> -->
 
-		</div>
-		
-		<div class="container" style="float: right;">				
-		
+			<h2 class="sidebar-title2">뽐내기 후보 리스트</h2>
+				<p style="text-align: right;">
 				<form action="/Wawa/boastSearch.do">
-					<input type="text" placeholder="Search..">
-					<input type="submit" value="검색">
-				</form>
-
-			<input type="button" value="뽐내기 등록" onclick="location.href='/Wawa/boastWriteForm.do'">
+					<input type="text" placeholder="Seach.."> 
+					<input type="button" value="검색">
+									</form>
+					<input type="button" value="뽐내기 후보 등록" onclick="location.href='/Wawa/boastWriteForm.do'">
+				</p>
 		</div>
+		
+
 		
 		
 		<div class="container">

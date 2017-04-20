@@ -25,25 +25,31 @@
 
 
 	<div class="single-product-area">
-		
-
 		<div class="container">
-		                                 
-			<h3 class="sidebar-title">목록</h3>
-		</div>
-		
-		<div class="container">
-
-				<div class="container" style="float: right;">
-				
-				<form action="/Wawa/partnerSearch.do">
-					<input type="text" placeholder="Search..">
+			<h2 class="sidebar-title2">찾고있어요/보호중입니다 </h2>
+				<form action="/Wawa/partnerSearch.do" style="text-align: right;">
+					<input type="radio" name="lost" value="찾고있어요"> 찾고있어요
+					<input type="radio" name="lost" value="보호중입니다"> 보호중입니다
+					<input type="text" placeholder="Seach.."> 
 					<input type="submit" value="검색">
+					<input type="button" value="유기견 등록" onclick="location.href='/Wawa/lostWriteForm.do'">
 				</form>
-				<input type="button" value="유기견 등록" onclick="location.href='/Wawa/lostWriteForm.do'">
-				</div>
-		
 		</div>
+
+<!-- 		<div class="container">                    -->
+<!-- 			<h3 class="sidebar-title">목록</h3> -->
+<!-- 		</div> -->
+		
+<!-- 		<div class="container"> -->
+<!-- 				<div class="container" style="float: right;"> -->
+<!-- 				<form action="/Wawa/partnerSearch.do"> -->
+<!-- 					<input type="text" placeholder="Search.."> -->
+<!-- 					<input type="submit" value="검색"> -->
+<!-- 				</form> -->
+<!-- 				<input type="button" value="유기견 등록" onclick="location.href='/Wawa/lostWriteForm.do'"> -->
+<!-- 				</div> -->
+		
+<!-- 		</div> -->
 
 		<div class="container" id="">
 

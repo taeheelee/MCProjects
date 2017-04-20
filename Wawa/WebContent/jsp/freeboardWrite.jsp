@@ -39,26 +39,21 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-      <script>
-      $('#summernote').summernote({
-    	  height: 300,                 // set editor height
-    	  minHeight: null,             // set minimum height of editor
-    	  maxHeight: null,             // set maximum height of editor
-    	  focus: true                  // set focus to editable area after initializing summernote
-    	});
-/* 	    $(document).ready(function() {
-	    	$('#ok').click(function() {
-		        var content = $('#summernote').summernote('code');
-		    	$('#content').val(content);
+  <script>
+  </script>
+	<script type="text/javascript">
+	  $(document).ready(function() {
+	      $('#summernote').summernote();
+	      $('#summernote').disableResizeEditor();
+	      	$('#ok').click(function() {
+				var content = $('#summernote').summernote('code');
+				alert(content);
+				$('#content').val(content);	
 			});
-	    }); */
-  </script>
-  <script type="text/javascript">
-  	function content() {
-  		var content = $('#summernote').summernote('code');
-    	$('#content').val(content);
-	}
-  </script>
+	  });
+		
+		
+	</script>
   
   </head>
   <body>
@@ -208,9 +203,8 @@
 
 				 
   <div style="width: 100%; margin: 0 auto;">
-    <div id="summernote"><p>
-					<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-				</p></div>
+    <div id="summernote">
+    </div>
 	</div>
 <br>
 
@@ -218,7 +212,7 @@
 
 
 											<div class="form-row place-order" style="float: right">
-												<input type="submit" data-value="Place order" value="WRITE" onclick="return content()" name="woocommerce_checkout_place_order" class="button alt">
+												<input type="submit" data-value="Place order" value="WRITE" id="ok"  name="woocommerce_checkout_place_order" class="button alt">
 											</div>
 
 

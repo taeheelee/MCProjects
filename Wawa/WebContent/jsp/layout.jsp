@@ -42,7 +42,7 @@
 	<link rel="stylesheet" href="summernote/dist/summernote.css">
     <script src="summernote/dist/summernote.js"></script>
 	<script src="summernote/dist/summernote.min.js"></script>
-	<script src="summernote/dist/lang/summernote-ko-KR.js"></script>
+<!-- 	<script src="summernote/dist/lang/summernote-ko-KR.js"></script> -->
 	
 
   </head>

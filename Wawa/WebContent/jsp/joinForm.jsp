@@ -28,44 +28,45 @@
     			if(!regId.test($('#id').val())){
     				$('#idError').html('<font color="red">아이디 오류 (영문자로 시작하는 6~20자 영문자 또는 숫자)</font>');
     			}
-    			
+ 
+   				var inputid = $('#id').val();
+ 				$.ajax({
+ 			 	    url : "idCheck.do",
+ 			    	type : 'GET',
+  			     	data : 'id=' + inputid,
+   			     	dataType: 'json',
+	   			    success : function (data) {
+	   			        if(data.result)
+	   			        	//alert('중복');
+	   			        	$('#idError').html('<font color="red">중복</font>');
+	   			        else 
+	   			        	//alert('사용가능'); 
+   			     			$('#idError.').html('<font color="red">사용가능</font>');
+	   			    },
+   			     	error:function(){
+   			    	 	alert('에러발생');
+   			     	}
+   			 	});
     		});
-//     			var inputid = $('#id').val();
-//    				$.ajax({
-//    			     url : "idCheck.do",
-//    			     type : 'GET',
-//    			     data : 'id=' + inputid,
-//    			     dataType: 'json',
-//    			     success : function (data) {
-//    			        if(data.result)
-//    			        	alert('중복');
-//    			        else 
-//    			        	alert('사용가능'); 
-//    			     },
-//    			     error:function(){
-//    			    	 alert('에러발생');
-//    			     }
-//    			 	});
-//     		});
     		
-//     		$('#nickname').on('blur', function(){
-//     			var inputNickname = $('#nickname').val();
-// 				$.ajax({
-// 					url : "nicknameCheck.do",
-// 					type : "GET",
-// 					data : 'nickname=' + inputNickname,
-// 					dataType : 'json',
-// 					success : function (data){
-// 						if(data.result)
-// 							alert('중복');
-// 						else
-// 							alert('사용가능');
-// 					},
-// 					error : function(){
-// 						alert('에러발생');
-// 					}
-// 				});
-//     		});
+    		$('#nickname').blur(function(){
+    			var inputNickname = $('#nickname').val();
+				$.ajax({
+					url : "nicknameCheck.do",
+					type : "GET",
+					data : 'nickname=' + inputNickname,
+					dataType : 'json',
+					success : function (data){
+						if(data.result)
+							alert('중복');
+						else
+							alert('사용가능');
+					},
+					error : function(){
+						alert('에러발생');
+					}
+				});
+    		});
 
 		    $('#password').blur(function(){
   				if(!regPassword.test($('#password').val())){

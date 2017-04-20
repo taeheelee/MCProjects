@@ -26,4 +26,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from board b, userinfo u
 		where u.nickname = b.writer and u.id = #{id}
 	</select>
+	<select id="idCheck" parameterType="String" resultType="String">
+		select id from userinfo where id=#{id}
+	</select>
+	<select id="nicknameCheck" parameterType="String" resultType="String">
+		select nickname from userinfo where nickname=#{nickname}
+	</select>
 </mapper>

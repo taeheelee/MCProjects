@@ -26,7 +26,7 @@ public class PartnerController {
 			@RequestParam(defaultValue="5") int boardCode){
 		ModelAndView mav = new ModelAndView();
 		mav.addAllObjects(boardService.getBoardList(page, boardCode));
-		mav.setViewName("partner");
+		mav.setViewName("partner.tiles");
 		return mav;
 	}
 	
@@ -46,7 +46,7 @@ public class PartnerController {
 		List<HashMap<String, Object>> reple = repleService.selectRepleList(boardIdx);
 		mav.addObject("board", board);
 		mav.addObject("reple", reple);
-		mav.setViewName("partnerDetails");
+		mav.setViewName("partnerDetails.tiles");
 		return mav;
 	}
 	

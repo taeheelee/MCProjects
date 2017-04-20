@@ -23,13 +23,13 @@ public class FreeBoardController {
 	public ModelAndView freeboardList(@RequestParam(defaultValue="1")int page){
 		ModelAndView mav = new ModelAndView();
 		mav.addAllObjects(boardService.getBoardList(page, 6));
-		mav.setViewName("freeboard");
+		mav.setViewName("freeboard.tiles");
 		return mav;
 	}
 	
 	@RequestMapping("freeboardWriteForm.do")
 	public String freeboardWriteForm(){
-		return "freeboardWrite";
+		return "freeboardWrite.tiles";
 	}
 	@RequestMapping("freeboardWrite.do")
 	public String freeboardWrite(int boardCode, String title, int categoryType, String content, String writer){
@@ -53,7 +53,7 @@ public class FreeBoardController {
 		List<HashMap<String, Object>> reple = repleService.selectRepleList(boardIdx);
 		mav.addObject("board", board);
 		mav.addObject("reple", reple);
-		mav.setViewName("freeboardDetails");
+		mav.setViewName("freeboardDetails.tiles");
 		return mav;
 	}
 	
@@ -61,7 +61,7 @@ public class FreeBoardController {
 	public ModelAndView freeboardSearch(int type, String keyword, @RequestParam(defaultValue="1")int page){
 		ModelAndView mav = new ModelAndView();
 		mav.addAllObjects(boardService.getBoardByTitle(type, keyword, page, 6));
-		mav.setViewName("freeboard");
+		mav.setViewName("freeboard.tiles");
 		return mav;
 	}
 }

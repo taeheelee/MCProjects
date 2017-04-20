@@ -26,7 +26,7 @@ public class InfoController {
 				@RequestParam(defaultValue="1") int boardCode){
 			ModelAndView mav = new ModelAndView();
 			mav.addAllObjects(boardService.getBoardList(page, boardCode));
-			mav.setViewName("info"); // -> infoMain찾기
+			mav.setViewName("info.tiles"); // -> infoMain찾기
 			return mav;
 		}
 		
@@ -44,7 +44,7 @@ public class InfoController {
 			ModelAndView mav = new ModelAndView();
 			HashMap<String, Object> board = boardService.getBoardByBoardIdx(boardIdx);
 			mav.addObject("result", board);
-			mav.setViewName("infoDetails");
+			mav.setViewName("infoDetails.tiles");
 			return mav;
 		}
 		
@@ -76,7 +76,7 @@ public class InfoController {
 			ModelAndView mav = new ModelAndView();
 			HashMap<String, Object> board = boardService.getBoardByBoardIdx(boardIdx);
 			mav.addObject("result", board);
-			mav.setViewName("infoUpdateForm");
+			mav.setViewName("infoUpdateForm.tiles");
 			return mav;
 		}
 		

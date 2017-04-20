@@ -13,7 +13,7 @@ public class MapController {
 		ModelAndView mav = new ModelAndView();
 		String result = area + county + type;
 		mav.addObject("result", result); 
-		mav.setViewName("map_result");
+		mav.setViewName("map_result.tiles");
 		return mav;
 		
 	}

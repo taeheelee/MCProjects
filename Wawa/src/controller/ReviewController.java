@@ -24,7 +24,7 @@ public class ReviewController {
 		ModelAndView mav = new ModelAndView();
 		mav.addAllObjects(boardService.getBoardList(page, boardCode));
 		mav.addObject("boardCode", boardCode);
-		mav.setViewName("review");
+		mav.setViewName("review.tiles");
 		return mav;
 	}
 	
@@ -42,12 +42,14 @@ public class ReviewController {
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
 		mav.addObject("result", board);
-		mav.setViewName("reviewDetails");
+		mav.setViewName("reviewDetails.tiles");
 		return mav;
 	}
 	
 	@RequestMapping("reviewWriteForm.do")
-	public void reviewWriteForm(){}
+	public String reviewWriteForm(){
+		return "reviewWriteForm.tiles";
+	}
 	
 	@RequestMapping("reviewWrite.do")
 	public String reviewWrite(int boardCode, String title, String category, 
@@ -65,7 +67,7 @@ public class ReviewController {
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
 		mav.addObject("result", board);
-		mav.setViewName("reviewUpdateForm");
+		mav.setViewName("reviewUpdateForm.tiles");
 		return mav;
 	}
 	

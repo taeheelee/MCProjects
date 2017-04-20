@@ -55,6 +55,7 @@ public class Constant {
 		public static final String BIRTHDAY = "birthday";
 		public static final String STARPOINT = "starPoint";
 		public static final String LIKECOUNT = "likeCount";
+		public static final String LOSTPLACE = "lostPlace";
 	}
 	
 	public class DogKind{

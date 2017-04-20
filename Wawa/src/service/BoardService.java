@@ -51,7 +51,7 @@ public class BoardService implements IBoardService{
 	}
 
 	@Override
-	public boolean writeDogFindBoard(int boardCode, String category, String name, String resist, String lostdate,
+	public boolean writeDogFindBoard(int boardCode, String category, String name, String resist, String lostdate, String lostplace,
 			String kind, String sex, int age, double weight, String phone, String email, String content, String title, String writer) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> params = new HashMap<>();
@@ -60,6 +60,7 @@ public class BoardService implements IBoardService{
 		params.put(Constant.Board.NAME, name);
 		params.put(Constant.Board.RESIST, resist);
 		params.put(Constant.Board.LOSTDATE, lostdate);
+		params.put(Constant.Board.LOSTPLACE, lostplace);
 		params.put(Constant.Board.KIND, kind);
 		params.put(Constant.Board.SEX, sex);
 		params.put(Constant.Board.AGE, age);

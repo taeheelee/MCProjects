@@ -24,7 +24,7 @@ public class LostController {
 		ModelAndView mav = new ModelAndView();
 		mav.addAllObjects(boardService.getBoardList(page, boardCode));
 		mav.addObject("boardCode", boardCode);
-		mav.setViewName("lost");
+		mav.setViewName("lost.tiles");
 		return mav;
 	}
 	
@@ -42,7 +42,7 @@ public class LostController {
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
 		mav.addObject("result", board);
-		mav.setViewName("lostDetails");
+		mav.setViewName("lostDetails.tiles");
 		return mav;
 	}
 	
@@ -67,7 +67,7 @@ public class LostController {
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
 		mav.addObject("result", board);
-		mav.setViewName("lostUpdateForm");
+		mav.setViewName("lostUpdateForm.tiles");
 		return mav;
 	} 
 	

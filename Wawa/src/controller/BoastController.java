@@ -24,7 +24,7 @@ public class BoastController {
 		ModelAndView mav = new ModelAndView();
 		mav.addAllObjects(boardService.getBoardList(page, boardCode));
 		mav.addObject("boardCode", boardCode);
-		mav.setViewName("boast");
+		mav.setViewName("boast.tiles");
 		return mav;
 	}
 	
@@ -48,7 +48,7 @@ public class BoastController {
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(boardIdx);
 		mav.addObject("result", board);
-		mav.setViewName("boastDetails");
+		mav.setViewName("boastDetails.tiles");
 		return mav;
 	}
 	

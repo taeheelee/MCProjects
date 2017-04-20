@@ -11,20 +11,22 @@ import org.springframework.web.servlet.ModelAndView;
 
 import commons.Constant;
 import interface_service.IBoardService;
+import interface_service.IRepleService;
 
 @Controller
 public class PartnerController {
 
 	@Autowired
 	private IBoardService boardService;
+	@Autowired
+	private IRepleService repleService;
 	
 	@RequestMapping("partnerMain.do")
 	public ModelAndView partnerMain(@RequestParam(defaultValue="1") int page,
 			@RequestParam(defaultValue="5") int boardCode){
 		ModelAndView mav = new ModelAndView();
 		mav.addAllObjects(boardService.getBoardList(page, boardCode));
-		mav.addObject("boardCode", boardCode);
-		mav.setViewName("partner");
+		mav.setViewName("partner.tiles");
 		return mav;
 	}
 	
@@ -38,11 +40,13 @@ public class PartnerController {
 	}
 	
 	@RequestMapping("partnerDetails.do")
-	public ModelAndView partnerDetails(HashMap<String, Object> params){
+	public ModelAndView partnerDetails(int boardIdx){
 		ModelAndView mav = new ModelAndView();
-		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
-		mav.addObject("result", board);
-		mav.setViewName("boastDetails");
+		HashMap<String, Object> board = boardService.getBoardByBoardIdx(boardIdx);
+		List<HashMap<String, Object>> reple = repleService.selectRepleList(boardIdx);
+		mav.addObject("board", board);
+		mav.addObject("reple", reple);
+		mav.setViewName("partnerDetails.tiles");
 		return mav;
 	}
 	

@@ -23,15 +23,29 @@ public class FreeBoardController {
 	public ModelAndView freeboardList(@RequestParam(defaultValue="1")int page){
 		ModelAndView mav = new ModelAndView();
 		mav.addAllObjects(boardService.getBoardList(page, 6));
-		mav.setViewName("freeboard");
+		mav.setViewName("freeboard.tiles");
 		return mav;
 	}
 	
 	@RequestMapping("freeboardWriteForm.do")
-	public String freeboardWrite(){
-		return "freeboardWrite";
+	public String freeboardWriteForm(){
+		return "freeboardWrite.tiles";
 	}
-	
+	@RequestMapping("freeboardWrite.do")
+	public String freeboardWrite(int boardCode, String title, int categoryType, String content, String writer){
+		String category = null;
+		if(categoryType == 1)
+			category = "애견상식";
+		else if(categoryType == 2)
+			category = "훈련정보";
+		else if(categoryType == 3)
+			category = "애견간식레시피";
+		else if(categoryType == 4)
+			category = "기타";
+		boardService.writeFreeBoard(boardCode, title, category, content, writer);
+		return "redirect:freeboardMain.do";
+			
+	}
 	@RequestMapping("freeboardDetail.do")
 	public ModelAndView freeboardDetails(int boardIdx){
 		ModelAndView mav = new ModelAndView();
@@ -39,7 +53,7 @@ public class FreeBoardController {
 		List<HashMap<String, Object>> reple = repleService.selectRepleList(boardIdx);
 		mav.addObject("board", board);
 		mav.addObject("reple", reple);
-		mav.setViewName("freeboardDetails");
+		mav.setViewName("freeboardDetails.tiles");
 		return mav;
 	}
 	
@@ -47,7 +61,7 @@ public class FreeBoardController {
 	public ModelAndView freeboardSearch(int type, String keyword, @RequestParam(defaultValue="1")int page){
 		ModelAndView mav = new ModelAndView();
 		mav.addAllObjects(boardService.getBoardByTitle(type, keyword, page, 6));
-		mav.setViewName("freeboard");
+		mav.setViewName("freeboard.tiles");
 		return mav;
 	}
 }

@@ -15,8 +15,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteUserInfo" parameterType="int">
 		delete from userinfo where idx=#{idx}
 	</delete>
-	<select id="selectOneUserInfo" parameterType="int" resultType="java.util.HashMap">
-		select * from userinfo where idx=#{idx}
+	<select id="selectOneUserInfo" parameterType="java.lang.String" resultType="model.UserInfo">
+		select * from userinfo where id=#{id}
 	</select>
 	<select id="selectAllUserInfo" resultType="java.util.HashMap">
 		select * from userinfo

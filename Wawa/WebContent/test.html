@@ -1,292 +1,179 @@
 
-
-
-
-
-
-
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>경기결과</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-<!--   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
-  <style>
-    /* Remove the navbar's default margin-bottom and rounded borders */ 
-    .navbar {
-      margin-bottom: 0;
-      border-radius: 0;
-    }
-    
-    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
-    .row.content {height: 450px}
-    
-    /* Set gray background color and 100% height */
-    .sidenav {
-      padding-top: 20px;
-      background-color: #f1f1f1;
-      height: 100%;
-    }
-    
-    /* Set black background color, white text and some padding */
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-    
-    /* On small screens, set height to 'auto' for sidenav and grid */
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height:auto;} 
-    }
-  </style>
-  <script>
-  	function getResult(){
-  		
-  		var param = $("#datePicker").val();
-  		
-  		if(param == ""){
-  			alert("경기 날짜를 선택해 주세요.");
-  			return;
-  		}
-  		
-		location.href="/view/team/result/"+param.replace(/\//gi,"");	// "/" 표시 전부 없애고 이동.
-  	}
-  	/* 달력 설정 */
-  	$.datepicker.setDefaults({
-        dateFormat: 'yy/mm/dd',
-        prevText: '이전 달',
-        nextText: '다음 달',
-        monthNames: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-        monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
-        dayNames: ['일', '월', '화', '수', '목', '금', '토'],
-        dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
-        dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
-        showMonthAfterYear: true,
-        showButtonPanel: true,
-        changeMonth: true,
-      	changeYear: true,
-        autoSize: true,
-        showOn: "button",
-        buttonImage: "/images/team/calendar.png",
-        buttonImageOnly: true,
-        buttonText: "날짜 선택"
-    });
-
-    $(function() {
-        $("#datePicker").datepicker();
-    });
-  	
-  	
-  </script>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
 </head>
-<body>
-
-
-
-
-
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home"></span>Home</a>
+  <body>
+   
+    
+    <div class="product-big-title-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="product-bit-title text-left">
+                        <h2>뽐내기</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-     
-     	
-		
-		
-		
-		
-     
-	      <li class=""><a href="/view/notice">공지사항</a></li>
-		  <li class=""><a href="/view/board">자유게시판</a></li>
-		  <li class=""><a href="/view/photo">사진게시판</a></li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">야구<span class="caret"></span></a>
-            <ul class="dropdown-menu" role="menu">
-              
-              <li><a href="/view/team/result/20170418">경기 결과</a></li>
-              <li class="divider"></li>
-              <li><a href="/view/team/teamRanking">팀 순위</a></li>
-              <li class="divider"></li>
-              <li><a href="/view/team/pitcherRanking">투수 순위</a></li>
-              <li class="divider"></li>
-              <li><a href="/view/team/hitterRanking">타자 순위</a></li>
-            </ul>
-          </li>
-	      
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        
-        	
-        		<li><a href="/view/member/regist"><span class="glyphicon glyphicon-user"></span> 회원가입</a></li>
-        		<li><a href="/view/member/loginPage"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        	
-        	
-        
-      </ul>
-    </div>
-  </div>
-</nav>
 
-  
-<div class="container-fluid text-center">    
-  <div class="row content">
-    <div class="col-sm-1 sidenav" style="background-color:white">
-    </div>
-<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->    
-    <div class="col-sm-10 text-left"> 
-      <h1 align="center">2017/04/18 경기 결과</h1>
-	    <div class="form-group form-inline" align="center">
-	  		<label for="datePicker">조회할 날짜 : </label>
-	  		<input type="text" class="form-control" id="datePicker" disabled value="2017/04/18"><br>
-      		<input class="btn btn-warning" type="button" value="경기결과 조회" onClick="getResult()">
-  	  	</div>
-      	<div class="form-inline" align="center">
-      	</div>
-	     
-		     <table class="table table-bordered table-hover table-responsive">
-			    
-				    
-				    <!-- 상태 -->
-				    <tr align="center">
-				      <td colspan="2" >18:30</td>
-				    </tr>
-				    <!--  팀  -->
-				    
-					    <tr align="center">
-					      <td>넥센</td>
-					      <td>SK</td>
-					    </tr>
-				    
-					    <tr align="center">
-					      <td>선발:오주원</td>
-					      <td>선발:켈리</td>
-					    </tr>
-				    
-					    <tr align="center">
-					      <td>0</td>
-					      <td>0</td>
-					    </tr>
-				    
-				
-				    
-				    <!-- 상태 -->
-				    <tr align="center">
-				      <td colspan="2" >18:30</td>
-				    </tr>
-				    <!--  팀  -->
-				    
-					    <tr align="center">
-					      <td>삼성</td>
-					      <td>두산</td>
-					    </tr>
-				    
-					    <tr align="center">
-					      <td>선발:페트릭</td>
-					      <td>선발:함덕주</td>
-					    </tr>
-				    
-					    <tr align="center">
-					      <td>0</td>
-					      <td>0</td>
-					    </tr>
-				    
-				
-				    
-				    <!-- 상태 -->
-				    <tr align="center">
-				      <td colspan="2" >18:30</td>
-				    </tr>
-				    <!--  팀  -->
-				    
-					    <tr align="center">
-					      <td>NC</td>
-					      <td>롯데</td>
-					    </tr>
-				    
-					    <tr align="center">
-					      <td>선발:해커</td>
-					      <td>선발:레일리</td>
-					    </tr>
-				    
-					    <tr align="center">
-					      <td>0</td>
-					      <td>0</td>
-					    </tr>
-				    
-				
-				    
-				    <!-- 상태 -->
-				    <tr align="center">
-				      <td colspan="2" >18:30</td>
-				    </tr>
-				    <!--  팀  -->
-				    
-					    <tr align="center">
-					      <td>LG</td>
-					      <td>한화</td>
-					    </tr>
-				    
-					    <tr align="center">
-					      <td>선발:소사</td>
-					      <td>선발:오간도</td>
-					    </tr>
-				    
-					    <tr align="center">
-					      <td>0</td>
-					      <td>0</td>
-					    </tr>
-				    
-				
-				    
-				    <!-- 상태 -->
-				    <tr align="center">
-				      <td colspan="2" >18:30</td>
-				    </tr>
-				    <!--  팀  -->
-				    
-					    <tr align="center">
-					      <td>KIA</td>
-					      <td>kt</td>
-					    </tr>
-				    
-					    <tr align="center">
-					      <td>선발:임기영</td>
-					      <td>선발:고영표</td>
-					    </tr>
-				    
-					    <tr align="center">
-					      <td>0</td>
-					      <td>0</td>
-					    </tr>
-				    
-				
-			</table>
+
+<!-- 여기부터 안에 들어가면 안되는 이유찾기 -->
+    <div class="single-product-area">
+<!--         <div class="zigzag-bottom"></div> -->
+        <div class="container">
+        	<div class="col-md-55">
+        		<h2 class="sidebar-title">뽐내기 후보</h2>
+        		
+        		<table class="shop_table cart">
+	                <tbody>
+	                	<tr class="cart_item">
+	                		<td colspan="4"><img src="img/dog_10.jpg" alt=""></td>
+	                	</tr>
+	                	<tr class="cart_item">
+	                		<td colspan="4"><span><a>좋아요 ♥ 몇개</a></span></td>
+	                	</tr>
+	                    <tr class="cart_item">
+							<td style="background-color: #f5f5f5">애견이름</td>
+							<td id="petname">이름</td>
+							<td style="background-color: #f5f5f5">품종</td>
+							<td id="kind">품종품종</td>
+						</tr>
+	                    <tr class="cart_item">
+							<td style="background-color: #f5f5f5">성별</td>
+							<td id="petsex">남자</td>
+							<td style="background-color: #f5f5f5">나이</td>
+							<td id="age">0년 0개월</td>
+						</tr>
+					</tbody>
 		
-<!--//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////-->    
-	    <div class="col-sm-1 sidenav" style="background-color:white">
-	    </div>
-	  </div>
+				</table>
+        		
+<!--                	df -->
+                <h4 style="color: gray; text-align: center;" value="${result.title}">[제목] 우리 귀요미 와와를 소개합니다</h4>
+                <hr style="border: solid 1px; border-color: lightgray">  
+                <div id=boardcontents style="text-align: center">
+                	<h1 value="${result.content}"></h1>
+                
+                	
+                </div>
+<!--                 d -->
+
+                <hr style="border: solid 1px; border-color: lightgray"> 
+                <div style="text-align: center">
+                
+                
+                <input type="button" value="뒤로가기"  onClick="location.href='/Wawa/boastMain.do';">
+                <input type="button" value="수정" onclick="location.href='/Wawa/boastUpdateForm.do'">
+                <input type="button" value="삭제" onclick="location.href='/Wawa/boastDelete.do'">
+                </div>
+			</div>
+		</div>
 	</div>
-</div>
 
-</body>
+
+   
+<!-- 여기부터 안에 들어가면 안되는 이유찾기  end-->     
+
+
+    <div class="footer-top-area">
+        <div class="zigzag-bottom"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-about-us">
+                        <h2>e<span>Electronics</span></h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
+                        <div class="footer-social">
+                            <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-menu">
+                        <h2 class="footer-wid-title">User Navigation </h2>
+                        <ul>
+                            <li><a href="">My account</a></li>
+                            <li><a href="">Order history</a></li>
+                            <li><a href="">Wishlist</a></li>
+                            <li><a href="">Vendor contact</a></li>
+                            <li><a href="">Front page</a></li>
+                        </ul>                        
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-menu">
+                        <h2 class="footer-wid-title">Categories</h2>
+                        <ul>
+                            <li><a href="">Mobile Phone</a></li>
+                            <li><a href="">Home accesseries</a></li>
+                            <li><a href="">LED TV</a></li>
+                            <li><a href="">Computer</a></li>
+                            <li><a href="">Gadets</a></li>
+                        </ul>                        
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-sm-6">
+                    <div class="footer-newsletter">
+                        <h2 class="footer-wid-title">Newsletter</h2>
+                        <p>Sign up to our newsletter and get exclusive deals you wont find anywhere else straight to your inbox!</p>
+                        <div class="newsletter-form">
+                            <input type="email" placeholder="Type your email">
+                            <input type="submit" value="Subscribe">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- footer-top-area end -->
+    
+    
+    
+    <div class="footer-bottom-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="copyright">
+                        <p>&copy; 2015 eElectronics. All Rights Reserved. Coded with <i class="fa fa-heart"></i> by <a href="http://wpexpand.com" target="_blank">WP Expand</a></p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="footer-card-icon">
+                        <i class="fa fa-cc-discover"></i>
+                        <i class="fa fa-cc-mastercard"></i>
+                        <i class="fa fa-cc-paypal"></i>
+                        <i class="fa fa-cc-visa"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <!-- Latest jQuery form server -->
+<!--     <script src="https://code.jquery.com/jquery.min.js"></script> -->
+    
+    <!-- Bootstrap JS form CDN -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    
+    <!-- jQuery sticky menu -->
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.sticky.js"></script>
+    
+    <!-- jQuery easing -->
+    <script src="js/jquery.easing.1.3.min.js"></script>
+    
+    <!-- Main Script -->
+    <script src="js/main.js"></script>
+  </body>
 </html>

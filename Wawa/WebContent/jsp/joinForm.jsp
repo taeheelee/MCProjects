@@ -145,43 +145,39 @@
                                             
 			                            <form  action="join.do" class="checkout" method="post" name="checkout">
                                             
-                                            <p id="billing_first_name_field" class="form-row form-row-first validate-required">
+                                            
                                                 <label class="" for="billing_first_name">ID<abbr title="required" class="required">*</abbr>
                                                 </label>
                                                 <input type="text" value="" placeholder="숫자, 대문자, 소문자, 언더바(_),하이픈(-), 4~12자리" 
                                                 id="id" name="id" class="input-text ">
                                                 <br>
                                                 <span id="idError"></span>
-                                            </p>
+                                           
                                             <br>
-                                               <p id="billing_first_name_field" class="form-row form-row-first validate-required">
-                                                <label class="" for="billing_first_name">닉네임<abbr title="required" class="required">*</abbr>
+                                               <label class="" for="billing_first_name">닉네임<abbr title="required" class="required">*</abbr>
                                                 </label>
                                                 <input type="text" id="nick" name="nickname" class="input-text ">
                                                 <br>
                                                 <span id="nickError"></span>
-                                            </p>
+                                          
                                             <br>
 
-                                         	<p id="billing_first_name_field" class="form-row form-row-first validate-required">
-                                                <label class="" for="billing_first_name">비밀번호<abbr title="required" class="required">*</abbr>
+                                         	    <label class="" for="billing_first_name">비밀번호<abbr title="required" class="required">*</abbr>
                                                 </label>
                                                 <input type="text" value="" placeholder="영문,숫자를 혼합하여 특수문자가능 6~20자6~20자리" 
                                                 id="password" name="password" class="input-text ">
                                                 <br>
                                                 <span id="pwError"></span>
-                                            </p>
+                                           
                                             <br>
                                           
-                                            <p id="billing_first_name_field" class="form-row form-row-first validate-required">
                                                 <label class="" for="billing_first_name">비밀번호 확인<abbr title="required" class="required">*</abbr>
                                                 </label>
                                                 <input type="text" value="" placeholder="" id="conformPassword" name="conformPassword" class="input-text ">
                                             	<span id="cpwError"></span>
-                                            </p>
+                                         
                                             <br>
                                             
-                                            <p id="billing_first_name_field" class="form-row form-row-first validate-required">
                                                 <label class="" for="billing_first_name">성별 <abbr title="required" class="required">*</abbr></label>
 	                                            <div id="payment">
 													<ul class="payment_methods methods">
@@ -192,22 +188,20 @@
 														</li>
 													</ul>
 												</div>
-                                            </p>
+                                            
                                             <br>
                                             
-											<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
-                                                <label class="" for="billing_state">연락처</label>
+											    <label class="" for="billing_state">연락처</label>
                                                 <input type="text" id="phoneNum" name="phoneNum" placeholder="000-0000-0000" value="" class="input-text ">
                                                 <br>
                                                 <span id="pnumError"></span>
-                                            </p>
+                                            
                                             <br>
-                                            	<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
-                                                <label class="" for="billing_state">이메일</label>
+                                            	<label class="" for="billing_state">이메일</label>
                                                 <input type="text" id="email" name="email" placeholder="abc@naver.com" value="" class="input-text ">
                                                 <br>
                                                 <span id="emailError"></span>
-                                            </p>
+                                            >
                                             <br>
                                            
 

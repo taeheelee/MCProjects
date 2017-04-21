@@ -21,66 +21,26 @@
 <!--                         <div class="row"> -->
 						<div class="best3">
 						
+						<c:forEach items="${best }" begin="0" end="2" var="best" varStatus="st">
 							<div class="col-md-3 col-sm-6">
 								<div class="single-product"><!-- 마우스오버 효과-->
 									<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 										<img src="img/dog_10.jpg" alt="">
 										<div class="product-hover">
-											<a href="/Wawa/increaseLike.do" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-											<a href="/Wawa/boastDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
+											<a href="increaseLike.do?boardIdx=${best.boardIdx }" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
+											<a href="boastDetails.do?boardIdx=${best.boardIdx }" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 										</div>
 								</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-										<h1 style="text-align: center; color: #FF7F27;">BEST 1</a></h1>
+										<h1 style="text-align: center; color: #FF7F27;">BEST ${st.index+1}</h1>
 										
 										<div class="product-carousel-price">
-											<p style="color: #ffc000; text-align: center; font-size: 18px; background-color: white;">뽀송이(♂) 2살</p>
-											<p style="color: #777; text-align: center;">♥좋아요 55개</p>
+											<p style="color: #ffc000; text-align: center; font-size: 18px; background-color: white;">${best.name }(${best.sex }) ${best.age }살</p>
+											<p style="color: #777; text-align: center;">♥좋아요 ${best.likeCount }개</p>
 
 										</div>
-									</div><!-- 마우스오버 효과 끝-->
-						
-								
+									</div><!-- 마우스오버 효과 끝-->	
 							</div>
-							<div class="col-md-3 col-sm-6">
-								<div class="single-product"><!-- 마우스오버 효과-->
-									<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-										<img src="img/dog_04.jpg" alt="">
-										<div class="product-hover">
-											<a href="/Wawa/increaseLike.do" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-											<a href="/Wawa/boastDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
-										</div>
-								</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-										<h1 style="text-align: center; color: #FF7F27;">BEST 2</a></h1>
-										
-										<div class="product-carousel-price">
-											<p style="color: #ffc000; text-align: center; font-size: 18px; background-color: white;">브라운(♂) 1살</p>
-											<p style="color: #777; text-align: center;">♥좋아요 40개</p>
-
-										</div>
-									</div><!-- 마우스오버 효과 끝-->
-						
-								
-							</div>
-							<div class="col-md-3 col-sm-6">
-								<div class="single-product"><!-- 마우스오버 효과-->
-									<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-										<img src="img/dog_03.jpg" alt="">
-										<div class="product-hover">
-											<a href="/Wawa/increaseLike.do" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
-											<a href="/Wawa/boastDetails.do" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
-										</div>
-								</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-										<h1 style="text-align: center; color: #FF7F27;">BEST 3</a></h1>
-										
-										<div class="product-carousel-price">
-											<p style="color: #ffc000; text-align: center; font-size: 18px; background-color: white;">와와(♂) 2살</p>
-											<p style="color: #777; text-align: center;">♥좋아요 30개</p>
-
-										</div>
-									</div><!-- 마우스오버 효과 끝-->
-						
-								
-							</div>
+						</c:forEach>
 			</div>
 
 		
@@ -118,7 +78,7 @@
 							<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 								<img src="img/dog_01.jpg" alt="" style="margin-bottom: 15px">
 								<div class="product-hover">
-									<a href="" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
+									<a href="increaseLike.do?boardIdx=${boast.boardIdx }" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
 									<a href="boastDetails.do?boardIdx=${boast.boardIdx }" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 								</div>
 							</div><!--  마우스오버시 검정색 효과 범위 끝 -->

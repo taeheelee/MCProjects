@@ -33,6 +33,12 @@ public class MainController {
 		}
 		return "redirect:main.do";
 	}
+	@RequestMapping("logout.do")
+	public String login(HttpSession session){
+		session.removeAttribute("id");
+		session.removeAttribute("name");
+		return "redirect:main.do";
+	}
 	 
 	@RequestMapping("main.do")
 	public String main(){

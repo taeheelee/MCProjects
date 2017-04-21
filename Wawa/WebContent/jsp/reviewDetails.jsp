@@ -1,14 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
    <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-      <script>
-	    $(document).ready(function() {
-	        $('#summernote').summernote();
-	    });
+      <script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+  <script type="text/javascript">
+  	function reple(idx,repleIdx) {
+		$('#repleForm'+idx).html("<form action='repleWrite.do'>"
+								 +"<textarea style='width: 85%; height: 100px' name='content'></textarea>"
+								 +"<input type='submit' value='답글작성'>"
+								 +"<input type='hidden' name='boardIdx' value='${board.boardIdx }'>"
+								 +"<input type='hidden' name='boardCode' value='${board.boardCode }'>"
+								 +"<input type='hidden' name='nickname' value='닉네임'>"
+								 +"<input type='hidden' name='pIdx' value='"+repleIdx+"'>"
+								 +"</form>");
+	}
+  	
+  	function update(idx,repleIdx){
+  		$('#updateForm').text("");
+  		var text = $('#repleContent'+idx).text();
+  		$('#repleContent'+idx).html("<form action='repleUpdate.do'>"
+				 +"<textarea style='width: 85%; height: 100px' name='content'>"+text+"</textarea>"
+				 +"<input type='hidden' name='boardIdx' value='${board.boardIdx }'>"
+				 +"<input type='hidden' name='boardCode' value='${board.boardCode }'>"
+				 +"<input type='hidden' name='repleIdx' value='"+repleIdx+"'>"
+				 +"<input type='submit' value='수정'>"
+				 +"</form>")
+  	}
   </script>
   
   </head>
@@ -34,42 +58,61 @@
         <div class="container">
         	<div class="col-md-55">
     			<div class=""style="width: 100%; margin-bottom: 10px">
-                   <span style="font-size: medium;font-weight: bold; color: gray">[카테고리-사료]</span>
-                   <span style="font-size: medium;font-weight: bold;">★★★★★</span>
+                   <span style="font-size: medium;font-weight: bold; color: gray">[${board.category }]</span>
+                   <span style="font-size: medium;font-weight: bold;">
+                   		<c:if test="${board.starPoint == 5 }"><td>★★★★★</td></c:if>
+	               		<c:if test="${board.starPoint == 4 }"><td>★★★★☆</td></c:if>
+	                    <c:if test="${board.starPoint == 3 }"><td>★★★☆☆</td></c:if>
+	                    <c:if test="${board.starPoint == 2 }"><td>★★☆☆☆</td></c:if>
+	                    <c:if test="${board.starPoint == 1 }"><td>★☆☆☆☆</td></c:if>
+                  </span>
                 </div>
-                <h2 class="sidebar-title">강아지 털이 빤짝빤짝하게 윤기 되살아나는 사료에 대한 리뷰</h2>
+                <h2 class="sidebar-title">${board.title }</h2>
                 <hr style="border: solid 1px; border-color: lightgray">  
-                <h5 style="text-align: right">글쓴이 도그맘</h5> 
+                <h5 style="text-align: right">${board.writer }</h5> 
                 <div id=boardcontents style="text-align: center">
-                	건강한 피부와 윤기있는 털을 위한 <br>
-                	강아지 사료! <br>
-                	<br>
-                	안녕하세요 도그맘입니다. <br>
-                	 <br>
-                	우리 강아지의 매력 뽀인트는 부드럽고 보들보들 윤기나는 털이 아닐까요? <br>
-                	그.래.서 이번에 건강한 피부와 윤기있는 털이 되는데 도움이 되는 강아지 사료인 OOO을 리뷰 해보고자 합니다! <br>
-                	박수 쳐 (짝) <br>
-                	(짝) 박수 쳐 <br>
-                	 <br>
-                	OOO 사료는 민감한 피부에 정말 좋다고 입소문난 제품입니다! <br>
-                	참고로 2kg 사료 안에 500g씩 낱개 포장 되어있어요~ <br>
-                	매번 신선하게 급여가 가능한 소포장이되어있어 넘나 좋은것<br>
-                	 <br>
-                	OOO 안내서를 읽어보면, <br>
-                	오메가 3 지방산이 함유되어 피부장벽 강화에 도움이 되고! <br>
-                	리놀렌산, 아연으로 윤기나는 피부에 도움이 되고, <br>
-                	가수분해 연어를 사용하여 피부 알러지 개선에도 도움이되고!<br>
-                	닭 부산물이나 밀가루가 들어있지 않아서, 민감한 체질을 위한 제한식이로 좋다고 쓰여있습니다.!<br>
-               		<br>
-               		간단하게 말해서<br>
-               		민감한 피부와 알러지 개선에 도움 주는 착한 강아지사료!라는 것이죠!<br>
-               		실제로 우리 wawa에게 급여해보니<br>
-               		wawa의 털이 빤짝빤짝 빛나기 시작했어요! <br>
-               		우왕굿<br>
-               		
-                	
+                	${board.content }
+                </div>
+                 <hr style="border: solid 1px; border-color: lightgray"> 
+                 
+                <div style="text-align: center;">
+                <input type="button" value="뒤로가기" onClick="location.href='reviewMain.do'">
+                <input type="button" value="수정" onclick="location.href='reviewUpdateForm.do?boardIdx=${board.boardIdx}'">
+                <input type="button" value="삭제" onclick="location.href='reviewDelete.do?boardIdx=${board.boardIdx}'">
+                </div>
+                
+                <div>
+                	<h4>댓글</h4>
+						<c:forEach items="${reple }" var="reple" varStatus="st">
+							<table style="width: 100%" border="1">
+								<tr>
+								
+								<td align="left" width="25%">
+								<c:if test="${reple.groupLv > 0 }">
+									<c:forEach begin="1" end="${reple.groupLv }">
+										ㄴ
+									</c:forEach>
+								</c:if>
+								<b>${reple.nickname }</b>
+								</td>
+								<td align="left" width="50%"><span id="repleContent${st.index }">${reple.content }</span><span id="updateForm"><a href="##" onclick="update(${st.index},${reple.repleIdx })">수정</a></span></td>
+								<td align="right" width="10%">${reple.writedate }</td>
+								<td width="10%"><a href="##" onclick="reple(${st.index},${reple.repleIdx })">답글달기</a></td>
+								</tr>
+								<tr><td colspan="4"><span id="repleForm${st.index }"></span></td></tr>
+							</table>
+						</c:forEach>
+	                	<form action="repleWrite.do">
+	                		<textarea style="width: 85%; height: 100px" name="content"></textarea>
+	                		<input type="hidden" name="boardIdx" value="${board.boardIdx }">
+	                		<input type="hidden" name="boardCode" value="${board.boardCode }">
+	                		<input type="hidden" name="nickname" value="닉네임">
+	                		<input type="hidden" name="pIdx" value="0">
+							<input type="submit" value="댓글작성">
+						</form>
                 </div>
 			</div>
+			
 		</div>
 	</div>
 

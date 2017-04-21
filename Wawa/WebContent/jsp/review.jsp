@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -40,14 +41,14 @@
                          
                      
 
-                            <form enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
+                            <form enctype="multipart/form-data" action="reviewSearch.do" class="checkout" method="post" name="checkout">
 
 
                                 <div id="customer_details" class="col2-set" >
                                     <div class="col-3">
                                     <h2 class="sidebar-title2">제품리뷰 목록</h2>
                                     <div class="form-row place-order" style="float: right">
-										<input type="button" data-value="Place order" value="WRITE" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
+										<input type="button" data-value="Place order" value="WRITE" onclick="location.href='reviewWriteForm.do'" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
 	                                    <h2> &nbsp;</h2>
 									</div>  
                                     
@@ -72,38 +73,23 @@
                     </tr>
                 </thead>
                 <tbody>
-                
-                    <tr class="cart_item">
-                        <td>3</td>
-                        <td>[사료]</td>
-                        <td><a href="#">맛좋은사료 	</a></td>
-                        <td>★★★★☆</td>
-                        <td>와와아빠</td>
-    					<td>0</td>
-                        <td>2017-03-01</td>
-                    </tr>
-                    <tr class="cart_item">
-                        <td>2</td>
-                        <td>[목욕/미용]</td>
-                        <td><a href="#">윤기나는 샴푸</a></td>
-                        <td>★★★☆☆</td>
-                        <td>핫도그</td>
-    					<td>0</td>
-                        <td>2017-02-01</td>
-                    </tr>
-                    <tr class="cart_item">
-                        <td>1</td>
-                        <td>[간식]</td>
-                        <td><a href="#">영양 간식</a></td>
-                        <td>★★★☆☆</td>
-                        <td>도그맘</td>
-    					<td>0</td>
-                        <td>2017-01-01</td>
-                    </tr>
-                  
-                     
-          
-           
+                	<c:forEach items="${boardList }" var="review">
+	                    <tr class="cart_item">
+	                        <td>${review.boardIdx }</td>
+	                        <td>[${review.category }]</td>
+	                        <td><a href="reviewDetails.do?boardIdx=${review.boardIdx }">${review.title }</a></td>
+	                        
+	                        	<c:if test="${review.starPoint == 5 }"><td>★★★★★</td></c:if>
+	                        	<c:if test="${review.starPoint == 4 }"><td>★★★★☆</td></c:if>
+	                        	<c:if test="${review.starPoint == 3 }"><td>★★★☆☆</td></c:if>
+	                        	<c:if test="${review.starPoint == 2 }"><td>★★☆☆☆</td></c:if>
+	                        	<c:if test="${review.starPoint == 1 }"><td>★☆☆☆☆</td></c:if>
+	                        
+	                        <td>${review.writer }</td>
+	    					<td>${review.readCount }</td>
+	                        <td>${review.writeDate }</td>
+	                    </tr>
+                    </c:forEach>
 				</tbody>
 			</table>
         </form>
@@ -116,10 +102,14 @@
                                     				<tr>
                                     					<td width="20%">
                                     						<select class="country_to_state country_select" id="billing_country" name="billing_country">
-			                                                    <option selected="selected" value="GB">애견상식</option>
-			                                                    <option value="DE">훈련정보</option>
-			                                                    <option value="DE">애견간식레시피</option>
-			                                                    <option value="DE">기타</option>
+			                                                    <option selected="selected" value="1">사료</option>
+			                                                    <option value="2">간식</option>
+			                                                    <option value="3">영양제/건강/위생</option>
+			                                                    <option value="4">목욕/미용</option>
+			                                                    <option value="5">식기/배변</option>
+			                                                    <option value="6">장남감/하우스/이동장</option>
+			                                                    <option value="7">패션/줄/인식표</option>
+			                                                    <option value="8">기타</option>
 			                                                </select>
                                     					</td>
                                     					<td width="3%">
@@ -151,22 +141,51 @@
 					<div class="product-pagination text-center">
 						<nav>
 							<ul class="pagination">
-								<li><a href="#" aria-label="Previous"> <span
-										aria-hidden="true">&laquo;</span>
-								</a></li>
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
-								<li><a href="#">6</a></li>
-								<li><a href="#">7</a></li>
-								<li><a href="#">8</a></li>
-								<li><a href="#">9</a></li>
-								<li><a href="#">10</a></li>
-								<li><a href="#" aria-label="Next"> <span
-										aria-hidden="true">&raquo;</span>
-								</a></li>
+								<c:if test="${current != 1 }">
+									<c:choose>
+										<c:when test="${keyword == null }">
+											<li><a href="reviewMain.do?page=${current-1 }" aria-label="Previous"> <span
+											aria-hidden="true">&laquo;</span>
+											</a></li>
+										</c:when>
+										<c:otherwise>
+											<li><a href="reviewSearch.do?page=${current-1 }&keyword=${keyword}&type=${type}" aria-label="Next"> <span
+											aria-hidden="true">&laquo;</span>
+											</a></li>
+										</c:otherwise>
+									</c:choose>
+								</c:if>
+								<c:forEach begin="${start }" end="${end }" var="page">
+									<c:choose>
+										<c:when test="${page==current }">
+											<li><a href="#">${page }</a></li>
+										</c:when>
+										<c:otherwise>
+											<c:choose>
+												<c:when test="${keyword == null }">
+													<li><a href="reviewMain.do?page=${page }">${page }</a></li>
+												</c:when>
+												<c:otherwise>
+													<li><a href="reviewSearch.do?page=${page }&keyword=${keyword}&type=${type}">${page }</a></li>
+												</c:otherwise>
+											</c:choose>
+										</c:otherwise>
+									</c:choose>
+								</c:forEach>
+								<c:if test="${current != last }">
+									<c:choose>
+										<c:when test="${keyword == null }">
+											<li><a href="reviewMain.do?page=${current+1 }" aria-label="Next"> <span
+											aria-hidden="true">&raquo;</span>
+											</a></li>
+										</c:when>
+										<c:otherwise>
+											<li><a href="reviewSearch.do?page=${current+1 }&keyword=${keyword}&type=${type}" aria-label="Next"> <span
+											aria-hidden="true">&raquo;</span>
+											</a></li>
+										</c:otherwise>
+									</c:choose>
+								</c:if>
 							</ul>
 						</nav>
 					</div>

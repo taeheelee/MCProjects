@@ -24,7 +24,9 @@ public class BoastController {
 	@RequestMapping("boastMain.do")
 	public ModelAndView boastMain(@RequestParam(defaultValue="1") int page,
 			@RequestParam(defaultValue="3") int boardCode){
+		List<HashMap<String, Object>> best = boardService.selectBoastNum();
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("best", best);
 		mav.addAllObjects(boardService.getBoardList(page, boardCode));
 		mav.setViewName("boast.tiles");
 		return mav;
@@ -99,7 +101,7 @@ public class BoastController {
 	public ModelAndView boastUpdateForm(int boardIdx){
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(boardIdx);
-		mav.addObject("result", board);
+		mav.addObject("board", board);
 		mav.setViewName("boastUpdateForm");
 		return mav;	
 	}

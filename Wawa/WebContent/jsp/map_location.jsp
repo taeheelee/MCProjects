@@ -11,7 +11,7 @@
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .map_wrap {position:relative;width:100%;height:500px;}
-#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:500px;margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
+#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:500px; margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
 .bg_white {background:#fff;}
 #menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
 #menu_wrap .option{text-align: center;}
@@ -104,7 +104,8 @@
                          sel.options[i] = new Option(cnt[add][i], cnt[add][i]);
          }         
      }
-</script>
+
+  </script>
   </head>
   <body> 
     
@@ -131,8 +132,8 @@
 		</div>
 		
 		<div class="container" style="text-align: right;">
-
-				<form name=form method="get" action="/Wawa/map.do"> 
+ 
+				<form name=form method="post" action="search.do">
 					<select name="type">
 						<option selected="selected">전체선택</option>
 						<option value="동물병원">동물병원</option>
@@ -162,9 +163,9 @@
                     <select name='county'  class=select>
                        <option value='선택'>선택</option>
                     </select>
-                    <input type="text" placeholder="Seach..">
+                    <input type="text" placeholder="Seach.." name="search">
                     <input type="submit" value="검색">
-			</form> 
+			</form>
 		</div>
 
 		<div class="container" id="">
@@ -206,7 +207,7 @@ searchPlaces();
 function searchPlaces() {
 
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-    ps.keywordSearch( '분당 동물병원', placesSearchCB); 
+    ps.keywordSearch('${result}', placesSearchCB); 
 }
 
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
@@ -393,6 +394,7 @@ function removeAllChildNods(el) {
 </script>
 			</div>
 			<div class="col-md-6">
+			<div class="col-md-1"></div>
 			
 				<div class="col-md-11">
 					

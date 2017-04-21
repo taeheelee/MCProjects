@@ -5,12 +5,17 @@
   <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-      <script>
-	    $(document).ready(function() {
-	        $('#summernote').summernote();
-	    });
-  </script>
-  
+<script type="text/javascript">
+	  $(document).ready(function() {
+	      $('#summernote').summernote({
+	    	  height : 500
+	      });
+	      	$('#ok').click(function() {
+				var content = $('#summernote').summernote('code');
+				$('#content').val(content);	
+			});
+	  });
+	</script>
   </head>
   <body>
   
@@ -123,8 +128,10 @@
                          
                      
 
-                            <form action="/Wawa/infoWrite.do" enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
-
+                            <form action="infoWrite.do" enctype="multipart/form-data" action="infoWrite.do" class="checkout" method="get" name="checkout">
+								<input type="hidden" name="content" id="content">
+								<input type="hidden" name="boardCode" value="1">
+								<input type="hidden" name="writer" value="글쓴이">
 
                                 <div id="customer_details" class="col2-set" >
                                     <div class="col-3">
@@ -135,10 +142,10 @@
                                                 <label class="" for="billing_country">카테고리 <abbr title="required" class="required">*</abbr>
                                                 </label>
                                                 <select class="country_to_state country_select" id="category" name="category">
-                                                    <option selected="selected" value="GB">애견상식</option>
-                                                    <option value="DE">훈련정보</option>
-                                                    <option value="DE">애견간식레시피</option>
-                                                    <option value="DE">기타</option>
+                                                    <option selected="selected" value="1">애견상식</option>
+                                                    <option value="2">훈련정보</option>
+                                                    <option value="3">애견간식레시피</option>
+                                                    <option value="4">기타</option>
                                                 </select>
                                             </p>
                                             <br>
@@ -151,9 +158,7 @@
                                             
           
   <div style="width: 100%; margin: 0 auto;">
-    <div id="summernote"><p>
-					<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-				</p></div>
+    <div id="summernote"></div>
 	</div>
 <br>
 
@@ -161,7 +166,7 @@
 
 
 											<div class="form-row place-order" style="float: right">
-												<input type="submit" data-value="Place order" value="WRITE" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
+												<input type="submit" data-value="Place order" value="WRITE" id="ok" name="woocommerce_checkout_place_order" class="button alt">
 	 							</form>
 	 													
 											</div>

@@ -11,19 +11,21 @@ import org.springframework.web.servlet.ModelAndView;
 
 import commons.Constant;
 import interface_service.IBoardService;
+import interface_service.IRepleService;
 
 @Controller
 public class ReviewController {
 
 	@Autowired
 	private IBoardService boardService;
+	@Autowired
+	private IRepleService repleService;
 	
 	@RequestMapping("reviewMain.do")
 	public ModelAndView reviewMain(@RequestParam(defaultValue="1") int page, 
 			@RequestParam(defaultValue="2") int boardCode){
 		ModelAndView mav = new ModelAndView();
 		mav.addAllObjects(boardService.getBoardList(page, boardCode));
-		mav.addObject("boardCode", boardCode);
 		mav.setViewName("review.tiles");
 		return mav;
 	}
@@ -38,10 +40,12 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("reviewDetails.do")
-	public ModelAndView reviewDetails(HashMap<String, Object> params){
+	public ModelAndView reviewDetails(int boardIdx){
 		ModelAndView mav = new ModelAndView();
-		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
-		mav.addObject("result", board);
+		HashMap<String, Object> board = boardService.readBoard(boardIdx);
+		List<HashMap<String, Object>> reple = repleService.selectRepleList(boardIdx);
+		mav.addObject("board", board);
+		mav.addObject("reple", reple);
 		mav.setViewName("reviewDetails.tiles");
 		return mav;
 	}
@@ -54,12 +58,25 @@ public class ReviewController {
 	@RequestMapping("reviewWrite.do")
 	public String reviewWrite(int boardCode, String title, String category, 
 			int starPoint, String content, String writer){
-		ModelAndView mav = new ModelAndView();
-		if(boardService.writeReviewBoard(boardCode, title, category, starPoint, content, writer)){
+		if(category.equals("1"))
+			category = "사료";
+		else if(category.equals("2"))
+			category = "간식";
+		else if(category.equals("3"))
+			category = "영양제/건강/위생";
+		else if(category.equals("4"))
+			category = "목욕/미용";
+		else if(category.equals("5"))
+			category = "식기/배변";
+		else if(category.equals("6"))
+			category = "장난감/하우스/이동장";
+		else if(category.equals("7"))
+			category = "패션/줄/인식표";
+		else if(category.equals("8"))
+			category = "기타";
+		boardService.writeReviewBoard(boardCode, title, category, starPoint, content, writer);
 			return "redirect:reviewMain.do";
-		}else {
-			return "redirect:reviewWriteForm.do";
-		}
+		
 	}
 	
 	@RequestMapping("reviewUpdateForm.do")

@@ -14,12 +14,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import commons.Constant;
 import interface_service.IBoardService;
+import interface_service.IRepleService;
 import model.Board;
 
 @Controller
 public class InfoController {
 		@Autowired
 		private IBoardService boardService;
+		@Autowired
+		private IRepleService repleService;
 	
 		@RequestMapping("infoMain.do")
 		public ModelAndView infoMain(@RequestParam(defaultValue="1") int page, 
@@ -43,23 +46,31 @@ public class InfoController {
 		public ModelAndView infoDetails(int boardIdx){
 			ModelAndView mav = new ModelAndView();
 			HashMap<String, Object> board = boardService.getBoardByBoardIdx(boardIdx);
-			mav.addObject("result", board);
+			List<HashMap<String, Object>> reple = repleService.selectRepleList(boardIdx);
+			mav.addObject("board", board);
+			mav.addObject("reple", reple);
 			mav.setViewName("infoDetails.tiles");
 			return mav;
 		}
 		
 		@RequestMapping("infoWriteForm.do") // -> writeForm.jsp로 이동
-		public void infoWriteForm(){}
+		public String infoWriteForm(){
+			return "infoWriteForm.tiles";
+		}
 		
 		@RequestMapping("infoWrite.do") // --> infoWrite.jsp
 		public String infoWrite(int boardCode, String title, String category, String content,
 				String writer){
-			ModelAndView mav = new ModelAndView();
-			if(boardService.writeFreeBoard(boardCode, title, category, content, writer)){
+			if(category.equals("1"))
+				category = "애견상식";
+			else if(category.equals("2"))
+				category = "훈련정보";
+			else if(category.equals("3"))
+				category = "애견간식레시피";
+			else if(category.equals("4"))
+				category = "기타";
+			boardService.writeFreeBoard(boardCode, title, category, content, writer);
 				return "redirect:infoMain.do"; // 성공시 메인으로 이동
-			}else {
-				return "redirect:infoWriteForm.do"; //글쓰기 페이지에 머무름
-			}
 		}
 		
 		@RequestMapping("infoGetPetinfo.do")

@@ -29,7 +29,7 @@
     				$('#idError').html('<font color="red">아이디 오류 (영문자로 시작하는 6~20자 영문자 또는 숫자)</font>');
     			}else{
     				var inputid = $('#id').val();
-     				$.ajax({
+     				$.ajax({ 
      			 	    url : "idCheck.do",
      			    	type : 'GET',
       			     	data : 'id=' + inputid,

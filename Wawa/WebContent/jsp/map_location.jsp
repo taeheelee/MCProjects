@@ -107,83 +107,6 @@
 </script>
   </head>
   <body> 
-<!--    
-<div class="header-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="user-menu">
-                        <ul>
-                            <li><a href="join.html"><i class="fa fa-heart"></i> Join us</a></li>
-                            <li><a href="logout.html"><i class="fa fa-user"></i> Logout</a></li>
-                            <li><a href="login.html"><i class="fa fa-user"></i> Login</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> End header area
-    
-    <div class="site-branding-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="logo">
-                        <h1><a href="index.html"><img src="img/paw-print.png" id="paw-print"><span>WAWA</span></a></h1>
-                    </div>
-                </div>
-                
-                <div class="col-sm-6">
-                    <div class="shopping-item">
-                        <a href="cart.html">UserInfo - <span class="cart-amunt"> | PetName | age | ♂ or ♀<br>예방 접종 알림 D-?? 미용 주기 알림 D-??</span>  </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div> End site branding area
-    
-    <div class="mainmenu-area">
-        <div class="container">
-            <div class="row">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div> 
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.html">HOME</a></li>
-                        <li><a href="userinfo.html">내정보</a></li>
-                        
-                        
-                        <li class="dropdown">
-	                        <a href="single-product.html" class="dropdown-toggle" data-toggle="dropdown">나의펫 <b class="caret"></b></a>
-	                        <ul class="dropdown-menu">
-	                            <li><a href="mypetinfo.html">나의 펫 정보</a></li>
-	                            <li><a href="healthcare.html">나의 펫 헬스케어</a></li>
-	                            <li><a href="medicalcare.html">나의 펫 메디컬케어</a></li>
-	                        </ul>
-	                    </li>
-                        <li><a href="commonsense.html">애견정보/상식</a></li>
-                        <li><a href="review.html">제품리뷰</a></li>
-                        <li class="dropdown">
-	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">커뮤니티 <b class="caret"></b></a>
-	                        <ul class="dropdown-menu">
-	                            <li><a href="boast.html">뽐내기</a></li>
-	                            <li><a href="wanted.html">유기견찾기</a></li>
-	                            <li><a href="propose.html">짝꿍찾기</a></li>
-	                            <li><a href="freeboard.html">자유게시판</a></li>	                            
-	                        </ul>
-	                    </li>                            
-                        <li><a href="location.html">위치정보</a></li>
-                    </ul>
-                </div>  
-            </div>
-        </div>
-    </div> End mainmenu area -->
     
     <div class="product-big-title-area">
         <div class="container">
@@ -204,10 +127,10 @@
 
 		<div class="container">
 		                                 
-			<h3 class="sidebar-title">위치정보 검색</h3>
+			<h3 class="sidebar-title2">위치정보 검색</h3>
 		</div>
 		
-		<div class="container">
+		<div class="container" style="text-align: right;">
 
 				<form name=form method="get" action="/Wawa/map.do"> 
 					<select name="type">
@@ -247,56 +170,14 @@
 		<div class="container" id="">
 
 
-			<div class="col-md-6">
 			
-				<div class="col-md-11">
-					
-					<div id="menu_wrap" class="map_wrap">
-					    <hr>
-					    <span id="placesList"></span>
-					    <div id="pagination"></div>
-					</div>
-				</div>
-	
-			
-		
-				
-				
-				<!-- <div class="row">
-					<div class="col-md-12">
-						<div class="product-pagination text-center">
-							<nav>
-								<ul class="pagination">
-									<li><a href="#" aria-label="Previous"> <span
-											aria-hidden="true">&laquo;</span>
-									</a></li>
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#">6</a></li>
-									<li><a href="#">7</a></li>
-									<li><a href="#">8</a></li>
-									<li><a href="#">9</a></li>
-									<li><a href="#">10</a></li>
-									<li><a href="#" aria-label="Next"> <span
-											aria-hidden="true">&raquo;</span>
-									</a></li>
-								</ul>
-							</nav>
-						</div>
-					</div>
-				</div> -->
-				
-				
-				
-			</div>
 			<div class="col-md-6">
 				<div class="map_wrap">
-						<div id="map" style="width:100%;height:350px;position:relative;overflow:hidden;"></div>
+					<br><br>
 					
-					</div>
+					<div id="map" style="width:100%;height:350px;position:relative;overflow:hidden;"></div>
+					
+				</div>
 				
 				<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=c32ae918e9d23fdef57268cd2825a898&libraries=services"></script>
 <script>
@@ -510,6 +391,51 @@ function removeAllChildNods(el) {
     }
 }
 </script>
+			</div>
+			<div class="col-md-6">
+			
+				<div class="col-md-11">
+					
+					<div id="menu_wrap" class="map_wrap">
+					    <hr>
+					    <span id="placesList"></span>
+					    <div id="pagination"></div>
+					</div>
+				</div>
+	
+			
+		
+				
+				
+				<!-- <div class="row">
+					<div class="col-md-12">
+						<div class="product-pagination text-center">
+							<nav>
+								<ul class="pagination">
+									<li><a href="#" aria-label="Previous"> <span
+											aria-hidden="true">&laquo;</span>
+									</a></li>
+									<li><a href="#">1</a></li>
+									<li><a href="#">2</a></li>
+									<li><a href="#">3</a></li>
+									<li><a href="#">4</a></li>
+									<li><a href="#">5</a></li>
+									<li><a href="#">6</a></li>
+									<li><a href="#">7</a></li>
+									<li><a href="#">8</a></li>
+									<li><a href="#">9</a></li>
+									<li><a href="#">10</a></li>
+									<li><a href="#" aria-label="Next"> <span
+											aria-hidden="true">&raquo;</span>
+									</a></li>
+								</ul>
+							</nav>
+						</div>
+					</div>
+				</div> -->
+				
+				
+				
 			</div>
 			
 

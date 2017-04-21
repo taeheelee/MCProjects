@@ -201,7 +201,7 @@
                                                 <input type="text" id="email" name="email" placeholder="abc@naver.com" value="" class="input-text ">
                                                 <br>
                                                 <span id="emailError"></span>
-                                            >
+                                            
                                             <br>
                                            
 

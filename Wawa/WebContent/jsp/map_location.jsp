@@ -133,7 +133,7 @@
 		
 		<div class="container" style="text-align: right;">
 
-				<form name=form method="get" action="/Wawa/map.do">
+				<form name=form method="post" action="search.do">
 					<select name="type">
 						<option selected="selected">전체선택</option>
 						<option value="동물병원">동물병원</option>
@@ -163,7 +163,7 @@
                     <select name='county'  class=select>
                        <option value='선택'>선택</option>
                     </select>
-                    <input type="text" placeholder="Seach..">
+                    <input type="text" placeholder="Seach.." name="search">
                     <input type="submit" value="검색">
 			</form>
 		</div>

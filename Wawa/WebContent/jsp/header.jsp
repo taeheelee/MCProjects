@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,9 +15,16 @@
 			<div class="col-md-12">
 				<div class="user-menu">
 					<ul>
-						<li><a href="joinForm.do"><i class="fa fa-heart"></i> Join us</a></li>
-						<li><a href="logout.do"><i class="fa fa-user"></i> Logout</a></li>
-						<li><a href="loginForm.do"><i class="fa fa-user"></i> Login</a></li>
+						
+						<c:choose>
+							<c:when test="${sessionScope.name != null}">
+								<li><a href="logout.do"><i class="fa fa-user"></i> Logout</a></li>
+							</c:when>
+							<c:otherwise>
+								<li><a href="joinForm.do"><i class="fa fa-heart"></i> Join us</a></li>
+								<li><a href="loginForm.do"><i class="fa fa-user"></i> Login</a></li>
+							</c:otherwise>
+						</c:choose>
 					</ul>	
 				</div>
 			</div>
@@ -38,12 +46,14 @@
 			</div>
 			<!-- 우측 미니애견정보창 -->
 			<div class="col-sm-6" style="margin: 0">
+			<c:choose>
+				<c:when test="${sessionScope.name != null}">
 				<div class="shopping-item" >
 					<a href="mypet.do">
 						<table id="mini" style="margin-left: 5px;width:330px; height: 100px;">
 							<tr>
 								<td rowspan="4" style="width: 90px;" id="petmainimage"><img src="img/dog_12.jpg" alt=""style="width: 80px;height: 80px"></td>
-								<td colspan="3" id="nickname">username</td>
+								<td colspan="3" id="nickname">${sessionScope.name}</td>
 							</tr>
 							<tr style="font-size: small;">
 								<td id="petname">강아지이름</td>
@@ -61,6 +71,8 @@
 						</table>
 					</a>
 				</div>
+				</c:when>
+				</c:choose>
 			</div>
 			
 		</div>

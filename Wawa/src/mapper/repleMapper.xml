@@ -17,6 +17,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<!-- 댓글삭제-->
 		delete from reple where repleIdx=#{repleIdx}
 	</delete>
+	<delete id="deleteBoardReple" parameterType="int">
+		<!-- 댓글삭제-->
+		delete from reple where boardIdx=#{boardIdx}
+	</delete>
 	<select id="selectOne" parameterType="int" resultType="java.util.HashMap">
 		<!-- 댓글하나받아오기 -->
 		select * from reple where repleIdx=#{repleIdx}

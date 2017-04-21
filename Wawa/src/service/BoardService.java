@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import commons.Constant;
 import interface_dao.IBoardDao;
+import interface_dao.IRepleDao;
 import interface_service.IBoardService;
 
 
@@ -15,7 +16,8 @@ import interface_service.IBoardService;
 public class BoardService implements IBoardService{
 	@Autowired
 	IBoardDao dao;
-	
+	@Autowired
+	IRepleDao repleDao;
 	//================================게시글 쓰기========================================================
 	@Override
 	public boolean writeBoastBoard(int boardCode, String name, int age, String kind, String sex, String title, String content, String writer) {
@@ -225,8 +227,9 @@ public class BoardService implements IBoardService{
 	@Override
 	public boolean deleteBoard(int boardIdx) {
 		// TODO Auto-generated method stub
+		int result2 = repleDao.deleteBoardReple(boardIdx);
 		int result = dao.deleteBoard(boardIdx);
-		if(result > 0)
+		if(result > 0 && result2 > 0)
 			return true;
 		else
 			return false;

@@ -14,7 +14,7 @@ public class MapController {
 		String result = area + county + type;
 		mav.addObject("result", result); 
 		mav.setViewName("map_location.tiles");
-		return mav;
+		return mav; 
 		
 	}
 }

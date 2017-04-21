@@ -7,9 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>eElectronics - HTML eCommerce Template</title>
-    
-	<!-- ----- -->
-	
+    	
     <script
   	src="https://code.jquery.com/jquery-2.2.4.min.js"
   	integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
@@ -72,7 +70,6 @@
 				}); 
     			}
     		});
-
 		    $('#password').blur(function(){
   				if(!regPassword.test($('#password').val())){
   					$('#pwError').html('<font color="red">비밀번호 오류 (영문,숫자를 혼합하여 6~20자 이내)</font>');
@@ -145,32 +142,37 @@
                                             
 			                            <form  action="join.do" class="checkout" method="post" name="checkout">
                                             
+                                            
                                                 <label class="" for="billing_first_name">ID<abbr title="required" class="required">*</abbr>
                                                 </label>
                                                 <input type="text" value="" placeholder="숫자, 대문자, 소문자, 언더바(_),하이픈(-), 4~12자리" 
                                                 id="id" name="id" class="input-text ">
                                                 <br>
                                                 <span id="idError"></span>
+                                           
                                             <br>
-                                                <label class="" for="billing_first_name">닉네임<abbr title="required" class="required">*</abbr>
+                                               <label class="" for="billing_first_name">닉네임<abbr title="required" class="required">*</abbr>
                                                 </label>
                                                 <input type="text" id="nick" name="nickname" class="input-text ">
                                                 <br>
                                                 <span id="nickError"></span>
+                                          
                                             <br>
 
-                                                <label class="" for="billing_first_name">비밀번호<abbr title="required" class="required">*</abbr>
+                                         	    <label class="" for="billing_first_name">비밀번호<abbr title="required" class="required">*</abbr>
                                                 </label>
                                                 <input type="text" value="" placeholder="영문,숫자를 혼합하여 특수문자가능 6~20자6~20자리" 
                                                 id="password" name="password" class="input-text ">
                                                 <br>
                                                 <span id="pwError"></span>
+                                           
                                             <br>
                                           
                                                 <label class="" for="billing_first_name">비밀번호 확인<abbr title="required" class="required">*</abbr>
                                                 </label>
                                                 <input type="text" value="" placeholder="" id="conformPassword" name="conformPassword" class="input-text ">
                                             	<span id="cpwError"></span>
+                                         
                                             <br>
                                             
                                                 <label class="" for="billing_first_name">성별 <abbr title="required" class="required">*</abbr></label>
@@ -183,18 +185,20 @@
 														</li>
 													</ul>
 												</div>
+                                            
                                             <br>
                                             
-                                                <label class="" for="billing_state">연락처</label>
+											    <label class="" for="billing_state">연락처</label>
                                                 <input type="text" id="phoneNum" name="phoneNum" placeholder="000-0000-0000" value="" class="input-text ">
                                                 <br>
                                                 <span id="pnumError"></span>
+                                            
                                             <br>
-                                            	<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
-                                                <label class="" for="billing_state">이메일</label>
+                                            	<label class="" for="billing_state">이메일</label>
                                                 <input type="text" id="email" name="email" placeholder="abc@naver.com" value="" class="input-text ">
                                                 <br>
                                                 <span id="emailError"></span>
+                                            
                                             <br>
                                            
 
@@ -217,12 +221,14 @@
 
                                    
                                 </div>
+                            </form>
 
                         </div>                       
                     </div>                    
                 </div>
             </div>
         </div>
+    </div>
 
   
   </body>

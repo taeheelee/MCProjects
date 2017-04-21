@@ -73,6 +73,12 @@ public class MainController {
 		response.put("result", iMemberService.nicknameCheck(nickname));
 		return response;
 	}
+	
+	@RequestMapping("userinfoForm.do")
+	public String userinfoForm(String id){
+		//?????????????????
+		return "userinfoForm.tiles";
+	}
 }
 	
 

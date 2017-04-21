@@ -19,7 +19,7 @@
     	$(document).ready(function(){
     		
     		var regId =  /^[a-z]+[a-z0-9]{5,19}$/g;
-    		var regPassword = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+    		var regPassword = /^.*(?=^.{6,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
  			var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
     		var regPhoneNum =  /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
  			
@@ -29,7 +29,7 @@
     				$('#idError').html('<font color="red">아이디 오류 (영문자로 시작하는 6~20자 영문자 또는 숫자)</font>');
     			}else{
     				var inputid = $('#id').val();
-     				$.ajax({
+     				$.ajax({ 
      			 	    url : "idCheck.do",
      			    	type : 'GET',
       			     	data : 'id=' + inputid,
@@ -38,7 +38,7 @@
     	   			    	//alert('sdsd');
      	   			        if(data.result)
     	   			        	//alert('사용가능'); 
-        			     			$('#idError').html('<font color="blue">사용가능</font>');
+        			     			$('#idError').html('<font color="green">사용가능</font>');
      	   			        else 
      	   			        	//alert('중복');
      	   			        	$('#idError').html('<font color="red">중복</font>');
@@ -62,7 +62,7 @@
 					dataType : 'json',
 					success : function (data){
 						if(data.result)
-							$('#nickError').html('<font color="blue">사용가능</font>');
+							$('#nickError').html('<font color="green">사용가능</font>');
 						else
 							$('#nickError').html('<font color="red">중복</font>');
 					},
@@ -75,9 +75,9 @@
 
 		    $('#password').blur(function(){
   				if(!regPassword.test($('#password').val())){
-//   					alert('비밀번호 형식이 잘못되었습니다.\n' 
-//   	                        +'(영문,숫자를 혼합하여 6~20자 이내)'); 
   					$('#pwError').html('<font color="red">비밀번호 오류 (영문,숫자를 혼합하여 6~20자 이내)</font>');
+  				}else {
+  					$('#pwError').html('<font color="green">사용가능</font>');
   				}
   			});
   			

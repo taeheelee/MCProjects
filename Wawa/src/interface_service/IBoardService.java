@@ -20,15 +20,15 @@ public interface IBoardService {
 	
 	//================================수정========================================================
 	//뽐내기
-	public boolean updateBoastBoard(int boardIdx, String name, int age, String sex, String content, String writer);
+	public boolean updateBoastBoard(int boardIdx, String name, int age, String sex, String title, String content, String writer);
 	//자유게시판,애견정보상식
 	public boolean updateFreeBoard(int boardIdx, String title, String category, String content, String writer);
 	//유기견찾기
-	public boolean updateDogFindBoard(int boardIdx, String category, String name, String resist, String lostdate, 
-			String kind, String sex, int age, double weight, String phone, String email, String content, String writer);
+	public boolean updateDogFindBoard(int boardIdx, String category, String name, String resist, String lostdate, String lostplace,
+			String kind, String sex, int age, double weight, String phone, String email, String title, String content, String writer);
 	//짝꿍찾기
 	public boolean updatePartnerFindBoard(int boardIdx, String name, String kind, String sex, 
-			int age, double weight, String phone, String email, String content, String writer);
+			int age, double weight, String phone, String email, String title, String content, String writer);
 	//제품리뷰
 	public boolean updateReviewBoard(int boardIdx, String title, String category, int starPoint, String content, String writer);
 	

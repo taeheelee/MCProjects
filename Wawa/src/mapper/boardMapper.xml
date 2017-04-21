@@ -11,7 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateBoard" parameterType="java.util.HashMap">
 		update board set title=#{title},writer=#{writer}, content=#{content}, readCount=#{readCount},
 		writeDate=#{writeDate}, category=#{category}, name=#{name},
-		resist=#{resist}, lostDate=#{lostDate}, kind=#{kind}, 
+		resist=#{resist}, lostDate=#{lostDate}, lostPlace=#{lostPlace}, kind=#{kind}, 
 		weight=#{weight}, age=#{age}, sex=#{sex}, phone=#{phone},
 		email=#{email}, birthday=#{birthday}, starPoint=#{starPoint},
 		likeCount=#{likeCount} where boardIdx=#{boardIdx}

@@ -93,7 +93,7 @@ public class LostController {
 			kind = "기타대형견";
 		
 		boardService.writeDogFindBoard(boardCode, category, name, resist, lostdate, lostplace, 
-				kind, sex, age, weight, phone, email, title, content, writer);
+				kind, sex, age, weight, phone, email, content, title, writer);
 				return "redirect:lostMain.do";
 	}
 	
@@ -108,10 +108,43 @@ public class LostController {
 	
 	@RequestMapping("lostUpdate.do")
 	public String lostUpdate(int boardIdx, String category, String name, String resist, 
-			String lostdate, String kind, String sex, int age, double weight, String phone,
-			String email, String content, String writer){ // 등록번호 추가 petname으로 수정 + petidx추가
-		boardService.updateDogFindBoard(boardIdx, category, name, resist, lostdate, 
-				kind, sex, age, weight, phone, email, content, writer);
+			String lostdate, String lostplace, String kind, String sex, int age, double weight, String phone,
+			String email, String title, String content, String writer){ // 등록번호 추가 petname으로 수정 + petidx추가
+		if(category.equals("find"))
+			category = "찾고있어요";
+		else if(category.equals("protect"))
+			category = "보호중입니다";
+		
+		if(sex.equals("male"))
+			sex = "수컷";
+		else if(sex.equals("female"))
+			sex = "암컷";
+		
+		if(kind.equals("1"))
+			kind = "치와와";
+		else if(kind.equals("2"))
+			kind = "요크셔테리어";
+		else if(kind.equals("3"))
+			kind = "말티즈";
+		else if(kind.equals("4"))
+			kind = "시츄";
+		else if(kind.equals("5"))
+			kind = "비글";
+		else if(kind.equals("6"))
+			kind = "퍼그";
+		else if(kind.equals("7"))
+			kind = "페키니즈";
+		else if(kind.equals("8"))
+			kind = "미니어쳐 슈나우저";
+		else if(kind.equals("9"))
+			kind = "기타소형견";
+		else if(kind.equals("10"))
+			kind = "기타중형견";
+		else if(kind.equals("11"))
+			kind = "기타대형견";
+		
+		boardService.updateDogFindBoard(boardIdx, category, name, resist, lostdate,  lostplace,
+				kind, sex, age, weight, phone, email, title, content , writer);
 		return "redirect:lostMain.do";
 	}
 	

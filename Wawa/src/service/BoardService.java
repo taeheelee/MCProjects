@@ -124,13 +124,14 @@ public class BoardService implements IBoardService{
 	
 	//================================게시글 수정========================================================
 	@Override
-	public boolean updateBoastBoard(int boardIdx, String name, int age, String sex, String content, String writer) {
+	public boolean updateBoastBoard(int boardIdx, String name, int age, String sex, String title, String content, String writer) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> params = new HashMap<>();
 		params.put(Constant.Board.BOARDIDX, boardIdx);
 		params.put(Constant.Board.NAME, name);
 		params.put(Constant.Board.AGE, age);
 		params.put(Constant.Board.SEX, sex);
+		params.put(Constant.Board.TITLE, title);
 		params.put(Constant.Board.CONTENT, content);
 		params.put(Constant.Board.WRITER, writer);
 		int result = dao.updateBoard(params);
@@ -157,8 +158,8 @@ public class BoardService implements IBoardService{
 	}
 
 	@Override
-	public boolean updateDogFindBoard(int boardIdx, String category, String name, String resist, String lostdate,
-			String kind, String sex, int age, double weight, String phone, String email, String content,
+	public boolean updateDogFindBoard(int boardIdx, String category, String name, String resist, String lostdate, String lostplace,
+			String kind, String sex, int age, double weight, String phone, String email, String title, String content,
 			String writer) { 
 		// TODO Auto-generated method stub 
 		HashMap<String, Object> params = new HashMap<>();
@@ -167,12 +168,14 @@ public class BoardService implements IBoardService{
 		params.put(Constant.Board.NAME, name);
 		params.put(Constant.Board.RESIST, resist);
 		params.put(Constant.Board.LOSTDATE, lostdate);
+		params.put(Constant.Board.LOSTPLACE, lostplace);
 		params.put(Constant.Board.KIND, kind);
 		params.put(Constant.Board.SEX, sex);
 		params.put(Constant.Board.AGE, age);
 		params.put(Constant.Board.WEIGHT, weight);
 		params.put(Constant.Board.PHONE, phone);
 		params.put(Constant.Board.EMAIL, email);
+		params.put(Constant.Board.TITLE, title);
 		params.put(Constant.Board.CONTENT, content);
 		params.put(Constant.Board.WRITER, writer);
 		int result = dao.updateBoard(params);
@@ -184,7 +187,7 @@ public class BoardService implements IBoardService{
 
 	@Override
 	public boolean updatePartnerFindBoard(int boardIdx, String name, String kind, String sex, int age, double weight,
-			String phone, String email, String content, String writer) {
+			String phone, String email, String title, String content, String writer) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> params = new HashMap<>();
 		params.put(Constant.Board.BOARDIDX, boardIdx);
@@ -195,6 +198,7 @@ public class BoardService implements IBoardService{
 		params.put(Constant.Board.WEIGHT, weight);
 		params.put(Constant.Board.PHONE, phone);
 		params.put(Constant.Board.EMAIL, email);
+		params.put(Constant.Board.TITLE, title);
 		params.put(Constant.Board.CONTENT, content);
 		params.put(Constant.Board.WRITER, writer);
 		int result = dao.updateBoard(params);

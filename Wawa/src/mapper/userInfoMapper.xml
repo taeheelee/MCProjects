@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="interface_dao.IUserInfoDao">
 	<insert id="insertUserInfo" parameterType="java.util.HashMap">
 		insert into userinfo values(0,#{id},#{password},#{nickname},#{sex},
-		#{phone},#{adminCheck},#{email})
+		#{phoneNum},#{adminCheck},#{email})
 	</insert>
 	<update id="updateUserInfo" parameterType="java.util.HashMap">
 		update userinfo set id=#{id}, password=#{password}, nickname=#{nickname},

@@ -18,13 +18,15 @@ public class BoardService implements IBoardService{
 	
 	//================================게시글 쓰기========================================================
 	@Override
-	public boolean writeBoastBoard(int boardCode, String name, int age, String sex, String title, String content, String writer) {
+	public boolean writeBoastBoard(int boardCode, String name, int age, String kind, String sex, String title, String content, String writer) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> params = new HashMap<>();
 		params.put(Constant.Board.BOARDCODE, boardCode);
 		params.put(Constant.Board.NAME, name);
 		params.put(Constant.Board.AGE, age);
+		params.put(Constant.Board.KIND, kind);
 		params.put(Constant.Board.SEX, sex);
+		params.put(Constant.Board.TITLE, title);
 		params.put(Constant.Board.CONTENT, content);
 		params.put(Constant.Board.WRITER, writer);
 		int result = dao.insertBoard(params);
@@ -90,6 +92,7 @@ public class BoardService implements IBoardService{
 		params.put(Constant.Board.WEIGHT, weight);
 		params.put(Constant.Board.PHONE, phone);
 		params.put(Constant.Board.EMAIL, email);
+		params.put(Constant.Board.TITLE, title);
 		params.put(Constant.Board.CONTENT, content);
 		params.put(Constant.Board.WRITER, writer);
 		int result = dao.insertBoard(params);

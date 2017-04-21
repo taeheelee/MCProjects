@@ -16,15 +16,22 @@ public class MemberService implements IMemberService{
 	public int join(String id, String password, String nickname,
 			String sex, String phoneNum, int adminCheck, String email) {
 		// TODO Auto-generated method stub
-		HashMap<String, Object> userinfo = new HashMap<>();
-		userinfo.put("id", id);
-		userinfo.put("password", password);
-		userinfo.put("nickname", nickname);
-		userinfo.put("sex", sex);
-		userinfo.put("phoneNum", phoneNum);
-		userinfo.put("adminCheck", adminCheck);
-		userinfo.put("email", email);
-		return dao.insertUserInfo(userinfo);
+		System.out.println(id  + "if 들어가기 전");
+		UserInfo chk = dao.selectOneUserInfo(id);
+		if (chk == null){
+			HashMap<String, Object> userinfo = new HashMap<>();
+			userinfo.put("id", id);
+			userinfo.put("password", password);
+			userinfo.put("nickname", nickname);
+			userinfo.put("sex", sex);
+			userinfo.put("phoneNum", phoneNum);
+			userinfo.put("adminCheck", adminCheck);
+			userinfo.put("email", email);
+			System.out.println(userinfo + "해쉬맵은 정상?");
+			return dao.insertUserInfo(userinfo);
+		}else{
+			return 0;
+		}
 	}
 
 	@Override
@@ -70,7 +77,9 @@ public class MemberService implements IMemberService{
 	@Override
 	public boolean nicknameCheck(String nickname) {
 		// TODO Auto-generated method stub
-		if(dao.nicknameCheck(nickname) == null) return true;
-		else return false;
+		if(dao.nicknameCheck(nickname) == null) 
+			return true;
+		else 
+			return false;
 	}
 }

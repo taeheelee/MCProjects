@@ -27,32 +27,34 @@
     			
     			if(!regId.test($('#id').val())){
     				$('#idError').html('<font color="red">아이디 오류 (영문자로 시작하는 6~20자 영문자 또는 숫자)</font>');
+    			}else{
+    				var inputid = $('#id').val();
+     				$.ajax({
+     			 	    url : "idCheck.do",
+     			    	type : 'GET',
+      			     	data : 'id=' + inputid,
+       			     	dataType: 'json',
+    	   			    success : function (data) {
+    	   			    	//alert('sdsd');
+     	   			        if(data.result)
+    	   			        	//alert('사용가능'); 
+        			     			$('#idError').html('<font color="blue">사용가능</font>');
+     	   			        else 
+     	   			        	//alert('중복');
+     	   			        	$('#idError').html('<font color="red">중복</font>');
+    	   			    },
+       			     	error:function(){
+       			    	 	alert('에러발생');
+       			     	}
+       			 	});
     			}
  
-   				var inputid = $('#id').val();
- 				$.ajax({
- 			 	    url : "idCheck.do",
- 			    	type : 'GET',
-  			     	data : 'id=' + inputid,
-   			     	dataType: 'json',
-	   			    success : function (data) {
-	   			    	//alert('sdsd');
- 	   			        if(data.result)
-	   			        	//alert('사용가능'); 
-    			     			$('#idError').html('<font color="red">사용가능</font>');
- 	   			        else 
- 	   			        	//alert('중복');
- 	   			        	$('#idError').html('<font color="red">중복</font>');
-	   			    },
-   			     	error:function(){
-   			    	 	alert('에러발생');
-   			     	}
-   			 	});
+   				
     		});
     		
-    		$('#test').blur(function(){
-    			
-    			var inputNickname = $('#nickname').val();
+    		$('#nick').blur(function(){
+    			if($('#nick').val() != ''){
+    			var inputNickname = $('#nick').val();
 				 $.ajax({
 					url : "nicknameCheck.do",
 					type : "GET",
@@ -60,14 +62,15 @@
 					dataType : 'json',
 					success : function (data){
 						if(data.result)
-							alert('사용가능');
+							$('#nickError').html('<font color="blue">사용가능</font>');
 						else
-							alert('중복');
+							$('#nickError').html('<font color="red">중복</font>');
 					},
 					error : function(){
 						alert('에러발생');
 					}
 				}); 
+    			}
     		});
 
 		    $('#password').blur(function(){
@@ -134,14 +137,13 @@
                          
                      
 
-                            <form enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
 
                                 <div id="customer_details" class="col2-set" >
                                     <div class="col-3">
                                     <h2 class="sidebar-title">회원 정보 입력</h2>
                                         <div class="woocommerce-billing-fields">
                                             
-       									<form action="/Wawa/join.do">
+			                            <form  action="join.do" class="checkout" method="post" name="checkout">
                                             
                                             <p id="billing_first_name_field" class="form-row form-row-first validate-required">
                                                 <label class="" for="billing_first_name">ID<abbr title="required" class="required">*</abbr>
@@ -155,9 +157,9 @@
                                                <p id="billing_first_name_field" class="form-row form-row-first validate-required">
                                                 <label class="" for="billing_first_name">닉네임<abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" id="test" name="nickname" class="input-text ">
+                                                <input type="text" id="nick" name="nickname" class="input-text ">
                                                 <br>
-                                                <span id="cidError"></span>
+                                                <span id="nickError"></span>
                                             </p>
                                             <br>
 

@@ -104,7 +104,8 @@
                          sel.options[i] = new Option(cnt[add][i], cnt[add][i]);
          }         
      }
-</script>
+
+  </script>
   </head>
   <body> 
     
@@ -132,7 +133,7 @@
 		
 		<div class="container" style="text-align: right;">
 
-				<form name=form method="get" action="/Wawa/map.do"> 
+				<form name=form method="get" action="/Wawa/map.do">
 					<select name="type">
 						<option selected="selected">전체선택</option>
 						<option value="동물병원">동물병원</option>
@@ -164,7 +165,7 @@
                     </select>
                     <input type="text" placeholder="Seach..">
                     <input type="submit" value="검색">
-			</form> 
+			</form>
 		</div>
 
 		<div class="container" id="">
@@ -206,7 +207,7 @@ searchPlaces();
 function searchPlaces() {
 
     // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
-    ps.keywordSearch( '분당 동물병원', placesSearchCB); 
+    ps.keywordSearch('${result}', placesSearchCB); 
 }
 
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다

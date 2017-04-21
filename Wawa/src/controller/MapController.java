@@ -15,7 +15,7 @@ public class MapController {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("result", result);
 		mav.setViewName("map_location.tiles");
-		return mav;
+		return mav; 
 	}
 	@RequestMapping(method=RequestMethod.POST, value="search.do")
 	public  ModelAndView search(String type, String area, String county, String search){

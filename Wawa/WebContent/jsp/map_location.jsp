@@ -132,7 +132,7 @@
 		</div>
 		
 		<div class="container" style="text-align: right;">
-
+ 
 				<form name=form method="post" action="search.do">
 					<select name="type">
 						<option selected="selected">전체선택</option>

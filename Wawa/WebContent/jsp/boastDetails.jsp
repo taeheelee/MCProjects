@@ -64,7 +64,7 @@
 	                		<td colspan="4"><img src="img/dog_10.jpg" alt=""></td>
 	                	</tr>
 	                	<tr class="cart_item">
-	                		<td colspan="4"><span><a>좋아요 ♥ 몇개</a></span></td>
+	                		<td colspan="4"><span><a>좋아요 ♥ ${board.likeCount }개</a></span></td>
 	                	</tr>
 	                    <tr class="cart_item">
 							<td style="background-color: #f5f5f5">애견이름</td>
@@ -97,7 +97,7 @@
                 
                 
                 <input type="button" value="뒤로가기"  onClick="location.href='boastMain.do';">
-                <input type="button" value="수정" onclick="location.href='boastUpdateForm.do'">
+                <input type="button" value="수정" onclick="location.href='boastUpdateForm.do?boardIdx=${board.boardIdx}'">
                 <input type="button" value="삭제" onclick="location.href='boastDelete.do?boardIdx=${board.boardIdx}'">
                 </div>
                 <div>

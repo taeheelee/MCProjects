@@ -294,7 +294,14 @@ public class BoardService implements IBoardService{
 		else 
 			return false;
 	}
-
+	
+	//================================좋아요 수로 정렬========================================================	
+	@Override
+	public List<HashMap<String, Object>> selectBoastNum() {
+		// TODO Auto-generated method stub
+		return dao.selectByBoastnum();
+	}
+	
 	@Override
 	public List<HashMap<String, Object>> getBoardByName(HashMap<String, Object> params) {
 		// TODO Auto-generated method stub
@@ -366,7 +373,7 @@ public class BoardService implements IBoardService{
 		// TODO Auto-generated method stub
 		return dao.selectPetinfo(id);
 	}
-
+	
 	@Override
 	public boolean identifyUser(HashMap<String, Object> params) {
 		// TODO Auto-generated method stub
@@ -375,5 +382,7 @@ public class BoardService implements IBoardService{
 		if(dao.getUserPwd(id).equals(password)) return true;
 		return false;
 	}
+
+	
 
 }

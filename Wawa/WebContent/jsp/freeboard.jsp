@@ -155,7 +155,7 @@
 										</c:when>
 										<c:otherwise>
 											<li><a href="freeboardSearch.do?page=${current-1 }&keyword=${keyword}&type=${type}" aria-label="Next"> <span
-											aria-hidden="true">&raquo;</span>
+											aria-hidden="true">&laquo;</span>
 											</a></li>
 										</c:otherwise>
 									</c:choose>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
   <head>
@@ -121,6 +123,7 @@
 <!--                                             <p id="billing_first_name_field" class="form-row form-row-first validate-required"> -->
 												
                                                 <label class="" for="billing_first_name">애견 프로필 사진 등록</label>
+
 
 											<form action="addPet.do">
 											<p id="billing_first_name_field" class="form-row form-row-first validate-required">
@@ -253,14 +256,13 @@
 												<input type="submit" data-value="Place order" value="ADD PET" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
 											</div>
 										</form>
+								
 										
 										</div>
                                     </div>
 
 
                                 </div>
-
-
 
                                    
                                 </div>

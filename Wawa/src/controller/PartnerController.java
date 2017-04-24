@@ -122,9 +122,38 @@ public class PartnerController {
 	
 	@RequestMapping("partnerUpdate.do")
 	public String partnerUpdate(int boardIdx, String name, String kind, String sex, 
-			int age, double weight, String phone, String email, String content, String writer){
+			int age, double weight, String phone, String email, String title, String content, String writer){
+		
+		if(sex.equals("male"))
+			sex = "수컷";
+		else if(sex.equals("female"))
+			sex = "암컷";
+		
+		if(kind.equals("1"))
+			kind = "치와와";
+		else if(kind.equals("2"))
+			kind = "요크셔테리어";
+		else if(kind.equals("3"))
+			kind = "말티즈";
+		else if(kind.equals("4"))
+			kind = "시츄";
+		else if(kind.equals("5"))
+			kind = "비글";
+		else if(kind.equals("6"))
+			kind = "퍼그";
+		else if(kind.equals("7"))
+			kind = "페키니즈";
+		else if(kind.equals("8"))
+			kind = "미니어쳐 슈나우저";
+		else if(kind.equals("9"))
+			kind = "기타소형견";
+		else if(kind.equals("10"))
+			kind = "기타중형견";
+		else if(kind.equals("11"))
+			kind = "기타대형견";
+		
 		boardService.updatePartnerFindBoard(boardIdx, name, kind, sex, 
-				age, weight, phone, email, content, writer);
+				age, weight, phone, email, title, content, writer);
 		return "redirect:partnerMain.do";
 	}
 	

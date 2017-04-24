@@ -45,7 +45,7 @@ public class InfoController {
 		@RequestMapping("infoDetails.do")
 		public ModelAndView infoDetails(int boardIdx){
 			ModelAndView mav = new ModelAndView();
-			HashMap<String, Object> board = boardService.getBoardByBoardIdx(boardIdx);
+			HashMap<String, Object> board = boardService.readBoard(boardIdx);
 			List<HashMap<String, Object>> reple = repleService.selectRepleList(boardIdx);
 			mav.addObject("board", board);
 			mav.addObject("reple", reple);
@@ -86,16 +86,25 @@ public class InfoController {
 		public ModelAndView infoUpdateForm(int boardIdx){
 			ModelAndView mav = new ModelAndView();
 			HashMap<String, Object> board = boardService.getBoardByBoardIdx(boardIdx);
-			mav.addObject("result", board);
+			mav.addObject("board", board);
 			mav.setViewName("infoUpdateForm.tiles");
 			return mav;
 		}
 		
 		@RequestMapping("infoUpdate.do")
 		public String infoUpdate(int boardIdx, String title, String category, String content,
-				String writer){
-			boardService.updateFreeBoard(boardIdx, title, category, content, writer);
-			return "redirect:infoDetails.do";
+				String writer, int readCount){
+			if(category.equals("1"))
+				category = "애견상식";
+			else if(category.equals("2"))
+				category = "훈련정보";
+			else if(category.equals("3"))
+				category = "애견간식레시피";
+			else if(category.equals("4"))
+				category = "기타";
+			
+			boardService.updateFreeBoard(boardIdx, title, category, content, writer, readCount);
+			return "redirect:infoMain.do";
 		}
 		
 		@RequestMapping("infoDelete.do")

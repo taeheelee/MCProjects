@@ -90,7 +90,7 @@
 				</table>
         		
                	
-                <h4 style="color: gray; text-align: center;">[제목] ${board.title }</h4>
+                <h4 style="color: gray; text-align: center;">${board.title }</h4>
                 <hr style="border: solid 1px; border-color: lightgray">  
                 <div id=boardcontents style="text-align: center">
                 	${board.content }

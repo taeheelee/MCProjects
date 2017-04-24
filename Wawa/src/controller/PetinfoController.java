@@ -17,13 +17,15 @@ public class PetinfoController {
 	private IPetinfoService petinfoService;
 	
 	@RequestMapping("addPetForm.do")
-	public void addPetForm(){}
+	public String addPetForm(){
+		return "addPetForm.tiles";
+	}
 	
 	@RequestMapping("addPet.do")
-	public String addPet(int idx, String resist, String id, String name, String kind, 
+	public String addPet(String resist, String id, String name, String kind, 
 			Date birthday, String neutral, double weight, String sex, 
 			Date groomingStart, int groomingPeriod){
-		boolean result = petinfoService.insertPetInfo(idx, resist, id, name, kind, birthday, neutral, weight, 
+		boolean result = petinfoService.insertPetInfo(0, resist, id, name, kind, birthday, neutral, weight, 
 				sex, groomingStart, groomingPeriod);
 		if(result){
 			return "redirect:main.do";			

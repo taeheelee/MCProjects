@@ -15,6 +15,4 @@ insert into management values(0, 5, '2017-03-27', 2.0);
 
 
 #강아지별 접종날짜초기 값
-insert into medical_manage values(1,0101,'2017-01-31');
-
-
+insert into medical_manage values(1,101,'2017-01-31');

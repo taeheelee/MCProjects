@@ -5,12 +5,13 @@
   <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="js/boardCheck.js"></script>
       <script type="text/javascript">
 	  $(document).ready(function() {
 	      $('#summernote').summernote({
 	    	  height : 500
 	      });
-	      	$('#ok').click(function() {
+	      	$('#ok').click(function() {	      		
 				var content = $('#summernote').summernote('code');
 				$('#content').val(content);	
 			});
@@ -123,7 +124,7 @@
 	                                            <div id="payment">
 													<ul class="payment_methods methods">
 														<li class="payment_method_paypal">
-															<input type="radio" data-order_button_text="Proceed to PayPal" value="male" name="sex" class="input-radio" id="sex"> 수컷
+															<input type="radio" data-order_button_text="Proceed to PayPal" value="male" name="sex" class="input-radio" id="sex" checked="checked"> 수컷
 															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 															<input type="radio" data-order_button_text="Proceed to PayPal" value="female" name="sex" class="input-radio" id="sex"> 암컷
 														</li>
@@ -184,7 +185,7 @@
 
 
 											<div class="form-row place-order" style="float: right">
-												<input type="submit" data-value="Place order" value="WRITE" id="ok" name="woocommerce_checkout_place_order" class="button alt">
+												<input type="submit" data-value="Place order" value="WRITE" id="ok" name="woocommerce_checkout_place_order" class="button alt" onclick="return lostBoardCheck()">
 								</form>											
 											</div>
 

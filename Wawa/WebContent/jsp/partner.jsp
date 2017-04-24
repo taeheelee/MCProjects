@@ -35,7 +35,7 @@
 					<input type="radio" name="petsex" value="female"> 암컷
 					<input type="text" name="petname" placeholder="Seach.."> 
 					<input type="submit" value="검색">
-					<input type="button" value="짝꿍찾기 등록" onclick="location.href='/Wawa/partnerWriteForm.do'">
+					<input type="button" value="짝꿍찾기 등록" onclick="location.href='partnerWriteForm.do'">
 				</form>
 		</div>
 

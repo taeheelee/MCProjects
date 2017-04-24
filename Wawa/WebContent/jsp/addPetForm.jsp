@@ -125,7 +125,7 @@
                                                 <label class="" for="billing_first_name">애견 프로필 사진 등록</label>
 
 
-											<form action="addPet.do">
+											<form action="addPet.do?id='${id}'">
 											<p id="billing_first_name_field" class="form-row form-row-first validate-required">
 												<div class="file_input_div">
 													<input type="button" value="파일 선택" class="file_input_button"/>

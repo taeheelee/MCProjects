@@ -44,10 +44,12 @@
 					<div class="col-3">
 						<h2 class="sidebar-title2">글 목록</h2>
 						<div class="form-row place-order" style="float: right">
+							<c:if test="${sessionScope.name != null}">
 							<input type="button" data-value="Place order"
 								onclick="location.href='infoWriteForm.do'" value="WRITE"
 								id="place_order" name="woocommerce_checkout_place_order"
 								class="button alt">
+							</c:if>
 							<h2>&nbsp;</h2>
 						</div>
 

@@ -91,6 +91,7 @@
                	
                 <h4 style="color: gray; text-align: center;">${board.title }</h4>
                 <hr style="border: solid 1px; border-color: lightgray">  
+                <h5 align="right">${board.writer }</h5>
                 <div id=boardcontents style="text-align: center">
                 	${board.content }
                 </div>

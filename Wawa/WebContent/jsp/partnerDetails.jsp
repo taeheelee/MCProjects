@@ -91,15 +91,16 @@
         		
                	
                 <h4 style="color: gray; text-align: center;">${board.title }</h4>
-                <hr style="border: solid 1px; border-color: lightgray">  
+                <hr style="border: solid 1px; border-color: lightgray">
+                <h5 align="right">${board.writer }</h5> 
                 <div id=boardcontents style="text-align: center">
                 	${board.content }
                 </div>
                 <hr style="border: solid 1px; border-color: lightgray"> 
                 <div style="text-align: center">
-                <input type="button" value="뒤로가기" onClick="location.href='/Wawa/partnerMain.do'">
-                <input type="button" value="수정" onclick="location.href='/Wawa/partnerUpdateForm.do?boardIdx=${board.boardIdx}'">
-                <input type="button" value="삭제" onclick="location.href='/Wawa/partnerDelete.do?boardIdx=${board.boardIdx}'">
+                <input type="button" value="뒤로가기" onClick="location.href='partnerMain.do'">
+                <input type="button" value="수정" onclick="location.href='partnerUpdateForm.do?boardIdx=${board.boardIdx}'">
+                <input type="button" value="삭제" onclick="location.href='partnerDelete.do?boardIdx=${board.boardIdx}'">
                 </div>
                 <div>
                 	<h4>댓글</h4>

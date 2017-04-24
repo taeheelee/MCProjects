@@ -33,7 +33,9 @@
 					<input type="radio" name="lost" value="보호중입니다"> 보호중입니다
 					<input type="text" placeholder="Seach.."> 
 					<input type="submit" value="검색">
+					<c:if test="${sessionScope.name != null}">
 					<input type="button" value="유기견 등록" onclick="location.href='/Wawa/lostWriteForm.do'">
+					</c:if>
 				</form>
 		</div>
 
@@ -60,6 +62,7 @@
 					<div class="col-md-11" style="background: #E6E6E6; padding : 15px 15px 5px 15px;width: 100%; margin: 0 auto;">
 						<h4>${lost.category }</h4>
 						<hr style="border-color: black; border: solid 1px;margin: 0 0 5px 0">
+						<div align="right">${lost.writer }</div>
 						<div class="col-md-6" id="wanted_photo" style="padding : 0 ;background: blue">
 						
 							<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->

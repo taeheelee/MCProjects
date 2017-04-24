@@ -53,7 +53,7 @@
                             <form enctype="multipart/form-data" action="reviewWrite.do" class="checkout" method="get" name="checkout">
 								<input type="hidden" name="content" id="content">
 								<input type="hidden" name="boardCode" value="2">
-								<input type="hidden" name="writer" value="글쓴이">
+								<input type="hidden" name="writer" value="${sessionScope.name}">
 
                                 <div id="customer_details" class="col2-set" >
                                     <div class="col-3">

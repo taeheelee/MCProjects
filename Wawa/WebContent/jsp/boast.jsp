@@ -38,6 +38,7 @@
 											<p style="color: #777; text-align: center;">♥좋아요 ${best.likeCount }개</p>
 
 										</div>
+										<h4 align="center">주인 : ${best.writer }</h4>
 									</div><!-- 마우스오버 효과 끝-->	
 							</div>
 						</c:forEach>
@@ -64,7 +65,9 @@
 					<form action="/Wawa/boastSearch.do" style="text-align: right;">
 						<input type="text" placeholder="Seach.."> 
 						<input type="submit" value="검색">
+						<c:if test="${sessionScope.name != null}">
 						<input type="button" value="뽐내기 후보 등록" onclick="location.href='boastWriteForm.do'">
+						</c:if>
 					</form>
 				
 		</div>
@@ -86,6 +89,7 @@
 							<tr><td id="petname" style="color: white; font-weight: bold; font-size: large;"><span>${boast.name }</span>(<span id="petsex">${boast.sex }</span>)<span id="petage">${boast.age }</span>살</td></tr>
 							<tr><td id="like">♥좋아요 <span style="font-weight: bold">${boast.likeCount }</span>개</td></tr>
 						</table>
+						<div align="center">주인 : ${boast.writer }</div>
 					</div>
 				</div>
 				</c:forEach>

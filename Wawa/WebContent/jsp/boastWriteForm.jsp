@@ -79,7 +79,7 @@
                                         <form action="boastWrite.do" enctype="multipart/form-data" class="checkout" method="get" name="checkout">
                                 			<input type="hidden" name="content" id="content">
 											<input type="hidden" name="boardCode" value="3">
-											<input type="hidden" name="writer" value="글쓴이">
+											<input type="hidden" name="writer" value="${sessionScope.name}">
 											
 											<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
                                                 <label class="" for="billing_state">애견 이름</label>

@@ -35,7 +35,9 @@
 					<input type="radio" name="petsex" value="female"> 암컷
 					<input type="text" name="petname" placeholder="Seach.."> 
 					<input type="submit" value="검색">
+					<c:if test="${sessionScope.name != null}">
 					<input type="button" value="짝꿍찾기 등록" onclick="location.href='partnerWriteForm.do'">
+					</c:if>
 				</form>
 		</div>
 
@@ -69,6 +71,7 @@
 						<table border="1" style="width: 100%; font-size: small;text-align:center; " >
 							<tr><td colspan="2" id="petname">이름: ${partner.name }</td></tr>
 							<tr><td id="petsex">${partner.sex }</td><td id="petage">${partner.age }</td></tr>
+							<tr><td colspan="2">작성자:${partner.writer }</td></tr>
 						</table>
 		
 					</div>

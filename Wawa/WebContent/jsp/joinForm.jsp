@@ -189,7 +189,7 @@
                                             <br>
                                             
 											    <label class="" for="billing_state">연락처</label>
-                                                <input type="text" id="phoneNum" name="phoneNum" placeholder="000-0000-0000" value="" class="input-text ">
+                                                <input type="text" id="phoneNum" name="phone" placeholder="000-0000-0000" value="" class="input-text ">
                                                 <br>
                                                 <span id="pnumError"></span>
                                             

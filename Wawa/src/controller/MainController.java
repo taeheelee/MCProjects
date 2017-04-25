@@ -57,7 +57,6 @@ public class MainController {
 			String sex, String phone, @RequestParam(defaultValue="0")int adminCheck, String email){
 		System.out.println(phone);
 		int result = iMemberService.join(id, password, nickname, sex, phone, adminCheck, email);
-//		return"";
 		if(result > 0)
 			return "redirect:main.do";			
 		else

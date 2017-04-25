@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+ 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html lang="en">
@@ -8,6 +10,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>eElectronics - HTML eCommerce Template</title>
+  
+ 	<script
+  	src="https://code.jquery.com/jquery-2.2.4.min.js"
+  	integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+ 	crossorigin="anonymous"></script>
+  	
+  	<script type="text/javascript">
+  		$(document).ready(function(){
+  				
+    		var regDate = /^(19[7-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+    		var regWeight = /^[0-9]*$/;
+    		var regName = /^[가-힣a-zA-Z]+$/;
+    		var regId =  /^[a-z]+[a-z0-9]{5,19}$/g;
+    		var regPassword = /^.*(?=^.{6,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+ 			var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+    		var regPhoneNum =  /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
+ 			
+    		$('#nickname').blur(function(){
+    			
+    		});
+    		
+    		$('#pwd').blur(function(){
+    			if(!reg)
+    		});
+    		
+    		$('#conformPwd').blur(function(){
+    			
+    		});
+    		
+    		$('#phoneNum').blur(function(){
+    			
+    		});
+    		
+    		$('#email').blur(function(){
+    			
+    		});
+  			
+  		});
+  	
+  	</script>
   
   </head>
   <body>
@@ -45,11 +87,12 @@
 	<div class="col-md-12" style="padding-left: 30px; padding-top: 30px;">
 		<div class="woocommerce-billing-fields">
 			<label class="" for="billing_first_name">아이디</label> 
-			<span id="userid">idididid</span>
+			<span id="userid">${sessionScope.id}</span>
 			<br><br>
 			
 			<label class="" for="billing_first_name">닉네임 <abbr	title="required" class="required">*</abbr></label> 
-			<input type="text" value="" placeholder="" id="billing_first_name" name="billing_first_name" class="input-text ">
+			<input type="text" value="" placeholder="" id="nickname" name="nickname" class="input-text ">
+			<span id="nError"></span>
 			<br>
 
 			<label class="">성별 </label>
@@ -64,32 +107,28 @@
 			</div>
 
 			<label class="" for="billing_state">비밀번호<abbr title="required" class="required">*</abbr></label> 
-			<input type="password" id="billing_state" name="billing_state" placeholder="15자리 이내의 알파벳, 숫자, 특수문자" value="" class="input-text ">
+			<input type="password" id="pwd" name="pwd" placeholder="15자리 이내의 알파벳, 숫자, 특수문자" value="" class="input-text ">
+			<span id="pwdError"></span>
 			<br><br>
 
 			<label class="" for="billing_state">비밀번호 확인<abbr title="required" class="required">*</abbr></label> 
-			<input type="password" id="billing_state" name="billing_state" placeholder="15자리 이내의 알파벳, 숫자, 특수문자" value="" class="input-text ">
+			<input type="password" id="conformPwd" name="conformPwd" placeholder="15자리 이내의 알파벳, 숫자, 특수문자" value="" class="input-text ">
+			<span id="cpError"></span>
 			<br><br>
 
 			<label class="" for="billing_first_name">연락처</label> 
-			<input type="text" value="" placeholder="" id="billing_first_name" name="billing_first_name" class="input-text ">
+			<input type="text" value="" placeholder="" id="phoneNum" name="phoneNum" class="input-text ">
+			<span id="pnError"></span>
 			<br><br>
 			
 			<label class="" for="billing_first_name">E-mail  </label> 
-			<input type="text" value="" placeholder="" id="billing_first_name" name="billing_first_name" class="input-text ">
+			<input type="text" value="" placeholder="" id="email" name="email" class="input-text ">
+			<span id="eError"></span>
 			<br><br>
-
-
 
 			</div>
 		</div>
-
-
 	</div>
-
-
-                       
-                       
                        
                       <!-- 요기사이에 -->
                        

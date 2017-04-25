@@ -45,4 +45,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectAll" resultType="java.util.HashMap">
 		select * from petinfo
 	</select>
+	<select id="selectByName" parameterType="java.util.HashMap"
+	resultType="java.util.HashMap">
+		select * from petinfo where id=#{id} and name=#{name};
+	</select>
 </mapper>

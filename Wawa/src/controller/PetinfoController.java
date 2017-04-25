@@ -3,12 +3,17 @@ package controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import interface_service.IPetinfoService;
 
@@ -64,10 +69,17 @@ public class PetinfoController {
 		return "healthcare.tiles";
 	}
 	
-	@RequestMapping("medicalcare.do")
-	public String medicalcare(){
-		
-		return "medicalcare.tiles";
+	@RequestMapping("medicalcareForm.do")
+	public String medicalcareForm(String id){
+		return "medicalcareForm.tiles";
+	}
+	
+	@RequestMapping("selectPet.do")
+	public 
+	@ResponseBody HashMap<String, Object> selectPet(HttpServletResponse resp, HashMap<String, Object> params){
+		HashMap<String, Object> response = new HashMap<>();
+		response.put("result", petinfoService.selectOne(params));
+		return response;
 	}
 	
 	

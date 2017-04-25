@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
   <head>
@@ -8,7 +10,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>eElectronics - HTML eCommerce Template</title>
     
-
+    <script
+  	src="https://code.jquery.com/jquery-2.2.4.min.js"
+  	integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+ 	crossorigin="anonymous"></script>
+ 	
+	<script type="text/javascript">
+		
+		$(document).ready(function(){
+			
+			$('#petname').change(function(){
+				alert('d');
+				var id = '${id}';
+				var name = $(this).val();
+				$.ajax({
+					type: 'post',
+					url: 'selectPet.do',
+					data: {"id":id, "name":name},
+					dataType: "json",
+					success: function(data){
+						alert('들어옴');
+					},
+					error: function(data){
+						alert("잠시 후 다시 시도해주세요.");
+					}
+				});
+				
+			});
+		});
+	
+	</script>
+	    
 </head>
   <body>
     
@@ -43,8 +75,8 @@
 									<tbody>
 										<tr class="cart_item">
 											<td colspan="2">
-												<select class="country_to_state country_select" id="billing_country" name="billing_country">
-                                                    <option selected="selected" id="mypet01">와와(이름)</option>
+												<select class="country_to_state country_select" id="petname" name="name">
+                                                    <option selected="selected" id="mypet01">선택하세요</option>
                                                     <option id="mypet02">애견이름2</option>
                                                     <option id="mypet03">애견이름3</option>
                                                     <option id="mypet04">애견이름4</option>
@@ -397,12 +429,7 @@
 </div>
 </div><!-- tab end -->
                         
-                        
-                        
-        
-                         
-
-                  
+          
                         </div>                 
                     </div>                    
                 </div>

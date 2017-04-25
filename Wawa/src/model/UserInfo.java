@@ -6,7 +6,7 @@ public class UserInfo {
 	private String password;
 	private String nickname;
 	private String sex;
-	private String phoneNum;
+	private String phone;
 	private int adminCheck;
 	private String email;
 	
@@ -40,11 +40,11 @@ public class UserInfo {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	public String getPhoneNum() {
-		return phoneNum;
+	public String getPhone() {
+		return phone;
 	}
-	public void setPhoneNum(String phoneNum) {
-		this.phoneNum = phoneNum;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	public int getAdminCheck() {
 		return adminCheck;
@@ -62,6 +62,6 @@ public class UserInfo {
 	@Override
 	public String toString() {
 		return "UserInfo [idx=" + idx + ", id=" + id + ", password=" + password + ", nickname=" + nickname + ", sex="
-				+ sex + ", phoneNum=" + phoneNum + ", adminCheck=" + adminCheck + ", email=" + email + "]";
+				+ sex + ", phone=" + phone + ", adminCheck=" + adminCheck + ", email=" + email + "]";
 	}
 }

@@ -13,6 +13,5 @@ public interface IPetinfoService {
 			Date groomingStart, int groomingPeriod);
 	public boolean deletePetInfo(int idx);
 	public List<HashMap<String, Object>> selectPetList(String id);
-
-
+	public HashMap<String, Object> selectOne(HashMap<String, Object> params);
 }

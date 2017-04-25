@@ -20,13 +20,20 @@
     		
     		var regDate = /^(19[7-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
     		var regWeight = /^[0-9]*$/;
-    
+    		var regName = /^[가-힣a-zA-Z]+$/;
+    	
+    		$('#name').blur(function(){
+    			if(!regName.test($('#name').val()) || $('#name').val().length > 15){
+    				$('#nameError').html('<font color="red">이름입력 오류 (15자 미만의 한글, 영문만 가능)</font>');
+    			}
+    		});
+    		
     		$('#birth').blur(function(){
     			if(!regDate.test($('#birth').val())){
     				$('#birthError').html('<font color="red">날짜입력 오류(ex) 2017-04-01)</font>');
     			}
     		});
-    		
+    	
     		$('#weight').blur(function(){
     			if(!regWeight.test($('#weight').val())){
     				$('#weightError').html('<font color="red">몸무게입력 오류(ex) 4.3');
@@ -38,7 +45,7 @@
     				$('#gsError').html('<font color="red">날짜입력 오류(ex) 2017-04-01)</font>');
     			}
     		});
-    	
+    		
     	});
     </script>
      
@@ -145,7 +152,8 @@
 											<p id="billing_first_name_field" class="form-row form-row-first validate-required">
                                                 <label class="" for="billing_first_name">애견 이름 <abbr title="필수입력사항" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="" id="name" name="name" class="input-text ">
+                                                <input type="text" value="" placeholder="15자 미만의 영문이나 한글로 입력하세요" id="name" name="name" class="input-text ">
+                                           		<span id="nameError"></span>
                                             </p>
                                             <br>
 

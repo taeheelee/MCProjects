@@ -93,7 +93,7 @@
             
               <div class="col-md-5">
 					<h2 class="sidebar-title2">기본정보</h2>
-						<form action="#" class="checkout" method="post" name="checkout">
+						<form action="userUpdate.do" class="checkout" method="post" name="checkout">
 					<p style="text-align: right;"> 
 						<input type="submit" value="수정하기">
 						<input type="button" value="회원탈퇴">
@@ -109,7 +109,7 @@
 			<br><br>
 			
 			<label class="" for="billing_first_name">닉네임 <abbr	title="required" class="required">*</abbr></label> 
-			<input type="text" value="${sessionScope.name }" placeholder="" id="nick" name="nick" class="input-text ">
+			<input type="text" value="${sessionScope.name }" placeholder="" id="nick" name="nickname" class="input-text ">
 			<br>
 			<span id="nickError"></span>
 
@@ -119,14 +119,14 @@
 					<li class="payment_method_paypal">
 						<c:choose>
 							<c:when test="${sessionScope.sex == 'male'}">
-								<input type="radio" value="male" name="usersex" checked="checked"> 남자
+								<input type="radio" value="male" name="sex" checked="checked"> 남자
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" value="female" name="usersex"> 여자
+								<input type="radio" value="female" name="sex"> 여자
 							</c:when>
 							<c:otherwise>
-								<input type="radio" value="male" name="usersex" checked="checked"> 남자
+								<input type="radio" value="male" name="sex"> 남자
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type="radio" value="female" name="usersex" checked="checked"> 여자
+								<input type="radio" value="female" name="sex" checked="checked"> 여자
 							</c:otherwise>
 						</c:choose>
 						
@@ -145,7 +145,7 @@
 			<span id="cpwError"></span>
 
 			<label class="" for="billing_first_name">연락처</label> 
-			<input type="text" value="${sessionScope.phone }" placeholder="" id="phoneNum" name="phoneNum" class="input-text ">
+			<input type="text" value="${sessionScope.phone }" placeholder="" id="phoneNum" name="phone" class="input-text ">
 			<br>
 			<span id="pnumError"></span>
 			

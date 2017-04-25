@@ -21,7 +21,7 @@
 			
 			$('#petname').change(function(){
 				alert('d');
-				var id = '${id}';
+				var id = ${id};
 				var name = $(this).val();
 				$.ajax({
 					type: 'post',
@@ -64,6 +64,7 @@
                 <div class="col-md-3">
         
                 <form method="post" action="#">
+                
 								<table cellspacing="0" class="shop_table cart">
 									<thead>
 										<tr>
@@ -75,44 +76,37 @@
 									<tbody>
 										<tr class="cart_item">
 											<td colspan="2">
+											
 												<select class="country_to_state country_select" id="petname" name="name">
-                                                    <option selected="selected" id="mypet01">선택하세요</option>
-                                                    <option id="mypet02">애견이름2</option>
-                                                    <option id="mypet03">애견이름3</option>
-                                                    <option id="mypet04">애견이름4</option>
-                                                    <option id="mypet05">애견이름5</option>
+                                                 	<c:forEach items="${list }" var="petinfo">
+                                                 		<option id="petname">${petinfo.name }</option>
+                                                 	</c:forEach>
                                                 </select>
 											</td>
 										</tr>
-										<tr class="cart_item">
-											<td colspan="2" id="kind">치와와(품종)</td>
-										</tr>
-										<tr class="cart_item">
-											<td id="petsex">남</td>
-											<td id="neutral">미중성</td>
-										</tr>
-										<tr class="cart_item">
-											<td colspan="2" id="petage">00년00개월</td>
-										</tr>
-										<tr class="cart_item">
-											<td colspan="2" id="weight">00kg</td>
-										</tr>
-										<tr class="cart_item">
-											<td colspan="2" id="caloriesbyday">하루필요열량 000kcal</td>
-										</tr>										
-
-
-
+										<c:forEach items="${pet }" var="petinfo">
+											<tr class="cart_item">
+												<td colspan="2" id="kind">${petinfo.kind }</td>
+											</tr>
+											<tr class="cart_item">
+												<td id="sex">${petinfo.sex }</td>
+												<td id="neutral">${petinfo.neutral }</td>
+											</tr>
+											<tr class="cart_item">
+												<td colspan="2" id="age">00년 00개월</td>
+											</tr>
+											<tr class="cart_item">
+												<td colspan="2" id="weight">${petinfo.weight }</td>
+											</tr>
+											<tr class="cart_item">
+												<td colspan="2" id="caloriesbyday">하루필요열량 000kcal</td>
+											</tr>		
+										</c:forEach>
+										
 									</tbody>
 								</table>
 							</form>
-                
-                
-                
-               
-                    
-                 
-                    
+              
                     
                 </div>
                 <!-- 여기여기여기부터 -->
@@ -122,9 +116,7 @@
                      <p>이 홈페이지에서 안내하는 사항은 참고용입니다. 전문의와 상담 후 예방접종 일정을 조율 하십시오.</p>
                      
                         <div class="woocommerce">
-                        
-                        
-                        
+                      
                                             
 <ul id="tabs">
 	<li><a href="#" name="#tab1">종합백신 DHPPL</a></li>
@@ -155,8 +147,8 @@
                         <td>D-day</td>
     					<td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
                         <td>
-                            <input type="submit" value="수정" name="update_cart" class="button" style="padding: 5px 5px">
-                        	<input type="submit" value="삭제" name="update_cart" class="button" style="padding: 5px 5px">
+                            <input type="button" value="수정" name="updateDHPPL" id="updateDHPPL" class="button" style="padding: 5px 5px">
+                        	<input type="button" value="삭제" name="deleteDHPPL" id="deleteDHPPL" class="button" style="padding: 5px 5px">
                         </td>
                     </tr>
                     <tr>
@@ -164,42 +156,42 @@
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
-                        <td><input type="submit" value="등록" name="update_cart" class="button" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="등록" name="uploadDHPPL" id="uploadDHPPL" class="button" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td><a>3차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
-                        <td>등록</td>
+                        <td><input type="button" value="등록" name="uploadDHPPL" id="uploadDHPPL" class="button" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td><a>4차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
-                        <td>등록</td>
+                        <td><input type="button" value="등록" name="uploadDHPPL" id="uploadDHPPL" class="button" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td><a>5차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
-                        <td>등록</td>
+                        <td><input type="button" value="등록" name="uploadDHPPL" id="uploadDHPPL" class="button" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
-                        <td>등록</td>
+                        <td><input type="button" value="등록" name="uploadDHPPL" id="uploadDHPPL" class="button" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
-                        <td>등록</td>
+                        <td><input type="button" value="등록" name="uploadDHPPL" id="uploadDHPPL" class="button" style="padding: 5px 5px"></td>
                     </tr>
 				</tbody>
 			</table>
@@ -230,8 +222,8 @@
                         <td>D-day</td>
     					<td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
                         <td>
-                            <input type="submit" value="수정" name="update_cart" class="button" style="padding: 5px 5px">
-                        	<input type="submit" value="삭제" name="update_cart" class="button" style="padding: 5px 5px">
+                            <input type="button" value="수정" name="updateCorona" id="updateCorona" class="button" style="padding: 5px 5px">
+                        	<input type="button" value="삭제" name="deleteCorona" id="deleteCorona" class="button" style="padding: 5px 5px">
                         </td>
                     </tr>
                     <tr>
@@ -239,42 +231,42 @@
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
-                        <td><input type="submit" value="등록" name="update_cart" class="button" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="등록" name="uploadCorona" id="uploadCorona" class="button" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
-                        <td>등록</td>
+                        <td><input type="button" value="등록" name="uploadCorona" id="uploadCorona" class="button" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
-                        <td>등록</td>
+                        <td><input type="button" value="등록" name="uploadCorona" id="uploadCorona" class="button" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
-                        <td>등록</td>
+                        <td><input type="button" value="등록" name="uploadCorona" id="uploadCorona" class="button" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
-                        <td>등록</td>
+                        <td><input type="button" value="등록" name="uploadCorona" id="uploadCorona" class="button" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
-                        <td>등록</td>
+                        <td><input type="button" value="등록" name="uploadCorona" id="uploadCorona" class="button" style="padding: 5px 5px"></td>
                     </tr>
                 </tbody>
 			</table>
@@ -302,8 +294,8 @@
                         <td>D-day</td>
     					<td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
                         <td>
-                            <input type="submit" value="수정" name="update_cart" class="button" style="padding: 5px 5px">
-                        	<input type="submit" value="삭제" name="update_cart" class="button" style="padding: 5px 5px">
+                            <input type="button" value="수정" name="updateKennel" id="updateKennel" class="button" style="padding: 5px 5px">
+                        	<input type="button" value="삭제" name="deleteKennel" id="deleteKennel" class="button" style="padding: 5px 5px">
                         </td>
                     </tr>
                     <tr>
@@ -311,42 +303,42 @@
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
-                        <td><input type="submit" value="등록" name="update_cart" class="button" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="등록" name="uploadKennel" id="uploadKennel" class="button" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
-                        <td>등록</td>
+                        <td><input type="button" value="등록" name="uploadKennel" id="uploadKennel" class="button" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
-                        <td>등록</td>
+                        <td><input type="button" value="등록" name="uploadKennel" id="uploadKennel" class="button" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
-                        <td>등록</td>
+                        <td><input type="button" value="등록" name="uploadKennel" id="uploadKennel" class="button" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
-                        <td>등록</td>
+                        <td><input type="button" value="등록" name="uploadKennel" id="uploadKennel" class="button" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
-                        <td>등록</td>
+                        <td><input type="button" value="등록" name="uploadKennel" id="uploadKennel" class="button" style="padding: 5px 5px"></td>
                     </tr>
                 </tbody>
 			</table>
@@ -377,8 +369,8 @@
                         <td>D-day</td>
     					<td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
                         <td>
-                            <input type="submit" value="수정" name="update_cart" class="button" style="padding: 5px 5px">
-                        	<input type="submit" value="삭제" name="update_cart" class="button" style="padding: 5px 5px">
+                            <input type="button" value="수정" name="updateRabies" id="updateRabies" class="button" style="padding: 5px 5px">
+                        	<input type="button" value="삭제" name="deleteRabies" id="deleteRabies" class="button" style="padding: 5px 5px">
                         </td>
                     </tr>
                     <tr>
@@ -386,42 +378,42 @@
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
-                        <td><input type="submit" value="등록" name="update_cart" class="button" style="padding: 5px 5px"></td>
-                    </tr>>
-                    <tr>
-                        <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
-						<td>추천일</td>
-                        <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
-                        <td>등록</td>
+                        <td><input type="button" value="등록" name="uploadRabies" id="uploadRabies" class="button" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
-                        <td>등록</td>
+                        <td><input type="button" value="등록" name="uploadRabies" id="uploadRabies" class="button" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
-                        <td>등록</td>
+                        <td><input type="button" value="등록" name="uploadRabies" id="uploadRabies" class="button" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
-                        <td>등록</td>
+                        <td><input type="button" value="등록" name="uploadRabies" id="uploadRabies" class="button" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
-                        <td>등록</td>
+                        <td><input type="button" value="등록" name="uploadRabies" id="uploadRabies" class="button" style="padding: 5px 5px"></td>
+                    </tr>
+                    <tr>
+                        <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
+						<td>추천일</td>
+                        <td>D-day</td>
+                        <td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
+                        <td><input type="button" value="등록" name="uploadRabies" id="uploadRabies" class="button" style="padding: 5px 5px"></td>
                     </tr>
                 </tbody>
 			</table>

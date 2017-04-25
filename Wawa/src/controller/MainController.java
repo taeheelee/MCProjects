@@ -100,7 +100,7 @@ public class MainController {
 		mav.setViewName("userinfoForm.tiles");
 		return mav;
 	}
-
+	
 	@RequestMapping("userUpdate.do")
 	public String userUpdate(UserInfo info){
 		String id = info.getId();

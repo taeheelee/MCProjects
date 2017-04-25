@@ -1,5 +1,6 @@
 package controller;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import interface_service.IMemberService;
 import model.UserInfo;
@@ -82,15 +84,21 @@ public class MainController {
 	
 
 	@RequestMapping("userinfoForm.do")
-	public String userinfoForm(HttpSession session, String id){
+	public ModelAndView userinfoForm(HttpSession session, String id){
+		ModelAndView mav = new ModelAndView();
 		UserInfo userInfo = iMemberService.getMember(id);
-		session.setAttribute("id", userInfo.getId());
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("id", userInfo.getId());
+		params.put("name", userInfo.getNickname());
+		params.put("sex", userInfo.getSex());
+		params.put("pass", userInfo.getPassword());
+		params.put("phone", userInfo.getPhone());
+		params.put("email", userInfo.getEmail());
 		session.setAttribute("name", userInfo.getNickname());
-		session.setAttribute("sex", userInfo.getSex());
-		session.setAttribute("pass", userInfo.getPassword());
-		session.setAttribute("phone", userInfo.getPhone());
-		session.setAttribute("email", userInfo.getEmail());
-		return "userinfoForm.tiles";
+		
+		mav.addAllObjects(params);
+		mav.setViewName("userinfoForm.tiles");
+		return mav;
 	}
 
 	@RequestMapping("userUpdate.do")
@@ -105,7 +113,7 @@ public class MainController {
 	public 
 	@ResponseBody HashMap<String, Object> nameCheck(HttpServletResponse resp, String nickname){
 		HashMap<String, Object> response = new HashMap<>();
-		response.put("result", iMemberService.nicknameCheck(nickname));
+		response.put("r5sult", iMemberService.nicknameCheck(nickname));
 		return response;
 
 	}

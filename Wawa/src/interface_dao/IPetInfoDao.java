@@ -11,5 +11,5 @@ public interface IPetInfoDao {
 	public HashMap<String, Object> selectOne(int idx);
 	public List<HashMap<String, Object>> selectPetList(String id);
 	public List<HashMap<String, Object>> selectAll();
-
+	public HashMap<String, Object> selectByName(HashMap<String, Object> params);
 }

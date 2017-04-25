@@ -84,7 +84,12 @@ public class PetInfoService implements IPetinfoService {
 		return list;
 	}
 
-
+	@Override
+	public HashMap<String, Object> selectOne(HashMap<String, Object> params) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> pet = dao.selectByName(params);
+		return pet;
+	}
 
 
 }

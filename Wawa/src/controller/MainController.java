@@ -99,7 +99,7 @@ public class MainController {
 		System.out.println(info);
 		iMemberService.modifyInfo(info);
 		return "redirect:userinfoForm.do?id=" + id;
-
+	}
 	
 	@RequestMapping("nameCheck.do")
 	public 

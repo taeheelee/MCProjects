@@ -84,7 +84,7 @@
                                                 </select>
 											</td>
 										</tr>
-										<c:forEach items="${pet }" var="petinfo">
+										
 											<tr class="cart_item">
 												<td colspan="2" id="kind">${petinfo.kind }</td>
 											</tr>
@@ -101,7 +101,7 @@
 											<tr class="cart_item">
 												<td colspan="2" id="caloriesbyday">하루필요열량 000kcal</td>
 											</tr>		
-										</c:forEach>
+										
 										
 									</tbody>
 								</table>

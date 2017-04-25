@@ -76,12 +76,10 @@ public class PetinfoController {
 		ModelAndView mav = new ModelAndView();
 		List<HashMap<String, Object>> list = petinfoService.selectPetList(id);
 		
-		System.out.println("l");
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("id", id);
 		params.put("name", list.get(0).get("name"));
 		HashMap<String, Object> pet = petinfoService.selectOne(params);
-		System.out.println(pet);
 		
 		mav.addObject("list", list);
 		mav.addObject("pet", pet);

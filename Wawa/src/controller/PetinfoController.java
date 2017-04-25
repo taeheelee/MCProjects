@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import interface_service.IPetinfoService;
+import model.PetInfo;
 
 @Controller
 public class PetinfoController {
@@ -70,8 +72,21 @@ public class PetinfoController {
 	}
 	
 	@RequestMapping("medicalcareForm.do")
-	public String medicalcareForm(String id){
-		return "medicalcareForm.tiles";
+	public ModelAndView medicalcareForm(String id){
+		ModelAndView mav = new ModelAndView();
+		List<HashMap<String, Object>> list = petinfoService.selectPetList(id);
+		
+		System.out.println("l");
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("id", id);
+		params.put("name", list.get(0).get("name"));
+		HashMap<String, Object> pet = petinfoService.selectOne(params);
+		System.out.println(pet);
+		
+		mav.addObject("list", list);
+		mav.addObject("pet", pet);
+		mav.setViewName("medicalcareForm.tiles");
+		return mav;
 	}
 	
 	@RequestMapping("selectPet.do")
@@ -81,6 +96,5 @@ public class PetinfoController {
 		response.put("result", petinfoService.selectOne(params));
 		return response;
 	}
-	
 	
 }

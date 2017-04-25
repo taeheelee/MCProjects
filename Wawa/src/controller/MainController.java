@@ -92,7 +92,7 @@ public class MainController {
 		session.setAttribute("email", userInfo.getEmail());
 		return "userinfoForm.tiles";
 	}
-
+	
 	@RequestMapping("userUpdate.do")
 	public String userUpdate(UserInfo info){
 		String id = info.getId();

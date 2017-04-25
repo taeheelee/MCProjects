@@ -111,10 +111,7 @@
                     <div class="product-content-right">
                         <div class="woocommerce" >
                          
-                     
-
-                            <form enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
-
+                    
                                 <div id="customer_details" class="col2-set" >
                                     <div class="col-3">
                                     <h2 class="sidebar-title">새로운 펫 정보 등록하기</h2>
@@ -125,7 +122,9 @@
                                                 <label class="" for="billing_first_name">애견 프로필 사진 등록</label>
 
 
-											<form action="addPet.do?id='${id}'">
+											<form action="addPet.do">
+											<input type="hidden" value="${id}" name="id">
+							
 											<p id="billing_first_name_field" class="form-row form-row-first validate-required">
 												<div class="file_input_div">
 													<input type="button" value="파일 선택" class="file_input_button"/>
@@ -154,17 +153,17 @@
                                                 <label class="" for="billing_country">품종 <abbr title="required" class="required">*</abbr>
                                                 </label>
                                                 <select class="country_to_state country_select" id="kind" name="kind">
-                                                    <option selected="selected" value="GB">치와와</option>
-                                                    <option value="DE">요크셔 테리어</option>
-                                                    <option value="GH">말티즈</option>
-                                                    <option value="SB">시츄</option>
-                                                    <option value="SO">비글</option>
-                                                    <option value="ZA">퍼그</option>
-                                                    <option value="GS">페키니즈</option>
-                                                    <option value="KR">미니어쳐 슈나우저</option>
-                                                    <option value="GE">기타 소형견</option>
-                                                    <option value="KR">기타 중형견</option>
-                                                    <option value="KR">기타 대형견</option>
+                                                    <option selected="selected" value="치와와">치와와</option>
+                                                    <option value="요크셔 테리어">요크셔 테리어</option>
+                                                    <option value="말티즈">말티즈</option>
+                                                    <option value="시츄">시츄</option>
+                                                    <option value="비글">비글</option>
+                                                    <option value="퍼그">퍼그</option>
+                                                    <option value="페키니즈">페키니즈</option>
+                                                    <option value="미니어쳐 슈나우저">미니어쳐 슈나우저</option>
+                                                    <option value="기타 소형견">기타 소형견</option>
+                                                    <option value="기타 중형견">기타 중형견</option>
+                                                    <option value="기타 대형견">기타 대형견</option>
                                                 </select>
                                             </p>
                                             <br>
@@ -190,9 +189,9 @@
                                                  <div id="payment">
 													<ul class="payment_methods methods">
 														<li class="payment_method_paypal">
-															<input type="radio" data-order_button_text="Proceed to PayPal" value="male" name="neutral" class="input-radio" id="neutral"> 미중성
+															<input type="radio" data-order_button_text="Proceed to PayPal" value="N" name="neutral" class="input-radio" id="neutral"> 미중성
 															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															<input type="radio" data-order_button_text="Proceed to PayPal" value="female" name="neutral" class="input-radio" id="neutral"> 중성화
+															<input type="radio" data-order_button_text="Proceed to PayPal" value="Y" name="neutral" class="input-radio" id="neutral"> 중성화
 														</li>
 													</ul>
 												</div>
@@ -202,7 +201,7 @@
 											<p id="billing_first_name_field" class="form-row form-row-first validate-required">
                                                 <label class="" for="billing_first_name">생일<abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" id="birth" name="birth" placeholder="ex) 2017-04-01">
+                                                <input type="text" id="birth" name="birthday" placeholder="ex) 2017-04-01">
 												<span id="birthError"></span>
                                          	</p>
 	                                        <br>
@@ -217,7 +216,7 @@
                                             
                                             <p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
                                                 <label class="" for="billing_state">미용시작일</label>
-                                                <input type="text" id="gs" name="gs" value="" class="input-text " placeholder="ex) 2017-04-01">
+                                                <input type="text" id="gs" name="groomingStart" value="" class="input-text " placeholder="ex) 2017-04-01">
 											<span id="gsError"></span>
                                             </p>
                                             <br>
@@ -227,19 +226,19 @@
                                                 <label class="" for="billing_country">미용 주기 알림</label>
                                                 
                                                 <select class="country_to_state country_select" id="groomingPeriod" name="groomingPeriod">
-                                                    <option selected="selected" value="GB">미설정</option>
-                                                    <option value="DE">1달마다</option>
-                                                    <option value="DE">2달마다</option>
-                                                    <option value="GH">3달마다</option>
-                                                    <option value="SB">4달마다</option>
-                                                    <option value="SO">5섯달마다</option>
-                                                    <option value="ZA">6섯달마다</option>
-                                                    <option value="GS">7달마다</option>
-                                                    <option value="GS">8달마다</option>
-                                                    <option value="GS">9달마다</option>
-                                                    <option value="GS">10달마다</option>
-                                                    <option value="GS">11달마다</option>
-                                                    <option value="GS">일년마다</option>
+                                                    <option selected="selected" value="0">미설정</option>
+                                                    <option value="30">1달마다</option>
+                                                    <option value="60">2달마다</option>
+                                                    <option value="90">3달마다</option>
+                                                    <option value="120">4달마다</option>
+                                                    <option value="150">5섯달마다</option>
+                                                    <option value="180">6섯달마다</option>
+                                                    <option value="210">7달마다</option>
+                                                    <option value="240">8달마다</option>
+                                                    <option value="270">9달마다</option>
+                                                    <option value="300">10달마다</option>
+                                                    <option value="330">11달마다</option>
+                                                    <option value="365">일년마다</option>
                                                 </select>
                                             </p>
                                             <br>
@@ -253,7 +252,7 @@
 <br>
 
 											<div class="form-row place-order" style="float: right">
-												<input type="submit" data-value="Place order" value="ADD PET" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
+												<input type="submit" data-value="Place order" value="ADD PET" id="place_order"  class="button alt">
 											</div>
 										</form>
 								
@@ -266,8 +265,7 @@
 
                                    
                                 </div>
-                            </form>
-
+                       
                         </div>                       
                     </div>                    
                 </div>

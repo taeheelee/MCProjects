@@ -23,6 +23,7 @@ public class MainController {
 	public String loginForm(){
 		return "login.tiles";
 	}
+	
 	@RequestMapping(method=RequestMethod.POST, value="login.do")
 	public String login(HttpSession session, String id, String pw){
 		UserInfo userInfo = iMemberService.getMember(id);
@@ -33,6 +34,7 @@ public class MainController {
 		}
 		return "redirect:main.do";
 	}
+	
 	@RequestMapping("logout.do")
 	public String login(HttpSession session){
 		session.removeAttribute("id");
@@ -80,6 +82,7 @@ public class MainController {
 		return response;
 	}
 	
+
 	@RequestMapping("userinfoForm.do")
 	public String userinfoForm(HttpSession session, String id){
 		UserInfo userInfo = iMemberService.getMember(id);
@@ -90,6 +93,7 @@ public class MainController {
 		session.setAttribute("phone", userInfo.getPhoneNum());
 		session.setAttribute("email", userInfo.getEmail());
 		return "userinfoForm.tiles";
+
 	}
 }
 	

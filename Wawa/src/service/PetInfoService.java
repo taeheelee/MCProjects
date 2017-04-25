@@ -19,7 +19,7 @@ public class PetInfoService implements IPetinfoService {
 	
 	@Override
 	public boolean insertPetInfo(int idx, String resist, String id, String name, String kind, Date birthday, String neutral,
-			double weight, String sex, Date groomingStart, int groomingPeriod) {
+			double weight, String sex, Date groomingStart, String groomingPeriod) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> params = new HashMap<>();
 		params.put(Constant.PetInfo.RESIST, resist);
@@ -31,7 +31,8 @@ public class PetInfoService implements IPetinfoService {
 		params.put(Constant.PetInfo.WEIGHT, weight);
 		params.put(Constant.PetInfo.SEX, sex);
 		params.put(Constant.PetInfo.GROOMINGSTART, groomingStart);
-		params.put(Constant.PetInfo.GROOMINGPERIOD, groomingPeriod);
+		int gp = Integer.parseInt(groomingPeriod);
+		params.put(Constant.PetInfo.GROOMINGPERIOD, gp);
 		
 		int result = dao.insertPetInfo(params);
 		if(result > 0)

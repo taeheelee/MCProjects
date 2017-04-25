@@ -92,6 +92,7 @@ public class MainController {
 		session.setAttribute("email", userInfo.getEmail());
 		return "userinfoForm.tiles";
 	}
+<<<<<<< HEAD
 	@RequestMapping("userUpdate.do")
 	public String userUpdate(UserInfo info){
 		String id = info.getId();
@@ -99,6 +100,15 @@ public class MainController {
 //		UserInfo userInfo = iMemberService.getMember(id);
 		iMemberService.modifyInfo(info);
 		return "redirect:userinfoForm.do?id=" + id;
+=======
+	
+	@RequestMapping("nameCheck.do")
+	public 
+	@ResponseBody HashMap<String, Object> nameCheck(HttpServletResponse resp, String nickname){
+		HashMap<String, Object> response = new HashMap<>();
+		response.put("result", iMemberService.nicknameCheck(nickname));
+		return response;
+>>>>>>> branch 'master' of https://github.com/taeheelee/MCProjects.git
 	}
 }
 	

@@ -66,6 +66,7 @@ public class PetinfoController {
 	
 	@RequestMapping("medicalcare.do")
 	public String medicalcare(){
+		
 		return "medicalcare.tiles";
 	}
 	

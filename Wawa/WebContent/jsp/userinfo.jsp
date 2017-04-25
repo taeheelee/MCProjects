@@ -19,32 +19,62 @@
   	<script type="text/javascript">
   		$(document).ready(function(){
   				
-    		var regDate = /^(19[7-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
-    		var regWeight = /^[0-9]*$/;
     		var regName = /^[가-힣a-zA-Z]+$/;
-    		var regId =  /^[a-z]+[a-z0-9]{5,19}$/g;
-    		var regPassword = /^.*(?=^.{6,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+    		var regPwd = /^.*(?=^.{6,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
  			var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-    		var regPhoneNum =  /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
+    		var regPNum =  /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
  			
     		$('#nickname').blur(function(){
-    			
+    			if(!regName.test($('#nickname').val())){
+    				$('#nError').html('<font color="red">사용가능</font>');
+    			}else {
+  					var inputName = $('#nickname').val();
+  					$.ajax({
+  						url : "nameCheck.do",
+  						type : "GET",
+  						data : "nickname=" + inputName,
+  						dataType : "json",
+  						success : function (data) {
+  							if(data.result)
+  								$('nError').html('<font color="green">사용가능</font>');
+  							else{
+  								$('nError').html('<font color="red">중복</font>');	
+  							}
+  						},
+  						error : function(){
+  							alert('잠시 후 다시 시도해주세요');
+  						}
+  						
+  					});
+  				}
     		});
     		
     		$('#pwd').blur(function(){
-    			if(!reg)
+    			if(!regPwd.test($('#pwd').val())){
+    				$('#pwdError')('<font color="red">비밀번호 오류 (영문,숫자를 혼합하여 6~20자 이내)</font>');
+    			}else {
+  					$('#pwError').html('<font color="green">사용가능</font>');
+  				}
     		});
     		
     		$('#conformPwd').blur(function(){
-    			
+    			if($('#pwd').val() != $('#conformPwd').val()){
+    				$('#cpError').html('<font color="red">불일치</font>');
+    			}else {
+  					$('#pwError').html('<font color="green">일치</font>');
+  				}
     		});
     		
     		$('#phoneNum').blur(function(){
-    			
+    			if(!regPNum.test($('phoneNum').val())){
+    				$('#pnError').html('<font color="red">폰번호 입력 오류  (ex) 000-0000-0000)</font>');
+    			}
     		});
     		
     		$('#email').blur(function(){
-    			
+    			if(!regEmail.test($('#email').val())){
+    				$('#eError').html('<font color="red">이메일 입력 오류</font>');
+    			}
     		});
   			
   		});

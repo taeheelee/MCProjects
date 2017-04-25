@@ -93,7 +93,14 @@ public class MainController {
 		session.setAttribute("phone", userInfo.getPhoneNum());
 		session.setAttribute("email", userInfo.getEmail());
 		return "userinfoForm.tiles";
-
+	}
+	
+	@RequestMapping("nameCheck.do")
+	public 
+	@ResponseBody HashMap<String, Object> nameCheck(HttpServletResponse resp, String nickname){
+		HashMap<String, Object> response = new HashMap<>();
+		response.put("result", iMemberService.nicknameCheck(nickname));
+		return response;
 	}
 }
 	

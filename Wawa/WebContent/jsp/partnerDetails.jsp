@@ -99,8 +99,10 @@
                 <hr style="border: solid 1px; border-color: lightgray"> 
                 <div style="text-align: center">
                 <input type="button" value="뒤로가기" onClick="location.href='partnerMain.do'">
-                <input type="button" value="수정" onclick="location.href='partnerUpdateForm.do?boardIdx=${board.boardIdx}'">
-                <input type="button" value="삭제" onclick="location.href='partnerDelete.do?boardIdx=${board.boardIdx}'">
+                <c:if test="${board.writer == sessionScope.name }">
+	                <input type="button" value="수정" onclick="location.href='partnerUpdateForm.do?boardIdx=${board.boardIdx}'">
+	                <input type="button" value="삭제" onclick="location.href='partnerDelete.do?boardIdx=${board.boardIdx}'">
+                </c:if>
                 </div>
                 <div>
                 	<h4>댓글</h4>

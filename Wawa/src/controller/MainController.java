@@ -54,9 +54,9 @@ public class MainController {
 	 
 	@RequestMapping(method=RequestMethod.POST, value="join.do")
 	public String join(String id, String password, String nickname,
-			String sex, String phoneNum, @RequestParam(defaultValue="0")int adminCheck, String email){
-		System.out.println(id + "컨트롤러에서 받아오는지");
-		int result = iMemberService.join(id, password, nickname, sex, phoneNum, adminCheck, email);
+			String sex, String phone, @RequestParam(defaultValue="0")int adminCheck, String email){
+		System.out.println(phone);
+		int result = iMemberService.join(id, password, nickname, sex, phone, adminCheck, email);
 //		return"";
 		if(result > 0)
 			return "redirect:main.do";			
@@ -67,7 +67,6 @@ public class MainController {
 	@RequestMapping("idCheck.do")
 	public 
 	@ResponseBody HashMap<String, Object> idCheck(HttpServletResponse resp, String id){
-//		System.out.println("idCheck.do로 들어옴");
 		HashMap<String, Object> response = new HashMap<>();
 		response.put("result", iMemberService.checkId(id));
 		return response;
@@ -90,10 +89,17 @@ public class MainController {
 		session.setAttribute("name", userInfo.getNickname());
 		session.setAttribute("sex", userInfo.getSex());
 		session.setAttribute("pass", userInfo.getPassword());
-		session.setAttribute("phone", userInfo.getPhoneNum());
+		session.setAttribute("phone", userInfo.getPhone());
 		session.setAttribute("email", userInfo.getEmail());
 		return "userinfoForm.tiles";
-
+	}
+	@RequestMapping("userUpdate.do")
+	public String userUpdate(UserInfo info){
+		String id = info.getId();
+		System.out.println(info);
+//		UserInfo userInfo = iMemberService.getMember(id);
+		iMemberService.modifyInfo(info);
+		return "redirect:userinfoForm.do?id=" + id;
 	}
 }
 	

@@ -82,10 +82,18 @@ public class MainController {
 		return response;
 	}
 	
-	@RequestMapping("userinfo.do")
-	public String userinfoForm(String id){
-		//????????????????? 
-		return "userinfo.tiles";
+
+	@RequestMapping("userinfoForm.do")
+	public String userinfoForm(HttpSession session, String id){
+		UserInfo userInfo = iMemberService.getMember(id);
+		session.setAttribute("id", userInfo.getId());
+		session.setAttribute("name", userInfo.getNickname());
+		session.setAttribute("sex", userInfo.getSex());
+		session.setAttribute("pass", userInfo.getPassword());
+		session.setAttribute("phone", userInfo.getPhoneNum());
+		session.setAttribute("email", userInfo.getEmail());
+		return "userinfoForm.tiles";
+
 	}
 }
 	

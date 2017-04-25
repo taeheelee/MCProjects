@@ -100,7 +100,7 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="main.do">HOME</a></li>
-					<li><a href="userinfo.do?id=${sessionScope.id}">내정보</a></li>
+					<li><a href="userinfoForm.do?id=${sessionScope.id}">내정보</a></li>
 					<li class="dropdown">
 						<a href="single-product.html" class="dropdown-toggle" data-toggle="dropdown">나의펫 <b class="caret"></b></a>
 	                    <ul class="dropdown-menu">

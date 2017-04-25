@@ -117,6 +117,8 @@ public class MainController {
 		return response;
 
 	}
+	@RequestMapping("deleteMember.do")
+	public g
 }
 	
 

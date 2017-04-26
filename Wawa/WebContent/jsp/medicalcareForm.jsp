@@ -732,7 +732,7 @@
 		<p>개 홍역(Distemper), 전염성 간염(Infectious Hepatitis), 파보바이러스성 장염(Pavovirus Enteritis), 파라인플루엔자성 기관지염(Parainflluenza) 및 렙토스피라증(Leptospirosis) 등의 질병을 예방해주는 가장 중요한 예방접종이다.</p>
 		<p>6~8주부터 시작해서 2~3주 간격으e 3~5회 접종, 매년 1회 추가접종한다. 접종 뒤 1주일간 목욕금지.</p>
 		<form method="post" action="#">
-			<table cellspacing="0" class="shop_table cart">
+			<table cellspacing="0" class="shop_table cart" id="table1">
 				<thead>
 					<tr>
 						<th colspan="2">접종일정</th>
@@ -805,7 +805,7 @@
 	<p>코로나바이러스성 장염은 피가 섞인 설사를 하고, 구토를 하며, 열이 나고, 식욕이 없어지는 증세가 특징.</p>
 	<p>생후 6~8주부터 2~3주 간격으로 2회 접종, 매년 1회 추가접종한다.</p>
 		<form method="post" action="#">
-			<table cellspacing="0" class="shop_table cart">
+			<table cellspacing="0" class="shop_table cart" id="table2">
 				<thead>
 					<tr>
 						<th colspan="2">접종일정</th>
@@ -880,7 +880,7 @@
 	<p>주로 강아지들이 대량으로 있는 곳에서 공기를 통해 쉽게 감염되며 심한 마른기침을 일으키며 폐렴으로 진행되기도 한다.</p>
 	<p>생후 6~8주부터 2~3주 간격으로 2회 접종, 매년 1회 추가접종한다.</p>
 		<form method="post" action="#">
-			<table cellspacing="0" class="shop_table cart">
+			<table cellspacing="0" class="shop_table cart" id="table3">
 				<thead>
 					<tr>
 						<th colspan="2">접종일정</th>
@@ -955,7 +955,7 @@
 	<p>광견병 바이러스가 매개하는 감염증으로 광견병은 공수병이라고도 한다. 모든 온혈동물에서 발생되는 질병으로 감염 동물로부터 교상(물리거나 할퀸 상처)을 통해 동물 및 사람에게 전파되는 중요한 인수공통전염병이다.</p>
 	<p>생후 3개월 이상 된 강아지에게 1회 접종한 후 6개월 후 재접종한다. 매년 추가접종을 해야 한다</p>
 		<form method="post" action="#">
-			<table cellspacing="0" class="shop_table cart">
+			<table cellspacing="0" class="shop_table cart" id="table4">
 				<thead>
 					<tr>
 						<th colspan="2">접종일정</th>

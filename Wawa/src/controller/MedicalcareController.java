@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,10 +25,11 @@ public class MedicalcareController {
 	@Autowired
 	private IPetinfoService petinfoService;
 	
-	@RequestMapping("uploadDHPPL.do")
+	@RequestMapping("uploadMedical.do")
 	public 
-	@ResponseBody HashMap<String, Object> uploadDHPPL(HashMap<String, Object> params){
-		HashMap<String, Object> response = new HashMap<>();
+	@ResponseBody HashMap<String, Object> uploadMedical(HttpServletResponse resp,
+			HashMap<String, Object> params){
+		HashMap<String, Object> medical = new HashMap<>();
 		
 		String fromShotday = (String)params.get("shotday");
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -45,31 +48,16 @@ public class MedicalcareController {
 		
 		int vaccineCode = (int)params.get("vaccineCode");
 		
-		response.put(Constant.MedicalManage.VACCINECODE, vaccineCode);
-		response.put(Constant.MedicalManage.IDX, idx);
-		response.put(Constant.MedicalManage.REALSHOTDATE, toShotday);
-		//IDX, VACCINECODE, REALSHOTDATE
+		medical.put(Constant.MedicalManage.VACCINECODE, vaccineCode);
+		medical.put(Constant.MedicalManage.IDX, idx);
+		medical.put(Constant.MedicalManage.REALSHOTDATE, toShotday);
 		
-		if(medicalService.updateRealShotDate(response)){
-			
+		HashMap<String, Object> response = new HashMap<>();
+		if(medicalService.updateRealShotDate(medical)){
+			response.put("result", true);
 		}else {
-			
+			response.put("result", false);
 		}
 		return response;
-	}
-	
-	@RequestMapping("uploadCorona.do")
-	public String uploadCorona(String shotday){
-		
-	}
-	
-	@RequestMapping("uploadKennel.do")
-	public String uploadKennel(String shotday){
-		
-	}
-	
-	@RequestMapping("uploadRabies.do")
-	public String uploadRabies(String shotday){
-		
 	}
 }

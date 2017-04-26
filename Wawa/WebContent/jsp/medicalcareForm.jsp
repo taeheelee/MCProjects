@@ -40,7 +40,7 @@
 				var vaccineCode = 101;
 				$.ajax({
 					type: 'post',
-					url: 'uploadDHPPL.do',
+					url: 'uploadMedical.do',
 					data: 
 					{
 						"id":id, 
@@ -62,7 +62,7 @@
 				var vaccineCode = 102;
 				$.ajax({
 					type: 'post',
-					url: 'uploadDHPPL.do',
+					url: 'uploadMedical.do',
 					data: 
 					{
 						"id":id, 
@@ -84,7 +84,7 @@
 				var vaccineCode = 103;
 				$.ajax({
 					type: 'post',
-					url: 'uploadDHPPL.do',
+					url: 'uploadMedical.do',
 					data: 
 					{
 						"id":id, 
@@ -106,7 +106,7 @@
 				var vaccineCode = 104;
 				$.ajax({
 					type: 'post',
-					url: 'uploadDHPPL.do',
+					url: 'uploadMedical.do',
 					data: 
 					{
 						"id":id, 
@@ -128,7 +128,7 @@
 				var vaccineCode = 105;
 				$.ajax({
 					type: 'post',
-					url: 'uploadDHPPL.do',
+					url: 'uploadMedical.do',
 					data: 
 					{
 						"id":id, 
@@ -150,7 +150,7 @@
 				var vaccineCode = 201;
 				$.ajax({
 					type: 'post',
-					url: 'uploadCorona.do',
+					url: 'uploadMedical.do',
 					data: 
 					{
 						"id":id, 
@@ -172,7 +172,7 @@
 				var vaccineCode = 202;
 				$.ajax({
 					type: 'post',
-					url: 'uploadCorona.do',
+					url: 'uploadMedical.do',
 					data: 
 					{
 						"id":id, 
@@ -194,7 +194,7 @@
 				var vaccineCode = 203;
 				$.ajax({
 					type: 'post',
-					url: 'uploadCorona.do',
+					url: 'uploadMedical.do',
 					data: 
 					{
 						"id":id, 
@@ -216,7 +216,7 @@
 				var vaccineCode = 204;
 				$.ajax({
 					type: 'post',
-					url: 'uploadCorona.do',
+					url: 'uploadMedical.do',
 					data: 
 					{
 						"id":id, 
@@ -238,7 +238,7 @@
 				var vaccineCode = 205;
 				$.ajax({
 					type: 'post',
-					url: 'uploadCorona.do',
+					url: 'uploadMedical.do',
 					data: 
 					{
 						"id":id, 
@@ -260,7 +260,7 @@
 				var vaccineCode = 301;
 				$.ajax({
 					type: 'post',
-					url: 'uploadKennel.do',
+					url: 'uploadMedical.do',
 					data: 
 					{
 						"id":id, 
@@ -282,7 +282,7 @@
 				var vaccineCode = 302;
 				$.ajax({
 					type: 'post',
-					url: 'uploadKennel.do',
+					url: 'uploadMedical.do',
 					data: 
 					{
 						"id":id, 
@@ -304,7 +304,7 @@
 				var vaccineCode = 303;
 				$.ajax({
 					type: 'post',
-					url: 'uploadKennel.do',
+					url: 'uploadMedical.do',
 					data: 
 					{
 						"id":id, 
@@ -326,7 +326,7 @@
 				var vaccineCode = 304;
 				$.ajax({
 					type: 'post',
-					url: 'uploadKennel.do',
+					url: 'uploadMedical.do',
 					data: 
 					{
 						"id":id, 
@@ -348,7 +348,7 @@
 				var vaccineCode = 305;
 				$.ajax({
 					type: 'post',
-					url: 'uploadKennel.do',
+					url: 'uploadMedical.do',
 					data: 
 					{
 						"id":id, 
@@ -370,7 +370,7 @@
 				var vaccineCode = 401;
 				$.ajax({
 					type: 'post',
-					url: 'uploadRabies.do',
+					url: 'uploadMedical.do',
 					data: 
 					{
 						"id":id, 
@@ -392,7 +392,7 @@
 				var vaccineCode = 402;
 				$.ajax({
 					type: 'post',
-					url: 'uploadRabies.do',
+					url: 'uploadMedical.do',
 					data: 
 					{
 						"id":id, 
@@ -436,7 +436,7 @@
 				var vaccineCode = 404;
 				$.ajax({
 					type: 'post',
-					url: 'uploadRabies.do',
+					url: 'uploadMedical.do',
 					data: 
 					{
 						"id":id, 
@@ -458,7 +458,7 @@
 				var vaccineCode = 405;
 				$.ajax({
 					type: 'post',
-					url: 'uploadRabies.do',
+					url: 'uploadMedical.do',
 					data: 
 					{
 						"id":id, 

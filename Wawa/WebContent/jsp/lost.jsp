@@ -77,9 +77,9 @@
 							<tr><td>이름</td><td id="petname">${lost.name }</td></tr>
 							<tr><td>품종</td><td id="petkind">${lost.kind }</td></tr>
 							<tr><td id="petsex">${lost.sex }</td><td id="petage">${lost.age }</td></tr>
-							<tr><td colspan="2">잃어버린 장소</td></tr>
+							<tr><td colspan="2">잃어버린/발견된 장소</td></tr>
 							<tr><td colspan="2" id="place">${lost.lostPlace }</td></tr>
-							<tr><td colspan="2">잃어버린 날짜</td></tr>
+							<tr><td colspan="2">잃어버린/발견된 날짜</td></tr>
 							<tr><td colspan="2" id="lostdate">${lost.lostDate }</td></tr>
 						</table>
 						</div>

@@ -108,11 +108,6 @@ function lostBoardCheck() {
 		$('#name').focus();
 		return false;
 	}
-	if ($('#resist').val().replace(/ /gi, "") == "") {
-		alert("등록번호를 입력해주세요");
-		$('#resist').focus();
-		return false;
-	}
 	if ($('#age').val().replace(/ /gi, "") == "") {
 		alert("나이를 입력해주세요");
 		$('#age').focus();

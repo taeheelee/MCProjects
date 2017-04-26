@@ -16,7 +16,16 @@
 					<td>${st.index+1 }</td>
 					<td>${pet.name }</td>
 					<td>${pet.kind }</td>
-					<td><input type="button" value="선택" onclick="window.close();window.opener.parent.location.href='boastGetPetinfo.do?idx=${pet.idx}'"></td>
+					
+					<c:if test="${boardCode==3}">
+					<td><input type="button" value="선택" onclick="window.close();window.opener.parent.location.href='boastGetPetinfo.do?idx=${pet.idx}&boardIdx=${boardIdx }&boardCode=3&type=${type }'"></td>
+					</c:if>
+					<c:if test="${boardCode==4}">
+					<td><input type="button" value="선택" onclick="window.close();window.opener.parent.location.href='lostGetPetinfo.do?idx=${pet.idx}&boardIdx=${boardIdx }&boardCode=4&type=${type }'"></td>
+					</c:if>
+					<c:if test="${boardCode==5}">
+					<td><input type="button" value="선택" onclick="window.close();window.opener.parent.location.href='partnerGetPetinfo.do?idx=${pet.idx}&boardIdx=${boardIdx }&boardCode=5&type=${type }'"></td>
+					</c:if>
 				</tr>
 			</c:forEach>
 		</table>

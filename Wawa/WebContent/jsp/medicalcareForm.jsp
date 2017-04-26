@@ -37,53 +37,99 @@
 				});
 			});
 			
-			$('#updateDHPPL').click({
-				
+			$('#updateDHPPL').click(function() {
+				$.ajax({
+					type: 'post',
+					url: 'updateDHPPL.do',
+					data: '',
+					dataType: '',
+					success: function(data) {
+						
+					},
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
 			});
 			
-			$('#deleteDHPPL').click({
-				
+			$('#deleteDHPPL').click(function() {
+				$.ajax({
+					type: 'post',
+					url: 'deleteDHPPL.do',
+					data: '',
+					dataType: '',
+					success: function(data) {
+						
+					},
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
 			});
 			
-			$('#updateCorona').click({
-				
+			$('#uploadDHPPL').click(function() {
+				$.ajax({
+					type: 'post',
+					url: 'uploadDHPPL.do',
+					data: '',
+					dataType: 'json',
+					success: function(data) {
+						
+					}, 
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
 			});
 			
-			$('#deleteCorona').click({
-				
-			});
-
-			$('#updateKennel').click({
-				
-			});
-			
-			$('#deleteKennel').click({
-				
-			});
-
-			$('#updateRabies').click({
-				
-			});
-			
-			$('#deleteRabies').click({
-				
+			$('#updateCorona').click(function() {
+				$.ajax({
+					type: 'post',
+					url: 'updateCorona.do',
+					data: '',
+					dataType: 'json',
+					success: function(data) {
+						
+					},
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
 			});
 			
-			$('.uploadBtn1').click({
-				
+			$('#deleteCorona').click(function(){
+				$.ajax({
+					type: 'post',
+					url: 'deleteCorona.do',
+					data: '',
+					dataType: '',
+					success: function(data) {
+						
+					},
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
 			});
 			
-			$('.uploadBtn2').click({
-				
+			$('#uploadCorona').click(function(){
+				$.ajax({
+					type: 'post',
+					url: 'uploadCorona.do',
+					data: '',
+					dataType: '',
+					success: function(data) {
+						
+					},
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+						
+				});
 			});
 			
-			$('.uploadBtn3').click({
-				
-			});
 			
-			$('.uploadBtn4').click({
-				
-			});
+			
 			
 		});
 	
@@ -198,9 +244,9 @@
     					<td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
                         <td>
                             <input type="button" value="수정" name="updateDHPPL" id="updateDHPPL" 
-                            class="button" style="padding: 4px 4px" OnClick="GreetingBtn_Click">
+                            class="button" style="padding: 4px 4px" onclick="location.href='updateDHPPL.do'">
                         	<input type="button" value="삭제" name="deleteDHPPL" id="deleteDHPPL" 
-                        	class="button" style="padding: 4px 4px" OnClick="GreetingBtn_Click">
+                        	class="button" style="padding: 4px 4px" onclick="location.href='deleteDHPPL.do'">
                         </td>
                     </tr>
                     <tr>
@@ -209,7 +255,7 @@
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="DHPPL" class="DHPPL" name="DHPPL"></td>
                         <td><input type="button" value="등록" name="uploadDHPPL" id="uploadDHPPL" 
-                        class="uploadBtn1" style="padding: 5px 5px" OnClick="GreetingBtn_Click"></td>
+                        class="uploadBtn1" style="padding: 5px 5px" onclick="location.href='uploadDHPPL.do'"></td>
                     </tr>
                     <tr>
                         <td><a>3차</a></td>
@@ -217,7 +263,7 @@
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="DHPPL" class="DHPPL" name="DHPPL"></td>
                         <td><input type="button" value="등록" name="uploadDHPPL" id="uploadDHPPL" 
-                        class="uploadBtn1" style="padding: 5px 5px" OnClick="GreetingBtn_Click"></td>
+                        class="uploadBtn1" style="padding: 5px 5px" onclick="location.href='uploadDHPPL.do'"></td>
                     </tr>
                     <tr>
                         <td><a>4차</a></td>
@@ -225,7 +271,7 @@
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="DHPPL" class="DHPPL" name="DHPPL"></td>
                         <td><input type="button" value="등록" name="uploadDHPPL" id="uploadDHPPL" 
-                        class="uploadBtn1" style="padding: 5px 5px" OnClick="GreetingBtn_Click"></td>
+                        class="uploadBtn1" style="padding: 5px 5px" onclick="location.href='uploadDHPPL.do'"></td>
                     </tr>
                     <tr>
                         <td><a>5차</a></td>
@@ -233,7 +279,7 @@
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="DHPPL" class="DHPPL" name="DHPPL"></td>
                         <td><input type="button" value="등록" name="uploadDHPPL" id="uploadDHPPL" 
-                        class="uploadBtn1" style="padding: 5px 5px" OnClick="GreetingBtn_Click"></td>
+                        class="uploadBtn1" style="padding: 5px 5px" onclick="location.href='uploadDHPPL.do'"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
@@ -241,7 +287,7 @@
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="DHPPL" class="DHPPL" name="DHPPL"></td>
                         <td><input type="button" value="등록" name="uploadDHPPL" id="uploadDHPPL" 
-                        class="uploadBtn1" style="padding: 5px 5px" OnClick="GreetingBtn_Click"></td>
+                        class="uploadBtn1" style="padding: 5px 5px" onclick="location.href='uploadDHPPL.do'"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
@@ -249,7 +295,7 @@
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="DHPPL" class="DHPPL" name="DHPPL"></td>
                         <td><input type="button" value="등록" name="uploadDHPPL" id="uploadDHPPL" 
-                        class="uploadBtn1" style="padding: 5px 5px" OnClick="GreetingBtn_Click"></td>
+                        class="uploadBtn1" style="padding: 5px 5px" onclick="location.href='uploadDHPPL.do'"></td>
                     </tr>
 				</tbody>
 			</table>
@@ -282,9 +328,9 @@
     					class="Corona" name="Corona" OnClick="GreetingBtn_Click"></td>
                         <td>
                             <input type="button" value="수정" name="updateCorona" id="updateCorona" 
-                            class="button" style="padding: 4px 4px" OnClick="GreetingBtn_Click">
+                            class="button" style="padding: 4px 4px" onclick="location.href='updateCorona.do'">
                         	<input type="button" value="삭제" name="deleteCorona" id="deleteCorona" 
-                        	class="button" style="padding: 4px 4px" OnClick="GreetingBtn_Click">
+                        	class="button" style="padding: 4px 4px" onclick="location.href='deleteCorona.do'">
                         </td>
                     </tr>
                     <tr>
@@ -292,8 +338,8 @@
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="Corona" class="Corona" name="Corona"></td>
-                        <td><input type="button" value="등록" name="uploadCorona" id="uploadCorona" 
-                        class="uploadBtn2" style="padding: 5px 5px" OnClick="GreetingBtn_Click"></td>
+                        <td><input type="button" value="등록" name="uploadCorona" id="deleteCorona" 
+                        class="uploadBtn2" style="padding: 5px 5px" onclick="location.href='uploadCorona.do'"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
@@ -301,7 +347,7 @@
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="Corona" class="Corona" name="Corona"></td>
                         <td><input type="button" value="등록" name="uploadCorona" id="uploadCorona" 
-                        class="uploadBtn2" style="padding: 5px 5px" OnClick="GreetingBtn_Click"></td>
+                        class="uploadBtn2" style="padding: 5px 5px" onclick="location.href='uploadCorona.do'"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
@@ -309,7 +355,7 @@
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="Corona" class="Corona" name="Corona"></td>
                         <td><input type="button" value="등록" name="uploadCorona" id="uploadCorona" 
-                        class="uploadBtn2" style="padding: 5px 5px" OnClick="GreetingBtn_Click"></td>
+                        class="uploadBtn2" style="padding: 5px 5px" onclick="location.href='uploadCorona.do'"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
@@ -317,7 +363,7 @@
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="Corona" class="Corona" name="Corona"></td>
                         <td><input type="button" value="등록" name="uploadCorona" id="uploadCorona" 
-                        class="uploadBtn2" style="padding: 5px 5px" OnClick="GreetingBtn_Click"></td>
+                        class="uploadBtn2" style="padding: 5px 5px" onclick="location.href='uploadCorona.do'"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
@@ -325,7 +371,7 @@
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="Corona" class="Corona" name="Corona"></td>
                         <td><input type="button" value="등록" name="uploadCorona" id="uploadCorona" 
-                        class="uploadBtn2" style="padding: 5px 5px" OnClick="GreetingBtn_Click"></td>
+                        class="uploadBtn2" style="padding: 5px 5px" onclick="location.href='uploadCorona.do'"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
@@ -333,7 +379,7 @@
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="Corona" class="Corona" name="Corona"></td>
                         <td><input type="button" value="등록" name="uploadCorona" id="uploadCorona" 
-                        class="uploadBtn2" style="padding: 5px 5px" OnClick="GreetingBtn_Click"></td>
+                        class="uploadBtn2" style="padding: 5px 5px" onclick="location.href='uploadCorona.do'"></td>
                     </tr>
                 </tbody>
 			</table>
@@ -365,9 +411,9 @@
     					<td><input type="text" placeholder="0000-00-00" value="" id="Kennel" class="Kennel" name="Kennel"></td>
                         <td>
                             <input type="button" value="수정" name="updateKennel" id="updateKennel" 
-                            class="button" style="padding: 4px 4px" OnClick="GreetingBtn_Click">
+                            class="button" style="padding: 4px 4px" onclick="location.href='updateKennel.do'">
                         	<input type="button" value="삭제" name="deleteKennel" id="deleteKennel" 
-                        	class="button" style="padding: 4px 4px" OnClick="GreetingBtn_Click">
+                        	class="button" style="padding: 4px 4px" onclick="location.href='deleteKennel.do'">
                         </td>
                     </tr>
                     <tr>
@@ -376,7 +422,7 @@
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="Kennel" class="Kennel" name="Kennel"></td>
                         <td><input type="button" value="등록" name="uploadKennel" id="uploadKennel" 
-                        class="uploadBtn3" style="padding: 5px 5px" OnClick="GreetingBtn_Click"></td>
+                        class="uploadBtn3" style="padding: 5px 5px" onclick="location.href='uploadKennel.do'"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
@@ -384,7 +430,7 @@
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="Kennel" class="Kennel" name="Kennel"></td>
                         <td><input type="button" value="등록" name="uploadKennel" id="uploadKennel" 
-                        class="uploadBtn3" style="padding: 5px 5px" OnClick="GreetingBtn_Click"></td>
+                        class="uploadBtn3" style="padding: 5px 5px" onclick="location.href='uploadKennel.do'"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
@@ -392,7 +438,7 @@
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="Kennel" class="Kennel" name="Kennel"></td>
                         <td><input type="button" value="등록" name="uploadKennel" id="uploadKennel" 
-                        class="uploadBtn3" style="padding: 5px 5px" OnClick="GreetingBtn_Click"></td>
+                        class="uploadBtn3" style="padding: 5px 5px" onclick="location.href='uploadKennel.do'"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
@@ -400,7 +446,7 @@
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="Kennel" class="Kennel" name="Kennel"></td>
                         <td><input type="button" value="등록" name="uploadKennel" id="uploadKennel" 
-                        class="uploadBtn3" style="padding: 5px 5px" OnClick="GreetingBtn_Click"></td>
+                        class="uploadBtn3" style="padding: 5px 5px" onclick="location.href='uploadKennel.do'"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
@@ -408,7 +454,7 @@
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="Kennel" class="Kennel" name="Kennel"></td>
                         <td><input type="button" value="등록" name="uploadKennel" id="uploadKennel" 
-                        class="uploadBtn3" style="padding: 5px 5px" OnClick="GreetingBtn_Click"></td>
+                        class="uploadBtn3" style="padding: 5px 5px" onclick="location.href='uploadKennel.do'"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
@@ -416,7 +462,7 @@
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="Kennel" class="Kennel" name="Kennel"></td>
                         <td><input type="button" value="등록" name="uploadKennel" id="uploadKennel" 
-                        class="uploadBtn3" style="padding: 5px 5px" OnClick="GreetingBtn_Click"></td>
+                        class="uploadBtn3" style="padding: 5px 5px" onclick="location.href='uploadKennel.do'"></td>
                     </tr>
                 </tbody>
 			</table>
@@ -451,9 +497,9 @@
     					<td><input type="text" placeholder="0000-00-00" value="" id="Rabies" class="Rabies" name="Rabies"></td>
                         <td>
                             <input type="button" value="수정" name="updateRabies" id="updateRabies" 
-                            class="button" style="padding: 4px 4px" OnClick="GreetingBtn_Click">
+                            class="button" style="padding: 4px 4px" onclick="location.href='updateRabies.do'">
                         	<input type="button" value="삭제" name="deleteRabies" id="deleteRabies" 
-                        	class="button" style="padding: 4px 4px" OnClick="GreetingBtn_Click">
+                        	class="button" style="padding: 4px 4px" onclick="location.href='deleteRabies.do'">
                         </td>
                     </tr>
                     <tr>
@@ -461,7 +507,8 @@
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="Rabies" class="Rabies" name="Rabies"></td>
-                        <td><input type="button" value="등록" name="uploadRabies" id="uploadRabies" class="uploadBtn4" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="등록" name="uploadRabies" id="uploadRabies" 
+                        class="uploadBtn4" style="padding: 5px 5px" onclick="location.href='uploadRabies.do'"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
@@ -469,7 +516,7 @@
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="Rabies" class="Rabies" name="Rabies"></td>
                         <td><input type="button" value="등록" name="uploadRabies" id="uploadRabies" 
-                        class="uploadBtn4" style="padding: 5px 5px" OnClick="GreetingBtn_Click"></td>
+                        class="uploadBtn4" style="padding: 5px 5px" onclick="location.href='uploadRabies.do'"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
@@ -477,7 +524,7 @@
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="Rabies" class="Rabies" name="Rabies"></td>
                         <td><input type="button" value="등록" name="uploadRabies" id="uploadRabies" 
-                        class="uploadBtn4" style="padding: 5px 5px" OnClick="GreetingBtn_Click"></td>
+                        class="uploadBtn4" style="padding: 5px 5px" onclick="location.href='uploadRabies.do'"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
@@ -485,7 +532,7 @@
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="Rabies" class="Rabies" name="Rabies"></td>
                         <td><input type="button" value="등록" name="uploadRabies" id="uploadRabies" 
-                        class="uploadBtn4" style="padding: 5px 5px" OnClick="GreetingBtn_Click"></td>
+                        class="uploadBtn4" style="padding: 5px 5px" onclick="location.href='uploadRabies.do'"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
@@ -493,7 +540,7 @@
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="Rabies" class="Rabies" name="Rabies"></td>
                         <td><input type="button" value="등록" name="uploadRabies" id="uploadRabies" 
-                        class="uploadBtn4" style="padding: 5px 5px" OnClick="GreetingBtn_Click"></td>
+                        class="uploadBtn4" style="padding: 5px 5px" onclick="location.href='uploadRabies.do'"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
@@ -501,7 +548,7 @@
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" value="" id="Rabies" class="Rabies" name="Rabies"></td>
                         <td><input type="button" value="등록" name="uploadRabies" id="uploadRabies" 
-                        class="uploadBtn4" style="padding: 5px 5px" OnClick="GreetingBtn_Click"></td>
+                        class="uploadBtn4" style="padding: 5px 5px" onclick="location.href='uploadRabies.do'"></td>
                     </tr>
                 </tbody>
 			</table>

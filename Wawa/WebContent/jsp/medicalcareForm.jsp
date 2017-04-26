@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>eElectronics - HTML eCommerce Template</title>
-    <link href="tabstyle.css" rel="stylesheet">
+    <link href="../tabstyle.css" rel="stylesheet">
     <script
   	src="https://code.jquery.com/jquery-2.2.4.min.js"
   	integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="

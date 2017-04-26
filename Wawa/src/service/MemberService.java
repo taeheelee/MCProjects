@@ -51,9 +51,14 @@ public class MemberService implements IMemberService{
 	}
 
 	@Override
-	public boolean deleteMember(String id, String pw) {
+	public boolean deleteMember(String id) {
 		// TODO Auto-generated method stub
-		return false;
+		int result = dao.deleteUserInfo(id);
+		if(result > 0)
+			return true;
+		else
+			return false;
+		
 	}
 
 	@Override
@@ -92,4 +97,5 @@ public class MemberService implements IMemberService{
 		else 
 			return false;
 	}
+
 }

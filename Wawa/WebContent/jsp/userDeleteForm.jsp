@@ -18,19 +18,22 @@ $(document).ready(function(){
 		window.close();
 	})
 	$('#delete').click(function(){
-		//window.opener.parent.location.href = "main.do";
-		var inputString = prompt('탈퇴하시려면 ID를 한번 더 입력해주세요', '탈퇴를 원하시면 ID를 입력해주세요');
+		
+		var chk = prompt('탈퇴하시려면 ID를 한번 더 입력해주세요', '탈퇴를 원하시면 ID를 입력해주세요');
 		$.ajax({ 
-		 	    url : "passCheck.do",
+		 	    url : "deleteCheck.do",
 		    	type : 'POST',
-		     	data : 'id=' + $('#id').val(),
+		     	data : 'id=' + $('#id').val() + "&password=" + $('#password').val() + "&chk=" + chk ,
 		     	dataType: 'json',
 			    success : function (data) {
 			    	//alert('sdsd');
-			        if(data.result)
-			        	alert('ㅇㅇ'); 
+			        if(data.result){
+			        	alert('탈퇴완료'); 
+			      		window.opener.parent.location.href = "main.do";
+			      		window.close();
+			    	}
 			        else 
-			        	alert('ㄴㄴ');
+			        	alert('아이디와 비밀번호를 다시 확인해주세요');
 			    },
 		     	error : function(){
 		    	 	alert('잠시 후 다시 시도해주세요');

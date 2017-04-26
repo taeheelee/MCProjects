@@ -39,8 +39,7 @@ public class MainController {
 	
 	@RequestMapping("logout.do")
 	public String login(HttpSession session){
-		session.removeAttribute("id");
-		session.removeAttribute("name");
+		session.invalidate();
 		return "redirect:main.do";
 	}
 	 
@@ -57,7 +56,6 @@ public class MainController {
 	@RequestMapping(method=RequestMethod.POST, value="join.do")
 	public String join(String id, String password, String nickname,
 			String sex, String phone, @RequestParam(defaultValue="0")int adminCheck, String email){
-		System.out.println(phone);
 		int result = iMemberService.join(id, password, nickname, sex, phone, adminCheck, email);
 		if(result > 0)
 			return "redirect:main.do";			
@@ -76,7 +74,6 @@ public class MainController {
 	@RequestMapping("nicknameCheck.do")
 	public 
 	@ResponseBody HashMap<String, Object> nicknameCheck(HttpServletResponse resp, String nickname){
-		System.out.println(iMemberService.nicknameCheck(nickname));
 		HashMap<String, Object> response = new HashMap<>();
 		response.put("result", iMemberService.nicknameCheck(nickname));
 		return response;
@@ -108,13 +105,20 @@ public class MainController {
 		return "redirect:userinfoForm.do?id=" + id;
 	}
 	
-	@RequestMapping("passCheck.do")
+	@RequestMapping("deleteCheck.do")
 	public
-	@ResponseBody HashMap<String, Object> passCheck(HttpServletResponse resp, String password){
+	@ResponseBody HashMap<String, Object> passCheck(HttpSession session, String id, String password, String chk){
 		HashMap<String, Object> response = new HashMap<>();
-
-		response.put("result", iMemberService);
-
+		UserInfo userinfo = iMemberService.getMember(id);
+		String pwChk = userinfo.getPassword();
+		String idChk = userinfo.getId();
+		if(idChk.equals(chk) && pwChk.equals(password) ){
+			iMemberService.deleteMember(id);
+			session.invalidate();
+			response.put("result", true );
+		}
+		else
+			response.put("result", false);
 		return response;
 
 	}

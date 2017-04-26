@@ -25,10 +25,12 @@ public class MedicalcareController {
 	@Autowired
 	private IPetinfoService petinfoService;
 	
+//	int count = 0;
 	@RequestMapping("uploadMedical.do")
 	public 
 	@ResponseBody HashMap<String, Object> uploadMedical(HttpServletResponse resp,
 			HashMap<String, Object> params){
+//		System.out.println(count ++);
 		HashMap<String, Object> medical = new HashMap<>();
 		
 		String fromShotday = (String)params.get("shotday");

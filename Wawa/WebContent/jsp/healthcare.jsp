@@ -37,6 +37,7 @@ svg{
 }
 
 </style>
+
 </head>
 <body>
 	<div class="product-big-title-area">
@@ -117,7 +118,7 @@ svg{
 					</div>
 				</div>
 
-
+<div class="col-md-9">
 				<div class="col-md-6">
 					<div class="product-content-right">
 						<div class="woocommerce">
@@ -133,51 +134,50 @@ svg{
 									<tbody>
 										<tr class="cart_item">
 
-											<td><input type="text" placeholder="0000-00-00" value=""
-												id="coupon_code" class="input-text" name="coupon_code"></td>
+											<td><input type="text" placeholder="0000-00-00" value="" style="width: 100px"></td>
 
-											<td><input type="text" placeholder="kg" value=""
-												id="coupon_code" class="input-text" name="coupon_code">
+											<td><input type="text" placeholder="kg" value="" style="width: 80px">
 												kg</td>
-											<td><input type="submit" value="수정" name="update_cart"
-												class="button" style="padding: 5px 5px"> <input
-												type="submit" value="삭제" name="update_cart" class="button"
+											<td><input type="submit" value="수정" 
+												class="button" style="padding: 5px 5px"> 
+												<input
+												type="submit" value="삭제"  class="button"
 												style="padding: 5px 5px"></td>
 										</tr>
 										<tr>
 											<td><input type="text" placeholder="0000-00-00" value=""
-												id="coupon_code" class="input-text" name="coupon_code"></td>
+												  style="width: 100px"></td>
 
 											<td><input type="text" placeholder="kg" value=""
-												id="coupon_code" class="input-text" name="coupon_code">
+												  style="width: 80px">
 												kg</td>
-											<td><input type="submit" value="등록" name="update_cart"
+											<td><input type="submit" value="등록" 
 												class="button" style="padding: 5px 5px"></td>
 										</tr>
 										<tr>
 											<td><input type="text" placeholder="0000-00-00" value=""
-												id="coupon_code" class="input-text" name="coupon_code"></td>
+												  style="width: 100px"></td>
 
 											<td><input type="text" placeholder="kg" value=""
-												id="coupon_code" class="input-text" name="coupon_code">
+												 style="width: 80px" >
 												kg</td>
 											<td>등록</td>
 										</tr>
 										<tr>
 											<td><input type="text" placeholder="0000-00-00" value=""
-												id="coupon_code" class="input-text" name="coupon_code"></td>
+												  style="width: 100px"></td>
 
 											<td><input type="text" placeholder="kg" value=""
-												id="coupon_code" class="input-text" name="coupon_code">
+												 style="width: 80px" >
 												kg</td>
 											<td>등록</td>
 										</tr>
 										<tr>
 											<td><input type="text" placeholder="0000-00-00" value=""
-												id="coupon_code" class="input-text" name="coupon_code"></td>
+												  style="width: 100px"></td>
 
 											<td><input type="text" placeholder="kg" value=""
-												id="coupon_code" class="input-text" name="coupon_code">
+												  style="width: 80px">
 												kg</td>
 											<td>등록</td>
 										</tr>
@@ -193,28 +193,32 @@ svg{
 
 
 
-				<div class="col-md-3">
+				<div class="col-md-6">
 					<!-- 그래프 구역 -->
 					<svg id="d3g" style="width: 100%;"></svg>
 				</div>
-
+</div>
 
 				<div class="col-md-9">
 					<div class="product-content-right">
 						<h2 class="sidebar-title">
-							하루 필요열량(kcal) <span id="calculateCalories" style="color: gray">=
-								000kcal</span>
+							하루 필요열량(kcal) = <span id="calculateCalories" style="color: gray">
+								000</span>kcal
 						</h2>
-						<input type="radio" name="activity" value="overweight">비만
-						<input type="radio" name="activity" value="littleoverweight">비만경향
-						<input type="radio" name="activity" value="noExercise">운동량
-						없음 <input type="radio" name="activity" value="lightExercise">가벼운
-						운동 <input type="radio" name="activity" value="moderateExercise">적당한
-						운동 <input type="radio" name="activity" value="strenuousExercise">심한
-						운동 <input type="button" value="Calculate"> <br>
+						<form name="calculate">
+						<input type="radio" name="activity" id="activity" value="1.0">비만
+						<input type="radio" name="activity" id="activity" value="1.4">비만경향
+						<input type="radio" name="activity" id="activity" value="1.8" checked="checked">운동량 없음 
+						<input type="radio" name="activity" id="activity" value="2.0">가벼운 운동 
+						<input type="radio" name="activity" id="activity" value="3.0">적당한 운동 
+						<input type="radio" name="activity" id="activity" value="4.0">심한 운동 
+						<input type="button" value="Calculate" id="calculate" onclick=""> <br>
+						</form>
+						<p></p>
 						<p>보통 사료 패키지에는 체중에 따른 1일 권장 급여량과 100g당 칼로리가 표시되어있지만 대략적인수치이며,
 							같은 성분이라고 하더라도 애견의 활동량과 체질 등에 따라 급여 칼로리가 달라질 수 있다.</p>
 						<p>하루 필요열량을 급여 할 때, 간식칼로리도 함께 생각해야합니다. 1일 총칼로리 = 밥2끼 + 간식</p>
+						
 						<div class="woocommerce">
 							<form method="post" action="#"></form>
 						</div>

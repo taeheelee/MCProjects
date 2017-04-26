@@ -19,7 +19,7 @@
 	      	
 	      	if(${board.kind == '치와와'})
 	      		$('#kind > option[value=1]').attr('selected', true);
-	      	else if(${board.kind == '요크셔테리어'})
+	      	else if(${board.kind == '요크셔 테리어'})
 	      		$('#kind > option[value=2]').attr('selected', true);
 	      	else if(${board.kind == '말티즈'})
 	      		$('#kind > option[value=3]').attr('selected', true);
@@ -33,11 +33,11 @@
 	      		$('#kind > option[value=7]').attr('selected', true);
 	      	else if(${board.kind == '미니어쳐 슈나우저'})
 	      		$('#kind > option[value=8]').attr('selected', true);
-	      	else if(${board.kind == '기타소형견'})
+	      	else if(${board.kind == '기타 소형견'})
 	      		$('#kind > option[value=9]').attr('selected', true);
-	      	else if(${board.kind == '기타중형견'})
+	      	else if(${board.kind == '기타 중형견'})
 	      		$('#kind > option[value=10]').attr('selected', true);
-	      	else if(${board.kind == '기타대형견'})
+	      	else if(${board.kind == '기타 대형견'})
 	      		$('#kind > option[value=11]').attr('selected', true);
 	  });
 	</script>

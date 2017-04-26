@@ -15,9 +15,7 @@
 				var content = $('#summernote').summernote('code');
 				$('#content').val(content);	
 			});
-			 var petinfo = ${pet.idx};
-			
-			 if(petinfo != 0){
+			 if(${load != 0}){
 				 $('#name').val('${pet.name}');
 				
 				var year = '${pet.birthday}'.split('-');
@@ -30,7 +28,7 @@
 					
 				 if(${pet.kind == '치와와'})
 			      		$('#kind > option[value=1]').attr('selected', true);
-			      	else if(${pet.kind == '요크셔테리어'})
+			      	else if(${pet.kind == '요크셔 테리어'})
 			      		$('#kind > option[value=2]').attr('selected', true);
 			      	else if(${pet.kind == '말티즈'})
 			      		$('#kind > option[value=3]').attr('selected', true);
@@ -44,11 +42,11 @@
 			      		$('#kind > option[value=7]').attr('selected', true);
 			      	else if(${pet.kind == '미니어쳐 슈나우저'})
 			      		$('#kind > option[value=8]').attr('selected', true);
-			      	else if(${pet.kind == '기타소형견'})
+			      	else if(${pet.kind == '기타 소형견'})
 			      		$('#kind > option[value=9]').attr('selected', true);
-			      	else if(${pet.kind == '기타중형견'})
+			      	else if(${pet.kind == '기타 중형견'})
 			      		$('#kind > option[value=10]').attr('selected', true);
-			      	else if(${pet.kind == '기타대형견'})
+			      	else if(${pet.kind == '기타 대형견'})
 			      		$('#kind > option[value=11]').attr('selected', true);
 			 }
 	  });
@@ -133,9 +131,9 @@
 	                                            <div id="payment">
 													<ul class="payment_methods methods">
 														<li class="payment_method_paypal">
-															<input type="radio" data-order_button_text="Proceed to PayPal" value="male" name="male" class="input-radio" id="sex" checked="checked"> 수컷
+															<input type="radio" data-order_button_text="Proceed to PayPal" value="male" name="sex" class="input-radio" id="sex" checked="checked"> 수컷
 															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															<input type="radio" data-order_button_text="Proceed to PayPal" value="female" name="female" class="input-radio" id="sex"> 암컷
+															<input type="radio" data-order_button_text="Proceed to PayPal" value="female" name="sex" class="input-radio" id="sex"> 암컷
 														</li>
 													</ul>
 												</div>

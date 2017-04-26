@@ -72,19 +72,13 @@ public class PetinfoController {
 	}
 	
 	@RequestMapping("medicalcareForm.do")
-	public ModelAndView medicalcareForm(String id, String name){
+	public ModelAndView medicalcareForm(String id){
 		ModelAndView mav = new ModelAndView();
 		List<HashMap<String, Object>> list = petinfoService.selectPetList(id);
-		
-		HashMap<String, Object> params = new HashMap<>();
-		params.put("id", id);
-		params.put("name", list.get(0).get("name"));
-		HashMap<String, Object> pet = petinfoService.selectOne(params);
-		
 		mav.addObject("list", list);
-		mav.addObject("pet", pet);
 		mav.setViewName("medicalcareForm.tiles");
 		return mav;
 	}
+	
 	
 }

@@ -28,107 +28,61 @@
 					url: 'medicalcareForm.do',
 					data: {"id":id, "name":name},
 					dataType: "json",
-					success: function(data){
-						alert('들어옴');
-					},
 					error: function(data){
 						alert("잠시 후 다시 시도해주세요.");
 					}
 				});
 			});
 			
-			$('#updateDHPPL').click(function() {
-				$.ajax({
-					type: 'post',
-					url: 'updateDHPPL.do',
-					data: '',
-					dataType: '',
-					success: function(data) {
-						
-					},
-					error: function(data) {
-						alert('잠시 후 다시 시도해주세요');
-					}
-				});
-			});
 			
-			$('#deleteDHPPL').click(function() {
-				$.ajax({
-					type: 'post',
-					url: 'deleteDHPPL.do',
-					data: '',
-					dataType: '',
-					success: function(data) {
-						
-					},
-					error: function(data) {
-						alert('잠시 후 다시 시도해주세요');
-					}
-				});
-			});
-			
-			$('#uploadDHPPL').click(function() {
+			$('.uploadBtn1').click(function() {
 				$.ajax({
 					type: 'post',
 					url: 'uploadDHPPL.do',
 					data: '',
 					dataType: 'json',
-					success: function(data) {
-						
-					}, 
 					error: function(data) {
 						alert('잠시 후 다시 시도해주세요');
 					}
 				});
 			});
 			
-			$('#updateCorona').click(function() {
-				$.ajax({
-					type: 'post',
-					url: 'updateCorona.do',
-					data: '',
-					dataType: 'json',
-					success: function(data) {
-						
-					},
-					error: function(data) {
-						alert('잠시 후 다시 시도해주세요');
-					}
-				});
-			});
-			
-			$('#deleteCorona').click(function(){
-				$.ajax({
-					type: 'post',
-					url: 'deleteCorona.do',
-					data: '',
-					dataType: '',
-					success: function(data) {
-						
-					},
-					error: function(data) {
-						alert('잠시 후 다시 시도해주세요');
-					}
-				});
-			});
-			
-			$('#uploadCorona').click(function(){
+			$('.uploadBtn2').click(function() {
 				$.ajax({
 					type: 'post',
 					url: 'uploadCorona.do',
 					data: '',
-					dataType: '',
-					success: function(data) {
-						
-					},
+					dataType: 'json',
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
+			});
+			
+			$('.uploadBtn3').click(function(){
+				$.ajax({
+					type: 'post',
+					url: 'uploadKennel.do',
+					data: '',
+					dataType: 'json',
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
+			});
+			
+			$('.uploadBtn4').click(function(){
+				$.ajax({
+					type: 'post',
+					url: 'uploadRabies.do',
+					data: '',
+					dataType: 'json',
 					error: function(data) {
 						alert('잠시 후 다시 시도해주세요');
 					}
 						
 				});
 			});
-			
-			
 			
 			
 		});
@@ -137,7 +91,6 @@
 	    
 </head>
   <body>
-    
     
     <div class="product-big-title-area">
         <div class="container">
@@ -219,9 +172,8 @@
 	<li><a href="#Rabies">광견병 Rabies</a></li>
 </ul>
 
-<a name="DHPPL">
 <div id="content">
-	<div id="tab1">
+	<div id="DHPPL" name="DHPPL">
 		<h2>종합백신 DHPPL</h2>
 		<p>개 홍역(Distemper), 전염성 간염(Infectious Hepatitis), 파보바이러스성 장염(Pavovirus Enteritis), 파라인플루엔자성 기관지염(Parainflluenza) 및 렙토스피라증(Leptospirosis) 등의 질병을 예방해주는 가장 중요한 예방접종이다.</p>
 		<p>6~8주부터 시작해서 2~3주 간격으e 3~5회 접종, 매년 1회 추가접종한다. 접종 뒤 1주일간 목욕금지.</p>
@@ -241,70 +193,57 @@
                         <td><a>1차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-    					<td><input type="text" placeholder="0000-00-00" value="" id="coupon_code" class="input-text" name="coupon_code"></td>
-                        <td>
-                            <input type="button" value="수정" name="updateDHPPL" id="updateDHPPL" 
-                            class="button" style="padding: 4px 4px" onclick="location.href='updateDHPPL.do'">
-                        	<input type="button" value="삭제" name="deleteDHPPL" id="deleteDHPPL" 
-                        	class="button" style="padding: 4px 4px" onclick="location.href='deleteDHPPL.do'">
-                        </td>
+    					<td><input type="text" placeholder="0000-00-00" id="DHPPLValue1"></td>
+                    	<td><input type="button" value="입력" id="uploadBtn1" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td><a>2차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" value="" id="DHPPL" class="DHPPL" name="DHPPL"></td>
-                        <td><input type="button" value="등록" name="uploadDHPPL" id="uploadDHPPL" 
-                        class="uploadBtn1" style="padding: 5px 5px" onclick="location.href='uploadDHPPL.do'"></td>
+                        <td><input type="text" placeholder="0000-00-00" id="DHPPLValue2"></td>
+                       	<td><input type="button" value="입력" id="uploadBtn2" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td><a>3차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" value="" id="DHPPL" class="DHPPL" name="DHPPL"></td>
-                        <td><input type="button" value="등록" name="uploadDHPPL" id="uploadDHPPL" 
-                        class="uploadBtn1" style="padding: 5px 5px" onclick="location.href='uploadDHPPL.do'"></td>
+                        <td><input type="text" placeholder="0000-00-00" id="DHPPLValue"></td>
+                        <td><input type="button" value="입력" id="uploadBtn3" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td><a>4차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" value="" id="DHPPL" class="DHPPL" name="DHPPL"></td>
-                        <td><input type="button" value="등록" name="uploadDHPPL" id="uploadDHPPL" 
-                        class="uploadBtn1" style="padding: 5px 5px" onclick="location.href='uploadDHPPL.do'"></td>
+                        <td><input type="text" placeholder="0000-00-00" id="DHPPLValue"></td>
+                        <td><input type="button" value="입력" class="uploadBtn1" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td><a>5차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" value="" id="DHPPL" class="DHPPL" name="DHPPL"></td>
-                        <td><input type="button" value="등록" name="uploadDHPPL" id="uploadDHPPL" 
-                        class="uploadBtn1" style="padding: 5px 5px" onclick="location.href='uploadDHPPL.do'"></td>
+                        <td><input type="text" placeholder="0000-00-00" id="DHPPLValue"></td>
+                        <td><input type="button" value="입력" class="uploadBtn1" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" value="" id="DHPPL" class="DHPPL" name="DHPPL"></td>
-                        <td><input type="button" value="등록" name="uploadDHPPL" id="uploadDHPPL" 
-                        class="uploadBtn1" style="padding: 5px 5px" onclick="location.href='uploadDHPPL.do'"></td>
+                        <td><input type="text" placeholder="0000-00-00" id="DHPPLValue"></td>
+                        <td><input type="button" value="입력" class="uploadBtn1" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" value="" id="DHPPL" class="DHPPL" name="DHPPL"></td>
-                        <td><input type="button" value="등록" name="uploadDHPPL" id="uploadDHPPL" 
-                        class="uploadBtn1" style="padding: 5px 5px" onclick="location.href='uploadDHPPL.do'"></td>
+                        <td><input type="text" placeholder="0000-00-00" id="DHPPLValue"></td>
+                        <td><input type="button" value="입력" class="uploadBtn1" style="padding: 5px 5px"></td>
                     </tr>
 				</tbody>
 			</table>
         </form>
 </div>
 
-
-<a name="Corona">
-<div id="tab2">
+<div id="Corona" name="Corona">
 	<h2>코로나 Corona Virus</h2>
 	<p>코로나바이러스성 장염은 피가 섞인 설사를 하고, 구토를 하며, 열이 나고, 식욕이 없어지는 증세가 특징.</p>
 	<p>생후 6~8주부터 2~3주 간격으로 2회 접종, 매년 1회 추가접종한다.</p>
@@ -324,62 +263,50 @@
                         <td><a>1차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-    					<td><input type="text" placeholder="0000-00-00" value="" id="Corona" 
-    					class="Corona" name="Corona" OnClick="GreetingBtn_Click"></td>
-                        <td>
-                            <input type="button" value="수정" name="updateCorona" id="updateCorona" 
-                            class="button" style="padding: 4px 4px" onclick="location.href='updateCorona.do'">
-                        	<input type="button" value="삭제" name="deleteCorona" id="deleteCorona" 
-                        	class="button" style="padding: 4px 4px" onclick="location.href='deleteCorona.do'">
-                        </td>
+    					<td><input type="text" placeholder="0000-00-00" id="CoronaValue"></td>
+                        <td><input type="button" value="입력" class="uploadBtn2" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td><a>2차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" value="" id="Corona" class="Corona" name="Corona"></td>
-                        <td><input type="button" value="등록" name="uploadCorona" id="deleteCorona" 
-                        class="uploadBtn2" style="padding: 5px 5px" onclick="location.href='uploadCorona.do'"></td>
+                        <td><input type="text" placeholder="0000-00-00" id="CoronaValue"></td>
+                        <td><input type="button" value="입력" class="uploadBtn2" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" value="" id="Corona" class="Corona" name="Corona"></td>
-                        <td><input type="button" value="등록" name="uploadCorona" id="uploadCorona" 
-                        class="uploadBtn2" style="padding: 5px 5px" onclick="location.href='uploadCorona.do'"></td>
+                       	<td><input type="text" placeholder="0000-00-00" id="CoronaValue"></td>
+                        <td><input type="button" value="입력" class="uploadBtn2" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" value="" id="Corona" class="Corona" name="Corona"></td>
-                        <td><input type="button" value="등록" name="uploadCorona" id="uploadCorona" 
-                        class="uploadBtn2" style="padding: 5px 5px" onclick="location.href='uploadCorona.do'"></td>
+                       	<td><input type="text" placeholder="0000-00-00" id="CoronaValue"></td>
+                        <td><input type="button" value="입력" class="uploadBtn2" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" value="" id="Corona" class="Corona" name="Corona"></td>
-                        <td><input type="button" value="등록" name="uploadCorona" id="uploadCorona" 
-                        class="uploadBtn2" style="padding: 5px 5px" onclick="location.href='uploadCorona.do'"></td>
+                        <td><input type="text" placeholder="0000-00-00" id="CoronaValue"></td>
+                      	<td><input type="button" value="입력" class="uploadBtn2" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" value="" id="Corona" class="Corona" name="Corona"></td>
-                        <td><input type="button" value="등록" name="uploadCorona" id="uploadCorona" 
-                        class="uploadBtn2" style="padding: 5px 5px" onclick="location.href='uploadCorona.do'"></td>
+                        <td><input type="text" placeholder="0000-00-00" id="CoronaValue"></td>
+                        <td><input type="button" value="입력" class="uploadBtn2" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" value="" id="Corona" class="Corona" name="Corona"></td>
-                        <td><input type="button" value="등록" name="uploadCorona" id="uploadCorona" 
-                        class="uploadBtn2" style="padding: 5px 5px" onclick="location.href='uploadCorona.do'"></td>
+                        <td><input type="text" placeholder="0000-00-00" id="CoronaValue"></td>
+                       	<td><input type="button" value="입력" class="uploadBtn2" style="padding: 5px 5px"></td>
                     </tr>
                 </tbody>
 			</table>
@@ -387,8 +314,7 @@
 </div>
 
 
-<a name="Kennel">
-<div id="tab3">
+<div id="Kennel" name="Kennel">
 	<h2>켄넬코프  Kennel Cough</h2>
 	<p>주로 강아지들이 대량으로 있는 곳에서 공기를 통해 쉽게 감염되며 심한 마른기침을 일으키며 폐렴으로 진행되기도 한다.</p>
 	<p>생후 6~8주부터 2~3주 간격으로 2회 접종, 매년 1회 추가접종한다.</p>
@@ -408,61 +334,50 @@
                         <td><a>1차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-    					<td><input type="text" placeholder="0000-00-00" value="" id="Kennel" class="Kennel" name="Kennel"></td>
-                        <td>
-                            <input type="button" value="수정" name="updateKennel" id="updateKennel" 
-                            class="button" style="padding: 4px 4px" onclick="location.href='updateKennel.do'">
-                        	<input type="button" value="삭제" name="deleteKennel" id="deleteKennel" 
-                        	class="button" style="padding: 4px 4px" onclick="location.href='deleteKennel.do'">
-                        </td>
+    					<td><input type="text" placeholder="0000-00-00" id="KennelValue"></td>
+                        <td><input type="button" value="입력" class="uploadBtn3" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td><a>2차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" value="" id="Kennel" class="Kennel" name="Kennel"></td>
-                        <td><input type="button" value="등록" name="uploadKennel" id="uploadKennel" 
-                        class="uploadBtn3" style="padding: 5px 5px" onclick="location.href='uploadKennel.do'"></td>
+                 	    <td><input type="text" placeholder="0000-00-00" id="KennelValue"></td>
+                        <td><input type="button" value="입력" class="uploadBtn3" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" value="" id="Kennel" class="Kennel" name="Kennel"></td>
-                        <td><input type="button" value="등록" name="uploadKennel" id="uploadKennel" 
-                        class="uploadBtn3" style="padding: 5px 5px" onclick="location.href='uploadKennel.do'"></td>
+                        <td><input type="text" placeholder="0000-00-00" id="KennelValue"></td>
+                        <td><input type="button" value="입력" class="uploadBtn3" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" value="" id="Kennel" class="Kennel" name="Kennel"></td>
-                        <td><input type="button" value="등록" name="uploadKennel" id="uploadKennel" 
-                        class="uploadBtn3" style="padding: 5px 5px" onclick="location.href='uploadKennel.do'"></td>
+                        <td><input type="text" placeholder="0000-00-00" id="KennelValue"></td>
+                        <td><input type="button" value="입력" class="uploadBtn3" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" value="" id="Kennel" class="Kennel" name="Kennel"></td>
-                        <td><input type="button" value="등록" name="uploadKennel" id="uploadKennel" 
-                        class="uploadBtn3" style="padding: 5px 5px" onclick="location.href='uploadKennel.do'"></td>
+                        <td><input type="text" placeholder="0000-00-00" id="KennelValue""></td>
+                        <td><input type="button" value="입력" class="uploadBtn3" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" value="" id="Kennel" class="Kennel" name="Kennel"></td>
-                        <td><input type="button" value="등록" name="uploadKennel" id="uploadKennel" 
-                        class="uploadBtn3" style="padding: 5px 5px" onclick="location.href='uploadKennel.do'"></td>
+                        <td><input type="text" placeholder="0000-00-00" id="KennelValue"></td>
+                        <td><input type="button" value="입력" class="uploadBtn3" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" value="" id="Kennel" class="Kennel" name="Kennel"></td>
-                        <td><input type="button" value="등록" name="uploadKennel" id="uploadKennel" 
-                        class="uploadBtn3" style="padding: 5px 5px" onclick="location.href='uploadKennel.do'"></td>
+                        <td><input type="text" placeholder="0000-00-00" id="KennelValue"></td>
+                        <td><input type="button" value="입력" class="uploadBtn3" style="padding: 5px 5px"></td>
                     </tr>
                 </tbody>
 			</table>
@@ -470,9 +385,7 @@
 
 </div>
 
-
-<a name="Rabies">
-<div id="tab4">
+<div id="Rabies" name="Rabies">
 	<h2>광견병 Rabies</h2>
 	<p>광견병 바이러스가 매개하는 감염증으로 광견병은 공수병이라고도 한다. 모든 온혈동물에서 발생되는 질병으로 감염 동물로부터 교상(물리거나 할퀸 상처)을 통해 동물 및 사람에게 전파되는 중요한 인수공통전염병이다.</p>
 	<p>생후 3개월 이상 된 강아지에게 1회 접종한 후 6개월 후 재접종한다. 매년 추가접종을 해야 한다</p>
@@ -494,61 +407,50 @@
                         <td><a>1차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-    					<td><input type="text" placeholder="0000-00-00" value="" id="Rabies" class="Rabies" name="Rabies"></td>
-                        <td>
-                            <input type="button" value="수정" name="updateRabies" id="updateRabies" 
-                            class="button" style="padding: 4px 4px" onclick="location.href='updateRabies.do'">
-                        	<input type="button" value="삭제" name="deleteRabies" id="deleteRabies" 
-                        	class="button" style="padding: 4px 4px" onclick="location.href='deleteRabies.do'">
-                        </td>
+    					<td><input type="text" placeholder="0000-00-00" id="RabiesValue"></td>
+                        <td><input type="button" value="입력" class="uploadBtn4" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" value="" id="Rabies" class="Rabies" name="Rabies"></td>
-                        <td><input type="button" value="등록" name="uploadRabies" id="uploadRabies" 
-                        class="uploadBtn4" style="padding: 5px 5px" onclick="location.href='uploadRabies.do'"></td>
+                        <td><input type="text" placeholder="0000-00-00" id="RabiesValue"></td>
+                        <td><input type="button" value="입력" class="uploadBtn4" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" value="" id="Rabies" class="Rabies" name="Rabies"></td>
-                        <td><input type="button" value="등록" name="uploadRabies" id="uploadRabies" 
-                        class="uploadBtn4" style="padding: 5px 5px" onclick="location.href='uploadRabies.do'"></td>
+                        <td><input type="text" placeholder="0000-00-00" id="RabiesValue"></td>
+                        <td><input type="button" value="입력" class="uploadBtn4" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" value="" id="Rabies" class="Rabies" name="Rabies"></td>
-                        <td><input type="button" value="등록" name="uploadRabies" id="uploadRabies" 
-                        class="uploadBtn4" style="padding: 5px 5px" onclick="location.href='uploadRabies.do'"></td>
+                        <td><input type="text" placeholder="0000-00-00" id="RabiesValue"></td>
+                        <td><input type="button" value="입력" class="uploadBtn4" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" value="" id="Rabies" class="Rabies" name="Rabies"></td>
-                        <td><input type="button" value="등록" name="uploadRabies" id="uploadRabies" 
-                        class="uploadBtn4" style="padding: 5px 5px" onclick="location.href='uploadRabies.do'"></td>
+                        <td><input type="text" placeholder="0000-00-00" id="RabiesValue"></td>
+                        <td><input type="button" value="입력" class="uploadBtn4" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" value="" id="Rabies" class="Rabies" name="Rabies"></td>
-                        <td><input type="button" value="등록" name="uploadRabies" id="uploadRabies" 
-                        class="uploadBtn4" style="padding: 5px 5px" onclick="location.href='uploadRabies.do'"></td>
+                        <td><input type="text" placeholder="0000-00-00" id="RabiesValue"></td>
+                        <td><input type="button" value="입력" class="uploadBtn4" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" value="" id="Rabies" class="Rabies" name="Rabies"></td>
-                        <td><input type="button" value="등록" name="uploadRabies" id="uploadRabies" 
-                        class="uploadBtn4" style="padding: 5px 5px" onclick="location.href='uploadRabies.do'"></td>
+                        <td><input type="text" placeholder="0000-00-00" id="RabiesValue"></td>
+                        <td><input type="button" value="입력" class="uploadBtn4" style="padding: 5px 5px"></td>
                     </tr>
                 </tbody>
 			</table>

@@ -40,7 +40,7 @@ svg{
 <script type="text/javascript">
 
 
-$(document).ready(function(){
+/* $(document).ready(function(){
 	
 	var calculate = document.getElementById('calculate');
 
@@ -57,7 +57,7 @@ $(document).ready(function(){
 	
 	
 //    console.log($("input[name=activity]:checked").val());
-});
+}); */
 
 
 </script>

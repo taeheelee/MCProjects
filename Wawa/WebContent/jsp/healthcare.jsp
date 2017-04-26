@@ -37,7 +37,30 @@ svg{
 }
 
 </style>
+<script type="text/javascript">
 
+
+$(document).ready(function(){
+	
+	var calculate = document.getElementById('calculate');
+
+	var calculateCalories = document.getElementById('calculateCalories');
+	
+	calculate.onclick = function(){
+	var activity = $("input[name=activity]:checked").val();
+		alert(activity);
+		calculateCalories.innerHTML = Number(activity) * ((5*30)+70);
+// 		일일 칼로리 ={ (${weight강아지몸무게} *30)+70 } * 선택배수
+
+// 		calculateCalories.innerHTML = Number(calculateCalories.innerHTML) + 1;
+	}
+	
+	
+//    console.log($("input[name=activity]:checked").val());
+});
+
+
+</script>
 </head>
 <body>
 	<div class="product-big-title-area">

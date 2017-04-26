@@ -70,7 +70,12 @@
 	  					$('#emailError').html('<font color="green">사용가능</font>');
 	  				}
 	  			});
+				
+				$('#delete').click(function() {
+						window.open('deleteForm.do', name ,"width=500, height=230");
+				});
 	 	});
+	
  	</script>
   
   </head>
@@ -96,7 +101,7 @@
 						<form action="userUpdate.do" class="checkout" method="post" name="checkout">
 					<p style="text-align: right;"> 
 						<input type="submit" value="수정하기">
-						<input type="button" value="회원탈퇴">
+						<input type="button" value="회원탈퇴" id="delete">
 					</p>
 					<div class="single-product-widget">
 							
@@ -104,12 +109,12 @@
 	<div class="col-md-12" style="padding-left: 30px; padding-top: 30px;">
 		<div class="woocommerce-billing-fields">
 			<label class="" for="billing_first_name">아이디</label> 
-			<span id="userid">${sessionScope.id }</span>
-			<input type="hidden" value="${sessionScope.id }" name="id">
+			<span id="userid">${id }</span>
+			<input type="hidden" value="${id }" name="id">
 			<br><br>
 			
 			<label class="" for="billing_first_name">닉네임 <abbr	title="required" class="required">*</abbr></label> 
-			<input type="text" value="${sessionScope.name }" placeholder="" id="nick" name="nickname" class="input-text ">
+			<input type="text" value="${name }" placeholder="" id="nick" name="nickname" class="input-text ">
 			<br>
 			<span id="nickError"></span>
 
@@ -118,7 +123,7 @@
 				<ul class="payment_methods methods">
 					<li class="payment_method_paypal">
 						<c:choose>
-							<c:when test="${sessionScope.sex == 'male'}">
+							<c:when test="${sex == 'male'}">
 								<input type="radio" value="male" name="sex" checked="checked"> 남자
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<input type="radio" value="female" name="sex"> 여자
@@ -135,7 +140,7 @@
 			</div>
 
 			<label class="" for="billing_state">비밀번호<abbr title="required" class="required">*</abbr></label> 
-			<input type="password" id="password" name="password" placeholder="15자리 이내의 알파벳, 숫자, 특수문자" value="${sessionScope.pass }" class="input-text ">
+			<input type="password" id="password" name="password" placeholder="15자리 이내의 알파벳, 숫자, 특수문자" value="${pass }" class="input-text ">
 			<br>
 			<span id="pwError"></span>
 
@@ -145,12 +150,12 @@
 			<span id="cpwError"></span>
 
 			<label class="" for="billing_first_name">연락처</label> 
-			<input type="text" value="${sessionScope.phone }" placeholder="" id="phoneNum" name="phone" class="input-text ">
+			<input type="text" value="${phone }" placeholder="" id="phoneNum" name="phone" class="input-text ">
 			<br>
 			<span id="pnumError"></span>
 			
 			<label class="" for="billing_first_name">E-mail  </label> 
-			<input type="text" value="${sessionScope.email }" placeholder="" id="email" name="email" class="input-text ">
+			<input type="text" value="${email }" placeholder="" id="email" name="email" class="input-text ">
 			<br>
 			<span id="emailError"></span>
 
@@ -249,13 +254,6 @@
                     
                     
                 </div>
-                
-                
-                
-                
-                
-                
-              
 
             </div>
         </div>

@@ -72,7 +72,7 @@ public class LostController {
 		if(kind.equals("1"))
 			kind = "치와와";
 		else if(kind.equals("2"))
-			kind = "요크셔테리어";
+			kind = "요크셔 테리어";
 		else if(kind.equals("3"))
 			kind = "말티즈";
 		else if(kind.equals("4"))
@@ -86,11 +86,11 @@ public class LostController {
 		else if(kind.equals("8"))
 			kind = "미니어쳐 슈나우저";
 		else if(kind.equals("9"))
-			kind = "기타소형견";
+			kind = "기타 소형견";
 		else if(kind.equals("10"))
-			kind = "기타중형견";
+			kind = "기타 중형견";
 		else if(kind.equals("11"))
-			kind = "기타대형견";
+			kind = "기타 대형견";
 		
 		boardService.writeDogFindBoard(boardCode, category, name, resist, lostdate, lostplace, 
 				kind, sex, age, weight, phone, email, content, title, writer);

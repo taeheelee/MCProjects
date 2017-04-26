@@ -47,13 +47,13 @@ public interface IBoardService {
 	//이름으로 게시판 검색
 	public List<HashMap<String, Object>> getBoardByName(HashMap<String, Object> params);
 	//제목으로 게시판 검색
-	public HashMap<String, Object> getBoardByTitle(int type, String keyword, int page, int boardCode);
+	public HashMap<String, Object> getBoardByTitle(String category, String keyword, int page, int boardCode);
 	//키워드로 게시판 검색
 	public List<HashMap<String, Object>> getBoardByKeyword(HashMap<String, Object> params);
 	//게시판인덱스로 게시판 검색
 	public HashMap<String, Object> getBoardByBoardIdx(int boardIdx);
-	// 펫정보 가져오기
-	public List<HashMap<String, Object>> getPetInfo(String id);
 	//본인확인
 	public boolean identifyUser(HashMap<String, Object> params);
+	//펫 정보 가져오기
+	public HashMap<String, Object> selectPetinfo(int idx);
 }

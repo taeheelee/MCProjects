@@ -113,12 +113,14 @@ public class MainController {
 	public 
 	@ResponseBody HashMap<String, Object> nameCheck(HttpServletResponse resp, String nickname){
 		HashMap<String, Object> response = new HashMap<>();
-		response.put("r5sult", iMemberService.nicknameCheck(nickname));
+		response.put("result", iMemberService.nicknameCheck(nickname));
 		return response;
 
 	}
-//	@RequestMapping("deleteMember.do")
-//	public g
+
+	/*@RequestMapping("deleteMember.do")
+	public g*/
+
 }
 	
 

@@ -320,19 +320,12 @@ public class BoardService implements IBoardService{
 	}
 
 	@Override
-	public HashMap<String, Object> getBoardByTitle(int type, String keyword, int page, int boardCode) {
+	public HashMap<String, Object> getBoardByTitle(String category, String keyword, int page, int boardCode) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> params = new HashMap<>();
 		params.put(Constant.Board.BOARDCODE, boardCode);
 		params.put(Constant.Board.TITLE, keyword);
-		if(type == 1)
-			params.put(Constant.Board.CATEGORY, "애견상식");
-		else if(type == 2)
-			params.put(Constant.Board.CATEGORY, "훈련정보");
-		else if(type == 3)
-			params.put(Constant.Board.CATEGORY, "애견간식레시피");
-		else if(type == 4)
-			params.put(Constant.Board.CATEGORY, "기타");
+		params.put(Constant.Board.CATEGORY, category);
 		
 		int first = 1;
 
@@ -361,7 +354,7 @@ public class BoardService implements IBoardService{
 		result.put("last", last);
 		result.put("current", page);
 		result.put("boardList", list);
-		result.put("type", type);
+		result.put("category", category);
 		result.put("keyword", keyword);
 		
 		return result;
@@ -380,18 +373,19 @@ public class BoardService implements IBoardService{
 	}
 
 	@Override
-	public List<HashMap<String, Object>> getPetInfo(String id) {
-		// TODO Auto-generated method stub
-		return dao.selectPetinfo(id);
-	}
-	
-	@Override
 	public boolean identifyUser(HashMap<String, Object> params) {
 		// TODO Auto-generated method stub
 		String id = (String) params.get("id");
 		String password = (String) params.get("password");
 		if(dao.getUserPwd(id).equals(password)) return true;
 		return false;
+	}
+
+	@Override
+	public HashMap<String, Object> selectPetinfo(int idx) {
+		// TODO Auto-generated method stub
+		
+		return dao.selectPetinfo(idx);
 	}
 
 	

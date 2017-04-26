@@ -11,11 +11,6 @@
     <title>eElectronics - HTML eCommerce Template</title>
 	<script type="text/javascript">
 	
-		var getPetinfo = function() {
-		     alert("안녕");
-		     
-		};
-	
 		$(document).ready(function(){
 			
 			$('#petname').change(function(){
@@ -24,14 +19,19 @@
 				var name = $('#petname').val();
 				$.ajax({
 					type: 'post',
-					url: 'medicalcareForm.do',
+					url: 'selectPet.do',
 					data: "id="+id+"&name="+name,
 					dataType: "json",
 					success: function(data) {
-// 						<td colspan="2" id="kind">${petinfo.kind }</td> 
-						var td =$("<td>");
-						td.append(${data.~.~}.val());
-						$("#haha").append(td);
+						var table = $('#listTable');
+						var tr = $('<tr>');
+						$('<td>').text($(data).kind).appendTo(tr);
+						$('<td>').text($(data).sex).appendTo(tr);
+						$('<td>').text($(data).neutral).appendTo(tr);
+						$('<td>').text("00년 00개월").appendTo(tr);
+						$('<td>').text($(data).age).appendTo(tr);
+						$('<td>').text($(data).weight).appendTo(tr);
+						$('<td>').text("하루필요열량 000kcal").appendTo(tr);
 					},
 						
 					error: function(data){
@@ -656,8 +656,6 @@
 					}
 				});
 			});
-			
-		});
 	
 	</script>
 	    
@@ -685,7 +683,7 @@
         
                 <form method="post" action="#">
                 
-								<table cellspacing="0" class="shop_table cart">
+								<table cellspacing="0" class="shop_table cart" id="listTable">
 									<thead>
 										<tr>
 											<th colspan="2" id="mypetmainimage">
@@ -704,26 +702,7 @@
                                                 </select>
 											</td>
 										</tr>
-										
-											<tr class="cart_item" id = "haha">
-							
-<%-- 												<td colspan="2" id="kind">${petinfo.kind }</td> --%>
-											</tr>
-											<tr class="cart_item">
-												<td id="sex">${petinfo.sex }</td>
-												<td id="neutral">${petinfo.neutral }</td>
-											</tr>
-											<tr class="cart_item">
-												<td colspan="2" id="age">00년 00개월</td>
-											</tr>
-											<tr class="cart_item">
-												<td colspan="2" id="weight">${petinfo.weight }</td>
-											</tr>
-											<tr class="cart_item">
-												<td colspan="2" id="caloriesbyday">하루필요열량 000kcal</td>
-											</tr>		
-										
-										
+									
 									</tbody>
 								</table>
 							</form>

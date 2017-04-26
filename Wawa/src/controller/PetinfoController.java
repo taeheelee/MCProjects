@@ -80,5 +80,13 @@ public class PetinfoController {
 		return mav;
 	}
 	
+	@RequestMapping("selectPet.do")
+	public
+	@ResponseBody HashMap<String, Object> selectPet(HttpServletResponse resp,
+			HashMap<String, Object> params){
+		HashMap<String, Object> response = new HashMap<>();
+		response.put("pet", petinfoService.selectByname(params));
+		return response;
+	}
 	
 }

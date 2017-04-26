@@ -9,24 +9,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>eElectronics - HTML eCommerce Template</title>
-<!--     <link href="/tabstyle.css" rel="stylesheet"> -->
-<!--     <script -->
-<!--   	src="https://code.jquery.com/jquery-2.2.4.min.js" -->
-<!--   	integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" -->
-<!--  	crossorigin="anonymous"></script> -->
 	<script type="text/javascript">
-		
+	
+		var getPetinfo = function() {
+		     alert("안녕");
+		     
+		};
+	
 		$(document).ready(function(){
 			
 			$('#petname').change(function(){
 				alert('d');
 				var id = ${sessionScope.id };
-				var name = $(this).val();
+				var name = $('#petname').val();
 				$.ajax({
 					type: 'post',
 					url: 'medicalcareForm.do',
-					data: {"id":id, "name":name},
+					data: "id="+id+"&name="+name,
 					dataType: "json",
+					success: function(data) {
+// 						<td colspan="2" id="kind">${petinfo.kind }</td> 
+						var td =$("<td>");
+						td.append(${data.~.~}.val());
+						$("#haha").append(td);
+					},
+						
 					error: function(data){
 						alert("잠시 후 다시 시도해주세요.");
 					}
@@ -49,6 +56,15 @@
 						"vaccineCode":vaccineCode
 					},
 					dataType: 'json',
+					success : function (data) {
+	   			    	//alert('sdsd');
+ 	   			        if(data.result)
+	   			        	//alert('사용가능'); 
+    			     			$('#idError').html('<font color="green">사용가능</font>');
+ 	   			        else 
+ 	   			        	//alert('중복');
+ 	   			        	$('#idError').html('<font color="red">중복</font>');
+	   			    },
 					error: function(data) {
 						alert('잠시 후 다시 시도해주세요');
 					}
@@ -71,6 +87,15 @@
 						"vaccineCode":vaccineCode
 					},
 					dataType: 'json',
+					success : function (data) {
+	   			    	//alert('sdsd');
+ 	   			        if(data.result)
+	   			        	//alert('사용가능'); 
+    			     			$('#idError').html('<font color="green">사용가능</font>');
+ 	   			        else 
+ 	   			        	//alert('중복');
+ 	   			        	$('#idError').html('<font color="red">중복</font>');
+	   			    },
 					error: function(data) {
 						alert('잠시 후 다시 시도해주세요');
 					}
@@ -93,6 +118,15 @@
 						"vaccineCode":vaccineCode
 					},
 					dataType: 'json',
+					success : function (data) {
+	   			    	//alert('sdsd');
+ 	   			        if(data.result)
+	   			        	//alert('사용가능'); 
+    			     			$('#idError').html('<font color="green">사용가능</font>');
+ 	   			        else 
+ 	   			        	//alert('중복');
+ 	   			        	$('#idError').html('<font color="red">중복</font>');
+	   			    },
 					error: function(data) {
 						alert('잠시 후 다시 시도해주세요');
 					}
@@ -115,6 +149,15 @@
 						"vaccineCode":vaccineCode
 					},
 					dataType: 'json',
+					success : function (data) {
+	   			    	//alert('sdsd');
+ 	   			        if(data.result)
+	   			        	//alert('사용가능'); 
+    			     			$('#idError').html('<font color="green">사용가능</font>');
+ 	   			        else 
+ 	   			        	//alert('중복');
+ 	   			        	$('#idError').html('<font color="red">중복</font>');
+	   			    },
 					error: function(data) {
 						alert('잠시 후 다시 시도해주세요');
 					}
@@ -137,6 +180,15 @@
 						"vaccineCode":vaccineCode
 					},
 					dataType: 'json',
+					success : function (data) {
+	   			    	//alert('sdsd');
+ 	   			        if(data.result)
+	   			        	//alert('사용가능'); 
+    			     			$('#idError').html('<font color="green">사용가능</font>');
+ 	   			        else 
+ 	   			        	//alert('중복');
+ 	   			        	$('#idError').html('<font color="red">중복</font>');
+	   			    },
 					error: function(data) {
 						alert('잠시 후 다시 시도해주세요');
 					}
@@ -159,6 +211,15 @@
 						"vaccineCode":vaccineCode
 					},
 					dataType: 'json',
+					success : function (data) {
+	   			    	//alert('sdsd');
+ 	   			        if(data.result)
+	   			        	//alert('사용가능'); 
+    			     			$('#idError').html('<font color="green">사용가능</font>');
+ 	   			        else 
+ 	   			        	//alert('중복');
+ 	   			        	$('#idError').html('<font color="red">중복</font>');
+	   			    },
 					error: function(data) {
 						alert('잠시 후 다시 시도해주세요');
 					}
@@ -181,6 +242,15 @@
 						"vaccineCode":vaccineCode
 					},
 					dataType: 'json',
+					success : function (data) {
+	   			    	//alert('sdsd');
+ 	   			        if(data.result)
+	   			        	//alert('사용가능'); 
+    			     			$('#idError').html('<font color="green">사용가능</font>');
+ 	   			        else 
+ 	   			        	//alert('중복');
+ 	   			        	$('#idError').html('<font color="red">중복</font>');
+	   			    },
 					error: function(data) {
 						alert('잠시 후 다시 시도해주세요');
 					}
@@ -203,6 +273,15 @@
 						"vaccineCode":vaccineCode
 					},
 					dataType: 'json',
+					success : function (data) {
+	   			    	//alert('sdsd');
+ 	   			        if(data.result)
+	   			        	//alert('사용가능'); 
+    			     			$('#idError').html('<font color="green">사용가능</font>');
+ 	   			        else 
+ 	   			        	//alert('중복');
+ 	   			        	$('#idError').html('<font color="red">중복</font>');
+	   			    },
 					error: function(data) {
 						alert('잠시 후 다시 시도해주세요');
 					}
@@ -225,6 +304,15 @@
 						"vaccineCode":vaccineCode
 					},
 					dataType: 'json',
+					success : function (data) {
+	   			    	//alert('sdsd');
+ 	   			        if(data.result)
+	   			        	//alert('사용가능'); 
+    			     			$('#idError').html('<font color="green">사용가능</font>');
+ 	   			        else 
+ 	   			        	//alert('중복');
+ 	   			        	$('#idError').html('<font color="red">중복</font>');
+	   			    },
 					error: function(data) {
 						alert('잠시 후 다시 시도해주세요');
 					}
@@ -247,6 +335,15 @@
 						"vaccineCode":vaccineCode
 					},
 					dataType: 'json',
+					success : function (data) {
+	   			    	//alert('sdsd');
+ 	   			        if(data.result)
+	   			        	//alert('사용가능'); 
+    			     			$('#idError').html('<font color="green">사용가능</font>');
+ 	   			        else 
+ 	   			        	//alert('중복');
+ 	   			        	$('#idError').html('<font color="red">중복</font>');
+	   			    },
 					error: function(data) {
 						alert('잠시 후 다시 시도해주세요');
 					}
@@ -269,6 +366,15 @@
 						"vaccineCode":vaccineCode
 					},
 					dataType: 'json',
+					success : function (data) {
+	   			    	//alert('sdsd');
+ 	   			        if(data.result)
+	   			        	//alert('사용가능'); 
+    			     			$('#idError').html('<font color="green">사용가능</font>');
+ 	   			        else 
+ 	   			        	//alert('중복');
+ 	   			        	$('#idError').html('<font color="red">중복</font>');
+	   			    },
 					error: function(data) {
 						alert('잠시 후 다시 시도해주세요');
 					}
@@ -291,6 +397,15 @@
 						"vaccineCode":vaccineCode
 					},
 					dataType: 'json',
+					success : function (data) {
+	   			    	//alert('sdsd');
+ 	   			        if(data.result)
+	   			        	//alert('사용가능'); 
+    			     			$('#idError').html('<font color="green">사용가능</font>');
+ 	   			        else 
+ 	   			        	//alert('중복');
+ 	   			        	$('#idError').html('<font color="red">중복</font>');
+	   			    },
 					error: function(data) {
 						alert('잠시 후 다시 시도해주세요');
 					}
@@ -313,6 +428,15 @@
 						"vaccineCode":vaccineCode
 					},
 					dataType: 'json',
+					success : function (data) {
+	   			    	//alert('sdsd');
+ 	   			        if(data.result)
+	   			        	//alert('사용가능'); 
+    			     			$('#idError').html('<font color="green">사용가능</font>');
+ 	   			        else 
+ 	   			        	//alert('중복');
+ 	   			        	$('#idError').html('<font color="red">중복</font>');
+	   			    },
 					error: function(data) {
 						alert('잠시 후 다시 시도해주세요');
 					}
@@ -335,6 +459,15 @@
 						"vaccineCode":vaccineCode
 					},
 					dataType: 'json',
+					success : function (data) {
+	   			    	//alert('sdsd');
+ 	   			        if(data.result)
+	   			        	//alert('사용가능'); 
+    			     			$('#idError').html('<font color="green">사용가능</font>');
+ 	   			        else 
+ 	   			        	//alert('중복');
+ 	   			        	$('#idError').html('<font color="red">중복</font>');
+	   			    },
 					error: function(data) {
 						alert('잠시 후 다시 시도해주세요');
 					}
@@ -357,6 +490,15 @@
 						"vaccineCode":vaccineCode
 					},
 					dataType: 'json',
+					success : function (data) {
+	   			    	//alert('sdsd');
+ 	   			        if(data.result)
+	   			        	//alert('사용가능'); 
+    			     			$('#idError').html('<font color="green">사용가능</font>');
+ 	   			        else 
+ 	   			        	//alert('중복');
+ 	   			        	$('#idError').html('<font color="red">중복</font>');
+	   			    },
 					error: function(data) {
 						alert('잠시 후 다시 시도해주세요');
 					}
@@ -379,6 +521,15 @@
 						"vaccineCode":vaccineCode
 					},
 					dataType: 'json',
+					success : function (data) {
+	   			    	//alert('sdsd');
+ 	   			        if(data.result)
+	   			        	//alert('사용가능'); 
+    			     			$('#idError').html('<font color="green">사용가능</font>');
+ 	   			        else 
+ 	   			        	//alert('중복');
+ 	   			        	$('#idError').html('<font color="red">중복</font>');
+	   			    },
 					error: function(data) {
 						alert('잠시 후 다시 시도해주세요');
 					}
@@ -401,6 +552,15 @@
 						"vaccineCode":vaccineCode
 					},
 					dataType: 'json',
+					success : function (data) {
+	   			    	//alert('sdsd');
+ 	   			        if(data.result)
+	   			        	//alert('사용가능'); 
+    			     			$('#idError').html('<font color="green">사용가능</font>');
+ 	   			        else 
+ 	   			        	//alert('중복');
+ 	   			        	$('#idError').html('<font color="red">중복</font>');
+	   			    },
 					error: function(data) {
 						alert('잠시 후 다시 시도해주세요');
 					}
@@ -423,6 +583,15 @@
 						"vaccineCode":vaccineCode
 					},
 					dataType: 'json',
+					success : function (data) {
+	   			    	//alert('sdsd');
+ 	   			        if(data.result)
+	   			        	//alert('사용가능'); 
+    			     			$('#idError').html('<font color="green">사용가능</font>');
+ 	   			        else 
+ 	   			        	//alert('중복');
+ 	   			        	$('#idError').html('<font color="red">중복</font>');
+	   			    },
 					error: function(data) {
 						alert('잠시 후 다시 시도해주세요');
 					}
@@ -445,6 +614,15 @@
 						"vaccineCode":vaccineCode
 					},
 					dataType: 'json',
+					success : function (data) {
+	   			    	//alert('sdsd');
+ 	   			        if(data.result)
+	   			        	//alert('사용가능'); 
+    			     			$('#idError').html('<font color="green">사용가능</font>');
+ 	   			        else 
+ 	   			        	//alert('중복');
+ 	   			        	$('#idError').html('<font color="red">중복</font>');
+	   			    },
 					error: function(data) {
 						alert('잠시 후 다시 시도해주세요');
 					}
@@ -467,6 +645,15 @@
 						"vaccineCode":vaccineCode
 					},
 					dataType: 'json',
+					success : function (data) {
+	   			    	//alert('sdsd');
+ 	   			        if(data.result)
+	   			        	//alert('사용가능'); 
+    			     			$('#idError').html('<font color="green">사용가능</font>');
+ 	   			        else 
+ 	   			        	//alert('중복');
+ 	   			        	$('#idError').html('<font color="red">중복</font>');
+	   			    },
 					error: function(data) {
 						alert('잠시 후 다시 시도해주세요');
 					}
@@ -515,14 +702,15 @@
 											
 												<select class="country_to_state country_select" id="petname" name="name">
                                                  	<c:forEach items="${list }" var="petinfo">
-                                                 		<option id="petname">${petinfo.name }</option>
+                                                 		<option id="petname" value="${petinfo.name }">${petinfo.name }</option>
                                                  	</c:forEach>
                                                 </select>
 											</td>
 										</tr>
 										
-											<tr class="cart_item">
-												<td colspan="2" id="kind">${petinfo.kind }</td>
+											<tr class="cart_item" id = "haha">
+							
+<%-- 												<td colspan="2" id="kind">${petinfo.kind }</td> --%>
 											</tr>
 											<tr class="cart_item">
 												<td id="sex">${petinfo.sex }</td>
@@ -581,35 +769,35 @@
                         <td>추천일</td>
                         <td>D-day</td>
     					<td><input type="text" placeholder="0000-00-00" id="DValue1"></td>
-                    	<td><input type="button" value="입력" id="DuploadBtn1" style="padding: 5px 5px"></td>
+                    	<td><input type="button" value="입력" id="DuploadBtn1" style="padding: 4px 4px"></td>
                     </tr>
                     <tr>
                         <td><a>2차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="DValue2"></td>
-                       	<td><input type="button" value="입력" id="DuploadBtn2" style="padding: 5px 5px"></td>
+                       	<td><input type="button" value="입력" id="DuploadBtn2" style="padding: 4px 4px"></td>
                     </tr>
                     <tr>
                         <td><a>3차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="DValue3"></td>
-                        <td><input type="button" value="입력" id="DuploadBtn3" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="입력" id="DuploadBtn3" style="padding: 4px 4px"></td>
                     </tr>
                     <tr>
                         <td><a>4차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="DValue4"></td>
-                        <td><input type="button" value="입력" id="DuploadBtn4" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="입력" id="DuploadBtn4" style="padding: 4px 4px"></td>
                     </tr>
                     <tr>
                         <td><a>5차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="DValue5"></td>
-                        <td><input type="button" value="입력" id="DuploadBtn5" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="입력" id="DuploadBtn5" style="padding: 4px 4px"></td>
                     </tr>
                     
                     <tr>
@@ -617,14 +805,14 @@
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="DValue6"></td>
-                        <td><input type="button" value="입력" id="DuploadBtn6" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="입력" id="DuploadBtn6" style="padding: 4px 4px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="DValue7"></td>
-                        <td><input type="button" value="입력" id="DuploadBtn7" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="입력" id="DuploadBtn7" style="padding: 4px 4px"></td>
                     </tr>
                     
                     
@@ -654,35 +842,35 @@
                         <td>추천일</td>
                         <td>D-day</td>
     					<td><input type="text" placeholder="0000-00-00" id="CValue1"></td>
-                    	<td><input type="button" value="입력" id="CuploadBtn1" style="padding: 5px 5px"></td>
+                    	<td><input type="button" value="입력" id="CuploadBtn1" style="padding: 4px 4px"></td>
                     </tr>
                     <tr>
                         <td><a>2차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="CValue2"></td>
-                       	<td><input type="button" value="입력" id="CuploadBtn2" style="padding: 5px 5px"></td>
+                       	<td><input type="button" value="입력" id="CuploadBtn2" style="padding: 4px 4px"></td>
                     </tr>
                     <tr>
                         <td><a>3차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="CValue3"></td>
-                        <td><input type="button" value="입력" id="CuploadBtn3" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="입력" id="CuploadBtn3" style="padding: 4px 4px"></td>
                     </tr>
                     <tr>
                         <td><a>4차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="CValue4"></td>
-                        <td><input type="button" value="입력" id="CuploadBtn4" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="입력" id="CuploadBtn4" style="padding: 4px 4px"></td>
                     </tr>
                     <tr>
                         <td><a>5차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="CValue5"></td>
-                        <td><input type="button" value="입력" id="CuploadBtn5" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="입력" id="CuploadBtn5" style="padding: 4px 4px"></td>
                     </tr>
                     
                 
@@ -694,14 +882,14 @@
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="CValue6"></td>
-                        <td><input type="button" value="입력" id="CuploadBtn6" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="입력" id="CuploadBtn6" style="padding: 4px 4px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="CValue7"></td>
-                       	<td><input type="button" value="입력" id="CuploadBtn7" style="padding: 5px 5px"></td>
+                       	<td><input type="button" value="입력" id="CuploadBtn7" style="padding: 4px 4px"></td>
                     </tr>
                 </tbody>
 			</table>
@@ -730,35 +918,35 @@
                         <td>추천일</td>
                         <td>D-day</td>
     					<td><input type="text" placeholder="0000-00-00" id="KValue1"></td>
-                    	<td><input type="button" value="입력" id="KuploadBtn1" style="padding: 5px 5px"></td>
+                    	<td><input type="button" value="입력" id="KuploadBtn1" style="padding: 4px 4px"></td>
                     </tr>
                     <tr>
                         <td><a>2차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="KValue2"></td>
-                       	<td><input type="button" value="입력" id="KuploadBtn2" style="padding: 5px 5px"></td>
+                       	<td><input type="button" value="입력" id="KuploadBtn2" style="padding: 4px 4px"></td>
                     </tr>
                     <tr>
                         <td><a>3차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="KValue3"></td>
-                        <td><input type="button" value="입력" id="KuploadBtn3" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="입력" id="KuploadBtn3" style="padding: 4px 4px"></td>
                     </tr>
                     <tr>
                         <td><a>4차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="KValue4"></td>
-                        <td><input type="button" value="입력" id="KuploadBtn4" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="입력" id="KuploadBtn4" style="padding: 4px 4px"></td>
                     </tr>
                     <tr>
                         <td><a>5차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="KValue5"></td>
-                        <td><input type="button" value="입력" id="KuploadBtn5" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="입력" id="KuploadBtn5" style="padding: 4px 4px"></td>
                     </tr>
                     
               
@@ -768,14 +956,14 @@
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="KValue6"></td>
-                        <td><input type="button" value="입력" id="KuploadBtn6" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="입력" id="KuploadBtn6" style="padding: 4px 4px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="KValue7"></td>
-                        <td><input type="button" value="입력" id="KuploadBtn7" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="입력" id="KuploadBtn7" style="padding: 4px 4px"></td>
                     </tr>
                 </tbody>
 			</table>
@@ -804,35 +992,35 @@
                         <td>추천일</td>
                         <td>D-day</td>
     					<td><input type="text" placeholder="0000-00-00" id="RValue1"></td>
-                    	<td><input type="button" value="입력" id="RuploadBtn1" style="padding: 5px 5px"></td>
+                    	<td><input type="button" value="입력" id="RuploadBtn1" style="padding: 4px 4px"></td>
                     </tr>
                     <tr>
                         <td><a>2차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="RValue2"></td>
-                       	<td><input type="button" value="입력" id="RuploadBtn2" style="padding: 5px 5px"></td>
+                       	<td><input type="button" value="입력" id="RuploadBtn2" style="padding: 4px 4px"></td>
                     </tr>
                     <tr>
                         <td><a>3차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="RValue3"></td>
-                        <td><input type="button" value="입력" id="RuploadBtn3" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="입력" id="RuploadBtn3" style="padding: 4px 4px"></td>
                     </tr>
                     <tr>
                         <td><a>4차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="RValue4"></td>
-                        <td><input type="button" value="입력" id="RuploadBtn4" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="입력" id="RuploadBtn4" style="padding: 4px 4px"></td>
                     </tr>
                     <tr>
                         <td><a>5차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="RValue5"></td>
-                        <td><input type="button" value="입력" id="RuploadBtn5" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="입력" id="RuploadBtn5" style="padding: 4px 4px"></td>
                     </tr>
                     
                     
@@ -841,14 +1029,14 @@
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="RValue6"></td>
-                        <td><input type="button" value="입력" id="RuploadBtn6" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="입력" id="RuploadBtn6" style="padding: 4px 4px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="RValue7"></td>
-                        <td><input type="button" value="입력" id="RuploadBtn7" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="입력" id="RuploadBtn7" style="padding: 4px 4px"></td>
                     </tr>
                 </tbody>
 			</table>

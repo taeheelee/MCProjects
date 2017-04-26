@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import commons.Constant;
 import interface_service.IBoardService;
+import interface_service.IPetinfoService;
 import interface_service.IRepleService;
 import model.Board;
 
@@ -20,6 +21,8 @@ public class BoastController {
 	private IBoardService boardService;
 	@Autowired
 	private IRepleService repleService;
+	@Autowired
+	private IPetinfoService petService;
 	
 	@RequestMapping("boastMain.do")
 	public ModelAndView boastMain(@RequestParam(defaultValue="1") int page,
@@ -59,8 +62,13 @@ public class BoastController {
 	}
 	
 	@RequestMapping("boastWriteForm.do") //writeForm.jsp로
-	public String boastWriteForm(){
-		return "boastWriteForm.tiles";
+	public ModelAndView boastWriteForm(@RequestParam(defaultValue="0") int idx){
+		ModelAndView mav = new ModelAndView();
+		if(idx != 0){
+			mav.addObject("pet", boardService.selectPetinfo(idx));
+		}
+		mav.setViewName("boastWriteForm.tiles");
+		return mav;
 	}
 	
 	@RequestMapping("boastWrite.do")
@@ -151,12 +159,21 @@ public class BoastController {
 //		
 //	}
 	
-	@RequestMapping("boastGetPetinfo.do")
-	public ModelAndView boastGetPetinfo(String id){
+	@RequestMapping("boastGetPetinfoForm.do")
+	public ModelAndView boastGetPetinfoForm(String id){
 		ModelAndView mav = new ModelAndView();
-		List<HashMap<String, Object>> list = boardService.getPetInfo(id);
-		mav.addObject("result", list);
-		mav.setViewName("redirect:boastWriteForm.do");
+		List<HashMap<String, Object>> list = petService.selectPetList(id);
+		mav.addObject("petList", list);
+		mav.setViewName("empty/petInfoList.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("boastGetPetinfo.do")
+	public ModelAndView boastGetPetinfo(int idx){
+		ModelAndView mav = new ModelAndView();
+		HashMap<String, Object> petinfo = boardService.selectPetinfo(idx);
+		mav.addObject("pet",petinfo);
+		mav.setViewName("boardPetInfoLoad.tiles");
 		return mav;
 	}
 	

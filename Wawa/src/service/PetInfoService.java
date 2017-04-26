@@ -80,16 +80,19 @@ public class PetInfoService implements IPetinfoService {
 	@Override
 	public List<HashMap<String, Object>> selectPetList(String id) {
 		// TODO Auto-generated method stub
-		List<HashMap<String, Object>> list = dao.selectPetList(id);
-		return list;
+		return dao.selectPetList(id);
 	}
 
 	@Override
 	public HashMap<String, Object> selectOne(HashMap<String, Object> params) {
 		// TODO Auto-generated method stub
-		HashMap<String, Object> pet = dao.selectByName(params);
-		return pet;
+		return dao.selectByName(params);
 	}
 
+	@Override
+	public HashMap<String, Object> selectByname(HashMap<String, Object> params) {
+		// TODO Auto-generated method stub
+		return dao.selectByName(params);
+	}
 
 }

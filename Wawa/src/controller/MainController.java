@@ -112,7 +112,9 @@ public class MainController {
 	public
 	@ResponseBody HashMap<String, Object> passCheck(HttpServletResponse resp, String password){
 		HashMap<String, Object> response = new HashMap<>();
+
 		response.put("result", iMemberService);
+
 		return response;
 
 	}

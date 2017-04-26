@@ -31,11 +31,27 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("reviewSearch.do")
-	public ModelAndView reviewSearch(HashMap<String, Object> params){
+	public ModelAndView reviewSearch(String category, String keyword, @RequestParam(defaultValue="1")int page){
 		ModelAndView mav = new ModelAndView();
-		List<HashMap<String, Object>> list = boardService.getBoardByKeyword(params);
-		mav.addObject("result", list);
-		mav.setViewName("redirect:reviewMain.do");
+		if(category.equals("1"))
+			category = "사료";
+		else if(category.equals("2"))
+			category = "간식";
+		else if(category.equals("3"))
+			category = "영양제/건강/위생";
+		else if(category.equals("4"))
+			category = "목욕/미용";
+		else if(category.equals("5"))
+			category = "식기/배변";
+		else if(category.equals("6"))
+			category = "장난감/하우스/이동장";
+		else if(category.equals("7"))
+			category = "패션/줄/인식표";
+		else if(category.equals("8"))
+			category = "기타";
+		
+		mav.addAllObjects(boardService.getBoardByTitle(category, keyword, page, 2));
+		mav.setViewName("review.tiles");
 		return mav;
 	}
 	
@@ -121,16 +137,7 @@ public class ReviewController {
 //	public ModelAndView reviewUploadImage(){
 //		
 //	}
-	
-	@RequestMapping("reviewGetPetinfo.do")
-	public ModelAndView reviewGetPetinfo(String id){
-		ModelAndView mav = new ModelAndView();
-		List<HashMap<String, Object>> list = boardService.getPetInfo(id);
-		mav.addObject("result", list);
-		mav.setViewName("redirect:reviewWriteForm.do");
-		return mav;
-	}
-	
+		
 	@RequestMapping("reviewConform") //본인확인
 	public String reviewConform(HashMap<String, Object> params){
 		if(boardService.identifyUser(params)){

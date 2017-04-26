@@ -86,27 +86,29 @@
 							</table>
 						</form>
 						<label class="" for="billing_country">게시글 검색</label>
-						<table style="width: 100%">
-							<tr>
-								<td width="20%"><select
-									class="country_to_state country_select" id="billing_country"
-									name="billing_country">
-										<option selected="selected" value="1">애견상식</option>
-										<option value="2">훈련정보</option>
-										<option value="3">애견간식레시피</option>
-										<option value="4">기타</option>
-								</select></td>
-								<td width="3%"></td>
-								<td width="62%"><input type="text" id="billing_state"
-									name="billing_state" placeholder="Search..." value=""
-									class="input-text "></td>
-								<td width="3%"></td>
-								<td width="12%" align="right"><input type="submit"
-									data-value="Place order" value="SEARCH" id="place_order"
-									name="woocommerce_checkout_place_order" class="button alt">
-								</td>
-							</tr>
-						</table>
+						<form action="infoSearch.do">
+							<table style="width: 100%">
+								<tr>
+									<td width="20%"><select
+										class="country_to_state country_select" id="category"
+										name="category">
+											<option selected="selected" value="1">애견상식</option>
+											<option value="2">훈련정보</option>
+											<option value="3">애견간식레시피</option>
+											<option value="4">기타</option>
+									</select></td>
+									<td width="3%"></td>
+									<td width="62%">
+										<input type="text" id="keyword" name="keyword" placeholder="Search..." value=""
+										class="input-text "></td>
+									<td width="3%"></td>
+									<td width="12%" align="right"><input type="submit"
+										data-value="Place order" value="SEARCH" id="place_order"
+										name="woocommerce_checkout_place_order" class="button alt">
+									</td>
+								</tr>
+							</table>
+						</form>
 					</div>
 				</div>
 
@@ -123,7 +125,7 @@
 										</c:when>
 										<c:otherwise>
 											<li><a
-												href="infoSearch.do?page=${current-1 }&keyword=${keyword}&type=${type}"
+												href="infoSearch.do?page=${current-1 }&keyword=${keyword}&category=${category}"
 												aria-label="Next"> <span aria-hidden="true">&laquo;</span>
 											</a></li>
 										</c:otherwise>
@@ -132,7 +134,7 @@
 								<c:forEach begin="${start }" end="${end }" var="page">
 									<c:choose>
 										<c:when test="${page==current }">
-											<li><a href="#">${page }</a></li>
+											<li><a href="#"><b style="color: black">${page }</b></a></li>
 										</c:when>
 										<c:otherwise>
 											<c:choose>
@@ -141,7 +143,7 @@
 												</c:when>
 												<c:otherwise>
 													<li><a
-														href="infoSearch.do?page=${page }&keyword=${keyword}&type=${type}">${page }</a></li>
+														href="infoSearch.do?page=${page }&keyword=${keyword}&category=${category}">${page }</a></li>
 												</c:otherwise>
 											</c:choose>
 										</c:otherwise>
@@ -156,7 +158,7 @@
 										</c:when>
 										<c:otherwise>
 											<li><a
-												href="infoSearch.do?page=${current+1 }&keyword=${keyword}&type=${type}"
+												href="infoSearch.do?page=${current+1 }&keyword=${keyword}&category=${category}"
 												aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 											</a></li>
 										</c:otherwise>
@@ -189,14 +191,14 @@
 
 
 			</div>
-			</form>
+			
 
 			<!--                         </div>                        -->
 			<!--                     </div>                     -->
 		</div>
 		<!--             </div> -->
 	</div>
-	</div>
+	
 
 	<!-- 여기부터 안에 들어가면 안되는 이유찾기  end-->
 </body>

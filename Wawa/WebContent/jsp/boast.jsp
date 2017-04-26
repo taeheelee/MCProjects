@@ -117,7 +117,7 @@
 								<c:forEach begin="${start }" end="${end }" var="page">
 									<c:choose>
 										<c:when test="${page==current }">
-											<li><a href="#">${page }</a></li>
+											<li><a href="#"><b style="color: black">${page }</b></a></li>
 										</c:when>
 										<c:otherwise>
 											<c:choose>

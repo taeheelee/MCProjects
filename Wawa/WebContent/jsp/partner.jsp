@@ -31,8 +31,7 @@
 		<div class="container">
 			<h2 class="sidebar-title2">Would you marry me? 결혼해듀오</h2>
 				<form action="/Wawa/partnerSearch.do" style="text-align: right;">
-					<input type="radi
-					o" name="petsex" value="male"> 수컷
+					<input type="radio" name="petsex" value="male"> 수컷
 					<input type="radio" name="petsex" value="female"> 암컷
 					<input type="text" name="petname" placeholder="Seach.."> 
 					<input type="submit" value="검색">
@@ -102,7 +101,7 @@
 								<c:forEach begin="${start }" end="${end }" var="page">
 									<c:choose>
 										<c:when test="${page==current }">
-											<li><a href="#">${page }</a></li>
+											<li><a href="#"><b style="color: black">${page }</b></a></li>
 										</c:when>
 										<c:otherwise>
 											<c:choose>

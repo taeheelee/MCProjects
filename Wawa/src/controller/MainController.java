@@ -117,8 +117,8 @@ public class MainController {
 		return response;
 
 	}
-	@RequestMapping("deleteMember.do")
-	public g
+	/*@RequestMapping("deleteMember.do")
+	public g*/
 }
 	
 

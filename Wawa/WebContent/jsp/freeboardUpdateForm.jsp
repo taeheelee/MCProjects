@@ -15,6 +15,16 @@
 				var content = $('#summernote').summernote('code');
 				$('#content').val(content);	
 			});
+	      	
+	      	if(${board.category == '애견상식'})
+	      		$('#category > option[value=1]').attr('selected', true);
+	      	else if(${board.category == '훈련정보'})
+	      		$('#category > option[value=2]').attr('selected', true);
+	      	else if(${board.category == '애견간식레시피'})
+	      		$('#category > option[value=3]').attr('selected', true);
+	      	else if(${board.category == '기타'})
+	      		$('#category > option[value=4]').attr('selected', true);
+	      	
 	  });
 	</script>
   </head>
@@ -48,10 +58,13 @@
                          
                      
 
-                            <form action="infoWrite.do" enctype="multipart/form-data" action="infoWrite.do" class="checkout" method="get" name="checkout">
+                            <form action="freeboardUpdate.do" enctype="multipart/form-data" class="checkout" method="get" name="checkout">
+								<input type="hidden" name="boardIdx" value="${board.boardIdx }">
+								<input type="hidden" name="readCount" value="${board.readCount }">
+								<input type="hidden" name="writeDate" value="${board.writeDate }">
 								<input type="hidden" name="content" id="content">
-								<input type="hidden" name="boardCode" value="1">
-								<input type="hidden" name="writer" value="${sessionScope.name}">
+								<input type="hidden" name="boardCode" value="6">
+								<input type="hidden" name="writer" value="${sessionScope.name }">
 
                                 <div id="customer_details" class="col2-set" >
                                     <div class="col-3">
@@ -72,13 +85,13 @@
                                             
 											<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
                                                 <label class="" for="billing_state">글 제목<abbr title="required" class="required">*</abbr></label>
-                                                <input type="text" id="title" name="title" placeholder="" value="" class="input-text ">
+                                                <input type="text" id="title" name="title" placeholder="" value="${board.title }" class="input-text ">
                                             </p>
                                             <br>
                                             
           
   <div style="width: 100%; margin: 0 auto;">
-    <div id="summernote"></div>
+    <div id="summernote">${board.content }</div>
 	</div>
 <br>
 
@@ -87,9 +100,9 @@
 
 											<div class="form-row place-order" style="float: right">
 												<input type="submit" data-value="Place order" value="WRITE" id="ok" name="woocommerce_checkout_place_order" class="button alt" onclick="return infoBoardCheck()">
+	 							</form>
 	 													
 											</div>
-	 							</form>
 
 
 

@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.Date;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,60 +16,23 @@ public class MedicalcareController {
 	@Autowired
 	private IMedicalService medicalService;
 	
-	@RequestMapping("updateDHPPL.do")
-	public String updateDHPPL(HashMap<String, Object> params){
-		medicalService.updateRealShotDate(params);
-		return "redirect:medicalcareForm.do";
-	}
-	
-	@RequestMapping("deleteDHPPL.do")
-	public String deleteDHPPL(HashMap<String, Object> params){
-		medicalService.deleteRealShotDate(params);
-		return "redirect:medicalcareForm.do";
-	}
-	
 	@RequestMapping("uploadDHPPL.do")
-	public String uploadDHPPL(){
-		
-	}
+	public String uploadDHPPL(String shotday){
 	
-	@RequestMapping("updateCorona.do")
-	public String updateCorona(){
-		
-	}
-	
-	@RequestMapping("deleteCorona.do")
-	public String deleteCorona(){
-		
 	}
 	
 	@RequestMapping("uploadCorona.do")
-	public String uploadCorona(){
+	public String uploadCorona(String shotday){
 		
 	}
 	
-	@RequestMapping("updateKennel.do")
-	public String updateKennel(){
-		
-	}
-	
-	@RequestMapping("deleteKennel.do")
-	public String deleteKennel(){
-		
-	}
-	
-	@RequestMapping("updateRabies.do")
-	public String updateRabies(){
-		
-	}
-	
-	@RequestMapping("deleteRabies.do")
-	public String deleteRabies(){
+	@RequestMapping("uploadKennel.do")
+	public String uploadKennel(String shotday){
 		
 	}
 	
 	@RequestMapping("uploadRabies.do")
-	public String uploadRabies(){
+	public String uploadRabies(String shotday){
 		
 	}
 }

@@ -193,8 +193,8 @@
                         <td><a>1차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-    					<td><input type="text" placeholder="0000-00-00" id="DHPPLValue1"></td>
-                    	<td><input type="button" value="입력" id="uploadBtn1" style="padding: 5px 5px"></td>
+    					<td><input type="text" placeholder="0000-00-00" id="DValue1"></td>
+                    	<td><input type="button" value="입력" id="DuploadBtn1" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td><a>2차</a></td>
@@ -207,37 +207,41 @@
                         <td><a>3차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="DHPPLValue"></td>
+                        <td><input type="text" placeholder="0000-00-00" id="DHPPLValue3"></td>
                         <td><input type="button" value="입력" id="uploadBtn3" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td><a>4차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="DHPPLValue"></td>
-                        <td><input type="button" value="입력" class="uploadBtn1" style="padding: 5px 5px"></td>
+                        <td><input type="text" placeholder="0000-00-00" id="DHPPLValue4"></td>
+                        <td><input type="button" value="입력" class="uploadBtn4" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td><a>5차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="DHPPLValue"></td>
-                        <td><input type="button" value="입력" class="uploadBtn1" style="padding: 5px 5px"></td>
+                        <td><input type="text" placeholder="0000-00-00" id="DHPPLValue5"></td>
+                        <td><input type="button" value="입력" id="uploadBtn5" style="padding: 5px 5px"></td>
+                    </tr>
+                    
+                    
+                    <tr>
+                        <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
+						<td>추천일</td>
+                        <td>D-day</td>
+                        <td><input type="text" placeholder="0000-00-00" id="DHPPLValue6"></td>
+                        <td><input type="button" value="입력" id="uploadBtn6" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="DHPPLValue"></td>
-                        <td><input type="button" value="입력" class="uploadBtn1" style="padding: 5px 5px"></td>
+                        <td><input type="text" placeholder="0000-00-00" id="DHPPLValue7"></td>
+                        <td><input type="button" value="입력" id="uploadBtn7" style="padding: 5px 5px"></td>
                     </tr>
-                    <tr>
-                        <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
-						<td>추천일</td>
-                        <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="DHPPLValue"></td>
-                        <td><input type="button" value="입력" class="uploadBtn1" style="padding: 5px 5px"></td>
-                    </tr>
+                    
+                    
 				</tbody>
 			</table>
         </form>
@@ -263,50 +267,50 @@
                         <td><a>1차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-    					<td><input type="text" placeholder="0000-00-00" id="CoronaValue"></td>
-                        <td><input type="button" value="입력" class="uploadBtn2" style="padding: 5px 5px"></td>
+    					<td><input type="text" placeholder="0000-00-00" id="CoronaValue1"></td>
+                        <td><input type="button" value="입력" id="uploadBtn2" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td><a>2차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="CoronaValue"></td>
-                        <td><input type="button" value="입력" class="uploadBtn2" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="입력" id="uploadBtn2" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
                        	<td><input type="text" placeholder="0000-00-00" id="CoronaValue"></td>
-                        <td><input type="button" value="입력" class="uploadBtn2" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="입력" id="uploadBtn2" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
                        	<td><input type="text" placeholder="0000-00-00" id="CoronaValue"></td>
-                        <td><input type="button" value="입력" class="uploadBtn2" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="입력" id="uploadBtn2" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="CoronaValue"></td>
-                      	<td><input type="button" value="입력" class="uploadBtn2" style="padding: 5px 5px"></td>
+                      	<td><input type="button" value="입력" id="uploadBtn2" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="CoronaValue"></td>
-                        <td><input type="button" value="입력" class="uploadBtn2" style="padding: 5px 5px"></td>
+                        <td><input type="button" value="입력" id="uploadBtn2" style="padding: 5px 5px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" placeholder="0000-00-00" id="CoronaValue"></td>
-                       	<td><input type="button" value="입력" class="uploadBtn2" style="padding: 5px 5px"></td>
+                       	<td><input type="button" value="입력" id="uploadBtn2" style="padding: 5px 5px"></td>
                     </tr>
                 </tbody>
 			</table>

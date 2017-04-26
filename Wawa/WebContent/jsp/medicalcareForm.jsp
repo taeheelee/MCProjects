@@ -9,14 +9,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>eElectronics - HTML eCommerce Template</title>
+	
+	<script
+  	src="https://code.jquery.com/jquery-2.2.4.min.js"
+  	integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+ 	crossorigin="anonymous"></script>
 	<script type="text/javascript">
 	
 		$(document).ready(function(){
-			
 			$('#petname').change(function(){
 				alert('d');
+				var name = $("#petname option:selected").text();
 				var id = ${sessionScope.id };
-				var name = $('#petname').val();
 				$.ajax({
 					type: 'post',
 					url: 'selectPet.do',
@@ -33,7 +37,6 @@
 						$('<td>').text($(data).weight).appendTo(tr);
 						$('<td>').text("하루필요열량 000kcal").appendTo(tr);
 					},
-						
 					error: function(data){
 						alert("잠시 후 다시 시도해주세요.");
 					}
@@ -43,7 +46,7 @@
 			$('#DuploadBtn1').click(function(){
 				var id = ${sessionScope.id };
 				var shotday = $('#DValue1').val();
-				var petname = $('#petname').val();
+				var petname = $("#petname option:selected").text();
 				var vaccineCode = 101;
 				$.ajax({
 					type: 'post',
@@ -74,7 +77,7 @@
 			$('#DuploadBtn2').click(function(){
 				var id = ${sessionScope.id };
 				var shotday = $('#DValue2').val();
-				var petname = $('#petname').val();
+				var petname = $("#petname option:selected").text();
 				var vaccineCode = 102;
 				$.ajax({
 					type: 'post',
@@ -105,7 +108,7 @@
 			$('#DuploadBtn3').click(function(){
 				var id = ${sessionScope.id };
 				var shotday = $('#DValue3').val();
-				var petname = $('#petname').val();
+				var petname = $("#petname option:selected").text();
 				var vaccineCode = 103;
 				$.ajax({
 					type: 'post',
@@ -136,7 +139,7 @@
 			$('#DuploadBtn4').click(function(){
 				var id = ${sessionScope.id };
 				var shotday = $('#DValue4').val();
-				var petname = $('#petname').val();
+				var petname = $("#petname option:selected").text();
 				var vaccineCode = 104;
 				$.ajax({
 					type: 'post',
@@ -167,7 +170,7 @@
 			$('#DuploadBtn5').click(function(){
 				var id = ${sessionScope.id };
 				var shotday = $('#DValue5').val();
-				var petname = $('#petname').val();
+				var petname = $("#petname option:selected").text();
 				var vaccineCode = 105;
 				$.ajax({
 					type: 'post',
@@ -198,7 +201,7 @@
 			$('#CuploadBtn1').click(function(){
 				var id = ${sessionScope.id };
 				var shotday = $('#CValue1').val();
-				var petname = $('#petname').val();
+				var petname = $("#petname option:selected").text();
 				var vaccineCode = 201;
 				$.ajax({
 					type: 'post',
@@ -228,7 +231,7 @@
 			$('#CuploadBtn2').click(function(){
 				var id = ${sessionScope.id };
 				var shotday = $('#CValue2').val();
-				var petname = $('#petname').val();
+				var petname = $("#petname option:selected").text();
 				var vaccineCode = 202;
 				$.ajax({
 					type: 'post',
@@ -259,7 +262,7 @@
 			$('#CuploadBtn3').click(function(){
 				var id = ${sessionScope.id };
 				var shotday = $('#CValue3').val();
-				var petname = $('#petname').val();
+				var petname = $("#petname option:selected").text();
 				var vaccineCode = 203;
 				$.ajax({
 					type: 'post',
@@ -290,7 +293,7 @@
 			$('#CuploadBtn4').click(function(){
 				var id = ${sessionScope.id };
 				var shotday = $('#CValue4').val();
-				var petname = $('#petname').val();
+				var petname = $("#petname option:selected").text();
 				var vaccineCode = 204;
 				$.ajax({
 					type: 'post',
@@ -321,7 +324,7 @@
 			$('#CuploadBtn5').click(function(){
 				var id = ${sessionScope.id };
 				var shotday = $('#CValue5').val();
-				var petname = $('#petname').val();
+				var petname = $("#petname option:selected").text();
 				var vaccineCode = 205;
 				$.ajax({
 					type: 'post',
@@ -352,7 +355,7 @@
 			$('#KuploadBtn1').click(function(){
 				var id = ${sessionScope.id };
 				var shotday = $('#KValue1').val();
-				var petname = $('#petname').val();
+				var petname = $("#petname option:selected").text();
 				var vaccineCode = 301;
 				$.ajax({
 					type: 'post',
@@ -383,7 +386,7 @@
 			$('#KuploadBtn2').click(function(){
 				var id = ${sessionScope.id };
 				var shotday = $('#KValue2').val();
-				var petname = $('#petname').val();
+				var petname = $("#petname option:selected").text();
 				var vaccineCode = 302;
 				$.ajax({
 					type: 'post',
@@ -414,7 +417,7 @@
 			$('#KuploadBtn3').click(function(){
 				var id = ${sessionScope.id };
 				var shotday = $('#KValue3').val();
-				var petname = $('#petname').val();
+				var petname = $("#petname option:selected").text();
 				var vaccineCode = 303;
 				$.ajax({
 					type: 'post',
@@ -445,7 +448,7 @@
 			$('#KuploadBtn4').click(function(){
 				var id = ${sessionScope.id };
 				var shotday = $('#KValue4').val();
-				var petname = $('#petname').val();
+				var petname = $("#petname option:selected").text();
 				var vaccineCode = 304;
 				$.ajax({
 					type: 'post',
@@ -475,7 +478,7 @@
 			$('#KuploadBtn5').click(function(){
 				var id = ${sessionScope.id };
 				var shotday = $('#KValue5').val();
-				var petname = $('#petname').val();
+				var petname = $("#petname option:selected").text();
 				var vaccineCode = 305;
 				$.ajax({
 					type: 'post',
@@ -506,7 +509,7 @@
 			$('#RuploadBtn1').click(function(){
 				var id = ${sessionScope.id };
 				var shotday = $('#RValue1').val();
-				var petname = $('#petname').val();
+				var petname = $("#petname option:selected").text();
 				var vaccineCode = 401;
 				$.ajax({
 					type: 'post',
@@ -536,7 +539,7 @@
 			$('#RuploadBtn2').click(function(){
 				var id = ${sessionScope.id };
 				var shotday = $('#RValue2').val();
-				var petname = $('#petname').val();
+				var petname = $("#petname option:selected").text();
 				var vaccineCode = 402;
 				$.ajax({
 					type: 'post',
@@ -567,7 +570,7 @@
 			$('#RuploadBtn3').click(function(){
 				var id = ${sessionScope.id };
 				var shotday = $('#RValue3').val();
-				var petname = $('#petname').val();
+				var petname = $("#petname option:selected").text();
 				var vaccineCode = 403;
 				$.ajax({
 					type: 'post',
@@ -598,7 +601,7 @@
 			$('#RuploadBtn4').click(function(){
 				var id = ${sessionScope.id };
 				var shotday = $('#RValue4').val();
-				var petname = $('#petname').val();
+				var petname = $("#petname option:selected").text();
 				var vaccineCode = 404;
 				$.ajax({
 					type: 'post',
@@ -629,7 +632,7 @@
 			$('#RuploadBtn5').click(function(){
 				var id = ${sessionScope.id };
 				var shotday = $('#RValue5').val();
-				var petname = $('#petname').val();
+				var petname = $("#petname option:selected").text();
 				var vaccineCode = 405;
 				$.ajax({
 					type: 'post',
@@ -656,7 +659,8 @@
 					}
 				});
 			});
-	
+		});
+		
 	</script>
 	    
 </head>
@@ -695,14 +699,13 @@
 										<tr class="cart_item">
 											<td colspan="2">
 											
-												<select class="country_to_state country_select" id="petname" name="name">
+												<select class="country_to_state country_select" name="name" id="petname">
                                                  	<c:forEach items="${list }" var="petinfo">
-                                                 		<option id="petname" value="${petinfo.name }">${petinfo.name }</option>
+                                                 		<option value="${petinfo.name }">${petinfo.name }</option>
                                                  	</c:forEach>
                                                 </select>
 											</td>
 										</tr>
-									
 									</tbody>
 								</table>
 							</form>

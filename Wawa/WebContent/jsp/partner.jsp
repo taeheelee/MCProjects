@@ -31,8 +31,7 @@
 		<div class="container">
 			<h2 class="sidebar-title2">Would you marry me? 결혼해듀오</h2>
 				<form action="/Wawa/partnerSearch.do" style="text-align: right;">
-					<input type="radi
-					o" name="petsex" value="male"> 수컷
+					<input type="radio" name="petsex" value="male"> 수컷
 					<input type="radio" name="petsex" value="female"> 암컷
 					<input type="text" name="petname" placeholder="Seach.."> 
 					<input type="submit" value="검색">

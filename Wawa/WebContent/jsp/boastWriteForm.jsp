@@ -15,9 +15,7 @@
 				var content = $('#summernote').summernote('code');
 				$('#content').val(content);	
 			});
-			 var petinfo = ${pet.idx};
-			
-			 if(petinfo != 0){
+			 if(${load != 0}){
 				 $('#name').val('${pet.name}');
 				
 				var year = '${pet.birthday}'.split('-');
@@ -133,9 +131,9 @@
 	                                            <div id="payment">
 													<ul class="payment_methods methods">
 														<li class="payment_method_paypal">
-															<input type="radio" data-order_button_text="Proceed to PayPal" value="male" name="male" class="input-radio" id="sex" checked="checked"> 수컷
+															<input type="radio" data-order_button_text="Proceed to PayPal" value="male" name="sex" class="input-radio" id="sex" checked="checked"> 수컷
 															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															<input type="radio" data-order_button_text="Proceed to PayPal" value="female" name="female" class="input-radio" id="sex"> 암컷
+															<input type="radio" data-order_button_text="Proceed to PayPal" value="female" name="sex" class="input-radio" id="sex"> 암컷
 														</li>
 													</ul>
 												</div>

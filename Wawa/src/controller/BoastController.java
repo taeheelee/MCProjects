@@ -64,6 +64,7 @@ public class BoastController {
 	@RequestMapping("boastWriteForm.do") //writeForm.jsp로
 	public ModelAndView boastWriteForm(@RequestParam(defaultValue="0") int idx){
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("load", idx);
 		if(idx != 0){
 			mav.addObject("pet", boardService.selectPetinfo(idx));
 		}

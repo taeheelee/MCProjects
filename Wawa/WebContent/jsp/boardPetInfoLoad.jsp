@@ -7,9 +7,24 @@
 <title>Insert title here</title>
 <script type="text/javascript">
 	window.onload = function() {
-		var form = $('<form action="boastWriteForm.do" method="post">' +
-				 	 '<input type="hidden" name="idx" value="${pet.idx}" />' +
-		 			 '</form>');
+		if(${boardCode == 3}){
+			var form = $('<form action="boast${type}Form.do" method="post">' +
+					 	 '<input type="hidden" name="idx" value="${pet.idx}" />' +
+					 	 '<input type="hidden" name="boardIdx" value="${boardIdx}" />' +
+			 			 '</form>');
+		}
+		else if(${boardCode == 4}){
+			var form = $('<form action="lost${type}Form.do" method="post">' +
+					 	 '<input type="hidden" name="idx" value="${pet.idx}" />' +
+					 	 '<input type="hidden" name="boardIdx" value="${boardIdx}" />' +
+			 			 '</form>');
+		}
+		else if(${boardCode == 5}){
+			var form = $('<form action="partner${type}Form.do" method="post">' +
+					 	 '<input type="hidden" name="idx" value="${pet.idx}" />' +
+					 	 '<input type="hidden" name="boardIdx" value="${boardIdx}" />' +
+			 			 '</form>');
+		}
 		$('body').append(form);
 		form.submit();
 	}			

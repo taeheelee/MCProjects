@@ -104,22 +104,33 @@ public class MainController {
 	@RequestMapping("userUpdate.do")
 	public String userUpdate(UserInfo info){
 		String id = info.getId();
-		System.out.println(info);
 		iMemberService.modifyInfo(info);
 		return "redirect:userinfoForm.do?id=" + id;
 	}
 	
-	@RequestMapping("nameCheck.do")
-	public 
-	@ResponseBody HashMap<String, Object> nameCheck(HttpServletResponse resp, String nickname){
+	@RequestMapping("passCheck.do")
+	public
+	@ResponseBody HashMap<String, Object> passCheck(HttpServletResponse resp, String password){
 		HashMap<String, Object> response = new HashMap<>();
-		response.put("result", iMemberService.nicknameCheck(nickname));
+
+		response.put("result", iMemberService);
+
 		return response;
 
 	}
 
-	/*@RequestMapping("deleteMember.do")
-	public g*/
+	@RequestMapping("deleteForm.do")
+	public String deleteForm(){
+		
+		return"userDeleteForm.popup";
+	}
+	@RequestMapping(method=RequestMethod.POST, value="deleteMember.do")
+	public ModelAndView deleteMember(String id, String password){
+		ModelAndView mav = new ModelAndView();
+		iMemberService.getMember(id);
+		
+		return mav;
+	}
 
 }
 	

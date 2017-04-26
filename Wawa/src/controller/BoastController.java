@@ -107,10 +107,14 @@ public class BoastController {
 	}
 	
 	@RequestMapping("boastUpdateForm.do")
-	public ModelAndView boastUpdateForm(int boardIdx){
+	public ModelAndView boastUpdateForm(int boardIdx, @RequestParam(defaultValue="0") int idx){
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(boardIdx);
 		mav.addObject("board", board);
+		mav.addObject("load", idx);
+		if(idx != 0){
+			mav.addObject("pet", boardService.selectPetinfo(idx));
+		}
 		mav.setViewName("boastUpdateForm.tiles");
 		return mav;	
 	}
@@ -161,19 +165,25 @@ public class BoastController {
 //	}
 	
 	@RequestMapping("boastGetPetinfoForm.do")
-	public ModelAndView boastGetPetinfoForm(String id){
+	public ModelAndView boastGetPetinfoForm(String id, int boardCode, int boardIdx, String type){
 		ModelAndView mav = new ModelAndView();
 		List<HashMap<String, Object>> list = petService.selectPetList(id);
 		mav.addObject("petList", list);
+		mav.addObject("boardCode", boardCode);
+		mav.addObject("boardIdx", boardIdx);
+		mav.addObject("type", type);
 		mav.setViewName("empty/petInfoList.jsp");
 		return mav;
 	}
 	
 	@RequestMapping("boastGetPetinfo.do")
-	public ModelAndView boastGetPetinfo(int idx){
+	public ModelAndView boastGetPetinfo(int idx, int boardCode, int boardIdx, String type){
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> petinfo = boardService.selectPetinfo(idx);
 		mav.addObject("pet",petinfo);
+		mav.addObject("boardCode", boardCode);
+		mav.addObject("boardIdx", boardIdx);
+		mav.addObject("type", type);
 		mav.setViewName("boardPetInfoLoad.tiles");
 		return mav;
 	}

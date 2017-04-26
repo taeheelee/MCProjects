@@ -225,7 +225,6 @@
 					}
 				});
 			});
-
 			$('#CuploadBtn2').click(function(){
 				var id = ${sessionScope.id };
 				var shotday = $('#CValue2').val();
@@ -473,7 +472,6 @@
 					}
 				});
 			});
-
 			$('#KuploadBtn5').click(function(){
 				var id = ${sessionScope.id };
 				var shotday = $('#KValue5').val();
@@ -535,7 +533,6 @@
 					}
 				});
 			});
-
 			$('#RuploadBtn2').click(function(){
 				var id = ${sessionScope.id };
 				var shotday = $('#RValue2').val();

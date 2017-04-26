@@ -105,7 +105,7 @@
                                             
                                             
                                             <div class="form-row place-order" style="float: right">
-	                                            <input type="button" id="petinfo" onclick="window.open('boastGetPetinfoForm.do?id=${sessionScope.id}', 'pet' ,'left=400, top=200, width=500, height=300')" value="애견정보 불러오기" />
+	                                            <input type="button" id="petinfo" onclick="window.open('boastGetPetinfoForm.do?id=${sessionScope.id}&boardIdx=0&boardCode=3&type=Write', 'pet' ,'left=400, top=200, width=500, height=300')" value="애견정보 불러오기" />
 	                                            <span id="petList"></span>
 											</div>
                                          

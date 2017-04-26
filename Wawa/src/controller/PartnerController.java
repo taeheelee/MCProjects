@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import commons.Constant;
 import interface_service.IBoardService;
+import interface_service.IPetinfoService;
 import interface_service.IRepleService;
 
 @Controller
@@ -20,6 +21,8 @@ public class PartnerController {
 	private IBoardService boardService;
 	@Autowired
 	private IRepleService repleService;
+	@Autowired
+	private IPetinfoService petService;
 	
 	@RequestMapping("partnerMain.do")
 	public ModelAndView partnerMain(@RequestParam(defaultValue="1") int page,
@@ -51,8 +54,14 @@ public class PartnerController {
 	}
 	
 	@RequestMapping("partnerWriteForm.do")
-	public String partnerWriteForm(){
-		return "partnerWriteForm.tiles";
+	public ModelAndView partnerWriteForm(@RequestParam(defaultValue="0") int idx){
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("load", idx);
+		if(idx != 0){
+			mav.addObject("pet", boardService.selectPetinfo(idx));
+		}
+		mav.setViewName("partnerWriteForm.tiles");
+		return mav;
 	}
 	
 	@RequestMapping("partnerWrite.do")
@@ -100,15 +109,6 @@ public class PartnerController {
 		}else {
 			return ""; //본인 아님
 		}
-	}
-	
-	@RequestMapping("partnerGetPetinfo.do")
-	public ModelAndView partnerGetPetinfo(String id){
-		ModelAndView mav = new ModelAndView();
-		List<HashMap<String, Object>> list = boardService.getPetInfo(id);
-		mav.addObject("result", list);
-		mav.setViewName("redirect:partnerWriteForm.do");
-		return mav;
 	}
 	
 	@RequestMapping("partnerUpdateForm.do")
@@ -167,5 +167,25 @@ public class PartnerController {
 //	public ModelAndView partnerUploadImage(){
 //		
 //	}
+	
+	@RequestMapping("partnerGetPetinfoForm.do")
+	public ModelAndView boastGetPetinfoForm(String id, int boardCode){
+		ModelAndView mav = new ModelAndView();
+		List<HashMap<String, Object>> list = petService.selectPetList(id);
+		mav.addObject("petList", list);
+		mav.addObject("boardCode", boardCode);
+		mav.setViewName("empty/petInfoList.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("partnerGetPetinfo.do")
+	public ModelAndView boastGetPetinfo(int idx, int boardCode){
+		ModelAndView mav = new ModelAndView();
+		HashMap<String, Object> petinfo = boardService.selectPetinfo(idx);
+		mav.addObject("pet",petinfo);
+		mav.addObject("boardCode", boardCode);
+		mav.setViewName("boardPetInfoLoad.tiles");
+		return mav;
+	}
 	
 }

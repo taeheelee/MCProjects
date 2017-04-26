@@ -16,29 +16,64 @@
 				var content = $('#summernote').summernote('code');
 				$('#content').val(content);	
 			});
-	      	
-	      	if(${board.kind == '치와와'})
-	      		$('#kind > option[value=1]').attr('selected', true);
-	      	else if(${board.kind == '요크셔 테리어'})
-	      		$('#kind > option[value=2]').attr('selected', true);
-	      	else if(${board.kind == '말티즈'})
-	      		$('#kind > option[value=3]').attr('selected', true);
-	      	else if(${board.kind == '시츄'})
-	      		$('#kind > option[value=4]').attr('selected', true);
-	      	else if(${board.kind == '비글'})
-	      		$('#kind > option[value=5]').attr('selected', true);
-	      	else if(${board.kind == '퍼그'})
-	      		$('#kind > option[value=6]').attr('selected', true);
-	      	else if(${board.kind == '페키니즈'})
-	      		$('#kind > option[value=7]').attr('selected', true);
-	      	else if(${board.kind == '미니어쳐 슈나우저'})
-	      		$('#kind > option[value=8]').attr('selected', true);
-	      	else if(${board.kind == '기타 소형견'})
-	      		$('#kind > option[value=9]').attr('selected', true);
-	      	else if(${board.kind == '기타 중형견'})
-	      		$('#kind > option[value=10]').attr('selected', true);
-	      	else if(${board.kind == '기타 대형견'})
-	      		$('#kind > option[value=11]').attr('selected', true);
+	      	if(${load != 0}){
+				 $('#name').val('${pet.name}');
+				
+				var year = '${pet.birthday}'.split('-');
+				var now = new Date().getFullYear();
+				var age = now - year[0];
+				 $('#age').val(age);
+				
+				$('#sex[value=${pet.sex}]').attr('checked', true);
+				$('#sex[value!=${pet.sex}]').attr('checked', false);
+					
+				 if(${pet.kind == '치와와'})
+			      		$('#kind > option[value=1]').attr('selected', true);
+			      	else if(${pet.kind == '요크셔 테리어'})
+			      		$('#kind > option[value=2]').attr('selected', true);
+			      	else if(${pet.kind == '말티즈'})
+			      		$('#kind > option[value=3]').attr('selected', true);
+			      	else if(${pet.kind == '시츄'})
+			      		$('#kind > option[value=4]').attr('selected', true);
+			      	else if(${pet.kind == '비글'})
+			      		$('#kind > option[value=5]').attr('selected', true);
+			      	else if(${pet.kind == '퍼그'})
+			      		$('#kind > option[value=6]').attr('selected', true);
+			      	else if(${pet.kind == '페키니즈'})
+			      		$('#kind > option[value=7]').attr('selected', true);
+			      	else if(${pet.kind == '미니어쳐 슈나우저'})
+			      		$('#kind > option[value=8]').attr('selected', true);
+			      	else if(${pet.kind == '기타 소형견'})
+			      		$('#kind > option[value=9]').attr('selected', true);
+			      	else if(${pet.kind == '기타 중형견'})
+			      		$('#kind > option[value=10]').attr('selected', true);
+			      	else if(${pet.kind == '기타 대형견'})
+			      		$('#kind > option[value=11]').attr('selected', true);
+			 }
+	      	else{
+		      	if(${board.kind == '치와와'})
+		      		$('#kind > option[value=1]').attr('selected', true);
+		      	else if(${board.kind == '요크셔 테리어'})
+		      		$('#kind > option[value=2]').attr('selected', true);
+		      	else if(${board.kind == '말티즈'})
+		      		$('#kind > option[value=3]').attr('selected', true);
+		      	else if(${board.kind == '시츄'})
+		      		$('#kind > option[value=4]').attr('selected', true);
+		      	else if(${board.kind == '비글'})
+		      		$('#kind > option[value=5]').attr('selected', true);
+		      	else if(${board.kind == '퍼그'})
+		      		$('#kind > option[value=6]').attr('selected', true);
+		      	else if(${board.kind == '페키니즈'})
+		      		$('#kind > option[value=7]').attr('selected', true);
+		      	else if(${board.kind == '미니어쳐 슈나우저'})
+		      		$('#kind > option[value=8]').attr('selected', true);
+		      	else if(${board.kind == '기타 소형견'})
+		      		$('#kind > option[value=9]').attr('selected', true);
+		      	else if(${board.kind == '기타 중형견'})
+		      		$('#kind > option[value=10]').attr('selected', true);
+		      	else if(${board.kind == '기타 대형견'})
+		      		$('#kind > option[value=11]').attr('selected', true);
+	      	}
 	  });
 	</script>
 </head>
@@ -96,7 +131,7 @@
                                             
                                             
                                             <div class="form-row place-order" style="float: right">
-	                                            <input type="button" id="petinfo" onclick="location.href='/Wawa/boastGetPetinfo.do'" value="애견정보 불러오기" />
+	                                            <input type="button" id="petinfo" onclick="window.open('boastGetPetinfoForm.do?id=${sessionScope.id}&boardIdx=${board.boardIdx }&boardCode=3&type=Update', 'pet' ,'left=400, top=200, width=500, height=300')" value="애견정보 불러오기" />
 											</div>
                                          
                                            

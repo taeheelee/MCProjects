@@ -43,14 +43,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update reple set groupSeq = groupSeq+1 
 		where groupCode = #{groupCode} and groupSeq > #{groupSeq}
 	</update>
-	<update id="decreaseGroupSeq" parameterType="int">
+	<update id="decreaseGroupSeq" parameterType="java.util.HashMap">
 		update reple set groupSeq = groupSeq-1 
-		where parentNum = #{parentNum}
+		where parentNum = #{parentNum} or groupLv > #{groupLv}
 	</update>
 	<select id="selectMax" parameterType="int" resultType="int">
 		select max(groupSeq) from reple where groupCode=#{groupCode}
 	</select>
 	<select id="selectParent" parameterType="int" resultType="int">
 		select count(*) from reple where parentNum=#{parentNum}
+	</select>
+	<select id="selectMaxParent" parameterType="int" resultType="int">
+		select max(groupLv) from reple where groupCode = #{groupCode}
 	</select>
 </mapper>

@@ -1,5 +1,6 @@
 package controller;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
@@ -14,12 +15,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import interface_service.IMemberService;
+import interface_service.IPetinfoService;
 import model.UserInfo;
 
 @Controller
 public class MainController {
 	@Autowired
 	private IMemberService iMemberService;
+	@Autowired
+	private IPetinfoService IPetinfoService;
 	
 	@RequestMapping("loginForm.do")
 	public String loginForm(){
@@ -29,11 +33,22 @@ public class MainController {
 	@RequestMapping(method=RequestMethod.POST, value="login.do")
 	public String login(HttpSession session, String id, String pw){
 		UserInfo userInfo = iMemberService.getMember(id);
+		List<HashMap<String, Object>> petList = IPetinfoService.selectPetList(id);
+		
 		if(iMemberService.loginMember(id, pw)){
-			
+			HashMap<String, Object> params = new HashMap<>(); 					
+					
+			for(int i = 0; i < petList.size(); i ++){
+				params.put("name" + i, petList.get(i).get("name"));
+				params.put("sex" + i, petList.get(i).get("sex"));
+				params.put("birth" + i, petList.get(i).get("birthday"));
+			}
+			System.out.println(params.get("name0"));
 			session.setAttribute("id", userInfo.getId());
 			session.setAttribute("name", userInfo.getNickname());
-
+			session.setAttribute("petName", params.get("name0"));
+			session.setAttribute("petSex", params.get("sex0"));	
+			session.setAttribute("petBirth", params.get("birth0"));	
 
 		}
 		return "redirect:main.do";

@@ -17,7 +17,8 @@
 			});
 	      	
 	      	if(${load != 0}){
-				 $('#name').val('${pet.name}');
+				$('#name').val('${pet.name}');
+				$('#weight').val('${pet.weight}');
 				
 				var year = '${pet.birthday}'.split('-');
 				var now = new Date().getFullYear();
@@ -98,7 +99,7 @@
                                     
                                             
                                             <div class="form-row place-order" style="float: right">
-												<input type="button" id="petinfo" onclick="window.open('partnerGetPetinfoForm.do?id=${sessionScope.id}&boardCode=3', 'pet' ,'left=400, top=200, width=500, height=300')" value="애견정보 불러오기" />
+												<input type="button" id="petinfo" onclick="window.open('partnerGetPetinfoForm.do?id=${sessionScope.id}&boardIdx=0&boardCode=5&type=Write', 'pet' ,'left=400, top=200, width=500, height=300')" value="애견정보 불러오기" />
 											</div>
                                         
                                             

@@ -33,6 +33,8 @@ public class MainController {
 			
 			session.setAttribute("id", userInfo.getId());
 			session.setAttribute("name", userInfo.getNickname());
+
+
 		}
 		return "redirect:main.do";
 	}
@@ -81,7 +83,7 @@ public class MainController {
 	
 
 	@RequestMapping("userinfoForm.do")
-	public ModelAndView userinfoForm(HttpSession session, String id){
+	public ModelAndView userinfoForm(String id){
 		ModelAndView mav = new ModelAndView();
 		UserInfo userInfo = iMemberService.getMember(id);
 		HashMap<String, Object> params = new HashMap<>();
@@ -91,7 +93,6 @@ public class MainController {
 		params.put("pass", userInfo.getPassword());
 		params.put("phone", userInfo.getPhone());
 		params.put("email", userInfo.getEmail());
-		session.setAttribute("name", userInfo.getNickname());
 		
 		mav.addAllObjects(params);
 		mav.setViewName("userinfoForm.tiles");

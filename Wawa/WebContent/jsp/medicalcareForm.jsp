@@ -17,23 +17,28 @@
 	<script type="text/javascript">
 	
 		$(document).ready(function(){
-			$('#petname').change(function(){
+			
+			$('#name').change(function(){
 				alert('d');
-				var name = $("#petname option:selected").text();
+				var name = $("#name option:selected").text();
+				alert("name:" + name);
 				var id = ${sessionScope.id };
+				alert("id:" + id);
+				
 				$.ajax({
-					type: 'post',
+					type: 'get',
 					url: 'selectPet.do',
 					data: "id="+id+"&name="+name,
 					dataType: "json",
 					success: function(data) {
+						alert('d');
 						var table = $('#listTable');
 						var tr = $('<tr>');
 						$('<td>').text($(data).kind).appendTo(tr);
 						$('<td>').text($(data).sex).appendTo(tr);
 						$('<td>').text($(data).neutral).appendTo(tr);
 						$('<td>').text("00년 00개월").appendTo(tr);
-						$('<td>').text($(data).age).appendTo(tr);
+						$('<td>').text("1살").appendTo(tr);
 						$('<td>').text($(data).weight).appendTo(tr);
 						$('<td>').text("하루필요열량 000kcal").appendTo(tr);
 					},
@@ -43,623 +48,626 @@
 				});
 			});
 			
-			$('#DuploadBtn1').click(function(){
-				var id = ${sessionScope.id };
-				var shotday = $('#DValue1').val();
-				var petname = $("#petname option:selected").text();
-				var vaccineCode = 101;
-				$.ajax({
-					type: 'post',
-					url: 'uploadMedical.do',
-					data: 
-					{
-						"id":id, 
-						"shotday":shotday, 
-						"petname":petname, 
-						"vaccineCode":vaccineCode
-					},
-					dataType: 'json',
-					success : function (data) {
-	   			    	//alert('sdsd');
- 	   			        if(data.result)
-	   			        	//alert('사용가능'); 
-    			     			$('#idError').html('<font color="green">사용가능</font>');
- 	   			        else 
- 	   			        	//alert('중복');
- 	   			        	$('#idError').html('<font color="red">중복</font>');
-	   			    },
-					error: function(data) {
-						alert('잠시 후 다시 시도해주세요');
-					}
-				});
-			});
-			
-			$('#DuploadBtn2').click(function(){
-				var id = ${sessionScope.id };
-				var shotday = $('#DValue2').val();
-				var petname = $("#petname option:selected").text();
-				var vaccineCode = 102;
-				$.ajax({
-					type: 'post',
-					url: 'uploadMedical.do',
-					data: 
-					{
-						"id":id, 
-						"shotday":shotday, 
-						"petname":petname, 
-						"vaccineCode":vaccineCode
-					},
-					dataType: 'json',
-					success : function (data) {
-	   			    	//alert('sdsd');
- 	   			        if(data.result)
-	   			        	//alert('사용가능'); 
-    			     			$('#idError').html('<font color="green">사용가능</font>');
- 	   			        else 
- 	   			        	//alert('중복');
- 	   			        	$('#idError').html('<font color="red">중복</font>');
-	   			    },
-					error: function(data) {
-						alert('잠시 후 다시 시도해주세요');
-					}
-				});
-			});
-			
-			$('#DuploadBtn3').click(function(){
-				var id = ${sessionScope.id };
-				var shotday = $('#DValue3').val();
-				var petname = $("#petname option:selected").text();
-				var vaccineCode = 103;
-				$.ajax({
-					type: 'post',
-					url: 'uploadMedical.do',
-					data: 
-					{
-						"id":id, 
-						"shotday":shotday, 
-						"petname":petname, 
-						"vaccineCode":vaccineCode
-					},
-					dataType: 'json',
-					success : function (data) {
-	   			    	//alert('sdsd');
- 	   			        if(data.result)
-	   			        	//alert('사용가능'); 
-    			     			$('#idError').html('<font color="green">사용가능</font>');
- 	   			        else 
- 	   			        	//alert('중복');
- 	   			        	$('#idError').html('<font color="red">중복</font>');
-	   			    },
-					error: function(data) {
-						alert('잠시 후 다시 시도해주세요');
-					}
-				});
-			});
-			
-			$('#DuploadBtn4').click(function(){
-				var id = ${sessionScope.id };
-				var shotday = $('#DValue4').val();
-				var petname = $("#petname option:selected").text();
-				var vaccineCode = 104;
-				$.ajax({
-					type: 'post',
-					url: 'uploadMedical.do',
-					data: 
-					{
-						"id":id, 
-						"shotday":shotday, 
-						"petname":petname, 
-						"vaccineCode":vaccineCode
-					},
-					dataType: 'json',
-					success : function (data) {
-	   			    	//alert('sdsd');
- 	   			        if(data.result)
-	   			        	//alert('사용가능'); 
-    			     			$('#idError').html('<font color="green">사용가능</font>');
- 	   			        else 
- 	   			        	//alert('중복');
- 	   			        	$('#idError').html('<font color="red">중복</font>');
-	   			    },
-					error: function(data) {
-						alert('잠시 후 다시 시도해주세요');
-					}
-				});
-			});
-			
-			$('#DuploadBtn5').click(function(){
-				var id = ${sessionScope.id };
-				var shotday = $('#DValue5').val();
-				var petname = $("#petname option:selected").text();
-				var vaccineCode = 105;
-				$.ajax({
-					type: 'post',
-					url: 'uploadMedical.do',
-					data: 
-					{
-						"id":id, 
-						"shotday":shotday, 
-						"petname":petname, 
-						"vaccineCode":vaccineCode
-					},
-					dataType: 'json',
-					success : function (data) {
-	   			    	//alert('sdsd');
- 	   			        if(data.result)
-	   			        	//alert('사용가능'); 
-    			     			$('#idError').html('<font color="green">사용가능</font>');
- 	   			        else 
- 	   			        	//alert('중복');
- 	   			        	$('#idError').html('<font color="red">중복</font>');
-	   			    },
-					error: function(data) {
-						alert('잠시 후 다시 시도해주세요');
-					}
-				});
-			});
-			
-			$('#CuploadBtn1').click(function(){
-				var id = ${sessionScope.id };
-				var shotday = $('#CValue1').val();
-				var petname = $("#petname option:selected").text();
-				var vaccineCode = 201;
-				$.ajax({
-					type: 'post',
-					url: 'uploadMedical.do',
-					data: 
-					{
-						"id":id, 
-						"shotday":shotday, 
-						"petname":petname, 
-						"vaccineCode":vaccineCode
-					},
-					dataType: 'json',
-					success : function (data) {
-	   			    	//alert('sdsd');
- 	   			        if(data.result)
-	   			        	//alert('사용가능'); 
-    			     			$('#idError').html('<font color="green">사용가능</font>');
- 	   			        else 
- 	   			        	//alert('중복');
- 	   			        	$('#idError').html('<font color="red">중복</font>');
-	   			    },
-					error: function(data) {
-						alert('잠시 후 다시 시도해주세요');
-					}
-				});
-			});
-			$('#CuploadBtn2').click(function(){
-				var id = ${sessionScope.id };
-				var shotday = $('#CValue2').val();
-				var petname = $("#petname option:selected").text();
-				var vaccineCode = 202;
-				$.ajax({
-					type: 'post',
-					url: 'uploadMedical.do',
-					data: 
-					{
-						"id":id, 
-						"shotday":shotday, 
-						"petname":petname, 
-						"vaccineCode":vaccineCode
-					},
-					dataType: 'json',
-					success : function (data) {
-	   			    	//alert('sdsd');
- 	   			        if(data.result)
-	   			        	//alert('사용가능'); 
-    			     			$('#idError').html('<font color="green">사용가능</font>');
- 	   			        else 
- 	   			        	//alert('중복');
- 	   			        	$('#idError').html('<font color="red">중복</font>');
-	   			    },
-					error: function(data) {
-						alert('잠시 후 다시 시도해주세요');
-					}
-				});
-			});
-			
-			$('#CuploadBtn3').click(function(){
-				var id = ${sessionScope.id };
-				var shotday = $('#CValue3').val();
-				var petname = $("#petname option:selected").text();
-				var vaccineCode = 203;
-				$.ajax({
-					type: 'post',
-					url: 'uploadMedical.do',
-					data: 
-					{
-						"id":id, 
-						"shotday":shotday, 
-						"petname":petname, 
-						"vaccineCode":vaccineCode
-					},
-					dataType: 'json',
-					success : function (data) {
-	   			    	//alert('sdsd');
- 	   			        if(data.result)
-	   			        	//alert('사용가능'); 
-    			     			$('#idError').html('<font color="green">사용가능</font>');
- 	   			        else 
- 	   			        	//alert('중복');
- 	   			        	$('#idError').html('<font color="red">중복</font>');
-	   			    },
-					error: function(data) {
-						alert('잠시 후 다시 시도해주세요');
-					}
-				});
-			});
-			
-			$('#CuploadBtn4').click(function(){
-				var id = ${sessionScope.id };
-				var shotday = $('#CValue4').val();
-				var petname = $("#petname option:selected").text();
-				var vaccineCode = 204;
-				$.ajax({
-					type: 'post',
-					url: 'uploadMedical.do',
-					data: 
-					{
-						"id":id, 
-						"shotday":shotday, 
-						"petname":petname, 
-						"vaccineCode":vaccineCode
-					},
-					dataType: 'json',
-					success : function (data) {
-	   			    	//alert('sdsd');
- 	   			        if(data.result)
-	   			        	//alert('사용가능'); 
-    			     			$('#idError').html('<font color="green">사용가능</font>');
- 	   			        else 
- 	   			        	//alert('중복');
- 	   			        	$('#idError').html('<font color="red">중복</font>');
-	   			    },
-					error: function(data) {
-						alert('잠시 후 다시 시도해주세요');
-					}
-				});
-			});
-			
-			$('#CuploadBtn5').click(function(){
-				var id = ${sessionScope.id };
-				var shotday = $('#CValue5').val();
-				var petname = $("#petname option:selected").text();
-				var vaccineCode = 205;
-				$.ajax({
-					type: 'post',
-					url: 'uploadMedical.do',
-					data: 
-					{
-						"id":id, 
-						"shotday":shotday, 
-						"petname":petname, 
-						"vaccineCode":vaccineCode
-					},
-					dataType: 'json',
-					success : function (data) {
-	   			    	//alert('sdsd');
- 	   			        if(data.result)
-	   			        	//alert('사용가능'); 
-    			     			$('#idError').html('<font color="green">사용가능</font>');
- 	   			        else 
- 	   			        	//alert('중복');
- 	   			        	$('#idError').html('<font color="red">중복</font>');
-	   			    },
-					error: function(data) {
-						alert('잠시 후 다시 시도해주세요');
-					}
-				});
-			});
-			
-			$('#KuploadBtn1').click(function(){
-				var id = ${sessionScope.id };
-				var shotday = $('#KValue1').val();
-				var petname = $("#petname option:selected").text();
-				var vaccineCode = 301;
-				$.ajax({
-					type: 'post',
-					url: 'uploadMedical.do',
-					data: 
-					{
-						"id":id, 
-						"shotday":shotday, 
-						"petname":petname, 
-						"vaccineCode":vaccineCode
-					},
-					dataType: 'json',
-					success : function (data) {
-	   			    	//alert('sdsd');
- 	   			        if(data.result)
-	   			        	//alert('사용가능'); 
-    			     			$('#idError').html('<font color="green">사용가능</font>');
- 	   			        else 
- 	   			        	//alert('중복');
- 	   			        	$('#idError').html('<font color="red">중복</font>');
-	   			    },
-					error: function(data) {
-						alert('잠시 후 다시 시도해주세요');
-					}
-				});
-			});
-			
-			$('#KuploadBtn2').click(function(){
-				var id = ${sessionScope.id };
-				var shotday = $('#KValue2').val();
-				var petname = $("#petname option:selected").text();
-				var vaccineCode = 302;
-				$.ajax({
-					type: 'post',
-					url: 'uploadMedical.do',
-					data: 
-					{
-						"id":id, 
-						"shotday":shotday, 
-						"petname":petname, 
-						"vaccineCode":vaccineCode
-					},
-					dataType: 'json',
-					success : function (data) {
-	   			    	//alert('sdsd');
- 	   			        if(data.result)
-	   			        	//alert('사용가능'); 
-    			     			$('#idError').html('<font color="green">사용가능</font>');
- 	   			        else 
- 	   			        	//alert('중복');
- 	   			        	$('#idError').html('<font color="red">중복</font>');
-	   			    },
-					error: function(data) {
-						alert('잠시 후 다시 시도해주세요');
-					}
-				});
-			});
-				
-			$('#KuploadBtn3').click(function(){
-				var id = ${sessionScope.id };
-				var shotday = $('#KValue3').val();
-				var petname = $("#petname option:selected").text();
-				var vaccineCode = 303;
-				$.ajax({
-					type: 'post',
-					url: 'uploadMedical.do',
-					data: 
-					{
-						"id":id, 
-						"shotday":shotday, 
-						"petname":petname, 
-						"vaccineCode":vaccineCode
-					},
-					dataType: 'json',
-					success : function (data) {
-	   			    	//alert('sdsd');
- 	   			        if(data.result)
-	   			        	//alert('사용가능'); 
-    			     			$('#idError').html('<font color="green">사용가능</font>');
- 	   			        else 
- 	   			        	//alert('중복');
- 	   			        	$('#idError').html('<font color="red">중복</font>');
-	   			    },
-					error: function(data) {
-						alert('잠시 후 다시 시도해주세요');
-					}
-				});
-			});
-			
-			$('#KuploadBtn4').click(function(){
-				var id = ${sessionScope.id };
-				var shotday = $('#KValue4').val();
-				var petname = $("#petname option:selected").text();
-				var vaccineCode = 304;
-				$.ajax({
-					type: 'post',
-					url: 'uploadMedical.do',
-					data: 
-					{
-						"id":id, 
-						"shotday":shotday, 
-						"petname":petname, 
-						"vaccineCode":vaccineCode
-					},
-					dataType: 'json',
-					success : function (data) {
-	   			    	//alert('sdsd');
- 	   			        if(data.result)
-	   			        	//alert('사용가능'); 
-    			     			$('#idError').html('<font color="green">사용가능</font>');
- 	   			        else 
- 	   			        	//alert('중복');
- 	   			        	$('#idError').html('<font color="red">중복</font>');
-	   			    },
-					error: function(data) {
-						alert('잠시 후 다시 시도해주세요');
-					}
-				});
-			});
-			$('#KuploadBtn5').click(function(){
-				var id = ${sessionScope.id };
-				var shotday = $('#KValue5').val();
-				var petname = $("#petname option:selected").text();
-				var vaccineCode = 305;
-				$.ajax({
-					type: 'post',
-					url: 'uploadMedical.do',
-					data: 
-					{
-						"id":id, 
-						"shotday":shotday, 
-						"petname":petname, 
-						"vaccineCode":vaccineCode
-					},
-					dataType: 'json',
-					success : function (data) {
-	   			    	//alert('sdsd');
- 	   			        if(data.result)
-	   			        	//alert('사용가능'); 
-    			     			$('#idError').html('<font color="green">사용가능</font>');
- 	   			        else 
- 	   			        	//alert('중복');
- 	   			        	$('#idError').html('<font color="red">중복</font>');
-	   			    },
-					error: function(data) {
-						alert('잠시 후 다시 시도해주세요');
-					}
-				});
-			});
-			
-			$('#RuploadBtn1').click(function(){
-				var id = ${sessionScope.id };
-				var shotday = $('#RValue1').val();
-				var petname = $("#petname option:selected").text();
-				var vaccineCode = 401;
-				$.ajax({
-					type: 'post',
-					url: 'uploadMedical.do',
-					data: 
-					{
-						"id":id, 
-						"shotday":shotday, 
-						"petname":petname, 
-						"vaccineCode":vaccineCode
-					},
-					dataType: 'json',
-					success : function (data) {
-	   			    	//alert('sdsd');
- 	   			        if(data.result)
-	   			        	//alert('사용가능'); 
-    			     			$('#idError').html('<font color="green">사용가능</font>');
- 	   			        else 
- 	   			        	//alert('중복');
- 	   			        	$('#idError').html('<font color="red">중복</font>');
-	   			    },
-					error: function(data) {
-						alert('잠시 후 다시 시도해주세요');
-					}
-				});
-			});
-			$('#RuploadBtn2').click(function(){
-				var id = ${sessionScope.id };
-				var shotday = $('#RValue2').val();
-				var petname = $("#petname option:selected").text();
-				var vaccineCode = 402;
-				$.ajax({
-					type: 'post',
-					url: 'uploadMedical.do',
-					data: 
-					{
-						"id":id, 
-						"shotday":shotday, 
-						"petname":petname, 
-						"vaccineCode":vaccineCode
-					},
-					dataType: 'json',
-					success : function (data) {
-	   			    	//alert('sdsd');
- 	   			        if(data.result)
-	   			        	//alert('사용가능'); 
-    			     			$('#idError').html('<font color="green">사용가능</font>');
- 	   			        else 
- 	   			        	//alert('중복');
- 	   			        	$('#idError').html('<font color="red">중복</font>');
-	   			    },
-					error: function(data) {
-						alert('잠시 후 다시 시도해주세요');
-					}
-				});
-			});
-			
-			$('#RuploadBtn3').click(function(){
-				var id = ${sessionScope.id };
-				var shotday = $('#RValue3').val();
-				var petname = $("#petname option:selected").text();
-				var vaccineCode = 403;
-				$.ajax({
-					type: 'post',
-					url: 'uploadRabies.do',
-					data: 
-					{
-						"id":id, 
-						"shotday":shotday, 
-						"petname":petname, 
-						"vaccineCode":vaccineCode
-					},
-					dataType: 'json',
-					success : function (data) {
-	   			    	//alert('sdsd');
- 	   			        if(data.result)
-	   			        	//alert('사용가능'); 
-    			     			$('#idError').html('<font color="green">사용가능</font>');
- 	   			        else 
- 	   			        	//alert('중복');
- 	   			        	$('#idError').html('<font color="red">중복</font>');
-	   			    },
-					error: function(data) {
-						alert('잠시 후 다시 시도해주세요');
-					}
-				});
-			});
-			
-			$('#RuploadBtn4').click(function(){
-				var id = ${sessionScope.id };
-				var shotday = $('#RValue4').val();
-				var petname = $("#petname option:selected").text();
-				var vaccineCode = 404;
-				$.ajax({
-					type: 'post',
-					url: 'uploadMedical.do',
-					data: 
-					{
-						"id":id, 
-						"shotday":shotday, 
-						"petname":petname, 
-						"vaccineCode":vaccineCode
-					},
-					dataType: 'json',
-					success : function (data) {
-	   			    	//alert('sdsd');
- 	   			        if(data.result)
-	   			        	//alert('사용가능'); 
-    			     			$('#idError').html('<font color="green">사용가능</font>');
- 	   			        else 
- 	   			        	//alert('중복');
- 	   			        	$('#idError').html('<font color="red">중복</font>');
-	   			    },
-					error: function(data) {
-						alert('잠시 후 다시 시도해주세요');
-					}
-				});
-			});
-			
-			$('#RuploadBtn5').click(function(){
-				var id = ${sessionScope.id };
-				var shotday = $('#RValue5').val();
-				var petname = $("#petname option:selected").text();
-				var vaccineCode = 405;
-				$.ajax({
-					type: 'post',
-					url: 'uploadMedical.do',
-					data: 
-					{
-						"id":id, 
-						"shotday":shotday, 
-						"petname":petname, 
-						"vaccineCode":vaccineCode
-					},
-					dataType: 'json',
-					success : function (data) {
-	   			    	//alert('sdsd');
- 	   			        if(data.result)
-	   			        	//alert('사용가능'); 
-    			     			$('#idError').html('<font color="green">사용가능</font>');
- 	   			        else 
- 	   			        	//alert('중복');
- 	   			        	$('#idError').html('<font color="red">중복</font>');
-	   			    },
-					error: function(data) {
-						alert('잠시 후 다시 시도해주세요');
-					}
-				});
-			});
 		});
+			
+// 			$('#DuploadBtn1').click(function(){
+// 				var id = ${sessionScope.id };
+// 				var shotday = $('#DValue1').val();
+// 				var petname = $("#petname option:selected").text();
+// 				var vaccineCode = 101;
+// 				$.ajax({
+// 					type: 'post',
+// 					url: 'uploadMedical.do',
+// 					data: 
+// 					{
+// 						"id":id, 
+// 						"shotday":shotday, 
+// 						"petname":petname, 
+// 						"vaccineCode":vaccineCode
+// 					},
+// 					dataType: 'json',
+// 					success : function (data) {
+// 	   			    	//alert('sdsd');
+//  	   			        if(data.result)
+// 	   			        	//alert('사용가능'); 
+//     			     			$('#idError').html('<font color="green">사용가능</font>');
+//  	   			        else 
+//  	   			        	//alert('중복');
+//  	   			        	$('#idError').html('<font color="red">중복</font>');
+// 	   			    },
+// 					error: function(data) {
+// 						alert('잠시 후 다시 시도해주세요');
+// 					}
+// 				});
+// 			});
+			
+			
+// 			$('#DuploadBtn2').click(function(){
+// 				var id = ${sessionScope.id };
+// 				var shotday = $('#DValue2').val();
+// 				var petname = $("#petname option:selected").text();
+// 				var vaccineCode = 102;
+// 				$.ajax({
+// 					type: 'post',
+// 					url: 'uploadMedical.do',
+// 					data: 
+// 					{
+// 						"id":id, 
+// 						"shotday":shotday, 
+// 						"petname":petname, 
+// 						"vaccineCode":vaccineCode
+// 					},
+// 					dataType: 'json',
+// 					success : function (data) {
+// 	   			    	//alert('sdsd');
+//  	   			        if(data.result)
+// 	   			        	//alert('사용가능'); 
+//     			     			$('#idError').html('<font color="green">사용가능</font>');
+//  	   			        else 
+//  	   			        	//alert('중복');
+//  	   			        	$('#idError').html('<font color="red">중복</font>');
+// 	   			    },
+// 					error: function(data) {
+// 						alert('잠시 후 다시 시도해주세요');
+// 					}
+// 				});
+// 			});
+			
+// 			$('#DuploadBtn3').click(function(){
+// 				var id = ${sessionScope.id };
+// 				var shotday = $('#DValue3').val();
+// 				var petname = $("#petname option:selected").text();
+// 				var vaccineCode = 103;
+// 				$.ajax({
+// 					type: 'post',
+// 					url: 'uploadMedical.do',
+// 					data: 
+// 					{
+// 						"id":id, 
+// 						"shotday":shotday, 
+// 						"petname":petname, 
+// 						"vaccineCode":vaccineCode
+// 					},
+// 					dataType: 'json',
+// 					success : function (data) {
+// 	   			    	//alert('sdsd');
+//  	   			        if(data.result)
+// 	   			        	//alert('사용가능'); 
+//     			     			$('#idError').html('<font color="green">사용가능</font>');
+//  	   			        else 
+//  	   			        	//alert('중복');
+//  	   			        	$('#idError').html('<font color="red">중복</font>');
+// 	   			    },
+// 					error: function(data) {
+// 						alert('잠시 후 다시 시도해주세요');
+// 					}
+// 				});
+// 			});
+			
+// 			$('#DuploadBtn4').click(function(){
+// 				var id = ${sessionScope.id };
+// 				var shotday = $('#DValue4').val();
+// 				var petname = $("#petname option:selected").text();
+// 				var vaccineCode = 104;
+// 				$.ajax({
+// 					type: 'post',
+// 					url: 'uploadMedical.do',
+// 					data: 
+// 					{
+// 						"id":id, 
+// 						"shotday":shotday, 
+// 						"petname":petname, 
+// 						"vaccineCode":vaccineCode
+// 					},
+// 					dataType: 'json',
+// 					success : function (data) {
+// 	   			    	//alert('sdsd');
+//  	   			        if(data.result)
+// 	   			        	//alert('사용가능'); 
+//     			     			$('#idError').html('<font color="green">사용가능</font>');
+//  	   			        else 
+//  	   			        	//alert('중복');
+//  	   			        	$('#idError').html('<font color="red">중복</font>');
+// 	   			    },
+// 					error: function(data) {
+// 						alert('잠시 후 다시 시도해주세요');
+// 					}
+// 				});
+// 			});
+			
+// 			$('#DuploadBtn5').click(function(){
+// 				var id = ${sessionScope.id };
+// 				var shotday = $('#DValue5').val();
+// 				var petname = $("#petname option:selected").text();
+// 				var vaccineCode = 105;
+// 				$.ajax({
+// 					type: 'post',
+// 					url: 'uploadMedical.do',
+// 					data: 
+// 					{
+// 						"id":id, 
+// 						"shotday":shotday, 
+// 						"petname":petname, 
+// 						"vaccineCode":vaccineCode
+// 					},
+// 					dataType: 'json',
+// 					success : function (data) {
+// 	   			    	//alert('sdsd');
+//  	   			        if(data.result)
+// 	   			        	//alert('사용가능'); 
+//     			     			$('#idError').html('<font color="green">사용가능</font>');
+//  	   			        else 
+//  	   			        	//alert('중복');
+//  	   			        	$('#idError').html('<font color="red">중복</font>');
+// 	   			    },
+// 					error: function(data) {
+// 						alert('잠시 후 다시 시도해주세요');
+// 					}
+// 				});
+// 			});
+			
+// 			$('#CuploadBtn1').click(function(){
+// 				var id = ${sessionScope.id };
+// 				var shotday = $('#CValue1').val();
+// 				var petname = $("#petname option:selected").text();
+// 				var vaccineCode = 201;
+// 				$.ajax({
+// 					type: 'post',
+// 					url: 'uploadMedical.do',
+// 					data: 
+// 					{
+// 						"id":id, 
+// 						"shotday":shotday, 
+// 						"petname":petname, 
+// 						"vaccineCode":vaccineCode
+// 					},
+// 					dataType: 'json',
+// 					success : function (data) {
+// 	   			    	//alert('sdsd');
+//  	   			        if(data.result)
+// 	   			        	//alert('사용가능'); 
+//     			     			$('#idError').html('<font color="green">사용가능</font>');
+//  	   			        else 
+//  	   			        	//alert('중복');
+//  	   			        	$('#idError').html('<font color="red">중복</font>');
+// 	   			    },
+// 					error: function(data) {
+// 						alert('잠시 후 다시 시도해주세요');
+// 					}
+// 				});
+// 			});
+// 			$('#CuploadBtn2').click(function(){
+// 				var id = ${sessionScope.id };
+// 				var shotday = $('#CValue2').val();
+// 				var petname = $("#petname option:selected").text();
+// 				var vaccineCode = 202;
+// 				$.ajax({
+// 					type: 'post',
+// 					url: 'uploadMedical.do',
+// 					data: 
+// 					{
+// 						"id":id, 
+// 						"shotday":shotday, 
+// 						"petname":petname, 
+// 						"vaccineCode":vaccineCode
+// 					},
+// 					dataType: 'json',
+// 					success : function (data) {
+// 	   			    	//alert('sdsd');
+//  	   			        if(data.result)
+// 	   			        	//alert('사용가능'); 
+//     			     			$('#idError').html('<font color="green">사용가능</font>');
+//  	   			        else 
+//  	   			        	//alert('중복');
+//  	   			        	$('#idError').html('<font color="red">중복</font>');
+// 	   			    },
+// 					error: function(data) {
+// 						alert('잠시 후 다시 시도해주세요');
+// 					}
+// 				});
+// 			});
+			
+// 			$('#CuploadBtn3').click(function(){
+// 				var id = ${sessionScope.id };
+// 				var shotday = $('#CValue3').val();
+// 				var petname = $("#petname option:selected").text();
+// 				var vaccineCode = 203;
+// 				$.ajax({
+// 					type: 'post',
+// 					url: 'uploadMedical.do',
+// 					data: 
+// 					{
+// 						"id":id, 
+// 						"shotday":shotday, 
+// 						"petname":petname, 
+// 						"vaccineCode":vaccineCode
+// 					},
+// 					dataType: 'json',
+// 					success : function (data) {
+// 	   			    	//alert('sdsd');
+//  	   			        if(data.result)
+// 	   			        	//alert('사용가능'); 
+//     			     			$('#idError').html('<font color="green">사용가능</font>');
+//  	   			        else 
+//  	   			        	//alert('중복');
+//  	   			        	$('#idError').html('<font color="red">중복</font>');
+// 	   			    },
+// 					error: function(data) {
+// 						alert('잠시 후 다시 시도해주세요');
+// 					}
+// 				});
+// 			});
+			
+// 			$('#CuploadBtn4').click(function(){
+// 				var id = ${sessionScope.id };
+// 				var shotday = $('#CValue4').val();
+// 				var petname = $("#petname option:selected").text();
+// 				var vaccineCode = 204;
+// 				$.ajax({
+// 					type: 'post',
+// 					url: 'uploadMedical.do',
+// 					data: 
+// 					{
+// 						"id":id, 
+// 						"shotday":shotday, 
+// 						"petname":petname, 
+// 						"vaccineCode":vaccineCode
+// 					},
+// 					dataType: 'json',
+// 					success : function (data) {
+// 	   			    	//alert('sdsd');
+//  	   			        if(data.result)
+// 	   			        	//alert('사용가능'); 
+//     			     			$('#idError').html('<font color="green">사용가능</font>');
+//  	   			        else 
+//  	   			        	//alert('중복');
+//  	   			        	$('#idError').html('<font color="red">중복</font>');
+// 	   			    },
+// 					error: function(data) {
+// 						alert('잠시 후 다시 시도해주세요');
+// 					}
+// 				});
+// 			});
+			
+// 			$('#CuploadBtn5').click(function(){
+// 				var id = ${sessionScope.id };
+// 				var shotday = $('#CValue5').val();
+// 				var petname = $("#petname option:selected").text();
+// 				var vaccineCode = 205;
+// 				$.ajax({
+// 					type: 'post',
+// 					url: 'uploadMedical.do',
+// 					data: 
+// 					{
+// 						"id":id, 
+// 						"shotday":shotday, 
+// 						"petname":petname, 
+// 						"vaccineCode":vaccineCode
+// 					},
+// 					dataType: 'json',
+// 					success : function (data) {
+// 	   			    	//alert('sdsd');
+//  	   			        if(data.result)
+// 	   			        	//alert('사용가능'); 
+//     			     			$('#idError').html('<font color="green">사용가능</font>');
+//  	   			        else 
+//  	   			        	//alert('중복');
+//  	   			        	$('#idError').html('<font color="red">중복</font>');
+// 	   			    },
+// 					error: function(data) {
+// 						alert('잠시 후 다시 시도해주세요');
+// 					}
+// 				});
+// 			});
+			
+// 			$('#KuploadBtn1').click(function(){
+// 				var id = ${sessionScope.id };
+// 				var shotday = $('#KValue1').val();
+// 				var petname = $("#petname option:selected").text();
+// 				var vaccineCode = 301;
+// 				$.ajax({
+// 					type: 'post',
+// 					url: 'uploadMedical.do',
+// 					data: 
+// 					{
+// 						"id":id, 
+// 						"shotday":shotday, 
+// 						"petname":petname, 
+// 						"vaccineCode":vaccineCode
+// 					},
+// 					dataType: 'json',
+// 					success : function (data) {
+// 	   			    	//alert('sdsd');
+//  	   			        if(data.result)
+// 	   			        	//alert('사용가능'); 
+//     			     			$('#idError').html('<font color="green">사용가능</font>');
+//  	   			        else 
+//  	   			        	//alert('중복');
+//  	   			        	$('#idError').html('<font color="red">중복</font>');
+// 	   			    },
+// 					error: function(data) {
+// 						alert('잠시 후 다시 시도해주세요');
+// 					}
+// 				});
+// 			});
+			
+// 			$('#KuploadBtn2').click(function(){
+// 				var id = ${sessionScope.id };
+// 				var shotday = $('#KValue2').val();
+// 				var petname = $("#petname option:selected").text();
+// 				var vaccineCode = 302;
+// 				$.ajax({
+// 					type: 'post',
+// 					url: 'uploadMedical.do',
+// 					data: 
+// 					{
+// 						"id":id, 
+// 						"shotday":shotday, 
+// 						"petname":petname, 
+// 						"vaccineCode":vaccineCode
+// 					},
+// 					dataType: 'json',
+// 					success : function (data) {
+// 	   			    	//alert('sdsd');
+//  	   			        if(data.result)
+// 	   			        	//alert('사용가능'); 
+//     			     			$('#idError').html('<font color="green">사용가능</font>');
+//  	   			        else 
+//  	   			        	//alert('중복');
+//  	   			        	$('#idError').html('<font color="red">중복</font>');
+// 	   			    },
+// 					error: function(data) {
+// 						alert('잠시 후 다시 시도해주세요');
+// 					}
+// 				});
+// 			});
+				
+// 			$('#KuploadBtn3').click(function(){
+// 				var id = ${sessionScope.id };
+// 				var shotday = $('#KValue3').val();
+// 				var petname = $("#petname option:selected").text();
+// 				var vaccineCode = 303;
+// 				$.ajax({
+// 					type: 'post',
+// 					url: 'uploadMedical.do',
+// 					data: 
+// 					{
+// 						"id":id, 
+// 						"shotday":shotday, 
+// 						"petname":petname, 
+// 						"vaccineCode":vaccineCode
+// 					},
+// 					dataType: 'json',
+// 					success : function (data) {
+// 	   			    	//alert('sdsd');
+//  	   			        if(data.result)
+// 	   			        	//alert('사용가능'); 
+//     			     			$('#idError').html('<font color="green">사용가능</font>');
+//  	   			        else 
+//  	   			        	//alert('중복');
+//  	   			        	$('#idError').html('<font color="red">중복</font>');
+// 	   			    },
+// 					error: function(data) {
+// 						alert('잠시 후 다시 시도해주세요');
+// 					}
+// 				});
+// 			});
+			
+// 			$('#KuploadBtn4').click(function(){
+// 				var id = ${sessionScope.id };
+// 				var shotday = $('#KValue4').val();
+// 				var petname = $("#petname option:selected").text();
+// 				var vaccineCode = 304;
+// 				$.ajax({
+// 					type: 'post',
+// 					url: 'uploadMedical.do',
+// 					data: 
+// 					{
+// 						"id":id, 
+// 						"shotday":shotday, 
+// 						"petname":petname, 
+// 						"vaccineCode":vaccineCode
+// 					},
+// 					dataType: 'json',
+// 					success : function (data) {
+// 	   			    	//alert('sdsd');
+//  	   			        if(data.result)
+// 	   			        	//alert('사용가능'); 
+//     			     			$('#idError').html('<font color="green">사용가능</font>');
+//  	   			        else 
+//  	   			        	//alert('중복');
+//  	   			        	$('#idError').html('<font color="red">중복</font>');
+// 	   			    },
+// 					error: function(data) {
+// 						alert('잠시 후 다시 시도해주세요');
+// 					}
+// 				});
+// 			});
+// 			$('#KuploadBtn5').click(function(){
+// 				var id = ${sessionScope.id };
+// 				var shotday = $('#KValue5').val();
+// 				var petname = $("#petname option:selected").text();
+// 				var vaccineCode = 305;
+// 				$.ajax({
+// 					type: 'post',
+// 					url: 'uploadMedical.do',
+// 					data: 
+// 					{
+// 						"id":id, 
+// 						"shotday":shotday, 
+// 						"petname":petname, 
+// 						"vaccineCode":vaccineCode
+// 					},
+// 					dataType: 'json',
+// 					success : function (data) {
+// 	   			    	//alert('sdsd');
+//  	   			        if(data.result)
+// 	   			        	//alert('사용가능'); 
+//     			     			$('#idError').html('<font color="green">사용가능</font>');
+//  	   			        else 
+//  	   			        	//alert('중복');
+//  	   			        	$('#idError').html('<font color="red">중복</font>');
+// 	   			    },
+// 					error: function(data) {
+// 						alert('잠시 후 다시 시도해주세요');
+// 					}
+// 				});
+// 			});
+			
+// 			$('#RuploadBtn1').click(function(){
+// 				var id = ${sessionScope.id };
+// 				var shotday = $('#RValue1').val();
+// 				var petname = $("#petname option:selected").text();
+// 				var vaccineCode = 401;
+// 				$.ajax({
+// 					type: 'post',
+// 					url: 'uploadMedical.do',
+// 					data: 
+// 					{
+// 						"id":id, 
+// 						"shotday":shotday, 
+// 						"petname":petname, 
+// 						"vaccineCode":vaccineCode
+// 					},
+// 					dataType: 'json',
+// 					success : function (data) {
+// 	   			    	//alert('sdsd');
+//  	   			        if(data.result)
+// 	   			        	//alert('사용가능'); 
+//     			     			$('#idError').html('<font color="green">사용가능</font>');
+//  	   			        else 
+//  	   			        	//alert('중복');
+//  	   			        	$('#idError').html('<font color="red">중복</font>');
+// 	   			    },
+// 					error: function(data) {
+// 						alert('잠시 후 다시 시도해주세요');
+// 					}
+// 				});
+// 			});
+// 			$('#RuploadBtn2').click(function(){
+// 				var id = ${sessionScope.id };
+// 				var shotday = $('#RValue2').val();
+// 				var petname = $("#petname option:selected").text();
+// 				var vaccineCode = 402;
+// 				$.ajax({
+// 					type: 'post',
+// 					url: 'uploadMedical.do',
+// 					data: 
+// 					{
+// 						"id":id, 
+// 						"shotday":shotday, 
+// 						"petname":petname, 
+// 						"vaccineCode":vaccineCode
+// 					},
+// 					dataType: 'json',
+// 					success : function (data) {
+// 	   			    	//alert('sdsd');
+//  	   			        if(data.result)
+// 	   			        	//alert('사용가능'); 
+//     			     			$('#idError').html('<font color="green">사용가능</font>');
+//  	   			        else 
+//  	   			        	//alert('중복');
+//  	   			        	$('#idError').html('<font color="red">중복</font>');
+// 	   			    },
+// 					error: function(data) {
+// 						alert('잠시 후 다시 시도해주세요');
+// 					}
+// 				});
+// 			});
+			
+// 			$('#RuploadBtn3').click(function(){
+// 				var id = ${sessionScope.id };
+// 				var shotday = $('#RValue3').val();
+// 				var petname = $("#petname option:selected").text();
+// 				var vaccineCode = 403;
+// 				$.ajax({
+// 					type: 'post',
+// 					url: 'uploadRabies.do',
+// 					data: 
+// 					{
+// 						"id":id, 
+// 						"shotday":shotday, 
+// 						"petname":petname, 
+// 						"vaccineCode":vaccineCode
+// 					},
+// 					dataType: 'json',
+// 					success : function (data) {
+// 	   			    	//alert('sdsd');
+//  	   			        if(data.result)
+// 	   			        	//alert('사용가능'); 
+//     			     			$('#idError').html('<font color="green">사용가능</font>');
+//  	   			        else 
+//  	   			        	//alert('중복');
+//  	   			        	$('#idError').html('<font color="red">중복</font>');
+// 	   			    },
+// 					error: function(data) {
+// 						alert('잠시 후 다시 시도해주세요');
+// 					}
+// 				});
+// 			});
+			
+// 			$('#RuploadBtn4').click(function(){
+// 				var id = ${sessionScope.id };
+// 				var shotday = $('#RValue4').val();
+// 				var petname = $("#petname option:selected").text();
+// 				var vaccineCode = 404;
+// 				$.ajax({
+// 					type: 'post',
+// 					url: 'uploadMedical.do',
+// 					data: 
+// 					{
+// 						"id":id, 
+// 						"shotday":shotday, 
+// 						"petname":petname, 
+// 						"vaccineCode":vaccineCode
+// 					},
+// 					dataType: 'json',
+// 					success : function (data) {
+// 	   			    	//alert('sdsd');
+//  	   			        if(data.result)
+// 	   			        	//alert('사용가능'); 
+//     			     			$('#idError').html('<font color="green">사용가능</font>');
+//  	   			        else 
+//  	   			        	//alert('중복');
+//  	   			        	$('#idError').html('<font color="red">중복</font>');
+// 	   			    },
+// 					error: function(data) {
+// 						alert('잠시 후 다시 시도해주세요');
+// 					}
+// 				});
+// 			});
+			
+// 			$('#RuploadBtn5').click(function(){
+// 				var id = ${sessionScope.id };
+// 				var shotday = $('#RValue5').val();
+// 				var petname = $("#petname option:selected").text();
+// 				var vaccineCode = 405;
+// 				$.ajax({
+// 					type: 'post',
+// 					url: 'uploadMedical.do',
+// 					data: 
+// 					{
+// 						"id":id, 
+// 						"shotday":shotday, 
+// 						"petname":petname, 
+// 						"vaccineCode":vaccineCode
+// 					},
+// 					dataType: 'json',
+// 					success : function (data) {
+// 	   			    	//alert('sdsd');
+//  	   			        if(data.result)
+// 	   			        	//alert('사용가능'); 
+//     			     			$('#idError').html('<font color="green">사용가능</font>');
+//  	   			        else 
+//  	   			        	//alert('중복');
+//  	   			        	$('#idError').html('<font color="red">중복</font>');
+// 	   			    },
+// 					error: function(data) {
+// 						alert('잠시 후 다시 시도해주세요');
+// 					}
+// 				});
+// 			});
+// 		});
 		
 	</script>
 	    
@@ -699,7 +707,7 @@
 										<tr class="cart_item">
 											<td colspan="2">
 											
-												<select class="country_to_state country_select" name="name" id="petname">
+												<select class="country_to_state country_select" name="name" id="name">
                                                  	<c:forEach items="${list }" var="petinfo">
                                                  		<option value="${petinfo.name }">${petinfo.name }</option>
                                                  	</c:forEach>

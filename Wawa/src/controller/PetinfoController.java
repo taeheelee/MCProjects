@@ -2,10 +2,12 @@ package controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.crypto.interfaces.PBEKey;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -75,6 +77,7 @@ public class PetinfoController {
 	public ModelAndView medicalcareForm(String id){
 		ModelAndView mav = new ModelAndView();
 		List<HashMap<String, Object>> list = petinfoService.selectPetList(id);
+//		mav.addObject("id", id);
 		mav.addObject("list", list);
 		mav.setViewName("medicalcareForm.tiles");
 		return mav;
@@ -85,6 +88,7 @@ public class PetinfoController {
 	@ResponseBody HashMap<String, Object> selectPet(HttpServletResponse resp,
 			HashMap<String, Object> params){
 		HashMap<String, Object> response = new HashMap<>();
+		System.out.println(petinfoService.selectByname(params));
 		response.put("pet", petinfoService.selectByname(params));
 		return response;
 	}

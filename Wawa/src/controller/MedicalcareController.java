@@ -31,6 +31,7 @@ public class MedicalcareController {
 	@ResponseBody HashMap<String, Object> uploadMedical(HttpServletResponse resp,
 			HashMap<String, Object> params){
 //		System.out.println(count ++);
+		System.out.println("여기는 uploadmedical");
 		HashMap<String, Object> medical = new HashMap<>();
 		
 		String fromShotday = (String)params.get("shotday");

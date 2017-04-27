@@ -100,7 +100,7 @@
 					<h2 class="sidebar-title2">기본정보</h2>
 						<form action="userUpdate.do" class="checkout" method="post" name="checkout">
 					<p style="text-align: right;"> 
-						<input type="submit" value="수정하기">
+						<input type="submit" value="수정하기" style="padding: 5px 20px">
 						<input type="button" value="회원탈퇴" id="delete">
 					</p>
 					<div class="single-product-widget">

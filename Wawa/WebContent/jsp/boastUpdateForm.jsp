@@ -1,14 +1,90 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="js/boardCheck.js"></script>
+<script type="text/javascript">
+	  $(document).ready(function() {
+	      $('#summernote').summernote({
+	    	  height : 500
+	      });
+	      	$('#ok').click(function() {
+				var content = $('#summernote').summernote('code');
+				$('#content').val(content);	
+			});
+	      	if(${load != 0}){
+				 $('#name').val('${pet.name}');
+				
+				var year = '${pet.birthday}'.split('-');
+				var now = new Date().getFullYear();
+				var age = now - year[0];
+				 $('#age').val(age);
+				
+				$('#sex[value=${pet.sex}]').attr('checked', true);
+				$('#sex[value!=${pet.sex}]').attr('checked', false);
+					
+				 if(${pet.kind == '치와와'})
+			      		$('#kind > option[value=1]').attr('selected', true);
+			      	else if(${pet.kind == '요크셔 테리어'})
+			      		$('#kind > option[value=2]').attr('selected', true);
+			      	else if(${pet.kind == '말티즈'})
+			      		$('#kind > option[value=3]').attr('selected', true);
+			      	else if(${pet.kind == '시츄'})
+			      		$('#kind > option[value=4]').attr('selected', true);
+			      	else if(${pet.kind == '비글'})
+			      		$('#kind > option[value=5]').attr('selected', true);
+			      	else if(${pet.kind == '퍼그'})
+			      		$('#kind > option[value=6]').attr('selected', true);
+			      	else if(${pet.kind == '페키니즈'})
+			      		$('#kind > option[value=7]').attr('selected', true);
+			      	else if(${pet.kind == '미니어쳐 슈나우저'})
+			      		$('#kind > option[value=8]').attr('selected', true);
+			      	else if(${pet.kind == '기타 소형견'})
+			      		$('#kind > option[value=9]').attr('selected', true);
+			      	else if(${pet.kind == '기타 중형견'})
+			      		$('#kind > option[value=10]').attr('selected', true);
+			      	else if(${pet.kind == '기타 대형견'})
+			      		$('#kind > option[value=11]').attr('selected', true);
+			 }
+	      	else{
+		      	if(${board.kind == '치와와'})
+		      		$('#kind > option[value=1]').attr('selected', true);
+		      	else if(${board.kind == '요크셔 테리어'})
+		      		$('#kind > option[value=2]').attr('selected', true);
+		      	else if(${board.kind == '말티즈'})
+		      		$('#kind > option[value=3]').attr('selected', true);
+		      	else if(${board.kind == '시츄'})
+		      		$('#kind > option[value=4]').attr('selected', true);
+		      	else if(${board.kind == '비글'})
+		      		$('#kind > option[value=5]').attr('selected', true);
+		      	else if(${board.kind == '퍼그'})
+		      		$('#kind > option[value=6]').attr('selected', true);
+		      	else if(${board.kind == '페키니즈'})
+		      		$('#kind > option[value=7]').attr('selected', true);
+		      	else if(${board.kind == '미니어쳐 슈나우저'})
+		      		$('#kind > option[value=8]').attr('selected', true);
+		      	else if(${board.kind == '기타 소형견'})
+		      		$('#kind > option[value=9]').attr('selected', true);
+		      	else if(${board.kind == '기타 중형견'})
+		      		$('#kind > option[value=10]').attr('selected', true);
+		      	else if(${board.kind == '기타 대형견'})
+		      		$('#kind > option[value=11]').attr('selected', true);
+	      	}
+	  });
+	</script>
 </head>
   <body>
   
-
+  
+<!--   <div style="width: 50%; margin: 0 auto;"> -->
+<!--     <div id="summernote"><p>Hello Summernote</p><p>Hello Summernote</p><p>Hello Summernote</p><p>Hello Summernote</p></div> -->
+<!-- 	</div> -->
+	
+   
     
     <div class="product-big-title-area">
         <div class="container">
@@ -36,33 +112,44 @@
                          
                      
 
-                            <form action="/Wawa/boastUpdate.do" enctype="multipart/form-data" action="#" class="checkout" method="post" name="checkout">
-
+                            
                                 <div id="customer_details" class="col2-set" >
                                     <div class="col-3">
-                                    <h2 class="sidebar-title">뽐내기 후보 등록 수정하기</h2>
+                                    <h2 class="sidebar-title">뽐내기 후보 등록하기</h2>
                                         <div class="woocommerce-billing-fields">
-                                           
+                                            
+                                            
+             
+                                            
+                                          	
+             
                                             
                                             <!-- <div class="clear"></div> -->
-                 
+                                           
+                                            
+                                            
+                                            
                                             
                                             <div class="form-row place-order" style="float: right">
-												<input type="button" id="petinfo" onclick="location.href='/Wawa/boastGetPetinfo.do'" value="애견정보 불러오기" />
+	                                            <input type="button" id="petinfo" onclick="window.open('boastGetPetinfoForm.do?id=${sessionScope.id}&boardIdx=${board.boardIdx }&boardCode=3&type=Update', 'pet' ,'left=400, top=200, width=500, height=300')" value="애견정보 불러오기" />
 											</div>
-                                        
-                                            
-                                            
+                                         
+                                           
+                                        <form action="boastUpdate.do" enctype="multipart/form-data" class="checkout" method="get" name="checkout">
+                                        	<input type="hidden" name="boardIdx" value="${board.boardIdx }">
+                                			<input type="hidden" name="content" id="content">
+                                			<input type="hidden" name="likeCount" value="${board.likeCount }">
+											<input type="hidden" name="boardCode" value="3">
+											<input type="hidden" name="writer" value="${sessionScope.name }">
+											
 											<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
                                                 <label class="" for="billing_state">애견 이름</label>
-                                                <input type="text" id="name" name="name" placeholder="" value="" class="input-text ">
+                                                <input type="text" id="name" name="name" placeholder="" value="${board.name }" class="input-text ">
                                             </p>
                                             <br>
-                                            
-                                            
                                             <p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
                                                 <label class="" for="billing_state">나이</label>
-                                                <input type="text" id="age" name="age" placeholder="" value="" class="input-text ">
+                                                <input type="text" id="age" name="age" placeholder="" value="${board.age }" class="input-text ">
                                             </p>
                                             <br>
                                             
@@ -71,9 +158,16 @@
 	                                            <div id="payment">
 													<ul class="payment_methods methods">
 														<li class="payment_method_paypal">
-															<input type="radio" data-order_button_text="Proceed to PayPal" value="male" name="sex" class="input-radio" id="sex"> 수컷
-															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															<input type="radio" data-order_button_text="Proceed to PayPal" value="female" name="sex" class="input-radio" id="sex"> 암컷
+															<c:if test="${board.sex == '수컷' }">
+																<input type="radio" data-order_button_text="Proceed to PayPal" value="male" name="sex" class="input-radio" id="sex" checked="checked"> 수컷
+																&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																<input type="radio" data-order_button_text="Proceed to PayPal" value="female" name="sex" class="input-radio" id="sex"> 암컷
+															</c:if>
+															<c:if test="${board.sex == '암컷' }">
+																<input type="radio" data-order_button_text="Proceed to PayPal" value="male" name="sex" class="input-radio" id="sex"> 수컷
+																&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																<input type="radio" data-order_button_text="Proceed to PayPal" value="female" name="sex" class="input-radio" id="sex" checked="checked"> 암컷
+															</c:if>
 														</li>
 													</ul>
 												</div>
@@ -84,17 +178,17 @@
                                                 <label class="" for="billing_country">품종 <abbr title="required" class="required">*</abbr>
                                                 </label>
                                                 <select class="country_to_state country_select" id="kind" name="kind">
-                                                    <option selected="selected" value="GB">치와와</option>
-                                                    <option value="DE">요크셔 테리어</option>
-                                                    <option value="GH">말티즈</option>
-                                                    <option value="SB">시츄</option>
-                                                    <option value="SO">비글</option>
-                                                    <option value="ZA">퍼그</option>
-                                                    <option value="GS">페키니즈</option>
-                                                    <option value="KR">미니어쳐 슈나우저</option>
-                                                    <option value="GE">기타 소형견</option>
-                                                    <option value="KR">기타 중형견</option>
-                                                    <option value="KR">기타 대형견</option>
+                                                    <option value="1">치와와</option>
+                                                    <option value="2">요크셔 테리어</option>
+                                                    <option value="3">말티즈</option>
+                                                    <option value="4">시츄</option>
+                                                    <option value="5">비글</option>
+                                                    <option value="6">퍼그</option>
+                                                    <option value="7">페키니즈</option>
+                                                    <option value="8">미니어쳐 슈나우저</option>
+                                                    <option value="9">기타 소형견</option>
+                                                    <option value="10">기타 중형견</option>
+                                                    <option value="11">기타 대형견</option>
                                                 </select>
                                             </p>
                                             <br>
@@ -102,43 +196,38 @@
                                             	<p id="billing_first_name_field" class="form-row form-row-first validate-required">
                                                 <label class="" for="billing_first_name">애견 프로필 사진 등록 <abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="" id="billing_first_name" name="billing_first_name" class="input-text ">
+                                                
                                             <div class="form-row place-order">
-												<input type="submit" data-value="Place order" value="ADD PHOTO" id="place_order" name="woocommerce_checkout_place_order" class="button alt" >
+												<input type="button" data-value="Place order" value="ADD PHOTO" id="place_order" name="woocommerce_checkout_place_order" class="button alt" >
 
 											</div>
                                             </p>
  											   
-                                         <p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
+                                         	<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
                                                 <label class="" for="billing_state">글 제목</label>
-                                                <input type="text" id="title" name="title" placeholder="" value="" class="input-text ">
+                                                <input type="text" id="title" name="title" placeholder="" value="${board.title }" class="input-text ">
                                             </p>
                                             <br>
-                                            
-                        
-                                        
-
-				 
-  <div style="width: 100%; margin: 0 auto;">
-    <div id="summernote"><p>
-					<br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-				</p></div>
-	</div>
-<br>
-
-<br>
-
-<!--<div class="clear"></div> -->
-
-
-											<div class="form-row place-order" style="float: right">
-												<input type="submit" data-value="Place order" value="UPDATE" id="place_order" class="button alt">
-											</div>
-						</form>
-											<div class="form-row place-order" style="float: right">
-												<input type="button" id="delete"  onclick="location.href='/Wawa/boastDelete.do?boardIdx='#{boardIdx}'" value="DELETE" />
-											</div>
+            
+											  <div style="width: 100%; margin: 0 auto;">
+											    <div id="summernote">${board.content }</div>
+												</div>
+											<br>
 											
+											<br>
+											
+											<div class="form-row place-order" style="float: right">
+												<input type="submit" data-value="Place order" value="WRITE" id="ok" name="woocommerce_checkout_place_order" class="button alt" onclick="return boastBoardCheck()">
+									</form>
+									
+									
+									
+									
+									
+									
+											</div>
+
+
 
 										</div>
                                     </div>
@@ -146,6 +235,27 @@
                                    
 
                                 </div>
+
+
+
+
+ 									
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                              
 
                                    
                                 </div>

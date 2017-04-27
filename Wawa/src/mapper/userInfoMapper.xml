@@ -5,15 +5,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="interface_dao.IUserInfoDao">
 	<insert id="insertUserInfo" parameterType="java.util.HashMap">
 		insert into userinfo values(0,#{id},#{password},#{nickname},#{sex},
-		#{phoneNum},#{adminCheck},#{email})
+		#{phone},#{adminCheck},#{email})
 	</insert>
 	<update id="updateUserInfo" parameterType="java.util.HashMap">
-		update userinfo set id=#{id}, password=#{password}, nickname=#{nickname},
-		sex=#{sex}, phone=#{phone}, adminCheck=#{adminCheck}, email=#{email}
-		where idx=#{idx}
+		update userinfo set password=#{password}, nickname=#{nickname},
+		sex=#{sex}, phone=#{phone}, email=#{email}
+		where id=#{id}
 	</update>
-	<delete id="deleteUserInfo" parameterType="int">
-		delete from userinfo where idx=#{idx}
+	<delete id="deleteUserInfo" parameterType="java.lang.String">
+		delete from userinfo where id=#{id}
 	</delete>
 	<select id="selectOneUserInfo" parameterType="java.lang.String" resultType="model.UserInfo">
 		select * from userinfo where id=#{id}

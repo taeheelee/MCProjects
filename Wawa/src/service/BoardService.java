@@ -20,7 +20,7 @@ public class BoardService implements IBoardService{
 	IRepleDao repleDao;
 	//================================게시글 쓰기========================================================
 	@Override
-	public boolean writeBoastBoard(int boardCode, String name, int age, String kind, String sex, String title, String content, String writer) {
+	public boolean writeBoastBoard(int boardCode, String name,  int age, String kind, String sex, String title, String content, String writer) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> params = new HashMap<>();
 		params.put(Constant.Board.BOARDCODE, boardCode);
@@ -124,16 +124,18 @@ public class BoardService implements IBoardService{
 	
 	//================================게시글 수정========================================================
 	@Override
-	public boolean updateBoastBoard(int boardIdx, String name, int age, String sex, String title, String content, String writer) {
+	public boolean updateBoastBoard(int boardIdx, String name, String kind, int age, String sex, String title, String content, String writer, int likeCount) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> params = new HashMap<>();
 		params.put(Constant.Board.BOARDIDX, boardIdx);
 		params.put(Constant.Board.NAME, name);
+		params.put(Constant.Board.KIND, kind);
 		params.put(Constant.Board.AGE, age);
 		params.put(Constant.Board.SEX, sex);
 		params.put(Constant.Board.TITLE, title);
 		params.put(Constant.Board.CONTENT, content);
 		params.put(Constant.Board.WRITER, writer);
+		params.put(Constant.Board.LIKECOUNT, likeCount);
 		int result = dao.updateBoard(params);
 		if(result > 0)
 			return true;
@@ -142,7 +144,7 @@ public class BoardService implements IBoardService{
 	}
 
 	@Override
-	public boolean updateFreeBoard(int boardIdx, String title, String category, String content, String writer) {
+	public boolean updateFreeBoard(int boardIdx, String title, String category, String content, String writer, int readCount) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> params = new HashMap<>();
 		params.put(Constant.Board.BOARDIDX, boardIdx);
@@ -150,6 +152,7 @@ public class BoardService implements IBoardService{
 		params.put(Constant.Board.CATEGORY, category);
 		params.put(Constant.Board.CONTENT, content);
 		params.put(Constant.Board.WRITER, writer);
+		params.put(Constant.Board.READCOUNT, readCount);
 		int result = dao.updateBoard(params);
 		if(result > 0)
 			return true;
@@ -210,7 +213,7 @@ public class BoardService implements IBoardService{
 
 	@Override
 	public boolean updateReviewBoard(int boardIdx, String title, String category, int starPoint, String content,
-			String writer) {
+			String writer, int readCount) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> params = new HashMap<>();
 		params.put(Constant.Board.BOARDIDX, boardIdx);
@@ -219,6 +222,7 @@ public class BoardService implements IBoardService{
 		params.put(Constant.Board.STARPOINT, starPoint);
 		params.put(Constant.Board.CONTENT, content);
 		params.put(Constant.Board.WRITER, writer);
+		params.put(Constant.Board.READCOUNT, readCount);
 		int result = dao.updateBoard(params);
 		if(result > 0)
 			return true;
@@ -316,19 +320,12 @@ public class BoardService implements IBoardService{
 	}
 
 	@Override
-	public HashMap<String, Object> getBoardByTitle(int type, String keyword, int page, int boardCode) {
+	public HashMap<String, Object> getBoardByTitle(String category, String keyword, int page, int boardCode) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> params = new HashMap<>();
 		params.put(Constant.Board.BOARDCODE, boardCode);
 		params.put(Constant.Board.TITLE, keyword);
-		if(type == 1)
-			params.put(Constant.Board.CATEGORY, "애견상식");
-		else if(type == 2)
-			params.put(Constant.Board.CATEGORY, "훈련정보");
-		else if(type == 3)
-			params.put(Constant.Board.CATEGORY, "애견간식레시피");
-		else if(type == 4)
-			params.put(Constant.Board.CATEGORY, "기타");
+		params.put(Constant.Board.CATEGORY, category);
 		
 		int first = 1;
 
@@ -357,7 +354,7 @@ public class BoardService implements IBoardService{
 		result.put("last", last);
 		result.put("current", page);
 		result.put("boardList", list);
-		result.put("type", type);
+		result.put("category", category);
 		result.put("keyword", keyword);
 		
 		return result;
@@ -376,18 +373,19 @@ public class BoardService implements IBoardService{
 	}
 
 	@Override
-	public List<HashMap<String, Object>> getPetInfo(String id) {
-		// TODO Auto-generated method stub
-		return dao.selectPetinfo(id);
-	}
-	
-	@Override
 	public boolean identifyUser(HashMap<String, Object> params) {
 		// TODO Auto-generated method stub
 		String id = (String) params.get("id");
 		String password = (String) params.get("password");
 		if(dao.getUserPwd(id).equals(password)) return true;
 		return false;
+	}
+
+	@Override
+	public HashMap<String, Object> selectPetinfo(int idx) {
+		// TODO Auto-generated method stub
+		
+		return dao.selectPetinfo(idx);
 	}
 
 	

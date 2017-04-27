@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	<update id="updateBoard" parameterType="java.util.HashMap">
 		update board set title=#{title},writer=#{writer}, content=#{content}, readCount=#{readCount},
-		writeDate=#{writeDate}, category=#{category}, name=#{name},
+		category=#{category}, name=#{name},
 		resist=#{resist}, lostDate=#{lostDate}, lostPlace=#{lostPlace}, kind=#{kind}, 
 		weight=#{weight}, age=#{age}, sex=#{sex}, phone=#{phone},
 		email=#{email}, birthday=#{birthday}, starPoint=#{starPoint},
@@ -22,11 +22,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getUserPwd" parameterType="String" resultType="String">
 		select password from userinfo u, board b where u.id = b.writer
 	</select>
-	<select id="selectPetinfo" parameterType="String" resultType="java.util.HashMap">
+	<select id="selectPetinfo" parameterType="int" resultType="java.util.HashMap">
 		<!-- petinfo와 조인해서 애견정보 가져오기  -->
-		select idx, resist, name, kind, birthday, neutral, weight, weight,
-		sex, groomingStart, groomingPeriod from petinfo p, board b
-		where p.id=#{b.id}
+		select * from petinfo where idx=#{idx}
 	</select>
 	<select id="selectBoardById" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		select * from board where id=#{id} and boardCode=#{boardCode}

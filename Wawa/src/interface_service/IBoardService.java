@@ -20,9 +20,9 @@ public interface IBoardService {
 	
 	//================================수정========================================================
 	//뽐내기
-	public boolean updateBoastBoard(int boardIdx, String name, int age, String sex, String title, String content, String writer);
+	public boolean updateBoastBoard(int boardIdx, String name, String kind, int age, String sex, String title, String content, String writer, int likeCount);
 	//자유게시판,애견정보상식
-	public boolean updateFreeBoard(int boardIdx, String title, String category, String content, String writer);
+	public boolean updateFreeBoard(int boardIdx, String title, String category, String content, String writer, int readCount);
 	//유기견찾기
 	public boolean updateDogFindBoard(int boardIdx, String category, String name, String resist, String lostdate, String lostplace,
 			String kind, String sex, int age, double weight, String phone, String email, String title, String content, String writer);
@@ -30,7 +30,7 @@ public interface IBoardService {
 	public boolean updatePartnerFindBoard(int boardIdx, String name, String kind, String sex, 
 			int age, double weight, String phone, String email, String title, String content, String writer);
 	//제품리뷰
-	public boolean updateReviewBoard(int boardIdx, String title, String category, int starPoint, String content, String writer);
+	public boolean updateReviewBoard(int boardIdx, String title, String category, int starPoint, String content, String writer, int readCount);
 	
 	//============================================================================================
 	//삭제
@@ -47,13 +47,13 @@ public interface IBoardService {
 	//이름으로 게시판 검색
 	public List<HashMap<String, Object>> getBoardByName(HashMap<String, Object> params);
 	//제목으로 게시판 검색
-	public HashMap<String, Object> getBoardByTitle(int type, String keyword, int page, int boardCode);
+	public HashMap<String, Object> getBoardByTitle(String category, String keyword, int page, int boardCode);
 	//키워드로 게시판 검색
 	public List<HashMap<String, Object>> getBoardByKeyword(HashMap<String, Object> params);
 	//게시판인덱스로 게시판 검색
 	public HashMap<String, Object> getBoardByBoardIdx(int boardIdx);
-	// 펫정보 가져오기
-	public List<HashMap<String, Object>> getPetInfo(String id);
 	//본인확인
 	public boolean identifyUser(HashMap<String, Object> params);
+	//펫 정보 가져오기
+	public HashMap<String, Object> selectPetinfo(int idx);
 }

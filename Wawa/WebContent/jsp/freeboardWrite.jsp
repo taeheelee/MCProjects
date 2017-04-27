@@ -5,13 +5,15 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="js/boardCheck.js"></script>
 	<script type="text/javascript">
 	  $(document).ready(function() {
-	      $('#summernote').summernote();
-	      $('#summernote').disableResizeEditor();
+	      $('#summernote').summernote({
+	    	  height : 500
+	      });
 	      	$('#ok').click(function() {
+	      		
 				var content = $('#summernote').summernote('code');
-				alert(content);
 				$('#content').val(content);	
 			});
 	  });
@@ -57,7 +59,7 @@
                             <form enctype="multipart/form-data" action="freeboardWrite.do" class="checkout" method="get" name="checkout">
 								<input type="hidden" name="content" id="content">
 								<input type="hidden" name="boardCode" value="6">
-								<input type="hidden" name="writer" value="글쓴이">
+								<input type="hidden" name="writer" value="${sessionScope.name }">
 								
                                 <div id="customer_details" class="col2-set" >
                                     <div class="col-3">
@@ -67,7 +69,7 @@
                                             <p id="billing_country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated">
                                                 <label class="" for="billing_country">카테고리 <abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <select class="country_to_state country_select" id="billing_country" name="categoryType">
+                                                <select class="country_to_state country_select" id="category" name="category">
                                                     <option selected="selected" value="1">애견상식</option>
                                                     <option value="2">훈련정보</option>
                                                     <option value="3">애견간식레시피</option>
@@ -78,7 +80,7 @@
                                             
 											<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
                                                 <label class="" for="billing_state">글 제목<abbr title="required" class="required">*</abbr></label>
-                                                <input type="text" id="billing_state" name="title" placeholder="" value="" class="input-text ">
+                                                <input type="text" id="title" name="title" placeholder="" value="" class="input-text ">
                                             </p>
                                             <br>
                                             
@@ -90,8 +92,7 @@
 
 				 
   <div style="width: 100%; margin: 0 auto;">
-    <div id="summernote">
-    </div>
+    <div id="summernote"></div>
 	</div>
 <br>
 
@@ -99,9 +100,9 @@
 
 
 											<div class="form-row place-order" style="float: right">
-												<input type="submit" data-value="Place order" value="WRITE" id="ok"  name="woocommerce_checkout_place_order" class="button alt">
+												<input type="submit" data-value="Place order" value="WRITE" id="ok" name="woocommerce_checkout_place_order" class="button alt" onclick="return infoBoardCheck()">
 											</div>
-
+											</form>
 
 
 										</div>
@@ -134,7 +135,7 @@
 
                                    
                                 </div>
-                            </form>
+                          
 
                 </div>
 

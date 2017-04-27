@@ -4,15 +4,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-      <script>
-	    $(document).ready(function() {
-	        $('#summernote').summernote();
-	    });
-  </script>
-  
-  
   <script
   src="https://code.jquery.com/jquery-2.2.4.min.js"
   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
@@ -50,7 +43,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="product-bit-title text-left">
-                        <h2>짝꿍찾기</h2>
+                        <h2>애견정보/상식</h2>
                     </div>
                 </div>
             </div>
@@ -63,45 +56,35 @@
 <!--         <div class="zigzag-bottom"></div> -->
         <div class="container">
         	<div class="col-md-55">
-        		<h2 class="sidebar-title">${board.title }</h2>
-        		
-        		<table class="shop_table cart">
-	                <tbody>
-	                	<tr class="cart_item">
-	                		<td rowspan="5" style="width: 30%"><img src="img/dog_10.jpg" alt=""></td>
-	                        <td style="background-color: #f5f5f5">애견이름</td>
-							<td id="petname">${board.name }</td>
-							<td style="background-color: #f5f5f5">품종/성별</td>
-							<td id="kindandsex"><span id="kind">${board.kind }</span><span id="petsex">(${board.sex })</span></td>
-	                    </tr>
-						<tr class="cart_item">
-							<td style="background-color: #f5f5f5">애견 몸무게</td>
-							<td id="weight">${board.weight }kg</td>
-							<td style="background-color: #f5f5f5">애견 나이</td>
-							<td id="petage">${board.age }</td>
-						</tr>
-						<tr class="cart_item">
-							<td style="background-color: #f5f5f5">주인 연락처</td>
-							<td id="phonenumber">${board.phone }</td>
-							<td style="background-color: #f5f5f5">e-mail</td>
-							<td id="email">${board.email }</td>
-						</tr>
-					</tbody>
-				</table>
-        		
-               	
-                <h4 style="color: gray; text-align: center;">${board.title }</h4>
-                <hr style="border: solid 1px; border-color: lightgray">
-                <h5 align="right">${board.writer }</h5> 
+    			<div class=""style="width: 100%; margin-bottom: 10px">
+                   <span style="font-size: medium;font-weight: bold; color: gray">[${board.category }]</span>
+                </div>
+                
+<!--                 sd -->
+                <h4 style="color: gray; text-align: center;" value="${result.title}"></h4>
+                	<hr style="border: solid 1px; border-color: lightgray">  
+                <div id=boardcontents style="text-align: center">
+                	<h1 value="${result.content}"></h1>
+              
+                	
+                </div>
+                
+<!--                 d -->
+                
+                <h2 class="sidebar-title">${board.title }</h2>
+                <hr style="border: solid 1px; border-color: lightgray">  
+                <h5 style="text-align: right">${board.writer }</h5> 
                 <div id=boardcontents style="text-align: center">
                 	${board.content }
                 </div>
                 <hr style="border: solid 1px; border-color: lightgray"> 
                 <div style="text-align: center">
-                <input type="button" value="뒤로가기" onClick="location.href='partnerMain.do'">
+                
+                
+                <input type="button" value="뒤로가기"  onClick="location.href='freeboardMain.do'">
                 <c:if test="${board.writer == sessionScope.name }">
-	                <input type="button" value="수정" onclick="location.href='partnerUpdateForm.do?boardIdx=${board.boardIdx}'">
-	                <input type="button" value="삭제" onclick="location.href='partnerDelete.do?boardIdx=${board.boardIdx}'">
+                	<input type="button" value="수정" onclick="location.href='freeboardUpdateForm.do?boardIdx=${board.boardIdx}'">
+                	<input type="button" value="삭제" onclick="location.href='freeboardDelete.do?boardIdx=${board.boardIdx}'">
                 </c:if>
                 </div>
                 <div>
@@ -137,11 +120,6 @@
 			</div>
 		</div>
 	</div>
-
-
-   
-<!-- 여기부터 안에 들어가면 안되는 이유찾기  end-->     
-
 
 
   </body>

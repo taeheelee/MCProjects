@@ -5,15 +5,50 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="js/boardCheck.js"></script>
 <script type="text/javascript">
 	  $(document).ready(function() {
 	      $('#summernote').summernote({
 	    	  height : 500
 	      });
-	      	$('#ok').click(function() {
+			 $('#ok').click(function() {
 				var content = $('#summernote').summernote('code');
 				$('#content').val(content);	
 			});
+			 if(${load != 0}){
+				 $('#name').val('${pet.name}');
+				
+				var year = '${pet.birthday}'.split('-');
+				var now = new Date().getFullYear();
+				var age = now - year[0];
+				 $('#age').val(age);
+				
+				$('#sex[value=${pet.sex}]').attr('checked', true);
+				$('#sex[value!=${pet.sex}]').attr('checked', false);
+					
+				 if(${pet.kind == '치와와'})
+			      		$('#kind > option[value=1]').attr('selected', true);
+			      	else if(${pet.kind == '요크셔 테리어'})
+			      		$('#kind > option[value=2]').attr('selected', true);
+			      	else if(${pet.kind == '말티즈'})
+			      		$('#kind > option[value=3]').attr('selected', true);
+			      	else if(${pet.kind == '시츄'})
+			      		$('#kind > option[value=4]').attr('selected', true);
+			      	else if(${pet.kind == '비글'})
+			      		$('#kind > option[value=5]').attr('selected', true);
+			      	else if(${pet.kind == '퍼그'})
+			      		$('#kind > option[value=6]').attr('selected', true);
+			      	else if(${pet.kind == '페키니즈'})
+			      		$('#kind > option[value=7]').attr('selected', true);
+			      	else if(${pet.kind == '미니어쳐 슈나우저'})
+			      		$('#kind > option[value=8]').attr('selected', true);
+			      	else if(${pet.kind == '기타 소형견'})
+			      		$('#kind > option[value=9]').attr('selected', true);
+			      	else if(${pet.kind == '기타 중형견'})
+			      		$('#kind > option[value=10]').attr('selected', true);
+			      	else if(${pet.kind == '기타 대형견'})
+			      		$('#kind > option[value=11]').attr('selected', true);
+			 }
 	  });
 	</script>
 </head>
@@ -65,20 +100,20 @@
              
                                             
                                             <!-- <div class="clear"></div> -->
-                                           
-                                            
+                
                                             
                                             
                                             
                                             <div class="form-row place-order" style="float: right">
-	                                            <input type="button" id="petinfo" onclick="location.href='/Wawa/boastGetPetinfo.do'" value="애견정보 불러오기" />
+	                                            <input type="button" id="petinfo" onclick="window.open('boastGetPetinfoForm.do?id=${sessionScope.id}&boardIdx=0&boardCode=3&type=Write', 'pet' ,'left=400, top=200, width=500, height=300')" value="애견정보 불러오기" />
+	                                            <span id="petList"></span>
 											</div>
                                          
                                            
                                         <form action="boastWrite.do" enctype="multipart/form-data" class="checkout" method="get" name="checkout">
                                 			<input type="hidden" name="content" id="content">
 											<input type="hidden" name="boardCode" value="3">
-											<input type="hidden" name="writer" value="글쓴이">
+											<input type="hidden" name="writer" value="${sessionScope.name}">
 											
 											<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
                                                 <label class="" for="billing_state">애견 이름</label>
@@ -96,7 +131,7 @@
 	                                            <div id="payment">
 													<ul class="payment_methods methods">
 														<li class="payment_method_paypal">
-															<input type="radio" data-order_button_text="Proceed to PayPal" value="male" name="sex" class="input-radio" id="sex"> 수컷
+															<input type="radio" data-order_button_text="Proceed to PayPal" value="male" name="sex" class="input-radio" id="sex" checked="checked"> 수컷
 															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 															<input type="radio" data-order_button_text="Proceed to PayPal" value="female" name="sex" class="input-radio" id="sex"> 암컷
 														</li>
@@ -148,7 +183,7 @@
 											<br>
 											
 											<div class="form-row place-order" style="float: right">
-												<input type="submit" data-value="Place order" value="WRITE" id="ok" name="woocommerce_checkout_place_order" class="button alt">
+												<input type="submit" data-value="Place order" value="WRITE" id="ok" name="woocommerce_checkout_place_order" class="button alt" onclick="return boastBoardCheck()">
 									</form>
 									
 									

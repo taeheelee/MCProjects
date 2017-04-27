@@ -91,14 +91,17 @@
                	
                 <h4 style="color: gray; text-align: center;">${board.title }</h4>
                 <hr style="border: solid 1px; border-color: lightgray">  
+                <h5 align="right">${board.writer }</h5>
                 <div id=boardcontents style="text-align: center">
                 	${board.content }
                 </div>
                 <hr style="border: solid 1px; border-color: lightgray"> 
                 <div style="text-align: center">
                 <input type="button" value="뒤로가기" onClick="location.href='lostMain.do'">
-                <input type="button" value="수정" onclick="location.href='lostUpdateForm.do?boardIdx=${board.boardIdx}'">
-                <input type="button" value="삭제" onclick="location.href='lostDelete.do?boardIdx=${board.boardIdx}'">
+                <c:if test="${board.writer == sessionScope.name }">
+	                <input type="button" value="수정" onclick="location.href='lostUpdateForm.do?boardIdx=${board.boardIdx}'">
+	                <input type="button" value="삭제" onclick="location.href='lostDelete.do?boardIdx=${board.boardIdx}'">
+                </c:if>
                 </div>
                 
                 <div>

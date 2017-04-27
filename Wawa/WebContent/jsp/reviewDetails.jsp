@@ -77,8 +77,10 @@
                  
                 <div style="text-align: center;">
                 <input type="button" value="뒤로가기" onClick="location.href='reviewMain.do'">
-                <input type="button" value="수정" onclick="location.href='reviewUpdateForm.do?boardIdx=${board.boardIdx}'">
-                <input type="button" value="삭제" onclick="location.href='reviewDelete.do?boardIdx=${board.boardIdx}'">
+                <c:if test="${board.writer == sessionScope.name }">
+	                <input type="button" value="수정" onclick="location.href='reviewUpdateForm.do?boardIdx=${board.boardIdx}'">
+	                <input type="button" value="삭제" onclick="location.href='reviewDelete.do?boardIdx=${board.boardIdx}'">
+                </c:if>
                 </div>
                 
                 <div>

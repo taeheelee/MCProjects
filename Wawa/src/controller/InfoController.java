@@ -34,18 +34,26 @@ public class InfoController {
 		}
 		
 		@RequestMapping("infoSearch.do")
-		public ModelAndView infoSearch(HashMap<String, Object> params){
+		public ModelAndView infoSearch(String category, String keyword, @RequestParam(defaultValue="1")int page){
 			ModelAndView mav = new ModelAndView();
-			List<HashMap<String, Object>> list = boardService.getBoardByKeyword(params);
-			mav.addObject("result", list);
-			mav.setViewName("redirect:infoMain.do");
+			if(category.equals("1"))
+				category = "애견상식";
+			else if(category.equals("2"))
+				category = "훈련정보";
+			else if(category.equals("3"))
+				category = "애견간식레시피";
+			else if(category.equals("4"))
+				category = "기타";
+			
+			mav.addAllObjects(boardService.getBoardByTitle(category, keyword, page, 1));
+			mav.setViewName("info.tiles");
 			return mav;
 		}
 		
 		@RequestMapping("infoDetails.do")
 		public ModelAndView infoDetails(int boardIdx){
 			ModelAndView mav = new ModelAndView();
-			HashMap<String, Object> board = boardService.getBoardByBoardIdx(boardIdx);
+			HashMap<String, Object> board = boardService.readBoard(boardIdx);
 			List<HashMap<String, Object>> reple = repleService.selectRepleList(boardIdx);
 			mav.addObject("board", board);
 			mav.addObject("reple", reple);
@@ -73,29 +81,30 @@ public class InfoController {
 				return "redirect:infoMain.do"; // 성공시 메인으로 이동
 		}
 		
-		@RequestMapping("infoGetPetinfo.do")
-		public ModelAndView infoGetPetinfo(String id){
-			ModelAndView mav = new ModelAndView();
-			List<HashMap<String, Object>> list = boardService.getPetInfo(id);
-			mav.addObject("result", list);
-			mav.setViewName("redirect:infoWriteForm.do");
-			return mav;
-		}
 		
 		@RequestMapping("infoUpdateForm.do") // --> 수정화면으로 이동
 		public ModelAndView infoUpdateForm(int boardIdx){
 			ModelAndView mav = new ModelAndView();
 			HashMap<String, Object> board = boardService.getBoardByBoardIdx(boardIdx);
-			mav.addObject("result", board);
+			mav.addObject("board", board);
 			mav.setViewName("infoUpdateForm.tiles");
 			return mav;
 		}
 		
 		@RequestMapping("infoUpdate.do")
 		public String infoUpdate(int boardIdx, String title, String category, String content,
-				String writer){
-			boardService.updateFreeBoard(boardIdx, title, category, content, writer);
-			return "redirect:infoDetails.do";
+				String writer, int readCount){
+			if(category.equals("1"))
+				category = "애견상식";
+			else if(category.equals("2"))
+				category = "훈련정보";
+			else if(category.equals("3"))
+				category = "애견간식레시피";
+			else if(category.equals("4"))
+				category = "기타";
+			
+			boardService.updateFreeBoard(boardIdx, title, category, content, writer, readCount);
+			return "redirect:infoMain.do";
 		}
 		
 		@RequestMapping("infoDelete.do")

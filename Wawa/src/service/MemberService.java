@@ -14,9 +14,8 @@ public class MemberService implements IMemberService{
 	private IUserInfoDao dao;
 	@Override
 	public int join(String id, String password, String nickname,
-			String sex, String phoneNum, int adminCheck, String email) {
+			String sex, String phone, int adminCheck, String email) {
 		// TODO Auto-generated method stub
-		System.out.println(id  + "if 들어가기 전");
 		UserInfo chk = dao.selectOneUserInfo(id);
 		if (chk == null){
 			HashMap<String, Object> userinfo = new HashMap<>();
@@ -24,10 +23,9 @@ public class MemberService implements IMemberService{
 			userinfo.put("password", password);
 			userinfo.put("nickname", nickname);
 			userinfo.put("sex", sex);
-			userinfo.put("phoneNum", phoneNum);
+			userinfo.put("phone", phone);
 			userinfo.put("adminCheck", adminCheck);
 			userinfo.put("email", email);
-			System.out.println(userinfo + "해쉬맵은 정상?");
 			return dao.insertUserInfo(userinfo);
 		}else{
 			return 0;
@@ -37,13 +35,30 @@ public class MemberService implements IMemberService{
 	@Override
 	public boolean modifyInfo(UserInfo userInfo) {
 		// TODO Auto-generated method stub
-		return false;
+		
+		HashMap<String, Object> params = new HashMap<>();
+		params.put(commons.Constant.UserInfo.ID, userInfo.getId());
+		params.put(commons.Constant.UserInfo.NICKNAME, userInfo.getNickname());
+		params.put(commons.Constant.UserInfo.PASSWORD, userInfo.getPassword());
+		params.put(commons.Constant.UserInfo.PHONE, userInfo.getPhone());
+		params.put(commons.Constant.UserInfo.SEX, userInfo.getSex());
+		params.put(commons.Constant.UserInfo.EMAIL, userInfo.getEmail());
+		int result = dao.updateUserInfo(params);
+		if(result > 0)
+			return true;
+		else
+			return false;
 	}
 
 	@Override
-	public boolean deleteMember(String id, String pw) {
+	public boolean deleteMember(String id) {
 		// TODO Auto-generated method stub
-		return false;
+		int result = dao.deleteUserInfo(id);
+		if(result > 0)
+			return true;
+		else
+			return false;
+		
 	}
 
 	@Override
@@ -82,4 +97,5 @@ public class MemberService implements IMemberService{
 		else 
 			return false;
 	}
+
 }

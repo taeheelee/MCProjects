@@ -41,4 +41,10 @@ public class RepleController {
 		service.updateReple(repleIdx, content);
 		return "redirect:boardSelect.do?boardIdx="+boardIdx+"&boardCode="+boardCode;
 	}
+	
+	@RequestMapping("repleDelete.do")
+	public String repleWrite(int boardIdx, int boardCode, int repleIdx){
+		service.updateReple(repleIdx, "삭제된 댓글입니다");
+		return "redirect:boardSelect.do?boardIdx="+boardIdx+"&boardCode="+boardCode;
+	}
 }

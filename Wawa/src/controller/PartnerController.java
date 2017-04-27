@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import commons.Constant;
 import interface_service.IBoardService;
+import interface_service.IPetinfoService;
 import interface_service.IRepleService;
 
 @Controller
@@ -20,6 +21,8 @@ public class PartnerController {
 	private IBoardService boardService;
 	@Autowired
 	private IRepleService repleService;
+	@Autowired
+	private IPetinfoService petService;
 	
 	@RequestMapping("partnerMain.do")
 	public ModelAndView partnerMain(@RequestParam(defaultValue="1") int page,
@@ -51,8 +54,14 @@ public class PartnerController {
 	}
 	
 	@RequestMapping("partnerWriteForm.do")
-	public String partnerWriteForm(){
-		return "partnerWriteForm.tiles";
+	public ModelAndView partnerWriteForm(@RequestParam(defaultValue="0") int idx){
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("load", idx);
+		if(idx != 0){
+			mav.addObject("pet", boardService.selectPetinfo(idx));
+		}
+		mav.setViewName("partnerWriteForm.tiles");
+		return mav;
 	}
 	
 	@RequestMapping("partnerWrite.do")
@@ -67,7 +76,7 @@ public class PartnerController {
 		if(kind.equals("1"))
 			kind = "치와와";
 		else if(kind.equals("2"))
-			kind = "요크셔테리어";
+			kind = "요크셔 테리어";
 		else if(kind.equals("3"))
 			kind = "말티즈";
 		else if(kind.equals("4"))
@@ -81,11 +90,11 @@ public class PartnerController {
 		else if(kind.equals("8"))
 			kind = "미니어쳐 슈나우저";
 		else if(kind.equals("9"))
-			kind = "기타소형견";
+			kind = "기타 소형견";
 		else if(kind.equals("10"))
-			kind = "기타중형견";
+			kind = "기타 중형견";
 		else if(kind.equals("11"))
-			kind = "기타대형견";
+			kind = "기타 대형견";
 		boardService.writePartnerFindBoard(boardCode, name, kind, sex, age, 
 				weight, phone, email, title, content, writer);
 		return "redirect:partnerMain.do";
@@ -102,29 +111,53 @@ public class PartnerController {
 		}
 	}
 	
-	@RequestMapping("partnerGetPetinfo.do")
-	public ModelAndView partnerGetPetinfo(String id){
-		ModelAndView mav = new ModelAndView();
-		List<HashMap<String, Object>> list = boardService.getPetInfo(id);
-		mav.addObject("result", list);
-		mav.setViewName("redirect:partnerWriteForm.do");
-		return mav;
-	}
-	
 	@RequestMapping("partnerUpdateForm.do")
-	public ModelAndView partnerUpdateForm(int boardIdx){
+	public ModelAndView partnerUpdateForm(int boardIdx, @RequestParam(defaultValue="0") int idx){
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(boardIdx);
 		mav.addObject("board", board);
+		mav.addObject("load", idx);
+		if(idx != 0){
+			mav.addObject("pet", boardService.selectPetinfo(idx));
+		}
 		mav.setViewName("partnerUpdateForm.tiles");
 		return mav;
 	}
 	
 	@RequestMapping("partnerUpdate.do")
 	public String partnerUpdate(int boardIdx, String name, String kind, String sex, 
-			int age, double weight, String phone, String email, String content, String writer){
+			int age, double weight, String phone, String email, String title, String content, String writer){
+		
+		if(sex.equals("male"))
+			sex = "수컷";
+		else if(sex.equals("female"))
+			sex = "암컷";
+		
+		if(kind.equals("1"))
+			kind = "치와와";
+		else if(kind.equals("2"))
+			kind = "요크셔 테리어";
+		else if(kind.equals("3"))
+			kind = "말티즈";
+		else if(kind.equals("4"))
+			kind = "시츄";
+		else if(kind.equals("5"))
+			kind = "비글";
+		else if(kind.equals("6"))
+			kind = "퍼그";
+		else if(kind.equals("7"))
+			kind = "페키니즈";
+		else if(kind.equals("8"))
+			kind = "미니어쳐 슈나우저";
+		else if(kind.equals("9"))
+			kind = "기타 소형견";
+		else if(kind.equals("10"))
+			kind = "기타 중형견";
+		else if(kind.equals("11"))
+			kind = "기타 대형견";
+		
 		boardService.updatePartnerFindBoard(boardIdx, name, kind, sex, 
-				age, weight, phone, email, content, writer);
+				age, weight, phone, email, title, content, writer);
 		return "redirect:partnerMain.do";
 	}
 	
@@ -138,5 +171,29 @@ public class PartnerController {
 //	public ModelAndView partnerUploadImage(){
 //		
 //	}
+	
+	@RequestMapping("partnerGetPetinfoForm.do")
+	public ModelAndView boastGetPetinfoForm(String id, int boardCode, int boardIdx, String type){
+		ModelAndView mav = new ModelAndView();
+		List<HashMap<String, Object>> list = petService.selectPetList(id);
+		mav.addObject("petList", list);
+		mav.addObject("boardCode", boardCode);
+		mav.addObject("boardIdx", boardIdx);
+		mav.addObject("type", type);
+		mav.setViewName("empty/petInfoList.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("partnerGetPetinfo.do")
+	public ModelAndView boastGetPetinfo(int idx, int boardCode, int boardIdx, String type){
+		ModelAndView mav = new ModelAndView();
+		HashMap<String, Object> petinfo = boardService.selectPetinfo(idx);
+		mav.addObject("pet",petinfo);
+		mav.addObject("boardCode", boardCode);
+		mav.addObject("boardIdx", boardIdx);
+		mav.addObject("type", type);
+		mav.setViewName("boardPetInfoLoad.tiles");
+		return mav;
+	}
 	
 }

@@ -81,9 +81,11 @@
                 <div style="text-align: center">
                 
                 
-                <input type="button" value="뒤로가기"  onClick="location.href='infoMain.do';">
-                <input type="button" value="수정" onclick="location.href='infoUpdateForm.do?boardIdx=${board.boardIdx}'">
-                <input type="button" value="삭제" onclick="location.href='infoDelete.do?boardIdx=${board.boardIdx}'">
+                <input type="button" value="뒤로가기"  onClick="location.href='infoMain.do'">
+                <c:if test="${board.writer == sessionScope.name }">
+                	<input type="button" value="수정" onclick="location.href='infoUpdateForm.do?boardIdx=${board.boardIdx}'">
+                	<input type="button" value="삭제" onclick="location.href='infoDelete.do?boardIdx=${board.boardIdx}'">
+                </c:if>
                 </div>
                 <div>
                 	<h4>댓글</h4>

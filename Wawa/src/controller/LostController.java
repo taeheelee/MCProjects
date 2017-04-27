@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.Controller;
 
 import interface_service.IBoardService;
+import interface_service.IPetinfoService;
 import interface_service.IRepleService;
 
 @Controller
@@ -20,6 +21,8 @@ public class LostController {
 	private IBoardService boardService;
 	@Autowired
 	private IRepleService repleService;
+	@Autowired
+	private IPetinfoService petService;
 	
 	@RequestMapping("lostMain.do")
 	public ModelAndView lostMain(@RequestParam(defaultValue="1") int page,
@@ -51,8 +54,14 @@ public class LostController {
 	}
 	
 	@RequestMapping("lostWriteForm.do")
-	public String lostWriteForm(){
-		return "lostWriteForm.tiles";
+	public ModelAndView lostWriteForm(@RequestParam(defaultValue="0") int idx){
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("load", idx);
+		if(idx != 0){
+			mav.addObject("pet", boardService.selectPetinfo(idx));
+		}
+		mav.setViewName("lostWriteForm.tiles");
+		return mav;
 	}
 	
 	@RequestMapping("lostWrite.do")
@@ -72,7 +81,7 @@ public class LostController {
 		if(kind.equals("1"))
 			kind = "치와와";
 		else if(kind.equals("2"))
-			kind = "요크셔테리어";
+			kind = "요크셔 테리어";
 		else if(kind.equals("3"))
 			kind = "말티즈";
 		else if(kind.equals("4"))
@@ -86,11 +95,11 @@ public class LostController {
 		else if(kind.equals("8"))
 			kind = "미니어쳐 슈나우저";
 		else if(kind.equals("9"))
-			kind = "기타소형견";
+			kind = "기타 소형견";
 		else if(kind.equals("10"))
-			kind = "기타중형견";
+			kind = "기타 중형견";
 		else if(kind.equals("11"))
-			kind = "기타대형견";
+			kind = "기타 대형견";
 		
 		boardService.writeDogFindBoard(boardCode, category, name, resist, lostdate, lostplace, 
 				kind, sex, age, weight, phone, email, content, title, writer);
@@ -98,10 +107,14 @@ public class LostController {
 	}
 	
 	@RequestMapping("lostUpdateForm.do")
-	public ModelAndView lostUpdateForm(int boardIdx){
+	public ModelAndView lostUpdateForm(int boardIdx, @RequestParam(defaultValue="0") int idx){
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(boardIdx);
 		mav.addObject("board", board);
+		mav.addObject("load", idx);
+		if(idx != 0){
+			mav.addObject("pet", boardService.selectPetinfo(idx));
+		}
 		mav.setViewName("lostUpdateForm.tiles");
 		return mav;
 	} 
@@ -123,7 +136,7 @@ public class LostController {
 		if(kind.equals("1"))
 			kind = "치와와";
 		else if(kind.equals("2"))
-			kind = "요크셔테리어";
+			kind = "요크셔 테리어";
 		else if(kind.equals("3"))
 			kind = "말티즈";
 		else if(kind.equals("4"))
@@ -137,11 +150,11 @@ public class LostController {
 		else if(kind.equals("8"))
 			kind = "미니어쳐 슈나우저";
 		else if(kind.equals("9"))
-			kind = "기타소형견";
+			kind = "기타 소형견";
 		else if(kind.equals("10"))
-			kind = "기타중형견";
+			kind = "기타 중형견";
 		else if(kind.equals("11"))
-			kind = "기타대형견";
+			kind = "기타 대형견";
 		
 		boardService.updateDogFindBoard(boardIdx, category, name, resist, lostdate,  lostplace,
 				kind, sex, age, weight, phone, email, title, content , writer);
@@ -159,12 +172,27 @@ public class LostController {
 //		
 //	}
 	
-	@RequestMapping("lostGetPetinfo.do")
-	public ModelAndView lostGetPetinfo(String id){
+	@RequestMapping("lostGetPetinfoForm.do")
+	public ModelAndView boastGetPetinfoForm(String id, int boardCode, int boardIdx, String type){
 		ModelAndView mav = new ModelAndView();
-		List<HashMap<String, Object>> list = boardService.getPetInfo(id);
-		mav.addObject("result", list);
-		mav.setViewName("redirect:lostWriteForm.do");
+		List<HashMap<String, Object>> list = petService.selectPetList(id);
+		mav.addObject("petList", list);
+		mav.addObject("boardCode", boardCode);
+		mav.addObject("boardIdx", boardIdx);
+		mav.addObject("type", type);
+		mav.setViewName("empty/petInfoList.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("lostGetPetinfo.do")
+	public ModelAndView boastGetPetinfo(int idx, int boardCode, int boardIdx, String type){
+		ModelAndView mav = new ModelAndView();
+		HashMap<String, Object> petinfo = boardService.selectPetinfo(idx);
+		mav.addObject("pet",petinfo);
+		mav.addObject("boardCode", boardCode);
+		mav.addObject("boardIdx", boardIdx);
+		mav.addObject("type", type);
+		mav.setViewName("boardPetInfoLoad.tiles");
 		return mav;
 	}
 	

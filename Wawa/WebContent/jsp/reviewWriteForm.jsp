@@ -5,6 +5,7 @@
     <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript" src="js/boardCheck.js"></script>
      <script type="text/javascript">
 	  $(document).ready(function() {
 	      $('#summernote').summernote({
@@ -12,10 +13,6 @@
 	      });
 	      
 	      	$('#ok').click(function() {
-	      		if($('#title').val() == ""){
-	      			alert("제목을 입력해주세요");
-	      			return false;
-	      		}
 	      		var content = $('#summernote').summernote('code');
 				$('#content').val(content);		
 			});
@@ -56,7 +53,7 @@
                             <form enctype="multipart/form-data" action="reviewWrite.do" class="checkout" method="get" name="checkout">
 								<input type="hidden" name="content" id="content">
 								<input type="hidden" name="boardCode" value="2">
-								<input type="hidden" name="writer" value="글쓴이">
+								<input type="hidden" name="writer" value="${sessionScope.name}">
 
                                 <div id="customer_details" class="col2-set" >
                                     <div class="col-3">
@@ -112,7 +109,7 @@
 
 
 											<div class="form-row place-order" style="float: right">
-												<input type="submit" data-value="Place order" value="WRITE" id="ok" name="woocommerce_checkout_place_order" class="button alt">
+												<input type="submit" data-value="Place order" value="WRITE" id="ok" name="woocommerce_checkout_place_order" class="button alt" onclick="return reviewBoardCheck()">
 								</form>
 											</div>
 

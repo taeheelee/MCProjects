@@ -97,5 +97,10 @@
     
     <!-- Main Script -->
     <script src="js/main.js"></script>
+    
+    <!-- tab form make sy -->
+    <script src="tab.js"></script>
+
+    
 </body>
 </html>

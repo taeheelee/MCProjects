@@ -11,4 +11,14 @@
   <definition name="*.tiles" extends="tiles">
   	<put-attribute name="body" value="/jsp/{1}.jsp"></put-attribute>
   </definition>
+   <definition name="*.popup" template="/jsp/layout2.jsp">
+    <put-attribute name="content" value="/jsp/{1}.jsp" />
+  </definition>
+  <definition name="empty" template="/jsp/empty.jsp">
+  	<put-attribute name="content" value=""/>  
+  </definition>
+  <definition name="empty/*" extends="empty">
+	<put-attribute name="content" value="/jsp/{1}.jsp"></put-attribute>
+  </definition>
+  
 </tiles-definitions>

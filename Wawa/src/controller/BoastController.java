@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import commons.Constant;
 import interface_service.IBoardService;
+import interface_service.IPetinfoService;
 import interface_service.IRepleService;
 import model.Board;
 
@@ -20,6 +21,8 @@ public class BoastController {
 	private IBoardService boardService;
 	@Autowired
 	private IRepleService repleService;
+	@Autowired
+	private IPetinfoService petService;
 	
 	@RequestMapping("boastMain.do")
 	public ModelAndView boastMain(@RequestParam(defaultValue="1") int page,
@@ -59,8 +62,14 @@ public class BoastController {
 	}
 	
 	@RequestMapping("boastWriteForm.do") //writeForm.jsp로
-	public String boastWriteForm(){
-		return "boastWriteForm.tiles";
+	public ModelAndView boastWriteForm(@RequestParam(defaultValue="0") int idx){
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("load", idx);
+		if(idx != 0){
+			mav.addObject("pet", boardService.selectPetinfo(idx));
+		}
+		mav.setViewName("boastWriteForm.tiles");
+		return mav;
 	}
 	
 	@RequestMapping("boastWrite.do")
@@ -74,7 +83,7 @@ public class BoastController {
 		if(kind.equals("1"))
 			kind = "치와와";
 		else if(kind.equals("2"))
-			kind = "요크셔테리어";
+			kind = "요크셔 테리어";
 		else if(kind.equals("3"))
 			kind = "말티즈";
 		else if(kind.equals("4"))
@@ -88,27 +97,59 @@ public class BoastController {
 		else if(kind.equals("8"))
 			kind = "미니어쳐 슈나우저";
 		else if(kind.equals("9"))
-			kind = "기타소형견";
+			kind = "기타 소형견";
 		else if(kind.equals("10"))
-			kind = "기타중형견";
+			kind = "기타 중형견";
 		else if(kind.equals("11"))
-			kind = "기타대형견";
+			kind = "기타 대형견";
 		boardService.writeBoastBoard(boardCode, name, age, kind, sex, title, content, writer);
 		return "redirect:boastMain.do";
 	}
 	
 	@RequestMapping("boastUpdateForm.do")
-	public ModelAndView boastUpdateForm(int boardIdx){
+	public ModelAndView boastUpdateForm(int boardIdx, @RequestParam(defaultValue="0") int idx){
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(boardIdx);
 		mav.addObject("board", board);
-		mav.setViewName("boastUpdateForm");
+		mav.addObject("load", idx);
+		if(idx != 0){
+			mav.addObject("pet", boardService.selectPetinfo(idx));
+		}
+		mav.setViewName("boastUpdateForm.tiles");
 		return mav;	
 	}
 	
 	@RequestMapping("boastUpdate.do")
-	public String boastUpdate(int boardIdx, String name, int age, String sex, String summernote, String writer){
-		boardService.updateBoastBoard(boardIdx, name, age, sex, summernote, writer);
+	public String boastUpdate(int boardIdx, String name, String kind, int age, String sex, String title, String content, String writer, int likeCount){
+		if(sex.equals("male"))
+			sex = "수컷";
+		else if(sex.equals("female"))
+			sex = "암컷";
+		
+		if(kind.equals("1"))
+			kind = "치와와";
+		else if(kind.equals("2"))
+			kind = "요크셔 테리어";
+		else if(kind.equals("3"))
+			kind = "말티즈";
+		else if(kind.equals("4"))
+			kind = "시츄";
+		else if(kind.equals("5"))
+			kind = "비글";
+		else if(kind.equals("6"))
+			kind = "퍼그";
+		else if(kind.equals("7"))
+			kind = "페키니즈";
+		else if(kind.equals("8"))
+			kind = "미니어쳐 슈나우저";
+		else if(kind.equals("9"))
+			kind = "기타 소형견";
+		else if(kind.equals("10"))
+			kind = "기타 중형견";
+		else if(kind.equals("11"))
+			kind = "기타 대형견";
+		
+		boardService.updateBoastBoard(boardIdx, name, kind, age, sex, title, content, writer, likeCount);
 		return "redirect:boastMain.do";
 	}
 	
@@ -123,12 +164,27 @@ public class BoastController {
 //		
 //	}
 	
-	@RequestMapping("boastGetPetinfo.do")
-	public ModelAndView boastGetPetinfo(String id){
+	@RequestMapping("boastGetPetinfoForm.do")
+	public ModelAndView boastGetPetinfoForm(String id, int boardCode, int boardIdx, String type){
 		ModelAndView mav = new ModelAndView();
-		List<HashMap<String, Object>> list = boardService.getPetInfo(id);
-		mav.addObject("result", list);
-		mav.setViewName("redirect:boastWriteForm.do");
+		List<HashMap<String, Object>> list = petService.selectPetList(id);
+		mav.addObject("petList", list);
+		mav.addObject("boardCode", boardCode);
+		mav.addObject("boardIdx", boardIdx);
+		mav.addObject("type", type);
+		mav.setViewName("empty/petInfoList.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("boastGetPetinfo.do")
+	public ModelAndView boastGetPetinfo(int idx, int boardCode, int boardIdx, String type){
+		ModelAndView mav = new ModelAndView();
+		HashMap<String, Object> petinfo = boardService.selectPetinfo(idx);
+		mav.addObject("pet",petinfo);
+		mav.addObject("boardCode", boardCode);
+		mav.addObject("boardIdx", boardIdx);
+		mav.addObject("type", type);
+		mav.setViewName("boardPetInfoLoad.tiles");
 		return mav;
 	}
 	

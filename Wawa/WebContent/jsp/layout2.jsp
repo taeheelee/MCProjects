@@ -48,13 +48,7 @@
   </head>
 <body>
 	<div>
-		<tiles:insertAttribute name="header"></tiles:insertAttribute>
-	</div>
-	<div>
-		<tiles:insertAttribute name="body"></tiles:insertAttribute>
-	</div>
-	<div>
-		<tiles:insertAttribute name="footer"></tiles:insertAttribute>
+		<tiles:insertAttribute name="content"></tiles:insertAttribute>
 	</div>
 </body>
 </html>

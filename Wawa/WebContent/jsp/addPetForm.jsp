@@ -34,7 +34,7 @@
     		
     		$('#weight').blur(function(){
     			if(!regWeight.test($('#weight').val())){
-    				$('#weightError').html('<font color="red">몸무게입력 오류(ex) 2017-04-21);
+    				$('#weightError').html('<font color="red">몸무게입력 오류</font>');
     			}
     		});
     		

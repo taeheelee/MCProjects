@@ -19,11 +19,8 @@
 		$(document).ready(function(){
 			
 			$('#name').change(function(){
-				alert('d');
 				var name = $("#name option:selected").text();
-				alert("name:" + name);
-				var id = ${sessionScope.id };
-				alert("id:" + id);
+				var id = '${myid }';
 				
 				$.ajax({
 					type: 'get',
@@ -31,16 +28,26 @@
 					data: "id="+id+"&name="+name,
 					dataType: "json",
 					success: function(data) {
-						alert('d');
-						var table = $('#listTable');
-						var tr = $('<tr>');
-						$('<td>').text($(data).kind).appendTo(tr);
-						$('<td>').text($(data).sex).appendTo(tr);
-						$('<td>').text($(data).neutral).appendTo(tr);
-						$('<td>').text("00년 00개월").appendTo(tr);
-						$('<td>').text("1살").appendTo(tr);
-						$('<td>').text($(data).weight).appendTo(tr);
-						$('<td>').text("하루필요열량 000kcal").appendTo(tr);
+// 						alert(data.pet.kind);
+						var table = $('#lTable tbody');
+						$('tr:gt(0)', table).remove();
+						var row="<tr>"; 
+						row += "<td align=\"center\" colspan=\"2\" id=\"kind\">" + data.pet.kind +"</td>";
+						row += "</tr>";
+						row += "<tr>";
+						row += "<td align=\"center\" id=\"petsex\">" + data.pet.sex + "</td>";
+						row += "<td align=\"center\" id=\"neutral\">" + data.pet.neutral + "</td>"; 
+						row += "</tr>";
+						row += "<tr>";
+						row += "<td align=\"center\" colspan=\"2\" id=\"age\">00년00개월</td>"; 
+						row += "</tr>";
+						row += "<tr>";
+						row += "<td align=\"center\" colspan=\"2\" id=\"weight\">" + data.pet.weight + "</td>"; 
+						row += "</tr>";
+						row += "<tr>";
+						row += "<td align=\"center\" colspan=\"2\" id=\"caloriesbyday\">하루필요열량 000kcal</td>"; 
+						row += "</tr>";
+						table.append(row);
 					},
 					error: function(data){
 						alert("잠시 후 다시 시도해주세요.");
@@ -48,39 +55,28 @@
 				});
 			});
 			
+			$('#DuploadBtn1').click(function(){
+				var id = '${myid }';
+				var shotday = $('#DValue1').val();
+				var petname = $("#name option:selected").text();
+				var vaccineCode = 101;
+				$.ajax({
+					type: 'get',
+					url: 'uploadMedical.do',
+					data: "id="+id+"&petname="+petname+"&shotday="+shotday+"&vaccineCode="+vaccineCode,
+					dataType: 'json',
+					success : function (data) {
+	   			    	//alert('sdsd');
+	   			    	alert('함수 들어옴');
+ 	   			      
+	   			    },
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
+			});
+			
 		});
-			
-// 			$('#DuploadBtn1').click(function(){
-// 				var id = ${sessionScope.id };
-// 				var shotday = $('#DValue1').val();
-// 				var petname = $("#petname option:selected").text();
-// 				var vaccineCode = 101;
-// 				$.ajax({
-// 					type: 'post',
-// 					url: 'uploadMedical.do',
-// 					data: 
-// 					{
-// 						"id":id, 
-// 						"shotday":shotday, 
-// 						"petname":petname, 
-// 						"vaccineCode":vaccineCode
-// 					},
-// 					dataType: 'json',
-// 					success : function (data) {
-// 	   			    	//alert('sdsd');
-//  	   			        if(data.result)
-// 	   			        	//alert('사용가능'); 
-//     			     			$('#idError').html('<font color="green">사용가능</font>');
-//  	   			        else 
-//  	   			        	//alert('중복');
-//  	   			        	$('#idError').html('<font color="red">중복</font>');
-// 	   			    },
-// 					error: function(data) {
-// 						alert('잠시 후 다시 시도해주세요');
-// 					}
-// 				});
-// 			});
-			
 			
 // 			$('#DuploadBtn2').click(function(){
 // 				var id = ${sessionScope.id };
@@ -676,6 +672,7 @@
     
    
     <div class="product-big-title-area">
+    
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -693,32 +690,29 @@
             <div class="row">
                 <div class="col-md-3">
         
-                <form method="post" action="#">
-                
-								<table cellspacing="0" class="shop_table cart" id="listTable">
-									<thead>
-										<tr>
-											<th colspan="2" id="mypetmainimage">
-												<img src="img/dog_04.jpg" alt="">
-											</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr class="cart_item">
-											<td colspan="2">
-											
-												<select class="country_to_state country_select" name="name" id="name">
-                                                 	<c:forEach items="${list }" var="petinfo">
-                                                 		<option value="${petinfo.name }">${petinfo.name }</option>
-                                                 	</c:forEach>
-                                                </select>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</form>
-              
-                    
+        		<form method="post" action="#">
+						<table cellspacing="0" name="lTable" id="lTable" class="shop_table cart">
+							<thead>
+								<tr>
+									<th colspan="2" id="mypetmainimage">
+										<img src="img/dog_04.jpg" alt="">
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="cart_item">
+									<td colspan="2">
+										<select class="country_to_state country_select" name="name" id="name">
+                                             <option value="defaultValue"> 선택하세요 </option>
+                                             <c:forEach items="${list }" var="petinfo">
+                                               	<option value="${petinfo.name }">${petinfo.name }</option>
+                                             </c:forEach>
+                                        </select>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					
                 </div>
                 <!-- 여기여기여기부터 -->
                 <div class="col-md-8">

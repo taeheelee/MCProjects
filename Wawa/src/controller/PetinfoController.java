@@ -78,9 +78,6 @@ public class PetinfoController {
 	public ModelAndView medicalcareForm(String id){
 		ModelAndView mav = new ModelAndView();
 		List<HashMap<String, Object>> list = petinfoService.selectPetList(id);
-	//	mav.addObject("id", id);
-//		System.out.println(id);
-//		mav.addAllObjects("list", list);
 		mav.addObject("myid", id);
 		mav.addObject("list", list);
 		mav.setViewName("medicalcareForm.tiles");

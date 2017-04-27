@@ -74,11 +74,6 @@ public class PetinfoController {
 		}
 	}
 	
-	@RequestMapping("healthcare.do")
-	public String healthcare(){
-		return "healthcare.tiles";
-	}
-	
 	@RequestMapping("medicalcareForm.do")
 	public ModelAndView medicalcareForm(String id){
 		ModelAndView mav = new ModelAndView();

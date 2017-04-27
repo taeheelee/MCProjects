@@ -39,7 +39,7 @@ public class PetinfoController {
 			String groomingStart, String groomingPeriod){
 		
 		String fromBirth = birthday;
-		SimpleDateFormat transBirthFormat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat transBirthFormat = new SimpleDateFormat("yyyy/MM/dd");
 		Date tobirth = null;
 		try {
 			tobirth = transBirthFormat.parse(fromBirth);
@@ -49,7 +49,7 @@ public class PetinfoController {
 		}
 		
 		String fromGs = groomingStart;
-		SimpleDateFormat transGsFormat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat transGsFormat = new SimpleDateFormat("yyyy/MM/dd");
 		Date toGs = null;
 		try {
 			toGs = transGsFormat.parse(fromGs);

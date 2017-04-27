@@ -27,9 +27,15 @@ public class PetinfoController {
 	@Autowired
 	private IPetinfoService petinfoService;
 	
+	@RequestMapping("myPetInfo.do")
+	public String myPetInfo(){
+		
+		
+		return "myPetInfo.tiles";
+	}
+	
 	@RequestMapping("addPetForm.do")
-	public String addPetForm(HttpSession session){
-	//	session.setAttribute("id", session.);
+	public String addPetForm(){
 		return "addPetForm.tiles";
 	}
 	

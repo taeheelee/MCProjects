@@ -15,16 +15,16 @@
     <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
     
     <!-- Bootstrap -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 <!--     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="../css/owl.carousel.css">
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="css/owl.carousel.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/responsive.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,7 +36,7 @@
   	src="https://code.jquery.com/jquery-2.2.4.min.js"
   	integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
  	crossorigin="anonymous"></script>
-    <link href="../tabstyle.css" rel="stylesheet">
+    <link href="tabstyle.css" rel="stylesheet">
     
     <!--  JQuery -->
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
@@ -83,7 +83,7 @@
 							</c:when>
 							<c:otherwise>
 								<li><a href="joinForm.do"><i class="fa fa-heart"></i> Join us</a></li>
-								<li><a href="../loginForm.do"><i class="fa fa-user"></i> Login</a></li>
+								<li><a href="loginForm.do"><i class="fa fa-user"></i> Login</a></li>
 							</c:otherwise>
 						</c:choose>
 					</ul>	
@@ -102,7 +102,7 @@
 			<!--좌측 로고 -->
 			<div class="col-sm-6">
 				<div class="logo">
-					<h1><a href="main.do"><img src="../img/paw-print.png" id="paw-print"><span>WAWA!</span></a></h1>
+					<h1><a href="main.do"><img src="img/paw-print.png" id="paw-print"><span>WAWA!</span></a></h1>
 				</div>
 			</div>
 			<!-- 우측 미니애견정보창 -->
@@ -114,7 +114,7 @@
 					
 						<table id="mini" style="margin-left: 5px;width:330px; height: 100px;">
 							<tr>
-								<td rowspan="4" style="width: 90px;" id="petmainimage"><img src="../img/dog_12.jpg" alt=""style="width: 80px;height: 80px"></td>
+								<td rowspan="4" style="width: 90px;" id="petmainimage"><img src="img/dog_12.jpg" alt=""style="width: 80px;height: 80px"></td>
 								<td colspan="3" id="nickname">${sessionScope.name}</td>
 							</tr>
 							<tr style="font-size: small;">
@@ -161,11 +161,11 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="main.do">HOME</a></li>
-					<li><a href="../userinfoForm.do?id=${sessionScope.id}" id="postLink">내정보</a></li>
+					<li><a href="userinfoForm.do?id=${sessionScope.id}" id="postLink">내정보</a></li>
 					<li class="dropdown">
 						<a href="single-product.html" class="dropdown-toggle" data-toggle="dropdown">나의펫 <b class="caret"></b></a>
 	                    <ul class="dropdown-menu">
-							<li><a href="addPetForm.do?id=${sessionScope.id}">나의 펫 정보</a></li>
+							<li><a href="myPetInfo.do">나의 펫 정보</a></li>
 							<li><a href="healthcare.do?id=${sessionScope.id}">나의 펫 헬스케어</a></li>
 							<li><a href="medicalcareForm.do?id=${sessionScope.id}">나의 펫 메디컬케어</a></li>		
 	                    </ul>

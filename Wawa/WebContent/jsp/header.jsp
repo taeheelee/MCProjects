@@ -50,7 +50,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>WAWA : 애완견 통합관리 커뮤니티</title>
 <script type="text/javascript">
-	$(documet).ready(function(){
+	$(document).ready(function(){
 		$('#postLink').click(function() {
 		    var p = $(this).attr('href').split('?');
 		    var action = p[0];

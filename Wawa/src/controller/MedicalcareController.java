@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,13 +26,10 @@ public class MedicalcareController {
 	@Autowired
 	private IPetinfoService petinfoService;
 	
-//	int count = 0;
 	@RequestMapping("uploadMedical.do")
 	public 
 	@ResponseBody HashMap<String, Object> uploadMedical(HttpServletResponse resp,
-			HashMap<String, Object> params){
-//		System.out.println(count ++);
-		System.out.println("여기는 uploadmedical");
+			@RequestParam HashMap<String, Object> params){
 		HashMap<String, Object> medical = new HashMap<>();
 		
 		String fromShotday = (String)params.get("shotday");
@@ -45,16 +43,16 @@ public class MedicalcareController {
 		}
 		
 		HashMap<String, Object> map = new HashMap<>();
-		map.put("petname", (String)params.get("petname"));
+		map.put("name", (String)params.get("petname"));
 		map.put("id", (String)params.get("id"));
-		int idx = (int)petinfoService.selectByname(params).get("idx");
+		int idx = (int)petinfoService.selectByname(map).get("idx");
 		
-		int vaccineCode = (int)params.get("vaccineCode");
-		
+		int vaccineCode = Integer.parseInt((String) params.get("vaccineCode"));
+
 		medical.put(Constant.MedicalManage.VACCINECODE, vaccineCode);
 		medical.put(Constant.MedicalManage.IDX, idx);
-		medical.put(Constant.MedicalManage.REALSHOTDATE, toShotday);
-		
+		medical.put(Constant.MedicalManage.REALSHOTDATE, params.get("shotday"));
+	
 		HashMap<String, Object> response = new HashMap<>();
 		if(medicalService.updateRealShotDate(medical)){
 			response.put("result", true);

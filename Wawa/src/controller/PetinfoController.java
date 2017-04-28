@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -80,7 +81,7 @@ public class PetinfoController {
 	public ModelAndView medicalcareForm(String id){
 		ModelAndView mav = new ModelAndView();
 		List<HashMap<String, Object>> list = petinfoService.selectPetList(id);
-//		mav.addObject("id", id);
+		mav.addObject("myid", id);
 		mav.addObject("list", list);
 		mav.setViewName("medicalcareForm.tiles");
 		return mav;
@@ -89,9 +90,8 @@ public class PetinfoController {
 	@RequestMapping("selectPet.do")
 	public
 	@ResponseBody HashMap<String, Object> selectPet(HttpServletResponse resp,
-			HashMap<String, Object> params){
+			@RequestParam HashMap<String, Object> params){
 		HashMap<String, Object> response = new HashMap<>();
-		System.out.println(petinfoService.selectByname(params));
 		response.put("pet", petinfoService.selectByname(params));
 		return response;
 	}

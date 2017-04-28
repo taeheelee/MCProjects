@@ -17,13 +17,26 @@
 	<script type="text/javascript">
 	
 		$(document).ready(function(){
+		
+			$('#addBtn1').click(function(){
+				var table = $('#table1 tbody');
+				var row="<tr>"; 
+				row += "<td class=\"\"colspan=\"2\"><a title=\"Remove this item\" class=\"remove\" href=\"#\">추가접종</a></td>";
+				row += "<td>추천일</td>";
+				row += "<td>D-day</td>"; 
+				row += "<td><input type=\"text\" class=\"VcDate\" placeholder=\"0000-00-00\" id=\"DValue6\"></td>";
+				row += "<td><input type=\"button\" value=\"입력\" id=\"DuploadBtn6\" style=\"padding: 4px 4px\">"; 
+				row += "<span id=\"DSpan6\" value=\"결과\">　　</span></td>";
+				row += "</tr>";
+				table.append(row);
+// 				alert('dd');
+				
+				//$('tr:gt(0)', table).remove();
+			});
 			
 			$('#name').change(function(){
-				alert('d');
 				var name = $("#name option:selected").text();
-				alert("name:" + name);
-				var id = ${sessionScope.id };
-				alert("id:" + id);
+				var id = '${myid }';
 				
 				$.ajax({
 					type: 'get',
@@ -31,16 +44,26 @@
 					data: "id="+id+"&name="+name,
 					dataType: "json",
 					success: function(data) {
-						alert('d');
-						var table = $('#listTable');
-						var tr = $('<tr>');
-						$('<td>').text($(data).kind).appendTo(tr);
-						$('<td>').text($(data).sex).appendTo(tr);
-						$('<td>').text($(data).neutral).appendTo(tr);
-						$('<td>').text("00년 00개월").appendTo(tr);
-						$('<td>').text("1살").appendTo(tr);
-						$('<td>').text($(data).weight).appendTo(tr);
-						$('<td>').text("하루필요열량 000kcal").appendTo(tr);
+// 						alert(data.pet.kind);
+						var table = $('#lTable tbody');
+						$('tr:gt(0)', table).remove();
+						var row="<tr>"; 
+						row += "<td align=\"center\" colspan=\"2\" id=\"kind\">" + data.pet.kind +"</td>";
+						row += "</tr>";
+						row += "<tr>";
+						row += "<td align=\"center\" id=\"petsex\">" + data.pet.sex + "</td>";
+						row += "<td align=\"center\" id=\"neutral\">" + data.pet.neutral + "</td>"; 
+						row += "</tr>";
+						row += "<tr>";
+						row += "<td align=\"center\" colspan=\"2\" id=\"age\">00년00개월</td>"; 
+						row += "</tr>";
+						row += "<tr>";
+						row += "<td align=\"center\" colspan=\"2\" id=\"weight\">" + data.pet.weight + "</td>"; 
+						row += "</tr>";
+						row += "<tr>";
+						row += "<td align=\"center\" colspan=\"2\" id=\"caloriesbyday\">하루필요열량 000kcal</td>"; 
+						row += "</tr>";
+						table.append(row);
 					},
 					error: function(data){
 						alert("잠시 후 다시 시도해주세요.");
@@ -48,626 +71,571 @@
 				});
 			});
 			
-		});
-			
-// 			$('#DuploadBtn1').click(function(){
-// 				var id = ${sessionScope.id };
-// 				var shotday = $('#DValue1').val();
-// 				var petname = $("#petname option:selected").text();
-// 				var vaccineCode = 101;
-// 				$.ajax({
-// 					type: 'post',
-// 					url: 'uploadMedical.do',
-// 					data: 
-// 					{
-// 						"id":id, 
-// 						"shotday":shotday, 
-// 						"petname":petname, 
-// 						"vaccineCode":vaccineCode
-// 					},
-// 					dataType: 'json',
-// 					success : function (data) {
-// 	   			    	//alert('sdsd');
-//  	   			        if(data.result)
-// 	   			        	//alert('사용가능'); 
-//     			     			$('#idError').html('<font color="green">사용가능</font>');
-//  	   			        else 
-//  	   			        	//alert('중복');
-//  	   			        	$('#idError').html('<font color="red">중복</font>');
-// 	   			    },
-// 					error: function(data) {
-// 						alert('잠시 후 다시 시도해주세요');
-// 					}
-// 				});
-// 			});
-			
-			
-// 			$('#DuploadBtn2').click(function(){
-// 				var id = ${sessionScope.id };
-// 				var shotday = $('#DValue2').val();
-// 				var petname = $("#petname option:selected").text();
-// 				var vaccineCode = 102;
-// 				$.ajax({
-// 					type: 'post',
-// 					url: 'uploadMedical.do',
-// 					data: 
-// 					{
-// 						"id":id, 
-// 						"shotday":shotday, 
-// 						"petname":petname, 
-// 						"vaccineCode":vaccineCode
-// 					},
-// 					dataType: 'json',
-// 					success : function (data) {
-// 	   			    	//alert('sdsd');
-//  	   			        if(data.result)
-// 	   			        	//alert('사용가능'); 
-//     			     			$('#idError').html('<font color="green">사용가능</font>');
-//  	   			        else 
-//  	   			        	//alert('중복');
-//  	   			        	$('#idError').html('<font color="red">중복</font>');
-// 	   			    },
-// 					error: function(data) {
-// 						alert('잠시 후 다시 시도해주세요');
-// 					}
-// 				});
-// 			});
-			
-// 			$('#DuploadBtn3').click(function(){
-// 				var id = ${sessionScope.id };
-// 				var shotday = $('#DValue3').val();
-// 				var petname = $("#petname option:selected").text();
-// 				var vaccineCode = 103;
-// 				$.ajax({
-// 					type: 'post',
-// 					url: 'uploadMedical.do',
-// 					data: 
-// 					{
-// 						"id":id, 
-// 						"shotday":shotday, 
-// 						"petname":petname, 
-// 						"vaccineCode":vaccineCode
-// 					},
-// 					dataType: 'json',
-// 					success : function (data) {
-// 	   			    	//alert('sdsd');
-//  	   			        if(data.result)
-// 	   			        	//alert('사용가능'); 
-//     			     			$('#idError').html('<font color="green">사용가능</font>');
-//  	   			        else 
-//  	   			        	//alert('중복');
-//  	   			        	$('#idError').html('<font color="red">중복</font>');
-// 	   			    },
-// 					error: function(data) {
-// 						alert('잠시 후 다시 시도해주세요');
-// 					}
-// 				});
-// 			});
-			
-// 			$('#DuploadBtn4').click(function(){
-// 				var id = ${sessionScope.id };
-// 				var shotday = $('#DValue4').val();
-// 				var petname = $("#petname option:selected").text();
-// 				var vaccineCode = 104;
-// 				$.ajax({
-// 					type: 'post',
-// 					url: 'uploadMedical.do',
-// 					data: 
-// 					{
-// 						"id":id, 
-// 						"shotday":shotday, 
-// 						"petname":petname, 
-// 						"vaccineCode":vaccineCode
-// 					},
-// 					dataType: 'json',
-// 					success : function (data) {
-// 	   			    	//alert('sdsd');
-//  	   			        if(data.result)
-// 	   			        	//alert('사용가능'); 
-//     			     			$('#idError').html('<font color="green">사용가능</font>');
-//  	   			        else 
-//  	   			        	//alert('중복');
-//  	   			        	$('#idError').html('<font color="red">중복</font>');
-// 	   			    },
-// 					error: function(data) {
-// 						alert('잠시 후 다시 시도해주세요');
-// 					}
-// 				});
-// 			});
-			
-// 			$('#DuploadBtn5').click(function(){
-// 				var id = ${sessionScope.id };
-// 				var shotday = $('#DValue5').val();
-// 				var petname = $("#petname option:selected").text();
-// 				var vaccineCode = 105;
-// 				$.ajax({
-// 					type: 'post',
-// 					url: 'uploadMedical.do',
-// 					data: 
-// 					{
-// 						"id":id, 
-// 						"shotday":shotday, 
-// 						"petname":petname, 
-// 						"vaccineCode":vaccineCode
-// 					},
-// 					dataType: 'json',
-// 					success : function (data) {
-// 	   			    	//alert('sdsd');
-//  	   			        if(data.result)
-// 	   			        	//alert('사용가능'); 
-//     			     			$('#idError').html('<font color="green">사용가능</font>');
-//  	   			        else 
-//  	   			        	//alert('중복');
-//  	   			        	$('#idError').html('<font color="red">중복</font>');
-// 	   			    },
-// 					error: function(data) {
-// 						alert('잠시 후 다시 시도해주세요');
-// 					}
-// 				});
-// 			});
-			
-// 			$('#CuploadBtn1').click(function(){
-// 				var id = ${sessionScope.id };
-// 				var shotday = $('#CValue1').val();
-// 				var petname = $("#petname option:selected").text();
-// 				var vaccineCode = 201;
-// 				$.ajax({
-// 					type: 'post',
-// 					url: 'uploadMedical.do',
-// 					data: 
-// 					{
-// 						"id":id, 
-// 						"shotday":shotday, 
-// 						"petname":petname, 
-// 						"vaccineCode":vaccineCode
-// 					},
-// 					dataType: 'json',
-// 					success : function (data) {
-// 	   			    	//alert('sdsd');
-//  	   			        if(data.result)
-// 	   			        	//alert('사용가능'); 
-//     			     			$('#idError').html('<font color="green">사용가능</font>');
-//  	   			        else 
-//  	   			        	//alert('중복');
-//  	   			        	$('#idError').html('<font color="red">중복</font>');
-// 	   			    },
-// 					error: function(data) {
-// 						alert('잠시 후 다시 시도해주세요');
-// 					}
-// 				});
-// 			});
-// 			$('#CuploadBtn2').click(function(){
-// 				var id = ${sessionScope.id };
-// 				var shotday = $('#CValue2').val();
-// 				var petname = $("#petname option:selected").text();
-// 				var vaccineCode = 202;
-// 				$.ajax({
-// 					type: 'post',
-// 					url: 'uploadMedical.do',
-// 					data: 
-// 					{
-// 						"id":id, 
-// 						"shotday":shotday, 
-// 						"petname":petname, 
-// 						"vaccineCode":vaccineCode
-// 					},
-// 					dataType: 'json',
-// 					success : function (data) {
-// 	   			    	//alert('sdsd');
-//  	   			        if(data.result)
-// 	   			        	//alert('사용가능'); 
-//     			     			$('#idError').html('<font color="green">사용가능</font>');
-//  	   			        else 
-//  	   			        	//alert('중복');
-//  	   			        	$('#idError').html('<font color="red">중복</font>');
-// 	   			    },
-// 					error: function(data) {
-// 						alert('잠시 후 다시 시도해주세요');
-// 					}
-// 				});
-// 			});
-			
-// 			$('#CuploadBtn3').click(function(){
-// 				var id = ${sessionScope.id };
-// 				var shotday = $('#CValue3').val();
-// 				var petname = $("#petname option:selected").text();
-// 				var vaccineCode = 203;
-// 				$.ajax({
-// 					type: 'post',
-// 					url: 'uploadMedical.do',
-// 					data: 
-// 					{
-// 						"id":id, 
-// 						"shotday":shotday, 
-// 						"petname":petname, 
-// 						"vaccineCode":vaccineCode
-// 					},
-// 					dataType: 'json',
-// 					success : function (data) {
-// 	   			    	//alert('sdsd');
-//  	   			        if(data.result)
-// 	   			        	//alert('사용가능'); 
-//     			     			$('#idError').html('<font color="green">사용가능</font>');
-//  	   			        else 
-//  	   			        	//alert('중복');
-//  	   			        	$('#idError').html('<font color="red">중복</font>');
-// 	   			    },
-// 					error: function(data) {
-// 						alert('잠시 후 다시 시도해주세요');
-// 					}
-// 				});
-// 			});
-			
-// 			$('#CuploadBtn4').click(function(){
-// 				var id = ${sessionScope.id };
-// 				var shotday = $('#CValue4').val();
-// 				var petname = $("#petname option:selected").text();
-// 				var vaccineCode = 204;
-// 				$.ajax({
-// 					type: 'post',
-// 					url: 'uploadMedical.do',
-// 					data: 
-// 					{
-// 						"id":id, 
-// 						"shotday":shotday, 
-// 						"petname":petname, 
-// 						"vaccineCode":vaccineCode
-// 					},
-// 					dataType: 'json',
-// 					success : function (data) {
-// 	   			    	//alert('sdsd');
-//  	   			        if(data.result)
-// 	   			        	//alert('사용가능'); 
-//     			     			$('#idError').html('<font color="green">사용가능</font>');
-//  	   			        else 
-//  	   			        	//alert('중복');
-//  	   			        	$('#idError').html('<font color="red">중복</font>');
-// 	   			    },
-// 					error: function(data) {
-// 						alert('잠시 후 다시 시도해주세요');
-// 					}
-// 				});
-// 			});
-			
-// 			$('#CuploadBtn5').click(function(){
-// 				var id = ${sessionScope.id };
-// 				var shotday = $('#CValue5').val();
-// 				var petname = $("#petname option:selected").text();
-// 				var vaccineCode = 205;
-// 				$.ajax({
-// 					type: 'post',
-// 					url: 'uploadMedical.do',
-// 					data: 
-// 					{
-// 						"id":id, 
-// 						"shotday":shotday, 
-// 						"petname":petname, 
-// 						"vaccineCode":vaccineCode
-// 					},
-// 					dataType: 'json',
-// 					success : function (data) {
-// 	   			    	//alert('sdsd');
-//  	   			        if(data.result)
-// 	   			        	//alert('사용가능'); 
-//     			     			$('#idError').html('<font color="green">사용가능</font>');
-//  	   			        else 
-//  	   			        	//alert('중복');
-//  	   			        	$('#idError').html('<font color="red">중복</font>');
-// 	   			    },
-// 					error: function(data) {
-// 						alert('잠시 후 다시 시도해주세요');
-// 					}
-// 				});
-// 			});
-			
-// 			$('#KuploadBtn1').click(function(){
-// 				var id = ${sessionScope.id };
-// 				var shotday = $('#KValue1').val();
-// 				var petname = $("#petname option:selected").text();
-// 				var vaccineCode = 301;
-// 				$.ajax({
-// 					type: 'post',
-// 					url: 'uploadMedical.do',
-// 					data: 
-// 					{
-// 						"id":id, 
-// 						"shotday":shotday, 
-// 						"petname":petname, 
-// 						"vaccineCode":vaccineCode
-// 					},
-// 					dataType: 'json',
-// 					success : function (data) {
-// 	   			    	//alert('sdsd');
-//  	   			        if(data.result)
-// 	   			        	//alert('사용가능'); 
-//     			     			$('#idError').html('<font color="green">사용가능</font>');
-//  	   			        else 
-//  	   			        	//alert('중복');
-//  	   			        	$('#idError').html('<font color="red">중복</font>');
-// 	   			    },
-// 					error: function(data) {
-// 						alert('잠시 후 다시 시도해주세요');
-// 					}
-// 				});
-// 			});
-			
-// 			$('#KuploadBtn2').click(function(){
-// 				var id = ${sessionScope.id };
-// 				var shotday = $('#KValue2').val();
-// 				var petname = $("#petname option:selected").text();
-// 				var vaccineCode = 302;
-// 				$.ajax({
-// 					type: 'post',
-// 					url: 'uploadMedical.do',
-// 					data: 
-// 					{
-// 						"id":id, 
-// 						"shotday":shotday, 
-// 						"petname":petname, 
-// 						"vaccineCode":vaccineCode
-// 					},
-// 					dataType: 'json',
-// 					success : function (data) {
-// 	   			    	//alert('sdsd');
-//  	   			        if(data.result)
-// 	   			        	//alert('사용가능'); 
-//     			     			$('#idError').html('<font color="green">사용가능</font>');
-//  	   			        else 
-//  	   			        	//alert('중복');
-//  	   			        	$('#idError').html('<font color="red">중복</font>');
-// 	   			    },
-// 					error: function(data) {
-// 						alert('잠시 후 다시 시도해주세요');
-// 					}
-// 				});
-// 			});
+			var regDate = /^(19[7-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
 				
-// 			$('#KuploadBtn3').click(function(){
-// 				var id = ${sessionScope.id };
-// 				var shotday = $('#KValue3').val();
-// 				var petname = $("#petname option:selected").text();
-// 				var vaccineCode = 303;
-// 				$.ajax({
-// 					type: 'post',
-// 					url: 'uploadMedical.do',
-// 					data: 
-// 					{
-// 						"id":id, 
-// 						"shotday":shotday, 
-// 						"petname":petname, 
-// 						"vaccineCode":vaccineCode
-// 					},
-// 					dataType: 'json',
-// 					success : function (data) {
-// 	   			    	//alert('sdsd');
-//  	   			        if(data.result)
-// 	   			        	//alert('사용가능'); 
-//     			     			$('#idError').html('<font color="green">사용가능</font>');
-//  	   			        else 
-//  	   			        	//alert('중복');
-//  	   			        	$('#idError').html('<font color="red">중복</font>');
-// 	   			    },
-// 					error: function(data) {
-// 						alert('잠시 후 다시 시도해주세요');
-// 					}
-// 				});
-// 			});
+			$('#DuploadBtn1').click(function(){
+				
+				if(!regDate.test($('#DValue1').val())){
+						alert('날짜 형식을 확인하세요');
+				}
+				
+				var id = '${myid }';
+				var shotday = $('#DValue1').val();
+				var petname = $("#name option:selected").text();
+				var vaccineCode = 101;
+				$.ajax({
+					type: 'get',
+					url: 'uploadMedical.do',
+					data: "id="+id+"&petname="+petname+"&shotday="+shotday+"&vaccineCode="+vaccineCode,
+					dataType: 'json',
+					success : function (data) {
+	   			    	if(data.result){
+	   			    		$('#DSpan1').html('<font color="green">성공</font>');
+	   			    	}else {
+	   			    		$('#DSpan1').text('<font color="red">실패</font>');
+	   			    	}
+	   			    },
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
+			});
 			
-// 			$('#KuploadBtn4').click(function(){
-// 				var id = ${sessionScope.id };
-// 				var shotday = $('#KValue4').val();
-// 				var petname = $("#petname option:selected").text();
-// 				var vaccineCode = 304;
-// 				$.ajax({
-// 					type: 'post',
-// 					url: 'uploadMedical.do',
-// 					data: 
-// 					{
-// 						"id":id, 
-// 						"shotday":shotday, 
-// 						"petname":petname, 
-// 						"vaccineCode":vaccineCode
-// 					},
-// 					dataType: 'json',
-// 					success : function (data) {
-// 	   			    	//alert('sdsd');
-//  	   			        if(data.result)
-// 	   			        	//alert('사용가능'); 
-//     			     			$('#idError').html('<font color="green">사용가능</font>');
-//  	   			        else 
-//  	   			        	//alert('중복');
-//  	   			        	$('#idError').html('<font color="red">중복</font>');
-// 	   			    },
-// 					error: function(data) {
-// 						alert('잠시 후 다시 시도해주세요');
-// 					}
-// 				});
-// 			});
-// 			$('#KuploadBtn5').click(function(){
-// 				var id = ${sessionScope.id };
-// 				var shotday = $('#KValue5').val();
-// 				var petname = $("#petname option:selected").text();
-// 				var vaccineCode = 305;
-// 				$.ajax({
-// 					type: 'post',
-// 					url: 'uploadMedical.do',
-// 					data: 
-// 					{
-// 						"id":id, 
-// 						"shotday":shotday, 
-// 						"petname":petname, 
-// 						"vaccineCode":vaccineCode
-// 					},
-// 					dataType: 'json',
-// 					success : function (data) {
-// 	   			    	//alert('sdsd');
-//  	   			        if(data.result)
-// 	   			        	//alert('사용가능'); 
-//     			     			$('#idError').html('<font color="green">사용가능</font>');
-//  	   			        else 
-//  	   			        	//alert('중복');
-//  	   			        	$('#idError').html('<font color="red">중복</font>');
-// 	   			    },
-// 					error: function(data) {
-// 						alert('잠시 후 다시 시도해주세요');
-// 					}
-// 				});
-// 			});
+			$('#DuploadBtn2').click(function(){
+				
+				if(!regDate.test($('#DValue2').val())){
+					alert('날짜 형식을 확인하세요');
+				}
+				
+				var id = '${myid }';
+				var shotday = $('#DValue2').val();
+				var petname = $("#name option:selected").text();
+				var vaccineCode = 102;
+				$.ajax({
+					type: 'get',
+					url: 'uploadMedical.do',
+					data: "id="+id+"&petname="+petname+"&shotday="+shotday+"&vaccineCode="+vaccineCode,
+					dataType: 'json',
+					success : function (data) {
+	   			    	if(data.result){
+	   			    		$('#DSpan2').html('<font color="green">성공</font>');
+	   			    	}else {
+	   			    		$('#DSpan2').text('<font color="red">실패</font>');
+	   			    	}
+	   			    },
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
+			});
 			
-// 			$('#RuploadBtn1').click(function(){
-// 				var id = ${sessionScope.id };
-// 				var shotday = $('#RValue1').val();
-// 				var petname = $("#petname option:selected").text();
-// 				var vaccineCode = 401;
-// 				$.ajax({
-// 					type: 'post',
-// 					url: 'uploadMedical.do',
-// 					data: 
-// 					{
-// 						"id":id, 
-// 						"shotday":shotday, 
-// 						"petname":petname, 
-// 						"vaccineCode":vaccineCode
-// 					},
-// 					dataType: 'json',
-// 					success : function (data) {
-// 	   			    	//alert('sdsd');
-//  	   			        if(data.result)
-// 	   			        	//alert('사용가능'); 
-//     			     			$('#idError').html('<font color="green">사용가능</font>');
-//  	   			        else 
-//  	   			        	//alert('중복');
-//  	   			        	$('#idError').html('<font color="red">중복</font>');
-// 	   			    },
-// 					error: function(data) {
-// 						alert('잠시 후 다시 시도해주세요');
-// 					}
-// 				});
-// 			});
-// 			$('#RuploadBtn2').click(function(){
-// 				var id = ${sessionScope.id };
-// 				var shotday = $('#RValue2').val();
-// 				var petname = $("#petname option:selected").text();
-// 				var vaccineCode = 402;
-// 				$.ajax({
-// 					type: 'post',
-// 					url: 'uploadMedical.do',
-// 					data: 
-// 					{
-// 						"id":id, 
-// 						"shotday":shotday, 
-// 						"petname":petname, 
-// 						"vaccineCode":vaccineCode
-// 					},
-// 					dataType: 'json',
-// 					success : function (data) {
-// 	   			    	//alert('sdsd');
-//  	   			        if(data.result)
-// 	   			        	//alert('사용가능'); 
-//     			     			$('#idError').html('<font color="green">사용가능</font>');
-//  	   			        else 
-//  	   			        	//alert('중복');
-//  	   			        	$('#idError').html('<font color="red">중복</font>');
-// 	   			    },
-// 					error: function(data) {
-// 						alert('잠시 후 다시 시도해주세요');
-// 					}
-// 				});
-// 			});
+			$('#DuploadBtn3').click(function(){
 			
-// 			$('#RuploadBtn3').click(function(){
-// 				var id = ${sessionScope.id };
-// 				var shotday = $('#RValue3').val();
-// 				var petname = $("#petname option:selected").text();
-// 				var vaccineCode = 403;
-// 				$.ajax({
-// 					type: 'post',
-// 					url: 'uploadRabies.do',
-// 					data: 
-// 					{
-// 						"id":id, 
-// 						"shotday":shotday, 
-// 						"petname":petname, 
-// 						"vaccineCode":vaccineCode
-// 					},
-// 					dataType: 'json',
-// 					success : function (data) {
-// 	   			    	//alert('sdsd');
-//  	   			        if(data.result)
-// 	   			        	//alert('사용가능'); 
-//     			     			$('#idError').html('<font color="green">사용가능</font>');
-//  	   			        else 
-//  	   			        	//alert('중복');
-//  	   			        	$('#idError').html('<font color="red">중복</font>');
-// 	   			    },
-// 					error: function(data) {
-// 						alert('잠시 후 다시 시도해주세요');
-// 					}
-// 				});
-// 			});
+				if(!regDate.test($('#DValue3').val())){
+					alert('날짜 형식을 확인하세요');
+				}
+				
+				var id = '${myid }';
+				var shotday = $('#DValue3').val();
+				var petname = $("#name option:selected").text();
+				var vaccineCode = 103;
+				$.ajax({
+					type: 'get',
+					url: 'uploadMedical.do',
+					data: "id="+id+"&petname="+petname+"&shotday="+shotday+"&vaccineCode="+vaccineCode,
+					dataType: 'json',
+					success : function (data) {
+	   			    	if(data.result){
+	   			    		$('#DSpan3').html('<font color="green">성공</font>');
+	   			    	}else {
+	   			    		$('#DSpan3').text('<font color="red">실패</font>');
+	   			    	}
+	   			    },
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
+			});
 			
-// 			$('#RuploadBtn4').click(function(){
-// 				var id = ${sessionScope.id };
-// 				var shotday = $('#RValue4').val();
-// 				var petname = $("#petname option:selected").text();
-// 				var vaccineCode = 404;
-// 				$.ajax({
-// 					type: 'post',
-// 					url: 'uploadMedical.do',
-// 					data: 
-// 					{
-// 						"id":id, 
-// 						"shotday":shotday, 
-// 						"petname":petname, 
-// 						"vaccineCode":vaccineCode
-// 					},
-// 					dataType: 'json',
-// 					success : function (data) {
-// 	   			    	//alert('sdsd');
-//  	   			        if(data.result)
-// 	   			        	//alert('사용가능'); 
-//     			     			$('#idError').html('<font color="green">사용가능</font>');
-//  	   			        else 
-//  	   			        	//alert('중복');
-//  	   			        	$('#idError').html('<font color="red">중복</font>');
-// 	   			    },
-// 					error: function(data) {
-// 						alert('잠시 후 다시 시도해주세요');
-// 					}
-// 				});
-// 			});
+			$('#DuploadBtn4').click(function(){
+				
+				if(!regDate.test($('#DValue4').val())){
+					alert('날짜 형식을 확인하세요');
+				}
+				
+				var id = '${myid }';
+				var shotday = $('#DValue4').val();
+				var petname = $("#name option:selected").text();
+				var vaccineCode = 104;
+				$.ajax({
+					type: 'get',
+					url: 'uploadMedical.do',
+					data: "id="+id+"&petname="+petname+"&shotday="+shotday+"&vaccineCode="+vaccineCode,
+					dataType: 'json',
+					success : function (data) {
+	   			    	if(data.result){
+	   			    		$('#DSpan4').html('<font color="green">성공</font>');
+	   			    	}else {
+	   			    		$('#DSpan4').text('<font color="red">실패</font>');
+	   			    	}
+	   			    },
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
+			});
 			
-// 			$('#RuploadBtn5').click(function(){
-// 				var id = ${sessionScope.id };
-// 				var shotday = $('#RValue5').val();
-// 				var petname = $("#petname option:selected").text();
-// 				var vaccineCode = 405;
-// 				$.ajax({
-// 					type: 'post',
-// 					url: 'uploadMedical.do',
-// 					data: 
-// 					{
-// 						"id":id, 
-// 						"shotday":shotday, 
-// 						"petname":petname, 
-// 						"vaccineCode":vaccineCode
-// 					},
-// 					dataType: 'json',
-// 					success : function (data) {
-// 	   			    	//alert('sdsd');
-//  	   			        if(data.result)
-// 	   			        	//alert('사용가능'); 
-//     			     			$('#idError').html('<font color="green">사용가능</font>');
-//  	   			        else 
-//  	   			        	//alert('중복');
-//  	   			        	$('#idError').html('<font color="red">중복</font>');
-// 	   			    },
-// 					error: function(data) {
-// 						alert('잠시 후 다시 시도해주세요');
-// 					}
-// 				});
-// 			});
-// 		});
+			$('#DuploadBtn5').click(function(){
+				
+				if(!regDate.test($('#DValue5').val())){
+					alert('날짜 형식을 확인하세요');
+				}
+				
+				var id = '${myid }';
+				var shotday = $('#DValue5').val();
+				var petname = $("#name option:selected").text();
+				var vaccineCode = 105;
+				$.ajax({
+					type: 'get',
+					url: 'uploadMedical.do',
+					data: "id="+id+"&petname="+petname+"&shotday="+shotday+"&vaccineCode="+vaccineCode,
+					dataType: 'json',
+					success : function (data) {
+	   			    	if(data.result){
+	   			    		$('#DSpan5').html('<font color="green">성공</font>');
+	   			    	}else {
+	   			    		$('#DSpan5').text('<font color="red">실패</font>');
+	   			    	}
+	   			    },
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
+			});
+			
+			$('#CuploadBtn1').click(function(){
+				
+				if(!regDate.test($('#CValue1').val())){
+					alert('날짜 형식을 확인하세요');
+				}
+				
+				var id = '${myid }';
+				var shotday = $('#CValue1').val();
+				var petname = $("#name option:selected").text();
+				var vaccineCode = 201;
+				$.ajax({
+					type: 'get',
+					url: 'uploadMedical.do',
+					data: "id="+id+"&petname="+petname+"&shotday="+shotday+"&vaccineCode="+vaccineCode,
+					dataType: 'json',
+					success : function (data) {
+// 	   			    	alert(data.result);
+	   			    	if(data.result){
+	   			    		$('#CSpan1').html('<font color="green">성공</font>');
+	   			    	}else {
+	   			    		$('#CSpan1').text('<font color="red">실패</font>');
+	   			    	}
+	   			    },
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
+			});
+			
+			$('#CuploadBtn2').click(function(){
+				
+				if(!regDate.test($('#CValue2').val())){
+					alert('날짜 형식을 확인하세요');
+				}
+				
+				var id = '${myid }';
+				var shotday = $('#CValue2').val();
+				var petname = $("#name option:selected").text();
+				var vaccineCode = 202;
+				$.ajax({
+					type: 'get',
+					url: 'uploadMedical.do',
+					data: "id="+id+"&petname="+petname+"&shotday="+shotday+"&vaccineCode="+vaccineCode,
+					dataType: 'json',
+					success : function (data) {
+	   			    	if(data.result){
+	   			    		$('#CSpan2').html('<font color="green">성공</font>');
+	   			    	}else {
+	   			    		$('#CSpan2').text('<font color="red">실패</font>');
+	   			    	}
+	   			    },
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
+			});
+			
+			$('#CuploadBtn3').click(function(){
+				
+				if(!regDate.test($('#CValue3').val())){
+					alert('날짜 형식을 확인하세요');
+				}
+				
+				var id = '${myid }';
+				var shotday = $('#CValue3').val();
+				var petname = $("#name option:selected").text();
+				var vaccineCode = 203;
+				$.ajax({
+					type: 'get',
+					url: 'uploadMedical.do',
+					data: "id="+id+"&petname="+petname+"&shotday="+shotday+"&vaccineCode="+vaccineCode,
+					dataType: 'json',
+					success : function (data) {
+	   			    	if(data.result){
+	   			    		$('#CSpan3').html('<font color="green">성공</font>');
+	   			    	}else {
+	   			    		$('#CSpan3').text('<font color="red">실패</font>');
+	   			    	}
+	   			    },
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
+			});
+			
+			$('#CuploadBtn4').click(function(){
+				
+				if(!regDate.test($('#CValue4').val())){
+					alert('날짜 형식을 확인하세요');
+				}
+				
+				var id = '${myid }';
+				var shotday = $('#CValue4').val();
+				var petname = $("#name option:selected").text();
+				var vaccineCode = 204;
+				$.ajax({
+					type: 'get',
+					url: 'uploadMedical.do',
+					data: "id="+id+"&petname="+petname+"&shotday="+shotday+"&vaccineCode="+vaccineCode,
+					dataType: 'json',
+					success : function (data) {
+	   			    	if(data.result){
+	   			    		$('#CSpan4').html('<font color="green">성공</font>');
+	   			    	}else {
+	   			    		$('#CSpan4').text('<font color="red">실패</font>');
+	   			    	}
+	   			    },
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
+			});
+			
+			$('#CuploadBtn5').click(function(){
+				
+				if(!regDate.test($('#CValue5').val())){
+					alert('날짜 형식을 확인하세요');
+				}
+				
+				var id = '${myid }';
+				var shotday = $('#CValue5').val();
+				var petname = $("#name option:selected").text();
+				var vaccineCode = 205;
+				$.ajax({
+					type: 'get',
+					url: 'uploadMedical.do',
+					data: "id="+id+"&petname="+petname+"&shotday="+shotday+"&vaccineCode="+vaccineCode,
+					dataType: 'json',
+					success : function (data) {
+	   			    	if(data.result){
+	   			    		$('#CSpan5').html('<font color="green">성공</font>');
+	   			    	}else {
+	   			    		$('#CSpan5').text('<font color="red">실패</font>');
+	   			    	}
+	   			    },
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
+			});
+			
+			$('#KuploadBtn1').click(function(){
+				
+				if(!regDate.test($('#KValue1').val())){
+					alert('날짜 형식을 확인하세요');
+				}
+				
+				var id = '${myid }';
+				var shotday = $('#KValue1').val();
+				var petname = $("#name option:selected").text();
+				var vaccineCode = 301;
+				$.ajax({
+					type: 'get',
+					url: 'uploadMedical.do',
+					data: "id="+id+"&petname="+petname+"&shotday="+shotday+"&vaccineCode="+vaccineCode,
+					dataType: 'json',
+					success : function (data) {
+	   			    	if(data.result){
+	   			    		$('#KSpan1').html('<font color="green">성공</font>');
+	   			    	}else {
+	   			    		$('#KSpan1').text('<font color="red">실패</font>');
+	   			    	}
+	   			    },
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
+			});
+			
+			$('#KuploadBtn2').click(function(){
+				
+				if(!regDate.test($('#KValue2').val())){
+					alert('날짜 형식을 확인하세요');
+				}
+				
+				var id = '${myid }';
+				var shotday = $('#KValue2').val();
+				var petname = $("#name option:selected").text();
+				var vaccineCode = 302;
+				$.ajax({
+					type: 'get',
+					url: 'uploadMedical.do',
+					data: "id="+id+"&petname="+petname+"&shotday="+shotday+"&vaccineCode="+vaccineCode,
+					dataType: 'json',
+					success : function (data) {
+	   			    	if(data.result){
+	   			    		$('#KSpan2').html('<font color="green">성공</font>');
+	   			    	}else {
+	   			    		$('#KSpan2').text('<font color="red">실패</font>');
+	   			    	}
+	   			    },
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
+			});
+			
+			$('#KuploadBtn3').click(function(){
+				
+				if(!regDate.test($('#KValue3').val())){
+					alert('날짜 형식을 확인하세요');
+				}
+					
+				var id = '${myid }';
+				var shotday = $('#KValue3').val();
+				var petname = $("#name option:selected").text();
+				var vaccineCode = 303;
+				$.ajax({
+					type: 'get',
+					url: 'uploadMedical.do',
+					data: "id="+id+"&petname="+petname+"&shotday="+shotday+"&vaccineCode="+vaccineCode,
+					dataType: 'json',
+					success : function (data) {
+	   			    	if(data.result){
+	   			    		$('#KSpan3').html('<font color="green">성공</font>');
+	   			    	}else {
+	   			    		$('#KSpan3').text('<font color="red">실패</font>');
+	   			    	}
+	   			    },
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
+			});
+			
+			$('#KuploadBtn4').click(function(){
+				
+				if(!regDate.test($('#KValue4').val())){
+					alert('날짜 형식을 확인하세요');
+				}
+				
+				var id = '${myid }';
+				var shotday = $('#KValue4').val();
+				var petname = $("#name option:selected").text();
+				var vaccineCode = 304;
+				$.ajax({
+					type: 'get',
+					url: 'uploadMedical.do',
+					data: "id="+id+"&petname="+petname+"&shotday="+shotday+"&vaccineCode="+vaccineCode,
+					dataType: 'json',
+					success : function (data) {
+	   			    	if(data.result){
+	   			    		$('#KSpan4').html('<font color="green">성공</font>');
+	   			    	}else {
+	   			    		$('#KSpan4').text('<font color="red">실패</font>');
+	   			    	}
+	   			    },
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
+			});
+			
+			$('#KuploadBtn5').click(function(){
+				
+				if(!regDate.test($('#KValue5').val())){
+					alert('날짜 형식을 확인하세요');
+				}
+				
+				var id = '${myid }';
+				var shotday = $('#KValue5').val();
+				var petname = $("#name option:selected").text();
+				var vaccineCode = 305;
+				$.ajax({
+					type: 'get',
+					url: 'uploadMedical.do',
+					data: "id="+id+"&petname="+petname+"&shotday="+shotday+"&vaccineCode="+vaccineCode,
+					dataType: 'json',
+					success : function (data) {
+	   			    	if(data.result){
+	   			    		$('#KSpan5').html('<font color="green">성공</font>');
+	   			    	}else {
+	   			    		$('#KSpan5').text('<font color="red">실패</font>');
+	   			    	}
+	   			    },
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
+			});
+			
+			$('#RuploadBtn1').click(function(){
+				
+				if(!regDate.test($('#RValue1').val())){
+					alert('날짜 형식을 확인하세요');
+				}
+				
+				var id = '${myid }';
+				var shotday = $('#RValue1').val();
+				var petname = $("#name option:selected").text();
+				var vaccineCode = 401;
+				$.ajax({
+					type: 'get',
+					url: 'uploadMedical.do',
+					data: "id="+id+"&petname="+petname+"&shotday="+shotday+"&vaccineCode="+vaccineCode,
+					dataType: 'json',
+					success : function (data) {
+	   			    	if(data.result){
+	   			    		$('#RSpan1').html('<font color="green">성공</font>');
+	   			    	}else {
+	   			    		$('#RSpan1').text('<font color="red">실패</font>');
+	   			    	}
+	   			    },
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
+			});
+			
+			
+			$('#RuploadBtn2').click(function(){
+				
+				if(!regDate.test($('#RValue2').val())){
+					alert('날짜 형식을 확인하세요');
+				}	
+				
+				var id = '${myid }';
+				var shotday = $('#RValue2').val();
+				var petname = $("#name option:selected").text();
+				var vaccineCode = 402;
+				$.ajax({
+					type: 'get',
+					url: 'uploadMedical.do',
+					data: "id="+id+"&petname="+petname+"&shotday="+shotday+"&vaccineCode="+vaccineCode,
+					dataType: 'json',
+					success : function (data) {
+	   			    	if(data.result){
+	   			    		$('#RSpan2').html('<font color="green">성공</font>');
+	   			    	}else {
+	   			    		$('#RSpan2').text('<font color="red">실패</font>');
+	   			    	}
+	   			    },
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
+			});
+			
+			$('#RuploadBtn3').click(function(){
+				
+				if(!regDate.test($('#RValue3').val())){
+					alert('날짜 형식을 확인하세요');
+				}
+				
+				var id = '${myid }';
+				var shotday = $('#RValue3').val();
+				var petname = $("#name option:selected").text();
+				var vaccineCode = 403;
+				$.ajax({
+					type: 'get',
+					url: 'uploadMedical.do',
+					data: "id="+id+"&petname="+petname+"&shotday="+shotday+"&vaccineCode="+vaccineCode,
+					dataType: 'json',
+					success : function (data) {
+	   			    	if(data.result){
+	   			    		$('#RSpan3').html('<font color="green">성공</font>');
+	   			    	}else {
+	   			    		$('#RSpan3').text('<font color="red">실패</font>');
+	   			    	}
+	   			    },
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
+			});
+			
+			$('#RuploadBtn4').click(function(){
+				
+				if(!regDate.test($('#RValue4').val())){
+					alert('날짜 형식을 확인하세요');
+				}
+				
+				var id = '${myid }';
+				var shotday = $('#RValue4').val();
+				var petname = $("#name option:selected").text();
+				var vaccineCode = 404;
+				$.ajax({
+					type: 'get',
+					url: 'uploadMedical.do',
+					data: "id="+id+"&petname="+petname+"&shotday="+shotday+"&vaccineCode="+vaccineCode,
+					dataType: 'json',
+					success : function (data) {
+	   			    	if(data.result){
+	   			    		$('#RSpan4').html('<font color="green">성공</font>');
+	   			    	}else {
+	   			    		$('#RSpan4').text('<font color="red">실패</font>');
+	   			    	}
+	   			    },
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
+			});
+			
+			$('#RuploadBtn5').click(function(){
+				
+				if(!regDate.test($('#RValue5').val())){
+					alert('날짜 형식을 확인하세요');
+				}
+				
+				var id = '${myid }';
+				var shotday = $('#RValue5').val();
+				var petname = $("#name option:selected").text();
+				var vaccineCode = 405;
+				$.ajax({
+					type: 'get',
+					url: 'uploadMedical.do',
+					data: "id="+id+"&petname="+petname+"&shotday="+shotday+"&vaccineCode="+vaccineCode,
+					dataType: 'json',
+					success : function (data) {
+	   			    	if(data.result){
+	   			    		$('#RSpan5').html('<font color="green">성공</font>');
+	   			    	}else {
+	   			    		$('#RSpan5').text('<font color="red">실패</font>');
+	   			    	}
+	   			    },
+					error: function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
+			});
+			
+		});
 		
 	</script>
 	    
@@ -676,6 +644,7 @@
     
    
     <div class="product-big-title-area">
+    
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -693,32 +662,29 @@
             <div class="row">
                 <div class="col-md-3">
         
-                <form method="post" action="#">
-                
-								<table cellspacing="0" class="shop_table cart" id="listTable">
-									<thead>
-										<tr>
-											<th colspan="2" id="mypetmainimage">
-												<img src="img/dog_04.jpg" alt="">
-											</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr class="cart_item">
-											<td colspan="2">
-											
-												<select class="country_to_state country_select" name="name" id="name">
-                                                 	<c:forEach items="${list }" var="petinfo">
-                                                 		<option value="${petinfo.name }">${petinfo.name }</option>
-                                                 	</c:forEach>
-                                                </select>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</form>
-              
-                    
+        		<form method="post" action="#">
+						<table cellspacing="0" name="lTable" id="lTable" class="shop_table cart">
+							<thead>
+								<tr>
+									<th colspan="2" id="mypetmainimage">
+										<img src="img/dog_04.jpg" alt="">
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="cart_item">
+									<td colspan="2">
+										<select class="country_to_state country_select" name="name" id="name">
+                                             <option value="defaultValue"> 선택하세요 </option>
+                                             <c:forEach items="${list }" var="petinfo">
+                                               	<option value="${petinfo.name }">${petinfo.name }</option>
+                                             </c:forEach>
+                                        </select>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					
                 </div>
                 <!-- 여기여기여기부터 -->
                 <div class="col-md-8">
@@ -739,8 +705,11 @@
 		<h2>종합백신 DHPPL</h2>
 		<p>개 홍역(Distemper), 전염성 간염(Infectious Hepatitis), 파보바이러스성 장염(Pavovirus Enteritis), 파라인플루엔자성 기관지염(Parainflluenza) 및 렙토스피라증(Leptospirosis) 등의 질병을 예방해주는 가장 중요한 예방접종이다.</p>
 		<p>6~8주부터 시작해서 2~3주 간격으e 3~5회 접종, 매년 1회 추가접종한다. 접종 뒤 1주일간 목욕금지.</p>
+		
 		<form method="post" action="#">
-			<table cellspacing="0" class="shop_table cart" id="table1">
+		
+			<button id="addBtn1" value="추가">추가</button>
+			<table cellspacing="0" class="shop_table cart" id="table1" name="table1">
 				<thead>
 					<tr>
 						<th colspan="2">접종일정</th>
@@ -755,53 +724,43 @@
                         <td><a>1차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-    					<td><input type="text" placeholder="0000-00-00" id="DValue1"></td>
-                    	<td><input type="button" value="입력" id="DuploadBtn1" style="padding: 4px 4px"></td>
+    					<td><input type="text" class="VcDate" placeholder="0000-00-00" id="DValue1"></td>
+                    	<td><input type="button" value="입력" id="DuploadBtn1" style="padding: 4px 4px">
+                    	<span id="DSpan1" value="결과">　　</span></td>
                     </tr>
                     <tr>
                         <td><a>2차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="DValue2"></td>
-                       	<td><input type="button" value="입력" id="DuploadBtn2" style="padding: 4px 4px"></td>
+                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="DValue2"></td>
+                       	<td><input type="button" value="입력" id="DuploadBtn2" style="padding: 4px 4px">
+                       	<span id="DSpan2" value="결과">　　</span></td>
                     </tr>
                     <tr>
                         <td><a>3차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="DValue3"></td>
-                        <td><input type="button" value="입력" id="DuploadBtn3" style="padding: 4px 4px"></td>
+                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="DValue3"></td>
+                        <td><input type="button" value="입력" id="DuploadBtn3" style="padding: 4px 4px">
+                        <span id="DSpan3" value="결과">　　</span></td>
                     </tr>
                     <tr>
                         <td><a>4차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="DValue4"></td>
-                        <td><input type="button" value="입력" id="DuploadBtn4" style="padding: 4px 4px"></td>
+                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="DValue4"></td>
+                        <td><input type="button" value="입력" id="DuploadBtn4" style="padding: 4px 4px">
+                        <span id="DSpan4" value="결과">　　</span></td>
                     </tr>
                     <tr>
                         <td><a>5차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="DValue5"></td>
-                        <td><input type="button" value="입력" id="DuploadBtn5" style="padding: 4px 4px"></td>
+                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="DValue5"></td>
+                        <td><input type="button" value="입력" id="DuploadBtn5" style="padding: 4px 4px">
+                        <span id="DSpan5" value="결과">　　</span></td>
                     </tr>
-                    
-                    <tr>
-                        <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
-						<td>추천일</td>
-                        <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="DValue6"></td>
-                        <td><input type="button" value="입력" id="DuploadBtn6" style="padding: 4px 4px"></td>
-                    </tr>
-                    <tr>
-                        <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
-						<td>추천일</td>
-                        <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="DValue7"></td>
-                        <td><input type="button" value="입력" id="DuploadBtn7" style="padding: 4px 4px"></td>
-                    </tr>
-                    
+             
                     
 				</tbody>
 			</table>
@@ -813,7 +772,7 @@
 	<p>코로나바이러스성 장염은 피가 섞인 설사를 하고, 구토를 하며, 열이 나고, 식욕이 없어지는 증세가 특징.</p>
 	<p>생후 6~8주부터 2~3주 간격으로 2회 접종, 매년 1회 추가접종한다.</p>
 		<form method="post" action="#">
-			<table cellspacing="0" class="shop_table cart" id="table2">
+			<table cellspacing="0" class="shop_table cart" id="table2" name="table2">
 				<thead>
 					<tr>
 						<th colspan="2">접종일정</th>
@@ -828,58 +787,63 @@
                         <td><a>1차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-    					<td><input type="text" placeholder="0000-00-00" id="CValue1"></td>
-                    	<td><input type="button" value="입력" id="CuploadBtn1" style="padding: 4px 4px"></td>
+    					<td><input type="text" class="VcDate" placeholder="0000-00-00" id="CValue1"></td>
+                    	<td><input type="button" value="입력" id="CuploadBtn1" style="padding: 4px 4px">
+                    	<span id="CSpan1" value="결과">　　</span></td>
                     </tr>
                     <tr>
                         <td><a>2차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="CValue2"></td>
-                       	<td><input type="button" value="입력" id="CuploadBtn2" style="padding: 4px 4px"></td>
+                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="CValue2"></td>
+                       	<td><input type="button" value="입력" id="CuploadBtn2" style="padding: 4px 4px">
+                       	<span id="CSpan2" value="결과">　　</span></td>
                     </tr>
                     <tr>
                         <td><a>3차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="CValue3"></td>
-                        <td><input type="button" value="입력" id="CuploadBtn3" style="padding: 4px 4px"></td>
+                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="CValue3"></td>
+                        <td><input type="button" value="입력" id="CuploadBtn3" style="padding: 4px 4px">
+                        <span id="CSpan3" value="결과">　　</span></td>
                     </tr>
                     <tr>
                         <td><a>4차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="CValue4"></td>
-                        <td><input type="button" value="입력" id="CuploadBtn4" style="padding: 4px 4px"></td>
+                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="CValue4"></td>
+                        <td><input type="button" value="입력" id="CuploadBtn4" style="padding: 4px 4px">
+                        <span id="CSpan4" value="결과">　　</span></td>
                     </tr>
                     <tr>
                         <td><a>5차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="CValue5"></td>
-                        <td><input type="button" value="입력" id="CuploadBtn5" style="padding: 4px 4px"></td>
+                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="CValue5"></td>
+                        <td><input type="button" value="입력" id="CuploadBtn5" style="padding: 4px 4px">
+                        <span id="CSpan5" value="결과">　　</span></td>
                     </tr>
                     
-                
-                
-                 
-                   
+                	
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="CValue6"></td>
-                        <td><input type="button" value="입력" id="CuploadBtn6" style="padding: 4px 4px"></td>
+                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="CValue6"></td>
+                        <td><input type="button" value="입력" id="CuploadBtn6" style="padding: 4px 4px">
+                        <span id="CSpan1" value="결과">　　</span></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="CValue7"></td>
+                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="CValue7"></td>
                        	<td><input type="button" value="입력" id="CuploadBtn7" style="padding: 4px 4px"></td>
                     </tr>
+                    
                 </tbody>
 			</table>
+			<button id="addBtn2" value="추가">추가</button>
         </form>
 </div>
 
@@ -888,7 +852,7 @@
 	<p>주로 강아지들이 대량으로 있는 곳에서 공기를 통해 쉽게 감염되며 심한 마른기침을 일으키며 폐렴으로 진행되기도 한다.</p>
 	<p>생후 6~8주부터 2~3주 간격으로 2회 접종, 매년 1회 추가접종한다.</p>
 		<form method="post" action="#">
-			<table cellspacing="0" class="shop_table cart" id="table3">
+			<table cellspacing="0" class="shop_table cart" id="table3" name="table3">
 				<thead>
 					<tr>
 						<th colspan="2">접종일정</th>
@@ -904,56 +868,56 @@
                         <td><a>1차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-    					<td><input type="text" placeholder="0000-00-00" id="KValue1"></td>
-                    	<td><input type="button" value="입력" id="KuploadBtn1" style="padding: 4px 4px"></td>
+    					<td><input type="text" class="VcDate" placeholder="0000-00-00" id="KValue1"></td>
+                    	<td><input type="button" value="입력" id="KuploadBtn1" style="padding: 4px 4px">
+                    	<span id="KSpan1" value="결과">　　</span></td>
                     </tr>
                     <tr>
                         <td><a>2차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="KValue2"></td>
-                       	<td><input type="button" value="입력" id="KuploadBtn2" style="padding: 4px 4px"></td>
+                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="KValue2"></td>
+                       	<td><input type="button" value="입력" id="KuploadBtn2" style="padding: 4px 4px">
+                       	<span id="KSpan2" value="결과">　　</span></td>
                     </tr>
                     <tr>
                         <td><a>3차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="KValue3"></td>
-                        <td><input type="button" value="입력" id="KuploadBtn3" style="padding: 4px 4px"></td>
+                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="KValue3"></td>
+                        <td><input type="button" value="입력" id="KuploadBtn3" style="padding: 4px 4px">
+                        <span id="KSpan3" value="결과">　　</span></td>
                     </tr>
                     <tr>
                         <td><a>4차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="KValue4"></td>
-                        <td><input type="button" value="입력" id="KuploadBtn4" style="padding: 4px 4px"></td>
+                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="KValue4"></td>
+                        <td><input type="button" value="입력" id="KuploadBtn4" style="padding: 4px 4px">
+                        <span id="KSpan4" value="결과">　　</span></td>
                     </tr>
                     <tr>
                         <td><a>5차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="KValue5"></td>
-                        <td><input type="button" value="입력" id="KuploadBtn5" style="padding: 4px 4px"></td>
+                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="KValue5"></td>
+                        <td><input type="button" value="입력" id="KuploadBtn5" style="padding: 4px 4px">
+                        <span id="KSpan5" value="결과">　　</span></td>
                     </tr>
                     
               
                    
+                    
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="KValue6"></td>
-                        <td><input type="button" value="입력" id="KuploadBtn6" style="padding: 4px 4px"></td>
-                    </tr>
-                    <tr>
-                        <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
-						<td>추천일</td>
-                        <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="KValue7"></td>
+                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="KValue7"></td>
                         <td><input type="button" value="입력" id="KuploadBtn7" style="padding: 4px 4px"></td>
                     </tr>
                 </tbody>
 			</table>
+			<button id="addBtn3" value="추가">추가</button>
         </form>
 
 </div>
@@ -963,7 +927,7 @@
 	<p>광견병 바이러스가 매개하는 감염증으로 광견병은 공수병이라고도 한다. 모든 온혈동물에서 발생되는 질병으로 감염 동물로부터 교상(물리거나 할퀸 상처)을 통해 동물 및 사람에게 전파되는 중요한 인수공통전염병이다.</p>
 	<p>생후 3개월 이상 된 강아지에게 1회 접종한 후 6개월 후 재접종한다. 매년 추가접종을 해야 한다</p>
 		<form method="post" action="#">
-			<table cellspacing="0" class="shop_table cart" id="table4">
+			<table cellspacing="0" class="shop_table cart" id="table4" name="table4">
 				<thead>
 					<tr>
 						<th colspan="2">접종일정</th>
@@ -978,36 +942,41 @@
                         <td><a>1차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-    					<td><input type="text" placeholder="0000-00-00" id="RValue1"></td>
-                    	<td><input type="button" value="입력" id="RuploadBtn1" style="padding: 4px 4px"></td>
+    					<td><input type="text" class="VcDate" placeholder="0000-00-00" id="RValue1"></td>
+                    	<td><input type="button" value="입력" id="RuploadBtn1" style="padding: 4px 4px">
+                    	<span id="RSpan1" value="결과">　　</span></td>
                     </tr>
                     <tr>
                         <td><a>2차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="RValue2"></td>
-                       	<td><input type="button" value="입력" id="RuploadBtn2" style="padding: 4px 4px"></td>
+                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="RValue2"></td>
+                       	<td><input type="button" value="입력" id="RuploadBtn2" style="padding: 4px 4px">
+                       	<span id="RSpan2" value="결과">　　</span></td>
                     </tr>
                     <tr>
                         <td><a>3차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="RValue3"></td>
-                        <td><input type="button" value="입력" id="RuploadBtn3" style="padding: 4px 4px"></td>
+                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="RValue3"></td>
+                        <td><input type="button" value="입력" id="RuploadBtn3" style="padding: 4px 4px">
+                        <span id="RSpan3" value="결과">　　</span></td>
                     </tr>
                     <tr>
                         <td><a>4차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="RValue4"></td>
-                        <td><input type="button" value="입력" id="RuploadBtn4" style="padding: 4px 4px"></td>
+                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="RValue4"></td>
+                        <td><input type="button" value="입력" id="RuploadBtn4" style="padding: 4px 4px">
+                        <span id="RSpan4" value="결과">　　</span></td>
                     </tr>
                     <tr>
                         <td><a>5차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="RValue5"></td>
-                        <td><input type="button" value="입력" id="RuploadBtn5" style="padding: 4px 4px"></td>
+                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="RValue5"></td>
+                        <td><input type="button" value="입력" id="RuploadBtn5" style="padding: 4px 4px">
+                        <span id="RSpan5" value="결과">　　</span></td>
                     </tr>
                     
                     
@@ -1015,18 +984,19 @@
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="RValue6"></td>
+                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="RValue6"></td>
                         <td><input type="button" value="입력" id="RuploadBtn6" style="padding: 4px 4px"></td>
                     </tr>
                     <tr>
                         <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
 						<td>추천일</td>
                         <td>D-day</td>
-                        <td><input type="text" placeholder="0000-00-00" id="RValue7"></td>
+                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="RValue7"></td>
                         <td><input type="button" value="입력" id="RuploadBtn7" style="padding: 4px 4px"></td>
                     </tr>
                 </tbody>
 			</table>
+			<button id="addBtn4" value="추가">추가</button>
         </form>
 </div>
 </div><!-- tab end -->

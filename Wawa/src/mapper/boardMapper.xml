@@ -6,7 +6,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertBoard" parameterType="java.util.HashMap">
 		insert into board values(0,#{boardCode},#{title},#{writer},#{content},
 		0,sysdate(),#{category},#{name},#{resist},#{lostDate},#{kind},
-		#{weight},#{age},#{sex},#{phone},#{email},#{birthday},#{starPoint},0,#{lostPlace})	
+		#{weight},#{age},#{sex},#{phone},#{email},#{birthday},#{starPoint},0,#{lostPlace},
+		#{fileUri},#{fileId})	
 	</insert>
 	<update id="updateBoard" parameterType="java.util.HashMap">
 		update board set title=#{title},writer=#{writer}, content=#{content}, readCount=#{readCount},
@@ -14,7 +15,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resist=#{resist}, lostDate=#{lostDate}, lostPlace=#{lostPlace}, kind=#{kind}, 
 		weight=#{weight}, age=#{age}, sex=#{sex}, phone=#{phone},
 		email=#{email}, birthday=#{birthday}, starPoint=#{starPoint},
-		likeCount=#{likeCount} where boardIdx=#{boardIdx}
+		likeCount=#{likeCount}, fileUri = #{fileUri}, fileId = #{fileId}
+		  where boardIdx=#{boardIdx}
 	</update>	
 	<delete id="deleteBoard" parameterType="int">
 		delete from board where boardIdx=#{boardIdx}

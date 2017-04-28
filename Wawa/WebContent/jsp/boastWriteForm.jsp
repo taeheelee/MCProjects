@@ -110,7 +110,7 @@
 											</div>
                                          
                                            
-                                        <form action="boastWrite.do" enctype="multipart/form-data" class="checkout" method="get" name="checkout">
+                                        <form action="boastWrite.do" enctype="multipart/form-data" class="checkout" method="POST" name="checkout">
                                 			<input type="hidden" name="content" id="content">
 											<input type="hidden" name="boardCode" value="3">
 											<input type="hidden" name="writer" value="${sessionScope.name}">
@@ -164,8 +164,8 @@
                                                 </label>
                                                 
                                             <div class="form-row place-order">
-												<input type="button" data-value="Place order" value="ADD PHOTO" id="place_order" name="woocommerce_checkout_place_order" class="button alt" >
-
+												<input type="file" data-value="Place order" value="ADD PHOTO" id="ufile" name="ufile" class="button alt" >
+										
 											</div>
                                             </p>
  											   

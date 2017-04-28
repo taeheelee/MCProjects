@@ -63,4 +63,9 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 		<property name="mapperInterface" value="interface_dao.IMedicalDao"></property>
 	</bean>
+	
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="boardFileDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+		<property name="mapperInterface" value="interface_dao.IBoardFileDao"></property>
+	</bean>
 </beans>

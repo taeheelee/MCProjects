@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import commons.Constant;
+
 import interface_service.IBoardService;
 import interface_service.IPetinfoService;
 import interface_service.IRepleService;
-import model.Board;
 
 @Controller
 public class BoastController {
@@ -23,6 +23,7 @@ public class BoastController {
 	private IRepleService repleService;
 	@Autowired
 	private IPetinfoService petService;
+	
 	
 	@RequestMapping("boastMain.do")
 	public ModelAndView boastMain(@RequestParam(defaultValue="1") int page,
@@ -74,7 +75,8 @@ public class BoastController {
 	
 	@RequestMapping("boastWrite.do")
 	public String boastWrite(int boardCode, String name, int age, String kind, String sex, 
-			String title, String content, String writer){
+			String title, String content, String writer, @RequestParam("ufile") MultipartFile ufile){
+		
 		if(sex.equals("male"))
 			sex = "수컷";
 		else if(sex.equals("female"))
@@ -102,7 +104,7 @@ public class BoastController {
 			kind = "기타 중형견";
 		else if(kind.equals("11"))
 			kind = "기타 대형견";
-		boardService.writeBoastBoard(boardCode, name, age, kind, sex, title, content, writer);
+		boardService.writeBoastBoard(boardCode, name, age, kind, sex, title, content, writer, ufile);
 		return "redirect:boastMain.do";
 	}
 	

@@ -56,6 +56,8 @@ public class Constant {
 		public static final String STARPOINT = "starPoint";
 		public static final String LIKECOUNT = "likeCount";
 		public static final String LOSTPLACE = "lostPlace";
+		public static final String FILEURI = "fileUri";
+		public static final String FILEID = "fileId";
 	}
 	
 	public class DogKind{
@@ -96,5 +98,10 @@ public class Constant {
 		public static final String GROUPLV = "groupLv";
 	}
 	
-	
+	public class BoardFile{
+		public static final String FILEID = "fileId";
+		public static final String ORIGINFILENAME = "originFileName";
+		public static final String SIZE = "size";
+		public static final String URI = "uri";
+	}
 }

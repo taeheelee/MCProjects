@@ -3,10 +3,12 @@ package interface_service;
 import java.util.HashMap;
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public interface IBoardService {
 	//================================삽입========================================================
 	//뽐내기
-	public boolean writeBoastBoard(int boardCode, String name, int age, String kind, String sex, String title, String content, String writer);
+	public boolean writeBoastBoard(int boardCode, String name, int age, String kind, String sex, String title, String content, String writer, MultipartFile file);
 	//자유게시판,애견정보상식
 	public boolean writeFreeBoard(int boardCode, String title, String category, String content, String writer);
 	//유기견찾기

@@ -43,7 +43,6 @@ public class MainController {
 				params.put("sex" + i, petList.get(i).get("sex"));
 				params.put("birth" + i, petList.get(i).get("birthday"));
 			}
-			System.out.println(params.get("name0"));
 			session.setAttribute("id", userInfo.getId());
 			session.setAttribute("name", userInfo.getNickname());
 			session.setAttribute("petName", params.get("name0"));

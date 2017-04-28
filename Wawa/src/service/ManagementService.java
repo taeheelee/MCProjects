@@ -17,14 +17,13 @@ public class ManagementService implements IManagementService {
 	private IManagementDao dao;
 	
 	@Override
-	public boolean insertManagement(HashMap<String, Object> params) {
-		// TODO Auto-generated method stub
+	public boolean insertManagement(model.Management model) {
 		HashMap<String, Object> date = new HashMap<>();
 
-		date.put(Management.IDX, params.get("idx"));
-		date.put(Management.DATE, params.get("date"));
-		date.put(Management.WEIGHT, params.get("weight"));
-		int result = dao.insertManagement(date);
+//		date.put(Management.IDX, params.get("idx"));
+//		date.put(Management.DATE, params.get("date"));
+//		date.put(Management.WEIGHT, params.get("weight"));
+		int result = dao.insertManagement(model);
 		if (result > 0)
 			return true;
 		else
@@ -32,14 +31,13 @@ public class ManagementService implements IManagementService {
 	}
 
 	@Override
-	public boolean updateManagement(HashMap<String, Object> params) {
-		// TODO Auto-generated method stub
+	public boolean updateManagement(model.Management model) {
 		HashMap<String, Object> date = new HashMap<>();
 
-		date.put("managementIdx", params.get("managementIdx"));
-		date.put(Management.DATE, params.get("date"));
-		date.put(Management.WEIGHT, params.get("weight"));
-		int result = dao.updateManagement(date);
+//		date.put("managementIdx", params.get("managementIdx"));
+//		date.put(Management.DATE, params.get("date"));
+//		date.put(Management.WEIGHT, params.get("weight"));
+		int result = dao.updateManagement(model);
 		if (result > 0)
 			return true;
 		else
@@ -48,8 +46,6 @@ public class ManagementService implements IManagementService {
 
 	@Override
 	public boolean deleteManagement(int managementIdx) {
-		// TODO Auto-generated method stub
-
 		int result = dao.deleteManagement(managementIdx);
 		if (result > 0)
 			return true;
@@ -58,20 +54,18 @@ public class ManagementService implements IManagementService {
 	}
 
 	@Override
-	public HashMap<String, Object> selectOne(int managementIdx) {
-		// TODO Auto-generated method stub
-		HashMap<String, Object> params = new HashMap<>();
-		params = dao.selectOne(managementIdx);
+	public model.Management selectOne(int managementIdx) {
+//		HashMap<String, Object> params = new HashMap<>();
+		model.Management model = new model.Management();
+		model = dao.selectOne(managementIdx);
 		
-		return params;
+		return model;
 	}
 
 	@Override
-	public List<HashMap<String, Object>> selectList(int idx) {
-		// TODO Auto-generated method stub
-		List<HashMap<String, Object>> list = dao.selectList(idx);
+	public List<model.Management> selectList(String id) {
+		List<model.Management> list = dao.selectList(id);
 		
 		return list;
 	}
-
 }

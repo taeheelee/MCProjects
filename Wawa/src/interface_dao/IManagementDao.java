@@ -1,12 +1,13 @@
 package interface_dao;
 
-import java.util.HashMap;
 import java.util.List;
 
+import model.Management;
+
 public interface IManagementDao {
-	public int insertManagement(HashMap<String, Object> params);
-	public int updateManagement(HashMap<String, Object> params);
+	public int insertManagement(Management model);
+	public int updateManagement(Management model);
 	public int deleteManagement(int managementIdx);
-	public HashMap<String, Object> selectOne(int managementIdx);
-	public List<HashMap<String, Object>> selectList(int idx);
+	public Management selectOne(int managementIdx);
+	public List<Management> selectList(String id);
 }

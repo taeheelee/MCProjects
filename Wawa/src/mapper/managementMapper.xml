@@ -3,20 +3,21 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="interface_dao.IManagementDao">
-	<insert id="insertManagement" parameterType="java.util.HashMap">
+	<insert id="insertManagement" parameterType="model.Manangement">
 		insert into management values(0,#{idx},#{date},#{weight})
 	</insert>
-	<update id="updateManagement" parameterType="java.util.HashMap">
+	<update id="updateManagement" parameterType="model.Management">
 		update management set date=#{date}, weight=#{weight} where managementIdx=#{managementIdx} 
 	</update>	
 	<delete id="deleteManagement" parameterType="int">
 		delete from management where managementIdx=#{managementIdx}
 	</delete>
-	<select id="selectOne" parameterType="int" resultType="java.util.HashMap">
+	<select id="selectOne" parameterType="int" resultType="model.Management">
 		select * from management where managementIdx=#{managementIdx}
 	</select>
-	<select id="selectList" parameterType="int" resultType="java.util.HashMap">
-		select * from management where idx=#{idx} order by date asc
+	<select id="selectList" parameterType="int" resultType="model.Management">
+<!-- 		select * from management where idx=#{idx} order by idx asc, date asc; -->
+		select managementIdx, m.idx, date, m.weight from management m, petinfo p where m.idx = p.idx and p.id=#{id} order by p.idx asc, m.date asc;
 	</select>
 	
 </mapper>

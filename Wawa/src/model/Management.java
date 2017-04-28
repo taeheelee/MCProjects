@@ -5,6 +5,7 @@ public class Management {
 	private int code;
 	private String date;
 	private int weight;
+	
 	public int getManagement_idx() {
 		return management_idx;
 	}
@@ -29,10 +30,11 @@ public class Management {
 	public void setWeight(int weight) {
 		this.weight = weight;
 	}
+
 	@Override
 	public String toString() {
-		return "Management [management_idx=" + management_idx + ", code=" + code + ", date=" + date + ", weight="
-				+ weight + "]";
+		return "management_idx=" + management_idx + ", code=" + code + ", date=" + date + ", weight="
+				+ weight + "\n";
 	}
 	
 	

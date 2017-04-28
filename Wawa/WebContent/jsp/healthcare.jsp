@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -40,12 +41,8 @@ svg{
 <script type="text/javascript">
 
 $(document).ready(function(){
-	
-	
 	var calculate = document.getElementById('calculate');
-
 	var calculateCalories = document.getElementById('calculateCalories');
-	
 	
 	calculate.onclick = function(){
 		var activity = $("input[name=activity]:checked").val();
@@ -53,6 +50,14 @@ $(document).ready(function(){
 		calculateCalories.innerHTML = Number(activity) * ((5*30)+70);
 	};
 	
+	var iVal2 = document.getElementById("ModelAndView");
+	for(var i = 0; i < iVal2.size(); i++) {
+		for(var j = 0; j < iVal2.value; j++) {
+			alert(iVal2.value[j]);
+		}
+	}
+	alert(iVal2);
+	alert("?");
 });
 </script>
 </head>
@@ -212,7 +217,13 @@ $(document).ready(function(){
 
             <div class="col-md-6">
                <!-- 그래프 구역 -->
-               <svg id="d3g" style="width: 100%;"></svg>
+<!--                <svg id="d3g" style="width: 100%;"></svg> -->
+               <c:forEach var="pet" items="${weightList.pet1}" varStatus="idx1">
+              		 <%-- ${weightList.get("pet"+idx1).get(idx2).getWeight()} --%>
+               		<c:forEach items="${pet.value}" varStatus="idx2">
+               		</c:forEach>
+               		<br>
+               </c:forEach>
             </div>
 </div>
 

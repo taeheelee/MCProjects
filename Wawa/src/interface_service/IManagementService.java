@@ -3,12 +3,12 @@ package interface_service;
 import java.util.HashMap;
 import java.util.List;
 
-public interface IManagementService {
-	public boolean insertManagement(HashMap<String, Object> params);
-	public boolean updateManagement(HashMap<String, Object> params);
-	public boolean deleteManagement(int managementIdx);
+import model.Management;
 
-	public HashMap<String, Object> selectOne(int managementIdx);
-	
-	public List<HashMap<String, Object>> selectList(int idx);
+public interface IManagementService {
+	public boolean insertManagement(Management model);
+	public boolean updateManagement(Management model);
+	public boolean deleteManagement(int managementIdx);
+	public Management selectOne(int managementIdx);
+	public List<Management> selectList(String id);
 }

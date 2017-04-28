@@ -1,10 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link href="./fullcalendar-3.3.1/fullcalendar.css" rel="stylesheet"/>
+<link href="./fullcalendar-3.3.1/fullcalendar.print.css" rel="stylesheet" media="print"/>
+<script type="text/javascript" src="./fullcalendar-3.3.1/lib/moment.min.js"></script>
+<!-- <script type="text/javascript" src="./fullcalendar-3.3.1/lib/jquery.min.js"></script> -->
+<script type="text/javascript" src="./fullcalendar-3.3.1/fullcalendar.js"></script>
+<script type="text/javascript" src="./fullcalendar-3.3.1/locale/ko.js"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        jQuery("#calendar").fullCalendar({
+              defaultDate : "2017-04-10"
+            , editable : true
+            , eventLimit : true
+            , lang: 'ko'
+            , events: [
+
+            ]
+        });
+    });
+</script>
 </head>
 <body>
 
@@ -24,206 +44,139 @@
 	<div class="container">
 		<div class="col-md-88">
 			<div class="form-row place-order" style="float: right">
-				<input type="button" value="펫 추가하기" onclick="">
+				<input type="button" value="펫 추가하기" onclick = "location.href ='addPetForm.do?id=${sessionScope.id}'">
 			</div>                                          
 			<ul id="tabs">
-				<li><a href="#" name="#tab1" style="font-size: 25px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;와와&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
-				<li><a href="#" name="#tab2" style="font-size: 25px;">애견이름 2</a></li>
-				<li><a href="#" name="#tab3" style="font-size: 25px;">애견이름 3</a></li>
-				<li><a href="#" name="#tab4" style="font-size: 25px;">애견이름 4</a></li>
-				<li><a href="#" name="#tab5" style="font-size: 25px;">애견이름 5</a></li>
+				<c:forEach var="pet" items="${petList }" varStatus="idx">
+					<span></span>
+					<li><a href="#" name="#tab${idx.count }" style="font-size: 25px;">${pet.name }</a></li>
+					
+				</c:forEach>
 			</ul>
 			<div id="content">
-				<div id="tab1">
-					<div class="col-md-3">
-						<p style="text-align: center;">
-						<img src="img/dog_09.jpg" alt=""style="width: 100%;">
-						</p>
-						<p style="text-align: center;">
-							<input type="button" value="메인펫으로 지정" style="width: 100%"><br><br>
-<!-- 							<input type="button" value="펫 수정" style="width: 48%"> -->
-<!-- 							<input type="button" value="펫 삭제" style="width: 48%"> -->
-						</p>
-						
-					</div>
-					<div class="col-md-9" style="font-size: 18px;">
-					
-				
-							<p style="text-align: right; margin: 0">
-								<input type="button" value="펫 수정" style="font-size: small;">
-								<input type="button" value="펫 삭제" style="font-size: small;">
+			<c:forEach var="pet" items="${petList }" varStatus="idx">
+
+			            <div id="tab${idx.count }">
+               <div class="col-md-3">
+                  <p style="text-align: center;">
+                  <img src="img/dog_0${idx.count }.jpg" alt=""style="width: 100%;">
+                  </p>
+                  <p style="text-align: center;">
+                     <input type="button" value="메인펫으로 지정" style="width: 100%"><br><br>
+<!--                      <input type="button" value="펫 수정" style="width: 48%"> -->
+<!--                      <input type="button" value="펫 삭제" style="width: 48%"> -->
+                  </p>
+                  
+               </div>
+               <div class="col-md-9" style="font-size: 18px;">
+               
+            
+                     <!-- <p style="text-align: right; margin: 0">
+                        <input type="button" value="펫 수정" style="font-size: small;">
+                        <input type="button" value="펫 삭제" style="font-size: small;">
+                     </p> -->
+               
+                  <table cellspacing="0" class="pet_table">
+                     <tr>
+                        <td>
+                           <span style="font-weight: bold;">${pet.name }</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;(등록번호)<span>${pet.resist }</span>
+                           <span style="float: right;">
+                              <input type="button" value="펫 수정" style="font-size: small;">
+                              <input type="button" value="펫 삭제" style="font-size: small;">
+                           </span>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <span>${pet.kind }</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>${pet.sex }</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>${pet.neutral }</span>&nbsp;&nbsp;<input type="button" value="짝꿍 찾으러가기 GO" style="font-size: small;">
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <span>생일 : ${pet.birthday } </span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>0년 0개월</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;사람나이 <span>00살</span> 
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           <span>${pet.weight }kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;해당견종 성견 평균무게 <span> 00kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;하루필요열량<span>000kcal</span>&nbsp;&nbsp;<input type="button" value="체중관리 GO" style="font-size: small;">
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           적정 일일 산책량 <span>00km</span> 
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                           미용 주기 알림<span>D-00</span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;">
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                        다음 예방 접종 시기 <span>백신명</span> <span>D-00</span>&nbsp;&nbsp;<input type="button" value="접종관리 GO" style="font-size: small;">
+                        </td>
+                     </tr>
+                  </table>
+                  
+                  
+                  
+               </div>
+            </div>
+
+				<%-- <div id="tab${idx.count }">
+						<div class="col-md-3">
+							<p style="text-align: center;">
+							<img src="img/dog_0${idx.count }.jpg" alt=""style="width: 100%;">
 							</p>
-					
-					
-						<span style="font-weight: bold;">와와</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;(등록번호)<span>123451234512345</span>
-						<br> 
-						<span>치와와</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>남</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>중성화여부</span>&nbsp;&nbsp;<input type="button" value="짝꿍 찾으러가기 GO" style="font-size: small;">
-						<br> 
-						<span>생일 : 0000년 00월 00일 </span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>0년 0개월</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;사람나이 <span>00살</span> 
-						<br>
-						<span>00.0kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;해당견종 성견 평균무게 <span> 00kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;하루필요열량<span>000kcal</span>&nbsp;&nbsp;<input type="button" value="체중관리 GO" style="font-size: small;">
-						<br> 
-						적정 일일 산책량 <span>00km</span> 
-						<br> 
-						미용 주기 알림<span>D-00</span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;">
-						<br>
-						다음 예방 접종 시기 <span>백신명</span> <span>D-00</span>&nbsp;&nbsp;<input type="button" value="접종관리 GO" style="font-size: small;">
-						<br> <br> <br> 	
-					</div>
-				</div>
-			
-				<div id="tab2">
-					<div class="col-md-3">
-						<p style="text-align: center;">
-						<img src="img/dog_01.jpg" alt=""style="width: 100%;">
-						</p>
-						<p style="text-align: center;">
-							<input type="button" value="메인펫으로 지정" style="width: 100%"><br><br>
-<!-- 							<input type="button" value="펫 수정" style="width: 48%"> -->
-<!-- 							<input type="button" value="펫 삭제" style="width: 48%"> -->
-						</p>
-						
-					</div>
-					<div class="col-md-9" style="font-size: 18px;">
-					
-				
-							<p style="text-align: right; margin: 0">
-								<input type="button" value="펫 수정" style="font-size: small;">
-								<input type="button" value="펫 삭제" style="font-size: small;">
+							<p style="text-align: center;">
+								<input type="button" value="메인펫으로 지정" style="width: 100%"><br><br>
+	<!-- 							<input type="button" value="펫 수정" style="width: 48%"> -->
+	<!-- 							<input type="button" value="펫 삭제" style="width: 48%"> -->
 							</p>
-					 
-					
-						<span style="font-weight: bold;">와와</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;(등록번호)<span>123451234512345</span>
-						<br> 
-						<span>치와와</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>남</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>중성화여부</span>&nbsp;&nbsp;<input type="button" value="짝꿍 찾으러가기 GO" style="font-size: small;">
-						<br> 
-						<span>생일 : 0000년 00월 00일 </span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>0년 0개월</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;사람나이 <span>00살</span> 
-						<br>
-						<span>00.0kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;해당견종 성견 평균무게 <span> 00kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;하루필요열량<span>000kcal</span>&nbsp;&nbsp;<input type="button" value="체중관리 GO" style="font-size: small;">
-						<br> 
-						적정 일일 산책량 <span>00km</span> 
-						<br> 
-						미용 주기 알림<span>D-00</span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;">
-						<br>
-						다음 예방 접종 시기 <span>백신명</span> <span>D-00</span>&nbsp;&nbsp;<input type="button" value="접종관리 GO" style="font-size: small;">
-						<br> <br> <br> 	
-					</div>
-				</div>
-				<div id="tab3">
-					<div class="col-md-3">
-						<p style="text-align: center;">
-						<img src="img/dog_03.jpg" alt=""style="width: 100%;">
-						</p>
-						<p style="text-align: center;">
-							<input type="button" value="메인펫으로 지정" style="width: 100%"><br><br>
-<!-- 							<input type="button" value="펫 수정" style="width: 48%"> -->
-<!-- 							<input type="button" value="펫 삭제" style="width: 48%"> -->
-						</p>
+							
+						</div>
+						<div class="col-md-9" style="font-size: 18px;">
 						
-					</div>
-					<div class="col-md-9" style="font-size: 18px;">
 					
+								<p style="text-align: right; margin: 0">
+									<input type="button" value="펫 수정" style="font-size: small;">
+									<input type="button" value="펫 삭제" style="font-size: small;">
+								</p>
+							<table>
+								<tr>
+									<td>이름</td> <td style="font-weight: bold;">${pet.name }</td>
+									<td>등록번호</td> <td>${pet.resist }</td>
+								</tr>
+								<tr>
+									<td>품종</td> <td>${pet.kind }</td>
+									<td>성별[중성화여부]</td> <td>${pet.sex }[${pet.neutral }]</td>
+								</tr>
+								<tr>
+									<td>출생일</td> <td>${pet.birthday }</td>
+									<td>나이</td> <td>나중에 계산하기</td>
+								</tr>
+								<tr>
+									<td>몸무게</td> <td>${pet.weight }kg</td>
+									<td>권장 열량</td> <td>나중에 계산하기</td>
+								</tr>
+								<tr>
+									<td>권장 운동량</td> <td>나중에 계산하기</td>
+									<td>미용 주기</td> <td>${pet.groomingPeriod }</td>
+								</tr>
+								<tr>
+									<td>다음 접종일</td> <td colspan="3">나중에 계산[예방접종 이름도 같이 알려주면 좋을듯]</td>
+								</tr>
+							</table>
+					
+							<br> <br> <br> 	
+						</div>
+					</div> --%>
 				
-							<p style="text-align: right; margin: 0">
-								<input type="button" value="펫 수정" style="font-size: small;">
-								<input type="button" value="펫 삭제" style="font-size: small;">
-							</p>
-					
-					
-						<span style="font-weight: bold;">와와</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;(등록번호)<span>123451234512345</span>
-						<br> 
-						<span>치와와</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>남</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>중성화여부</span>&nbsp;&nbsp;<input type="button" value="짝꿍 찾으러가기 GO" style="font-size: small;">
-						<br> 
-						<span>생일 : 0000년 00월 00일 </span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>0년 0개월</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;사람나이 <span>00살</span> 
-						<br>
-						<span>00.0kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;해당견종 성견 평균무게 <span> 00kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;하루필요열량<span>000kcal</span>&nbsp;&nbsp;<input type="button" value="체중관리 GO" style="font-size: small;">
-						<br> 
-						적정 일일 산책량 <span>00km</span> 
-						<br> 
-						미용 주기 알림<span>D-00</span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;">
-						<br>
-						다음 예방 접종 시기 <span>백신명</span> <span>D-00</span>&nbsp;&nbsp;<input type="button" value="접종관리 GO" style="font-size: small;">
-						<br> <br> <br> 	
-					</div>
-				</div>
-				<div id="tab4">
-					<div class="col-md-3">
-						<p style="text-align: center;">
-						<img src="img/dog_12.jpg" alt=""style="width: 100%;">
-						</p>
-						<p style="text-align: center;">
-							<input type="button" value="메인펫으로 지정" style="width: 100%"><br><br>
-<!-- 							<input type="button" value="펫 수정" style="width: 48%"> -->
-<!-- 							<input type="button" value="펫 삭제" style="width: 48%"> -->
-						</p>
-						
-					</div>
-					<div class="col-md-9" style="font-size: 18px;">
-					
-				
-							<p style="text-align: right; margin: 0">
-								<input type="button" value="펫 수정" style="font-size: small;">
-								<input type="button" value="펫 삭제" style="font-size: small;">
-							</p>
-					
-					
-						<span style="font-weight: bold;">와와</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;(등록번호)<span>123451234512345</span>
-						<br> 
-						<span>치와와</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>남</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>중성화여부</span>&nbsp;&nbsp;<input type="button" value="짝꿍 찾으러가기 GO" style="font-size: small;">
-						<br> 
-						<span>생일 : 0000년 00월 00일 </span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>0년 0개월</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;사람나이 <span>00살</span> 
-						<br>
-						<span>00.0kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;해당견종 성견 평균무게 <span> 00kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;하루필요열량<span>000kcal</span>&nbsp;&nbsp;<input type="button" value="체중관리 GO" style="font-size: small;">
-						<br> 
-						적정 일일 산책량 <span>00km</span> 
-						<br> 
-						미용 주기 알림<span>D-00</span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;">
-						<br>
-						다음 예방 접종 시기 <span>백신명</span> <span>D-00</span>&nbsp;&nbsp;<input type="button" value="접종관리 GO" style="font-size: small;">
-						<br> <br> <br> 	
-					</div>
-				</div>
-				<div id="tab5">
-					<div class="col-md-3">
-						<p style="text-align: center;">
-						<img src="img/dog_02s.jpg" alt=""style="width: 100%;">
-						</p>
-						<p style="text-align: center;">
-							<input type="button" value="메인펫으로 지정" style="width: 100%"><br><br>
-<!-- 							<input type="button" value="펫 수정" style="width: 48%"> -->
-<!-- 							<input type="button" value="펫 삭제" style="width: 48%"> -->
-						</p>
-						
-					</div>
-					<div class="col-md-9" style="font-size: 18px;">
-					
-				
-							<p style="text-align: right; margin: 0">
-								<input type="button" value="펫 수정" style="font-size: small;">
-								<input type="button" value="펫 삭제" style="font-size: small;">
-							</p>
-					
-					
-						<span style="font-weight: bold;">와와</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;(등록번호)<span>123451234512345</span>
-						<br> 
-						<span>치와와</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>남</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>중성화여부</span>&nbsp;&nbsp;<input type="button" value="짝꿍 찾으러가기 GO" style="font-size: small;">
-						<br> 
-						<span>생일 : 0000년 00월 00일 </span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>0년 0개월</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;사람나이 <span>00살</span> 
-						<br>
-						<span>00.0kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;해당견종 성견 평균무게 <span> 00kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;하루필요열량<span>000kcal</span>&nbsp;&nbsp;<input type="button" value="체중관리 GO" style="font-size: small;">
-						<br> 
-						적정 일일 산책량 <span>00km</span> 
-						<br> 
-						미용 주기 알림<span>D-00</span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;">
-						<br>
-						다음 예방 접종 시기 <span>백신명</span> <span>D-00</span>&nbsp;&nbsp;<input type="button" value="접종관리 GO" style="font-size: small;">
-						<br> <br> <br> 	
-					</div>
-				</div>
+				</c:forEach>
+		
 			</div><!-- tab end -->
 		</div>
 <!-- 		<div class="col-md-88"> -->
-		<div class="col-md-5">fff</div>
 		<div class="col-md-7"id="calendar" style="text-align: right;"></div>  
 <!-- 		</div>  -->
 	</div>

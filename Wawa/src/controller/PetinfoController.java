@@ -28,10 +28,12 @@ public class PetinfoController {
 	private IPetinfoService petinfoService;
 	
 	@RequestMapping("myPetInfo.do")
-	public String myPetInfo(){
-		
-		
-		return "myPetInfo.tiles";
+	public ModelAndView myPetInfo(String id){
+		ModelAndView mav = new ModelAndView();
+		List<HashMap<String, Object>> petList = petinfoService.selectPetList(id);
+		mav.addObject("petList", petList);
+		mav.setViewName("myPetInfo.tiles");
+		return mav;
 	}
 	
 	@RequestMapping("addPetForm.do")

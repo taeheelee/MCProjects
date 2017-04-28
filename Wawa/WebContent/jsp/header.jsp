@@ -49,7 +49,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>WAWA : 애완견 통합관리 커뮤니티</title>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	$(documet).ready(function(){
 		$('#postLink').click(function() {
 		    var p = $(this).attr('href').split('?');
@@ -66,6 +66,38 @@
 		    return false;
 		});
 	});
+</script> -->
+<script type="text/javascript">
+
+$(document).ready(function(){
+//    var petBirth = new Date(${sessionScope.petBirth});
+   
+   var petBirth = "${sessionScope.petBirth}";//생일을 받아온다
+   var today = new Date();//오늘날짜
+
+    var arrPetBirth = petBirth.split('-');
+    var PetBirthDateForm = new Date(arrPetBirth[0], arrPetBirth[1]-1, arrPetBirth[2]);
+
+   // 날짜 차이 알아 내기
+   var diff = today - PetBirthDateForm; //날짜 빼면?!?!?
+   var currDay = 24 * 60 * 60 * 1000;// 시 * 분 * 초 * 밀리세컨
+   var countDay =  parseInt(diff/currDay); //태어난지 몇일째인지
+   var countYear = parseInt(countDay/365); //몇년
+   var countMonth = parseInt((countDay- countYear*365) /12);//몇개월
+   
+//    alert(countYear+"년"+countMonth+"개월");
+   //그럼 이제 화면 출력을 바꿔볼까요?!
+   var petage_year = document.getElementById('petage_year');
+   var petage_month = document.getElementById('petage_month');
+   if(countYear != 0){
+	      petage_year.innerHTML = countYear+"년";
+	   }
+	   
+	   if(countMonth != 0){
+	      petage_month.innerHTML = countMonth+"개월";
+	   }
+});
+
 </script>
 </head>
 <body>
@@ -78,7 +110,7 @@
 					<ul>
 						
 						<c:choose>
-							<c:when test="${sessionScope.name != null}">
+							<c:when test="${sessionScope.id != null}">
 								<li><a href="logout.do"><i class="fa fa-user"></i> Logout</a></li>
 							</c:when>
 							<c:otherwise>
@@ -108,34 +140,48 @@
 			<!-- 우측 미니애견정보창 -->
 			<div class="col-sm-6" style="margin: 0">
 			<c:choose>
-				<c:when test="${sessionScope.name != null}">
-				<div class="shopping-item" >
-					<a href="addPetForm.do?id=${sessionScope.id}">
-					
-						<table id="mini" style="margin-left: 5px;width:330px; height: 100px;">
-							<tr>
-								<td rowspan="4" style="width: 90px;" id="petmainimage"><img src="img/dog_12.jpg" alt=""style="width: 80px;height: 80px"></td>
-								<td colspan="3" id="nickname">${sessionScope.name}</td>
-							</tr>
-							<tr style="font-size: small;">
-								<td id="petname">${sessionScope.petName}</td>
-								<td id="petsex">${sessionScope.petSex}</td>
-								<td id="petage">${sessionScope.petBirth}</td>
-							</tr>
-							<tr style="font-size: small;">
-								<td colspan="2">다음 예방접종</td>
-								<td id="dday" style="text-align: center;">D-00</td>
-							</tr>
-							<tr style="font-size: small;">
-								<td colspan="2">다음 미용예정</td>
-								<td id="grooming" style="text-align: center;">D-00</td>
-							</tr>
-						</table>
-					</a>
-				</div>
+				<c:when test="${sessionScope.id != null and sessionScope.petName != null}">
+					<div class="shopping-item" >
+						<a href="myPetInfo.do">
+						
+							<table id="mini" style="margin-left: 5px;width:330px; height: 100px;">
+								<tr>
+									<td rowspan="4" style="width: 90px;" id="petmainimage"><img src="img/dog_12.jpg" alt=""style="width: 80px;height: 80px"></td>
+									<td colspan="3" id="nickname">${sessionScope.name}</td>
+								</tr>
+								<tr style="font-size: small;">
+									<td id="petname">${sessionScope.petName}</td>
+									<td id="petsex">${sessionScope.petSex}</td>
+									<td id="petage"><span id="petage_year"></span> <span id="petage_month"></span></td>
+								</tr>
+								<tr style="font-size: small;">
+									<td colspan="2">다음 예방접종</td>
+									<td id="dday" style="text-align: center;">D-00</td>
+								</tr>
+								<tr style="font-size: small;">
+									<td colspan="2">다음 미용예정</td>
+									<td id="grooming" style="text-align: center;">D-00</td>
+								</tr>
+							</table>
+						</a>
+					</div>
 				</c:when>
-				</c:choose>
-			</div>
+				<c:when test="${sessionScope.id != null}">
+					<div class="shopping-item" >
+		               <a href="addPetForm.do?id=${sessionScope.id}">
+		                  <table id="mini" style="margin-left: 5px;width:330px; height: 100px;">
+		                     <tr>
+		                        <td style="width: 90px;" id="petmainimage">
+		                        <img src="img/paw-print.png" style="width: 80px;height: 80px"></td>
+		                        <td >펫 추가하기</td>
+		                     </tr>
+		                     
+		                  </table>
+		               </a>
+            		</div>
+				</c:when>
+			</c:choose>
+		</div>
 			
 		</div>
 	</div>
@@ -165,7 +211,7 @@
 					<li class="dropdown">
 						<a href="single-product.html" class="dropdown-toggle" data-toggle="dropdown">나의펫 <b class="caret"></b></a>
 	                    <ul class="dropdown-menu">
-							<li><a href="myPetInfo.do">나의 펫 정보</a></li>
+							<li><a href="myPetInfo.do?id=${sessionScope.id}">나의 펫 정보</a></li>
 							<li><a href="healthcare.do?id=${sessionScope.id}">나의 펫 헬스케어</a></li>
 							<li><a href="medicalcareForm.do?id=${sessionScope.id}">나의 펫 메디컬케어</a></li>		
 	                    </ul>

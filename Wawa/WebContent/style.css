@@ -1,3 +1,24 @@
+table.pet_table {
+    border-bottom: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    margin-bottom: 50px;
+    width: 100%;
+}
+table.pet_table th, table.pet_table td {
+    border-left: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+table.pet_table th {
+    background: none repeat scroll 0 0 #f4f4f4;
+    font-size: 15px;
+    text-transform: uppercase;
+}
+
+
+
+
 #calendar { 
     max-width : 900px;
     margin : 0 auto;

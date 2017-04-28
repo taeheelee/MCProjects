@@ -14,7 +14,8 @@ public interface IRepleDao {
 	
 	public int updateGroup(HashMap<String, Object> params);
 	public int increaseGroupSeq(HashMap<String, Object> params);
-	public int decreaseGroupSeq(int parentNum);
+	public int decreaseGroupSeq(HashMap<String, Object> params);
 	public int selectMax(int groupCode);
 	public int selectParent(int parentNum);
+	public int selectMaxParent(int parentNum);
 }

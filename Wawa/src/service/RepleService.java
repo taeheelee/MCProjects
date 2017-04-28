@@ -57,9 +57,15 @@ public class RepleService implements IRepleService{
 				
 				//댓글의 댓글(혹은 그 이상)이 하나가 아닐때
 				else{
-					int param = (int)parentBoard.get("repleIdx");
-					dao.decreaseGroupSeq(param);
-					params.put(Constant.Reple.GROUPSEQ, groupSeq+dao.selectParent((int)parentBoard.get("repleIdx"))+1);
+					//int param = (int)parentBoard.get("repleIdx");
+					HashMap<String, Object> params3 = new HashMap<>();
+					params3.put("parentNum", parentNum);
+					params3.put(Constant.Reple.GROUPLV, params.get(Constant.Reple.GROUPLV));
+					dao.decreaseGroupSeq(params3);
+					
+						params.put(Constant.Reple.GROUPSEQ, 
+								groupSeq+dao.selectParent((int)parentBoard.get("repleIdx"))+(dao.selectMaxParent(groupCode) - groupLv));
+					
 				}
 			}
 			//그냥 댓글일때

@@ -28,9 +28,15 @@ public class PetinfoController {
 	@Autowired
 	private IPetinfoService petinfoService;
 	
+	@RequestMapping("myPetInfo.do")
+	public String myPetInfo(){
+		
+		
+		return "myPetInfo.tiles";
+	}
+	
 	@RequestMapping("addPetForm.do")
-	public String addPetForm(HttpSession session){
-	//	session.setAttribute("id", session.);
+	public String addPetForm(){
 		return "addPetForm.tiles";
 	}
 	
@@ -40,7 +46,7 @@ public class PetinfoController {
 			String groomingStart, String groomingPeriod){
 		
 		String fromBirth = birthday;
-		SimpleDateFormat transBirthFormat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat transBirthFormat = new SimpleDateFormat("yyyy/MM/dd");
 		Date tobirth = null;
 		try {
 			tobirth = transBirthFormat.parse(fromBirth);
@@ -50,7 +56,7 @@ public class PetinfoController {
 		}
 		
 		String fromGs = groomingStart;
-		SimpleDateFormat transGsFormat = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat transGsFormat = new SimpleDateFormat("yyyy/MM/dd");
 		Date toGs = null;
 		try {
 			toGs = transGsFormat.parse(fromGs);
@@ -67,11 +73,6 @@ public class PetinfoController {
 		}else {
 			return "redirect:addPetForm.do";
 		}
-	}
-	
-	@RequestMapping("healthcare.do")
-	public String healthcare(){
-		return "healthcare.tiles";
 	}
 	
 	@RequestMapping("medicalcareForm.do")

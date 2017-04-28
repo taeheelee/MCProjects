@@ -28,11 +28,11 @@
     			}
     		});
     		
-    		$('#birth').blur(function(){
-    			if(!regDate.test($('#birth').val())){
-    				$('#birthError').html('<font color="red">날짜입력 오류(ex) 2017-04-01)</font>');
-    			}
-    		});
+//     		$('#birth').blur(function(){
+//     			if(!regDate.test($('#birth').val())){
+//     				$('#birthError').html('<font color="red">날짜입력 오류(ex) 2017-04-01)</font>');
+//     			}
+//     		});
     	
     		$('#weight').blur(function(){
     			if(!regWeight.test($('#weight').val())){
@@ -40,11 +40,11 @@
     			}
     		});
     		
-    		$('#gs').blur(function(){
-    			if(!regDate.test($('#gs').val())){
-    				$('#gsError').html('<font color="red">날짜입력 오류(ex) 2017-04-01)</font>');
-    			}
-    		});
+//     		$('#gs').blur(function(){
+//     			if(!regDate.test($('#gs').val())){
+//     				$('#gsError').html('<font color="red">날짜입력 오류(ex) 2017-04-01)</font>');
+//     			}
+//     		});
     		
     	});
     </script>
@@ -87,7 +87,7 @@
 //         buttonText: "날짜 선택"
     });
 	$( function() {
-		$( "#datepicker" ).datepicker();
+		$( ".datepicker" ).datepicker();
 	} );
 	</script>
 
@@ -209,7 +209,7 @@
 											<p id="billing_first_name_field" class="form-row form-row-first validate-required">
                                                 <label class="" for="billing_first_name">생일<abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" id="birth" name="birthday" placeholder="ex) 2017-04-01">
+                                                <input type="text" id="birth"  class="datepicker" name="birthday" placeholder="ex) 2017/04/01">
 												<span id="birthError"></span>
                                          	</p>
 	                                        <br>
@@ -224,7 +224,7 @@
                                             
                                             <p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
                                                 <label class="" for="billing_state">미용시작일</label>
-                                                <input type="text" id="gs" name="groomingStart" value="" class="input-text " placeholder="ex) 2017-04-01">
+                                                <input type="text" id="gs" name="groomingStart" value=""  class="datepicker" placeholder="ex) 2017/04/01">
 											<span id="gsError"></span>
                                             </p>
                                             <br>

@@ -112,10 +112,14 @@ public class PartnerController {
 	}
 	
 	@RequestMapping("partnerUpdateForm.do")
-	public ModelAndView partnerUpdateForm(int boardIdx){
+	public ModelAndView partnerUpdateForm(int boardIdx, @RequestParam(defaultValue="0") int idx){
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(boardIdx);
 		mav.addObject("board", board);
+		mav.addObject("load", idx);
+		if(idx != 0){
+			mav.addObject("pet", boardService.selectPetinfo(idx));
+		}
 		mav.setViewName("partnerUpdateForm.tiles");
 		return mav;
 	}
@@ -132,7 +136,7 @@ public class PartnerController {
 		if(kind.equals("1"))
 			kind = "치와와";
 		else if(kind.equals("2"))
-			kind = "요크셔테리어";
+			kind = "요크셔 테리어";
 		else if(kind.equals("3"))
 			kind = "말티즈";
 		else if(kind.equals("4"))
@@ -146,11 +150,11 @@ public class PartnerController {
 		else if(kind.equals("8"))
 			kind = "미니어쳐 슈나우저";
 		else if(kind.equals("9"))
-			kind = "기타소형견";
+			kind = "기타 소형견";
 		else if(kind.equals("10"))
-			kind = "기타중형견";
+			kind = "기타 중형견";
 		else if(kind.equals("11"))
-			kind = "기타대형견";
+			kind = "기타 대형견";
 		
 		boardService.updatePartnerFindBoard(boardIdx, name, kind, sex, 
 				age, weight, phone, email, title, content, writer);
@@ -169,21 +173,25 @@ public class PartnerController {
 //	}
 	
 	@RequestMapping("partnerGetPetinfoForm.do")
-	public ModelAndView boastGetPetinfoForm(String id, int boardCode){
+	public ModelAndView boastGetPetinfoForm(String id, int boardCode, int boardIdx, String type){
 		ModelAndView mav = new ModelAndView();
 		List<HashMap<String, Object>> list = petService.selectPetList(id);
 		mav.addObject("petList", list);
 		mav.addObject("boardCode", boardCode);
+		mav.addObject("boardIdx", boardIdx);
+		mav.addObject("type", type);
 		mav.setViewName("empty/petInfoList.jsp");
 		return mav;
 	}
 	
 	@RequestMapping("partnerGetPetinfo.do")
-	public ModelAndView boastGetPetinfo(int idx, int boardCode){
+	public ModelAndView boastGetPetinfo(int idx, int boardCode, int boardIdx, String type){
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> petinfo = boardService.selectPetinfo(idx);
 		mav.addObject("pet",petinfo);
 		mav.addObject("boardCode", boardCode);
+		mav.addObject("boardIdx", boardIdx);
+		mav.addObject("type", type);
 		mav.setViewName("boardPetInfoLoad.tiles");
 		return mav;
 	}

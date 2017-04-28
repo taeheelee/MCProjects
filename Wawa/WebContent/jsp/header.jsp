@@ -143,7 +143,7 @@ $(document).ready(function(){
 			<c:choose>
 				<c:when test="${sessionScope.id != null and sessionScope.petName != null}">
 					<div class="shopping-item" >
-						<a href="myPetInfo.do">
+						<a href="myPetInfo.do?id=${sessionScope.id}">
 						
 							<table id="mini" style="margin-left: 5px;width:330px; height: 100px;">
 								<tr>

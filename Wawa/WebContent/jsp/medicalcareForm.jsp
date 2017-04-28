@@ -15,11 +15,41 @@
   	integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
  	crossorigin="anonymous"></script>
 	<script type="text/javascript">
+		
+		function addShotday(data){
+			var table = $('#table1 tbody');
+			var tr = $('<tr>');
+			$('<td>').text().appendTo(tr);
+			$('<td>').text('추천일').appendTo(tr);
+			$('<td>').text('D-day').appendTo(tr);
+			$('<td>').text().appendTo(tr);
+			$('<td>').text().appendTo(tr);
+			$('<td>').text().appendTo(tr);
+			$('<td>').text().appendTo(tr);
+			table.append(tr);
+		}
 	
 		$(document).ready(function(){
-		
+			
+			var count = 0;
 			$('#addBtn1').click(function(){
 				var table = $('#table1 tbody');
+				var row="<tr>"; 
+				row += "<td class=\"\"colspan=\"2\"><a title=\"Remove this item\" class=\"remove\" href=\"#\">추가접종</a></td>";
+				row += "<td>추천일</td>";
+				row += "<td>D-day</td>"; 
+				row += "<td><input type=\"text\" class=\"VcDate\" placeholder=\"0000-00-00\" id=\"ddd" + count + "\"></td>";
+				row += "<td><input type=\"button\" value=\"입력\" id=\"DuploadBtn6\" style=\"padding: 4px 4px\">"; 
+				row += "<span id=\"DSpan6\" value=\"결과\">　　</span></td>";
+				row += "</tr>";
+				table.append(row);
+				alert(count);
+				count ++;
+				//$('tr:gt(0)', table).remove();
+			});
+			 
+			$('#addBtn2').click(function(){
+				var table = $('#table2 tbody');
 				var row="<tr>"; 
 				row += "<td class=\"\"colspan=\"2\"><a title=\"Remove this item\" class=\"remove\" href=\"#\">추가접종</a></td>";
 				row += "<td>추천일</td>";
@@ -29,8 +59,34 @@
 				row += "<span id=\"DSpan6\" value=\"결과\">　　</span></td>";
 				row += "</tr>";
 				table.append(row);
-// 				alert('dd');
-				
+				//$('tr:gt(0)', table).remove();
+			});
+			
+			$('#addBtn3').click(function(){
+				var table = $('#table3 tbody');
+				var row="<tr>"; 
+				row += "<td class=\"\"colspan=\"2\"><a title=\"Remove this item\" class=\"remove\" href=\"#\">추가접종</a></td>";
+				row += "<td>추천일</td>";
+				row += "<td>D-day</td>"; 
+				row += "<td><input type=\"text\" class=\"VcDate\" placeholder=\"0000-00-00\" id=\"DValue6\"></td>";
+				row += "<td><input type=\"button\" value=\"입력\" id=\"DuploadBtn6\" style=\"padding: 4px 4px\">"; 
+				row += "<span id=\"DSpan6\" value=\"결과\">　　</span></td>";
+				row += "</tr>";
+				table.append(row);
+				//$('tr:gt(0)', table).remove();
+			});
+			
+			$('#addBtn4').click(function(){
+				var table = $('#table4 tbody');
+				var row="<tr>"; 
+				row += "<td class=\"\"colspan=\"2\"><a title=\"Remove this item\" class=\"remove\" href=\"#\">추가접종</a></td>";
+				row += "<td>추천일</td>";
+				row += "<td>D-day</td>"; 
+				row += "<td><input type=\"text\" class=\"VcDate\" placeholder=\"0000-00-00\" id=\"DValue6\"></td>";
+				row += "<td><input type=\"button\" value=\"입력\" id=\"DuploadBtn6\" style=\"padding: 4px 4px\">"; 
+				row += "<span id=\"DSpan6\" value=\"결과\">　　</span></td>";
+				row += "</tr>";
+				table.append(row);
 				//$('tr:gt(0)', table).remove();
 			});
 			
@@ -706,9 +762,11 @@
 		<p>개 홍역(Distemper), 전염성 간염(Infectious Hepatitis), 파보바이러스성 장염(Pavovirus Enteritis), 파라인플루엔자성 기관지염(Parainflluenza) 및 렙토스피라증(Leptospirosis) 등의 질병을 예방해주는 가장 중요한 예방접종이다.</p>
 		<p>6~8주부터 시작해서 2~3주 간격으e 3~5회 접종, 매년 1회 추가접종한다. 접종 뒤 1주일간 목욕금지.</p>
 		
+<!-- 		<span style="float:right"><input type="button" id="addBtn1" value="추가" style="padding: 3px 3px" align="right"/></span> -->
+<!-- 		<br> -->
+<!-- 		<br> -->
 		<form method="post" action="#">
 		
-			<button id="addBtn1" value="추가">추가</button>
 			<table cellspacing="0" class="shop_table cart" id="table1" name="table1">
 				<thead>
 					<tr>
@@ -720,12 +778,13 @@
                 </thead>
                 <tbody>
                     <tr class="cart_item">
-                        <td class="product-remove" rowspan="5"><a>기초접종</a></td>
+                        <td class="product-remove" rowspan="5"><a>기초접종</a>
+                        <input type="button" id="addBtn1" value=" + " style="padding: 1px 3px" align="right"/></td>
                         <td><a>1차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
     					<td><input type="text" class="VcDate" placeholder="0000-00-00" id="DValue1"></td>
-                    	<td><input type="button" value="입력" id="DuploadBtn1" style="padding: 4px 4px">
+                    	<td><input type="button" value="입력" id="DuploadBtn1" style="padding: 3px 3px">
                     	<span id="DSpan1" value="결과">　　</span></td>
                     </tr>
                     <tr>
@@ -733,7 +792,7 @@
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" class="VcDate" placeholder="0000-00-00" id="DValue2"></td>
-                       	<td><input type="button" value="입력" id="DuploadBtn2" style="padding: 4px 4px">
+                       	<td><input type="button" value="입력" id="DuploadBtn2" style="padding: 3px 3px">
                        	<span id="DSpan2" value="결과">　　</span></td>
                     </tr>
                     <tr>
@@ -741,7 +800,7 @@
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" class="VcDate" placeholder="0000-00-00" id="DValue3"></td>
-                        <td><input type="button" value="입력" id="DuploadBtn3" style="padding: 4px 4px">
+                        <td><input type="button" value="입력" id="DuploadBtn3" style="padding: 3px 3px">
                         <span id="DSpan3" value="결과">　　</span></td>
                     </tr>
                     <tr>
@@ -749,7 +808,7 @@
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" class="VcDate" placeholder="0000-00-00" id="DValue4"></td>
-                        <td><input type="button" value="입력" id="DuploadBtn4" style="padding: 4px 4px">
+                        <td><input type="button" value="입력" id="DuploadBtn4" style="padding: 3px 3px">
                         <span id="DSpan4" value="결과">　　</span></td>
                     </tr>
                     <tr>
@@ -757,7 +816,7 @@
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" class="VcDate" placeholder="0000-00-00" id="DValue5"></td>
-                        <td><input type="button" value="입력" id="DuploadBtn5" style="padding: 4px 4px">
+                        <td><input type="button" value="입력" id="DuploadBtn5" style="padding: 3px 3px">
                         <span id="DSpan5" value="결과">　　</span></td>
                     </tr>
              
@@ -783,12 +842,13 @@
                 </thead>
                 <tbody>
                 	 <tr class="cart_item">
-                        <td class="product-remove" rowspan="5"><a>기초접종</a></td>
+                        <td class="product-remove" rowspan="5"><a>기초접종</a>
+                        <input type="button" id="addBtn2" value=" + " style="padding: 1px 3px" align="right"/></td>
                         <td><a>1차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
     					<td><input type="text" class="VcDate" placeholder="0000-00-00" id="CValue1"></td>
-                    	<td><input type="button" value="입력" id="CuploadBtn1" style="padding: 4px 4px">
+                    	<td><input type="button" value="입력" id="CuploadBtn1" style="padding: 3px 3px">
                     	<span id="CSpan1" value="결과">　　</span></td>
                     </tr>
                     <tr>
@@ -812,7 +872,7 @@
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" class="VcDate" placeholder="0000-00-00" id="CValue4"></td>
-                        <td><input type="button" value="입력" id="CuploadBtn4" style="padding: 4px 4px">
+                        <td><input type="button" value="입력" id="CuploadBtn4" style="padding: 3px 3px">
                         <span id="CSpan4" value="결과">　　</span></td>
                     </tr>
                     <tr>
@@ -820,30 +880,13 @@
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" class="VcDate" placeholder="0000-00-00" id="CValue5"></td>
-                        <td><input type="button" value="입력" id="CuploadBtn5" style="padding: 4px 4px">
+                        <td><input type="button" value="입력" id="CuploadBtn5" style="padding: 3px 3px">
                         <span id="CSpan5" value="결과">　　</span></td>
                     </tr>
-                    
-                	
-                    <tr>
-                        <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
-						<td>추천일</td>
-                        <td>D-day</td>
-                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="CValue6"></td>
-                        <td><input type="button" value="입력" id="CuploadBtn6" style="padding: 4px 4px">
-                        <span id="CSpan1" value="결과">　　</span></td>
-                    </tr>
-                    <tr>
-                        <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
-						<td>추천일</td>
-                        <td>D-day</td>
-                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="CValue7"></td>
-                       	<td><input type="button" value="입력" id="CuploadBtn7" style="padding: 4px 4px"></td>
-                    </tr>
+                   
                     
                 </tbody>
 			</table>
-			<button id="addBtn2" value="추가">추가</button>
         </form>
 </div>
 
@@ -864,12 +907,13 @@
                 <tbody>
                 
                  <tr class="cart_item">
-                        <td class="product-remove" rowspan="5"><a>기초접종</a></td>
+                        <td class="product-remove" rowspan="5"><a>기초접종</a>
+                        <input type="button" id="addBtn3" value=" + " style="padding: 1px 3px" align="right"/></td>
                         <td><a>1차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
     					<td><input type="text" class="VcDate" placeholder="0000-00-00" id="KValue1"></td>
-                    	<td><input type="button" value="입력" id="KuploadBtn1" style="padding: 4px 4px">
+                    	<td><input type="button" value="입력" id="KuploadBtn1" style="padding: 3px 3px">
                     	<span id="KSpan1" value="결과">　　</span></td>
                     </tr>
                     <tr>
@@ -877,7 +921,7 @@
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" class="VcDate" placeholder="0000-00-00" id="KValue2"></td>
-                       	<td><input type="button" value="입력" id="KuploadBtn2" style="padding: 4px 4px">
+                       	<td><input type="button" value="입력" id="KuploadBtn2" style="padding: 3px 3px">
                        	<span id="KSpan2" value="결과">　　</span></td>
                     </tr>
                     <tr>
@@ -885,7 +929,7 @@
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" class="VcDate" placeholder="0000-00-00" id="KValue3"></td>
-                        <td><input type="button" value="입력" id="KuploadBtn3" style="padding: 4px 4px">
+                        <td><input type="button" value="입력" id="KuploadBtn3" style="padding: 3px 3px">
                         <span id="KSpan3" value="결과">　　</span></td>
                     </tr>
                     <tr>
@@ -905,19 +949,8 @@
                         <span id="KSpan5" value="결과">　　</span></td>
                     </tr>
                     
-              
-                   
-                    
-                    <tr>
-                        <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
-						<td>추천일</td>
-                        <td>D-day</td>
-                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="KValue7"></td>
-                        <td><input type="button" value="입력" id="KuploadBtn7" style="padding: 4px 4px"></td>
-                    </tr>
                 </tbody>
 			</table>
-			<button id="addBtn3" value="추가">추가</button>
         </form>
 
 </div>
@@ -938,12 +971,13 @@
                 </thead>
                 <tbody>
                      <tr class="cart_item">
-                        <td class="product-remove" rowspan="5"><a>기초접종</a></td>
+                        <td class="product-remove" rowspan="5"><a>기초접종</a>
+                        <input type="button" id="addBtn4" value=" + " style="padding: 1px 3px" align="right"/></td>
                         <td><a>1차</a></td>
                         <td>추천일</td>
                         <td>D-day</td>
     					<td><input type="text" class="VcDate" placeholder="0000-00-00" id="RValue1"></td>
-                    	<td><input type="button" value="입력" id="RuploadBtn1" style="padding: 4px 4px">
+                    	<td><input type="button" value="입력" id="RuploadBtn1" style="padding: 3px 3px">
                     	<span id="RSpan1" value="결과">　　</span></td>
                     </tr>
                     <tr>
@@ -951,7 +985,7 @@
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" class="VcDate" placeholder="0000-00-00" id="RValue2"></td>
-                       	<td><input type="button" value="입력" id="RuploadBtn2" style="padding: 4px 4px">
+                       	<td><input type="button" value="입력" id="RuploadBtn2" style="padding: 3px 3px">
                        	<span id="RSpan2" value="결과">　　</span></td>
                     </tr>
                     <tr>
@@ -959,7 +993,7 @@
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" class="VcDate" placeholder="0000-00-00" id="RValue3"></td>
-                        <td><input type="button" value="입력" id="RuploadBtn3" style="padding: 4px 4px">
+                        <td><input type="button" value="입력" id="RuploadBtn3" style="padding: 3px 3px">
                         <span id="RSpan3" value="결과">　　</span></td>
                     </tr>
                     <tr>
@@ -967,7 +1001,7 @@
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" class="VcDate" placeholder="0000-00-00" id="RValue4"></td>
-                        <td><input type="button" value="입력" id="RuploadBtn4" style="padding: 4px 4px">
+                        <td><input type="button" value="입력" id="RuploadBtn4" style="padding: 3px 3px">
                         <span id="RSpan4" value="결과">　　</span></td>
                     </tr>
                     <tr>
@@ -975,28 +1009,12 @@
                         <td>추천일</td>
                         <td>D-day</td>
                         <td><input type="text" class="VcDate" placeholder="0000-00-00" id="RValue5"></td>
-                        <td><input type="button" value="입력" id="RuploadBtn5" style="padding: 4px 4px">
+                        <td><input type="button" value="입력" id="RuploadBtn5" style="padding: 3px 3px">
                         <span id="RSpan5" value="결과">　　</span></td>
                     </tr>
                     
-                    
-                    <tr>
-                        <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
-						<td>추천일</td>
-                        <td>D-day</td>
-                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="RValue6"></td>
-                        <td><input type="button" value="입력" id="RuploadBtn6" style="padding: 4px 4px"></td>
-                    </tr>
-                    <tr>
-                        <td class=""colspan="2"><a title="Remove this item" class="remove" href="#">추가접종</a></td>
-						<td>추천일</td>
-                        <td>D-day</td>
-                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="RValue7"></td>
-                        <td><input type="button" value="입력" id="RuploadBtn7" style="padding: 4px 4px"></td>
-                    </tr>
                 </tbody>
 			</table>
-			<button id="addBtn4" value="추가">추가</button>
         </form>
 </div>
 </div><!-- tab end -->

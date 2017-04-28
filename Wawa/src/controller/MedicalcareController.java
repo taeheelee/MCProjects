@@ -48,7 +48,7 @@ public class MedicalcareController {
 		int idx = (int)petinfoService.selectByname(map).get("idx");
 		
 		int vaccineCode = Integer.parseInt((String) params.get("vaccineCode"));
-		
+
 		medical.put(Constant.MedicalManage.VACCINECODE, vaccineCode);
 		medical.put(Constant.MedicalManage.IDX, idx);
 		medical.put(Constant.MedicalManage.REALSHOTDATE, params.get("shotday"));

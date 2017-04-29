@@ -16,22 +16,21 @@
  	crossorigin="anonymous"></script>
 	<script type="text/javascript">
 		
-		function addShotday(data){
-			var table = $('#table1 tbody');
-			var tr = $('<tr>');
-			$('<td>').text().appendTo(tr);
-			$('<td>').text('추천일').appendTo(tr);
-			$('<td>').text('D-day').appendTo(tr);
-			$('<td>').text().appendTo(tr);
-			$('<td>').text().appendTo(tr);
-			$('<td>').text().appendTo(tr);
-			$('<td>').text().appendTo(tr);
-			table.append(tr);
-		}
-	
+// 		function addShotday(data){
+// 			var table = $('#table1 tbody');
+// 			var tr = $('<tr>');
+// 			$('<td>').html('').appendTo(tr);
+// 			$('<td>').text('추천일').appendTo(tr);
+// 			$('<td>').text('D-day').appendTo(tr);
+// 			$('<td>').html('<>').appendTo(tr);
+// 			$('<td>').html('<input type=\"text\" class=\"VcDate\" placeholder=\"0000-00-00\" id=\"ddd\">').appendTo(tr);
+// 			$('<td>').html('<input type="button" value="입력" id="DuploadBtn6" style="padding: 4px 4px"/>
+// 					<span id="DSpan6" value="결과">　　</span>').appendTo(tr);
+// 			table.append(tr);
+// 		}
+		
 		$(document).ready(function(){
 			
-			var count = 0;
 			$('#addBtn1').click(function(){
 				var table = $('#table1 tbody');
 				var row="<tr>"; 
@@ -43,8 +42,6 @@
 				row += "<span id=\"DSpan6\" value=\"결과\">　　</span></td>";
 				row += "</tr>";
 				table.append(row);
-				alert(count);
-				count ++;
 				//$('tr:gt(0)', table).remove();
 			});
 			 

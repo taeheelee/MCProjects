@@ -32,16 +32,16 @@ public class MedicalcareController {
 			@RequestParam HashMap<String, Object> params){
 		HashMap<String, Object> medical = new HashMap<>();
 		
-		String fromShotday = (String)params.get("shotday");
-		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date toShotday = null;
-		try {
-			toShotday = transFormat.parse(fromShotday);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+//		String fromShotday = (String)params.get("shotday");
+//		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+//		Date toShotday = null;
+//		try {
+//			toShotday = transFormat.parse(fromShotday);
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("name", (String)params.get("petname"));
 		map.put("id", (String)params.get("id"));

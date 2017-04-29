@@ -56,6 +56,6 @@ public class HealthcareController {
 		
 //		mav.addObject("weightList", weightList);
 //		mav.setViewName("healthcare.tiles");
-//		return mav;
+		return mav;
 	}
 }

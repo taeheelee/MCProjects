@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="interface_dao.IManagementDao">
-	<insert id="insertManagement" parameterType="model.Manangement">
+	<insert id="insertManagement" parameterType="model.Management">
 		insert into management values(0,#{idx},#{date},#{weight})
 	</insert>
 	<update id="updateManagement" parameterType="model.Management">

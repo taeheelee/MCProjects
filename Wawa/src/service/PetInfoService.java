@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import commons.Constant;
+import interface_dao.IMedicalDao;
 import interface_dao.IPetInfoDao;
 import interface_service.IPetinfoService;
 
@@ -16,6 +17,9 @@ public class PetInfoService implements IPetinfoService {
 	
 	@Autowired
 	IPetInfoDao dao;
+	
+	@Autowired
+	IMedicalDao mDao;
 	
 	@Override
 	public boolean insertPetInfo(int idx, String resist, String id, String name, String kind, Date birthday, String neutral,
@@ -35,6 +39,18 @@ public class PetInfoService implements IPetinfoService {
 		params.put(Constant.PetInfo.GROOMINGPERIOD, gp);
 		
 		int result = dao.insertPetInfo(params);
+		HashMap<String, Object> pet = dao.selectByName(params);
+		int petIdx = (int)pet.get("idx");
+		int arr[] = {101, 102, 103, 104, 105, 201, 202, 203, 204, 205, 301, 302, 303, 304, 305, 401, 402, 403, 404, 405};
+		String defaultDate = "0000-00-00";
+		for(int i = 0; i < arr.length; i ++){
+			HashMap<String, Object> tmp = new HashMap<>();
+			tmp.put("idx", petIdx);
+			tmp.put("vaccineCode", arr[i]);
+			tmp.put("realShotDate", defaultDate);
+			mDao.insertRealShotDate(tmp);
+		}
+	
 		if(result > 0)
 			return true;
 		else

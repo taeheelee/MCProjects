@@ -61,4 +61,29 @@ public class MedicalcareController {
 		}
 		return response;
 	}
+	
+	@RequestMapping("deleteMedical.do")
+	public 
+	@ResponseBody HashMap<String, Object> deleteMedical(HttpServletResponse resp,
+			@RequestParam HashMap<String, Object> params){
+		HashMap<String, Object> tmp = new HashMap<>();
+		tmp.put("id", params.get("id"));
+		tmp.put("name", params.get("name"));
+		int idx = (int) petinfoService.selectByname(tmp).get("idx");
+		
+		int vaccineCode = (int) params.get("vaccineCode");
+		
+		HashMap<String, Object> deleteObject = new HashMap<>();
+		deleteObject.put("idx", idx);
+		deleteObject.put("vaccineCode", vaccineCode);
+	
+		HashMap<String, Object> response = new HashMap<>();
+		if(medicalService.deleteRealShotDate(deleteObject)){
+			response.put("result", true);
+		}else {
+			response.put("result", false);
+		}
+		return response;
+	}
+	
 }

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import commons.Constant.MedicalManage;
 import interface_dao.IMedicalDao;
+import interface_dao.IPetInfoDao;
 import interface_dao.IVaccineInfoDao;
 import interface_service.IMedicalService;
 
@@ -58,7 +59,7 @@ public class MedicalService implements IMedicalService {
 	public boolean deleteRealShotDate(HashMap<String, Object> params) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> params2 = new HashMap<>();
-		
+	
 		params2.put(MedicalManage.IDX, params.get("idx"));
 		params2.put(MedicalManage.VACCINECODE, params.get("vaccineCode"));
 		int result = dao.deleteRealShotDate(params2);

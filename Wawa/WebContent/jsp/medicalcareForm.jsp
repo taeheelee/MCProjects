@@ -26,15 +26,63 @@
 			table.append(tr);
 		}	
 	
-		function addShotday(data){
+		function addShotday(data, count){
 			var table = $('#table' + data + ' tbody');
+			var vaccineCode = data*100 + count;
+			var id = '${myid }';
+			var petname = $("#name option:selected").text();
+			
 			var tr = $('<tr>');
+			var inputTxt = $('<input type="text" class="VcDate" placeholder="0000-00-00" id="ddd">');
+			var updateBtn = $('<input type="button" value="입력" id="DuploadBtn6" style="padding: 4px 4px"><span id="DSpan6" value="결과">　　</span>');
+			var deleteBtn = $('<input type="button" value="삭제" id="DdeleteBtn6" style="padding: 4px 4px">');
 			$('<td>').attr('colspan','2').html('<a title="Remove this item" class="remove" href="#">추가접종</a>').appendTo(tr);
 			$('<td>').text('추천일').appendTo(tr);
 			$('<td>').text('D-day').appendTo(tr);
-			$('<td>').html('<input type="text" class="VcDate" placeholder="0000-00-00" id="ddd">').appendTo(tr);
-			$('<td>').attr('colspan','2').html('<input type="button" value="입력" id="DuploadBtn6" style="padding: 4px 4px"><span id="DSpan6" value="결과">　　</span>').appendTo(tr);
+			$('<td>').append(inputTxt).appendTo(tr);
+			$('<td>').attr('colspan','2').append(updateBtn).appendTo(tr);
+			$('<td>').append(deleteBtn).appendTo(tr);
 			table.append(tr);
+			
+			updateBtn.on('click', function(){
+				$.ajax({
+					url: 'uploadMedical.do',
+					data: "shotday=" + inputTxt + "&vaccineCode="+vaccineCode+"&id="+id+"&petname="+petname,
+					dataType: 'json',
+					type: 'get',
+					succescc: function(data){
+						alert(data.result);
+						if(data.result){
+							alert('성공');
+						}else {
+							alert('실패');
+						}
+					},
+					error: function(data){
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
+			});
+			
+			deleteBtn.on('click', function(){
+				$.ajax({
+					url : 'deleteMedical.do',
+					data : "vaccineCode="+vaccineCode+"&id="+id+"&name="+petname,
+					dataType : 'json',
+					type : 'post',
+					success : function(data){
+						alert(data.result);
+						if(data.result){
+							alert('성공');
+						}else {
+							alert('실패');
+						}
+					},
+					error : function(data){
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
+			});
 		}
 		
 		function addPetinfo(data){
@@ -90,9 +138,11 @@
 		
 		$(document).ready(function(){
 			
+			var count = 6;
 			$('.addBtn').click(function(){
 				var num = $(this).attr('name');
-				addShotday(num);
+				addShotday(num, count);
+				count ++;
 			});
 			
 			$('#name').change(function(){

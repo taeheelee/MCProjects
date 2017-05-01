@@ -32,7 +32,6 @@
 			
 			var id = '${myid }';
 			var petname = $("#name option:selected").text();
-			
 			var tr = $('<tr>');
 			var inputTxt = $('<input type="text" class="VcDate" placeholder="0000-00-00" id="ddd">');
 			var updateBtn = $('<input type="button" value="입력" id="DuploadBtn6" style="padding: 4px 4px"><span id="DSpan6" value="결과">　　</span>');
@@ -140,31 +139,31 @@
 			});
 		}
 		
-		function calcDate(arr, ch){
-			for(var i=1; i<=5; i++) {
-				var year = parseInt(arr[i-1]/365);
-				var month = parseInt(arr[i-1]%365/30);
-				$('#'+ch+i).text('');
-				if(year != 0){
-					$('#'+ch+''+i).append(year + '년 ');
-				}
-				if(month != 0){
-					$('#'+ch+''+i).append(month + '개월');
-				}
-			}
-		}
+// 		function calcDate(arr, ch){
+// 			for(var i=1; i<=5; i++) {
+// 				var year = parseInt(arr[i-1]/365);
+// 				var month = parseInt(arr[i-1]%365/30);
+// 				$('#'+ch+i).text('');
+// 				if(year != 0){
+// 					$('#'+ch+''+i).append(year + '년 ');
+// 				}
+// 				if(month != 0){
+// 					$('#'+ch+''+i).append(month + '개월');
+// 				}
+// 			}
+// 		}
 		
 		$(document).ready(function(){
 			
-			var DHPPLDate = [42, 56, 70, 84, 98];
-			var CoronaDate = [42, 56, 421, 786, 1151];
-			var KennelDate = [70, 84, 449, 814, 1179];
-			var RabiesDate = [98, 463, 828, 1193, 1558];
+// 			var DHPPLDate = [42, 56, 70, 84, 98];
+// 			var CoronaDate = [42, 56, 421, 786, 1151];
+// 			var KennelDate = [70, 84, 449, 814, 1179];
+// 			var RabiesDate = [98, 463, 828, 1193, 1558];
 		
-			calcDate(DHPPLDate, 'Ddiv');
-			calcDate(CoronaDate, 'Cdiv');
-			calcDate(KennelDate, 'Kdiv');
-			calcDate(RabiesDate, 'Rdiv');
+// 			calcDate(DHPPLDate, 'Ddiv');
+// 			calcDate(CoronaDate, 'Cdiv');
+// 			calcDate(KennelDate, 'Kdiv');
+// 			calcDate(RabiesDate, 'Rdiv');
 
 			$('#name').change(function(){
 				var name = $("#name option:selected").text();

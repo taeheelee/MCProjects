@@ -26,6 +26,8 @@ public class MedicalcareController {
 	@Autowired
 	private IPetinfoService petinfoService;
 	
+	
+	
 	@RequestMapping("uploadMedical.do")
 	public 
 	@ResponseBody HashMap<String, Object> uploadMedical(HttpServletResponse resp,

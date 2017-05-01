@@ -137,11 +137,11 @@
 					<select name="type">
 						<option selected="selected">전체선택</option>
 						<option value="동물병원">동물병원</option>
-						<option>애견미용실</option>
-						<option>애견카페</option>
+						<option value="애견미용실">애견미용실</option>
+						<option value="애견카페">애견카페</option>
 					</select>
                    <select name='area' onchange="change(this.selectedIndex);"  class=input >
-					   <option value='선택'>선택</option>
+					   <option value=''>선택</option>
                        <option value='서울'>서울</option>
                        <option value='부산'>부산</option>
                        <option value='대구'>대구</option>
@@ -161,7 +161,7 @@
                     </select>                                                  
                        
                     <select name='county'  class=select>
-                       <option value='선택'>선택</option>
+                       <option value=''>선택</option>
                     </select>
                     <input type="text" placeholder="Seach.." name="search">
                     <input type="submit" value="검색">
@@ -404,40 +404,7 @@ function removeAllChildNods(el) {
 					    <div id="pagination"></div>
 					</div>
 				</div>
-	
-			
-		
-				
-				
-				<!-- <div class="row">
-					<div class="col-md-12">
-						<div class="product-pagination text-center">
-							<nav>
-								<ul class="pagination">
-									<li><a href="#" aria-label="Previous"> <span
-											aria-hidden="true">&laquo;</span>
-									</a></li>
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#">4</a></li>
-									<li><a href="#">5</a></li>
-									<li><a href="#">6</a></li>
-									<li><a href="#">7</a></li>
-									<li><a href="#">8</a></li>
-									<li><a href="#">9</a></li>
-									<li><a href="#">10</a></li>
-									<li><a href="#" aria-label="Next"> <span
-											aria-hidden="true">&raquo;</span>
-									</a></li>
-								</ul>
-							</nav>
-						</div>
-					</div>
-				</div> -->
-				
-				
-				
+
 			</div>
 			
 

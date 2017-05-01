@@ -96,8 +96,9 @@ public class MainController {
 	}
 	
 
-	@RequestMapping("userinfoForm.do")
+	@RequestMapping(method=RequestMethod.POST, value="userinfoForm.do")
 	public ModelAndView userinfoForm(String id){
+		System.out.println(id);
 		ModelAndView mav = new ModelAndView();
 		UserInfo userInfo = iMemberService.getMember(id);
 		HashMap<String, Object> params = new HashMap<>();

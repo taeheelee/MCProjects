@@ -49,10 +49,9 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>WAWA : 애완견 통합관리 커뮤니티</title>
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 	$(document).ready(function(){
-
-		$('#postLink').click(function() {
+		$('.postLink').click(function() {
 		    var p = $(this).attr('href').split('?');
 		    var action = p[0];
 		    var params = p[1].split('&');
@@ -61,13 +60,14 @@
 		    for (var i in params) {
 		        var tmp= params[i].split('=');
 		        var key = tmp[0], value = tmp[1];
-		        $(document.createElement('input')).attr('type', 'hidden').attr('name', id).attr('value', ${sessionScope.id }).appendTo(form);
+		        $(document.createElement('input')).attr('type', 'hidden').attr('name', key).attr('value', value).appendTo(form);
 		    }
 		    $(form).submit();
 		    return false;
 		});
+			
 	});
-</script> -->
+</script>
 <script type="text/javascript">
 
 $(document).ready(function(){
@@ -102,6 +102,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
+
 
 <div class="header-area">
 	<div class="container">
@@ -143,7 +144,7 @@ $(document).ready(function(){
 			<c:choose>
 				<c:when test="${sessionScope.id != null and sessionScope.petName != null}">
 					<div class="shopping-item" >
-						<a href="myPetInfo.do?id=${sessionScope.id}">
+						<a href="myPetInfo.do?id=${sessionScope.id}"  class="postLink">
 						
 							<table id="mini" style="margin-left: 5px;width:330px; height: 100px;">
 								<tr>
@@ -169,7 +170,7 @@ $(document).ready(function(){
 				</c:when>
 				<c:when test="${sessionScope.id != null}">
 					<div class="shopping-item" >
-		               <a href="addPetForm.do?id=${sessionScope.id}">
+		               <a href="addPetForm.do?id=${sessionScope.id}"  class="postLink">
 		                  <table id="mini" style="margin-left: 5px;width:330px; height: 100px;">
 		                     <tr>
 		                        <td style="width: 90px;" id="petmainimage">
@@ -208,13 +209,13 @@ $(document).ready(function(){
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="main.do">HOME</a></li>
-					<li><a href="userinfoForm.do?id=${sessionScope.id}" id="postLink">내정보</a></li>
+					<li><a href="userinfoForm.do?id=${sessionScope.id }" class="postLink">내정보</a></li>
 					<li class="dropdown">
 						<a href="single-product.html" class="dropdown-toggle" data-toggle="dropdown">나의펫 <b class="caret"></b></a>
 	                    <ul class="dropdown-menu">
-							<li><a href="myPetInfo.do?id=${sessionScope.id}">나의 펫 정보</a></li>
-							<li><a href="healthcare.do?id=${sessionScope.id}">나의 펫 헬스케어</a></li>
-							<li><a href="medicalcareForm.do?id=${sessionScope.id}">나의 펫 메디컬케어</a></li>		
+							<li><a href="myPetInfo.do?id=${sessionScope.id}" class="postLink">나의 펫 정보</a></li>
+							<li><a href="healthcare.do?id=${sessionScope.id}" class="postLink">나의 펫 헬스케어</a></li>
+							<li><a href="medicalcareForm.do?id=${sessionScope.id}" class="postLink">나의 펫 메디컬케어</a></li>		
 	                    </ul>
 					</li>
 					<li><a href="infoMain.do">애견정보/상식</a></li>
@@ -228,7 +229,7 @@ $(document).ready(function(){
 							<li><a href="freeboardMain.do">자유게시판</a></li>	                            
 						</ul>
 					</li>                            
-					<li><a href="map.do">위치정보</a></li>
+					<li><a href="search.do?"  class="postLink">위치정보</a></li>
 				</ul>
 			</div>  
 		</div>

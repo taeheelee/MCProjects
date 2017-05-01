@@ -26,8 +26,6 @@ public class MedicalcareController {
 	@Autowired
 	private IPetinfoService petinfoService;
 	
-	
-	
 	@RequestMapping("uploadMedical.do")
 	public 
 	@ResponseBody HashMap<String, Object> uploadMedical(HttpServletResponse resp,
@@ -39,16 +37,12 @@ public class MedicalcareController {
 		map.put("id", (String)params.get("id"));
 		int idx = (int)petinfoService.selectByname(map).get("idx");
 		
-		System.out.println("name:" + (String)params.get("petname"));
-		System.out.println("id:" + (String)params.get("id"));
-		System.out.println("idx:" + idx);
-		
 		int vaccineCode = Integer.parseInt((String) params.get("vaccineCode"));
 
 		medical.put(Constant.MedicalManage.VACCINECODE, vaccineCode);
 		medical.put(Constant.MedicalManage.IDX, idx);
 		medical.put(Constant.MedicalManage.REALSHOTDATE, params.get("shotday"));
-	
+
 		HashMap<String, Object> response = new HashMap<>();
 		if(medicalService.updateRealShotDate(medical)){
 			response.put("result", true);

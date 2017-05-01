@@ -28,6 +28,8 @@ public class PetinfoController {
 
 	@Autowired
 	private IPetinfoService petinfoService;
+	@Autowired
+	private IMedicalService medicalService;
 	
 	@RequestMapping("myPetInfo.do")
 	public ModelAndView myPetInfo(String id){
@@ -93,7 +95,9 @@ public class PetinfoController {
 	@ResponseBody HashMap<String, Object> selectPet(HttpServletResponse resp,
 			@RequestParam HashMap<String, Object> params){
 		HashMap<String, Object> response = new HashMap<>();
-		response.put("pet", petinfoService.selectByname(params));
+		HashMap<String, Object> pet = petinfoService.selectByname(params);
+//		response.put("date", medicalService.selectDueShotDate(pet));
+		response.put("pet", pet);
 		return response;
 	}
 	

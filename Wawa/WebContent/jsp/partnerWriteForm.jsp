@@ -86,7 +86,7 @@
                          
                      
 
-                            <form enctype="multipart/form-data" action="partnerWrite.do" class="checkout" method="get" name="checkout">
+                            <form enctype="multipart/form-data" action="partnerWrite.do" class="checkout" method="post" name="checkout">
 								<input type="hidden" name="content" id="content">
 								<input type="hidden" name="boardCode" value="5">
 								<input type="hidden" name="writer" value="${sessionScope.name}">
@@ -171,7 +171,7 @@
                                                 </label>
                                                
                                             <div class="form-row place-order">
-												<input type="button" data-value="Place order" value="ADD PHOTO" id="place_order" name="woocommerce_checkout_place_order" class="button alt" >
+												<input type="file" data-value="Place order" value="ADD PHOTO" id="ufile" name="ufile" class="button alt" >
 
 											</div>
                                             </p>

@@ -13,24 +13,24 @@ public interface IBoardService {
 	public boolean writeFreeBoard(int boardCode, String title, String category, String content, String writer);
 	//유기견찾기
 	public boolean writeDogFindBoard(int boardCode, String category, String name,String resist, String lostdate, String lostPlace,
-			String kind, String sex, int age, double weight, String phone, String email, String title, String content, String writer);
+			String kind, String sex, int age, double weight, String phone, String email, String title, String content, String writer, MultipartFile file);
 	//짝꿍찾기
 	public boolean writePartnerFindBoard(int boardCode, String name, String kind, String sex, 
-			int age, double weight, String phone, String email, String title, String content, String writer);
+			int age, double weight, String phone, String email, String title, String content, String writer, MultipartFile file);
 	//제품리뷰
 	public boolean writeReviewBoard(int boardCode, String title, String category, int starPoint, String content, String writer);
 	
 	//================================수정========================================================
 	//뽐내기
-	public boolean updateBoastBoard(int boardIdx, String name, String kind, int age, String sex, String title, String content, String writer, int likeCount);
+	public boolean updateBoastBoard(int boardIdx, String name, String kind, int age, String sex, String title, String content, String writer, int likeCount, MultipartFile file);
 	//자유게시판,애견정보상식
 	public boolean updateFreeBoard(int boardIdx, String title, String category, String content, String writer, int readCount);
 	//유기견찾기
 	public boolean updateDogFindBoard(int boardIdx, String category, String name, String resist, String lostdate, String lostplace,
-			String kind, String sex, int age, double weight, String phone, String email, String title, String content, String writer);
+			String kind, String sex, int age, double weight, String phone, String email, String title, String content, String writer, MultipartFile file);
 	//짝꿍찾기
 	public boolean updatePartnerFindBoard(int boardIdx, String name, String kind, String sex, 
-			int age, double weight, String phone, String email, String title, String content, String writer);
+			int age, double weight, String phone, String email, String title, String content, String writer, MultipartFile file);
 	//제품리뷰
 	public boolean updateReviewBoard(int boardIdx, String title, String category, int starPoint, String content, String writer, int readCount);
 	

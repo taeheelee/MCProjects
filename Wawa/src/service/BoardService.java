@@ -8,6 +8,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import commons.Constant;
@@ -101,9 +102,43 @@ public class BoardService implements IBoardService{
 
 	@Override
 	public boolean writeDogFindBoard(int boardCode, String category, String name, String resist, String lostdate, String lostplace,
-			String kind, String sex, int age, double weight, String phone, String email, String content, String title, String writer) {
+			String kind, String sex, int age, double weight, String phone, String email, String content, String title, String writer,
+			MultipartFile file) {
 		// TODO Auto-generated method stub
+		String path = "Upload/";
+		File folder = new File(path);
+		if(!folder.exists())
+			folder.mkdirs();
+		
+		UUID uuid = UUID.randomUUID();
+		//원본파일명
+		String fileName = file.getOriginalFilename();
+		//파일사이즈
+		int fileSize = (int)file.getSize();
+		//파일경로
+//		String fileuri = path + fileName;
+		String fileuri = path + uuid;
+		
+		HashMap<String, Object> boardFile = new HashMap<>();
+		boardFile.put(Constant.BoardFile.ORIGINFILENAME, fileName);
+		boardFile.put(Constant.BoardFile.SIZE, fileSize);
+		boardFile.put(Constant.BoardFile.URI, fileuri);
+		
+		File localFile = new File(fileuri);
+		try {
+			file.transferTo(localFile);
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		fileDao.insertBoardFile(boardFile);
+		
 		HashMap<String, Object> params = new HashMap<>();
+		params.put(Constant.Board.FILEID, boardFile.get("id"));
+		
 		params.put(Constant.Board.BOARDCODE, boardCode);
 		params.put(Constant.Board.CATEGORY, category);
 		params.put(Constant.Board.NAME, name);
@@ -128,9 +163,41 @@ public class BoardService implements IBoardService{
 
 	@Override
 	public boolean writePartnerFindBoard(int boardCode, String name, String kind, String sex, int age, double weight,
-			String phone, String email, String title, String content, String writer) {
+			String phone, String email, String title, String content, String writer, MultipartFile file) {
 		// TODO Auto-generated method stub
+		String path = "Upload/";
+		File folder = new File(path);
+		if(!folder.exists())
+			folder.mkdirs();
+		
+		UUID uuid = UUID.randomUUID();
+		//원본파일명
+		String fileName = file.getOriginalFilename();
+		//파일사이즈
+		int fileSize = (int)file.getSize();
+		//파일경로
+//		String fileuri = path + fileName;
+		String fileuri = path + uuid;
+		
+		HashMap<String, Object> boardFile = new HashMap<>();
+		boardFile.put(Constant.BoardFile.ORIGINFILENAME, fileName);
+		boardFile.put(Constant.BoardFile.SIZE, fileSize);
+		boardFile.put(Constant.BoardFile.URI, fileuri);
+		
+		File localFile = new File(fileuri);
+		try {
+			file.transferTo(localFile);
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		fileDao.insertBoardFile(boardFile);
+		
 		HashMap<String, Object> params = new HashMap<>();
+		params.put(Constant.Board.FILEID, boardFile.get("id"));
 		params.put(Constant.Board.BOARDCODE, boardCode);
 		params.put(Constant.Board.NAME, name);
 		params.put(Constant.Board.KIND, kind);
@@ -169,9 +236,44 @@ public class BoardService implements IBoardService{
 	
 	//================================게시글 수정========================================================
 	@Override
-	public boolean updateBoastBoard(int boardIdx, String name, String kind, int age, String sex, String title, String content, String writer, int likeCount) {
+	public boolean updateBoastBoard(int boardIdx, String name, String kind, int age, String sex, String title, 
+			String content, String writer, int likeCount, MultipartFile file) {
 		// TODO Auto-generated method stub
+		
+		String path = "Upload/";
+		File folder = new File(path);
+		if(!folder.exists())
+			folder.mkdirs();
+		
+		UUID uuid = UUID.randomUUID();
+		//원본파일명
+		String fileName = file.getOriginalFilename();
+		//파일사이즈
+		int fileSize = (int)file.getSize();
+		//파일경로
+//		String fileuri = path + fileName;
+		String fileuri = path + uuid;
+		int fileid = (int)dao.selectOneBoard(boardIdx).get(Constant.Board.FILEID);
+		HashMap<String, Object> boardFile = new HashMap<>();
+		boardFile.put(Constant.BoardFile.FILEID, fileid);
+		boardFile.put(Constant.BoardFile.ORIGINFILENAME, fileName);
+		boardFile.put(Constant.BoardFile.SIZE, fileSize);
+		boardFile.put(Constant.BoardFile.URI, fileuri);
+		
+		File localFile = new File(fileuri);
+		try {
+			file.transferTo(localFile);
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		fileDao.updateBoardFile(boardFile);
+		
 		HashMap<String, Object> params = new HashMap<>();
+		params.put(Constant.Board.FILEID, fileid);
 		params.put(Constant.Board.BOARDIDX, boardIdx);
 		params.put(Constant.Board.NAME, name);
 		params.put(Constant.Board.KIND, kind);
@@ -208,9 +310,43 @@ public class BoardService implements IBoardService{
 	@Override
 	public boolean updateDogFindBoard(int boardIdx, String category, String name, String resist, String lostdate, String lostplace,
 			String kind, String sex, int age, double weight, String phone, String email, String title, String content,
-			String writer) { 
-		// TODO Auto-generated method stub 
+			String writer, MultipartFile file) { 
+		// TODO Auto-generated method stub
+		String path = "Upload/";
+		File folder = new File(path);
+		if(!folder.exists())
+			folder.mkdirs();
+		
+		UUID uuid = UUID.randomUUID();
+		//원본파일명
+		String fileName = file.getOriginalFilename();
+		//파일사이즈
+		int fileSize = (int)file.getSize();
+		//파일경로
+//		String fileuri = path + fileName;
+		String fileuri = path + uuid;
+		int fileid = (int)dao.selectOneBoard(boardIdx).get(Constant.Board.FILEID);
+		HashMap<String, Object> boardFile = new HashMap<>();
+		boardFile.put(Constant.BoardFile.FILEID, fileid);
+		boardFile.put(Constant.BoardFile.ORIGINFILENAME, fileName);
+		boardFile.put(Constant.BoardFile.SIZE, fileSize);
+		boardFile.put(Constant.BoardFile.URI, fileuri);
+		
+		File localFile = new File(fileuri);
+		try {
+			file.transferTo(localFile);
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		fileDao.updateBoardFile(boardFile);
+		
 		HashMap<String, Object> params = new HashMap<>();
+		params.put(Constant.Board.FILEID, fileid);
+		
 		params.put(Constant.Board.BOARDIDX, boardIdx);
 		params.put(Constant.Board.CATEGORY, category);
 		params.put(Constant.Board.NAME, name);
@@ -235,9 +371,43 @@ public class BoardService implements IBoardService{
 
 	@Override
 	public boolean updatePartnerFindBoard(int boardIdx, String name, String kind, String sex, int age, double weight,
-			String phone, String email, String title, String content, String writer) {
+			String phone, String email, String title, String content, String writer, MultipartFile file) {
 		// TODO Auto-generated method stub
+		String path = "Upload/";
+		File folder = new File(path);
+		if(!folder.exists())
+			folder.mkdirs();
+		
+		UUID uuid = UUID.randomUUID();
+		//원본파일명
+		String fileName = file.getOriginalFilename();
+		//파일사이즈
+		int fileSize = (int)file.getSize();
+		//파일경로
+//		String fileuri = path + fileName;
+		String fileuri = path + uuid;
+		int fileid = (int)dao.selectOneBoard(boardIdx).get(Constant.Board.FILEID);
+		HashMap<String, Object> boardFile = new HashMap<>();
+		boardFile.put(Constant.BoardFile.FILEID, fileid);
+		boardFile.put(Constant.BoardFile.ORIGINFILENAME, fileName);
+		boardFile.put(Constant.BoardFile.SIZE, fileSize);
+		boardFile.put(Constant.BoardFile.URI, fileuri);
+		
+		File localFile = new File(fileuri);
+		try {
+			file.transferTo(localFile);
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		fileDao.updateBoardFile(boardFile);
+		
 		HashMap<String, Object> params = new HashMap<>();
+		params.put(Constant.Board.FILEID, fileid);
+		
 		params.put(Constant.Board.BOARDIDX, boardIdx);
 		params.put(Constant.Board.NAME, name);
 		params.put(Constant.Board.KIND, kind);
@@ -281,6 +451,8 @@ public class BoardService implements IBoardService{
 	public boolean deleteBoard(int boardIdx) {
 		// TODO Auto-generated method stub
 		int result2 = repleDao.deleteBoardReple(boardIdx);
+		int fileid = (int)dao.selectOneBoard(boardIdx).get(Constant.Board.FILEID);
+		fileDao.deleteBoardFile(fileid);
 		int result = dao.deleteBoard(boardIdx);
 		if(result > 0 && result2 > 0)
 			return true;

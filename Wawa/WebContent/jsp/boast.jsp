@@ -25,7 +25,7 @@
 							<div class="col-md-3 col-sm-6">
 								<div class="single-product"><!-- 마우스오버 효과-->
 									<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-										<img src="img/dog_10.jpg" alt="">
+										<img src="imageShow/${best.fileId}.do" onerror="this.src='img/no_image.jpg'" alt="">
 										<div class="product-hover">
 											<a href="increaseLike.do?boardIdx=${best.boardIdx }" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
 											<a href="boastDetails.do?boardIdx=${best.boardIdx }" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
@@ -78,8 +78,8 @@
 				<c:forEach items="${boardList }" var="boast">
 				<div class="single-product col-md-2" style=" padding: 10px;">
 					<div class="col-md-11 boast-list-petname" style="background: #f4f4f4; padding : 15px;width: 100%; margin: 0 auto;">
-							<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-								<img src="img/dog_01.jpg" alt="" style="margin-bottom: 15px">
+							<div class="product-f-image" style="width: 150px; height: 150px"><!-- 마우스오버시 검정색 효과 범위-->
+								<img src="imageShow/${boast.fileId}.do" onerror="this.src='img/no_image.jpg'" alt="" style="margin-bottom: 15px">
 								<div class="product-hover">
 									<a href="increaseLike.do?boardIdx=${boast.boardIdx }" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
 									<a href="boastDetails.do?boardIdx=${boast.boardIdx }" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>

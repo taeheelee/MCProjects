@@ -109,7 +109,7 @@ public class MainController {
 	}
 	
 
-	@RequestMapping("userinfoForm.do")
+	@RequestMapping(method=RequestMethod.POST, value="userinfoForm.do")
 	public ModelAndView userinfoForm(String id){
 		ModelAndView mav = new ModelAndView();
 		UserInfo userInfo = iMemberService.getMember(id);

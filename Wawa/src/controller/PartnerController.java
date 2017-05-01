@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import commons.Constant;
@@ -67,7 +68,7 @@ public class PartnerController {
 	@RequestMapping("partnerWrite.do")
 	public String partnerWrite(int boardCode, String name, String kind, 
 			String sex, int age, double weight, String phone, String email, 
-			String title, String content, String writer){
+			String title, String content, String writer, @RequestParam("ufile") MultipartFile ufile){
 		if(sex.equals("male"))
 			sex = "수컷";
 		else if(sex.equals("female"))
@@ -96,7 +97,7 @@ public class PartnerController {
 		else if(kind.equals("11"))
 			kind = "기타 대형견";
 		boardService.writePartnerFindBoard(boardCode, name, kind, sex, age, 
-				weight, phone, email, title, content, writer);
+				weight, phone, email, title, content, writer, ufile);
 		return "redirect:partnerMain.do";
 		
 		
@@ -126,7 +127,7 @@ public class PartnerController {
 	
 	@RequestMapping("partnerUpdate.do")
 	public String partnerUpdate(int boardIdx, String name, String kind, String sex, 
-			int age, double weight, String phone, String email, String title, String content, String writer){
+			int age, double weight, String phone, String email, String title, String content, String writer, @RequestParam("ufile") MultipartFile ufile){
 		
 		if(sex.equals("male"))
 			sex = "수컷";
@@ -157,7 +158,7 @@ public class PartnerController {
 			kind = "기타 대형견";
 		
 		boardService.updatePartnerFindBoard(boardIdx, name, kind, sex, 
-				age, weight, phone, email, title, content, writer);
+				age, weight, phone, email, title, content, writer, ufile);
 		return "redirect:partnerMain.do";
 	}
 	

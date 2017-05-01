@@ -1,16 +1,30 @@
 package controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.sql.SQLException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+import javax.sql.rowset.serial.SerialBlob;
+import javax.sql.rowset.serial.SerialException;
+
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import interface_service.IBoardFileService;
 import interface_service.IBoardService;
 import interface_service.IPetinfoService;
 import interface_service.IRepleService;
@@ -23,7 +37,8 @@ public class BoastController {
 	private IRepleService repleService;
 	@Autowired
 	private IPetinfoService petService;
-	
+	@Autowired
+	private IBoardFileService fileService;
 	
 	@RequestMapping("boastMain.do")
 	public ModelAndView boastMain(@RequestParam(defaultValue="1") int page,
@@ -122,7 +137,8 @@ public class BoastController {
 	}
 	
 	@RequestMapping("boastUpdate.do")
-	public String boastUpdate(int boardIdx, String name, String kind, int age, String sex, String title, String content, String writer, int likeCount){
+	public String boastUpdate(int boardIdx, String name, String kind, int age, String sex, String title, String content, String writer, int likeCount,
+			 @RequestParam("ufile") MultipartFile ufile){
 		if(sex.equals("male"))
 			sex = "수컷";
 		else if(sex.equals("female"))
@@ -151,13 +167,14 @@ public class BoastController {
 		else if(kind.equals("11"))
 			kind = "기타 대형견";
 		
-		boardService.updateBoastBoard(boardIdx, name, kind, age, sex, title, content, writer, likeCount);
+		boardService.updateBoastBoard(boardIdx, name, kind, age, sex, title, content, writer, likeCount, ufile);
 		return "redirect:boastMain.do";
 	}
 	
 	@RequestMapping("boastDelete.do")
 	public String boastDelete(int boardIdx){
 		boardService.deleteBoard(boardIdx);
+		
 		return "redirect:boastMain.do";
 	}
 	
@@ -189,5 +206,40 @@ public class BoastController {
 		mav.setViewName("boardPetInfoLoad.tiles");
 		return mav;
 	}
+
+//	@RequestMapping("boardImageView.do")
+//	public ModelAndView boardImageView(int boardCode){
+//		ModelAndView mav = new ModelAndView();
+//		List<HashMap<String, Object>> params = (List)boardService.getBoardList(1, boardCode).get("boardList");
+//		int fileId = (int)params.get(0).get("fileId");
+//		HashMap<String, Object> image = fileService.selectOne(fileId);
+//		mav.addObject("image", image);
+//		return mav;
+//		
+//		
+//	}
 	
+	@RequestMapping(value = "/imageShow/{fileId}.do", method = {RequestMethod.GET})
+	public void imageShow(@PathVariable("fileId") int fileId, HttpServletResponse response) throws IOException, SerialException, SQLException {
+	
+	HashMap<String, Object> boardfile = fileService.selectOne(fileId);
+	
+	response.setContentType("images/jpg; utf-8");
+	String originFile = (String)boardfile.get("originFileName");
+	String filename = new String(originFile.getBytes("UTF-8"),"ISO-8859-1");
+	response.setHeader("Content-Disposition", "inline;filename=\"" + filename + "\";");
+	response.setHeader("Content-Transfer-Encoding", "binary");
+	
+	OutputStream outputStream = response.getOutputStream();
+
+	File file = new File((String)boardfile.get("uri"));
+//	SerialBlob blob = new SerialBlob(board.getContent());
+	FileInputStream inputStream = new FileInputStream(file);
+
+	IOUtils.copy(inputStream, outputStream);
+	
+	outputStream.flush();
+	outputStream.close();
+	}
+
 }

@@ -61,7 +61,7 @@
         		<table class="shop_table cart">
 	                <tbody>
 	                	<tr class="cart_item">
-	                		<td rowspan="5" style="width: 30%"><img src="img/dog_10.jpg" alt=""></td>
+	                		<td rowspan="5" style="width: 30%"><img src="imageShow/${board.fileId}.do" onerror="this.src='img/no_image.jpg'" alt=""></td>
 	                        <td style="background-color: #f5f5f5">애견이름</td>
 							<td id="petname">${board.name }</td>
 							<td style="background-color: #f5f5f5">등록번호</td>

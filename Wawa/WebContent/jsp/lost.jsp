@@ -63,16 +63,16 @@
 						<h4>${lost.category }</h4>
 						<hr style="border-color: black; border: solid 1px;margin: 0 0 5px 0">
 						<div align="right">${lost.writer }</div>
-						<div class="col-md-6" id="wanted_photo" style="padding : 0 ;background: blue">
+						<div class="col-md-6" id="wanted_photo" style="padding : 0 ;background: blue; width: 160px; height: 150px" >
 						
-							<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-								<img src="img/dog_03.jpg" alt="">
+							<div class="product-f-image" style="width: 160px; height: 150px" ><!-- 마우스오버시 검정색 효과 범위-->
+								<img src="imageShow/${lost.fileId}.do" onerror="this.src='img/no_image.jpg'" alt="" >
 								<div class="product-hover">
 									<a href="lostDetails.do?boardIdx=${lost.boardIdx }" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 								</div>
 							</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 						</div>
-						<div class="col-md-6" id="wanted_content" style="padding: 0 0 0 15px;">
+						<div class="col-md-6" id="wanted_content" style="padding: 0 0 0 15px;" >
 						<table border="1" style="width: 100%; font-size: small;	" >
 							<tr><td>이름</td><td id="petname">${lost.name }</td></tr>
 							<tr><td>품종</td><td id="petkind">${lost.kind }</td></tr>

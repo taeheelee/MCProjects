@@ -137,7 +137,8 @@ public class BoastController {
 	}
 	
 	@RequestMapping("boastUpdate.do")
-	public String boastUpdate(int boardIdx, String name, String kind, int age, String sex, String title, String content, String writer, int likeCount){
+	public String boastUpdate(int boardIdx, String name, String kind, int age, String sex, String title, String content, String writer, int likeCount,
+			 @RequestParam("ufile") MultipartFile ufile){
 		if(sex.equals("male"))
 			sex = "수컷";
 		else if(sex.equals("female"))
@@ -166,7 +167,7 @@ public class BoastController {
 		else if(kind.equals("11"))
 			kind = "기타 대형견";
 		
-		boardService.updateBoastBoard(boardIdx, name, kind, age, sex, title, content, writer, likeCount);
+		boardService.updateBoastBoard(boardIdx, name, kind, age, sex, title, content, writer, likeCount, ufile);
 		return "redirect:boastMain.do";
 	}
 	
@@ -219,7 +220,7 @@ public class BoastController {
 	
 	@RequestMapping(value = "/imageShow/{fileId}.do", method = {RequestMethod.GET})
 	public void imageShow(@PathVariable("fileId") int fileId, HttpServletResponse response) throws IOException, SerialException, SQLException {
-		System.out.println("되냐?"+fileId);
+	
 	HashMap<String, Object> boardfile = fileService.selectOne(fileId);
 	
 	response.setContentType("images/jpg; utf-8");

@@ -22,7 +22,7 @@ public interface IBoardService {
 	
 	//================================수정========================================================
 	//뽐내기
-	public boolean updateBoastBoard(int boardIdx, String name, String kind, int age, String sex, String title, String content, String writer, int likeCount);
+	public boolean updateBoastBoard(int boardIdx, String name, String kind, int age, String sex, String title, String content, String writer, int likeCount, MultipartFile file);
 	//자유게시판,애견정보상식
 	public boolean updateFreeBoard(int boardIdx, String title, String category, String content, String writer, int readCount);
 	//유기견찾기

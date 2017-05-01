@@ -17,21 +17,21 @@
 	<script type="text/javascript">
 	
 		var isPet = false;
-		var header = function header(num){
-			var table = $('#table' + num + ' thead');
+		function header(num){
+			var table = $('#table' + num+' thead');
 			var tr = $('<tr>');
 			$('<th>').attr('colspan', '2').text('접종일정').appendTo(tr);
-			$('<th>').text('D-day').appendTo(tr);
-			$('<th>').attr('colspan', '3').text('실제접종일').appendTo(tr);
+			$('<th>').attr('colspan','2').text('D-day').appendTo(tr);
+			$('<th>').attr('colspan', '5').text('실제접종일').appendTo(tr);
 			table.append(tr);
 		}	
-	
-		function addShotday(data, count){
-			var table = $('#table' + data + ' tbody');
-			var vaccineCode = data*100 + count;
+		
+		function addShotday(num, count){
+			var table = $('#table' + num + ' tbody');
+			var vaccineCode = num*100 + count;
+			
 			var id = '${myid }';
 			var petname = $("#name option:selected").text();
-			
 			var tr = $('<tr>');
 			var inputTxt = $('<input type="text" class="VcDate" placeholder="0000-00-00" id="ddd">');
 			var updateBtn = $('<input type="button" value="입력" id="DuploadBtn6" style="padding: 4px 4px"><span id="DSpan6" value="결과">　　</span>');
@@ -40,11 +40,14 @@
 			$('<td>').text('추천일').appendTo(tr);
 			$('<td>').text('D-day').appendTo(tr);
 			$('<td>').append(inputTxt).appendTo(tr);
-			$('<td>').attr('colspan','2').append(updateBtn).appendTo(tr);
-			$('<td>').append(deleteBtn).appendTo(tr);
+			$('<td>').attr('colspan','2').append(updateBtn).append(deleteBtn).appendTo(tr);
 			table.append(tr);
 			
 			updateBtn.on('click', function(){
+				
+// 				$(this).val().text('수정');
+// 				inputTxt고치기
+				
 				$.ajax({
 					url: 'uploadMedical.do',
 					data: "shotday=" + inputTxt + "&vaccineCode="+vaccineCode+"&id="+id+"&petname="+petname,
@@ -106,16 +109,16 @@
 			table.append(tr5);
 		}
 		
-		function chkDateFmt(data){
+		function chkDateFmt(ch, num){
 			var regDate = /^(19[7-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
-			if(!regDate.test($('#DValue' + data).val())){
+			if(!regDate.test($('#' + ch  + num).val())){
 				alert('날짜 형식을 확인하세요');
 			}
 		}
 		
 		function createList(ch, num, code){
 			var id = '${myid }';
-			var shotday = $('#' + ch + 'Value' + num).val();
+			var shotday = $('#' + ch + num).val();
 			var petname = $("#name option:selected").text();
 			var vaccineCode = code;
 			$.ajax({
@@ -136,23 +139,40 @@
 			});
 		}
 		
+// 		function calcDate(arr, ch){
+// 			for(var i=1; i<=5; i++) {
+// 				var year = parseInt(arr[i-1]/365);
+// 				var month = parseInt(arr[i-1]%365/30);
+// 				$('#'+ch+i).text('');
+// 				if(year != 0){
+// 					$('#'+ch+''+i).append(year + '년 ');
+// 				}
+// 				if(month != 0){
+// 					$('#'+ch+''+i).append(month + '개월');
+// 				}
+// 			}
+// 		}
+		
 		$(document).ready(function(){
 			
-			var count = 6;
-			$('.addBtn').click(function(){
-				var num = $(this).attr('name');
-				addShotday(num, count);
-				count ++;
-			});
-			
+// 			var DHPPLDate = [42, 56, 70, 84, 98];
+// 			var CoronaDate = [42, 56, 421, 786, 1151];
+// 			var KennelDate = [70, 84, 449, 814, 1179];
+// 			var RabiesDate = [98, 463, 828, 1193, 1558];
+		
+// 			calcDate(DHPPLDate, 'Ddiv');
+// 			calcDate(CoronaDate, 'Cdiv');
+// 			calcDate(KennelDate, 'Kdiv');
+// 			calcDate(RabiesDate, 'Rdiv');
+
 			$('#name').change(function(){
 				var name = $("#name option:selected").text();
 				var id = '${myid }';
-// 				if(pname = ' 선택하세요'){
-// 					isPet = false;
-// 				}else {
-// 					isPet = true;
-// 				}
+				if(name == ' 선택하세요 '){
+					isPet = false;
+				}else {
+					isPet = true;
+				}
 				$.ajax({
 					type: 'get',
 					url: 'selectPet.do',
@@ -167,17 +187,30 @@
 				});
 			});
 			
+			$('.addBtn').click(function(){
+				if(isPet == false){
+					alert('반려견을 선택하세요');
+					return false;
+				}
+				var num = $(this).attr('name');
+				addShotday(num, count);
+				count ++;
+			});
+			
 			$('.uploadBtn').click(function(){
-// 				if(isPet == false){
-// 					alert('반려견을 선택하세요');
-// 					return false;
-// 				}
+				if(isPet == false){
+					alert('반려견을 선택하세요');
+					return false;
+				}
 				var num = $(this).attr('name');
 				var btnId = $(this).attr('id');
 				var ch = btnId.substring(0,1);
-				var code = btnId.substring(1,4);
-				chkDateFmt(num);
-				createList(ch, num, code);
+				var vaccineCode = btnId.substring(1,4);
+				var inputId = ch+num;
+				$(this).text('');
+				
+				chkDateFmt(ch, num);
+				createList(ch, num, vaccineCode);
 			});
 		});
 		
@@ -258,25 +291,21 @@
 				</thead>
                 <tbody>
                     <tr class="cart_item">
-                        <td class="product-remove" rowspan="5"><a>기초접종</a>
+                        <td class="product-remove" rowspan="6"><a>기초접종</a>
                         <input type="button" class="addBtn" id="addBtn1" name="1" value=" + " style="padding: 1px 3px" align="right"/></td>
-                     	<td><a>1차</a></td>
-                        <td>추천일</td>
-                        <td>D-day</td>
-    					<td><input type="text" class="VcDate" placeholder="0000-00-00" id="DValue1"></td>
-                    	<td><input type="button" value="입력" class="uploadBtn" name="1" id="D101" style="padding: 3px 3px">
-                    	<span id="DSpan1" value="D">　　</span></td>
+              
                     </tr>
-                    <c:forEach var="i" begin="2" end="5" step="1">
+                   	
+                    <c:forEach var="i" begin="1" end="5" step="1">
 					   <tr>
 	                        <td><a>${i}차</a></td>
-	                        <td>추천일</td>
+	                        <td><span id="Ddiv${i}"></span></td>                    
 	                        <td>D-day</td>
-	                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="DValue" + ${i}></td>
-	                       	<td><input type="button" value="입력" class="uploadBtn" name="${i}" id="D10"+${i} style="padding: 3px 3px">
-	                       	<span id="DSpan" + ${i} value="D">　　</span></td>
+	                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="D${i}"></td>
+	                       	<td><input type="button" value="입력" class="uploadBtn" name="${i}" id='D10${i}' style="padding: 3px 3px">
+	                       	<span id="DSpan${i}" value="D">　　</span></td>
 	                    </tr>
-				   </c:forEach>
+				  </c:forEach>
              
 				</tbody>
 			</table>
@@ -296,24 +325,18 @@
 				</thead>
                 <tbody>
                 	 <tr class="cart_item">
-                        <td class="product-remove" rowspan="5"><a>기초접종</a>
+                        <td class="product-remove" rowspan="6"><a>기초접종</a>
                         <input type="button" class="addBtn" id="addBtn2" name="2" value=" + " style="padding: 1px 3px" align="right"/></td>
-                        <td><a>1차</a></td>
-                        <td>추천일</td>
-                        <td>D-day</td>
-    					<td><input type="text" class="VcDate" placeholder="0000-00-00" id="CValue1"></td>
-                    	<td><input type="button" value="입력" class="uploadBtn" name="1" id="C201" style="padding: 3px 3px">
-                    	<span id="CSpan1" value="C">　　</span></td>
+                   
                     </tr>
-                    
-                   	<c:forEach var="i" begin="2" end="5" step="1">
+                   	<c:forEach var="i" begin="1" end="5" step="1">
 					   <tr>
 	                        <td><a>${i}차</a></td>
-	                        <td>추천일</td>
+	                        <td><span id="Cdiv${i}"></span></td>
 	                        <td>D-day</td>
-	                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="CValue" + ${i}></td>
-	                       	<td><input type="button" value="입력" class="uploadBtn" name="${i}" id="C20"+${i} style="padding: 3px 3px">
-	                       	<span id="CSpan" + ${i} value="C">　　</span></td>
+	                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="C${i}"></td>
+	                       	<td><input type="button" value="입력" class="uploadBtn" name="${i}" id="C20${i}" style="padding: 3px 3px">
+	                       	<span id="CSpan${i}" value="C">　　</span></td>
 	                    </tr>
 				   </c:forEach>
 				   
@@ -335,24 +358,18 @@
 				</thead>
                 <tbody>
                  <tr class="cart_item">
-                        <td class="product-remove" rowspan="5"><a>기초접종</a>
+                        <td class="product-remove" rowspan="6"><a>기초접종</a>
                         <input type="button" class="addBtn" id="addBtn3" name="3" value=" + " style="padding: 1px 3px" align="right"/></td>
-                        <td><a>1차</a></td>
-                        <td>추천일</td>
-                        <td>D-day</td>
-    					<td><input type="text" class="VcDate" placeholder="0000-00-00" id="KValue1"></td>
-                    	<td><input type="button" value="입력" class="uploadBtn" name="1" id="K301" style="padding: 3px 3px">
-                    	<span id="KSpan1" value="K">　　</span></td>
-                    	<input type="hidden" id="1" value="1">
+                      
                     </tr>
-                    <c:forEach var="i" begin="2" end="5" step="1">
+                    <c:forEach var="i" begin="1" end="5" step="1">
 					   <tr>
 	                        <td><a>${i}차</a></td>
-	                        <td>추천일</td>
+	                        <td><span id="Kdiv${i}"></span></td>
 	                        <td>D-day</td>
-	                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="KValue" + ${i}></td>
-	                       	<td><input type="button" value="입력" class="uploadBtn" name="${i}" id="K30"+${i} style="padding: 3px 3px">
-	                       	<span id="KSpan" + ${i} value="K">　　</span></td>
+	                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="K${i}"></td>
+	                       	<td><input type="button" value="입력" class="uploadBtn" name="${i}" id="K30${i}" style="padding: 3px 3px">
+	                       	<span id="KSpan${i}" value="K">　　</span></td>
 	                    </tr>
 				   </c:forEach>
 				  
@@ -375,23 +392,18 @@
 				</thead>
                 <tbody>
                      <tr class="cart_item">
-                        <td class="product-remove" rowspan="5"><a>기초접종</a>
+                        <td class="product-remove" rowspan="6"><a>기초접종</a>
                         <input type="button" class="addBtn" id="addBtn4" name="4" value=" + " style="padding: 1px 3px" align="right"/></td>
-                        <td><a>1차</a></td>
-                        <td>추천일</td>
-                        <td>D-day</td>
-    					<td><input type="text" class="VcDate" placeholder="0000-00-00" id="RValue1"></td>
-                    	<td><input type="button" value="입력" class="uploadBtn" name="1" id="R401" style="padding: 3px 3px">
-                    	<span id="RSpan1" value="R">　　</span></td>
+                       
                     </tr>
-                    <c:forEach var="i" begin="2" end="5" step="1">
+                    <c:forEach var="i" begin="1" end="5" step="1">
 					   <tr>
 	                        <td><a>${i}차</a></td>
-	                        <td>추천일</td>
+	                        <td><span id="Rdiv${i}"></span></td>
 	                        <td>D-day</td>
-	                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="RValue" + ${i}></td>
-	                       	<td><input type="button" value="입력" class="uploadBtn" name="${i}" id="R40"+${i} style="padding: 3px 3px">
-	                       	<span id="RSpan" + ${i} value="R">　　</span></td>
+	                        <td><input type="text" class="VcDate" placeholder="0000-00-00" id="R${i}"></td>
+	                       	<td><input type="button" value="입력" class="uploadBtn" name="${i}" id="R40${i}" style="padding: 3px 3px">
+	                       	<span id="RSpan${i}" value="R">　　</span></td>
 	                    </tr>
 				   </c:forEach>
                     

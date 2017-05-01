@@ -42,7 +42,7 @@
 
 <div class="single-product-area">
 	<div class="container">
-		<div class="col-md-88">
+
 			<div class="form-row place-order" style="float: right">
 				<input type="button" value="펫 추가하기" onclick = "location.href ='addPetForm.do?id=${sessionScope.id}'">
 			</div>                                          
@@ -79,7 +79,7 @@
                   <table cellspacing="0" class="pet_table">
                      <tr>
                         <td>
-                           <span style="font-weight: bold;">${pet.name }</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;(등록번호)<span>${pet.resist }</span>
+                           <span style="font-weight: bold;">${pet.name }</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;(등록번호 : <span>${pet.resist }</span>)
                            <span style="float: right;">
                               <input type="button" value="펫 수정" style="font-size: small;">
                               <input type="button" value="펫 삭제" style="font-size: small;">
@@ -88,7 +88,7 @@
                      </tr>
                      <tr>
                         <td>
-                           <span>${pet.kind }</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>${pet.sex }</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>${pet.neutral }</span>&nbsp;&nbsp;<input type="button" value="짝꿍 찾으러가기 GO" style="font-size: small;">
+                           <span>${pet.kind }</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>${pet.sex }</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;중성화 여부 : <span>${pet.neutral }</span>&nbsp;&nbsp;<input type="button" value="짝꿍 찾으러가기 GO" style="font-size: small;" onclick = "location.href ='partnerMain.do'">
                         </td>
                      </tr>
                      <tr>
@@ -98,7 +98,7 @@
                      </tr>
                      <tr>
                         <td>
-                           <span>${pet.weight }kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;해당견종 성견 평균무게 <span> 00kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;하루필요열량<span>000kcal</span>&nbsp;&nbsp;<input type="button" value="체중관리 GO" style="font-size: small;">
+                           <span>${pet.weight }kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;해당견종 성견 평균무게 <span> 00kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;하루필요열량<span>000kcal</span>&nbsp;&nbsp;<input type="button" value="체중관리 GO" style="font-size: small;" onclick = "location.href ='healthcare.do?id=${sessionScope.id}'">
                         </td>
                      </tr>
                      <tr>
@@ -113,7 +113,7 @@
                      </tr>
                      <tr>
                         <td>
-                        다음 예방 접종 시기 <span>백신명</span> <span>D-00</span>&nbsp;&nbsp;<input type="button" value="접종관리 GO" style="font-size: small;">
+                        다음 예방 접종 시기 <span>백신명</span> <span>D-00</span>&nbsp;&nbsp;<input type="button" value="접종관리 GO" style="font-size: small;"onclick = "location.href ='medicalcareForm.do?id=${sessionScope.id}'">
                         </td>
                      </tr>
                   </table>
@@ -176,11 +176,16 @@
 		
 			</div><!-- tab end -->
 		</div>
-<!-- 		<div class="col-md-88"> -->
-		<div class="col-md-7"id="calendar" style="text-align: right;"></div>  
-<!-- 		</div>  -->
+
+	<!-- calendar -->
+	 <div class="container">
+         <div class="col-md-3"></div>
+         <div class="col-md-8"id="calendar" style="text-align: right;"></div>  
+      </div> 
+		
+
 	</div>
-</div>
+
 
 </body>
 </html>

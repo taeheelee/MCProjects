@@ -9,7 +9,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>WAWA-healthcare</title>
 <!-- D3 -->
+<!-- <script src="jquery-3.2.1.min.js"></script> -->
 <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+   <script type="text/javascript" src="js/healthD3.js?version=3">
+ 
+   </script>
 <style type="text/css">
 svg{
    width: 300px;
@@ -41,6 +45,8 @@ svg{
 <script type="text/javascript">
 
 $(document).ready(function(){
+// 	alert('${weightList}');
+	var data = '${weightList}';
 	var calculate = document.getElementById('calculate');
 	var calculateCalories = document.getElementById('calculateCalories');
 	
@@ -49,19 +55,12 @@ $(document).ready(function(){
 // 		alert(activity);
 		calculateCalories.innerHTML = Number(activity) * ((5*30)+70);
 	};
-	
-	var iVal2 = document.getElementById("ModelAndView");
-	for(var i = 0; i < iVal2.size(); i++) {
-		for(var j = 0; j < iVal2.value; j++) {
-			alert(iVal2.value[j]);
-		}
-	}
-	alert(iVal2);
-	alert("?");
+	draw(data);
 });
 </script>
 </head>
 <body>
+
    <div class="product-big-title-area">
       <div class="container">
          <div class="row">
@@ -215,15 +214,13 @@ $(document).ready(function(){
 
 
 
+            <!-- 그래프 구역 -->
             <div class="col-md-6">
-               <!-- 그래프 구역 -->
-<!--                <svg id="d3g" style="width: 100%;"></svg> -->
-               <c:forEach var="pet" items="${weightList.pet1}" varStatus="idx1">
+               <svg id="d3g" style="width: 100%;"></svg>
+<%--                <c:forEach var="pet" items="${weightList}"> --%>
+<%--               		 ${pet.date} : ${pet.weight}<br> --%>
+<%--                </c:forEach> --%>
               		 <%-- ${weightList.get("pet"+idx1).get(idx2).getWeight()} --%>
-               		<c:forEach items="${pet.value}" varStatus="idx2">
-               		</c:forEach>
-               		<br>
-               </c:forEach>
             </div>
 </div>
 
@@ -258,7 +255,8 @@ $(document).ready(function(){
    </div>
    <!-- 내용 -->
 
-   <script type="text/javascript" src="js/healthD3.js"></script>
+
+
 
 </body>
-</html>\
+</html>

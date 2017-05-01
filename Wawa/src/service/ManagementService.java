@@ -1,12 +1,10 @@
 package service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import commons.Constant.Management;
 import interface_dao.IManagementDao;
 import interface_service.IManagementService;
 
@@ -18,7 +16,7 @@ public class ManagementService implements IManagementService {
 	
 	@Override
 	public boolean insertManagement(model.Management model) {
-		HashMap<String, Object> date = new HashMap<>();
+//		HashMap<String, Object> date = new HashMap<>();
 
 //		date.put(Management.IDX, params.get("idx"));
 //		date.put(Management.DATE, params.get("date"));
@@ -32,7 +30,7 @@ public class ManagementService implements IManagementService {
 
 	@Override
 	public boolean updateManagement(model.Management model) {
-		HashMap<String, Object> date = new HashMap<>();
+//		HashMap<String, Object> date = new HashMap<>();
 
 //		date.put("managementIdx", params.get("managementIdx"));
 //		date.put(Management.DATE, params.get("date"));

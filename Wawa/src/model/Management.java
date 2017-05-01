@@ -1,22 +1,22 @@
 package model;
 
 public class Management {
-	private int management_idx;
-	private int code;
+	private int managementIdx;
+	private int idx;
 	private String date;
 	private int weight;
 	
-	public int getManagement_idx() {
-		return management_idx;
+	public int getManagementIdx() {
+		return managementIdx;
 	}
-	public void setManagement_idx(int management_idx) {
-		this.management_idx = management_idx;
+	public void setManagementIdx(int managementIdx) {
+		this.managementIdx = managementIdx;
 	}
-	public int getCode() {
-		return code;
+	public int getIdx() {
+		return idx;
 	}
-	public void setCode(int code) {
-		this.code = code;
+	public void setCode(int idx) {
+		this.idx = idx;
 	}
 	public String getDate() {
 		return date;
@@ -33,9 +33,9 @@ public class Management {
 
 	@Override
 	public String toString() {
-		return "management_idx=" + management_idx + ", code=" + code + ", date=" + date + ", weight="
-				+ weight + "\n";
+		return "managementIdx=" + managementIdx
+				+ ",\tidx=" + idx + ",\tdate=" + date + ",\tweight="
+				+ weight;
 	}
-	
-	
+	// '{ "name":"John", "age":30, "city":"New York"}'
 }

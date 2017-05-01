@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+
 import interface_service.IManagementService;
 import interface_service.IPetinfoService;
+import model.Management;
 
 @RestController
 public class HealthcareController {
@@ -54,8 +57,23 @@ public class HealthcareController {
 		ModelAndView mav = new ModelAndView();
 		String id = session.getAttribute("id").toString();
 		
-//		mav.addObject("weightList", weightList);
-//		mav.setViewName("healthcare.tiles");
+		List<Management> weightList = new ArrayList<>();
+		weightList = managementService.selectList(id);
+		
+		Gson gson = new Gson();
+		String json = "";
+		json += "{";
+		for (int i = 0; i < weightList.size(); i++) {
+			json += "\"pet" + i + "\" : " + gson.toJson(weightList.get(i));
+			if(i < weightList.size()-1)
+				json += ", ";
+		}
+		json += "}";
+		
+		mav.addObject("weightList", json);
+		mav.setViewName("healthcare.tiles");
+		System.out.println(json);
 		return mav;
 	}
 }
+

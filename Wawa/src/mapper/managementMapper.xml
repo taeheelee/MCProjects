@@ -15,9 +15,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectOne" parameterType="int" resultType="model.Management">
 		select * from management where managementIdx=#{managementIdx}
 	</select>
-	<select id="selectList" parameterType="int" resultType="model.Management">
-<!-- 		select * from management where idx=#{idx} order by idx asc, date asc; -->
-		select managementIdx, m.idx, date, m.weight from management m, petinfo p where m.idx = p.idx and p.id=#{id} order by p.idx asc, m.date asc;
+	<select id="selectList" parameterType="java.lang.String" resultType="model.Management">
+		select m.managementIdx, m.idx, m.date, m.weight from management m, petinfo p where m.idx = p.idx and p.id=#{id} order by m.idx, m.managementIdx;
 	</select>
 	
 </mapper>

@@ -31,21 +31,15 @@ public class MedicalcareController {
 	@ResponseBody HashMap<String, Object> uploadMedical(HttpServletResponse resp,
 			@RequestParam HashMap<String, Object> params){
 		HashMap<String, Object> medical = new HashMap<>();
-		
-//		String fromShotday = (String)params.get("shotday");
-//		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
-//		Date toShotday = null;
-//		try {
-//			toShotday = transFormat.parse(fromShotday);
-//		} catch (ParseException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
+
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("name", (String)params.get("petname"));
 		map.put("id", (String)params.get("id"));
 		int idx = (int)petinfoService.selectByname(map).get("idx");
+		
+		System.out.println("name:" + (String)params.get("petname"));
+		System.out.println("id:" + (String)params.get("id"));
+		System.out.println("idx:" + idx);
 		
 		int vaccineCode = Integer.parseInt((String) params.get("vaccineCode"));
 
@@ -70,6 +64,7 @@ public class MedicalcareController {
 		tmp.put("id", params.get("id"));
 		tmp.put("name", params.get("name"));
 		int idx = (int) petinfoService.selectByname(tmp).get("idx");
+		System.out.println("idx" + idx);
 		
 		int vaccineCode = (int) params.get("vaccineCode");
 		

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import interface_service.IBoardService;
 import interface_service.IMemberService;
 import interface_service.IPetinfoService;
 import model.UserInfo;
@@ -24,6 +25,8 @@ public class MainController {
 	private IMemberService iMemberService;
 	@Autowired
 	private IPetinfoService IPetinfoService;
+	@Autowired
+	private IBoardService iBoardService;
 	
 	@RequestMapping("loginForm.do")
 	public String loginForm(){
@@ -60,8 +63,18 @@ public class MainController {
 	}
 	 
 	@RequestMapping("main.do")
-	public String main(){
-		return "main.tiles";
+	public ModelAndView main(){
+		ModelAndView mav = new ModelAndView();
+		
+		HashMap<String, Object> nlist = new HashMap<>();
+		nlist.put("firstBoard",iBoardService.getBoardList(1, 6)); //freeboard
+		nlist.put("secondBoard",iBoardService.getBoardList(1, 2)); //reviewBoard
+		nlist.put("thirdBoard",iBoardService.getBoardList(1, 4)); //lostBoard
+		
+		mav.addAllObjects(nlist);
+		mav.setViewName("main.tiles");
+		
+		return mav;
 	}
 	
 	@RequestMapping("joinForm.do")

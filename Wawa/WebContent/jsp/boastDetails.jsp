@@ -61,7 +61,7 @@
         		<table class="shop_table cart">
 	                <tbody>
 	                	<tr class="cart_item">
-	                		<td colspan="4"><img src="img/dog_10.jpg" alt=""></td>
+	                		<td colspan="4"><img src="imageShow/${board.fileId}.do" onerror="this.src='img/no_image.jpg'" alt=""></td>
 	                	</tr>
 	                	<tr class="cart_item">
 	                		<td colspan="4"><span><a>좋아요 ♥ ${board.likeCount }개</a></span></td>

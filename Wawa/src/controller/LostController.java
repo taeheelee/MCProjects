@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.Controller;
 
@@ -67,7 +68,7 @@ public class LostController {
 	@RequestMapping("lostWrite.do")
 	public String lostWrite(int boardCode, String category, String name,
 			String resist, String lostdate, String lostplace, String kind, String sex, int age, double weight,
-			String phone, String email, String title, String content, String writer){
+			String phone, String email, String title, String content, String writer, @RequestParam("ufile") MultipartFile ufile){
 		if(category.equals("find"))
 			category = "찾고있어요";
 		else if(category.equals("protect"))
@@ -102,7 +103,7 @@ public class LostController {
 			kind = "기타 대형견";
 		
 		boardService.writeDogFindBoard(boardCode, category, name, resist, lostdate, lostplace, 
-				kind, sex, age, weight, phone, email, content, title, writer);
+				kind, sex, age, weight, phone, email, content, title, writer, ufile);
 				return "redirect:lostMain.do";
 	}
 	
@@ -122,7 +123,7 @@ public class LostController {
 	@RequestMapping("lostUpdate.do")
 	public String lostUpdate(int boardIdx, String category, String name, String resist, 
 			String lostdate, String lostplace, String kind, String sex, int age, double weight, String phone,
-			String email, String title, String content, String writer){ // 등록번호 추가 petname으로 수정 + petidx추가
+			String email, String title, String content, String writer, @RequestParam("ufile") MultipartFile ufile){ // 등록번호 추가 petname으로 수정 + petidx추가
 		if(category.equals("find"))
 			category = "찾고있어요";
 		else if(category.equals("protect"))
@@ -157,7 +158,7 @@ public class LostController {
 			kind = "기타 대형견";
 		
 		boardService.updateDogFindBoard(boardIdx, category, name, resist, lostdate,  lostplace,
-				kind, sex, age, weight, phone, email, title, content , writer);
+				kind, sex, age, weight, phone, email, title, content , writer, ufile);
 		return "redirect:lostMain.do";
 	}
 	

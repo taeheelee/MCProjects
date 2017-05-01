@@ -115,7 +115,7 @@
 
 
 				<form enctype="multipart/form-data" action="partnerUpdate.do"
-					class="checkout" method="get" name="checkout">
+					class="checkout" method="post" name="checkout">
 					<input type="hidden" name="boardIdx" value="${board.boardIdx }">
 					<input type="hidden" name="content" id="content"> 
 					<input type="hidden" name="boardCode" value="5"> 
@@ -229,8 +229,8 @@
 										title="required" class="required">*</abbr>
 									</label>
 								<div class="form-row place-order">
-									<input type="button" data-value="Place order" value="ADD PHOTO"
-										id="place_order" name="woocommerce_checkout_place_order"
+									<input type="file" data-value="Place order" value="ADD PHOTO"
+										id="ufile" name="ufile"
 										class="button alt">
 
 								</div>

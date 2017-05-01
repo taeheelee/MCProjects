@@ -174,6 +174,7 @@ public class BoastController {
 	@RequestMapping("boastDelete.do")
 	public String boastDelete(int boardIdx){
 		boardService.deleteBoard(boardIdx);
+		
 		return "redirect:boastMain.do";
 	}
 	

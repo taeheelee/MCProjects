@@ -9,7 +9,7 @@ adminCheck int,
 email varchar(30)
 );
 
-create table dog_kind(
+create table dogKind(
 kind varchar(30) primary key,
 dogSize varchar(30),
 adultWeight double
@@ -36,7 +36,7 @@ vaccinePeriod int,
 vaccineAge int
 );
 
-create table medical_manage(
+create table medicalManage(
 idx int,
 vaccineCode int,
 realShotDate date,
@@ -73,7 +73,9 @@ email varchar(30),
 birthday date,
 starPoint int,
 likeCount int,
-lostPlace varchar(30)
+lostPlace varchar(30),
+fileUri varchar(50),
+fileId int
 );
 
 create table reple(
@@ -85,7 +87,6 @@ writedate date,
 groupCode int,
 groupSeq int,
 groupLv int,
-parentNum int,
 foreign key(boardIdx) references board(boardIdx)
 );
 
@@ -94,4 +95,11 @@ imgIdx int primary key auto_increment,
 physicalName varchar(50),
 name varchar(50),
 path varchar(100)
+);
+
+create table boardFile(
+fileId int primary key auto_increment,
+originFileName varchar(50),
+size int,
+uri varchar(200)
 );

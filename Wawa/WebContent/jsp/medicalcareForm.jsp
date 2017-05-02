@@ -22,8 +22,8 @@
 			var table = $('#table' + num+' thead');
 			var tr = $('<tr>');
 			$('<th>').attr('colspan', '2').text('접종일정').appendTo(tr);
-			$('<th>').attr('colspan','2').text('D-day').appendTo(tr);
-			$('<th>').attr('colspan', '2').text('실제접종일').appendTo(tr);
+			$('<th>').attr('colspan','2').text('추천접종일').appendTo(tr);
+			$('<th>').attr('colspan', '3').text('실제접종일').appendTo(tr);
 			table.append(tr);
 		}	
 		
@@ -53,8 +53,30 @@
 			$('#'+aimTxt).attr("readonly",false);
 		}
 		
-		function addShotday(ch, num, tableNum, vaccineCode){
-
+		function addFirstElement(data){
+			var num = data.attr('name');
+			var btnId = data.attr('id');
+			var ch = btnId.substring(0,1); // D, C, K, R 구분
+			var tableNum = btnId.substring(1,2);
+			var vaccineCode = btnId.substring(1,4);
+			if(isPet == false){
+				alert('반려견을 선택하세요');				
+				return false;
+			}
+			
+			var flag = chkDateFmt(ch, num);
+			if(flag == true){
+				if(data.val() == "입력"){
+					$("#" + ch + "div" + num).text($('#'+ch+num).val());
+					uploadShotday(ch, num, tableNum, vaccineCode);					
+				}else {						
+					uploadShotdayAfter(ch, num, tableNum, vaccineCode);
+				}
+			}
+			data.val('수정');
+		}
+		
+		function addShotday(ch, num, tableNum, vaccineCode, nextShotday, dDay){
 			var rowspanSize = $('#table' + tableNum + ' td:eq(0)').attr('rowspan');
 			$('#table' + tableNum + ' td:eq(0)').attr('rowspan', parseInt(rowspanSize)+1);
 			
@@ -64,36 +86,51 @@
 			var num = parseInt(num)+1;
 			var vaccineCode = parseInt(vaccineCode)+1;
 			var tr = $('<tr>');
+			
+			var addBtn = $('<input type="button" value=" + " class="addDay" name="' + num + '" id="' + ch + '' + num + 'Btn" style="padding: 3px 3px">');
+			var inputTxt = $('<input type="text" class="VcDate" placeholder="0000-00-00" id="'+ ch + num + '" readonly>');
+			var inputBtn = $('<input type="button" value="입력" class="uploadBtn" name="' + num + '" id="' + ch + tableNum + '0' + num + '" style="padding: 3px 3px">');
+			var deleteBtn = $('<input type="button" value="삭제" class="deleteBtn" name="' + num + '" id= "delete' + ch + num + '" style="padding: 3px 3px">');
+			
 			$('<td>').html('<a>' + num + '차</a>').appendTo(tr);
-			$('<td>').html('<span id="Ddiv' + num + '"></span>').appendTo(tr);
-			$('<td>').text('D-day').appendTo(tr);
-			$('<td>').html('<input type="button" value=" + " class="addDay" name="' + num + '" id="' + ch + '' + num + 'Btn" style="padding: 3px 3px">'
-					+'&nbsp; <input type="text" class="VcDate" placeholder="0000-00-00" id="'+ ch + num + '" readonly>').appendTo(tr);
-			$('<td>').html('<input type="button" value="입력" class="uploadBtn" name="' + num + '" id="' + ch + '10' + num + '" style="padding: 3px 3px">'+
-					' <input type="button" value="삭제" class="deleteBtn" name="' + num + '" id= "delete' + ch + num + '" style="padding: 3px 3px">').appendTo(tr);
+			$('<td>').html(nextShotday).appendTo(tr);
+			$('<td>').html(dDay).appendTo(tr);
+			$('<td>').append(addBtn).append(inputTxt).appendTo(tr);
+			$('<td>').append(inputBtn).appendTo(tr);
+			$('<td>').append(deleteBtn).appendTo(tr);
 			table.append(tr);
 			
-			$('.uploadBtn').click(function(){
+			inputBtn.on('click', function(){
 				var flag = chkDateFmt(ch, num);
 				if(flag == true){
-					var resultFlag = uploadShotday(ch, num, tableNum, vaccineCode);
+					if(inputBtn.val() == "입력"){
+						$("#" + ch + "div" + num).text($('#'+ch+num).val());
+						$("#" + ch + "day" + parseInt(num)-1).text('0');
+						uploadShotday(ch, num, tableNum, vaccineCode);					
+					}else {						
+						uploadShotdayAfter(ch, num, tableNum, vaccineCode);
+					}
 				}
+				$(this).val('수정');
 			});
 			
-			$('.deleteBtn').click(function(){
-				 $(this).parent().parent().remove();
+			deleteBtn.on('click', function(){
+				$(this).closest('tr').remove();
+				var rowspanSize = $('#table' + tableNum + ' td:eq(0)').attr('rowspan');
+				$('#table' + tableNum + ' td:eq(0)').attr('rowspan', parseInt(rowspanSize)-1);
 			});
 			
-			$('.addDay').click(function(){
+			addBtn.on('click', function(){
 				var dayId = $(this).attr('id');
 				addDayForm(dayId);
 			});
 			
 		}
 		
-		function uploadShotday(ch, num, tableNum, vaccineCode){
+		function uploadShotdayAfter(ch, num, tableNum, vaccineCode){	
 			var id = '${myid }';
 			var shotday = $('#' + ch + num).val();
+			var vaccineCode = vaccineCode;
 			$.ajax({
 				type: 'get',
 				url: 'uploadMedical.do',
@@ -101,11 +138,72 @@
 				dataType: 'json',
 				success : function (data) {
    			    	if(data.result){
-   			    		alert('성공');
    						$('#' + ch + num).attr("readonly",true);
-   			    		addShotday(ch, num, tableNum, vaccineCode);	
    			    	}else {
-   			    		
+   			    	}
+   			    },
+				error: function(data) {
+					alert('잠시 후 다시 시도해주세요');
+				}
+			});
+		}
+		
+		function getNextDate(ch, num, tableNum, vaccineCode, shotday){
+			$.ajax({
+				type: 'get',
+				url: 'calcShotday.do',
+				data: "vaccineCode="+vaccineCode+"&shotday="+shotday,
+				dataType: 'json',
+				success : function (data) {
+   			    	if(data.nextDate != null){
+   			    		var nextShotday = data.nextDate;
+   			    		$.ajax({
+   							type: 'get',
+   							url: 'calcDday.do',
+   							data: "nextShotday="+nextShotday,
+   							dataType: 'json',
+   							success : function (data) {
+   			   			    	if(data.dDay != null){
+   			   			    		var dDay = data.dDay;
+   			   			    		if(parseInt(dDay) >= 0){
+   			   			    			dDay = '+' + dDay;
+   			   			    		}
+   			   			    		else{
+   			   			    			dDay = '-' + dDay;
+   			   			    		}
+   			   			    		addShotday(ch, num, tableNum, vaccineCode, nextShotday, dDay);	
+   			   			    	}else {
+   			   			    		alert('에러');
+   			   			    	}
+   			   			    },
+   							error: function(data) {
+   								alert('잠시 후 다시 시도해주세요');
+   							}
+   						});
+   			    	}else {
+   			    		alert('에러');
+   			    	}
+   			    },
+				error: function(data) {
+					alert('잠시 후 다시 시도해주세요');
+				}
+			});
+		}
+		
+		function uploadShotday(ch, num, tableNum, vaccineCode){
+			var id = '${myid }';
+			var shotday = $('#' + ch + num).val();
+			var vaccineCode = vaccineCode;
+			$.ajax({
+				type: 'get',
+				url: 'uploadMedical.do',
+				data: "id="+id+"&petname="+myPet+"&shotday="+shotday+"&vaccineCode="+vaccineCode,
+				dataType: 'json',
+				success : function (data) {
+   			    	if(data.result){
+   						$('#' + ch + num).attr("readonly",true);
+   			    		getNextDate(ch, num, tableNum, vaccineCode, shotday);
+   			    	}else {
    			    	}
    			    },
 				error: function(data) {
@@ -153,23 +251,10 @@
 				addDayForm(dayId);
 			});
 			
-			$('.uploadBtn').click(function(){
-				var num = $(this).attr('name');
-				var btnId = $(this).attr('id');
-				var ch = btnId.substring(0,1); // D, C, K, R 구분
-				var tableNum = btnId.substring(1,2);
-				var vaccineCode = btnId.substring(1,4);
-				if(isPet == false){
-					alert('반려견을 선택하세요');				
-					return false;
-				}
-
-				var flag = chkDateFmt(ch, num);
-				if(flag == true){
-					alert(flag);
-					var resultFlag = uploadShotday(ch, num, tableNum, vaccineCode);
-				}
-			});
+			$('#D101').click(function(){	addFirstElement($(this));	});
+			$('#C101').click(function(){	addFirstElement($(this));	});
+			$('#K101').click(function(){	addFirstElement($(this));	});		
+			$('#R101').click(function(){	addFirstElement($(this));	});
 		});
 		
 	</script>
@@ -239,7 +324,7 @@
 		<h2>종합백신 DHPPL</h2>
 		<p>개 홍역(Distemper), 전염성 간염(Infectious Hepatitis), 파보바이러스성 장염(Pavovirus Enteritis), 파라인플루엔자성 기관지염(Parainflluenza) 및 렙토스피라증(Leptospirosis) 등의 질병을 예방해주는 가장 중요한 예방접종이다.</p>
 		<p>6~8주부터 시작해서 2~3주 간격으로 3~5회 접종, 매년 1회 추가접종한다. 접종 뒤 1주일간 목욕금지.</p>
-
+		<p align="right" style="color: red" size="2px">※ 추가 : + 버튼</p>
 		<form method="post" action="#">
 			<table cellspacing="0" class="shop_table cart" id="table1" name="table1">
 				<thead>
@@ -254,13 +339,14 @@
 					<tr>
 	                  	<td><a>1차</a></td>
 	                   	<td><span id="Ddiv1"></span></td>                    
-	                   	<td>D-day</td>
+	                   	<td><span id="Dday1"></td>
 	                   	<td>
 	                   	<input type="button" value=" + " class="addDay" name="1" id="D1Btn" style="padding: 3px 3px">
-	                   	&nbsp; <input type="text" class="VcDate" placeholder="0000-00-00" id="D1" readonly>
+	                   	<input type="text" class="VcDate" placeholder="0000-00-00" id="D1" readonly>
 	                   	</td>
 	                   	<td>
 	                   	<input type="button" value="입력" class="uploadBtn" name="1" id='D101' style="padding: 3px 3px"></td>
+	                   	<td></td>
 	                </tr>
 				</tbody>
 			</table>
@@ -271,6 +357,8 @@
 	<h2>코로나 Corona Virus</h2>
 	<p>코로나바이러스성 장염은 피가 섞인 설사를 하고, 구토를 하며, 열이 나고, 식욕이 없어지는 증세가 특징.</p>
 	<p>생후 6~8주부터 2~3주 간격으로 2회 접종, 매년 1회 추가접종한다.</p>
+	
+	<p align="right" style="color: red" size="2px">※ 추가 : + 버튼</p>
 		<form method="post" action="#">
 			<table cellspacing="0" class="shop_table cart" id="table2" name="table2">
 				<thead>
@@ -285,10 +373,10 @@
                    	<tr>
 	                  	<td><a>1차</a></td>
 	                   	<td><span id="Cdiv1"></span></td>                    
-	                   	<td>D-day</td>
+	                   	<td><span id="Cday1"></td>
 	                   	<td>
 	                   	<input type="button" value=" + " class="addDay" name="1" id="C1Btn" style="padding: 3px 3px">
-	                   	&nbsp; <input type="text" class="VcDate" placeholder="0000-00-00" id="C1" readonly></td>
+	                   	<input type="text" class="VcDate" placeholder="0000-00-00" id="C1" readonly></td>
 	                   	<td colspan="">
 	                   	<input type="button" value="입력" class="uploadBtn" name="1" id='C101' style="padding: 3px 3px"></td>
 	                </tr>
@@ -302,6 +390,7 @@
 	<h2>켄넬코프  Kennel Cough</h2>
 	<p>주로 강아지들이 대량으로 있는 곳에서 공기를 통해 쉽게 감염되며 심한 마른기침을 일으키며 폐렴으로 진행되기도 한다.</p>
 	<p>생후 6~8주부터 2~3주 간격으로 2회 접종, 매년 1회 추가접종한다.</p>
+	<p align="right" style="color: red" size="2px">※ 추가 : + 버튼</p>	
 		<form method="post" action="#">
 			<table cellspacing="0" class="shop_table cart" id="table3" name="table3">
 				<thead>
@@ -316,10 +405,10 @@
 				  	<tr>
 	                  	<td><a>1차</a></td>
 	                   	<td><span id="Kdiv1"></span></td>                    
-	                   	<td>D-day</td>
+	                   	<td><span id="Kday1"></td>
 	                   	<td>
 	                   	<input type="button" value=" + " class="addDay" name="1" id="K1Btn" style="padding: 3px 3px">
-	                   	&nbsp; <input type="text" class="VcDate" placeholder="0000-00-00" id="K1" readonly></td>
+	                   	<input type="text" class="VcDate" placeholder="0000-00-00" id="K1" readonly></td>
 	                   	<td>
 	                   	<input type="button" value="입력" class="uploadBtn" name="1" id='K101' style="padding: 3px 3px"></td>
 	                </tr>
@@ -334,6 +423,7 @@
 	<h2>광견병 Rabies</h2>
 	<p>광견병 바이러스가 매개하는 감염증으로 광견병은 공수병이라고도 한다. 모든 온혈동물에서 발생되는 질병으로 감염 동물로부터 교상(물리거나 할퀸 상처)을 통해 동물 및 사람에게 전파되는 중요한 인수공통전염병이다.</p>
 	<p>생후 3개월 이상 된 강아지에게 1회 접종한 후 6개월 후 재접종한다. 매년 추가접종을 해야 한다</p>
+	<p align="right" style="color: red" size="2px">※ 추가 : + 버튼</p>
 		<form method="post" action="#">
 			<table cellspacing="0" class="shop_table cart" id="table4" name="table4">
 				<thead>
@@ -347,11 +437,11 @@
                     </tr>
                     <tr>
 	                  	<td><a>1차</a></td>
-	                   	<td><span id="Rdiv1"></span></td>                    
+	                   	<td><span id="Rday1"></span></td>                    
 	                   	<td>D-day</td>
 	                   	<td>
 	                   	<input type="button" value=" + " class="addDay" name="1" id="R1Btn" style="padding: 3px 3px">
-	                   	&nbsp; <input type="text" class="VcDate" placeholder="0000-00-00" id="R1" readonly></td>
+	                   	<input type="text" class="VcDate" placeholder="0000-00-00" id="R1" readonly></td>
 	                   	<td>
 	                   	<input type="button" value="입력" class="uploadBtn" name="1" id='R101' style="padding: 3px 3px"></td>
 	                </tr>

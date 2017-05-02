@@ -87,6 +87,7 @@ writedate date,
 groupCode int,
 groupSeq int,
 groupLv int,
+parentNum int,
 foreign key(boardIdx) references board(boardIdx)
 );
 

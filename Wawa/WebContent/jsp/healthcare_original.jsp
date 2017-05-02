@@ -13,36 +13,32 @@
 <!-- <script type="text/javascript" src="js/healthD3.js?version=3"></script> -->
 <script type="text/javascript" src="js/d3_test.js?version=3"></script>
 <style type="text/css">
-	svg{
-	width:300px;
-	height:500px;
-	border:1px solid black;
-	}
-	
-	.bar{
-		fill : orange;
-	}
-	.barNum {/*그래프값 */
-		font-size : 9pt;
-		text-anchor : middle;
-	}
-	.axis text { /*y축 눈금 글자 크기*/
-		font-family : sans-serif;
-		font-size : 11px
-	}
-	.axis path,
-	.axis line {
-		fill : none;
-		stroke : black;
-	}
-	.axis_x line {
-		fill : none;
-		stroke : black;
-	}
-	.barName {/*그래프 레이블*/
-		font-size : 9pt;
-		text-anchor : middle;
-	}
+svg{
+   width: 300px;
+   height: 500px;
+   border: 1px solid black;
+}
+.line{
+   fill: none;
+   stroke: black;
+}
+.axis text{
+   font-family: scans-serif;
+   font-size: 11px;
+}
+.axis path,
+.axis line {
+   fill: none;
+   stroke : black;
+}
+.axis_x line { 
+   fill: none;
+   stroke: black;
+}
+#d3g{
+   fill: gray;
+}
+
 </style>
 <script type="text/javascript">
 
@@ -220,7 +216,11 @@ $(document).ready(function(){
 
             <!-- 그래프 구역 -->
             <div class="col-md-6">
-               <svg id="myGraph"></svg>
+               <svg id="d3g" style="width: 100%;"></svg>
+<%--                <c:forEach var="pet" items="${weightList}"> --%>
+<%--               		 ${pet.date} : ${pet.weight}<br> --%>
+<%--                </c:forEach> --%>
+              		 <%-- ${weightList.get("pet"+idx1).get(idx2).getWeight()} --%>
             </div>
 </div>
 

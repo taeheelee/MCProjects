@@ -1,17 +1,17 @@
 function draw(d){
-	data = d;
-	weightList = JSON.parse(data);
-//	alert('data');
-//	alert(data);
-//	alert('weightList');
-//	alert(weightList);
-//	alert(weightList.pet0.managementIdx);
-	for(var temp in weightList) {
-		
+	var data = d;
+	var weightList = JSON.parse(data);
+	var dateArr = [];
+	var weightArr = [];
+	var dataSet = [];
+	
+	for(var i = 0; i < weightList.length; i++) {
+		dateArr.push(weightList[i].date);
+		dataSet.push(weightList[i].weight);
 	}
 	
-	
-	var dataSet = [ 210, 400, 110, 130, 200, 80 ];
+//	console.log(dataSet);
+//	var dataSet = [ 210, 400, 110, 130, 200, 80 ];
 			var svgWidth = 200;
 			var svgHeight = 500;
 			var offsetX = 30;

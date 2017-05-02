@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,9 +8,39 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="js/boardCheck.js"></script>
 <script type="text/javascript">
-	  $(document).ready(function() {
+function sendFile(file, editor, welEditable) {
+    var form_data = new FormData();
+    form_data.append('file', file);
+    $.ajax({
+      data: form_data,
+      type: "POST",
+      url: 'image.do',
+      cache: false,
+      contentType: false,
+      enctype: 'multipart/form-data',
+      processData: false,
+      success: function(data) {
+        $('#summernote').summernote('insertImage', "imageShow/"+data.id+".do");
+      },
+	  error : function(xhrReq, status, error){
+		alert("실패");
+	  }
+    });
+  }
+
+	$(document).ready(function() {
+		
+		
 	      $('#summernote').summernote({
-	    	  height : 500
+	    	  height : 500,
+	    	  callbacks: {
+	              onImageUpload: function(files, editor, welEditable) {
+	                for (var i = files.length - 1; i >= 0; i--) {
+	                  sendFile(files[i],  editor, welEditable);
+	                }
+	              }
+	            }
+
 	      });
 			 $('#ok').click(function() {
 				var content = $('#summernote').summernote('code');
@@ -176,10 +207,17 @@
                                             <br>
             
 											  <div style="width: 100%; margin: 0 auto;">
-											    <div id="summernote"></div>
+											    <textarea id="summernote"></textarea>
 												</div>
 											<br>
-											
+	<div id="imageBoard">
+      <ul>
+        <c:forEach items="${files}" var="file">
+          <li><img src="/image/${file}" width="480" height="auto"/></li>
+        </c:forEach>
+      </ul>
+    </div>
+										
 											<br>
 											
 											<div class="form-row place-order" style="float: right">

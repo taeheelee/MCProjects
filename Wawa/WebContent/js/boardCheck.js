@@ -181,3 +181,23 @@ function partnerBoardCheck() {
 	}
 	return true;
 }
+
+function sendFile(file, editor, welEditable) {
+    var form_data = new FormData();
+    form_data.append('file', file);
+    $.ajax({
+      data: form_data,
+      type: "POST",
+      url: 'image.do',
+      cache: false,
+      contentType: false,
+      enctype: 'multipart/form-data',
+      processData: false,
+      success: function(data) {
+        $('#summernote').summernote('insertImage', "imageShow/"+data.id+".do");
+      },
+	  error : function(xhrReq, status, error){
+		alert("실패");
+	  }
+    });
+  }

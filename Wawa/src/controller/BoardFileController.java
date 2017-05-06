@@ -23,34 +23,36 @@ import org.springframework.web.multipart.MultipartFile;
 import interface_service.IBoardFileService;
 
 @Controller
-public class ImageController {
+public class BoardFileController {
 	
 	@Autowired
 	private IBoardFileService fileService;
 
+	//db에 저장된 이미지 출력
 	@RequestMapping(value = "/imageShow/{fileId}.do", method = {RequestMethod.GET})
 	public void imageShow(@PathVariable("fileId") int fileId, HttpServletResponse response) throws IOException, SerialException, SQLException {
 	
-	HashMap<String, Object> boardfile = fileService.selectOne(fileId);
+		HashMap<String, Object> boardfile = fileService.selectOne(fileId);
+		
+		response.setContentType("images/jpg; utf-8");
+		String originFile = (String)boardfile.get("originFileName");
+		String filename = new String(originFile.getBytes("UTF-8"),"ISO-8859-1");
+		response.setHeader("Content-Disposition", "inline;filename=\"" + filename + "\";");
+		response.setHeader("Content-Transfer-Encoding", "binary");
+		
+		OutputStream outputStream = response.getOutputStream();
 	
-	response.setContentType("images/jpg; utf-8");
-	String originFile = (String)boardfile.get("originFileName");
-	String filename = new String(originFile.getBytes("UTF-8"),"ISO-8859-1");
-	response.setHeader("Content-Disposition", "inline;filename=\"" + filename + "\";");
-	response.setHeader("Content-Transfer-Encoding", "binary");
+		File file = new File((String)boardfile.get("uri"));
 	
-	OutputStream outputStream = response.getOutputStream();
-
-	File file = new File((String)boardfile.get("uri"));
-
-	FileInputStream inputStream = new FileInputStream(file);
-
-	IOUtils.copy(inputStream, outputStream);
-
-	outputStream.flush();
-	outputStream.close();
+		FileInputStream inputStream = new FileInputStream(file);
+	
+		IOUtils.copy(inputStream, outputStream);
+	
+		outputStream.flush();
+		outputStream.close();
 	}
 
+	//summernote에 올리는 이미지 db에 저장
 	@RequestMapping("image.do")
     public @ResponseBody HashMap<String, Object> handleFileUpload(HttpServletResponse resp, @RequestParam("file") MultipartFile file) {
         try {

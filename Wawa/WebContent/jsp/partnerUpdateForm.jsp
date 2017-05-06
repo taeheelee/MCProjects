@@ -11,7 +11,14 @@
 <script type="text/javascript">
 	  $(document).ready(function() {
 	      $('#summernote').summernote({
-	    	  height : 500
+	    	  height : 500,
+	    	  callbacks: {
+	              onImageUpload: function(files, editor, welEditable) {
+	                for (var i = files.length - 1; i >= 0; i--) {
+	                  sendFile(files[i],  editor, welEditable);
+	                }
+	              }
+	            }
 	      });
 	      
 	      	$('#ok').click(function() {

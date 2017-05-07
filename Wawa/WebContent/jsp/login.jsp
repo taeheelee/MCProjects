@@ -21,22 +21,21 @@
 
 	<div class="product-widget-area">
 		<div class="container">
-			<div class="row">
-				<div class="col-md-12" style="text-align: center;">
-					<br><br><br><br><br><br>
-					<form action="login.do" method="post">
-						<input type="text" id="id" placeholder="ID" style="width: 500px; height: 50px;" name="id"><br><br>
-						<input type="password" id="pw" placeholder="Password" style="width: 500px; height: 50px;" name="pw"><br><br>
-						<input type="submit" value="LOGIN" style="width: 500px; height: 50px;">
-					</form>
-						<br><br><br><br><br>					
-				
-				
-				
-				
-				
-				
-				</div>
+			<div>
+				<center>
+					<div class="col-md-12" style="text-align: center;">
+						<br>
+						<form action="login.do" method="post">
+							<input type="text" id="id" placeholder="ID"
+								style="width: 70%; height: 50px;" name="id"><br> <br>
+							<input type="password" id="pw" placeholder="Password"
+								style="width: 70%; height: 50px;" name="pw"><br> <br>
+							<input type="submit" value="LOGIN"
+								style="width: 70%; height: 50px;">
+						</form>
+						<br><br>
+					</div>
+				</center>
 			</div>
 		</div>
 	</div>

@@ -23,7 +23,7 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?ver=1">
     <link rel="stylesheet" href="css/responsive.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -212,9 +212,9 @@
 					<li class="dropdown">
 						<a href="single-product.html" class="dropdown-toggle" data-toggle="dropdown">나의펫 <b class="caret"></b></a>
 	                    <ul class="dropdown-menu">
-							<li><a href="myPetInfo.do?id=${sessionScope.id}" class="postLink">나의 펫 정보</a></li>
-							<li><a href="healthcare.do?id=${sessionScope.id}" class="postLink">나의 펫 헬스케어</a></li>
-							<li><a href="medicalcareForm.do?id=${sessionScope.id}" class="postLink">나의 펫 메디컬케어</a></li>		
+							<li><a href="myPetInfo.do?id=${sessionScope.id}" >나의 펫 정보</a></li>
+							<li><a href="healthcare.do?id=${sessionScope.id}" >나의 펫 헬스케어</a></li>
+							<li><a href="medicalcareForm.do?id=${sessionScope.id}" >나의 펫 메디컬케어</a></li>		
 	                    </ul>
 					</li>
 					<li><a href="infoMain.do">애견정보/상식</a></li>

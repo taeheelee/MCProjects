@@ -19,7 +19,7 @@
 		var myPet = '';
 		var isPet = false;
 		function header(num){
-			var table = $('#table' + num+' thead');
+			var table = $('#table' + num + ' thead');
 			var tr = $('<tr>');
 			$('<th>').attr('colspan', '2').text('접종일정').appendTo(tr);
 			$('<th>').attr('colspan','2').text('추천접종일').appendTo(tr);
@@ -94,7 +94,7 @@
 			
 			$('<td>').html('<a>' + num + '차</a>').appendTo(tr);
 			$('<td>').html(nextShotday).appendTo(tr);
-			$('<td>').html(dDay).appendTo(tr);
+			$('<td>').html('D' + dDay).appendTo(tr);
 			$('<td>').append(addBtn).append(inputTxt).appendTo(tr);
 			$('<td>').append(inputBtn).appendTo(tr);
 			$('<td>').append(deleteBtn).appendTo(tr);
@@ -165,12 +165,6 @@
    							success : function (data) {
    			   			    	if(data.dDay != null){
    			   			    		var dDay = data.dDay;
-   			   			    		if(parseInt(dDay) >= 0){
-   			   			    			dDay = '+' + dDay;
-   			   			    		}
-   			   			    		else{
-   			   			    			dDay = '-' + dDay;
-   			   			    		}
    			   			    		addShotday(ch, num, tableNum, vaccineCode, nextShotday, dDay);	
    			   			    	}else {
    			   			    		alert('에러');

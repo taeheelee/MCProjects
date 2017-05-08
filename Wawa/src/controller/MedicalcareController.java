@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -65,6 +66,32 @@ public class MedicalcareController {
 		return date;
 	}
 	
+	@RequestMapping("calcBirth.do")
+	public 
+	@ResponseBody HashMap<String, Object> calcBirth(HttpServletResponse resp,
+			@RequestParam HashMap<String, Object> params){
+		String from = (String) params.get("birthDay");
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date to = null;
+		try{
+			to = transFormat.parse(from);
+		}catch (ParseException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		Date birthDay = to;
+		Date today = new Date();
+		
+		long diff = Math.abs(birthDay.getTime() - today.getTime());
+		long diffDays = diff / (24 * 60 * 60 * 1000);
+		
+		HashMap<String, Object> date = new HashMap<>();
+		date.put("age", diffDays);
+		
+		return date;
+	}
+	
 	@RequestMapping("calcDday.do")
 	public 
 	@ResponseBody HashMap<String, Object> calcDday(HttpServletResponse resp,
@@ -83,11 +110,22 @@ public class MedicalcareController {
 		Date nextday = to;
 		Date today = new Date();
 
-		long diff = Math.abs(nextday.getTime() - today.getTime());
+		long diff = nextday.getTime() - today.getTime();
 		long diffDays = diff / (24 * 60 * 60 * 1000);
 		
+		String days = "";
+		if(diffDays > 0){
+			diffDays *= -1;
+			days += String.valueOf(diffDays);
+		}
+		else{
+			days += "+"; 
+			diffDays *= -1;
+			days += String.valueOf(diffDays);
+		}
+		
 		HashMap<String, Object> date = new HashMap<>();
-		date.put("dDay", diffDays);
+		date.put("dDay", days);
 		
 		return date;
 	}

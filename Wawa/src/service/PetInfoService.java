@@ -57,6 +57,7 @@ public class PetInfoService implements IPetinfoService {
 			return false;
 	}
 
+	
 	@Override
 	public boolean updatePetInfo(int idx, String resist, String id, String name, String kind, Date birthday, String neutral,
 			double weight, String sex, Date groomingStart, int groomingPeriod) {

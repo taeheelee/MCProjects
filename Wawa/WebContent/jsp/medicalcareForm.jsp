@@ -27,7 +27,7 @@
 			table.append(tr);
 		}	
 		
-		function addPetinfo(data){
+		function addTable(year, month, petinfo){
 			var table = $('#lTable tbody');
 			$('tr:gt(0)', table).remove();
 			var tr1 = $('<tr>');
@@ -35,17 +35,39 @@
 			var tr3 = $('<tr>');
 			var tr4 = $('<tr>');
 			var tr5 = $('<tr>');
-			$('<td>').attr('colspan', '2').text(data.pet.kind).appendTo(tr1);
-			$('<td>').text(data.pet.sex).appendTo(tr2);
-			$('<td>').text(data.pet.neutral).appendTo(tr2);
-			$('<td>').attr('colspan', '2').text('00년00개월').appendTo(tr3);
-			$('<td>').attr('colspan', '2').text(data.pet.weight).appendTo(tr4);
+			$('<td>').attr('colspan', '2').text(petinfo.kind).appendTo(tr1);
+			$('<td>').text(petinfo.sex).appendTo(tr2);
+			$('<td>').text(petinfo.neutral).appendTo(tr2);
+			$('<td>').attr('colspan', '2').text(year + "년" + month + "개월").appendTo(tr3);
+			$('<td>').attr('colspan', '2').text(petinfo.weight).appendTo(tr4);
 			$('<td>').attr('colspan', '2').text('하루필요열량 000kcal').appendTo(tr5);
 			table.append(tr1);
 			table.append(tr2);
 			table.append(tr3);
 			table.append(tr4);
 			table.append(tr5);
+		}
+		
+		function addPetinfo(data){
+			var petinfo = data.pet;
+			var id = '${myid }';
+			var year = 0;
+			var month = 0;
+			$.ajax({
+				type: 'get',
+				url: 'calcAge.do',
+				data: "name="+petinfo.name+"&id="+id,
+				dataType: 'json',
+				success : function (data) {
+   			    	if(data.year != null && data.month != null){
+   						addTable(data.year, data.month, petinfo);
+   			    	}else {
+   			    	}
+   			    },
+				error: function(data) {
+					alert('잠시 후 다시 시도해주세요');
+				}
+			});
 		}
 		
 		function addDayForm(data){

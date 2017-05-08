@@ -1,5 +1,7 @@
 package service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -58,6 +60,7 @@ public class PetInfoService implements IPetinfoService {
 	}
 
 	
+	
 	@Override
 	public boolean updatePetInfo(int idx, String resist, String id, String name, String kind, Date birthday, String neutral,
 			double weight, String sex, Date groomingStart, int groomingPeriod) {
@@ -110,6 +113,34 @@ public class PetInfoService implements IPetinfoService {
 	public HashMap<String, Object> selectByname(HashMap<String, Object> params) {
 		// TODO Auto-generated method stub
 		return dao.selectByName(params);
+	}
+
+	// 나이 계산하는 함수
+	@Override
+	public HashMap<String, Object> getAge(HashMap<String, Object> params) {
+		// TODO Auto-generated method stub
+		// 아이디, 펫 이름 받아서 일단 펫정보받기
+		HashMap<String, Object> pet = dao.selectByName(params);
+		String from = (String) pet.get("birthday");
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date to = null;
+		try{
+			to = transFormat.parse(from);
+		}catch (ParseException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		Date birthDay = to;
+		Date today = new Date();
+		
+		long diff = Math.abs(birthDay.getTime() - today.getTime());
+		long diffDays = diff / (24 * 60 * 60 * 1000);
+		
+		HashMap<String, Object> date = new HashMap<>();
+		date.put("age", diffDays);
+		
+		return date;
 	}
 
 }

@@ -15,4 +15,5 @@ public interface IPetinfoService {
 	public List<HashMap<String, Object>> selectPetList(String id);
 	public HashMap<String, Object> selectOne(HashMap<String, Object> params);
 	public HashMap<String, Object> selectByname(HashMap<String, Object> params);
+	public HashMap<String, Object> getAge(HashMap<String, Object> params);
 }

@@ -31,7 +31,7 @@ public class ReviewController {
 	}
 	
 	@RequestMapping("reviewSearch.do")
-	public ModelAndView reviewSearch(String category, String keyword, @RequestParam(defaultValue="1")int page){
+	public ModelAndView reviewSearch(String category, int type, String keyword, @RequestParam(defaultValue="1")int page){
 		ModelAndView mav = new ModelAndView();
 		if(category.equals("1"))
 			category = "사료";
@@ -49,8 +49,10 @@ public class ReviewController {
 			category = "패션/줄/인식표";
 		else if(category.equals("8"))
 			category = "기타";
+		else if(category.equals("0"))
+			category = "";
 		
-		mav.addAllObjects(boardService.getBoardByTitle(category, keyword, page, 2));
+		mav.addAllObjects(boardService.searchBoard(category, type, keyword, page, 2));
 		mav.setViewName("review.tiles");
 		return mav;
 	}

@@ -119,7 +119,8 @@
 									<tr>
 										<td width="20%">
 											<select class="country_to_state country_select" id="category" name="category">
-												<option selected="selected" value="1">사료</option>
+												<option selected="selected" value="0">카테고리 전체</option>
+												<option value="1">사료</option>
 												<option value="2">간식</option>
 												<option value="3">영양제/건강/위생</option>
 												<option value="4">목욕/미용</option>
@@ -130,7 +131,18 @@
 											</select>
 										</td>
 										<td width="3%"></td>
-										<td width="62%">
+										<td width="20%">
+										<select
+										class="country_to_state country_select" id="type"
+										name="type">
+											<option selected="selected" value="1">제목</option>
+											<option value="2">내용</option>
+											<option value="3">제목+내용</option>
+											<option value="4">작성자</option>
+										</select>
+										</td>
+										<td width="3%"></td>
+										<td width="39%">
 											<input type="text" id="keyword" name="keyword" placeholder="Search..." value=""
 											class="input-text ">
 										</td>
@@ -168,7 +180,7 @@
 											</c:when>
 											<c:otherwise>
 												<li><a
-													href="reviewSearch.do?page=${current-1 }&keyword=${keyword}&category=${category}"
+													href="reviewSearch.do?page=${current-1 }&keyword=${keyword}&category=${category}&type=${type}"
 													aria-label="Next"> <span aria-hidden="true">&laquo;</span>
 												</a></li>
 											</c:otherwise>
@@ -186,7 +198,7 @@
 													</c:when>
 													<c:otherwise>
 														<li><a
-															href="reviewSearch.do?page=${page }&keyword=${keyword}&category=${category}">${page }</a></li>
+															href="reviewSearch.do?page=${page }&keyword=${keyword}&category=${category}&type=${type}">${page }</a></li>
 													</c:otherwise>
 												</c:choose>
 											</c:otherwise>
@@ -201,7 +213,7 @@
 											</c:when>
 											<c:otherwise>
 												<li><a
-													href="reviewSearch.do?page=${current+1 }&keyword=${keyword}&category=${category}"
+													href="reviewSearch.do?page=${current+1 }&keyword=${keyword}&category=${category}&type=${type}"
 													aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 												</a></li>
 											</c:otherwise>

@@ -88,7 +88,7 @@ public class FreeBoardController {
 	}
 	
 	@RequestMapping("freeboardSearch.do")
-	public ModelAndView freeboardSearch(String category, String keyword, @RequestParam(defaultValue="1")int page){
+	public ModelAndView freeboardSearch(String category, int type, String keyword, @RequestParam(defaultValue="1")int page){
 		ModelAndView mav = new ModelAndView();
 		if(category.equals("1"))
 			category = "애견상식";
@@ -98,7 +98,9 @@ public class FreeBoardController {
 			category = "애견간식레시피";
 		else if(category.equals("4"))
 			category = "기타";
-		mav.addAllObjects(boardService.getBoardByTitle(category, keyword, page, 6));
+		else if(category.equals("0"))
+			category = "";
+		mav.addAllObjects(boardService.searchBoard(category, type, keyword, page, 6));
 		mav.setViewName("freeboard.tiles");
 		return mav;
 	}

@@ -30,8 +30,9 @@ public class ManagementController {
 		ModelAndView mav = new ModelAndView();
 		String id = session.getAttribute("id").toString();
 		
+		List<HashMap<String, Object>> petList = petinfoService.selectPetList(id);
+		
 		List<Management> weightList = new ArrayList<>();
-//		System.out.println(id);
 		weightList = managementService.selectList(id);
 		
 		Gson gson = new Gson();
@@ -51,6 +52,7 @@ public class ManagementController {
 		json += "]";
 		System.out.println(json);
 		mav.addObject("weightList", json);
+		mav.addObject("list", petList);
 		mav.setViewName("healthcare.tiles");
 		return mav;
 	}

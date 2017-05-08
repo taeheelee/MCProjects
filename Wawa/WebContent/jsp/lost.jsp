@@ -33,7 +33,7 @@
 					<input type="radio" name="category" value="protect"> 보호중입니다
 					<select class="country_to_state country_select" id="type" name="type">
 						<option selected="selected" value="5">펫 이름</option>
-						<option value="6">잃어버린 장소</option>
+						<option value="6">장소</option>
 					</select>
 					<input type="text" placeholder="Seach.." name="keyword" id="keyword"> 
 					<input type="submit" value="검색">

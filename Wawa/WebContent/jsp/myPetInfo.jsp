@@ -40,9 +40,10 @@
             ]
         });
         
-//     	var petbirth = $('#birthOfPet').val();
-//     	var petid = $('#idOfPet').val();
-// 		getPetAge(petbirth, petid);
+		var idx = $('#defaultBirth').attr('name');
+		var birth = $('#defaultBirth').val();
+		getPetAge(birth, idx);
+		
         $('li').click(function(){
         	getPetAge($(this).attr('id'), $(this).attr('name'));
 		});
@@ -74,7 +75,7 @@
 				<c:forEach var="pet" items="${petList }" varStatus="idx">
 					<span></span>
 					<li id="${pet.birthday }" name="${pet.idx }"><a href="#" name="#tab${idx.count }" style="font-size: 25px;">${pet.name }</a></li>
-<%-- 					<input type="hidden" id="birthOfPet" value="${pet.birthday }"> --%>
+					<input type="hidden" id="defaultBirth" name="${pet.idx }" value="${pet.birthday }">
 					
 				</c:forEach>
 			</ul>

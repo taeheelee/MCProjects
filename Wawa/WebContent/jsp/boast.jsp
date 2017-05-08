@@ -62,8 +62,8 @@
 		<div class="container">
 
 			<h2 class="sidebar-title2">뽐내기 후보 리스트</h2>
-					<form action="/Wawa/boastSearch.do" style="text-align: right;">
-						<input type="text" placeholder="Seach.."> 
+					<form action="boastSearch.do" style="text-align: right;">
+						<input type="text" placeholder="펫이름검색" name="keyword" id="keyword"> 
 						<input type="submit" value="검색">
 						<c:if test="${sessionScope.name != null}">
 						<input type="button" value="뽐내기 후보 등록" onclick="location.href='boastWriteForm.do'">
@@ -108,8 +108,8 @@
 											</a></li>
 										</c:when>
 										<c:otherwise>
-											<li><a href="boastSearch.do?page=${current-1 }&keyword=${keyword}&type=${type}" aria-label="Next"> <span
-											aria-hidden="true">&raquo;</span>
+											<li><a href="boastSearch.do?page=${current-1 }&keyword=${keyword}" aria-label="Next"> <span
+											aria-hidden="true">&laquo;</span>
 											</a></li>
 										</c:otherwise>
 									</c:choose>
@@ -125,7 +125,7 @@
 													<li><a href="boastMain.do?page=${page }">${page }</a></li>
 												</c:when>
 												<c:otherwise>
-													<li><a href="boastSearch.do?page=${page }&keyword=${keyword}&type=${type}">${page }</a></li>
+													<li><a href="boastSearch.do?page=${page }&keyword=${keyword}">${page }</a></li>
 												</c:otherwise>
 											</c:choose>
 										</c:otherwise>
@@ -139,7 +139,7 @@
 											</a></li>
 										</c:when>
 										<c:otherwise>
-											<li><a href="boastSearch.do?page=${current+1 }&keyword=${keyword}&type=${type}" aria-label="Next"> <span
+											<li><a href="boastSearch.do?page=${current+1 }&keyword=${keyword}" aria-label="Next"> <span
 											aria-hidden="true">&raquo;</span>
 											</a></li>
 										</c:otherwise>

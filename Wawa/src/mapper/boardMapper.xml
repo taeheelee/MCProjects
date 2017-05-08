@@ -47,7 +47,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<!-- 글제목으로 검색 -->
 		select * from board where boardCode=#{boardCode} and
 		<if test="category != ''"> 
-		category=#{category} and
+			<choose>
+				<when test="category == '수컷' or category == '암컷'">
+					sex=#{category} and
+				</when>
+				<otherwise>category=#{category} and</otherwise>
+			</choose>
 		</if> 
 		<if test="type == 1">
 		title like CONCAT('%',#{keyword},'%')
@@ -60,6 +65,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 		<if test="type == 4">
 		writer like CONCAT('%',#{keyword},'%')
+		</if>
+		<if test="type == 5">
+		name like CONCAT('%',#{keyword},'%')
+		</if>
+		<if test="type == 6">
+		lostPlace like CONCAT('%',#{keyword},'%')
 		</if>
 		order by boardIdx desc limit #{skip}, #{count}
 	</select>
@@ -81,7 +92,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<!-- 제목검색 결과 게시물 수 불러오기 -->
 		select count(*) from board where boardCode=#{boardCode}
 		<if test="category != ''"> 
-		and category=#{category}
+			<choose>
+				<when test="category == '수컷' or category == '암컷'">
+					and sex=#{category}
+				</when>
+				<otherwise>and category=#{category}</otherwise>
+			</choose>
 		</if> 
 		and 
 		<if test="type == 1">
@@ -95,6 +111,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</if>
 		<if test="type == 4">
 		writer like CONCAT('%',#{keyword},'%')
+		</if>
+		<if test="type == 5">
+		name like CONCAT('%',#{keyword},'%')
+		</if>
+		<if test="type == 6">
+		lostPlace like CONCAT('%',#{keyword},'%')
 		</if>
 	</select>
 	<update id="increaseLikeCount" parameterType="int">

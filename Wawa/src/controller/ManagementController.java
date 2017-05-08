@@ -18,7 +18,7 @@ import interface_service.IPetinfoService;
 import model.Management;
 
 @RestController
-public class HealthcareController {
+public class ManagementController {
 
 	@Autowired
 	private IPetinfoService petinfoService;

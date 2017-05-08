@@ -43,7 +43,7 @@ $(document).ready(function(){
 		//alert(inputString)
 		
 	});
-	$('#conformPassword').blur(function(){
+	$('#conformPassword').keyup(function(){
 		if($('#password').val() != $('#conformPassword').val()){
 			 $("#delete").attr("disabled",true);
 		}else {

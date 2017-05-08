@@ -140,12 +140,12 @@
 			</div>
 
 			<label class="" for="billing_state">비밀번호<abbr title="required" class="required">*</abbr></label> 
-			<input type="password" id="password" name="password" placeholder="15자리 이내의 알파벳, 숫자, 특수문자" value="${pass }" class="input-text ">
+			<input type="password" id="password" name="password" placeholder="15자리 이내의 알파벳, 숫자, 특수문자" class="input-text ">
 			<br>
 			<span id="pwError"></span>
 
 			<label class="" for="billing_state">비밀번호 확인<abbr title="required" class="required">*</abbr></label> 
-			<input type="password" id="conformPassword" name="conformPassword" placeholder="15자리 이내의 알파벳, 숫자, 특수문자" value="" class="input-text ">
+			<input type="password" id="conformPassword" name="conformPassword" placeholder="15자리 이내의 알파벳, 숫자, 특수문자" class="input-text ">
 			<br>
 			<span id="cpwError"></span>
 

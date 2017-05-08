@@ -3,6 +3,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
+import org.springframework.web.servlet.view.RedirectView;
 
 import interface_service.IBoardService;
 import interface_service.IMemberService;
@@ -110,14 +114,15 @@ public class MainController {
 	
 
 	@RequestMapping(method=RequestMethod.POST, value="userinfoForm.do")
-	public ModelAndView userinfoForm(String id){
+	public ModelAndView userinfoForm(HttpSession session){
 		ModelAndView mav = new ModelAndView();
+		String id = session.getAttribute("id").toString();
 		UserInfo userInfo = iMemberService.getMember(id);
 		HashMap<String, Object> params = new HashMap<>();
-		params.put("id", userInfo.getId());
+		params.put("id", id);
 		params.put("name", userInfo.getNickname());
 		params.put("sex", userInfo.getSex());
-		params.put("pass", userInfo.getPassword());
+		params.put("password", userInfo.getPassword());
 		params.put("phone", userInfo.getPhone());
 		params.put("email", userInfo.getEmail());
 		
@@ -126,11 +131,21 @@ public class MainController {
 		return mav;
 	}
 	
-	@RequestMapping("userUpdate.do")
-	public String userUpdate(UserInfo info){
-		String id = info.getId();
-		iMemberService.modifyInfo(info);
-		return "redirect:userinfoForm.do?id=" + id;
+	@RequestMapping(method=RequestMethod.POST, value="userUpdate.do")
+	public ModelAndView userUpdate(String password, String nickname,
+			String sex, String phone, String email, HttpSession session){
+		UserInfo userInfo = new UserInfo();
+		userInfo.setAdminCheck(0);
+		userInfo.setEmail(email);
+		userInfo.setId(session.getAttribute("id").toString());
+		userInfo.setNickname(nickname);
+		userInfo.setPassword(password);
+		userInfo.setPhone(phone);
+		userInfo.setSex(sex);
+		iMemberService.modifyInfo(userInfo);
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("userinfoForm.tiles");
+		return mav;
 	}
 	
 	@RequestMapping("deleteCheck.do")

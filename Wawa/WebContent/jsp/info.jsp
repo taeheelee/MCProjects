@@ -91,7 +91,7 @@
 									<td width="20%"><select
 										class="country_to_state country_select" id="category"
 										name="category">
-											<option selected="selected" value="5">카테고리 전체</option>
+											<option selected="selected" value="0">카테고리 전체</option>
 											<option value="1">애견상식</option>
 											<option value="2">훈련정보</option>
 											<option value="3">애견간식레시피</option>

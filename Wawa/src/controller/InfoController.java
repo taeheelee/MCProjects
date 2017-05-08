@@ -44,7 +44,7 @@ public class InfoController {
 				category = "애견간식레시피";
 			else if(category.equals("4"))
 				category = "기타";
-			else if(category.equals("5"))
+			else if(category.equals("0"))
 				category = "";
 
 			mav.addAllObjects(boardService.searchBoard(category, type, keyword, page, 1));

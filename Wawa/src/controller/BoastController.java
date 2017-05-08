@@ -42,11 +42,12 @@ public class BoastController {
 	}
 	
 	@RequestMapping("boastSearch.do")
-	public ModelAndView boastSearch(int boardIdx){
+	public ModelAndView boastSearch(@RequestParam(defaultValue="")String category, @RequestParam(defaultValue="5")int type, 
+			String keyword, @RequestParam(defaultValue="1")int page){
+		
 		ModelAndView mav = new ModelAndView();
-		HashMap<String, Object> board = boardService.getBoardByBoardIdx(boardIdx);
-		mav.addObject("result", board);
-		mav.setViewName("redirect:boastMain.do");
+		mav.addAllObjects(boardService.searchBoard(category, type, keyword, page, 3));
+		mav.setViewName("boast.tiles");
 		return mav;
 	}
 	

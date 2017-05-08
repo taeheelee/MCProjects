@@ -35,11 +35,16 @@ public class LostController {
 	}
 	
 	@RequestMapping("lostSearch.do")
-	public ModelAndView lostSearch(HashMap<String, Object> params){
+	public ModelAndView lostSearch(@RequestParam(defaultValue="")String category, int type, 
+			String keyword, @RequestParam(defaultValue="1")int page){
+		if(category.equals("find"))
+			category = "찾고있어요";
+		else if(category.equals("protect"))
+			category = "보호중입니다";
+		
 		ModelAndView mav = new ModelAndView();
-		HashMap<String, Object> board = boardService.getBoardByBoardIdx(params);
-		mav.addObject("result", board);
-		mav.setViewName("lostMain.do");
+		mav.addAllObjects(boardService.searchBoard(category, type, keyword, page, 4));
+		mav.setViewName("lost.tiles");
 		return mav;
 	}
 	

@@ -30,10 +30,10 @@
 	<div class="single-product-area">
 		<div class="container">
 			<h2 class="sidebar-title2">Would you marry me? 결혼해듀오</h2>
-				<form action="/Wawa/partnerSearch.do" style="text-align: right;">
-					<input type="radio" name="petsex" value="male"> 수컷
-					<input type="radio" name="petsex" value="female"> 암컷
-					<input type="text" name="petname" placeholder="Seach.."> 
+				<form action="partnerSearch.do" style="text-align: right;">
+					<input type="radio" name="category" value="male"> 수컷
+					<input type="radio" name="category" value="female"> 암컷
+					<input type="text" name="keyword" id="keyword" placeholder="펫이름검색" > 
 					<input type="submit" value="검색">
 					<c:if test="${sessionScope.name != null}">
 					<input type="button" value="짝꿍찾기 등록" onclick="location.href='partnerWriteForm.do'">
@@ -92,8 +92,8 @@
 											</a></li>
 										</c:when>
 										<c:otherwise>
-											<li><a href="partnerSearch.do?page=${current-1 }&keyword=${keyword}&type=${type}" aria-label="Next"> <span
-											aria-hidden="true">&raquo;</span>
+											<li><a href="partnerSearch.do?page=${current-1 }&keyword=${keyword}&category=${category}" aria-label="Next"> <span
+											aria-hidden="true">&laquo;</span>
 											</a></li>
 										</c:otherwise>
 									</c:choose>
@@ -109,7 +109,7 @@
 													<li><a href="partnerMain.do?page=${page }">${page }</a></li>
 												</c:when>
 												<c:otherwise>
-													<li><a href="partnerSearch.do?page=${page }&keyword=${keyword}&type=${type}">${page }</a></li>
+													<li><a href="partnerSearch.do?page=${page }&keyword=${keyword}&category=${category}">${page }</a></li>
 												</c:otherwise>
 											</c:choose>
 										</c:otherwise>
@@ -123,7 +123,7 @@
 											</a></li>
 										</c:when>
 										<c:otherwise>
-											<li><a href="partnerSearch.do?page=${current+1 }&keyword=${keyword}&type=${type}" aria-label="Next"> <span
+											<li><a href="partnerSearch.do?page=${current+1 }&keyword=${keyword}&category=${category}" aria-label="Next"> <span
 											aria-hidden="true">&raquo;</span>
 											</a></li>
 										</c:otherwise>

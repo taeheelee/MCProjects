@@ -28,10 +28,14 @@
 	<div class="single-product-area">
 		<div class="container">
 			<h2 class="sidebar-title2">찾고있어요/보호중입니다 </h2>
-				<form action="/Wawa/partnerSearch.do" style="text-align: right;">
-					<input type="radio" name="lost" value="찾고있어요"> 찾고있어요
-					<input type="radio" name="lost" value="보호중입니다"> 보호중입니다
-					<input type="text" placeholder="Seach.."> 
+				<form action="lostSearch.do" style="text-align: right;">
+					<input type="radio" name="category" value="find"> 찾고있어요
+					<input type="radio" name="category" value="protect"> 보호중입니다
+					<select class="country_to_state country_select" id="type" name="type">
+						<option selected="selected" value="5">펫 이름</option>
+						<option value="6">잃어버린 장소</option>
+					</select>
+					<input type="text" placeholder="Seach.." name="keyword" id="keyword"> 
 					<input type="submit" value="검색">
 					<c:if test="${sessionScope.name != null}">
 					<input type="button" value="유기견 등록" onclick="location.href='/Wawa/lostWriteForm.do'">
@@ -102,8 +106,8 @@
 											</a></li>
 										</c:when>
 										<c:otherwise>
-											<li><a href="lostSearch.do?page=${current-1 }&keyword=${keyword}&type=${type}" aria-label="Next"> <span
-											aria-hidden="true">&raquo;</span>
+											<li><a href="lostSearch.do?page=${current-1 }&keyword=${keyword}&category=${category }&type=${type}" aria-label="Next"> <span
+											aria-hidden="true">&laquo;</span>
 											</a></li>
 										</c:otherwise>
 									</c:choose>
@@ -119,7 +123,7 @@
 													<li><a href="lostMain.do?page=${page }">${page }</a></li>
 												</c:when>
 												<c:otherwise>
-													<li><a href="lostSearch.do?page=${page }&keyword=${keyword}&type=${type}">${page }</a></li>
+													<li><a href="lostSearch.do?page=${page }&keyword=${keyword}&category=${category }&type=${type}">${page }</a></li>
 												</c:otherwise>
 											</c:choose>
 										</c:otherwise>
@@ -133,7 +137,7 @@
 											</a></li>
 										</c:when>
 										<c:otherwise>
-											<li><a href="lostSearch.do?page=${current+1 }&keyword=${keyword}&type=${type}" aria-label="Next"> <span
+											<li><a href="lostSearch.do?page=${current+1 }&keyword=${keyword}&category=${category }&type=${type}" aria-label="Next"> <span
 											aria-hidden="true">&raquo;</span>
 											</a></li>
 										</c:otherwise>

@@ -89,7 +89,8 @@
 			var flag = chkDateFmt(ch, num);
 			if(flag == true){
 				if(data.val() == "입력"){
-					$("#" + ch + "div" + num).text($('#'+ch+num).val());
+					$("#" + ch + "div" + 1).text($('#'+ch+num).val());
+					$("#" + ch + "day" + 1).text('D-day');
 					uploadShotday(ch, num, tableNum, vaccineCode);					
 				}else {						
 					uploadShotdayAfter(ch, num, tableNum, vaccineCode);
@@ -113,10 +114,10 @@
 			var inputTxt = $('<input type="text" class="VcDate" placeholder="0000-00-00" id="'+ ch + num + '" readonly>');
 			var inputBtn = $('<input type="button" value="입력" class="uploadBtn" name="' + num + '" id="' + ch + tableNum + '0' + num + '" style="padding: 3px 3px">');
 			var deleteBtn = $('<input type="button" value="삭제" class="deleteBtn" name="' + num + '" id= "delete' + ch + num + '" style="padding: 3px 3px">');
-			
+		
 			$('<td>').html('<a>' + num + '차</a>').appendTo(tr);
-			$('<td>').html(nextShotday).appendTo(tr);
-			$('<td>').html('D' + dDay).appendTo(tr);
+			$('<td>').attr('id', ch + 'div' + num).html(nextShotday).appendTo(tr);
+			$('<td>').attr('id', ch + 'day' + num).html('D' + dDay).appendTo(tr);
 			$('<td>').append(addBtn).append(inputTxt).appendTo(tr);
 			$('<td>').append(inputBtn).appendTo(tr);
 			$('<td>').append(deleteBtn).appendTo(tr);
@@ -129,7 +130,7 @@
 						$("#" + ch + "div" + num).text($('#'+ch+num).val());
 						$("#" + ch + "day" + parseInt(num)-1).text('0');
 						uploadShotday(ch, num, tableNum, vaccineCode);					
-					}else {						
+					}else {
 						uploadShotdayAfter(ch, num, tableNum, vaccineCode);
 					}
 				}
@@ -161,7 +162,46 @@
 				success : function (data) {
    			    	if(data.result){
    						$('#' + ch + num).attr("readonly",true);
+   						getNextDate2(ch, num, tableNum, vaccineCode, shotday);
    			    	}else {
+   			    	}
+   			    },
+				error: function(data) {
+					alert('잠시 후 다시 시도해주세요');
+				}
+			});
+		}
+		
+		function getNextDate2(ch, num, tableNum, vaccineCode, shotday){
+			$.ajax({
+				type: 'get',
+				url: 'calcShotday.do',
+				data: "vaccineCode="+vaccineCode+"&shotday="+shotday,
+				dataType: 'json',
+				success : function (data) {
+   			    	if(data.nextDate != null){
+   			    		var nextShotday = data.nextDate;
+   			    		$.ajax({
+   							type: 'get',
+   							url: 'calcDday.do',
+   							data: "nextShotday="+nextShotday,
+   							dataType: 'json',
+   							success : function (data) {
+   			   			    	if(data.dDay != null){
+   			   			    		var dDay = data.dDay;
+   			   			    		nextNum = parseInt(num) + 1;
+   			   			    		$('#' + ch + 'div' + nextNum).attr('id', ch + 'div' + nextNum).html(nextShotday);
+   			   			    		$('#' + ch + 'day' + nextNum).attr('id', ch + 'day' + nextNum).html('D' + dDay);
+   			   			    	}else {
+   			   			    		alert('에러');
+   			   			    	}
+   			   			    },
+   							error: function(data) {
+   								alert('잠시 후 다시 시도해주세요');
+   							}
+   						});
+   			    	}else {
+   			    		alert('에러');
    			    	}
    			    },
 				error: function(data) {
@@ -268,9 +308,9 @@
 			});
 			
 			$('#D101').click(function(){	addFirstElement($(this));	});
-			$('#C101').click(function(){	addFirstElement($(this));	});
-			$('#K101').click(function(){	addFirstElement($(this));	});		
-			$('#R101').click(function(){	addFirstElement($(this));	});
+			$('#C201').click(function(){	addFirstElement($(this));	});
+			$('#K301').click(function(){	addFirstElement($(this));	});		
+			$('#R401').click(function(){	addFirstElement($(this));	});
 		});
 		
 	</script>
@@ -394,7 +434,7 @@
 	                   	<input type="button" value=" + " class="addDay" name="1" id="C1Btn" style="padding: 3px 3px">
 	                   	<input type="text" class="VcDate" placeholder="0000-00-00" id="C1" readonly></td>
 	                   	<td colspan="">
-	                   	<input type="button" value="입력" class="uploadBtn" name="1" id='C101' style="padding: 3px 3px"></td>
+	                   	<input type="button" value="입력" class="uploadBtn" name="1" id='C201' style="padding: 3px 3px"></td>
 	                </tr>
 				   
                 </tbody>
@@ -426,7 +466,7 @@
 	                   	<input type="button" value=" + " class="addDay" name="1" id="K1Btn" style="padding: 3px 3px">
 	                   	<input type="text" class="VcDate" placeholder="0000-00-00" id="K1" readonly></td>
 	                   	<td>
-	                   	<input type="button" value="입력" class="uploadBtn" name="1" id='K101' style="padding: 3px 3px"></td>
+	                   	<input type="button" value="입력" class="uploadBtn" name="1" id='K301' style="padding: 3px 3px"></td>
 	                </tr>
 				  
                 </tbody>
@@ -459,7 +499,7 @@
 	                   	<input type="button" value=" + " class="addDay" name="1" id="R1Btn" style="padding: 3px 3px">
 	                   	<input type="text" class="VcDate" placeholder="0000-00-00" id="R1" readonly></td>
 	                   	<td>
-	                   	<input type="button" value="입력" class="uploadBtn" name="1" id='R101' style="padding: 3px 3px"></td>
+	                   	<input type="button" value="입력" class="uploadBtn" name="1" id='R401' style="padding: 3px 3px"></td>
 	                </tr>
                     
                 </tbody>

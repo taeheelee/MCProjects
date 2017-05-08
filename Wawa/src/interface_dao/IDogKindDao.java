@@ -7,6 +7,6 @@ public interface IDogKindDao {
 	public int insertDogKind(HashMap<String, Object> params);
 	public int updateDogKind(HashMap<String, Object> params);
 	public int deleteDogKind(String kind);
-	public HashMap<String, Object> selectOneDogKind(String nickname);
+	public HashMap<String, Object> selectOneDogKind(String kind);
 	public List<HashMap<String, Object>> selectAllDogKind();	
 }

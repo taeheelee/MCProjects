@@ -18,10 +18,12 @@
 		$.ajax({
 			type: 'get',
 			url: 'getAge.do',
-			data: "birthday="+petBirth,
+			data: "birthday="+petBirth+"&petIdx="+petIdx,
 			dataType: "json",
 			success: function(data) {
 				$('#ageSpan' + petIdx).text(data.year + "년" + data.month + "개월");
+				$('#transperAgeSpan' + petIdx).text(data.transperAge + "살");
+				
 			},
 			error: function(data){
 				alert("잠시 후 다시 시도해주세요.");
@@ -110,7 +112,7 @@
                      </tr>
                      <tr>
                         <td>
-                           <span>생일 : ${pet.birthday } </span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span id="ageSpan${pet.idx }"></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;사람나이 <span>00살</span> 
+                           <span>생일 : ${pet.birthday } </span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span id="ageSpan${pet.idx }"></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;사람나이 <span id="transperAgeSpan${pet.idx }"></span>
                         </td>
                      </tr>
                      <tr>

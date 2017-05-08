@@ -1,27 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-  <body>
-  
-    
-    
-    <div class="product-big-title-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="product-bit-title text-left">
-                        <h2>유기견 찾기</h2>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<body>
+
+
+
+	<div class="product-big-title-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="product-bit-title text-left">
+						<h2>유기견 찾기</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 
@@ -43,56 +43,84 @@
 				</form>
 		</div>
 
-<!-- 		<div class="container">                    -->
-<!-- 			<h3 class="sidebar-title">목록</h3> -->
-<!-- 		</div> -->
-		
-<!-- 		<div class="container"> -->
-<!-- 				<div class="container" style="float: right;"> -->
-<!-- 				<form action="/Wawa/partnerSearch.do"> -->
-<!-- 					<input type="text" placeholder="Search.."> -->
-<!-- 					<input type="submit" value="검색"> -->
-<!-- 				</form> -->
-<!-- 				<input type="button" value="유기견 등록" onclick="location.href='/Wawa/lostWriteForm.do'"> -->
-<!-- 				</div> -->
-		
-<!-- 		</div> -->
+		<!-- 		<div class="container">                    -->
+		<!-- 			<h3 class="sidebar-title">목록</h3> -->
+		<!-- 		</div> -->
+
+		<!-- 		<div class="container"> -->
+		<!-- 				<div class="container" style="float: right;"> -->
+		<!-- 				<form action="/Wawa/partnerSearch.do"> -->
+		<!-- 					<input type="text" placeholder="Search.."> -->
+		<!-- 					<input type="submit" value="검색"> -->
+		<!-- 				</form> -->
+		<!-- 				<input type="button" value="유기견 등록" onclick="location.href='/Wawa/lostWriteForm.do'"> -->
+		<!-- 				</div> -->
+
+		<!-- 		</div> -->
 
 		<div class="container" id="">
 
 
 			<c:forEach items="${boardList }" var="lost">
-				<div class="single-product col-md-4" style=" padding: 15px;">
-					<div class="col-md-11" style="background: #E6E6E6; padding : 15px 15px 5px 15px;width: 100%; margin: 0 auto;">
+				<div class="single-product col-md-4" style="padding: 15px;">
+					<div class="col-md-11"
+						style="background: #E6E6E6; padding: 15px 15px 5px 15px; width: 100%; margin: 0 auto;">
 						<h4>${lost.category }</h4>
-						<hr style="border-color: black; border: solid 1px;margin: 0 0 5px 0">
+						<hr
+							style="border-color: black; border: solid 1px; margin: 0 0 5px 0">
 						<div align="right">${lost.writer }</div>
-						<div class="col-md-6" id="wanted_photo" style="padding : 0 ;background: blue; width: 160px; height: 150px" >
-						
-							<div class="product-f-image" style="width: 160px; height: 150px" ><!-- 마우스오버시 검정색 효과 범위-->
-								<img src="imageShow/${lost.fileId}.do" onerror="this.src='img/no_image.jpg'" alt="" >
+						<div class="col-md-6" id="wanted_photo"
+							style="padding: 0; background: #e6e6e6;">
+
+							<div class="product-f-image">
+								<!-- 마우스오버시 검정색 효과 범위-->
+								<img src="imageShow/${lost.fileId}.do"
+									onerror="this.src='img/noImage.png'" alt="">
 								<div class="product-hover">
-									<a href="lostDetails.do?boardIdx=${lost.boardIdx }" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
+									<a href="lostDetails.do?boardIdx=${lost.boardIdx }"
+										class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 								</div>
-							</div><!--  마우스오버시 검정색 효과 범위 끝 -->
+							</div>
+							<!--  마우스오버시 검정색 효과 범위 끝 -->
 						</div>
-						<div class="col-md-6" id="wanted_content" style="padding: 0 0 0 15px;" >
-						<table border="1" style="width: 100%; font-size: small;	" >
-							<tr><td>이름</td><td id="petname">${lost.name }</td></tr>
-							<tr><td>품종</td><td id="petkind">${lost.kind }</td></tr>
-							<tr><td id="petsex">${lost.sex }</td><td id="petage">${lost.age }</td></tr>
-							<tr><td colspan="2">잃어버린/발견된 장소</td></tr>
-							<tr><td colspan="2" id="place">${lost.lostPlace }</td></tr>
-							<tr><td colspan="2">잃어버린/발견된 날짜</td></tr>
-							<tr><td colspan="2" id="lostdate">${lost.lostDate }</td></tr>
-						</table>
+						<div class="col-md-6" id="wanted_content"
+							style="padding: 0 0 0 15px;">
+							<ul id="lostPet-ul">
+								<li><b>이름 :</b> ${lost.name }</li>
+								<li><b>품종 :</b> ${lost.kind }</li>
+								<li><b>성별 :</b> ${lost.sex }</li>
+								<c:choose>
+									<c:when test="${lost.category =='찾고있어요'}">
+										<li style="margin-bottom: 0px;"><b>잃어버린 장소</b></li>
+									</c:when>
+									<c:when test="${lost.category =='보호중입니다'}">
+										<li style="margin-bottom: 0px;"><b>발견된 장소</b></li>
+									</c:when>
+									<c:otherwise>
+										<li style="margin-bottom: 0px;"><b>장소</b></li>
+									</c:otherwise>
+								</c:choose>
+								<li style="font-size: large; text-align: right;"><b>${lost.lostPlace }</b></li>
+								<c:choose>
+									<c:when test="${lost.category =='찾고있어요'}">
+										<li style="margin-bottom: 0px;"><b>잃어버린 날짜</b></li>
+									</c:when>
+									<c:when test="${lost.category =='보호중입니다'}">
+										<li style="margin-bottom: 0px;"><b>발견된 날짜</b></li>
+									</c:when>
+									<c:otherwise>
+										<li style="margin-bottom: 0px;"><b>날짜</b></li>
+									</c:otherwise>
+								</c:choose>
+								<li style="text-align: right;">${lost.lostDate }</li>
+							</ul>
 						</div>
-						<hr style="border-color: black; border: solid 1px;margin: 5px 0">
+						<hr style="border-color: black; border: solid 1px; margin: 5px 0">
 					</div>
 				</div>
 			</c:forEach>
-			
-			
+
+
 			<div class="row">
 				<div class="col-md-12">
 					<div class="product-pagination text-center">
@@ -101,13 +129,14 @@
 								<c:if test="${current != 1 }">
 									<c:choose>
 										<c:when test="${keyword == null }">
-											<li><a href="lostMain.do?page=${current-1 }" aria-label="Previous"> <span
-											aria-hidden="true">&laquo;</span>
+											<li><a href="lostMain.do?page=${current-1 }"
+												aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 											</a></li>
 										</c:when>
 										<c:otherwise>
-											<li><a href="lostSearch.do?page=${current-1 }&keyword=${keyword}&category=${category }&type=${type}" aria-label="Next"> <span
-											aria-hidden="true">&laquo;</span>
+											<li><a
+												href="lostSearch.do?page=${current-1 }&keyword=${keyword}&type=${type}"
+												aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 											</a></li>
 										</c:otherwise>
 									</c:choose>
@@ -123,7 +152,8 @@
 													<li><a href="lostMain.do?page=${page }">${page }</a></li>
 												</c:when>
 												<c:otherwise>
-													<li><a href="lostSearch.do?page=${page }&keyword=${keyword}&category=${category }&type=${type}">${page }</a></li>
+													<li><a
+														href="lostSearch.do?page=${page }&keyword=${keyword}&type=${type}">${page }</a></li>
 												</c:otherwise>
 											</c:choose>
 										</c:otherwise>
@@ -132,13 +162,14 @@
 								<c:if test="${current != last }">
 									<c:choose>
 										<c:when test="${keyword == null }">
-											<li><a href="lostMain.do?page=${current+1 }" aria-label="Next"> <span
-											aria-hidden="true">&raquo;</span>
+											<li><a href="lostMain.do?page=${current+1 }"
+												aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 											</a></li>
 										</c:when>
 										<c:otherwise>
-											<li><a href="lostSearch.do?page=${current+1 }&keyword=${keyword}&category=${category }&type=${type}" aria-label="Next"> <span
-											aria-hidden="true">&raquo;</span>
+											<li><a
+												href="lostSearch.do?page=${current+1 }&keyword=${keyword}&type=${type}"
+												aria-label="Next"> <span aria-hidden="true">&raquo;</span>
 											</a></li>
 										</c:otherwise>
 									</c:choose>
@@ -148,8 +179,8 @@
 					</div>
 				</div>
 			</div>
-			
-			
+
+
 
 		</div>
 	</div>
@@ -157,5 +188,5 @@
 
 
 
-  </body>
+</body>
 </html>

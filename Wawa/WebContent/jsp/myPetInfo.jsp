@@ -28,7 +28,7 @@
 			}
 		});
 	}	
-
+//dsdsafasdf
     jQuery(document).ready(function() {
         jQuery("#calendar").fullCalendar({
               defaultDate : "2017-04-10"

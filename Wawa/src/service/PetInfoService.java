@@ -120,25 +120,30 @@ public class PetInfoService implements IPetinfoService {
 	public HashMap<String, Object> getAge(HashMap<String, Object> params) {
 		// TODO Auto-generated method stub
 		// 아이디, 펫 이름 받아서 일단 펫정보받기
-		HashMap<String, Object> pet = dao.selectByName(params);
-		String from = (String) pet.get("birthday");
+		
+		String birthday = (String) params.get("birthday");
+
+		String from = birthday;
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date to = null;
-		try{
+		try {
 			to = transFormat.parse(from);
-		}catch (ParseException e) {
-			// TODO: handle exception
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		Date birthDay = to;
+
 		Date today = new Date();
 		
-		long diff = Math.abs(birthDay.getTime() - today.getTime());
+		long diff = Math.abs(to.getTime() - today.getTime());
 		long diffDays = diff / (24 * 60 * 60 * 1000);
 		
+		int year = (int) diffDays/365;
+		long month = (int) diffDays%365/30;
+		
 		HashMap<String, Object> date = new HashMap<>();
-		date.put("age", diffDays);
+		date.put("year", year);
+		date.put("month", month);
 		
 		return date;
 	}

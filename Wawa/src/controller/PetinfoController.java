@@ -96,9 +96,17 @@ public class PetinfoController {
 			@RequestParam HashMap<String, Object> params){
 		HashMap<String, Object> response = new HashMap<>();
 		HashMap<String, Object> pet = petinfoService.selectByname(params);
-//		response.put("date", medicalService.selectDueShotDate(pet));
 		response.put("pet", pet);
 		return response;
+	}
+	
+	@RequestMapping("getAge.do")
+	public 
+	@ResponseBody HashMap<String, Object> getAge(HttpServletResponse resp,
+			@RequestParam HashMap<String, Object> params) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> petAge = petinfoService.getAge(params);
+		return petAge;
 	}
 	
 }

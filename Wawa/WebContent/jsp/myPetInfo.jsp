@@ -13,6 +13,22 @@
 <script type="text/javascript" src="./fullcalendar-3.3.1/fullcalendar.js"></script>
 <script type="text/javascript" src="./fullcalendar-3.3.1/locale/ko.js"></script>
 <script type="text/javascript">
+
+	function getPetAge(petBirth, petIdx){
+		$.ajax({
+			type: 'get',
+			url: 'getAge.do',
+			data: "birthday="+petBirth,
+			dataType: "json",
+			success: function(data) {
+				$('#ageSpan' + petIdx).text(data.year + "년" + data.month + "개월");
+			},
+			error: function(data){
+				alert("잠시 후 다시 시도해주세요.");
+			}
+		});
+	}	
+
     jQuery(document).ready(function() {
         jQuery("#calendar").fullCalendar({
               defaultDate : "2017-04-10"
@@ -23,6 +39,14 @@
 
             ]
         });
+        
+//     	var petbirth = $('#birthOfPet').val();
+//     	var petid = $('#idOfPet').val();
+// 		getPetAge(petbirth, petid);
+        $('li').click(function(){
+        	getPetAge($(this).attr('id'), $(this).attr('name'));
+		});
+        
     });
 </script>
 </head>
@@ -49,13 +73,13 @@
 			<ul id="tabs">
 				<c:forEach var="pet" items="${petList }" varStatus="idx">
 					<span></span>
-					<li><a href="#" name="#tab${idx.count }" style="font-size: 25px;">${pet.name }</a></li>
+					<li id="${pet.birthday }" name="${pet.idx }"><a href="#" name="#tab${idx.count }" style="font-size: 25px;">${pet.name }</a></li>
+<%-- 					<input type="hidden" id="birthOfPet" value="${pet.birthday }"> --%>
 					
 				</c:forEach>
 			</ul>
 			<div id="content">
 			<c:forEach var="pet" items="${petList }" varStatus="idx">
-
 			            <div id="tab${idx.count }">
                <div class="col-md-3">
                   <p style="text-align: center;">
@@ -63,18 +87,10 @@
                   </p>
                   <p style="text-align: center;">
                      <input type="button" value="메인펫으로 지정" style="width: 100%"><br><br>
-<!--                      <input type="button" value="펫 수정" style="width: 48%"> -->
-<!--                      <input type="button" value="펫 삭제" style="width: 48%"> -->
                   </p>
                   
                </div>
                <div class="col-md-9" style="font-size: 18px;">
-               
-            
-                     <!-- <p style="text-align: right; margin: 0">
-                        <input type="button" value="펫 수정" style="font-size: small;">
-                        <input type="button" value="펫 삭제" style="font-size: small;">
-                     </p> -->
                
                   <table cellspacing="0" class="pet_table">
                      <tr>
@@ -88,12 +104,12 @@
                      </tr>
                      <tr>
                         <td>
-                           <span>${pet.kind }</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>${pet.sex }</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;중성화 여부 : <span>${pet.neutral }</span>&nbsp;&nbsp;<input type="button" value="짝꿍 찾으러가기 GO" style="font-size: small;" onclick = "location.href ='partnerMain.do'">
+                           <span>${pet.kind } </span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>${pet.sex }</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;중성화 여부 : <span>${pet.neutral }</span>&nbsp;&nbsp;<input type="button" value="짝꿍 찾으러가기 GO" style="font-size: small;" onclick = "location.href ='partnerMain.do'">
                         </td>
                      </tr>
                      <tr>
                         <td>
-                           <span>생일 : ${pet.birthday } </span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span>0년 0개월</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;사람나이 <span>00살</span> 
+                           <span>생일 : ${pet.birthday } </span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<span id="ageSpan${pet.idx }"></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;사람나이 <span>00살</span> 
                         </td>
                      </tr>
                      <tr>

@@ -46,12 +46,8 @@ public interface IBoardService {
 	//좋아요 순으로 정렬
 	public List<HashMap<String, Object>> selectBoastNum();
 	
-	//이름으로 게시판 검색
-	public List<HashMap<String, Object>> getBoardByName(HashMap<String, Object> params);
-	//제목으로 게시판 검색
-	public HashMap<String, Object> getBoardByTitle(String category, String keyword, int page, int boardCode);
-	//키워드로 게시판 검색
-	public List<HashMap<String, Object>> getBoardByKeyword(HashMap<String, Object> params);
+	//게시판 검색
+	public HashMap<String, Object> searchBoard(String category, int type, String keyword, int page, int boardCode);
 	//게시판인덱스로 게시판 검색
 	public HashMap<String, Object> getBoardByBoardIdx(int boardIdx);
 	//본인확인

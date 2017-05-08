@@ -530,19 +530,15 @@ public class BoardService implements IBoardService{
 		return dao.selectByBoastnum();
 	}
 	
-	@Override
-	public List<HashMap<String, Object>> getBoardByName(HashMap<String, Object> params) {
-		// TODO Auto-generated method stub
-		return dao.selectByName(params);
-	}
 
 	@Override
-	public HashMap<String, Object> getBoardByTitle(String category, String keyword, int page, int boardCode) {
+	public HashMap<String, Object> searchBoard(String category, int type, String keyword, int page, int boardCode) {
 		// TODO Auto-generated method stub
 		HashMap<String, Object> params = new HashMap<>();
 		params.put(Constant.Board.BOARDCODE, boardCode);
-		params.put(Constant.Board.TITLE, keyword);
 		params.put(Constant.Board.CATEGORY, category);
+		params.put("type", type);
+		params.put("keyword", keyword);
 		
 		int first = 1;
 
@@ -562,7 +558,7 @@ public class BoardService implements IBoardService{
 		params.put("count", count);
 		
 		
-		List<HashMap<String, Object>> list = dao.selectByTitle(params);
+		List<HashMap<String, Object>> list = dao.searchBoard(params);
 		
 		HashMap<String, Object> result = new HashMap<>();
 		result.put("first", first);
@@ -572,16 +568,12 @@ public class BoardService implements IBoardService{
 		result.put("current", page);
 		result.put("boardList", list);
 		result.put("category", category);
+		result.put("type", type);
 		result.put("keyword", keyword);
 		
 		return result;
 	}
 
-	@Override
-	public List<HashMap<String, Object>> getBoardByKeyword(HashMap<String, Object> params) {
-		// TODO Auto-generated method stub
-		return dao.selectByKeyword(params);
-	}
 	
 	@Override
 	public HashMap<String, Object> getBoardByBoardIdx(int boardIdx) {

@@ -34,7 +34,7 @@ public class InfoController {
 		}
 		
 		@RequestMapping("infoSearch.do")
-		public ModelAndView infoSearch(String category, String keyword, @RequestParam(defaultValue="1")int page){
+		public ModelAndView infoSearch(String category, int type, String keyword, @RequestParam(defaultValue="1")int page){
 			ModelAndView mav = new ModelAndView();
 			if(category.equals("1"))
 				category = "애견상식";
@@ -44,8 +44,10 @@ public class InfoController {
 				category = "애견간식레시피";
 			else if(category.equals("4"))
 				category = "기타";
-			
-			mav.addAllObjects(boardService.getBoardByTitle(category, keyword, page, 1));
+			else if(category.equals("5"))
+				category = "";
+
+			mav.addAllObjects(boardService.searchBoard(category, type, keyword, page, 1));
 			mav.setViewName("info.tiles");
 			return mav;
 		}

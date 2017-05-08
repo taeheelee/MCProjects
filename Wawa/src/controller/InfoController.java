@@ -24,15 +24,17 @@ public class InfoController {
 		@Autowired
 		private IRepleService repleService;
 	
+		//애견정보 게시판 메인
 		@RequestMapping("infoMain.do")
 		public ModelAndView infoMain(@RequestParam(defaultValue="1") int page, 
 				@RequestParam(defaultValue="1") int boardCode){
 			ModelAndView mav = new ModelAndView();
 			mav.addAllObjects(boardService.getBoardList(page, boardCode));
-			mav.setViewName("info.tiles"); // -> infoMain찾기
+			mav.setViewName("info.tiles"); 
 			return mav;
 		}
 		
+		//애견정보 게시글 검색
 		@RequestMapping("infoSearch.do")
 		public ModelAndView infoSearch(String category, int type, String keyword, @RequestParam(defaultValue="1")int page){
 			ModelAndView mav = new ModelAndView();
@@ -52,6 +54,7 @@ public class InfoController {
 			return mav;
 		}
 		
+		//애견정보 게시글 상세보기
 		@RequestMapping("infoDetails.do")
 		public ModelAndView infoDetails(int boardIdx){
 			ModelAndView mav = new ModelAndView();
@@ -63,12 +66,14 @@ public class InfoController {
 			return mav;
 		}
 		
-		@RequestMapping("infoWriteForm.do") // -> writeForm.jsp로 이동
+		//애견정보 게시판 글쓰기 폼
+		@RequestMapping("infoWriteForm.do")
 		public String infoWriteForm(){
 			return "infoWriteForm.tiles";
 		}
 		
-		@RequestMapping("infoWrite.do") // --> infoWrite.jsp
+		//애견정보 게시판 글쓰기
+		@RequestMapping("infoWrite.do")
 		public String infoWrite(int boardCode, String title, String category, String content,
 				String writer){
 			if(category.equals("1"))
@@ -80,11 +85,11 @@ public class InfoController {
 			else if(category.equals("4"))
 				category = "기타";
 			boardService.writeFreeBoard(boardCode, title, category, content, writer);
-				return "redirect:infoMain.do"; // 성공시 메인으로 이동
+				return "redirect:infoMain.do";
 		}
 		
-		
-		@RequestMapping("infoUpdateForm.do") // --> 수정화면으로 이동
+		//애견정보 게시글 수정 폼
+		@RequestMapping("infoUpdateForm.do")
 		public ModelAndView infoUpdateForm(int boardIdx){
 			ModelAndView mav = new ModelAndView();
 			HashMap<String, Object> board = boardService.getBoardByBoardIdx(boardIdx);
@@ -93,6 +98,7 @@ public class InfoController {
 			return mav;
 		}
 		
+		//애견정보 게시글 수정하기
 		@RequestMapping("infoUpdate.do")
 		public String infoUpdate(int boardIdx, String title, String category, String content,
 				String writer, int readCount){
@@ -109,15 +115,11 @@ public class InfoController {
 			return "redirect:infoMain.do";
 		}
 		
+		//애견정보 게시글 삭제
 		@RequestMapping("infoDelete.do")
 		public String infoDelete(int boardIdx){
 			boardService.deleteBoard(boardIdx);
 			return "redirect:infoMain.do";
 		}
-		
-//		@RequestMapping("infoUpdateImage.do")
-//		public ModelAndView infoUpdateImage(){
-//			
-//		}
 		
 }

@@ -530,7 +530,7 @@ public class BoardService implements IBoardService{
 		return dao.selectByBoastnum();
 	}
 	
-
+	//================================게시글 검색========================================================	
 	@Override
 	public HashMap<String, Object> searchBoard(String category, int type, String keyword, int page, int boardCode) {
 		// TODO Auto-generated method stub
@@ -574,26 +574,17 @@ public class BoardService implements IBoardService{
 		return result;
 	}
 
-	
+	//================================게시글 정보 가져오기========================================================	
 	@Override
 	public HashMap<String, Object> getBoardByBoardIdx(int boardIdx) {
 		// TODO Auto-generated method stub
 		return dao.selectOneBoard(boardIdx);
 	}
 
-	@Override
-	public boolean identifyUser(HashMap<String, Object> params) {
-		// TODO Auto-generated method stub
-		String id = (String) params.get("id");
-		String password = (String) params.get("password");
-		if(dao.getUserPwd(id).equals(password)) return true;
-		return false;
-	}
-
+	//================================펫 정보 불러오기========================================================	
 	@Override
 	public HashMap<String, Object> selectPetinfo(int idx) {
 		// TODO Auto-generated method stub
-		
 		return dao.selectPetinfo(idx);
 	}
 

@@ -19,17 +19,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  where boardIdx=#{boardIdx}
 	</update>	
 	<delete id="deleteBoard" parameterType="int">
+		<!-- 게시글삭제 -->
 		delete from board where boardIdx=#{boardIdx}
 	</delete> 
-	<select id="getUserPwd" parameterType="String" resultType="String">
-		select password from userinfo u, board b where u.id = b.writer
-	</select>
 	<select id="selectPetinfo" parameterType="int" resultType="java.util.HashMap">
-		<!-- petinfo와 조인해서 애견정보 가져오기  -->
+		<!-- 애견정보 가져오기  -->
 		select * from petinfo where idx=#{idx}
-	</select>
-	<select id="selectBoardById" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-		select * from board where id=#{id} and boardCode=#{boardCode}
 	</select>
 	<select id="selectOneBoard" parameterType="int" resultType="java.util.HashMap">
 		<!-- 게시글번호로 게시글하나 선택 -->
@@ -44,7 +39,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from board order by boardIdx
 	</select>
 	<select id="searchBoard" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-		<!-- 글제목으로 검색 -->
+		<!-- 게시글 검색 -->
 		select * from board where boardCode=#{boardCode} and
 		<if test="category != ''"> 
 			<choose>
@@ -89,7 +84,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) from board where boardCode=#{boardCode}
 	</select>
 	<select id="getSearchCount" parameterType="java.util.HashMap" resultType="int">
-		<!-- 제목검색 결과 게시물 수 불러오기 -->
+		<!-- 검색 결과 게시물 수 불러오기 -->
 		select count(*) from board where boardCode=#{boardCode}
 		<if test="category != ''"> 
 			<choose>

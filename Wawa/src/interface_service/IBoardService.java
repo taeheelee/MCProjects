@@ -46,12 +46,10 @@ public interface IBoardService {
 	//좋아요 순으로 정렬
 	public List<HashMap<String, Object>> selectBoastNum();
 	
-	//게시판 검색
+	//게시글 검색
 	public HashMap<String, Object> searchBoard(String category, int type, String keyword, int page, int boardCode);
 	//게시판인덱스로 게시판 검색
 	public HashMap<String, Object> getBoardByBoardIdx(int boardIdx);
-	//본인확인
-	public boolean identifyUser(HashMap<String, Object> params);
 	//펫 정보 가져오기
 	public HashMap<String, Object> selectPetinfo(int idx);
 }

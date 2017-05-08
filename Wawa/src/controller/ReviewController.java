@@ -21,6 +21,7 @@ public class ReviewController {
 	@Autowired
 	private IRepleService repleService;
 	
+	//리뷰 게시판 메인
 	@RequestMapping("reviewMain.do")
 	public ModelAndView reviewMain(@RequestParam(defaultValue="1") int page, 
 			@RequestParam(defaultValue="2") int boardCode){
@@ -30,6 +31,7 @@ public class ReviewController {
 		return mav;
 	}
 	
+	//리뷰 게시글 검색
 	@RequestMapping("reviewSearch.do")
 	public ModelAndView reviewSearch(String category, int type, String keyword, @RequestParam(defaultValue="1")int page){
 		ModelAndView mav = new ModelAndView();
@@ -57,6 +59,7 @@ public class ReviewController {
 		return mav;
 	}
 	
+	//리뷰 게시글 상세보기
 	@RequestMapping("reviewDetails.do")
 	public ModelAndView reviewDetails(int boardIdx){
 		ModelAndView mav = new ModelAndView();
@@ -68,11 +71,13 @@ public class ReviewController {
 		return mav;
 	}
 	
+	//리뷰 게시판 글쓰기 폼
 	@RequestMapping("reviewWriteForm.do")
 	public String reviewWriteForm(){
 		return "reviewWriteForm.tiles";
 	}
 	
+	//리뷰 게시판 글쓰기
 	@RequestMapping("reviewWrite.do")
 	public String reviewWrite(int boardCode, String title, String category, 
 			int starPoint, String content, String writer){
@@ -97,6 +102,7 @@ public class ReviewController {
 		
 	}
 	
+	//리뷰 게시글 수정 폼
 	@RequestMapping("reviewUpdateForm.do")
 	public ModelAndView reviewUpdateForm(int boardIdx){
 		ModelAndView mav = new ModelAndView();
@@ -106,6 +112,7 @@ public class ReviewController {
 		return mav;
 	}
 	
+	//리뷰 게시글 수정하기
 	@RequestMapping("reviewUpdate.do")
 	public String reviewUpdate(int boardIdx, String title, String category, int starPoint, String content, String writer, int readCount){
 		if(category.equals("1"))
@@ -129,24 +136,11 @@ public class ReviewController {
 		return "redirect:reviewMain.do";
 	}
 	
+	//리뷰 게시글 삭제
 	@RequestMapping("reviewDelete.do")
 	public String reviewDelete(int boardIdx){
 		boardService.deleteBoard(boardIdx);
 		return "redirect:reviewMain.do";
 	}
 	
-//	@RequestMapping("reviewUploadImage.do")
-//	public ModelAndView reviewUploadImage(){
-//		
-//	}
-		
-	@RequestMapping("reviewConform") //본인확인
-	public String reviewConform(HashMap<String, Object> params){
-		if(boardService.identifyUser(params)){
-			return ""; // 본인 맞음
-		}else {
-			return ""; //본인 아님
-		}
-	}
-
 }

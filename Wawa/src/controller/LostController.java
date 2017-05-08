@@ -1,6 +1,5 @@
 package controller;
 
-import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -25,6 +24,7 @@ public class LostController {
 	@Autowired
 	private IPetinfoService petService;
 	
+	//유기견찾기 게시판 메인
 	@RequestMapping("lostMain.do")
 	public ModelAndView lostMain(@RequestParam(defaultValue="1") int page,
 			@RequestParam(defaultValue="4") int boardCode){
@@ -34,6 +34,7 @@ public class LostController {
 		return mav;
 	}
 	
+	//유기견찾기 게시글 검색
 	@RequestMapping("lostSearch.do")
 	public ModelAndView lostSearch(@RequestParam(defaultValue="")String category, int type, 
 			String keyword, @RequestParam(defaultValue="1")int page){
@@ -48,6 +49,7 @@ public class LostController {
 		return mav;
 	}
 	
+	//유기견찾기 게시글 상세보기
 	@RequestMapping("lostDetails.do")
 	public ModelAndView lostDetails(int boardIdx){
 		ModelAndView mav = new ModelAndView();
@@ -59,6 +61,7 @@ public class LostController {
 		return mav;
 	}
 	
+	//유기견찾기 게시판 글쓰기 폼
 	@RequestMapping("lostWriteForm.do")
 	public ModelAndView lostWriteForm(@RequestParam(defaultValue="0") int idx){
 		ModelAndView mav = new ModelAndView();
@@ -70,6 +73,7 @@ public class LostController {
 		return mav;
 	}
 	
+	//유기견찾기 게시판 글쓰기
 	@RequestMapping("lostWrite.do")
 	public String lostWrite(int boardCode, String category, String name,
 			String resist, String lostdate, String lostplace, String kind, String sex, int age, double weight,
@@ -112,6 +116,7 @@ public class LostController {
 				return "redirect:lostMain.do";
 	}
 	
+	//유기견찾기 게시글 수정 폼
 	@RequestMapping("lostUpdateForm.do")
 	public ModelAndView lostUpdateForm(int boardIdx, @RequestParam(defaultValue="0") int idx){
 		ModelAndView mav = new ModelAndView();
@@ -125,6 +130,7 @@ public class LostController {
 		return mav;
 	} 
 	
+	//유기견찾기 게시글 수정하기
 	@RequestMapping("lostUpdate.do")
 	public String lostUpdate(int boardIdx, String category, String name, String resist, 
 			String lostdate, String lostplace, String kind, String sex, int age, double weight, String phone,
@@ -167,17 +173,14 @@ public class LostController {
 		return "redirect:lostMain.do";
 	}
 	
+	//유기견찾기 게시글 삭제
 	@RequestMapping("lostDelete.do")
 	public String lostDelete(int boardIdx){
 		boardService.deleteBoard(boardIdx);
 		return "redirect:lostMain.do";	
 	}
 
-//	@RequestMapping("lostUploadImage.do")
-//	public ModelAndView lostUploadImage(){
-//		
-//	}
-	
+	//유기견찾기 애견정보불러오기 선택창
 	@RequestMapping("lostGetPetinfoForm.do")
 	public ModelAndView boastGetPetinfoForm(String id, int boardCode, int boardIdx, String type){
 		ModelAndView mav = new ModelAndView();
@@ -190,6 +193,7 @@ public class LostController {
 		return mav;
 	}
 	
+	//유기견찾기 애견정보불러오기
 	@RequestMapping("lostGetPetinfo.do")
 	public ModelAndView boastGetPetinfo(int idx, int boardCode, int boardIdx, String type){
 		ModelAndView mav = new ModelAndView();

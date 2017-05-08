@@ -25,6 +25,7 @@ public class PartnerController {
 	@Autowired
 	private IPetinfoService petService;
 	
+	//짝꿍찾기 게시판 메인
 	@RequestMapping("partnerMain.do")
 	public ModelAndView partnerMain(@RequestParam(defaultValue="1") int page,
 			@RequestParam(defaultValue="5") int boardCode){
@@ -34,6 +35,7 @@ public class PartnerController {
 		return mav;
 	}
 	
+	//짝꿍찾기 게시글 검색
 	@RequestMapping("partnerSearch.do") // 수컷/암컷(강아지성별) + 강아지 이름으로 검색  
 	public ModelAndView partnerSearch(@RequestParam(defaultValue="")String category, @RequestParam(defaultValue="5")int type, 
 			String keyword, @RequestParam(defaultValue="1")int page){
@@ -50,6 +52,7 @@ public class PartnerController {
 		return mav;
 	}
 	
+	//짝꿍찾기 게시글 상세보기
 	@RequestMapping("partnerDetails.do")
 	public ModelAndView partnerDetails(int boardIdx){
 		ModelAndView mav = new ModelAndView();
@@ -61,6 +64,7 @@ public class PartnerController {
 		return mav;
 	}
 	
+	//짝꿍찾기 게시판 글쓰기 폼
 	@RequestMapping("partnerWriteForm.do")
 	public ModelAndView partnerWriteForm(@RequestParam(defaultValue="0") int idx){
 		ModelAndView mav = new ModelAndView();
@@ -72,6 +76,7 @@ public class PartnerController {
 		return mav;
 	}
 	
+	//짝꿍찾기 게시판 글쓰기
 	@RequestMapping("partnerWrite.do")
 	public String partnerWrite(int boardCode, String name, String kind, 
 			String sex, int age, double weight, String phone, String email, 
@@ -106,19 +111,9 @@ public class PartnerController {
 		boardService.writePartnerFindBoard(boardCode, name, kind, sex, age, 
 				weight, phone, email, title, content, writer, ufile);
 		return "redirect:partnerMain.do";
-		
-		
 	}
 	
-	@RequestMapping("partnerConform.do")
-	public String partnerConform(HashMap<String, Object> params){
-		if(boardService.identifyUser(params)){
-			return ""; // 본인 맞음
-		}else {
-			return ""; //본인 아님
-		}
-	}
-	
+	//짝꿍찾기 게시글 수정 폼
 	@RequestMapping("partnerUpdateForm.do")
 	public ModelAndView partnerUpdateForm(int boardIdx, @RequestParam(defaultValue="0") int idx){
 		ModelAndView mav = new ModelAndView();
@@ -132,6 +127,7 @@ public class PartnerController {
 		return mav;
 	}
 	
+	//짝꿍찾기 게시글 수정하기
 	@RequestMapping("partnerUpdate.do")
 	public String partnerUpdate(int boardIdx, String name, String kind, String sex, 
 			int age, double weight, String phone, String email, String title, String content, String writer, @RequestParam("ufile") MultipartFile ufile){
@@ -169,17 +165,14 @@ public class PartnerController {
 		return "redirect:partnerMain.do";
 	}
 	
+	//짝꿍찾기 게시글 삭제
 	@RequestMapping("partnerDelete.do")
 	public String partnerDelete(int boardIdx){
 		boardService.deleteBoard(boardIdx);
 		return "redirect:partnerMain.do";
 	}
 	
-//	@RequestMapping("partnerUploadImage.do")
-//	public ModelAndView partnerUploadImage(){
-//		
-//	}
-	
+	//짝꿍찾기 애견정보불러오기 선택창
 	@RequestMapping("partnerGetPetinfoForm.do")
 	public ModelAndView boastGetPetinfoForm(String id, int boardCode, int boardIdx, String type){
 		ModelAndView mav = new ModelAndView();
@@ -192,6 +185,7 @@ public class PartnerController {
 		return mav;
 	}
 	
+	//짝꿍찾기 애견정보불러오기
 	@RequestMapping("partnerGetPetinfo.do")
 	public ModelAndView boastGetPetinfo(int idx, int boardCode, int boardIdx, String type){
 		ModelAndView mav = new ModelAndView();

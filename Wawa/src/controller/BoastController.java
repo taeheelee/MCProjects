@@ -23,7 +23,7 @@ public class BoastController {
 	@Autowired
 	private IPetinfoService petService;
 
-	
+	//뽐내기 게시판 메인
 	@RequestMapping("boastMain.do")
 	public ModelAndView boastMain(@RequestParam(defaultValue="1") int page,
 			@RequestParam(defaultValue="3") int boardCode){
@@ -34,13 +34,8 @@ public class BoastController {
 		mav.setViewName("boast.tiles");
 		return mav;
 	}
-	
-	@RequestMapping("increaseLike.do")
-	public String increaseLike(int boardIdx){
-		boardService.increaseBoastNum(boardIdx);
-		return "redirect:boastMain.do";
-	}
-	
+		
+	//뽐내기 게시글 검색
 	@RequestMapping("boastSearch.do")
 	public ModelAndView boastSearch(@RequestParam(defaultValue="")String category, @RequestParam(defaultValue="5")int type, 
 			String keyword, @RequestParam(defaultValue="1")int page){
@@ -51,6 +46,7 @@ public class BoastController {
 		return mav;
 	}
 	
+	//뽐내기 게시글 상세보기
 	@RequestMapping("boastDetails.do")
 	public ModelAndView boastDetails(int boardIdx){
 		ModelAndView mav = new ModelAndView();
@@ -62,7 +58,8 @@ public class BoastController {
 		return mav;
 	}
 	
-	@RequestMapping("boastWriteForm.do") //writeForm.jsp로
+	//뽐내기 게시판 글쓰기 폼
+	@RequestMapping("boastWriteForm.do") 
 	public ModelAndView boastWriteForm(@RequestParam(defaultValue="0") int idx){
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("load", idx);
@@ -73,6 +70,7 @@ public class BoastController {
 		return mav;
 	}
 	
+	//뽐내기 게시판 글쓰기
 	@RequestMapping("boastWrite.do")
 	public String boastWrite(int boardCode, String name, int age, String kind, String sex, 
 			String title, String content, String writer, @RequestParam("ufile") MultipartFile ufile){
@@ -108,6 +106,7 @@ public class BoastController {
 		return "redirect:boastMain.do";
 	}
 	
+	//뽐내기 게시글 수정 폼
 	@RequestMapping("boastUpdateForm.do")
 	public ModelAndView boastUpdateForm(int boardIdx, @RequestParam(defaultValue="0") int idx){
 		ModelAndView mav = new ModelAndView();
@@ -121,6 +120,7 @@ public class BoastController {
 		return mav;	
 	}
 	
+	//뽐내기 게시글 수정하기
 	@RequestMapping("boastUpdate.do")
 	public String boastUpdate(int boardIdx, String name, String kind, int age, String sex, String title, String content, String writer, int likeCount,
 			 @RequestParam("ufile") MultipartFile ufile){
@@ -156,13 +156,15 @@ public class BoastController {
 		return "redirect:boastMain.do";
 	}
 	
+	//뽐내기 게시글 삭제
 	@RequestMapping("boastDelete.do")
 	public String boastDelete(int boardIdx){
 		boardService.deleteBoard(boardIdx);
 		
 		return "redirect:boastMain.do";
 	}
-		
+	
+	//뽐내기 애견정보불러오기 선택창
 	@RequestMapping("boastGetPetinfoForm.do")
 	public ModelAndView boastGetPetinfoForm(String id, int boardCode, int boardIdx, String type){
 		ModelAndView mav = new ModelAndView();
@@ -175,6 +177,7 @@ public class BoastController {
 		return mav;
 	}
 	
+	//뽐내기 애견정보불러오기
 	@RequestMapping("boastGetPetinfo.do")
 	public ModelAndView boastGetPetinfo(int idx, int boardCode, int boardIdx, String type){
 		ModelAndView mav = new ModelAndView();
@@ -186,9 +189,12 @@ public class BoastController {
 		mav.setViewName("boardPetInfoLoad.tiles");
 		return mav;
 	}
-
-
 	
-
+	//뽐내기 좋아요 수 증가시키기
+	@RequestMapping("increaseLike.do")
+	public String increaseLike(int boardIdx){
+		boardService.increaseBoastNum(boardIdx);
+		return "redirect:boastMain.do";
+	}
 
 }

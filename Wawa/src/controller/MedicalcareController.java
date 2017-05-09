@@ -38,7 +38,7 @@ public class MedicalcareController {
 	@ResponseBody HashMap<String, Object> calcShotday(HttpServletResponse resp,
 			@RequestParam HashMap<String, Object> params){
 		
-		// 백신코드랑 날짜보냄
+		// 諛깆떊肄붾뱶�옉 �궇吏쒕낫�깂
 		int vaccineCode = Integer.parseInt((String) params.get("vaccineCode"));
 		
 		String from = (String) params.get("shotday");
@@ -55,7 +55,7 @@ public class MedicalcareController {
 		
 		Calendar cal = new GregorianCalendar(Locale.KOREA);
 		cal.setTime(to);
-		cal.add(Calendar.DAY_OF_YEAR, period); // 주기를 더한다.
+		cal.add(Calendar.DAY_OF_YEAR, period); // 二쇨린瑜� �뜑�븳�떎.
 
 		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
 		String strDate = fm.format(cal.getTime());
@@ -152,6 +152,8 @@ public class MedicalcareController {
 		return response;
 	}
 	
+	
+	//이거 지워야하나확인
 	@RequestMapping("updateMedical.do")
 	public 
 	@ResponseBody HashMap<String, Object> updateMedical(HttpServletResponse resp,

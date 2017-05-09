@@ -1,10 +1,12 @@
 package model;
 
+import java.util.Date;
+
 public class Management {
 	private int managementIdx;
 	private int idx;
-	private String date;
-	private int weight;
+	private Date date;
+	private double weight;
 	
 	public int getManagementIdx() {
 		return managementIdx;
@@ -15,19 +17,19 @@ public class Management {
 	public int getIdx() {
 		return idx;
 	}
-	public void setCode(int idx) {
+	public void setIdx(int idx) {
 		this.idx = idx;
 	}
-	public String getDate() {
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
-	public int getWeight() {
+	public double getWeight() {
 		return weight;
 	}
-	public void setWeight(int weight) {
+	public void setWeight(double weight) {
 		this.weight = weight;
 	}
 

@@ -49,7 +49,6 @@
 
 	function addPetinfo(data) {
 		var petinfo = data.pet;
-		alert(petinfo);
 		var id = '${myid }';
 		var year = 0;
 		var month = 0;
@@ -127,7 +126,7 @@
 		inputBtn.on('click', function() {
 			var flag = chkDateFmt(ch, num);
 			if (flag == true) {
-				if (inputBtn.val() == "입력") {
+				if ($(this).val() == "입력") {
 					$("#" + ch + "div" + num).text($('#' + ch + num).val());
 					$("#" + ch + "day" + parseInt(num) - 1).text('0');
 					uploadShotday(ch, num, tableNum, vaccineCode);
@@ -153,6 +152,29 @@
 
 	}
 
+	function uploadShotday(ch, num, tableNum, vaccineCode) {
+		var id = '${myid }';
+		var shotday = $('#' + ch + num).val();
+		var vaccineCode = vaccineCode;
+		$.ajax({
+			type : 'get',
+			url : 'uploadMedical.do',
+			data : "id=" + id + "&petname=" + myPet + "&shotday=" + shotday
+					+ "&vaccineCode=" + vaccineCode,
+			dataType : 'json',
+			success : function(data) {
+				if (data.result) {
+					$('#' + ch + num).attr("readonly", true);
+					getNextDate(ch, num, tableNum, vaccineCode, shotday);
+				} else {
+				}
+			},
+			error : function(data) {
+				alert('잠시 후 다시 시도해주세요');
+			}
+		});
+	}
+	
 	function uploadShotdayAfter(ch, num, tableNum, vaccineCode) {
 		var id = '${myid }';
 		var shotday = $('#' + ch + num).val();
@@ -248,29 +270,6 @@
 					});
 				} else {
 					alert('에러');
-				}
-			},
-			error : function(data) {
-				alert('잠시 후 다시 시도해주세요');
-			}
-		});
-	}
-
-	function uploadShotday(ch, num, tableNum, vaccineCode) {
-		var id = '${myid }';
-		var shotday = $('#' + ch + num).val();
-		var vaccineCode = vaccineCode;
-		$.ajax({
-			type : 'get',
-			url : 'uploadMedical.do',
-			data : "id=" + id + "&petname=" + myPet + "&shotday=" + shotday
-					+ "&vaccineCode=" + vaccineCode,
-			dataType : 'json',
-			success : function(data) {
-				if (data.result) {
-					$('#' + ch + num).attr("readonly", true);
-					getNextDate(ch, num, tableNum, vaccineCode, shotday);
-				} else {
 				}
 			},
 			error : function(data) {

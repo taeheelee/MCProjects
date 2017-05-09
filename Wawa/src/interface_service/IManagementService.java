@@ -10,4 +10,5 @@ public interface IManagementService {
 	public boolean deleteManagement(int managementIdx);
 	public Management selectOne(int managementIdx);
 	public List<Management> selectList(String id);
+	public int selectIdx(Management model);
 }

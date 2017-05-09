@@ -171,7 +171,21 @@ svg {
 			});
 
 			deleteBtn.on('click', function() {
-				$(this).closest('tr').remove();
+				$.ajax({
+					type : 'get',
+					url : 'deleteHealthcare.do',
+					data : "id=" + id + "&petname=" + myPet + "&vaccineCode=" + vaccineCode,
+					dataType : 'json',
+					success : function(data) {
+						if (data.result) {
+							$(this).closest('tr').remove();
+						} else {
+						}
+					},
+					error : function(data) {
+						alert('잠시 후 다시 시도해주세요');
+					}
+				});
 			});
 			
 		}

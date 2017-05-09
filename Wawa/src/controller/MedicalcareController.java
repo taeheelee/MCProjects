@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletResponse;
@@ -32,6 +33,22 @@ public class MedicalcareController {
 	private IPetinfoService petinfoService;
 	@Autowired
 	private IVaccineInfoService vaccineService;
+	
+	@RequestMapping("medicalcareForm.do")
+	public ModelAndView medicalcareForm(String id){
+		ModelAndView mav = new ModelAndView();
+		List<HashMap<String, Object>> petlist = petinfoService.selectPetList(id);
+		
+		for(int i = 0; i < petlist.size(); i ++){
+			// 각 펫에 대한 메디칼 정보를 보내야하는데
+		}
+		
+		mav.addObject("myid", id);
+		mav.addObject("list", petlist);
+		
+		mav.setViewName("medicalcareForm.tiles");
+		return mav;
+	}
 	
 	@RequestMapping("calcShotday.do")
 	public 
@@ -153,15 +170,12 @@ public class MedicalcareController {
 	}
 	
 	
-	//이거 지워야하나확인
-	@RequestMapping("updateMedical.do")
+	@RequestMapping("deleteMedical.do")
 	public 
-	@ResponseBody HashMap<String, Object> updateMedical(HttpServletResponse resp,
+	@ResponseBody HashMap<String, Object> deleteMedical(HttpServletResponse resp,
 			@RequestParam HashMap<String, Object> params){
-		HashMap<String, Object> tmp = new HashMap<>();
-		tmp.put("id", params.get("id"));
-		tmp.put("name", params.get("petname"));
-		int idx = (int) petinfoService.selectByname(tmp).get("idx");
+
+		int idx = (int) petinfoService.selectByname(params).get("idx");
 		int vaccineCode = Integer.parseInt((String) params.get("vaccineCode"));
 		
 		System.out.println("idx:"+idx);

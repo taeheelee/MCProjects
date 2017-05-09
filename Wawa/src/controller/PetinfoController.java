@@ -80,16 +80,6 @@ public class PetinfoController {
 		}
 	}
 	
-	@RequestMapping("medicalcareForm.do")
-	public ModelAndView medicalcareForm(String id){
-		ModelAndView mav = new ModelAndView();
-		List<HashMap<String, Object>> list = petinfoService.selectPetList(id);
-		mav.addObject("myid", id);
-		mav.addObject("list", list);
-		mav.setViewName("medicalcareForm.tiles");
-		return mav;
-	}
-	
 	@RequestMapping("selectPet.do")
 	public
 	@ResponseBody HashMap<String, Object> selectPet(HttpServletResponse resp,

@@ -100,7 +100,26 @@ public class ManagementController {
 		
 	}
 	
-	
+	@RequestMapping("deleteHealthcare.do")
+	public 
+	@ResponseBody HashMap<String, Object> deleteHealthcare(HttpServletResponse resp,
+			@RequestParam HashMap<String, Object> params){
+
+		model.Management model = new model.Management();
+		model.setIdx((int) params.get("idx"));
+		model.setDate((Date) params.get("date"));
+		model.setWeight((double) params.get("weight"));
+		
+		int managementIdx = managementService.selectIdx(model);
+
+		HashMap<String, Object> response = new HashMap<>();
+		if(managementService.deleteManagement(managementIdx)){
+			response.put("result", true);
+		}else {
+			response.put("result", false);
+		}
+		return response;
+	}
 	
 }
 

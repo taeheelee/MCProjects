@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import interface_dao.IManagementDao;
 import interface_service.IManagementService;
+import model.Management;
 
 @Service
 public class ManagementService implements IManagementService {
@@ -56,14 +57,19 @@ public class ManagementService implements IManagementService {
 //		HashMap<String, Object> params = new HashMap<>();
 		model.Management model = new model.Management();
 		model = dao.selectOne(managementIdx);
-		
 		return model;
 	}
 
 	@Override
 	public List<model.Management> selectList(String id) {
 		List<model.Management> list = dao.selectList(id);
-		
 		return list;
+	}
+
+	@Override
+	public int selectIdx(Management model) {
+		// TODO Auto-generated method stub
+		int managementIdx = dao.selectIdx(model);
+		return managementIdx;
 	}
 }

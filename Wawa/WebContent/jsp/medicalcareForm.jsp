@@ -138,11 +138,25 @@
 		});
 
 		deleteBtn.on('click', function() {
-			$(this).closest('tr').remove();
-			var rowspanSize = $('#table' + tableNum + ' td:eq(0)').attr(
-					'rowspan');
-			$('#table' + tableNum + ' td:eq(0)').attr('rowspan',
-					parseInt(rowspanSize) - 1);
+			$.ajax({
+				type : 'get',
+				url : 'deleteMedical.do',
+				data : "id=" + id + "&petname=" + myPet + "&vaccineCode=" + vaccineCode,
+				dataType : 'json',
+				success : function(data) {
+					if (data.result) {
+						$(this).closest('tr').remove();
+						var rowspanSize = $('#table' + tableNum + ' td:eq(0)').attr(
+								'rowspan');
+						$('#table' + tableNum + ' td:eq(0)').attr('rowspan',
+								parseInt(rowspanSize) - 1);
+					} else {
+					}
+				},
+				error : function(data) {
+					alert('잠시 후 다시 시도해주세요');
+				}
+			});
 		});
 
 		addBtn.on('click', function() {

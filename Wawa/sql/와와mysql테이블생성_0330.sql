@@ -88,6 +88,7 @@ groupCode int,
 groupSeq int,
 groupLv int,
 parentNum int,
+isDelete varchar(2),
 foreign key(boardIdx) references board(boardIdx)
 );
 

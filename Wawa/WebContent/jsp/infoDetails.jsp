@@ -17,7 +17,7 @@
 								 +"<input type='submit' value='답글작성'>"
 								 +"<input type='hidden' name='boardIdx' value='${board.boardIdx }'>"
 								 +"<input type='hidden' name='boardCode' value='${board.boardCode }'>"
-								 +"<input type='hidden' name='nickname' value='닉네임'>"
+								 +"<input type='hidden' name='nickname' value='${sessionScope.name}'>"
 								 +"<input type='hidden' name='pIdx' value='"+repleIdx+"'>"
 								 +"</form>");
 	}
@@ -96,12 +96,29 @@
 								<td align="left" width="25%">
 								<c:if test="${reple.groupLv > 0 }">
 									<c:forEach begin="1" end="${reple.groupLv }">
-										ㄴ
+										&nbsp;&nbsp;&nbsp;
 									</c:forEach>
+										ㄴ
 								</c:if>
 								<b>${reple.nickname }</b>
 								</td>
-								<td align="left" width="50%"><span id="repleContent${st.index }">${reple.content }</span><span id="updateForm"><a href="##" onclick="update(${st.index},${reple.repleIdx })">수정</a></span></td>
+								<td align="left" width="50%">
+									<span id="repleContent${st.index }">
+										<c:if test="${reple.isDelete == 'N' }">
+										${reple.content }
+										</c:if>
+										<c:if test="${reple.isDelete == 'Y' }">
+										<font color="gray">삭제된 댓글입니다</font>
+										</c:if>
+									</span>
+									<c:if test="${sessionScope.name == reple.nickname && reple.isDelete == 'N'}">
+									<span id="updateForm">
+									<a href="##" onclick="update(${st.index},${reple.repleIdx })">수정</a>
+									<a href="repleDelete.do?boardIdx=${board.boardIdx}
+									&boardCode=${board.boardCode}&repleIdx=${reple.repleIdx}" >삭제</a>
+									</span>
+									</c:if>
+								</td>
 								<td align="right" width="10%">${reple.writedate }</td>
 								<td width="10%"><a href="##" onclick="reple(${st.index},${reple.repleIdx })">답글달기</a></td>
 								</tr>
@@ -109,12 +126,17 @@
 							</table>
 						</c:forEach>
 	                	<form action="repleWrite.do">
-	                		<textarea style="width: 85%; height: 100px" name="content"></textarea>
-	                		<input type="hidden" name="boardIdx" value="${board.boardIdx }">
-	                		<input type="hidden" name="boardCode" value="${board.boardCode }">
-	                		<input type="hidden" name="nickname" value="닉네임">
-	                		<input type="hidden" name="pIdx" value="0">
-							<input type="submit" value="댓글작성">
+	                		<c:if test="${sessionScope.id != null }">
+		                		<textarea style="width: 85%; height: 100px" name="content"></textarea>
+		                		<input type="hidden" name="boardIdx" value="${board.boardIdx }">
+		                		<input type="hidden" name="boardCode" value="${board.boardCode }">
+		                		<input type="hidden" name="nickname" value="${sessionScope.name }">
+		                		<input type="hidden" name="pIdx" value="0">
+								<input type="submit" value="댓글작성">
+							</c:if>
+							<c:if test="${sessionScope.id == null }">
+								<textarea style="width: 85%; height: 100px" name="content" readonly="readonly">로그인 후 이용해주세요</textarea>
+							</c:if>
 						</form>
                 </div>
 			</div>

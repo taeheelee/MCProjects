@@ -23,7 +23,8 @@
 			success: function(data) {
 				$('#ageSpan' + petIdx).text(data.year + "년" + data.month + "개월");
 				$('#transperAgeSpan' + petIdx).text(data.transperAge + "살");
-				
+				$('#caloriesSpan' + petIdx).text(data.calories + "kcal");
+				$('#adultWeightSpan' + petIdx).text(data.adultWeight + "kg");
 			},
 			error: function(data){
 				alert("잠시 후 다시 시도해주세요.");
@@ -117,7 +118,7 @@
                      </tr>
                      <tr>
                         <td>
-                           <span>${pet.weight }kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;해당견종 성견 평균무게 <span> 00kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;하루필요열량<span>000kcal</span>&nbsp;&nbsp;<input type="button" value="체중관리 GO" style="font-size: small;" onclick = "location.href ='healthcare.do?id=${sessionScope.id}'">
+                           <span>${pet.weight }kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;해당견종 성견 평균무게 <span id="adultWeightSpan${pet.idx }"></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;(기본) 하루 필요열량 <span id="caloriesSpan${pet.idx }"></span>&nbsp;&nbsp;<input type="button" value="체중관리 GO" style="font-size: small;" onclick = "location.href ='healthcare.do?id=${sessionScope.id}'">
                         </td>
                      </tr>
                      <tr>

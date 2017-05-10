@@ -150,7 +150,7 @@ public class PetInfoService implements IPetinfoService {
 		date.put("year", year);
 		date.put("month", month);
 		
-		System.out.println("TESTTESTTESTTESTTEST");
+		
 		
 	    //품종도 여기서 못하나?
 	      //일단 해당 강아지의 견종을 받아와
@@ -212,7 +212,18 @@ public class PetInfoService implements IPetinfoService {
 	      //그다음에 HashMap에 같이 담아서 보내면??
 
 	      date.put("transperAge", transperAge);
-		
+
+	      
+	      
+	      //그렇다면, 일일 kcal도 여기서 계산해보자
+	      Double petWeight = (Double)temp.get("weight");
+	      int calories = (int)(  ( ( petWeight * 30 ) + 70) * 1.8   );
+	      date.put("calories", calories);
+	      
+	      // 해당 견종 성견 평균 무게
+	      Double adultWeight = (Double)sizeTemp.get("adultWeight");
+	      date.put("adultWeight",adultWeight);
+	      
 		return date;
 	}
 

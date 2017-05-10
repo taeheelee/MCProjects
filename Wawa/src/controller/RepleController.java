@@ -1,10 +1,13 @@
 package controller;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
+import commons.Constant;
 import interface_service.IRepleService;
 @Controller
 public class RepleController {
@@ -44,7 +47,21 @@ public class RepleController {
 	
 	@RequestMapping("repleDelete.do")
 	public String repleWrite(int boardIdx, int boardCode, int repleIdx){
-		service.updateReple(repleIdx, "삭제된 댓글입니다");
+		service.updateRepleDelete(repleIdx);
+		
+		boolean allDelete;
+		allDelete = true;
+		int groupCode = (int)service.selectOne(repleIdx).get(Constant.Reple.GROUPCODE);		
+		List<HashMap<String, Object>> list = service.selectGroupCode(groupCode);
+		for(int i=0; i<list.size(); i++){
+			if(list.get(i).get("isDelete").equals("N")){
+				allDelete = false;
+			}
+		}
+		
+		if(allDelete)
+			service.deleteReple(groupCode);
+		
 		return "redirect:boardSelect.do?boardIdx="+boardIdx+"&boardCode="+boardCode;
 	}
 }

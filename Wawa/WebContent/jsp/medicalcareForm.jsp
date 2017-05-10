@@ -90,9 +90,9 @@
 			if (data.val() == "입력") {
 				$("#" + ch + "div" + 1).text($('#' + ch + num).val());
 				$("#" + ch + "day" + 1).text('D-day');
-				uploadShotday(ch, num, tableNum, vaccineCode);
+				uploadShotday(ch, num, tableNum, vaccineCode); //insert
 			} else {
-				uploadShotdayAfter(ch, num, tableNum, vaccineCode);
+				updateShotday(ch, num, tableNum, vaccineCode); // update
 			}
 		}
 		data.val('수정');
@@ -129,9 +129,9 @@
 				if ($(this).val() == "입력") {
 					$("#" + ch + "div" + num).text($('#' + ch + num).val());
 					$("#" + ch + "day" + parseInt(num) - 1).text('0');
-					uploadShotday(ch, num, tableNum, vaccineCode);
+					uploadShotday(ch, num, tableNum, vaccineCode); //insert
 				} else {
-					uploadShotdayAfter(ch, num, tableNum, vaccineCode);
+					updateShotday(ch, num, tableNum, vaccineCode); //update
 				}
 			}
 			$(this).val('수정');
@@ -173,7 +173,7 @@
 		$.ajax({
 			type : 'get',
 			url : 'uploadMedical.do',
-			data : "id=" + id + "&petname=" + myPet + "&shotday=" + shotday
+			data : "id=" + id + "&name=" + myPet + "&shotday=" + shotday
 					+ "&vaccineCode=" + vaccineCode,
 			dataType : 'json',
 			success : function(data) {
@@ -189,14 +189,14 @@
 		});
 	}
 	
-	function uploadShotdayAfter(ch, num, tableNum, vaccineCode) {
+	function updateShotday(ch, num, tableNum, vaccineCode) {
 		var id = '${myid }';
 		var shotday = $('#' + ch + num).val();
 		var vaccineCode = vaccineCode;
 		$.ajax({
 			type : 'get',
-			url : 'uploadMedical.do',
-			data : "id=" + id + "&petname=" + myPet + "&shotday=" + shotday
+			url : 'updateMedical.do',
+			data : "id=" + id + "&name=" + myPet + "&shotday=" + shotday
 					+ "&vaccineCode=" + vaccineCode,
 			dataType : 'json',
 			success : function(data) {

@@ -126,9 +126,9 @@ svg {
 			var flag2 = chkNumFmt(num);
 			if (flag1 == true && flag2 == true) {
 				if (data.val() == "입력") {
-					uploadInfo(num);
+					uploadInfo(num); // 처음추가되는 아이이므로 insert
 				} else {
-					uploadInfoAfter(num);
+					updateInfo(num); // 두번째부터는 update
 				}
 			}
 			data.val('수정');
@@ -146,6 +146,7 @@ svg {
 			var inputBtn = $('<input type="button" value="입력" class="uploadBtn" name="' + num +  '" id="uploadBtn' + num + '" style="padding: 3px 3px">');
 			var deleteBtn = $('<input type="button" value="삭제" class="deleteBtn" name="' + num + '" id= "deleteBtn' + num + '" style="padding: 3px 3px">');
 			
+			$('<td>').append()
 			$('<td>').append(addBtn).appendTo(tr);
 			$('<td>').append(inputTxt1).appendTo(tr);
 			$('<td>').append(inputTxt2).text(' kg ').appendTo(tr); // 맞는지 검사
@@ -162,9 +163,9 @@ svg {
 				var flag2 = chkNumFmt(num);
 				if (flag1 == true && flag2 == true) {
 					if ($(this).val() == "입력") {
-						uploadInfo(num);
+						uploadInfo(num); // insert
 					} else {
-						uploadInfoAfter(num);
+						updateInfo(num); //update
 					}
 				}
 				$(this).val('수정');
@@ -197,7 +198,7 @@ svg {
 			$.ajax({
 				type : 'get',
 				url : 'uploadHealthcare.do',
-				data : "id=" + id + "&petname=" + myPet + "&day=" + day
+				data : "id=" + id + "&name=" + myPet + "&day=" + day
 						+ "&weight=" + weight,
 				dataType : 'json',
 				success : function(data) {
@@ -214,14 +215,14 @@ svg {
 			});
 		}
 		
-		function uploadInfoAfter(num){
+		function updateInfo(num){
 			var id = '${id }';
 			var day = $('#day' + num).val();
 			var weight = $('#wt' + num).val();
 			$.ajax({
 				type : 'get',
-				url : 'uploadHealthcare.do',
-				data : "id=" + id + "&petname=" + myPet + "&day=" + day
+				url : 'updateHealthcare.do',
+				data : "id=" + id + "&name=" + myPet + "&day=" + day
 						+ "&weight =" + weight,
 				dataType : 'json',
 				success : function(data) {

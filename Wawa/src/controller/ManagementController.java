@@ -63,13 +63,12 @@ public class ManagementController {
 		return mav;
 	}
 	
-	@RequestMapping("uploadHealthcare.do")
+	@RequestMapping("uploadHealthcare.co")
 	public
 	@ResponseBody HashMap<String, Object> uploadHealthcare(HttpServletResponse resp,
 			@RequestParam HashMap<String, Object> params){
-		HashMap<String, Object> healthcare = new HashMap<>();
 	
-		int idx = (int) petinfoService.selectByname(healthcare).get("idx");
+		int idx = (int) petinfoService.selectByname(params).get("idx");
 		
 		String from = (String) params.get("day");
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -81,14 +80,48 @@ public class ManagementController {
 			e.printStackTrace();
 		}
 		
-		Date day = to;
-		Double weight = (Double) params.get("weight");
+		Double weight = Double.parseDouble((String) params.get("weight"));
 		
 		model.Management model = new model.Management();
-		model.setManagementIdx(0);
 		model.setIdx(idx);
-		model.setDate(day);
+		model.setDate(to);
 		model.setWeight(weight);
+		
+		HashMap<String, Object> response = new HashMap<>();
+		if(managementService.insertManagement(model)){
+			response.put("result", true);
+		}else {
+			response.put("result", false);
+		}
+		return response;
+	}
+	
+	@RequestMapping("updateHealthcare.do")
+	public
+	@ResponseBody HashMap<String, Object> updateHealthcare(HttpServletResponse resp,
+			@RequestParam HashMap<String, Object> params){
+	
+		int idx = (int) petinfoService.selectByname(params).get("idx");
+		
+		String from = (String) params.get("day");
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date to = null;
+		try {
+			to = transFormat.parse(from);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Double weight = Double.parseDouble((String) params.get("weight"));
+		
+		model.Management model = new model.Management();
+		model.setIdx(idx);
+		model.setDate(to);
+		model.setWeight(weight);
+		int managementIdx = managementService.selectIdx(model);
+		model.setManagementIdx(managementIdx);
+		//인덱스를 어찌하지
 		
 		HashMap<String, Object> response = new HashMap<>();
 		if(managementService.updateManagement(model)){
@@ -97,7 +130,6 @@ public class ManagementController {
 			response.put("result", false);
 		}
 		return response;
-		
 	}
 	
 	@RequestMapping("deleteHealthcare.do")

@@ -150,10 +150,29 @@ public class MedicalcareController {
 			@RequestParam HashMap<String, Object> params){
 		HashMap<String, Object> medical = new HashMap<>();
 
-		HashMap<String, Object> map = new HashMap<>();
-		map.put("name", (String)params.get("petname"));
-		map.put("id", (String)params.get("id"));
-		int idx = (int)petinfoService.selectByname(map).get("idx");
+		int idx = (int)petinfoService.selectByname(params).get("idx");
+		int vaccineCode = Integer.parseInt((String) params.get("vaccineCode"));
+
+		medical.put(Constant.MedicalManage.VACCINECODE, vaccineCode);
+		medical.put(Constant.MedicalManage.IDX, idx);
+		medical.put(Constant.MedicalManage.REALSHOTDATE, params.get("shotday"));
+
+		HashMap<String, Object> response = new HashMap<>();
+		if(medicalService.insertRealShotDate(medical)){
+			response.put("result", true);
+		}else {
+			response.put("result", false);
+		}
+		return response;
+	}
+	
+	@RequestMapping("updateMedical.do")
+	public 
+	@ResponseBody HashMap<String, Object> updateMedical(HttpServletResponse resp,
+			@RequestParam HashMap<String, Object> params){
+		HashMap<String, Object> medical = new HashMap<>();
+
+		int idx = (int)petinfoService.selectByname(params).get("idx");
 		int vaccineCode = Integer.parseInt((String) params.get("vaccineCode"));
 
 		medical.put(Constant.MedicalManage.VACCINECODE, vaccineCode);
@@ -168,7 +187,6 @@ public class MedicalcareController {
 		}
 		return response;
 	}
-	
 	
 	@RequestMapping("deleteMedical.do")
 	public 

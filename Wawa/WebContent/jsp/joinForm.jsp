@@ -145,7 +145,6 @@
   					$('#conformPassword').focus();
   				}else if (statusOfSex == false){
   					alert('성별을 선택해주세요');
-  					$('#sex').focus();
   				}
   				
   				

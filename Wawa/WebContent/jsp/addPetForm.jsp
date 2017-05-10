@@ -161,7 +161,19 @@
                                                 <label class="" for="billing_country">품종 <abbr title="required" class="required">*</abbr>
                                                 </label>
                                                 <select class="country_to_state country_select" id="kind" name="kind">
-                                                    <option selected="selected" value="치와와">치와와</option>
+	                                                <c:forEach var="kindList" items="${kindList }" varStatus="idx">
+														<c:choose>
+															<c:when test="${kindList.kind =='기타 소형견' }">
+															<option selected="selected" value="${kindList.kind }">${kindList.kind }</option>
+															</c:when>
+															<c:otherwise>
+	                                                 	<option value="${kindList.kind }">${kindList.kind }</option>
+															
+															</c:otherwise>
+														</c:choose>
+	                                                </c:forEach>
+                                   					
+                                                    <!-- <option selected="selected" value="치와와">치와와</option>
                                                     <option value="요크셔 테리어">요크셔 테리어</option>
                                                     <option value="말티즈">말티즈</option>
                                                     <option value="시츄">시츄</option>
@@ -171,7 +183,7 @@
                                                     <option value="미니어쳐 슈나우저">미니어쳐 슈나우저</option>
                                                     <option value="기타 소형견">기타 소형견</option>
                                                     <option value="기타 중형견">기타 중형견</option>
-                                                    <option value="기타 대형견">기타 대형견</option>
+                                                    <option value="기타 대형견">기타 대형견</option> -->
                                                 </select>
                                             </p>
                                             <br>

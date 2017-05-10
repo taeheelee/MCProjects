@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import interface_service.IDogKindService;
 import interface_service.IMedicalService;
 import interface_service.IPetinfoService;
 import model.PetInfo;
@@ -30,6 +31,9 @@ public class PetinfoController {
 	private IPetinfoService petinfoService;
 	@Autowired
 	private IMedicalService medicalService;
+	@Autowired
+	private IDogKindService dogKindService;
+	
 	
 	@RequestMapping("myPetInfo.do")
 	public ModelAndView myPetInfo(String id){
@@ -39,11 +43,18 @@ public class PetinfoController {
 		mav.setViewName("myPetInfo.tiles");
 		return mav;
 	}
-	
 	@RequestMapping("addPetForm.do")
+	public ModelAndView addPetForm(){
+		ModelAndView mav = new ModelAndView();
+		List<HashMap<String, Object>> kindList = dogKindService.selectAllDogKind();
+		mav.addObject("kindList", kindList);
+		mav.setViewName("addPetForm.tiles");
+		return mav;
+	}
+	/*@RequestMapping("addPetForm.do")
 	public String addPetForm(){
 		return "addPetForm.tiles";
-	}
+	}*/
 	
 	@RequestMapping("addPet.do")
 	public String addPet(String resist, String id, String name, String kind, 

@@ -7,24 +7,6 @@
 <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>WAWA-애견관리 커뮤니티</title>
-    
-    <!-- Google Fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
-    
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-<!--     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="style.css?ver=1">
-    <link rel="stylesheet" href="css/responsive.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -48,7 +30,6 @@
 	
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>WAWA : 애완견 통합관리 커뮤니티</title>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('.postLink').click(function() {

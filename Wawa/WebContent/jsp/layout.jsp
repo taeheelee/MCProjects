@@ -10,6 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>WAWA-애견관리 커뮤니티</title>
     
+    <!-- favicon -->
+    <link rel="shortcut icon" href="img/favicon.ico">
+    
     <!-- Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>

@@ -25,6 +25,8 @@
 				$('#transperAgeSpan' + petIdx).text(data.transperAge + "살");
 				$('#caloriesSpan' + petIdx).text(data.calories + "kcal");
 				$('#adultWeightSpan' + petIdx).text(data.adultWeight + "kg");
+				$('#exerciseMsgSpan' + petIdx).text(data.exerciseMsg);
+				$('#warningMsgSpan' + petIdx).text(data.warningMsg);
 			},
 			error: function(data){
 				alert("잠시 후 다시 시도해주세요.");
@@ -123,7 +125,8 @@
                      </tr>
                      <tr>
                         <td>
-                           적정 일일 산책량 <span>00km</span> 
+                           <span id="exerciseMsgSpan${pet.idx }"></span><br>
+                           <span id="warningMsgSpan${pet.idx }" style="font-size: small; color:orange;"></span> 
                         </td>
                      </tr>
                      <tr>

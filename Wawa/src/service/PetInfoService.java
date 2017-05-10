@@ -161,21 +161,11 @@ public class PetInfoService implements IPetinfoService {
 		
 		HashMap<String, Object> temp = dao.selectOne(petIdx);
 		String petKind = (String) temp.get("kind");
-//	    System.out.println("TEST KIND : " + temp.get("kind"));
-		System.out.println("222222222TESTTESTTESTTESTTEST");
 	      
 	      //이게 소형견인지 중형견인지 대형견인지 DB에서 찾아서 받아와
 		HashMap<String, Object> sizeTemp = kDao.selectOneDogKind(petKind);
 		String dogSize = (String)sizeTemp.get("dogSize");
-//		System.out.println("DOG SIZE : "+dogSize);
-		
-		
-//	      HashMap<String, Object> selectOneDogKind = kDao.selectOneDogKind(petKind);
-//	    
-//	      System.out.println("selectOneDogKind : "+selectOneDogKind);
-//	      
-//	      String dogSize = (String)selectOneDogKind.get("dogSize");
-//	      System.out.println("DOGSIZE : "+dogSize);
+
 	      //그다음에 나이를 대입해서 사람나이로 환산을 해준다
 	      int transperAge;
 	      
@@ -196,10 +186,10 @@ public class PetInfoService implements IPetinfoService {
 
 	      else {// 2살 이후 일 때
 
-	         if (dogSize == "소형견") {// 소형견일 때
+	         if (dogSize.equals("소형견")) {// 소형견일 때
 	            // 1년에 5살식 나이먹음 (하루에 5/365살 나이먹음)
 	            transperAge = 24 + (int) ((diff - 730) * (5 / 365));
-	         } else if (dogSize == "중형견") { // 중형견일 때
+	         } else if (dogSize.equals("중형견")) { // 중형견일 때
 	            // 1년에 6살식 나이먹음
 	            transperAge = 24 + (int) ((diff - 730) * (6 / 365));
 	         } else {// 대형견일 떄
@@ -223,6 +213,19 @@ public class PetInfoService implements IPetinfoService {
 	      // 해당 견종 성견 평균 무게
 	      Double adultWeight = (Double)sizeTemp.get("adultWeight");
 	      date.put("adultWeight",adultWeight);
+
+	      // 평균 운동량 
+	      String exerciseMsg="";
+	      String warningMsg="(※ 하루 적정 운동량은 각 강아지의 건강상태 및 나이, 견종 등에 따라 달라집니다.)";
+	      if(dogSize.equals("소형견")){
+	    	  exerciseMsg= "소형견 평균 일일 운동 권장량 : 20 ~ 30분";
+	      } else if (dogSize.equals("중형견")){
+	    	  exerciseMsg= "중형견 평균 일일 운동 권장량 : 45 ~ 60분";
+	      } else{
+	    	  exerciseMsg= "대형견 평균 일일 운동 권장량 : 60 ~ 90분";
+	      }
+	      date.put("exerciseMsg",exerciseMsg);
+	      date.put("warningMsg",warningMsg);
 	      
 		return date;
 	}

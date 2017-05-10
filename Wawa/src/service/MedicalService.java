@@ -6,6 +6,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,6 +106,12 @@ public class MedicalService implements IMedicalService {
 		date.put("dueShotDate", strDate);
 		
 		return date;
+	}
+
+	@Override
+	public List<HashMap<String, Object>> selectAllShotDate(int idx) {
+		// TODO Auto-generated method stub
+		return dao.selectAllShotDate(idx);
 	}
 
 }

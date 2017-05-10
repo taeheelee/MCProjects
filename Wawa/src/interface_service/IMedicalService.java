@@ -2,6 +2,7 @@ package interface_service;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 
 public interface IMedicalService {
 	public boolean insertRealShotDate(HashMap<String, Object> params);
@@ -13,6 +14,5 @@ public interface IMedicalService {
 	
 	//추천접종일 보기
 	public HashMap<String, Object> selectDueShotDate(HashMap<String, Object> params);
-	
-
+	public List<HashMap<String, Object>> selectAllShotDate(int idx);
 }

@@ -49,7 +49,7 @@
 
 	function addPetinfo(data) {
 		var petinfo = data.pet;
-		var id = '${myid }';
+		var id = '${id }';
 		var year = 0;
 		var month = 0;
 		$.ajax({
@@ -88,8 +88,10 @@
 		var flag = chkDateFmt(ch, num);
 		if (flag == true) {
 			if (data.val() == "입력") {
-				$("#" + ch + "div" + 1).text($('#' + ch + num).val());
-				$("#" + ch + "day" + 1).text('D-day');
+				if(num == 1){
+					$("#" + ch + "div" + 1).text($('#' + ch + num).val());
+					$("#" + ch + "day" + 1).text('D-day');				
+				}
 				uploadShotday(ch, num, tableNum, vaccineCode); //insert
 			} else {
 				updateShotday(ch, num, tableNum, vaccineCode); // update
@@ -104,7 +106,7 @@
 				parseInt(rowspanSize) + 1);
 
 		var table = $('#table' + tableNum + ' tbody');
-		var id = '${myid }';
+		var id = '${id }';
 		var petname = $("#name option:selected").text();
 		var num = parseInt(num) + 1;
 		var vaccineCode = parseInt(vaccineCode) + 1;
@@ -127,8 +129,10 @@
 			var flag = chkDateFmt(ch, num);
 			if (flag == true) {
 				if ($(this).val() == "입력") {
-					$("#" + ch + "div" + num).text($('#' + ch + num).val());
-					$("#" + ch + "day" + parseInt(num) - 1).text('0');
+					if(num == 1){
+						$("#" + ch + "div" + num).text($('#' + ch + num).val());
+						$("#" + ch + "day" + parseInt(num) - 1).text('0');						
+					}
 					uploadShotday(ch, num, tableNum, vaccineCode); //insert
 				} else {
 					updateShotday(ch, num, tableNum, vaccineCode); //update
@@ -141,15 +145,13 @@
 			$.ajax({
 				type : 'get',
 				url : 'deleteMedical.do',
-				data : "id=" + id + "&petname=" + myPet + "&vaccineCode=" + vaccineCode,
+				data : "id=" + id + "&name=" + myPet + "&vaccineCode=" + vaccineCode,
 				dataType : 'json',
 				success : function(data) {
 					if (data.result) {
-						$(this).closest('tr').remove();
-						var rowspanSize = $('#table' + tableNum + ' td:eq(0)').attr(
-								'rowspan');
-						$('#table' + tableNum + ' td:eq(0)').attr('rowspan',
-								parseInt(rowspanSize) - 1);
+						$("#delete" + ch + num).closest('tr').remove();
+						var rowspanSize = $('#table' + tableNum + ' td:eq(0)').attr('rowspan');
+						$('#table' + tableNum + ' td:eq(0)').attr('rowspan', parseInt(rowspanSize) - 1);
 					} else {
 					}
 				},
@@ -163,11 +165,10 @@
 			var dayId = $(this).attr('id');
 			addDayForm(dayId);
 		});
-
 	}
 
 	function uploadShotday(ch, num, tableNum, vaccineCode) {
-		var id = '${myid }';
+		var id = '${id }';
 		var shotday = $('#' + ch + num).val();
 		var vaccineCode = vaccineCode;
 		$.ajax({
@@ -190,7 +191,7 @@
 	}
 	
 	function updateShotday(ch, num, tableNum, vaccineCode) {
-		var id = '${myid }';
+		var id = '${id }';
 		var shotday = $('#' + ch + num).val();
 		var vaccineCode = vaccineCode;
 		$.ajax({
@@ -221,30 +222,27 @@
 			success : function(data) {
 				if (data.nextDate != null) {
 					var nextShotday = data.nextDate;
-					$
-							.ajax({
-								type : 'get',
-								url : 'calcDday.do',
-								data : "nextShotday=" + nextShotday,
-								dataType : 'json',
-								success : function(data) {
-									if (data.dDay != null) {
-										var dDay = data.dDay;
-										nextNum = parseInt(num) + 1;
-										$('#' + ch + 'div' + nextNum).attr(
-												'id', ch + 'div' + nextNum)
-												.html(nextShotday);
-										$('#' + ch + 'day' + nextNum).attr(
-												'id', ch + 'day' + nextNum)
-												.html('D' + dDay);
-									} else {
-										alert('에러');
-									}
-								},
-								error : function(data) {
-									alert('잠시 후 다시 시도해주세요');
-								}
-							});
+					$.ajax({
+						type : 'get',
+						url : 'calcDday.do',
+						data : "nextShotday=" + nextShotday,
+						dataType : 'json',
+						success : function(data) {
+						if (data.dDay != null) {
+							var dDay = data.dDay;
+							nextNum = parseInt(num) + 1;
+							$('#' + ch + 'div' + nextNum).attr('id', ch + 'div' + nextNum)
+									.html(nextShotday);
+							$('#' + ch + 'day' + nextNum).attr('id', ch + 'day' + nextNum)
+									.html('D' + dDay);
+							} else {
+									alert('에러');
+							}
+						},
+						error : function(data) {
+							alert('잠시 후 다시 시도해주세요');
+						}
+					});
 				} else {
 					alert('에러');
 				}
@@ -254,7 +252,7 @@
 			}
 		});
 	}
-
+	
 	function getNextDate(ch, num, tableNum, vaccineCode, shotday) {
 		$.ajax({
 			type : 'get',
@@ -300,30 +298,125 @@
 		}
 		return true;
 	}
+	
+	function getMedicalTable(careList, length, tableNum){
+		
+		var rowspanSize = $('#table' + tableNum + ' td:eq(0)').attr('rowspan');
+		var table = $('#table' + tableNum + ' tbody');
+		var id = '${id }';
+		var petname = myPet;
+		var tr = $('<tr>');	
+		
+		$(careList).each(function(index){
+			alert(this.idx);
+			// 구현해야돼
+		})
+			
+// 		for(var i = 0; i < length; i ++){
+// 			$('#table' + tableNum + ' td:eq(0)').attr('rowspan', parseInt(rowspanSize) + 1);
+			
+			
+// 			var addBtn = $('<input type="button" value=" + " class="addDay" name="' + num + '" id="' + ch + '' + num + 'Btn" style="padding: 3px 3px">');
+// 			var inputTxt = $('<input type="text" class="VcDate" placeholder="0000-00-00" id="'+ ch + num + '" readonly>');
+// 			var inputBtn = $('<input type="button" value="입력" class="uploadBtn" name="' + num + '" id="' + ch + tableNum + '0' + num + '" style="padding: 3px 3px">');
+// 			var deleteBtn = $('<input type="button" value="삭제" class="deleteBtn" name="' + num + '" id= "delete' + ch + num + '" style="padding: 3px 3px">');
+
+// 			$('<td>').html('<a>' + num + '차</a>').appendTo(tr);
+// 			$('<td>').attr('id', ch + 'div' + num).html(nextShotday).appendTo(tr);
+// 			$('<td>').attr('id', ch + 'day' + num).html('D' + dDay).appendTo(tr);
+// 			$('<td>').append(addBtn).append(inputTxt).appendTo(tr);
+// 			$('<td>').append(inputBtn).appendTo(tr);
+// 			$('<td>').append(deleteBtn).appendTo(tr);
+// 			table.append(tr);
+
+// 			inputBtn.on('click', function() {
+// 				var flag = chkDateFmt(ch, num);
+// 				if (flag == true) {
+// 					if ($(this).val() == "입력") {
+// 						$("#" + ch + "div" + num).text($('#' + ch + num).val());
+// 						$("#" + ch + "day" + parseInt(num) - 1).text('0');
+// 						uploadShotday(ch, num, tableNum, vaccineCode); //insert
+// 					} else {
+// 						updateShotday(ch, num, tableNum, vaccineCode); //update
+// 					}
+// 				}
+// 				$(this).val('수정');
+// 			});
+
+// 			deleteBtn.on('click', function() {
+// 				$.ajax({
+// 					type : 'get',
+// 					url : 'deleteMedical.do',
+// 					data : "id=" + id + "&petname=" + myPet + "&vaccineCode=" + vaccineCode,
+// 					dataType : 'json',
+// 					success : function(data) {
+// 						if (data.result) {
+// 							$(this).closest('tr').remove();
+// 							var rowspanSize = $('#table' + tableNum + ' td:eq(0)').attr(
+// 									'rowspan');
+// 							$('#table' + tableNum + ' td:eq(0)').attr('rowspan',
+// 									parseInt(rowspanSize) - 1);
+// 						} else {
+// 						}
+// 					},
+// 					error : function(data) {
+// 						alert('잠시 후 다시 시도해주세요');
+// 					}
+// 				});
+// 			});
+
+// 			addBtn.on('click', function() {
+// 				var dayId = $(this).attr('id');
+// 				addDayForm(dayId);
+// 			});
+
+// 		}
+	}
+	
+	function callPetinfo(id, name){
+		$.ajax({
+			type : 'get',
+			url : 'selectPet.do',
+			data : "id=" + id + "&name=" + name,
+			dataType : "json",
+			success : function(data) {
+				addPetinfo(data);
+			},
+			error : function(data) {
+				alert("잠시 후 다시 시도해주세요.");
+			}
+		});
+	}
+	
+	function callMedicalInfo(id, name){
+		$.ajax({
+			type : 'get',
+			url : 'selectMedical.do',
+			data : "id=" + id + "&name=" + name,
+			dataType : "json",
+			success : function(data) {
+				// 아이디, 이름으로 인덱스 받아오기
+				// 저장된 데이터로 테이블 만들기
+				getMedicalTable(data.careList, data.length); // 정보가져와서 테이블 만들어라
+			},
+			error : function(data) {
+				alert("잠시 후 다시 시도해주세요.");
+			}
+		});
+	}
 
 	$(document).ready(function() {
 
 		$('#name').change(function() {
 			var name = $("#name option:selected").text();
 			myPet = name;
-			var id = '${myid }';
+			var id = '${id }';
 			if (name == ' 선택하세요 ') {
 				isPet = false;
 			} else {
 				isPet = true;
 			}
-			$.ajax({
-				type : 'get',
-				url : 'selectPet.do',
-				data : "id=" + id + "&name=" + name,
-				dataType : "json",
-				success : function(data) {
-					addPetinfo(data);
-				},
-				error : function(data) {
-					alert("잠시 후 다시 시도해주세요.");
-				}
-			});
+			callPetinfo(id, name);
 		});
 
 		$('.addDay').click(function() {
@@ -342,6 +435,19 @@
 		});
 		$('#R401').click(function() {
 			addFirstElement($(this));
+		});
+		
+		$('#tab1').click(function(){ // tab 누르면 텝에 맞는 정보 가져오기
+			callMedicalInfo('${id }', myPet, '1');
+		});
+		$('#tab2').click(function(){
+			callMedicalInfo('${id }', myPet, '2');
+		});
+		$('#tab3').click(function(){
+			callMedicalInfo('${id }', myPet, '3');
+		});
+		$('#tab4').click(function(){
+			callMedicalInfo('${id }', myPet, '4');
 		});
 	});
 </script>

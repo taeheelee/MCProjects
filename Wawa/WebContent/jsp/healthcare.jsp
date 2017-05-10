@@ -243,6 +243,41 @@ svg {
 			$('#wt' + num).attr("readonly", false);
 		}
 		
+		function callPetinfo(id, name){
+			$.ajax({
+				type : 'get',
+				url : 'selectPet.do',
+				data : "id=" + id + "&name=" + name,
+				dataType : "json",
+				success : function(data) {
+					if (data.pet != null) {
+						addPetinfo(data.pet);
+					} else {
+	
+					}
+				},
+				error : function(data) {
+					alert("잠시 후 다시 시도해주세요.");
+				}
+			});
+		}
+
+		function callManageInfo(id, name){
+			$.ajax({
+				type : 'get',
+				url : 'selectManage.do',
+				data : "id=" + id + "&name=" + name,
+				dataType : "json",
+				success : function(data) {
+					// 아이디, 이름으로 인덱스 받아오기
+					// 저장된 데이터로 테이블 만들기
+				},
+				error : function(data) {
+					alert("잠시 후 다시 시도해주세요.");
+				}
+			});
+		}
+		
 		$(document).ready(function() {
 		
 			$('.addBtn').click(function() {
@@ -264,22 +299,8 @@ svg {
 				} else {
 					isPet = true;
 				}
-				$.ajax({
-					type : 'get',
-					url : 'selectPet.do',
-					data : "id=" + id + "&name=" + name,
-					dataType : "json",
-					success : function(data) {
-						if (data.pet != null) {
-							addPetinfo(data.pet);
-						} else {
-		
-						}
-					},
-					error : function(data) {
-						alert("잠시 후 다시 시도해주세요.");
-					}
-				});
+				callPetinfo(id, name);
+				callManageInfo(id, name);
 			});
 		
 			var calculate = document.getElementById('calculate');

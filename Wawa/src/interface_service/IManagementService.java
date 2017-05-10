@@ -11,4 +11,5 @@ public interface IManagementService {
 	public Management selectOne(int managementIdx);
 	public List<Management> selectList(String id);
 	public int selectIdx(Management model);
+	public List<Management> selectAllHealth(int idx);
 }

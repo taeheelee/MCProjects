@@ -34,7 +34,7 @@ public class ManagementController {
 	@RequestMapping("healthcare.do")
 	public ModelAndView healthcare(HttpSession session){
 		ModelAndView mav = new ModelAndView();
-		String id = session.getAttribute("id").toString();
+		String id = (String) session.getAttribute("id");
 		
 		List<HashMap<String, Object>> petList = petinfoService.selectPetList(id);
 		
@@ -63,7 +63,19 @@ public class ManagementController {
 		return mav;
 	}
 	
-	@RequestMapping("uploadHealthcare.co")
+	@RequestMapping("selectHealthcare.do")
+	public ModelAndView selectHealthcare(HashMap<String, Object> params){
+		ModelAndView mav = new ModelAndView();
+		HashMap<String, Object> healthcare = new HashMap<>();
+		int idx = (int) petinfoService.selectByname(params).get("idx");
+		List<Management> healthList = managementService.selectAllHealth(idx);
+		int length = healthcare.size();
+		mav.addObject("length", length);
+		mav.addObject("list", healthList);
+		return mav;
+	}
+	
+	@RequestMapping("uploadHealthcare.do")
 	public
 	@ResponseBody HashMap<String, Object> uploadHealthcare(HttpServletResponse resp,
 			@RequestParam HashMap<String, Object> params){

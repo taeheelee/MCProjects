@@ -72,4 +72,11 @@ public class ManagementService implements IManagementService {
 		int managementIdx = dao.selectIdx(model);
 		return managementIdx;
 	}
+
+	@Override
+	public List<Management> selectAllHealth(int idx) {
+		// TODO Auto-generated method stub
+		//강아지 인덱스 받아서 모든 관리 리스트 가져오기
+		return dao.selectAllHealth(idx);
+	}
 }

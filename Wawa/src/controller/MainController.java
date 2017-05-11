@@ -106,8 +106,10 @@ public class MainController {
 	
 	@RequestMapping("nicknameCheck.do")
 	public 
-	@ResponseBody HashMap<String, Object> nicknameCheck(HttpServletResponse resp, String nickname){
+	@ResponseBody HashMap<String, Object> nicknameCheck(HttpServletResponse resp, String nickname, String id){
 		HashMap<String, Object> response = new HashMap<>();
+		System.out.println(id);
+		iMemberService.getMember(id);
 		response.put("result", iMemberService.nicknameCheck(nickname));
 		return response;
 	}
@@ -125,26 +127,31 @@ public class MainController {
 		params.put("password", userInfo.getPassword());
 		params.put("phone", userInfo.getPhone());
 		params.put("email", userInfo.getEmail());
-		
 		mav.addAllObjects(params);
 		mav.setViewName("userinfoForm.tiles");
 		return mav;
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="userUpdate.do")
-	public ModelAndView userUpdate(String password, String nickname,
+	public ModelAndView userUpdate(String id, String password, String nickname,
 			String sex, String phone, String email, HttpSession session){
 		UserInfo userInfo = new UserInfo();
 		userInfo.setAdminCheck(0);
 		userInfo.setEmail(email);
 		userInfo.setId(session.getAttribute("id").toString());
 		userInfo.setNickname(nickname);
-		userInfo.setPassword(password);
 		userInfo.setPhone(phone);
 		userInfo.setSex(sex);
+		if(password.equals("")){
+			UserInfo tmp = iMemberService.getMember(id);
+			userInfo.setPassword(tmp.getPassword());
+		}else{
+			userInfo.setPassword(password);
+		}
+		session.setAttribute("name", userInfo.getNickname());
 		iMemberService.modifyInfo(userInfo);
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("userinfoForm.tiles");
+		mav.setViewName("main.tiles");
 		return mav;
 	}
 	

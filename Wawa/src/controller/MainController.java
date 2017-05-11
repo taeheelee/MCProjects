@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -61,9 +62,10 @@ public class MainController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="naverLogin.do")
-	public String naverLogin(HttpSession session, String id, String nickname, String sex, String email){
+	public String naverLogin(HttpSession session, String id, String nickname, String email, String sex){
 		String password = "123456";
 		String phone = "010-0000-0000";
+		
 		int adminCheck = 0;
 		if(iMemberService.checkId(id)){
 			int result = iMemberService.join(id, password, nickname, sex, phone, adminCheck, email);

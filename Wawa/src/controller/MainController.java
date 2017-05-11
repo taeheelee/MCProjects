@@ -134,10 +134,17 @@ public class MainController {
 	public 
 	@ResponseBody HashMap<String, Object> nicknameCheck(HttpServletResponse resp, String nickname, String id){
 		HashMap<String, Object> response = new HashMap<>();
-		System.out.println(id);
-		iMemberService.getMember(id);
-		response.put("result", iMemberService.nicknameCheck(nickname));
-		return response;
+		//닉네임 체크시 내 닉네임도 사용가능으로 출력
+		String myNickname = iMemberService.getMember(id).getNickname();
+		if(myNickname.equals(nickname)){
+			response.put("result", true);
+			return response;
+		}
+		else{
+			response.put("result", iMemberService.nicknameCheck(nickname));
+			return response;
+		}
+			
 	}
 	
 
@@ -160,25 +167,42 @@ public class MainController {
 	
 	@RequestMapping(method=RequestMethod.POST, value="userUpdate.do")
 	public ModelAndView userUpdate(String id, String password, String nickname,
-			String sex, String phone, String email, HttpSession session){
+			String sex, String phone, String email, String newPassword, HttpSession session){
+		
+		UserInfo tmp = iMemberService.getMember(id);
 		UserInfo userInfo = new UserInfo();
-		userInfo.setAdminCheck(0);
-		userInfo.setEmail(email);
-		userInfo.setId(session.getAttribute("id").toString());
-		userInfo.setNickname(nickname);
-		userInfo.setPhone(phone);
-		userInfo.setSex(sex);
-		if(password.equals("")){
-			UserInfo tmp = iMemberService.getMember(id);
-			userInfo.setPassword(tmp.getPassword());
-		}else{
-			userInfo.setPassword(password);
-		}
-		session.setAttribute("name", userInfo.getNickname());
-		iMemberService.modifyInfo(userInfo);
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("main.tiles");
+		//정보수정을 위해 폼에서 입력한 비밀번호와 DB의 비밀번호 비교
+		if(password.equals(tmp.getPassword())){
+			//일치한다면 위의 받아온 내용을 모델에 담는다.
+			userInfo.setAdminCheck(0);
+			userInfo.setEmail(email);
+			userInfo.setId(session.getAttribute("id").toString());
+			userInfo.setNickname(nickname);
+			userInfo.setPhone(phone);
+			userInfo.setSex(sex);
+			//닉네임이 변경되었을지도 모르니 헤더에 있는 세션도 업데이트
+			session.setAttribute("name", userInfo.getNickname());
+			//비밀번호를 변경하였는지 확인
+			if(newPassword.equals(""))
+				//아무것도 입력하지 않았다면 기존의 비밀번호를 그대로 입력
+				userInfo.setPassword(tmp.getPassword());
+			else 
+				//만약 입력했다면 새로운 비밀번호를 모델에 셋
+				userInfo.setPassword(newPassword);
+			//서비스단으로 ㄱㄱ
+			mav.addObject("result", "정보 수정 완료");
+			iMemberService.modifyInfo(userInfo);
+		}else{
+			//비밀번호가 일치하지 않았다면
+			mav.addObject("result", "비밀번호를 다시 확인해주세요!");
+		}
+//		RedirectView rv = new RedirectView("/redirect:main.do");
+//		rv.setExposeModelAttributes(false);
+//		return new ModelAndView(rv);
+		mav.setViewName("userinfoForm.tiles");
 		return mav;
+
 	}
 	
 	@RequestMapping("deleteCheck.do")

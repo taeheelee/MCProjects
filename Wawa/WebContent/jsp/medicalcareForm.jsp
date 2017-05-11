@@ -15,6 +15,7 @@
 	crossorigin="anonymous"></script>
 <script type="text/javascript">
 	var myPet = '';
+	var id = '${id}';
 	var isPet = false;
 	function header(num) {
 		var table = $('#table' + num + ' thead');
@@ -67,11 +68,6 @@
 				alert('잠시 후 다시 시도해주세요');
 			}
 		});
-	}
-
-	function addDayForm(data) {
-		var aimTxt = data.substring(0, 2);
-		$('#' + aimTxt).attr("readonly", false);
 	}
 
 	function addFirstElement(data) {
@@ -167,6 +163,11 @@
 		});
 	}
 
+	function addDayForm(data) {
+		var aimTxt = data.substring(0, 2);
+		$('#' + aimTxt).attr("readonly", false);
+	}
+	
 	function uploadShotday(ch, num, tableNum, vaccineCode) {
 		var id = '${id }';
 		var shotday = $('#' + ch + num).val();
@@ -254,6 +255,7 @@
 	}
 	
 	function getNextDate(ch, num, tableNum, vaccineCode, shotday) {
+		//가져오고 뒤에 붙이기 까지 하는 함수
 		$.ajax({
 			type : 'get',
 			url : 'calcShotday.do',
@@ -299,78 +301,95 @@
 		return true;
 	}
 	
-	function getMedicalTable(careList, length, tableNum){
-		
-		var rowspanSize = $('#table' + tableNum + ' td:eq(0)').attr('rowspan');
+	function getMedicalTable(careList, length, tableNum, ch){	
 		var table = $('#table' + tableNum + ' tbody');
 		var id = '${id }';
-		var petname = myPet;
-		var tr = $('<tr>');	
+		var petname = $('#selectedPet').val();
 		
-		$(careList).each(function(index){
-			alert(this.idx);
-			// 구현해야돼
-		})
-			
-// 		for(var i = 0; i < length; i ++){
-// 			$('#table' + tableNum + ' td:eq(0)').attr('rowspan', parseInt(rowspanSize) + 1);
-			
-			
-// 			var addBtn = $('<input type="button" value=" + " class="addDay" name="' + num + '" id="' + ch + '' + num + 'Btn" style="padding: 3px 3px">');
-// 			var inputTxt = $('<input type="text" class="VcDate" placeholder="0000-00-00" id="'+ ch + num + '" readonly>');
-// 			var inputBtn = $('<input type="button" value="입력" class="uploadBtn" name="' + num + '" id="' + ch + tableNum + '0' + num + '" style="padding: 3px 3px">');
-// 			var deleteBtn = $('<input type="button" value="삭제" class="deleteBtn" name="' + num + '" id= "delete' + ch + num + '" style="padding: 3px 3px">');
-
-// 			$('<td>').html('<a>' + num + '차</a>').appendTo(tr);
-// 			$('<td>').attr('id', ch + 'div' + num).html(nextShotday).appendTo(tr);
-// 			$('<td>').attr('id', ch + 'day' + num).html('D' + dDay).appendTo(tr);
-// 			$('<td>').append(addBtn).append(inputTxt).appendTo(tr);
-// 			$('<td>').append(inputBtn).appendTo(tr);
-// 			$('<td>').append(deleteBtn).appendTo(tr);
-// 			table.append(tr);
-
-// 			inputBtn.on('click', function() {
-// 				var flag = chkDateFmt(ch, num);
-// 				if (flag == true) {
-// 					if ($(this).val() == "입력") {
-// 						$("#" + ch + "div" + num).text($('#' + ch + num).val());
-// 						$("#" + ch + "day" + parseInt(num) - 1).text('0');
-// 						uploadShotday(ch, num, tableNum, vaccineCode); //insert
-// 					} else {
-// 						updateShotday(ch, num, tableNum, vaccineCode); //update
-// 					}
-// 				}
-// 				$(this).val('수정');
-// 			});
-
-// 			deleteBtn.on('click', function() {
-// 				$.ajax({
-// 					type : 'get',
-// 					url : 'deleteMedical.do',
-// 					data : "id=" + id + "&petname=" + myPet + "&vaccineCode=" + vaccineCode,
-// 					dataType : 'json',
-// 					success : function(data) {
-// 						if (data.result) {
-// 							$(this).closest('tr').remove();
-// 							var rowspanSize = $('#table' + tableNum + ' td:eq(0)').attr(
-// 									'rowspan');
-// 							$('#table' + tableNum + ' td:eq(0)').attr('rowspan',
-// 									parseInt(rowspanSize) - 1);
-// 						} else {
-// 						}
-// 					},
-// 					error : function(data) {
-// 						alert('잠시 후 다시 시도해주세요');
-// 					}
-// 				});
-// 			});
-
-// 			addBtn.on('click', function() {
-// 				var dayId = $(this).attr('id');
-// 				addDayForm(dayId);
-// 			});
-
-// 		}
+		if(length == 0){
+			//아무 정보도 저장되어 있지 않는 경우 들어오는 함수
+			$('#D101').click(function() {
+				addFirstElement($(this));
+			});
+			$('#C201').click(function() {
+				addFirstElement($(this));
+			});
+			$('#K301').click(function() {
+				addFirstElement($(this));
+			});
+			$('#R401').click(function() {
+				addFirstElement($(this));
+			});
+		}else {
+			$('#tr' + tableNum).remove();
+			$('#table' + tableNum + ' td:eq(0)').attr('rowspan', parseInt(length+1));
+			var flag = 0;
+			$(careList).each(function(index, value){
+					alert(parseInt(value.vaccineCode/100));
+					alert(parseInt(value.vaccineCode%10));
+					if(parseInt(value.vaccineCode/100) == tableNum){
+						var num = parseInt(value.vaccineCode%10);
+					
+						var tr = $('<tr>');	
+						var addBtn = $('<input type="button" value=" + " class="addDay" name="' + num + '" id="' + ch + '' + num + 'Btn" style="padding: 3px 3px">');
+						var inputTxt = $('<input type="text" class="VcDate" placeholder="0000-00-00" value="' + value.realShotDate + '" id="'+ ch + num + '" readonly>');
+						var inputBtn = $('<input type="button" value="수정" class="uploadBtn" name="' + num + '" id="' + ch + tableNum + '0' + num + '" style="padding: 3px 3px">');
+						var deleteBtn = $('<input type="button" value="삭제" class="deleteBtn" name="' + num + '" id= "delete' + ch + num + '" style="padding: 3px 3px">');
+	
+						$('<td>').html('<a>' + num + '차</a>').appendTo(tr);
+						$('<td>').attr('id', ch + 'div' + num).appendTo(tr);
+						$('<td>').attr('id', ch + 'day' + num).appendTo(tr);
+						$('<td>').append(addBtn).append(inputTxt).appendTo(tr);
+						$('<td>').append(inputBtn).appendTo(tr);
+						$('<td>').append(deleteBtn).appendTo(tr);
+						table.append(tr);
+						var vaccineCode = parseInt(tableNum)*100 + parseInt(num);
+						getNextDate2(ch, num, tableNum, vaccineCode, value.realShotDate);
+						
+			 			inputBtn.on('click', function() {
+			 				var flag = chkDateFmt(ch, num);
+			 				if (flag == true) {
+			 					updateShotday(ch, num, tableNum, vaccineCode); //update
+			 				}
+			 			});
+	
+			 			deleteBtn.on('click', function() {
+			 				$.ajax({
+			 					type : 'get',
+			 					url : 'deleteMedical.do',
+			 					data : "id=" + id + "&name=" + myPet + "&vaccineCode=" + vaccineCode,
+			 					dataType : 'json',
+			 					success : function(data) {
+			 						if (data.result) {
+			 							$('#delete' + ch + num).closest('tr').remove();
+			 							var rowspanSize = $('#table' + tableNum + ' td:eq(0)').attr(
+			 									'rowspan');
+			 							$('#table' + tableNum + ' td:eq(0)').attr('rowspan',
+			 									parseInt(rowspanSize-1));
+			 						} else {
+			 						}
+			 					},
+			 					error : function(data) {
+			 						alert('잠시 후 다시 시도해주세요');
+			 					}
+			 				});
+			 			});
+	
+			 			addBtn.on('click', function() {
+			 				var dayId = $(this).attr('id');
+			 				addDayForm(dayId);
+			 			});
+					}
+				
+		 			if(flag == 0){
+		 				$("#" + ch + "div" + 1).text($('#' + ch + num).val());
+						$("#" + ch + "day" + 1).text('D-day');	
+		 			}else if(num == length-1){
+						getNextDate(ch, parseInt(num+1), tableNum, parseInt(tableNum*100+num+1), value.realShotDate);
+					}
+		 			flag = 1;
+			});
+		}
 	}
 	
 	function callPetinfo(id, name){
@@ -388,16 +407,20 @@
 		});
 	}
 	
-	function callMedicalInfo(id, name){
+	function callMedicalInfo(ch, tableNum){
+		var id = '${id}';
+		var petname = $('#selectedPet').val();
 		$.ajax({
 			type : 'get',
 			url : 'selectMedical.do',
-			data : "id=" + id + "&name=" + name,
+			data : "id=" + id + "&name=" + petname,
 			dataType : "json",
 			success : function(data) {
 				// 아이디, 이름으로 인덱스 받아오기
-				// 저장된 데이터로 테이블 만들기
-				getMedicalTable(data.careList, data.length); // 정보가져와서 테이블 만들어라
+// 				// 저장된 데이터로 테이블 만들기
+// 				alert(data.DLength);
+				alert(data.length);
+				getMedicalTable(data.careList, data.length, tableNum, ch); // 정보가져와서 테이블 만들어라
 			},
 			error : function(data) {
 				alert("잠시 후 다시 시도해주세요.");
@@ -410,6 +433,7 @@
 		$('#name').change(function() {
 			var name = $("#name option:selected").text();
 			myPet = name;
+			$('#selectedPet').val(name);
 			var id = '${id }';
 			if (name == ' 선택하세요 ') {
 				isPet = false;
@@ -417,38 +441,14 @@
 				isPet = true;
 			}
 			callPetinfo(id, name);
+			callMedicalInfo('D', 1);
 		});
 
 		$('.addDay').click(function() {
 			var dayId = $(this).attr('id');
 			addDayForm(dayId);
 		});
-
-		$('#D101').click(function() {
-			addFirstElement($(this));
-		});
-		$('#C201').click(function() {
-			addFirstElement($(this));
-		});
-		$('#K301').click(function() {
-			addFirstElement($(this));
-		});
-		$('#R401').click(function() {
-			addFirstElement($(this));
-		});
 		
-		$('#tab1').click(function(){ // tab 누르면 텝에 맞는 정보 가져오기
-			callMedicalInfo('${id }', myPet, '1');
-		});
-		$('#tab2').click(function(){
-			callMedicalInfo('${id }', myPet, '2');
-		});
-		$('#tab3').click(function(){
-			callMedicalInfo('${id }', myPet, '3');
-		});
-		$('#tab4').click(function(){
-			callMedicalInfo('${id }', myPet, '4');
-		});
 	});
 </script>
 
@@ -491,6 +491,7 @@
 											<c:forEach items="${list }" var="petinfo">
 												<option value="${petinfo.name }">${petinfo.name }</option>
 											</c:forEach>
+											<input type="hidden" id="selectedPet" val="">
 									</select></td>
 								</tr>
 							</tbody>
@@ -532,7 +533,7 @@
 												<tr class="cart_item">
 													<td class="product-remove" rowspan="2" id="gubun"><a>기초접종</a>
 												</tr>
-												<tr>
+												<tr id="tr1">
 													<td><a>1차</a></td>
 													<td><span id="Ddiv1"></span></td>
 													<td><span id="Dday1"></td>
@@ -544,6 +545,7 @@
 														name="1" id='D101' style="padding: 3px 3px"></td>
 													<td></td>
 												</tr>
+								
 											</tbody>
 										</table>
 									</form>
@@ -568,7 +570,7 @@
 												<tr class="cart_item">
 													<td class="product-remove" rowspan="2"><a>기초접종</a>
 												</tr>
-												<tr>
+												<tr id="tr2">
 													<td><a>1차</a></td>
 													<td><span id="Cdiv1"></span></td>
 													<td><span id="Cday1"></td>
@@ -604,7 +606,7 @@
 												<tr class="cart_item">
 													<td class="product-remove" rowspan="2"><a>기초접종</a>
 												</tr>
-												<tr>
+												<tr id="tr3">
 													<td><a>1차</a></td>
 													<td><span id="Kdiv1"></span></td>
 													<td><span id="Kday1"></td>
@@ -640,12 +642,12 @@
 												<tr class="cart_item">
 													<td class="product-remove" rowspan="2"><a>기초접종</a>
 												</tr>
-												<tr>
+												<tr id="tr4">
 													<td><a>1차</a></td>
 													<td><span id="Rday1"></span></td>
 													<td>D-day</td>
 													<td><input type="button" value=" + " class="addDay"
-														name="1" id="R1Btn" style="padding: 3px 3px"> <input
+														select vaccineCode from medicalmanage where vaccineCode like '${num}%'name="1" id="R1Btn" style="padding: 3px 3px"> <input
 														type="text" class="VcDate" placeholder="0000-00-00"
 														id="R1" readonly></td>
 													<td><input type="button" value="입력" class="uploadBtn"

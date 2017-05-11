@@ -11,9 +11,11 @@ import org.springframework.stereotype.Component;
 
 import commons.Constant;
 import interface_dao.IDogKindDao;
+import interface_dao.IManagementDao;
 import interface_dao.IMedicalDao;
 import interface_dao.IPetInfoDao;
 import interface_service.IPetinfoService;
+import model.Management;
 
 @Component
 public class PetInfoService implements IPetinfoService {
@@ -26,6 +28,9 @@ public class PetInfoService implements IPetinfoService {
 	
 	@Autowired
 	IDogKindDao kDao;
+	
+	@Autowired
+	IManagementDao mmDao;
 	
 	@Override
 	public boolean insertPetInfo(int idx, String resist, String id, String name, String kind, Date birthday, String neutral,
@@ -43,8 +48,19 @@ public class PetInfoService implements IPetinfoService {
 		params.put(Constant.PetInfo.GROOMINGSTART, groomingStart);
 		int gp = Integer.parseInt(groomingPeriod);
 		params.put(Constant.PetInfo.GROOMINGPERIOD, gp);
-		
 		int result = dao.insertPetInfo(params);
+		
+		long insertedPetIdx = (long) params.get("idx");
+		int insertedPetIdxInt = (int)insertedPetIdx;
+		
+		Management model = new Management();
+		model.setIdx(insertedPetIdxInt);
+		model.setDate(new Date());
+		model.setWeight(weight);
+		System.out.println("model : "+model);
+		mmDao.insertManagement(model);
+		
+		
 		HashMap<String, Object> pet = dao.selectByName(params);
 		int petIdx = (int)pet.get("idx");
 		int arr[] = {101, 102, 103, 104, 105, 201, 202, 203, 204, 205, 301, 302, 303, 304, 305, 401, 402, 403, 404, 405};

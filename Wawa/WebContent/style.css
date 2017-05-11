@@ -26,7 +26,7 @@ table.pet_table th {
 .file_input_div{
 	position: relative;
 	width: 100px;
-	height: 23px;
+	height: 50px;
 	overflow: hidden;
 }
 .file_input_button{
@@ -36,6 +36,8 @@ table.pet_table th {
 	background-color:  #ffc000;
 	color: #FFFFFF;
 	border-style: solid;
+	margin: 0%;
+	padding: 0%;
 }
 .file_input_hidden{
 	font-size: 45px;

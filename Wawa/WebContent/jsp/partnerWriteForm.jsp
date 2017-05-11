@@ -110,13 +110,13 @@
 											</div>
                                         
                                             
-											<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
+<!-- 											<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state"> -->
                                                 <label class="" for="billing_state">애견 이름</label>
                                                 <input type="text" id="name" name="name" placeholder="" value="" class="input-text ">
-                                            </p>
+<!--                                             </p> -->
                                             <br>
                        
-                                             <p id="billing_country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated">
+<!--                                              <p id="billing_country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated"> -->
                                                 <label class="" for="billing_country">품종 <abbr title="required" class="required">*</abbr>
                                                 </label>
                                                 <select class="country_to_state country_select" id="kind" name="kind">
@@ -132,10 +132,10 @@
                                                     <option value="10">기타 중형견</option>
                                                     <option value="11">기타 대형견</option>
                                                 </select>
-                                            </p>
+<!--                                             </p> -->
                                             <br>
                                             
-                                             <p id="billing_first_name_field" class="form-row form-row-first validate-required">
+<!--                                              <p id="billing_first_name_field" class="form-row form-row-first validate-required"> -->
                                                 <label class="" for="billing_first_name">성별 <abbr title="required" class="required">*</abbr></label>
 	                                            <div id="payment">
 													<ul class="payment_methods methods">
@@ -146,32 +146,42 @@
 														</li>
 													</ul>
 												</div>
-                                            </p>
+<!--                                             </p> -->
                                             <br>
                                             
-                                            <p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
+<!--                                             <p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state"> -->
                                                 <label class="" for="billing_state">나이</label>
                                                 <input type="text" id="age" name="age" placeholder="" value="" class="input-text ">
-                                            </p>
+<!--                                             </p> -->
                                             <br>
-                                            <p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
+<!--                                             <p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state"> -->
                                                 <label class="" for="billing_state">몸무게(kg)</label>
                                                 <input type="text" id="weight" name="weight" placeholder="" value="" class="input-text ">
-                                            </p>
+<!--                                             </p> -->
                                             <br>
                                             
-                                            <p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
+<!--                                             <p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state"> -->
                                                 <label class="" for="billing_state">연락처</label>
                                                 <input type="text" id="phone" name="phone" placeholder="" value="" class="input-text ">
-                                            </p>
+<!--                                             </p> -->
                                             <br>
                                             
-                                          <p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
+<!--                                           <p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state"> -->
                                                 <label class="" for="billing_state">e-mail</label>
                                                 <input type="text" id="email" name="email" placeholder="" value="" class="input-text ">
-                                            </p>
+<!--                                             </p> -->
                                             <br>
                                       
+                                            <!-- <p id="billing_first_name_field" class="form-row form-row-first validate-required">
+												<div class="file_input_div">
+													<input type="button" value="파일 선택" class="file_input_button"/>
+													<input type="file" class="file_input_hidden" onchange="javascript:document.getElementById('fileName').value = this.value" />
+												</div>
+												
+												<input type="text" id="fileName" class="file_input_textbox" readonly="readonly">
+											</p>
+                                            
+                                            
                                             
                                             	<p id="billing_first_name_field" class="form-row form-row-first validate-required">
                                                 <label class="" for="billing_first_name">애견 프로필 사진 등록 <abbr title="required" class="required">*</abbr>
@@ -181,12 +191,29 @@
 												<input type="file" data-value="Place order" value="ADD PHOTO" id="ufile" name="ufile" class="button alt" >
 
 											</div>
-                                            </p>
+                                            </p> -->
+                                               <label class="" for="billing_first_name">애견 프로필 사진 등록<abbr title="required" class="required">*</abbr></label>
+<!-- 											<p id="billing_first_name_field" class="form-row form-row-first validate-required"> -->
+													<table border="0">
+														<tr>
+															<td width="10%">
+														<div class="file_input_div">
+															<input type="button" value="파일 선택" class="file_input_button"/>
+															<input type="file" class="file_input_hidden" onchange="javascript:document.getElementById('fileName').value = this.value" />
+														</div>
+															</td>
+															<td width="90%">
+																<input type="text" id="fileName" class="file_input_textbox" readonly="readonly" style="border: 0px;">
+															</td>
+														</tr>
+													</table>
+													
+<!-- 												</p> -->
      
-                                         <p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
+<!--                                          <p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state"> -->
                                                 <label class="" for="billing_state">글 제목</label>
                                                 <input type="text" id="title" name="title" placeholder="" value="" class="input-text ">
-                                            </p>
+<!--                                             </p> -->
                                             <br>
                                             
                                            

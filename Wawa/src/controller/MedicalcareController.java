@@ -142,11 +142,13 @@ public class MedicalcareController {
 			@RequestParam HashMap<String, Object> params){
 		HashMap<String, Object> medical = new HashMap<>();
 		
+		System.out.println(params.get("id"));
+		System.out.println(params.get("name"));
 		int idx = (int) petinfoService.selectByname(params).get("idx");
 		
 		List<HashMap<String, Object>> careList = medicalService.selectAllShotDate(idx);
 		int length = careList.size();
-	
+		
 		HashMap<String, Object> response = new HashMap<>();
 		response.put("careList", careList);
 		response.put("length", length);

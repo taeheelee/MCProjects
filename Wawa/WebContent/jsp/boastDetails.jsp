@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +13,12 @@
   crossorigin="anonymous"></script>
   <script type="text/javascript">
   	function reple(idx,repleIdx) {
+  		var repleCount = ${fn:length(reple)};
+  		for(var i=0; i<repleCount; i++){
+  			$('#repleForm'+i).empty();
+  			$('#repleContent'+i).html($('#repleContent'+i).text());
+  			$('#updateForm'+i).show();
+  		}
 		$('#repleForm'+idx).html("<form action='repleWrite.do'>"
 								 +"<textarea style='width: 85%; height: 100px' name='content'></textarea>"
 								 +"<input type='submit' value='답글작성'>"
@@ -23,8 +30,14 @@
 	}
   	
   	function update(idx,repleIdx){
-  		$('#updateForm').text("");
   		var text = $('#repleContent'+idx).text();
+  		var repleCount = ${fn:length(reple)};
+  		for(var i=0; i<repleCount; i++){
+  			$('#repleForm'+i).empty();
+  			$('#repleContent'+i).html($('#repleContent'+i).text());
+  			$('#updateForm'+i).show();
+  		}
+  		$('#updateForm'+idx).hide();
   		$('#repleContent'+idx).html("<form action='repleUpdate.do'>"
 				 +"<textarea style='width: 85%; height: 100px' name='content'>"+text+"</textarea>"
 				 +"<input type='hidden' name='boardIdx' value='${board.boardIdx }'>"
@@ -119,16 +132,12 @@
 								<b>${reple.nickname }</b>
 								</td>
 								<td align="left" width="50%">
-									<span id="repleContent${st.index }">
-										<c:if test="${reple.isDelete == 'N' }">
-										${reple.content }
-										</c:if>
-										<c:if test="${reple.isDelete == 'Y' }">
-										<font color="gray">삭제된 댓글입니다</font>
-										</c:if>
-									</span>
+									<span id="repleContent${st.index }"><!--  
+									--><c:if test="${reple.isDelete == 'N' }">${reple.content }</c:if><!--  
+									--><c:if test="${reple.isDelete == 'Y' }"><font color="gray">삭제된 댓글입니다</font></c:if><!--  
+								--></span>
 									<c:if test="${sessionScope.name == reple.nickname && reple.isDelete == 'N'}">
-										<span id="updateForm">
+										<span id="updateForm${st.index }">
 										<a href="##" onclick="update(${st.index},${reple.repleIdx })">수정</a>
 										<a href="repleDelete.do?boardIdx=${board.boardIdx}
 										&boardCode=${board.boardCode}&repleIdx=${reple.repleIdx}" >삭제</a>
@@ -136,7 +145,11 @@
 									</c:if>
 								</td>
 								<td align="right" width="10%">${reple.writedate }</td>
-								<td width="10%"><a href="##" onclick="reple(${st.index},${reple.repleIdx })">답글달기</a></td>
+								<td width="10%">
+									<c:if test="${sessionScope.id != null && reple.isDelete == 'N'}">
+										<a href="##" onclick="reple(${st.index},${reple.repleIdx })">답글달기</a>
+									</c:if>
+								</td>
 								</tr>
 								<tr><td colspan="4"><span id="repleForm${st.index }"></span></td></tr>
 							</table>

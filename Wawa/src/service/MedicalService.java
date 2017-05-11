@@ -114,4 +114,6 @@ public class MedicalService implements IMedicalService {
 		return dao.selectAllShotDate(idx);
 	}
 
+
+
 }

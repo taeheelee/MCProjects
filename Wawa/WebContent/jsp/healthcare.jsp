@@ -175,7 +175,7 @@ svg {
 				$.ajax({
 					type : 'get',
 					url : 'deleteHealthcare.do',
-					data : "id=" + id + "&petname=" + myPet + "&vaccineCode=" + vaccineCode,
+					data : "id=" + id + "&name=" + myPet + "&vaccineCode=" + vaccineCode,
 					dataType : 'json',
 					success : function(data) {
 						if (data.result) {

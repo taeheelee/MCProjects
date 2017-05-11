@@ -4,9 +4,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="interface_dao.IManagementDao">
 	<insert id="insertManagement" parameterType="model.Management">
-		ALTER TABLE management AUTO_INCREMENT=1; 
+		<!-- ALTER TABLE management AUTO_INCREMENT=1; 
 		SET @COUNT = 0; 
-		UPDATE management SET management.managementIdx = @COUNT:=@COUNT+1;
+		UPDATE management SET management.managementIdx = @COUNT:=@COUNT+1; -->
 		insert into management values(0,#{idx},#{date},#{weight})
 	</insert>
 	<update id="updateManagement" parameterType="model.Management">

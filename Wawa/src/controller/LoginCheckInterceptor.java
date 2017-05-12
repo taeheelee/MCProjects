@@ -25,9 +25,15 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
 		// TODO Auto-generated method stub
 //		return super.preHandle(request, response, handler);
 		
+		response.setContentType("text/html;charset=UTF-8");
 		if(request.getSession().getAttribute("id") == null){
-			response.sendRedirect("loginForm.do");
-			
+			PrintWriter pw = response.getWriter();
+			pw.println("<script>");
+			pw.println("alert('로그인이 필요합니다.');");
+			pw.println("location.href='loginForm.do'");
+			pw.println("</script>");
+			pw.flush();
+			pw.close();
 			return false;
 		}else
 			return true;

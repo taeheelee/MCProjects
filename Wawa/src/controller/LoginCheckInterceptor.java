@@ -4,7 +4,6 @@ import java.io.PrintWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,8 +26,6 @@ public class LoginCheckInterceptor extends HandlerInterceptorAdapter{
 //		return super.preHandle(request, response, handler);
 		
 		if(request.getSession().getAttribute("id") == null){
-			HttpSession session = null;
-			session.setAttribute("notLogin", "not");
 			response.sendRedirect("loginForm.do");
 			
 			return false;

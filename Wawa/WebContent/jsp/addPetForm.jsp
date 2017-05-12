@@ -174,16 +174,15 @@ $('#weight').blur(function(){
 											</label>
 											<select class="country_to_state country_select" id="kind" name="kind">
 												<c:forEach var="kindList" items="${kindList }" varStatus="idx">
-												<c:choose>
-												<c:when test="${kindList.kind =='기타 소형견' }">
-												<option selected="selected" value="${kindList.kind }">${kindList.kind }</option>
-											</c:when>
-											<c:otherwise>
-											<option value="${kindList.kind }">${kindList.kind }</option>
-											
-										</c:otherwise>
-									</c:choose>
-								</c:forEach>
+													<c:choose>
+														<c:when test="${kindList.kind =='기타 소형견' }">
+															<option selected="selected" value="${kindList.kind }">${kindList.kind }</option>
+														</c:when>
+														<c:otherwise>
+															<option value="${kindList.kind }">${kindList.kind }</option>
+														</c:otherwise>
+													</c:choose>
+												</c:forEach>
 								
                                                     <!-- <option selected="selected" value="치와와">치와와</option>
                                                     <option value="요크셔 테리어">요크셔 테리어</option>

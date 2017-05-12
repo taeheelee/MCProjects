@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import commons.Constant;
 import interface_service.IBoardService;
+import interface_service.IDogKindService;
 import interface_service.IPetinfoService;
 import interface_service.IRepleService;
 
@@ -24,6 +25,8 @@ public class PartnerController {
 	private IRepleService repleService;
 	@Autowired
 	private IPetinfoService petService;
+	@Autowired
+	private IDogKindService dogKindService;
 	
 	//짝꿍찾기 게시판 메인
 	@RequestMapping("partnerMain.do")
@@ -72,6 +75,9 @@ public class PartnerController {
 		if(idx != 0){
 			mav.addObject("pet", boardService.selectPetinfo(idx));
 		}
+		
+		List<HashMap<String, Object>> kindList = dogKindService.selectAllDogKind();
+		mav.addObject("kindList", kindList);
 		mav.setViewName("partnerWriteForm.tiles");
 		return mav;
 	}
@@ -123,6 +129,8 @@ public class PartnerController {
 		if(idx != 0){
 			mav.addObject("pet", boardService.selectPetinfo(idx));
 		}
+		List<HashMap<String, Object>> kindList = dogKindService.selectAllDogKind();
+		mav.addObject("kindList", kindList);
 		mav.setViewName("partnerUpdateForm.tiles");
 		return mav;
 	}

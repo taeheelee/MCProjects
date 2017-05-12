@@ -125,6 +125,8 @@ svg {
 			success : function(data) {
 				if (data.result) {
 					addManageTable(day, weight);
+					$('#day').val('');
+					$('#wt').val('');
 				} else {
 					alert('등록실패');
 				}
@@ -146,9 +148,12 @@ svg {
 			success : function(data) {
 				if (data.result) {
 					addManageTable(day, weight);
+					$('#day').val('');
+					$('#wt').val('');
 				} else {
 					alert('등록실패');
 				}
+				
 			},
 			error : function(data) {
 				alert('잠시 후 다시 시도해주세요');
@@ -199,6 +204,7 @@ svg {
 	}
 
 	function addManageTable(day, weight) {
+		alert('여긴들어옴?');
 		$('tr:gt(1)', table).remove();
 		var id = '${id}';
 		$.ajax({

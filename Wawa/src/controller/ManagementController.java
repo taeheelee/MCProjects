@@ -191,14 +191,15 @@ public class ManagementController {
 			e.printStackTrace();
 		}
 		model.setDate(to);
+		System.out.println("시바어디서오류났어");
 		HashMap<String, Object> response = new HashMap<>();
 		System.out.println(managementService.selectDate(model));
-		if(managementService.selectDate(model) == null){
-			System.out.println("중복");
+		if(managementService.selectDate(model).size() != 0){
 			response.put("result", true);
+			System.out.println("중복");
 		}else {
-			System.out.println("중복아님");
 			response.put("result", false);
+			System.out.println("중복아님");
 		}
 		return response;
 	}

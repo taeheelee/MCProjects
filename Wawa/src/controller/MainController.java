@@ -137,15 +137,22 @@ public class MainController {
 	@ResponseBody HashMap<String, Object> nicknameCheck(HttpServletResponse resp, String nickname, String id){
 		HashMap<String, Object> response = new HashMap<>();
 		//닉네임 체크시 내 닉네임도 사용가능으로 출력
-		String myNickname = iMemberService.getMember(id).getNickname();
-		if(myNickname.equals(nickname)){
-			response.put("result", true);
-			return response;
-		}
-		else{
-			response.put("result", iMemberService.nicknameCheck(nickname));
-			return response;
-		}
+		//만약 로그인 한 상태라면 닉네임 체크시 내 닉네임도 사용가능으로 출력
+		 	if(id != null){
+		 		String myNickname = iMemberService.getMember(id).getNickname();
+		 		
+		 		if(myNickname.equals(nickname) && id != null){
+		 			response.put("result", true);
+		 			return response;
+		 		}
+		 		else{
+		 			response.put("result", iMemberService.nicknameCheck(nickname));
+		 			return response;
+		 		}
+		 	}else{
+		  		response.put("result", iMemberService.nicknameCheck(nickname));
+		  		return response;
+		  	}
 			
 	}
 	

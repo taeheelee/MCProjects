@@ -3,21 +3,22 @@ function draw(d){
 	var weightList = JSON.parse(data);
 	var dateArr = [];
 	var weightArr = [];
-//	var dataSet = [];
 	
 	for(var i = 0; i < weightList.length; i++) {
-		dateArr.push(weightList[i].date);
-		weightArr.push(weightList[i].weight);
+		dateArr.push(weightList[i].date); //db에서꺼낸 날짜 목록
+		weightArr.push(weightList[i].weight); //db에서 꺼낸 무게 목록
 	}
-	
+//	for(var i = 0; i < dateArr.length; i++) {
+//		var d = new Date(dateArr[i]);
+//		alert(d.getDate());
+//	}
 	var svgWidth = 200;
 	var svgHeight = 350;
 	var offsetX = 30; //그래프의 막대 위치 조정하기 위함
 	var offsetY = 220; //모서리에서 일정 간격 띄워 배치
 	var barElements;
-//	var weightArr = [120, 70, 175, 80, 220];
-	var dataMax = 100;
-	var barWidth = 20;
+	var dataMax = 50;
+	var barWidth = 10;
 	var barMargin = 5;
 	
 	barElements = d3.select("#myGraph")

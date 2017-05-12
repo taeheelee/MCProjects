@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import commons.Constant;
+import interface_service.IBoardFileService;
 import interface_service.IBoardService;
 import interface_service.IDogKindService;
 import interface_service.IPetinfoService;
@@ -25,6 +27,8 @@ public class BoastController {
 	private IPetinfoService petService;
 	@Autowired
 	private IDogKindService dogKindService;
+	@Autowired
+	private IBoardFileService fileService;
 
 	//뽐내기 게시판 메인
 	@RequestMapping("boastMain.do")
@@ -84,29 +88,7 @@ public class BoastController {
 			sex = "수컷";
 		else if(sex.equals("female"))
 			sex = "암컷";
-		
-		if(kind.equals("1"))
-			kind = "치와와";
-		else if(kind.equals("2"))
-			kind = "요크셔 테리어";
-		else if(kind.equals("3"))
-			kind = "말티즈";
-		else if(kind.equals("4"))
-			kind = "시츄";
-		else if(kind.equals("5"))
-			kind = "비글";
-		else if(kind.equals("6"))
-			kind = "퍼그";
-		else if(kind.equals("7"))
-			kind = "페키니즈";
-		else if(kind.equals("8"))
-			kind = "미니어쳐 슈나우저";
-		else if(kind.equals("9"))
-			kind = "기타 소형견";
-		else if(kind.equals("10"))
-			kind = "기타 중형견";
-		else if(kind.equals("11"))
-			kind = "기타 대형견";
+
 		boardService.writeBoastBoard(boardCode, name, age, kind, sex, title, content, writer, ufile);
 		return "redirect:boastMain.do";
 	}
@@ -116,7 +98,9 @@ public class BoastController {
 	public ModelAndView boastUpdateForm(int boardIdx, @RequestParam(defaultValue="0") int idx){
 		ModelAndView mav = new ModelAndView();
 		HashMap<String, Object> board = boardService.getBoardByBoardIdx(boardIdx);
+		HashMap<String, Object> boardFile = fileService.selectOne((int)board.get(Constant.Board.FILEID));
 		mav.addObject("board", board);
+		mav.addObject("boardFile", boardFile);
 		mav.addObject("load", idx);
 		if(idx != 0){
 			mav.addObject("pet", boardService.selectPetinfo(idx));
@@ -135,30 +119,7 @@ public class BoastController {
 			sex = "수컷";
 		else if(sex.equals("female"))
 			sex = "암컷";
-		
-		if(kind.equals("1"))
-			kind = "치와와";
-		else if(kind.equals("2"))
-			kind = "요크셔 테리어";
-		else if(kind.equals("3"))
-			kind = "말티즈";
-		else if(kind.equals("4"))
-			kind = "시츄";
-		else if(kind.equals("5"))
-			kind = "비글";
-		else if(kind.equals("6"))
-			kind = "퍼그";
-		else if(kind.equals("7"))
-			kind = "페키니즈";
-		else if(kind.equals("8"))
-			kind = "미니어쳐 슈나우저";
-		else if(kind.equals("9"))
-			kind = "기타 소형견";
-		else if(kind.equals("10"))
-			kind = "기타 중형견";
-		else if(kind.equals("11"))
-			kind = "기타 대형견";
-		
+
 		boardService.updateBoastBoard(boardIdx, name, kind, age, sex, title, content, writer, likeCount, ufile);
 		return "redirect:boastMain.do";
 	}

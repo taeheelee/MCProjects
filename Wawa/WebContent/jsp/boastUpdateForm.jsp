@@ -19,9 +19,11 @@ pageEncoding="UTF-8"%>
 					}
 				}
 			});
+			
 			$('#ok').click(function() {
 				var content = $('#summernote').summernote('code');
 				$('#content').val(content);	
+				alert($('#ufile').val());
 			});
 			if(${load != 0}){
 				$('#name').val('${pet.name}');
@@ -157,7 +159,7 @@ pageEncoding="UTF-8"%>
 											<td width="10%">
 												<div class="file_input_div">
 													<input type="button" value="파일 선택" class="file_input_button"/>
-													<input type="file" name="ufile" class="file_input_hidden" onchange="javascript:document.getElementById('fileName').value = this.value" />
+													<div id="change"><input type="file" name="ufile" id="ufile" class="file_input_hidden" onchange="javascript:document.getElementById('fileName').value = this.value" /></div>
 												</div>
 											</td>
 											<td width="90%">

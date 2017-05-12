@@ -270,6 +270,7 @@ public class BoardService implements IBoardService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if(!fileName.equals(""))
 		fileDao.updateBoardFile(boardFile);
 		
 		HashMap<String, Object> params = new HashMap<>();
@@ -342,6 +343,7 @@ public class BoardService implements IBoardService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if(!fileName.equals(""))
 		fileDao.updateBoardFile(boardFile);
 		
 		HashMap<String, Object> params = new HashMap<>();
@@ -403,6 +405,7 @@ public class BoardService implements IBoardService{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if(!fileName.equals(""))
 		fileDao.updateBoardFile(boardFile);
 		
 		HashMap<String, Object> params = new HashMap<>();

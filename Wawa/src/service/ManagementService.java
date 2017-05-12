@@ -33,6 +33,16 @@ public class ManagementService implements IManagementService {
 	}
 
 	@Override
+	public boolean updateWeight(model.Management model) {
+		// TODO Auto-generated method stub
+		int result = dao.updateWeight(model);
+		if (result > 0)
+			return true;
+		else
+			return false;
+	}
+
+	@Override
 	public boolean updateManagement(model.Management model) {
 //		HashMap<String, Object> date = new HashMap<>();
 
@@ -81,8 +91,6 @@ public class ManagementService implements IManagementService {
 		// TODO Auto-generated method stub
 		//강아지 인덱스 받아서 모든 관리 리스트 가져오기
 		List<Management> list = dao.selectAllHealth(idx);
-		//System.out.println(list.size());
-		
 		List<Management> recentList = new ArrayList<>();
 		int lastIdx = list.size();
 		if(lastIdx <= 5){
@@ -96,4 +104,11 @@ public class ManagementService implements IManagementService {
 		}
 		return recentList;
 	}
+
+	@Override
+	public List<Management> selectDate(Management model) {
+		// TODO Auto-generated method stub
+		return dao.selectDate(model);
+	}
+
 }

@@ -204,7 +204,6 @@ svg {
 	}
 
 	function addManageTable(day, weight) {
-		alert('여긴들어옴?');
 		$('tr:gt(1)', table).remove();
 		var id = '${id}';
 		$.ajax({

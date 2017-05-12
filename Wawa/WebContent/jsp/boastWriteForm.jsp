@@ -132,20 +132,31 @@ pageEncoding="UTF-8"%>
 											<label class="" for="billing_country">품종 <abbr title="required" class="required">*</abbr>
 											</label>
 											<select class="country_to_state country_select" id="kind" name="kind">
-												<option selected="selected" value="1">치와와</option>
-												<option value="2">요크셔 테리어</option>
-												<option value="3">말티즈</option>
-												<option value="4">시츄</option>
-												<option value="5">비글</option>
-												<option value="6">퍼그</option>
-												<option value="7">페키니즈</option>
-												<option value="8">미니어쳐 슈나우저</option>
-												<option value="9">기타 소형견</option>
-												<option value="10">기타 중형견</option>
-												<option value="11">기타 대형견</option>
-											</select>
-
-											<br><br>
+												<c:forEach var="kindList" items="${kindList }" varStatus="idx">
+													<c:choose>
+														<c:when test="${kindList.kind =='기타 소형견' }">
+															<option selected="selected" value="${kindList.kind }">${kindList.kind }</option>
+														</c:when>
+														<c:otherwise>
+															<option value="${kindList.kind }">${kindList.kind }</option>
+														</c:otherwise>
+													</c:choose>
+												</c:forEach>
+								
+                                                    <!-- <option selected="selected" value="치와와">치와와</option>
+                                                    <option value="요크셔 테리어">요크셔 테리어</option>
+                                                    <option value="말티즈">말티즈</option>
+                                                    <option value="시츄">시츄</option>
+                                                    <option value="비글">비글</option>
+                                                    <option value="퍼그">퍼그</option>
+                                                    <option value="페키니즈">페키니즈</option>
+                                                    <option value="미니어쳐 슈나우저">미니어쳐 슈나우저</option>
+                                                    <option value="기타 소형견">기타 소형견</option>
+                                                    <option value="기타 중형견">기타 중형견</option>
+                                                    <option value="기타 대형견">기타 대형견</option> -->
+                                                </select>
+                                                
+                                                <br><br>
 
 											<label class="" for="billing_first_name">애견 프로필 사진 등록<abbr title="required" class="required">*</abbr></label>
 											<table border="0">

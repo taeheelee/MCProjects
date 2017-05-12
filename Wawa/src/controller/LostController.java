@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.Controller;
 
 import interface_service.IBoardService;
+import interface_service.IDogKindService;
 import interface_service.IPetinfoService;
 import interface_service.IRepleService;
 
@@ -23,6 +24,8 @@ public class LostController {
 	private IRepleService repleService;
 	@Autowired
 	private IPetinfoService petService;
+	@Autowired
+	private IDogKindService dogKindService;
 	
 	//유기견찾기 게시판 메인
 	@RequestMapping("lostMain.do")
@@ -69,6 +72,8 @@ public class LostController {
 		if(idx != 0){
 			mav.addObject("pet", boardService.selectPetinfo(idx));
 		}
+		List<HashMap<String, Object>> kindList = dogKindService.selectAllDogKind();
+		mav.addObject("kindList", kindList);
 		mav.setViewName("lostWriteForm.tiles");
 		return mav;
 	}
@@ -126,6 +131,8 @@ public class LostController {
 		if(idx != 0){
 			mav.addObject("pet", boardService.selectPetinfo(idx));
 		}
+		List<HashMap<String, Object>> kindList = dogKindService.selectAllDogKind();
+		mav.addObject("kindList", kindList);
 		mav.setViewName("lostUpdateForm.tiles");
 		return mav;
 	} 

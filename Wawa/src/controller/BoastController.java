@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import interface_service.IBoardService;
+import interface_service.IDogKindService;
 import interface_service.IPetinfoService;
 import interface_service.IRepleService;
 
@@ -22,6 +23,8 @@ public class BoastController {
 	private IRepleService repleService;
 	@Autowired
 	private IPetinfoService petService;
+	@Autowired
+	private IDogKindService dogKindService;
 
 	//뽐내기 게시판 메인
 	@RequestMapping("boastMain.do")
@@ -66,6 +69,8 @@ public class BoastController {
 		if(idx != 0){
 			mav.addObject("pet", boardService.selectPetinfo(idx));
 		}
+		List<HashMap<String, Object>> kindList = dogKindService.selectAllDogKind();
+		mav.addObject("kindList", kindList);
 		mav.setViewName("boastWriteForm.tiles");
 		return mav;
 	}
@@ -116,6 +121,8 @@ public class BoastController {
 		if(idx != 0){
 			mav.addObject("pet", boardService.selectPetinfo(idx));
 		}
+		List<HashMap<String, Object>> kindList = dogKindService.selectAllDogKind();
+		mav.addObject("kindList", kindList);
 		mav.setViewName("boastUpdateForm.tiles");
 		return mav;	
 	}

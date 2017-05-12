@@ -6,21 +6,28 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertReple" parameterType="java.util.HashMap"
 	useGeneratedKeys="true" keyProperty="repleIdx">
 		<!-- 댓글쓰기 -->
-		insert into reple values(0, #{boardIdx}, #{nickname}, #{content},
-		sysdate(), 0, 0, 0, 0)
+		insert into reple values(0, #{boardIdx}, #{nickname}, #{content}, sysdate(), 0, 0, 0, 0, "N")
 	</insert>
 	<update id="updateReple" parameterType="java.util.HashMap">
 		<!-- 댓글수정 -->
 		update reple set content=#{content} where repleIdx=#{repleIdx}
 	</update>
+	<update id="updateRepleDelete" parameterType="int">
+		<!-- 댓글삭제 -->
+		update reple set isDelete="Y" where repleIdx=#{repleIdx}
+	</update>
 	<delete id="deleteReple" parameterType="int">
-		<!-- 댓글삭제-->
-		delete from reple where repleIdx=#{repleIdx}
+		<!-- 댓글 완전 삭제-->
+		delete from reple where groupCode=#{groupCode}
 	</delete>
 	<delete id="deleteBoardReple" parameterType="int">
-		<!-- 댓글삭제-->
+		<!-- 게시판 삭제할때 해당 게시판 댓글 전부 삭제-->
 		delete from reple where boardIdx=#{boardIdx}
 	</delete>
+	<select id="selectGroupCode" parameterType="int" resultType="java.util.HashMap">
+		<!-- 해당 그룹 댓글 전부 받아오기 -->
+		select * from reple where groupCode=#{groupCode}
+	</select>
 	<select id="selectOne" parameterType="int" resultType="java.util.HashMap">
 		<!-- 댓글하나받아오기 -->
 		select * from reple where repleIdx=#{repleIdx}

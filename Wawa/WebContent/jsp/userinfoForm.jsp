@@ -15,43 +15,57 @@
  	crossorigin="anonymous"></script>
  	<script type="text/javascript">
 	 	$(document).ready(function(){
+	 		var statusOfNickname = false;
+			var statusOfPassword = false;
+			var statusOfConfrimPassword = false;
 	 		var regPassword = /^.*(?=^.{6,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
  			var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-    		var regPhoneNum =  /^((01[1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
+    		var regPhoneNum = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
 	 		$('#nick').blur(function(){
     			if($('#nick').val() != ''){
     			var inputNickname = $('#nick').val();
+    			var userid = $('#uid').val();
+    			var allData = { "id": userid, "nickname": inputNickname };
 				 $.ajax({
 					url : "nicknameCheck.do",
 					type : "GET",
-					data : 'nickname=' + inputNickname,
+					data : allData,
 					dataType : 'json',
 					success : function (data){
-						if(data.result)
+						if(data.result){
 							$('#nickError').html('<font color="green">사용가능</font>');
-						else
+							statusOfNickname = true;
+						}
+						else{
 							$('#nickError').html('<font color="red">중복</font>');
+							statusOfNickname = false;
+						}
 					},
 					error : function(){
 						alert('에러발생');
+						statusOfNickname = false;
 					}
 				}); 
     			}
     		});
-		 	$('#password').blur(function(){
-					if(!regPassword.test($('#password').val())){
+		 	$('#newPassword').keyup(function(){
+					if(!regPassword.test($('#newPassword').val())){
 						$('#pwError').html('<font color="red">비밀번호 오류 (영문,숫자를 혼합하여 6~20자 이내)</font>');
+						statusOfPassword = false;
 					}else {
 						$('#pwError').html('<font color="green">사용가능</font>');
+						statusOfPassword = true;
 					}
 				});
 				
-				$('#conformPassword').blur(function(){
-					if($('#password').val() != $('#conformPassword').val()){
+				$('#conformPassword').keyup(function(){
+					if($('#newPassword').val() != $('#conformPassword').val()){
 						//alert('비밀번호가 일치하지 않습니다.');
 						$('#cpwError').html('<font color="red">불일치</font>');
+						statusOfConfrimPassword = false;
 					}else {
 						$('#cpwError').html('<font color="green">일치</font>');
+						statusOfConfrimPassword = true;
 					}
 				});
 				$('#phoneNum').blur(function(){
@@ -74,6 +88,7 @@
 				$('#delete').click(function() {
 						window.open('deleteForm.do', name ,"width=500, height=230");
 				});
+				
 	 	});
 	
  	</script>
@@ -100,7 +115,7 @@
 					<h2 class="sidebar-title2">기본정보</h2>
 						<form action="userUpdate.do" class="checkout" method="post" name="checkout">
 					<p style="text-align: right;"> 
-						<input type="submit" value="수정하기" style="padding: 5px 20px">
+						<input type="submit" value="수정하기" id="update" style="padding: 5px 20px">
 						<input type="button" value="회원탈퇴" id="delete">
 					</p>
 					<div class="single-product-widget">
@@ -110,7 +125,7 @@
 		<div class="woocommerce-billing-fields">
 			<label class="" for="billing_first_name">아이디</label> 
 			<span id="userid">${id }</span>
-			<input type="hidden" value="${id }" name="id">
+			<input type="hidden" value="${id }" name="id" id="uid">
 			<br><br>
 			
 			<label class="" for="billing_first_name">닉네임 <abbr	title="required" class="required">*</abbr></label> 
@@ -138,14 +153,16 @@
 					</li>
 				</ul>
 			</div>
-
+			
 			<label class="" for="billing_state">비밀번호<abbr title="required" class="required">*</abbr></label> 
-			<input type="password" id="password" name="password" placeholder="15자리 이내의 알파벳, 숫자, 특수문자" class="input-text ">
+			<input type="password" id="password" name="password" placeholder="정보를 수정하려면 비밀번호를 입력하세요" class="input-text " size="45">
+			<br>
+			<label class="" for="billing_state">변경할 비밀번호<abbr title="required" class="required">*</abbr></label> 
+			<input type="password" id="newPassword" name="newPassword" placeholder="비밀번호 변경시에만 입력하세요" class="input-text " size="45">
 			<br>
 			<span id="pwError"></span>
-
-			<label class="" for="billing_state">비밀번호 확인<abbr title="required" class="required">*</abbr></label> 
-			<input type="password" id="conformPassword" name="conformPassword" placeholder="15자리 이내의 알파벳, 숫자, 특수문자" class="input-text ">
+			<label class="" for="billing_state"> 비밀번호 확인<abbr title="required" class="required">*</abbr></label> 
+			<input type="password" id="conformPassword" name="conformPassword" placeholder="변경할 비밀번호와 동일하게 입력하세요" class="input-text " size="45">
 			<br>
 			<span id="cpwError"></span>
 

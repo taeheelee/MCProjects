@@ -4,11 +4,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="interface_dao.IManagementDao">
 	<insert id="insertManagement" parameterType="model.Management">
+		<!-- ALTER TABLE management AUTO_INCREMENT=1; 
+		SET @COUNT = 0; 
+		UPDATE management SET management.managementIdx = @COUNT:=@COUNT+1; -->
 		insert into management values(0,#{idx},#{date},#{weight})
 	</insert>
 	<update id="updateManagement" parameterType="model.Management">
 		update management set date=#{date}, weight=#{weight} where managementIdx=#{managementIdx} 
 	</update>	
+	<update id="updateWeight" parameterType="model.Management">
+		update management set weight=#{weight} where date=#{date} and idx=#{idx}
+	</update>
 	<delete id="deleteManagement" parameterType="int">
 		delete from management where managementIdx=#{managementIdx}
 	</delete>
@@ -18,9 +24,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectList" parameterType="java.lang.String" resultType="model.Management">
 		select m.managementIdx, m.idx, m.date, m.weight from management m, petinfo p where m.idx = p.idx and p.id=#{id} order by m.idx, m.managementIdx;
 	</select>
-	
+	<select id="selectAllHealth" parameterType="int" resultType="model.Management">
+		select * from management where idx=#{idx} order by date
+	</select>	
 	<select id="selectIdx" parameterType="model.Management" resultType="int">
 		select managementIdx from management where idx=#{idx} and weight=#{weight}
 	</select>
-	
+	<select id="selectDate" parameterType="model.Management" resultType="model.Management">
+		select * from management where date=#{date}
+	</select>
 </mapper>

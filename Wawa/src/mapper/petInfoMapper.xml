@@ -23,7 +23,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</otherwise>
 	</choose>	
 </sql>
-	<insert id="insertPetInfo" parameterType="java.util.HashMap">
+	<insert id="insertPetInfo" parameterType="java.util.HashMap"
+	useGeneratedKeys="true" keyProperty="idx">
 		insert into petinfo values(0, #{resist}, #{id}, #{name}, #{kind}, #{birthday},
 		#{neutral}, #{weight}, #{sex}, #{groomingStart}, #{groomingPeriod})
 	</insert>

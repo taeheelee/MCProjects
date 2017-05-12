@@ -15,21 +15,19 @@
     
     <script type="text/javascript">
     	$(document).ready(function(){
-    		
-//     		var regId =  /^[a-z]+[a-z0-9]{5,19}$/g;
+    		//정규식
     		var regId =  /^.*(?=^.{4,12}$)(?=.*[a-z]).*$/;
-//     		var regPassword = /^.*(?=^.{6,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
     		var regPassword = /^.*(?=^.{6,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[*!@#$%^&+=]).*$/;
-//  		var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
  			var regEmail = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-//     		var regPhoneNum =  /^((01[0|1|6|7|8|9])[1-9]+[0-9]{6,7})|(010[1-9][0-9]{7})$/;
-//     		var regPhoneNum =  /^\d{3}-\d{3,4}-\d{4}$/;
 			var regPhoneNum = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
-			
+			//회원가입시 정보입력이 제대로 된 경우만 가입시키기 위해 각 입력 상태값 만들기
 			var statusOfId = false;
+			var statusOfNickname = false;
 			var statusOfPassword = false;
-			var statusOfEmail = false;
-			var statusOfPhoneNum = false;
+			var statusOfConfirmPassword = false;
+			//이 두개는 필수정보가아니라 일단 제외
+			//var statusOfEmail = false;
+			//var statusOfPhoneNum = false;
 			var statusOfSex = false;
 			
     		$('#id').blur(function(){
@@ -45,15 +43,11 @@
       			     	data : 'id=' + inputid,
        			     	dataType: 'json',
     	   			    success : function (data) {
-    	   			    	//alert('sdsd');
      	   			        if(data.result){
-    	   			        	//alert('사용가능'); 
         			     			$('#idError').html('<font color="green">사용가능</font>');
         			     			statusOfId = true;
-        			     			alert("status : " + statusOfId);
      	   			        }
      	   			        else {
-     	   			        	//alert('중복');
      	   			        	$('#idError').html('<font color="red">중복</font>');
      	   			        	statusOfId = false;
      	   			        }
@@ -77,35 +71,44 @@
 					data : 'nickname=' + inputNickname,
 					dataType : 'json',
 					success : function (data){
-						if(data.result)
+						if(data.result){
 							$('#nickError').html('<font color="green">사용가능</font>');
-						else
+							statusOfNickname = true;
+						}
+						else{
 							$('#nickError').html('<font color="red">중복</font>');
+							statusOfNickname = false;
+						}
 					},
 					error : function(){
+						statusOfNickname = false;
 						alert('에러발생');
 					}
 				}); 
     			}
     		});
-		    $('#password').blur(function(){
+		    $('#password').keyup(function(){
   				if(!regPassword.test($('#password').val())){
   					$('#pwError').html('<font color="red">비밀번호 오류 (알파벳 대소문자, 숫자, 특수문자를 혼합하여 6~20자 이내)</font>');
+  					statusOfPassword = false;
   				}else {
   					$('#pwError').html('<font color="green">사용가능</font>');
+  					statusOfPassword = true;
   				}
   			});
   			
-  			$('#conformPassword').blur(function(){
-  				if($('#password').val() != $('#conformPassword').val()){
+  			$('#confirmpassword').keyup(function(){
+  				if($('#password').val() != $('#confirmpassword').val()){
   					//alert('비밀번호가 일치하지 않습니다.');
+  					statusOfConfirmPassword = false;
   					$('#cpwError').html('<font color="red">불일치</font>');
   				}else {
   					$('#cpwError').html('<font color="green">일치</font>');
+  					statusOfConfirmPassword = true;
   				}
   			});
     		
-  			$('#phoneNum').blur(function(){
+  			$('#phoneNum').keyup(function(){
   				if(!regPhoneNum.test($('#phoneNum').val())){
   					//alert('전화번호가 유효하지 않습니다.');	
   					$('#pnumError').html('<font color="red">전화번호 오류 (ex) 000-0000-0000)</font>');
@@ -114,7 +117,7 @@
   				}
   			});
   			
-  			$('#email').blur(function(){
+  			$('#email').keyup(function(){
   				if(!regEmail.test($('#email').val())){
   					//alert('이메일 주소가 유효하지 않습니다.');	
   					$('#emailError').html('<font color="red">이메일 오류 (ex) abc@naver.com)</font>');
@@ -122,14 +125,40 @@
   					$('#emailError').html('<font color="green">사용가능</font>');
   				}
   			});
+  			$('.input-radio').click(function() {
+				statusOfSex = true;
+			})
+  			$('#join').click(function() {
+  				if(statusOfId && statusOfNickname && statusOfConfirmPassword && statusOfPassword && statusOfSex){
+  					$('#join').attr('type','submit');
+  				}else if(statusOfId == false){
+  					alert('ID 오류입니다.');
+  					 $('#id').focus();
+  				}else if (statusOfNickname == false){
+  					alert('닉네임 오류입니다.');
+  					$('#nick').focus();
+  				}else if (statusOfPassword == false){
+  					alert('비밀번호 양식을 확인해주세요.');
+  					$('#password').focus();
+  				}else if (statusOfConfirmPassword == false){
+  					alert('비밀번호가 일치하지 않습니다.');
+  					$('#confirmPassword').focus();
+  				}else if (statusOfSex == false){
+  					alert('성별을 선택해주세요');
+  				}
+  				
+  				
+  				
+			})
+			
   			
-  			$('.input-text').keyup(function(){
-  				if($('#password').val() != $('#conformPassword').val()){
+  			/* $('.input-text').keyup(function(){
+  				if($('#password').val() != $('#confirmpassword').val()){
   					 $("#delete").attr("disabled",true);
   				}else {
   					$('#delete').attr("disabled",false);
   				}
-  			});
+  			}); */
   			
     	});
     </script>
@@ -173,7 +202,7 @@
 			                            <form  action="join.do" class="checkout" method="post" name="checkout">
                                             
                                             
-                                                <label class="" for="billing_first_name">ID<abbr title="required" class="required">*</abbr>
+                                                <label class="" for="billing_first_name">ID<abbr title="required" class="required" autofocus>*</abbr>
                                                 </label>
                                                 <input type="text" value="" placeholder="알파벳 소문자, 숫자를 혼합하여 4~12자리" 
                                                 id="id" name="id" class="input-text ">
@@ -200,7 +229,7 @@
                                           
                                                 <label class="" for="billing_first_name">비밀번호 확인<abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="" id="conformPassword" name="conformPassword" class="input-text ">
+                                                <input type="text" value="" placeholder="" id="confirmpassword" name="confirmpassword" class="input-text ">
                                             	<span id="cpwError"></span>
                                          
                                             <br>
@@ -209,9 +238,9 @@
 	                                            <div id="payment">
 													<ul class="payment_methods methods">
 														<li class="payment_method_paypal">
-															<input type="radio" data-order_button_text="Proceed to PayPal" value="male" name="sex" class="input-radio" id="sex"> 남자
+															<input type="radio" data-order_button_text="Proceed to PayPal" value="male" name="sex" class="input-radio"> 남자
 															&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-															<input type="radio" data-order_button_text="Proceed to PayPal" value="female" name="sex" class="input-radio" id="sex"> 여자
+															<input type="radio" data-order_button_text="Proceed to PayPal" value="female" name="sex" class="input-radio"> 여자
 														</li>
 													</ul>
 												</div>
@@ -236,7 +265,7 @@
 
 
 											<div class="form-row place-order" style="float: right">
-												<input type="submit" data-value="Place order" value="JOIN US" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
+												<input type="button" data-value="Place order" value="JOIN US" id="join" class="button alt">
 											</div>
 
 										</form>

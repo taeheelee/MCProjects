@@ -38,14 +38,7 @@ public class MedicalcareController {
 	public ModelAndView medicalcareForm(String id){
 		ModelAndView mav = new ModelAndView();
 		List<HashMap<String, Object>> petlist = petinfoService.selectPetList(id);
-		
-		for(int i = 0; i < petlist.size(); i ++){
-			// 각 펫에 대한 메디칼 정보를 보내야하는데
-		}
-		
-		mav.addObject("myid", id);
 		mav.addObject("list", petlist);
-		
 		mav.setViewName("medicalcareForm.tiles");
 		return mav;
 	}
@@ -55,7 +48,6 @@ public class MedicalcareController {
 	@ResponseBody HashMap<String, Object> calcShotday(HttpServletResponse resp,
 			@RequestParam HashMap<String, Object> params){
 		
-		// 諛깆떊肄붾뱶�옉 �궇吏쒕낫�깂
 		int vaccineCode = Integer.parseInt((String) params.get("vaccineCode"));
 		
 		String from = (String) params.get("shotday");
@@ -144,13 +136,32 @@ public class MedicalcareController {
 		return date;
 	}
 	
+	@RequestMapping("selectMedical.do")
+	public 
+	@ResponseBody HashMap<String, Object> selectMedical(HttpServletResponse resp,
+			@RequestParam HashMap<String, Object> params){
+		HashMap<String, Object> medical = new HashMap<>();
+		
+		System.out.println(params.get("id"));
+		System.out.println(params.get("name"));
+		int idx = (int) petinfoService.selectByname(params).get("idx");
+		
+		List<HashMap<String, Object>> careList = medicalService.selectAllShotDate(idx);
+		int length = careList.size();
+		
+		HashMap<String, Object> response = new HashMap<>();
+		response.put("careList", careList);
+		response.put("length", length);
+		return response;
+	}
+	
 	@RequestMapping("uploadMedical.do")
 	public 
 	@ResponseBody HashMap<String, Object> uploadMedical(HttpServletResponse resp,
 			@RequestParam HashMap<String, Object> params){
 		HashMap<String, Object> medical = new HashMap<>();
 
-		int idx = (int)petinfoService.selectByname(params).get("idx");
+		int idx = (int) petinfoService.selectByname(params).get("idx");
 		int vaccineCode = Integer.parseInt((String) params.get("vaccineCode"));
 
 		medical.put(Constant.MedicalManage.VACCINECODE, vaccineCode);

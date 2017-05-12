@@ -158,9 +158,10 @@ public class MainController {
 	}
 	
 
-	@RequestMapping(method=RequestMethod.POST, value="userinfoForm.do")
+	@RequestMapping("userinfoForm.do")
 	public ModelAndView userinfoForm(HttpSession session){
 		ModelAndView mav = new ModelAndView();
+		//세션의 아이디로 회원정보 출력 후 폼에 뿌려줌
 		String id = session.getAttribute("id").toString();
 		UserInfo userInfo = iMemberService.getMember(id);
 		HashMap<String, Object> params = new HashMap<>();
@@ -171,13 +172,21 @@ public class MainController {
 		params.put("phone", userInfo.getPhone());
 		params.put("email", userInfo.getEmail());
 		mav.addAllObjects(params);
+		//아아디에 해당하는 게시글 리스트 출력
+		List<HashMap<String, Object>> boardList = iBoardService.getBoardByWriter(userInfo.getNickname());
+		mav.addObject("boardList", boardList);
+		//아이디에 해당하는 강아지 목록 출력
+		List<HashMap<String, Object>> petList = IPetinfoService.selectPetList(id);
+		mav.addObject("petList", petList);
+		
 		mav.setViewName("userinfoForm.tiles");
 		return mav;
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value="userUpdate.do")
 	public ModelAndView userUpdate(String id, String password, String nickname,
-			String sex, String phone, String email, String newPassword, HttpSession session){
+			String sex, String phone, String email, String newPassword, HttpSession session
+			, RedirectAttributes redirectAttr){
 		
 		UserInfo tmp = iMemberService.getMember(id);
 		UserInfo userInfo = new UserInfo();
@@ -201,13 +210,13 @@ public class MainController {
 				//만약 입력했다면 새로운 비밀번호를 모델에 셋
 				userInfo.setPassword(newPassword);
 			//서비스단으로 ㄱㄱ
-			mav.addObject("result", "정보 수정 완료");
+			redirectAttr.addFlashAttribute("result", "정보 수정 완료");
 			iMemberService.modifyInfo(userInfo);
 		}else{
 			//비밀번호가 일치하지 않았다면
-			mav.addObject("result", "비밀번호를 다시 확인해주세요!");
+			redirectAttr.addFlashAttribute("result", "비밀번호를 다시 확인해주세요!");
 		}
-		RedirectView rv = new RedirectView("redirect:userinfoForm.do");
+		RedirectView rv = new RedirectView("userinfoForm.do");
 		rv.setExposeModelAttributes(false);
 		return new ModelAndView(rv);
 //		mav.setViewName("redirect:userinfoForm.do");

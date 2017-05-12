@@ -79,23 +79,15 @@ pageEncoding="UTF-8"%>
 
 
 	<div class="single-product-area">
-
 		<div class="container">
 			<div class="row">
-
 				<div class="col-md-55">
-
 					<div class="product-content-right">
 						<div class="woocommerce" >
-
-
 							<div id="customer_details" class="col2-set" >
 								<div class="col-3">
 									<h2 class="sidebar-title">뽐내기 후보 등록하기</h2>
 									<div class="woocommerce-billing-fields">
-
-
-
 										<div class="form-row place-order" style="float: right">
 											<input type="button" id="petinfo" onclick="window.open('boastGetPetinfoForm.do?id=${sessionScope.id}&boardIdx=0&boardCode=3&type=Write', 'pet' ,'left=400, top=200, width=500, height=300')" value="애견정보 불러오기" />
 											<span id="petList"></span>

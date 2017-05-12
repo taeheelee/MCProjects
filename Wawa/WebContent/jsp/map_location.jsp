@@ -11,7 +11,7 @@
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:'Malgun Gothic',dotum,'돋움',sans-serif;font-size:12px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .map_wrap {position:relative;width:100%;height:500px;}
-#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:500px; margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
+#menu_wrap {position:absolute;top:0;left:0;bottom:0;width:100%; margin:10px 0 30px 10px;padding:5px;overflow-y:auto;background:rgba(255, 255, 255, 0.7);z-index: 1;font-size:12px;border-radius: 10px;}
 .bg_white {background:#fff;}
 #menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
 #menu_wrap .option{text-align: center;}
@@ -23,7 +23,7 @@
 #placesList .item h5, #placesList .item .info {text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
 #placesList .item .info{padding:10px 0 10px 55px;}
 #placesList .info .gray {color:#8a8a8a;}
-#placesList .info .jibun {padding-left:26px;background:url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;}
+.jibun {padding-left:26px;background:url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;}
 #placesList .info .tel {color:#009900;}
 #placesList .item .markerbg {float:left;position:absolute;width:36px; height:37px;margin:10px 0 0 10px;background:url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;}
 #placesList .item .marker_1 {background-position: 0 -10px;}
@@ -295,20 +295,20 @@ function displayPlaces(places) {
 // 검색결과 항목을 Element로 반환하는 함수입니다
 function getListItem(index, places) {
 
-    var el = document.createElement('li'),
-    itemStr = '<span class="markerbg marker_' + (index+1) + '"></span>' +
-                '<div class="info">' +
-                '   <h5>' + places.title + '</h5>';
+    var el = document.createElement('tbody'),
+    
+    itemStr = '<tr><td style="font-weight: bold; font-size: small; width: 35%""><span style="margin: 0" class="markerbg marker_' + (index+1) + '"></span>';
 
+    itemStr += '<span style="margin-left: 30px;">' + places.title + '</span></td>';
+
+    itemStr += '  <td class="tel" style="color: orange; font-weight: bold; width: 20%; text-align: center;">' + places.phone  + '</td>';           
     if (places.newAddress) {
-        itemStr += '    <span>' + places.newAddress + '</span>' +
-                    '   <span class="jibun gray">' +  places.address  + '</span>';
+        itemStr += '    <td style="width : 45%;"><span style="margin-left: 10px;">' + places.newAddress + '</span>' +
+                    '   <span class="jibun gray" style="margin-left: 10px;">' +  places.address  + '</span></td>';
     } else {
-        itemStr += '    <span>' +  places.address  + '</span>'; 
+        itemStr += '    <td>' +  places.address  + '</td>'; 
     }
-                 
-      itemStr += '  <span class="tel">' + places.phone  + '</span>' +
-                '</div>';           
+    itemStr += '</tr>';           
 
     el.innerHTML = itemStr;
     el.className = 'item';
@@ -394,16 +394,21 @@ function removeAllChildNods(el) {
 </script>
 			</div>
 			<div class="col-md-6">
-			<div class="col-md-1"></div>
 			
-				<div class="col-md-11">
+<!-- 			<div class="col-md-1"></div> -->
+			
+<!-- 				<div class="col-md-11"> -->
 					
 					<div id="menu_wrap" class="map_wrap">
-					    <hr>
-					    <span id="placesList"></span>
+<!-- 					    <hr> -->
+					
+		
+							<span id="placesList"></span>
+
+			
 					    <div id="pagination"></div>
 					</div>
-				</div>
+<!-- 				</div> -->
 
 			</div>
 			

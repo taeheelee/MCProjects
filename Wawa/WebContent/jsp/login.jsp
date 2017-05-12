@@ -119,10 +119,14 @@ function facebook_btn() {
 					<!-- 네이버아이디로로그인 버튼 노출 영역 -->
 					<br> 아직 계정이 없으신가요?? &nbsp; <a href="joinForm.do"> 회원가입하기 </a><br>
 					<br>
+					<br>
+					<a href="javascript:facebook_btn();"><img src="img/facebook_loginBtn.png"></a>
+					<br>
 					<div id="naver_id_login" style="display: none"></div>
-					<span onclick="document.getElementById('naver_id_login_anchor').click();")>aaa</span>
-					<a href="javascript:facebook_btn();"><img src="img/facebook.png"></a>
-					<br> <br>
+					<span onclick="document.getElementById('naver_id_login_anchor').click();")>
+					<img style="margin-top: 10px; cursor:pointer" src="img/naver_loginBtn.png">
+					</span>
+					<br> 
 				</div>
 			</div>
 		</div>

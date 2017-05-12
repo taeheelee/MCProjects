@@ -24,7 +24,7 @@
 			var statusOfId = false;
 			var statusOfNickname = false;
 			var statusOfPassword = false;
-			var statusOfConfrimPassword = false;
+			var statusOfConfirmPassword = false;
 			//이 두개는 필수정보가아니라 일단 제외
 			//var statusOfEmail = false;
 			//var statusOfPhoneNum = false;
@@ -97,14 +97,14 @@
   				}
   			});
   			
-  			$('#conformPassword').keyup(function(){
-  				if($('#password').val() != $('#conformPassword').val()){
+  			$('#confirmpassword').keyup(function(){
+  				if($('#password').val() != $('#confirmpassword').val()){
   					//alert('비밀번호가 일치하지 않습니다.');
-  					statusOfConfrimPassword = false;
+  					statusOfConfirmPassword = false;
   					$('#cpwError').html('<font color="red">불일치</font>');
   				}else {
   					$('#cpwError').html('<font color="green">일치</font>');
-  					statusOfConfrimPassword = true;
+  					statusOfConfirmPassword = true;
   				}
   			});
     		
@@ -129,7 +129,7 @@
 				statusOfSex = true;
 			})
   			$('#join').click(function() {
-  				if(statusOfId && statusOfNickname && statusOfConfrimPassword && statusOfPassword && statusOfSex){
+  				if(statusOfId && statusOfNickname && statusOfConfirmPassword && statusOfPassword && statusOfSex){
   					$('#join').attr('type','submit');
   				}else if(statusOfId == false){
   					alert('ID 오류입니다.');
@@ -140,9 +140,9 @@
   				}else if (statusOfPassword == false){
   					alert('비밀번호 양식을 확인해주세요.');
   					$('#password').focus();
-  				}else if (statusOfConfrimPassword == false){
+  				}else if (statusOfConfirmPassword == false){
   					alert('비밀번호가 일치하지 않습니다.');
-  					$('#conformPassword').focus();
+  					$('#confirmPassword').focus();
   				}else if (statusOfSex == false){
   					alert('성별을 선택해주세요');
   				}
@@ -153,7 +153,7 @@
 			
   			
   			/* $('.input-text').keyup(function(){
-  				if($('#password').val() != $('#conformPassword').val()){
+  				if($('#password').val() != $('#confirmpassword').val()){
   					 $("#delete").attr("disabled",true);
   				}else {
   					$('#delete').attr("disabled",false);
@@ -229,7 +229,7 @@
                                           
                                                 <label class="" for="billing_first_name">비밀번호 확인<abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="" id="conformPassword" name="conformPassword" class="input-text ">
+                                                <input type="text" value="" placeholder="" id="confirmpassword" name="confirmpassword" class="input-text ">
                                             	<span id="cpwError"></span>
                                          
                                             <br>

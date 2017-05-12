@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		sex=#{sex}, groomingStart=#{groomingStart}, 
 		groomingPeriod=#{groomingPeriod} where idx=#{idx}
 	</update>
-	<delete id="deletePetinfo" parameterType="java.util.HashMap">
+	<delete id="deletePetInfo" parameterType="int">
 		delete from petinfo where idx=#{idx}
 	</delete>
 	<select id="selectOne" parameterType="int" resultType="java.util.HashMap">

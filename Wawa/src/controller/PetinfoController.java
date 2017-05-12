@@ -115,5 +115,20 @@ public class PetinfoController {
 		HashMap<String, Object> petAge = petinfoService.getAge(params);
 		return petAge;
 	}
+	@RequestMapping("deletePet.do")
+	public String deletePet(String id, int idx, HttpSession session){
+		petinfoService.deletePetInfo(idx);
+		
+		//일단 펫리스트가 있나없나 확인
+		List<HashMap<String, Object>> petList = petinfoService.selectPetList(id);
+		if(petList.isEmpty()){
+			//펫리스트가 비어있다면 펫 관련 세션 삭제
+			session.removeAttribute("petName");
+			session.removeAttribute("petSex");	
+			session.removeAttribute("petBirth");	
+		}
+		return "redirect:main.do";
+		
+	}
 	
 }

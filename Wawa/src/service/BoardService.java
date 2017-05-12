@@ -590,6 +590,12 @@ public class BoardService implements IBoardService{
 		// TODO Auto-generated method stub
 		return dao.selectPetinfo(idx);
 	}
+	//아이디로 게시글 리스트 검색
+	@Override
+	public List<HashMap<String, Object>> getBoardByWriter(String writer) {
+		// TODO Auto-generated method stub
+		return dao.selectBoardById(writer);
+	}
 
 	
 

@@ -52,4 +52,7 @@ public interface IBoardService {
 	public HashMap<String, Object> getBoardByBoardIdx(int boardIdx);
 	//펫 정보 가져오기
 	public HashMap<String, Object> selectPetinfo(int idx);
+	
+	//작성자로 게시글 검색
+	public List<HashMap<String, Object>> getBoardByWriter(String writer);
 }

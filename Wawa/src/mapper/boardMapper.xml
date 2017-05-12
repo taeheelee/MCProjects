@@ -118,4 +118,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<!-- 좋아요 수 증가시키기 -->		
 		update board set likeCount=#{likeCount}
 	</update>
+	<!-- 아이디로 게시글 목록 검색  -->
+	<select id="selectBoardById" resultType="java.util.HashMap" parameterType="java.lang.String">
+		select boardCode, category, title, readCount, writeDate from board where writer = #{id};
+	</select>
 </mapper>

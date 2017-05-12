@@ -8,7 +8,7 @@ public interface IBoardDao {
 	public int updateBoard(HashMap<String, Object> params);	
 	public int deleteBoard(int boardIdx);
 	public HashMap<String, Object> selectOneBoard(int boardIdx);
-	public HashMap<String, Object> selectBoardById(HashMap<String, Object> params);
+	public List<HashMap<String, Object>> selectBoardById(String writer);
 	public List<HashMap<String, Object>> selectBoardList(int boardCode);
 	public List<HashMap<String, Object>> selectAllBoard();
 	public List<HashMap<String, Object>> searchBoard(HashMap<String, Object> params);

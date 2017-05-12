@@ -7,9 +7,11 @@ import model.Management;
 public interface IManagementService {
 	public boolean insertManagement(Management model);
 	public boolean updateManagement(Management model);
+	public boolean updateWeight(Management model);
 	public boolean deleteManagement(int managementIdx);
 	public Management selectOne(int managementIdx);
 	public List<Management> selectList(String id);
 	public int selectIdx(Management model);
 	public List<Management> selectAllHealth(int idx);
+	public List<Management> selectDate(Management model);
 }

@@ -11,6 +11,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.ognl.Ognl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -63,40 +64,6 @@ public class ManagementController {
 		mav.setViewName("healthcare.tiles");
 		return mav;
 	}
-//	
-//	@RequestMapping("selectHealthcare.do")
-//	public ModelAndView selectHealthcare(HashMap<String, Object> params){
-//		ModelAndView mav = new ModelAndView();
-//		HashMap<String, Object> healthcare = new HashMap<>();
-//		int idx = (int) petinfoService.selectByname(params).get("idx");
-//		List<Management> healthList = managementService.selectAllHealth(idx);
-//		int length = healthcare.size();
-//		mav.addObject("length", length);
-//		mav.addObject("list", healthList);
-//		return mav;
-//	}
-	
-	@RequestMapping("setOrder.do")
-	public 
-	@ResponseBody HashMap<String, Object> setOrder(HttpServletResponse resp,
-			@RequestParam HashMap<String, Object> params){
-	
-		Date [] dates = params.get("data");
-		
-		for(Date d : dates){
-			Date from = d;
-			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			String to = transFormat.format(from);
-			System.out.println(to + " ");
-		}
-		System.out.println(params.get("data"));
-		
-		HashMap<String, Object> response = new HashMap<>();
-//		response.put("list", healthList);
-//		response.put("dateList", dateList);
-		return response;
-	}
-	
 	
 	@RequestMapping("selectHealthcare.do")
 	public 
@@ -124,6 +91,7 @@ public class ManagementController {
 	@ResponseBody HashMap<String, Object> uploadHealthcare(HttpServletResponse resp,
 			@RequestParam HashMap<String, Object> params){
 	
+		System.out.println("나불럿졍?");
 		int idx = (int) petinfoService.selectByname(params).get("idx");
 		
 		String from = (String) params.get("day");
@@ -175,12 +143,9 @@ public class ManagementController {
 		model.setIdx(idx);
 		model.setDate(to);
 		model.setWeight(weight);
-		int managementIdx = managementService.selectIdx(model);
-		model.setManagementIdx(managementIdx);
-		//인덱스를 어찌하지
 		
 		HashMap<String, Object> response = new HashMap<>();
-		if(managementService.updateManagement(model)){
+		if(managementService.updateWeight(model)){
 			response.put("result", true);
 		}else {
 			response.put("result", false);
@@ -209,5 +174,33 @@ public class ManagementController {
 		return response;
 	}
 	
+	@RequestMapping("chkDupl.do")
+	public 
+	@ResponseBody HashMap<String, Object> chkDupl(HttpServletResponse resp,
+			@RequestParam HashMap<String, Object> params){
+		model.Management model = new model.Management();
+		
+		System.out.println(params.get("day"));
+		String from = (String) params.get("day");
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date to = null;
+		try {
+			to = transFormat.parse(from);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		model.setDate(to);
+		HashMap<String, Object> response = new HashMap<>();
+		System.out.println(managementService.selectDate(model));
+		if(managementService.selectDate(model) == null){
+			System.out.println("중복");
+			response.put("result", true);
+		}else {
+			System.out.println("중복아님");
+			response.put("result", false);
+		}
+		return response;
+	}
 }
 

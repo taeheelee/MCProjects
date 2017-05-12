@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -75,7 +76,7 @@ svg {
 			table.append(tr5);
 		}
 		
-		function addPetinfo(pet) {
+		function addPetinfo(pet) { //필수
 			var id = '${id }';
 			var year = 0;
 			var month = 0;
@@ -96,105 +97,28 @@ svg {
 			});
 		}
 		
-		function chkDateFmt(num) {
+		function chkDateFmt(data) { // ㅇ
 			var regDate = /^(19[7-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
-			if (!regDate.test($('#day' + num).val())) {
+			if (!regDate.test(data)) {
 				alert('날짜 형식을 확인하세요');
 				return false;
 			}
 			return true;
 		}
 		
-		function chkNumFmt(num) {
+		function chkNumFmt(data) { //ㅇㅇ
 			var regNum = /^[0-9]+$/;
-			if (!regNum.test($('#wt' + num).val())) {
+			if (!regNum.test(data)) {
 				alert('숫자 형식을 확인하세요');
 				return false;
 			}
 			return true;
 		}
 		
-		function addFirstElement(data) {
-			var num = data.attr('name');
-			if (isPet == false) {
-				alert('반려견을 선택하세요');
-				return false;
-			}
-		// 처음 추가되는 애한테만 적용
-			
-			var flag1 = chkDateFmt(num);
-			var flag2 = chkNumFmt(num);
-			if (flag1 == true && flag2 == true) {
-				if (data.val() == "입력") {
-					uploadInfo(num); // 처음추가되는 아이이므로 insert
-				} else {
-					updateInfo(num); // 두번째부터는 update
-				}
-			}
-			data.val('수정');
-		}
-		
-		function addInfoTable(num){
-			var num = parseInt(num) + 1;
-		
-			var table = $('table1 tbody');
-			var tr = $('<tr>');	
-			
-			var addBtn = $('<input type="button" value=" + " class="addDay" name="' + num + '" id="addBtn' + num + '" style="padding: 3px 3px">');
-			var inputTxt1 = $('<input type="text" placeholder="0000-00-00" id="day' + num + '" value="" style="width: 100px" readonly>');
-			var inputTxt2 = $('<input type="text" class="VcDate" placeholder="00" id="wt' + num + '" readonly>');
-			var inputBtn = $('<input type="button" value="입력" class="uploadBtn" name="' + num +  '" id="uploadBtn' + num + '" style="padding: 3px 3px">');
-			var deleteBtn = $('<input type="button" value="삭제" class="deleteBtn" name="' + num + '" id= "deleteBtn' + num + '" style="padding: 3px 3px">');
-			
-			$('<td>').append()
-			$('<td>').append(addBtn).appendTo(tr);
-			$('<td>').append(inputTxt1).appendTo(tr);
-			$('<td>').append(inputTxt2).text(' kg ').appendTo(tr); // 맞는지 검사
-			$('<td>').append(inputBtn).appendTo(tr);
-			table.append(tr);
-			
-			addBtn.on('click', function() {
-				var num = $(this).attr('name');
-				addDayForm(num);
-			});
-			
-			inputBtn.on('click', function() {
-				var flag1 = chkDateFmt(num);
-				var flag2 = chkNumFmt(num);
-				if (flag1 == true && flag2 == true) {
-					if ($(this).val() == "입력") {
-						uploadInfo(num); // insert
-					} else {
-						updateInfo(num); //update
-					}
-				}
-				$(this).val('수정');
-			});
-
-			deleteBtn.on('click', function() {
-				$.ajax({
-					type : 'get',
-					url : 'deleteHealthcare.do',
-					data : "id=" + id + "&name=" + myPet + "&vaccineCode=" + vaccineCode,
-					dataType : 'json',
-					success : function(data) {
-						if (data.result) {
-							$(this).closest('tr').remove();
-						} else {
-						}
-					},
-					error : function(data) {
-						alert('잠시 후 다시 시도해주세요');
-					}
-				});
-			});
-			
-		}
-		
-		function uploadInfo(num){
+		function uploadInfo(num){//ㅇㅇ
 			var id = '${id }';
-			var day = $('#day' + num).val();
-			var weight = $('#wt' + num).val();
+			var day = $('#day').val();
+			var weight = $('#wt').val();
 			$.ajax({
 				type : 'get',
 				url : 'uploadHealthcare.do',
@@ -203,10 +127,9 @@ svg {
 				dataType : 'json',
 				success : function(data) {
 					if (data.result) {
-						$('#day' + num).attr("readonly", true);
-						$('#wt' + num).attr("readonly", true);
-						addInfoTable(num);
+						addManageTable(day, weight);
 					} else {
+						alert('잠시 후 다시 시도해주세요');
 					}
 				},
 				error : function(data) {
@@ -215,35 +138,7 @@ svg {
 			});
 		}
 		
-		function updateInfo(num){
-			var id = '${id }';
-			var day = $('#day' + num).val();
-			var weight = $('#wt' + num).val();
-			$.ajax({
-				type : 'get',
-				url : 'updateHealthcare.do',
-				data : "id=" + id + "&name=" + myPet + "&day=" + day
-						+ "&weight =" + weight,
-				dataType : 'json',
-				success : function(data) {
-					if (data.result) {
-						$('#day' + num).attr("readonly", true);
-						$('#wt' + num).attr("readonly", true);
-					} else {
-					}
-				},
-				error : function(data) {
-					alert('잠시 후 다시 시도해주세요');
-				}
-			});
-		}
-		
-		function addDayForm(num) {
-			$('#day' + num).attr("readonly", false);
-			$('#wt' + num).attr("readonly", false);
-		}
-		
-		function callPetinfo(id, name){
+		function callPetinfo(id, name){ // ㅇㅇ
 			$.ajax({
 				type : 'get',
 				url : 'selectPet.do',
@@ -261,16 +156,60 @@ svg {
 				}
 			});
 		}
-
-		function callManageInfo(id, name){
+		
+		function setOrder(){
+			var tableSearch = $('#table tbody');
+			var rowLen = $('#table tbody tr').length;
+			var arr = new Array(parseInt(rowLen-1));
+			for(var i = 0; i < rowLen-1; i ++){
+				arr[i] = $('#table tbody tr:eq('+ parseInt(i+1) +') td:eq(0)').text();
+			}
 			$.ajax({
 				type : 'get',
-				url : 'selectManage.do',
+				url : 'setOrder.do',
+				data : "data=" + arr,
+				dataType : "json",
+				success : function(data) {
+					// 아이디, 이름으로 인덱스 받아오기
+					// 저장된 데이터로 테이블 만들기
+					//setManageTable(data.list, data.dateList);
+				},
+				error : function(data) {
+					alert("잠시 후 다시 시도해주세요.");
+				}
+			});
+		}
+
+		function addManageTable(day, weight) {
+			if($('#table tr').length-1 > 5){
+				$('tr:eq(1)', table).remove();
+				//정렬
+				setOrder();
+			}
+			var table = $('#table tbody');
+			var tr = $('<tr>');
+			$('<td>').text(new Date(day)).appendTo(tr);
+			$('<td>').text(weight).appendTo(tr);
+			$('<td>').appendTo(tr);
+			table.append(tr);
+		}
+		
+		function setManageTable(list, dateList){
+			$(list).each(function(index, value){
+				addManageTable(value.date, value.weight);
+			});
+		}
+		
+		function callManageInfo(id, name){ // ㅇ
+			$.ajax({
+				type : 'get',
+				url : 'selectHealthcare.do',
 				data : "id=" + id + "&name=" + name,
 				dataType : "json",
 				success : function(data) {
 					// 아이디, 이름으로 인덱스 받아오기
 					// 저장된 데이터로 테이블 만들기
+					setManageTable(data.list, data.dateList);
 				},
 				error : function(data) {
 					alert("잠시 후 다시 시도해주세요.");
@@ -281,15 +220,21 @@ svg {
 		$(document).ready(function() {
 		
 			$('.addBtn').click(function() {
-				var num = $(this).attr('name'); // 첫번째!
-				addDayForm(num);
-			});
-		
-			$('.uploadBtn').click(function() {
-				addFirstElement($(this));
+				if (isPet == false) {
+					alert('반려견을 선택하세요');
+					return false;
+				}
+				var flag1 = chkDateFmt($('#day').val());
+				var flag2 = chkNumFmt($('#wt').val());
+				if (flag1 == true && flag2 == true) {
+					uploadInfo();
+				}
 			});
 			
 			$('#name').change(function() {
+				$('tr:gt(1)', table).remove();
+// 				$("#table tr:not(:first)").remove();
+				//$('tr:gt(0)', table).remove();
 				var name = $("#name option:selected").text();
 				myPet = name;
 				var id = '${id }';
@@ -303,6 +248,7 @@ svg {
 				callManageInfo(id, name);
 			});
 		
+			
 			var calculate = document.getElementById('calculate');
 			var calculateCalories = document.getElementById('calculateCalories');
 		
@@ -380,25 +326,24 @@ svg {
 					<div class="col-md-6">
 						<div class="product-content-right">
 							<div class="woocommerce">
-
+							<br>
 								<form method="post" action="#">
-									<table id="table1" name="table1" cellspacing="0" class="shop_table cart">
+									<table id="table" name="table" cellspacing="0" class="shop_table cart">
 										<thead>
 											<tr>
 												<th>날짜</th>
-												<th colspan="2">몸무게</th>
+												<th>몸무게</th>
+												<td></td>
 											</tr>
 										</thead>
 										<tbody>
 											<tr class="cart_item">
-												<td><input type="button" value=" + " class="addBtn"
-													name="1" id="addBtn1" style="padding: 3px 3px">
-													<input type="text" placeholder="0000-00-00"
-													id="day1" value="" style="width: 100px" readonly></td>
+												<td> <input type="text" placeholder="0000-00-00"
+													id="day" value="" style="width: 130px; height:35px"></td>
 												<td> <input type="text" class="VcDate" placeholder="00"
-													id="wt1" readonly> kg </td>
-												<td><input type="button" value="입력" class="uploadBtn"
-													name="1" id='uploadBtn1' style="padding: 3px 3px"></td>
+													id="wt" style="width: 100px; height:35px"s> kg </td>
+												<td><input type="button" value="추가" class="addBtn" name="addBtn"
+													id="addBtn" style="padding: 3px 3px"></td>
 											</tr>
 
 										</tbody>

@@ -521,6 +521,16 @@
 									<p>6~8주부터 시작해서 2~3주 간격으로 3~5회 접종, 매년 1회 추가접종한다. 접종 뒤 1주일간
 										목욕금지.</p>
 									<p align="right" style="color: red" size="2px">※ 추가 : + 버튼</p>
+									
+									<select name="selectBox1">
+									    <option value="1차 기초접종"></option>
+									    <option value="2차 기초접종"></option>
+									    <option value="3차 기초접종"></option>
+									    <option value="4차 기초접종"></option>
+									    <option value="5차 기초접종"></option>
+									    <option value="추가접종"></option>
+									</select>
+									
 									<form method="post" action="#">
 										<table cellspacing="0" class="shop_table cart" id="table1"
 											name="table1">

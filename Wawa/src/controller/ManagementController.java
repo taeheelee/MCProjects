@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -62,17 +63,60 @@ public class ManagementController {
 		mav.setViewName("healthcare.tiles");
 		return mav;
 	}
+//	
+//	@RequestMapping("selectHealthcare.do")
+//	public ModelAndView selectHealthcare(HashMap<String, Object> params){
+//		ModelAndView mav = new ModelAndView();
+//		HashMap<String, Object> healthcare = new HashMap<>();
+//		int idx = (int) petinfoService.selectByname(params).get("idx");
+//		List<Management> healthList = managementService.selectAllHealth(idx);
+//		int length = healthcare.size();
+//		mav.addObject("length", length);
+//		mav.addObject("list", healthList);
+//		return mav;
+//	}
+	
+	@RequestMapping("setOrder.do")
+	public 
+	@ResponseBody HashMap<String, Object> setOrder(HttpServletResponse resp,
+			@RequestParam HashMap<String, Object> params){
+	
+		Date [] dates = params.get("data");
+		
+		for(Date d : dates){
+			Date from = d;
+			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String to = transFormat.format(from);
+			System.out.println(to + " ");
+		}
+		System.out.println(params.get("data"));
+		
+		HashMap<String, Object> response = new HashMap<>();
+//		response.put("list", healthList);
+//		response.put("dateList", dateList);
+		return response;
+	}
+	
 	
 	@RequestMapping("selectHealthcare.do")
-	public ModelAndView selectHealthcare(HashMap<String, Object> params){
-		ModelAndView mav = new ModelAndView();
-		HashMap<String, Object> healthcare = new HashMap<>();
+	public 
+	@ResponseBody HashMap<String, Object> selectHealthcare(HttpServletResponse resp,
+			@RequestParam HashMap<String, Object> params){
 		int idx = (int) petinfoService.selectByname(params).get("idx");
 		List<Management> healthList = managementService.selectAllHealth(idx);
-		int length = healthcare.size();
-		mav.addObject("length", length);
-		mav.addObject("list", healthList);
-		return mav;
+		List<String> dateList = new ArrayList<>();
+		
+		for(Management m : healthList){
+			Date from = m.getDate();
+			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+			String to = transFormat.format(from);
+			dateList.add(to);
+		}
+		
+		HashMap<String, Object> response = new HashMap<>();
+		response.put("list", healthList);
+		response.put("dateList", dateList);
+		return response;
 	}
 	
 	@RequestMapping("uploadHealthcare.do")

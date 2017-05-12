@@ -1,5 +1,8 @@
 package service;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,6 +80,20 @@ public class ManagementService implements IManagementService {
 	public List<Management> selectAllHealth(int idx) {
 		// TODO Auto-generated method stub
 		//강아지 인덱스 받아서 모든 관리 리스트 가져오기
-		return dao.selectAllHealth(idx);
+		List<Management> list = dao.selectAllHealth(idx);
+		//System.out.println(list.size());
+		
+		List<Management> recentList = new ArrayList<>();
+		int lastIdx = list.size();
+		if(lastIdx <= 5){
+			for(Management m : list){
+				recentList.add(m);
+			}	
+		}else {
+			for(int i = lastIdx-5; i < lastIdx; i ++){
+				recentList.add(list.get(i));
+			}			
+		}
+		return recentList;
 	}
 }

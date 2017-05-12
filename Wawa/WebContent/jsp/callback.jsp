@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript"
 	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
@@ -13,11 +13,11 @@
 <script type="text/javascript">
 	var naver_id_login = new naver_id_login("xeQmcW9xQTAgeEhBztgr",
 			"http://localhost:8080/Wawa/jsp/callback.jsp");
-	// Á¢±Ù ÅäÅ« °ª Ãâ·Â
+	// ì ‘ê·¼ í† í° ê°’ ì¶œë ¥
 // 	alert(naver_id_login.oauthParams.access_token);
-	// ³×ÀÌ¹ö »ç¿ëÀÚ ÇÁ·ÎÇÊ Á¶È¸
+	// ë„¤ì´ë²„ ì‚¬ìš©ì í”„ë¡œí•„ ì¡°íšŒ
 	naver_id_login.get_naver_userprofile("naverSignInCallback()");
-	// ³×ÀÌ¹ö »ç¿ëÀÚ ÇÁ·ÎÇÊ Á¶È¸ ÀÌÈÄ ÇÁ·ÎÇÊ Á¤º¸¸¦ Ã³¸®ÇÒ callback function
+	// ë„¤ì´ë²„ ì‚¬ìš©ì í”„ë¡œí•„ ì¡°íšŒ ì´í›„ í”„ë¡œí•„ ì •ë³´ë¥¼ ì²˜ë¦¬í•  callback function
 	function naverSignInCallback() {
 		var id = naver_id_login.getProfileData('id');
 		var nickname = naver_id_login.getProfileData('nickname');
@@ -28,7 +28,7 @@
 		form.setAttribute("name", "myform");
 		form.setAttribute("action", "../naverLogin.do");
 		opener.window.name = "opener";
-		form.target = "opener"; // Å¸ÄÏÀ» ºÎ¸ğÃ¢À¸·Î ¼³Á¤
+		form.target = "opener"; // íƒ€ì¼“ì„ ë¶€ëª¨ì°½ìœ¼ë¡œ ì„¤ì •
 	    
 		var inputId = document.createElement("input");
 		inputId.setAttribute("type", "hidden");

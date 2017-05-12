@@ -9,9 +9,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>WAWA-healthcare</title>
 <!-- D3 -->
-<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<!-- <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script> -->
 <!-- <script type="text/javascript" src="js/healthD3.js?version=3"></script> -->
-<script type="text/javascript" src="js/d3_test.js?version=3"></script>
+<!-- <script type="text/javascript" src="/js/simple.d3.js"></script> -->
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script type="text/javascript" src="js/nv.d3.js"></script>
+<link href="js/nv.d3.css" rel="stylesheet">
+<!-- <script type="text/javascript" src="js/simple.d3.min.js"></script> -->
 <style type="text/css">
 svg {
 	width: 300px;
@@ -290,12 +294,11 @@ svg {
 				// 		alert(activity);
 				calculateCalories.innerHTML = Number(activity) * ((5 * 30) + 70);
 			};
-			// 	alert('${weightList}');
+
 			var data = '${weightList}';
-			// 	for(var pet in weightList) {
-			// 		console.log(pet);
-			// 	}
-			draw(data);
+
+// 			draw(data);
+// 			nv.addGraph();
 		});
 
 </script>
@@ -391,9 +394,27 @@ svg {
 
 
 					<!-- 그래프 구역 -->
-					<div class="col-md-6">
-						<svg id="myGraph"></svg>
-					</div>
+<!-- 					<div class="col-md-6"> -->
+<!-- 						<svg id="myGraph"></svg> -->
+<!-- 					</div> -->
+<!-- 					<div id='chart'> -->
+<!--   <svg style='height:500px'> </svg> -->
+<!-- </div> -->
+<style>
+
+#chart svg {
+  height: 200px;
+    width: 400px;
+}
+
+</style>
+
+
+<div id="chart">
+  <svg></svg>
+</div>
+
+<script src='js/simple.d3.js' type='text/javascript'> </script>
 				</div>
 
 				<div class="col-md-9">

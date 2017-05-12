@@ -41,6 +41,18 @@ public class ManagementController {
 		List<Management> weightList = new ArrayList<>();
 		weightList = managementService.selectList(id);
 		
+//		for(Management m : weightList) {
+//			Date temp = m.getDate();
+//			String newDate = new SimpleDateFormat("yy-MM-dd").format(temp);
+//			try {
+//				temp = new SimpleDateFormat("yy-MM-dd").parse(newDate);
+//				m.setDate(temp);
+////				System.out.println(m.getDate());
+//			} catch (ParseException e) {
+//				System.out.println("date format error");
+//				e.printStackTrace();
+//			}
+//		}
 		Gson gson = new Gson();
 		String json = "";
 		json += "[";
@@ -61,6 +73,25 @@ public class ManagementController {
 		mav.addObject("list", petList);
 		mav.setViewName("healthcare.tiles");
 		return mav;
+		
+//		return [
+//		        {
+//		          values: sin,      //values - represents the array of {x,y} data points
+//		          key: 'Sine Wave', //key  - the name of the series.
+//		          color: '#ff7f0e'  //color - optional: choose your own line color.
+//		        },
+//		        {
+//		          values: cos,
+//		          key: 'Cosine Wave',
+//		          color: '#2ca02c'
+//		        },
+//		        {
+//		          values: sin2,
+//		          key: 'Another sine wave',
+//		          color: '#7777ff',
+//		          area: true      //area - set to true if you want this line to turn into a filled area chart.
+//		        }
+//		      ];
 	}
 	
 	@RequestMapping("uploadHealthcare.co")

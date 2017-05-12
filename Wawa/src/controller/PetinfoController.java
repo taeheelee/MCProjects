@@ -62,7 +62,7 @@ public class PetinfoController {
 			String groomingStart, String groomingPeriod, HttpSession session){
 		
 		String fromBirth = birthday;
-		SimpleDateFormat transBirthFormat = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat transBirthFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date tobirth = null;
 		try {
 			tobirth = transBirthFormat.parse(fromBirth);
@@ -72,7 +72,7 @@ public class PetinfoController {
 		}
 		
 		String fromGs = groomingStart;
-		SimpleDateFormat transGsFormat = new SimpleDateFormat("yyyy/MM/dd");
+		SimpleDateFormat transGsFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date toGs = null;
 		try {
 			toGs = transGsFormat.parse(fromGs);
@@ -85,9 +85,12 @@ public class PetinfoController {
 				name, kind, tobirth, neutral, weight, 
 				sex, toGs, groomingPeriod);
 		if(result){
-			session.setAttribute("petName", name);
-			session.setAttribute("petSex", sex);	
-			session.setAttribute("petBirth", transBirthFormat);	
+			//만약 세션이 비어있다면 addPet하고 세션에 등록
+			if(session.getAttribute("petName") == null){
+				session.setAttribute("petName", name);
+				session.setAttribute("petSex", sex);	
+				session.setAttribute("petBirth", fromBirth);	
+			}
 			return "redirect:main.do";			
 		}else {
 			return "redirect:addPetForm.do";

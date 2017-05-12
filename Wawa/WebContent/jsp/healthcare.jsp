@@ -207,13 +207,14 @@ svg {
 	}
 	function setManageTable(list, dateList) {
 		$(list).each(function(index, value) {
-			var deleteBtn = $('<input>').prop("type", "button").val("삭제").addClass("deleteBtn").
+// 			var deleteBtn = $('<input>').prop("type", "button").val("삭제").addClass("deleteBtn").
 			attr('name', "addBtn").attr('id', "addBtn").css("padding", "3px 3px");
 			var table = $('#table tbody');
 			var tr = $('<tr>');
 			$('<td>').text(dateList[index]).appendTo(tr);
 			$('<td>').text(value.weight).appendTo(tr);
-			$('<td>').append(deleteBtn).appendTo(tr);
+			$('<td>').appendTo(tr);
+// 			$('<td>').append(deleteBtn).appendTo(tr);
 			table.append(tr);
 		});
 	}

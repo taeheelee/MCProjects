@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -60,6 +59,8 @@ public class MedicalcareController {
 			e.printStackTrace();
 		}
 		
+		System.out.println("백신코드" + vaccineCode);
+		System.out.println("날짜" + to);
 		int period = (int) vaccineService.selectVaccineInfo(vaccineCode).get("vaccinePeriod");
 		
 		Calendar cal = new GregorianCalendar(Locale.KOREA);
@@ -69,9 +70,16 @@ public class MedicalcareController {
 		SimpleDateFormat fm = new SimpleDateFormat("yyyy-MM-dd");
 		String strDate = fm.format(cal.getTime());
 		
-		HashMap<String, Object> date = new HashMap<>(); 
+		Date from1 = to;
+		SimpleDateFormat transFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+		String to1 = transFormat.format(from1);
+
+		HashMap<String, Object> date = new HashMap<>();
+		date.put("realDate", to1);
 		date.put("nextDate", strDate);
 		
+		System.out.println(strDate);
+		System.out.println(to1);
 		return date;
 	}
 	
@@ -141,61 +149,11 @@ public class MedicalcareController {
 	@ResponseBody HashMap<String, Object> selectMedical(HttpServletResponse resp,
 			@RequestParam HashMap<String, Object> params){
 		HashMap<String, Object> medical = new HashMap<>();
-		
-		System.out.println(params.get("id"));
-		System.out.println(params.get("name"));
 		int idx = (int) petinfoService.selectByname(params).get("idx");
-		
 		List<HashMap<String, Object>> careList = medicalService.selectAllShotDate(idx);
-		int length = careList.size();
 		
 		HashMap<String, Object> response = new HashMap<>();
 		response.put("careList", careList);
-		response.put("length", length);
-		return response;
-	}
-	
-	@RequestMapping("uploadMedical.do")
-	public 
-	@ResponseBody HashMap<String, Object> uploadMedical(HttpServletResponse resp,
-			@RequestParam HashMap<String, Object> params){
-		HashMap<String, Object> medical = new HashMap<>();
-
-		int idx = (int) petinfoService.selectByname(params).get("idx");
-		int vaccineCode = Integer.parseInt((String) params.get("vaccineCode"));
-
-		medical.put(Constant.MedicalManage.VACCINECODE, vaccineCode);
-		medical.put(Constant.MedicalManage.IDX, idx);
-		medical.put(Constant.MedicalManage.REALSHOTDATE, params.get("shotday"));
-
-		HashMap<String, Object> response = new HashMap<>();
-		if(medicalService.insertRealShotDate(medical)){
-			response.put("result", true);
-		}else {
-			response.put("result", false);
-		}
-		return response;
-	}
-	
-	@RequestMapping("updateMedical.do")
-	public 
-	@ResponseBody HashMap<String, Object> updateMedical(HttpServletResponse resp,
-			@RequestParam HashMap<String, Object> params){
-		HashMap<String, Object> medical = new HashMap<>();
-
-		int idx = (int)petinfoService.selectByname(params).get("idx");
-		int vaccineCode = Integer.parseInt((String) params.get("vaccineCode"));
-
-		medical.put(Constant.MedicalManage.VACCINECODE, vaccineCode);
-		medical.put(Constant.MedicalManage.IDX, idx);
-		medical.put(Constant.MedicalManage.REALSHOTDATE, params.get("shotday"));
-
-		HashMap<String, Object> response = new HashMap<>();
-		if(medicalService.updateRealShotDate(medical)){
-			response.put("result", true);
-		}else {
-			response.put("result", false);
-		}
 		return response;
 	}
 	
@@ -223,4 +181,70 @@ public class MedicalcareController {
 		return response;
 	}
 	
+	@RequestMapping("uploadMedical.do")
+	public 
+	@ResponseBody HashMap<String, Object> uploadMedical(HttpServletResponse resp,
+			@RequestParam HashMap<String, Object> params){
+		HashMap<String, Object> medical = new HashMap<>();
+
+		int idx = (int) petinfoService.selectByname(params).get("idx");
+		int vaccineCode = Integer.parseInt((String) params.get("vaccineCode"));
+
+		medical.put(Constant.MedicalManage.VACCINECODE, vaccineCode);
+		medical.put(Constant.MedicalManage.IDX, idx);
+		medical.put(Constant.MedicalManage.REALSHOTDATE, params.get("shotday"));
+		medical.put(Constant.MedicalManage.DDAY, params.get("dDay"));			
+		medical.put(Constant.MedicalManage.NEXTDAY, params.get("nextShotday"));
+		
+		HashMap<String, Object> response = new HashMap<>();
+		if(medicalService.insertRealShotDate(medical)){
+			response.put("result", true);
+		}else {
+			response.put("result", false);
+		}
+		return response;
+	}
+	
+	@RequestMapping("updateMedical.do")
+	public 
+	@ResponseBody HashMap<String, Object> updateMedical(HttpServletResponse resp,
+			@RequestParam HashMap<String, Object> params){
+		HashMap<String, Object> medical = new HashMap<>();
+
+		int idx = (int)petinfoService.selectByname(params).get("idx");
+		int vaccineCode = Integer.parseInt((String) params.get("vaccineCode"));
+
+		medical.put(Constant.MedicalManage.VACCINECODE, vaccineCode);
+		medical.put(Constant.MedicalManage.IDX, idx);
+		medical.put(Constant.MedicalManage.REALSHOTDATE, params.get("shotday"));
+		medical.put(Constant.MedicalManage.NEXTDAY, params.get("nextShotday"));
+		medical.put(Constant.MedicalManage.DDAY, params.get("dDay"));
+		
+		HashMap<String, Object> response = new HashMap<>();
+		
+		if(medicalService.updateRealShotDate(medical)){
+			response.put("result", true);
+		}else {
+			response.put("result", false);
+		}
+		return response;
+	}
+	
+	@RequestMapping("chkDupl2.do")
+	public 
+	@ResponseBody HashMap<String, Object> chkDupl(HttpServletResponse resp,
+			@RequestParam HashMap<String, Object> params){
+		HashMap<String, Object> tmp = new HashMap<>();
+		String vaccineCode = (String) params.get("vaccineCode");
+		tmp.put("vaccineCode", vaccineCode);
+
+		HashMap<String, Object> response = new HashMap<>();
+		if(medicalService.selectVc(tmp) != null){
+		 //중복
+			response.put("result", true);
+		}else {
+			response.put("result", false);
+		}
+		return response;
+	}
 }

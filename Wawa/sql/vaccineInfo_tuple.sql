@@ -19,7 +19,7 @@ insert into vaccineinfo values(118,'종합백신추가13', 365, 4843);
 insert into vaccineinfo values(119,'종합백신추가14', 365, 5208);
 insert into vaccineinfo values(120,'종합백신추가15', 365, 5573);
 insert into vaccineinfo values(201, '코로나1차', 14, 42);
-insert into vaccineinfo values(202, '코로나2차', 14,	56);
+insert into vaccineinfo values(202, '코로나2차z', 14,	56);
 insert into vaccineinfo values(203, '코로나추가1',	365,	421);
 insert into vaccineinfo values(204, '코로나추가2',	365,	786);
 insert into vaccineinfo values(205, '코로나추가3',	365,	1151);

@@ -12,6 +12,7 @@ import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import commons.Constant;
 import commons.Constant.MedicalManage;
 import interface_dao.IMedicalDao;
 import interface_dao.IPetInfoDao;
@@ -34,6 +35,8 @@ public class MedicalService implements IMedicalService {
 		realDate.put(MedicalManage.IDX, params.get("idx"));
 		realDate.put(MedicalManage.VACCINECODE, params.get("vaccineCode"));
 		realDate.put(MedicalManage.REALSHOTDATE, params.get("realShotDate"));
+		realDate.put(MedicalManage.DDAY, params.get("dDay"));
+		realDate.put(MedicalManage.NEXTDAY, params.get("nextday"));
 		int result = dao.insertRealShotDate(realDate);
 		if (result > 0)
 			return true;
@@ -49,6 +52,8 @@ public class MedicalService implements IMedicalService {
 		realDate.put(MedicalManage.IDX, params.get("idx"));
 		realDate.put(MedicalManage.VACCINECODE, params.get("vaccineCode"));
 		realDate.put(MedicalManage.REALSHOTDATE, params.get("realShotDate"));
+		realDate.put(MedicalManage.DDAY, params.get("dDay"));
+		realDate.put(MedicalManage.NEXTDAY, params.get("nextday"));
 		int result = dao.updateRealShotDate(realDate);
 		if (result > 0)
 			return true;
@@ -114,6 +119,16 @@ public class MedicalService implements IMedicalService {
 		return dao.selectAllShotDate(idx);
 	}
 
+	@Override
+	public HashMap<String, Object> selectDate(HashMap<String, Object> params) {
+		// TODO Auto-generated method stub
+		return dao.selectDate(params);
+	}
 
+	@Override
+	public HashMap<String, Object> selectVc(HashMap<String, Object> params) {
+		// TODO Auto-generated method stub
+		return dao.selectVc(params);
+	}
 
 }

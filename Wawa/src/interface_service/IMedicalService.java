@@ -15,4 +15,6 @@ public interface IMedicalService {
 	//추천접종일 보기
 	public HashMap<String, Object> selectDueShotDate(HashMap<String, Object> params);
 	public List<HashMap<String, Object>> selectAllShotDate(int idx);
+	public HashMap<String, Object> selectDate(HashMap<String, Object> params);
+	public HashMap<String, Object> selectVc(HashMap<String, Object> params);
 }

@@ -70,6 +70,8 @@ public class Constant {
 		public static final String IDX = "idx";
 		public static final String VACCINECODE = "vaccineCode";
 		public static final String REALSHOTDATE = "realShotDate";
+		public static final String NEXTDAY = "nextday";
+		public static final String DDAY = "dDay";
 	}
 
 	public class VaccineInfo{

@@ -57,7 +57,6 @@ public class PetInfoService implements IPetinfoService {
 		model.setIdx(insertedPetIdxInt);
 		model.setDate(new Date());
 		model.setWeight(weight);
-		System.out.println("model : "+model);
 		mmDao.insertManagement(model);
 		
 		

@@ -136,24 +136,16 @@ public class MainController {
 	public 
 	@ResponseBody HashMap<String, Object> nicknameCheck(HttpServletResponse resp, String nickname, String id){
 		HashMap<String, Object> response = new HashMap<>();
-		
-		//만약 로그인 한 상태라면 닉네임 체크시 내 닉네임도 사용가능으로 출력
-		if(id != null){
-			String myNickname = iMemberService.getMember(id).getNickname();
-		
-			if(myNickname.equals(nickname) && id != null){
-				response.put("result", true);
-				return response;
-			}
-			else{
-				response.put("result", iMemberService.nicknameCheck(nickname));
-				return response;
-			}
-		}else{
+		//닉네임 체크시 내 닉네임도 사용가능으로 출력
+		String myNickname = iMemberService.getMember(id).getNickname();
+		if(myNickname.equals(nickname)){
+			response.put("result", true);
+			return response;
+		}
+		else{
 			response.put("result", iMemberService.nicknameCheck(nickname));
 			return response;
 		}
-			
 			
 	}
 	
@@ -207,11 +199,11 @@ public class MainController {
 			//비밀번호가 일치하지 않았다면
 			mav.addObject("result", "비밀번호를 다시 확인해주세요!");
 		}
-		RedirectView rv = new RedirectView("redirect:userinfoForm.do");
-		rv.setExposeModelAttributes(false);
-		return new ModelAndView(rv);
-//		mav.setViewName("redirect:userinfoForm.do");
-//		return mav;
+//		RedirectView rv = new RedirectView("/redirect:main.do");
+//		rv.setExposeModelAttributes(false);
+//		return new ModelAndView(rv);
+		mav.setViewName("userinfoForm.tiles");
+		return mav;
 
 	}
 	

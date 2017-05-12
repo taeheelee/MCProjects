@@ -59,7 +59,7 @@ public class PetinfoController {
 	@RequestMapping("addPet.do")
 	public String addPet(String resist, String id, String name, String kind, 
 			String birthday, String neutral, double weight, String sex, 
-			String groomingStart, String groomingPeriod){
+			String groomingStart, String groomingPeriod, HttpSession session){
 		
 		String fromBirth = birthday;
 		SimpleDateFormat transBirthFormat = new SimpleDateFormat("yyyy/MM/dd");
@@ -85,6 +85,9 @@ public class PetinfoController {
 				name, kind, tobirth, neutral, weight, 
 				sex, toGs, groomingPeriod);
 		if(result){
+			session.setAttribute("petName", name);
+			session.setAttribute("petSex", sex);	
+			session.setAttribute("petBirth", transBirthFormat);	
 			return "redirect:main.do";			
 		}else {
 			return "redirect:addPetForm.do";

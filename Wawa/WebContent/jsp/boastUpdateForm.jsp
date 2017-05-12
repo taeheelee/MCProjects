@@ -34,52 +34,10 @@ pageEncoding="UTF-8"%>
 				$('#sex[value=${pet.sex}]').attr('checked', true);
 				$('#sex[value!=${pet.sex}]').attr('checked', false);
 
-				if(${pet.kind == '치와와'})
-					$('#kind > option[value=1]').attr('selected', true);
-				else if(${pet.kind == '요크셔 테리어'})
-					$('#kind > option[value=2]').attr('selected', true);
-				else if(${pet.kind == '말티즈'})
-					$('#kind > option[value=3]').attr('selected', true);
-				else if(${pet.kind == '시츄'})
-					$('#kind > option[value=4]').attr('selected', true);
-				else if(${pet.kind == '비글'})
-					$('#kind > option[value=5]').attr('selected', true);
-				else if(${pet.kind == '퍼그'})
-					$('#kind > option[value=6]').attr('selected', true);
-				else if(${pet.kind == '페키니즈'})
-					$('#kind > option[value=7]').attr('selected', true);
-				else if(${pet.kind == '미니어쳐 슈나우저'})
-					$('#kind > option[value=8]').attr('selected', true);
-				else if(${pet.kind == '기타 소형견'})
-					$('#kind > option[value=9]').attr('selected', true);
-				else if(${pet.kind == '기타 중형견'})
-					$('#kind > option[value=10]').attr('selected', true);
-				else if(${pet.kind == '기타 대형견'})
-					$('#kind > option[value=11]').attr('selected', true);
+				$('#kind > option[value="${pet.kind}"]').attr('selected', true);
 			}
 			else{
-				if(${board.kind == '치와와'})
-					$('#kind > option[value=1]').attr('selected', true);
-				else if(${board.kind == '요크셔 테리어'})
-					$('#kind > option[value=2]').attr('selected', true);
-				else if(${board.kind == '말티즈'})
-					$('#kind > option[value=3]').attr('selected', true);
-				else if(${board.kind == '시츄'})
-					$('#kind > option[value=4]').attr('selected', true);
-				else if(${board.kind == '비글'})
-					$('#kind > option[value=5]').attr('selected', true);
-				else if(${board.kind == '퍼그'})
-					$('#kind > option[value=6]').attr('selected', true);
-				else if(${board.kind == '페키니즈'})
-					$('#kind > option[value=7]').attr('selected', true);
-				else if(${board.kind == '미니어쳐 슈나우저'})
-					$('#kind > option[value=8]').attr('selected', true);
-				else if(${board.kind == '기타 소형견'})
-					$('#kind > option[value=9]').attr('selected', true);
-				else if(${board.kind == '기타 중형견'})
-					$('#kind > option[value=10]').attr('selected', true);
-				else if(${board.kind == '기타 대형견'})
-					$('#kind > option[value=11]').attr('selected', true);
+				$('#kind > option[value="${board.kind}"]').attr('selected', true);
 			}
 		});
 	</script>
@@ -199,7 +157,7 @@ pageEncoding="UTF-8"%>
 											<td width="10%">
 												<div class="file_input_div">
 													<input type="button" value="파일 선택" class="file_input_button"/>
-													<input type="file" class="file_input_hidden" onchange="javascript:document.getElementById('fileName').value = this.value" />
+													<input type="file" name="ufile" class="file_input_hidden" onchange="javascript:document.getElementById('fileName').value = this.value" />
 												</div>
 											</td>
 											<td width="90%">

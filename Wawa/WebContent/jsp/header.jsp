@@ -128,7 +128,7 @@
 						
 							<table id="mini" style="margin-left: 5px;width:330px; height: 100px;">
 								<tr>
-									<td rowspan="4" style="width: 90px;" id="petmainimage"><img src="img/dog_12.jpg" alt=""style="width: 80px;height: 80px"></td>
+									<td rowspan="4" style="width: 90px;" id="petmainimage"><img src="imageShow/${sessionScope.fileId }.do" onerror="this.src='img/noImage.png'" alt=""></td>
 									<td colspan="3" id="nickname">${sessionScope.name}</td>
 								</tr>
 								<tr style="font-size: small;">

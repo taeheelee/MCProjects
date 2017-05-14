@@ -1,19 +1,24 @@
 package service;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import commons.Constant;
 import interface_dao.IDogKindDao;
 import interface_dao.IManagementDao;
 import interface_dao.IMedicalDao;
 import interface_dao.IPetInfoDao;
+import interface_dao.IPetInfoFileDao;
 import interface_service.IPetinfoService;
 import model.Management;
 
@@ -22,6 +27,8 @@ public class PetInfoService implements IPetinfoService {
 	
 	@Autowired
 	IPetInfoDao dao;
+	@Autowired
+	IPetInfoFileDao petFileDao;
 	
 	@Autowired
 	IMedicalDao mDao;
@@ -34,8 +41,37 @@ public class PetInfoService implements IPetinfoService {
 	
 	@Override
 	public boolean insertPetInfo(int idx, String resist, String id, String name, String kind, Date birthday, String neutral,
-			double weight, String sex, Date groomingStart, String groomingPeriod) {
+			double weight, String sex, Date groomingStart, String groomingPeriod, int mainPet, MultipartFile file) {
 		// TODO Auto-generated method stub
+		
+		String path = "UploadPetinfo/";
+		File folder = new File(path);
+		if(!folder.exists())
+			folder.mkdirs();
+		
+		UUID uuid = UUID.randomUUID();
+		String fileName = file.getOriginalFilename();
+		int fileSize = (int)file.getSize();
+		String fileuri = path + uuid;
+		
+		HashMap<String, Object> petFile = new HashMap<>();
+		petFile.put("originFileName", fileName);
+		petFile.put("size", fileSize);
+		petFile.put("uri", fileuri);
+		
+		File localFile = new File(fileuri);
+		try {
+			file.transferTo(localFile);
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		petFileDao.insertPetInfoFile(petFile);
+		
+		
 		HashMap<String, Object> params = new HashMap<>();
 		params.put(Constant.PetInfo.RESIST, resist);
 		params.put(Constant.PetInfo.ID, id);
@@ -48,6 +84,9 @@ public class PetInfoService implements IPetinfoService {
 		params.put(Constant.PetInfo.GROOMINGSTART, groomingStart);
 		int gp = Integer.parseInt(groomingPeriod);
 		params.put(Constant.PetInfo.GROOMINGPERIOD, gp);
+		params.put("mainPet", mainPet);
+		params.put("fileId", petFile.get("id")); //아이디값이 바로 나오나??
+		
 		int result = dao.insertPetInfo(params);
 		
 		long insertedPetIdx = (long) params.get("idx");
@@ -82,13 +121,40 @@ public class PetInfoService implements IPetinfoService {
 	
 	@Override
 	public boolean updatePetInfo(int idx, String resist, String id, String name, String kind, Date birthday, String neutral,
-			double weight, String sex, Date groomingStart, int groomingPeriod) {
+			double weight, String sex, Date groomingStart, int groomingPeriod, int mainPet, MultipartFile file) {
 		// TODO Auto-generated method stub
 		//수정할 강아지 목록을 받아와서 출력해주고
 		HashMap<String, Object> tmp = dao.selectOne(idx);
+		
+		String path = "UploadPetinfo/";
+		File folder = new File(path);
+		if(!folder.exists())
+			folder.mkdirs();
+		
+		UUID uuid = UUID.randomUUID();
+		String fileName = file.getOriginalFilename();
+		int fileSize = (int)file.getSize();
+		String fileuri = path + uuid;
+		
+		HashMap<String, Object> petFile = new HashMap<>();
+		petFile.put("originFileName", fileName);
+		petFile.put("size", fileSize);
+		petFile.put("uri", fileuri);
+		
+		File localFile = new File(fileuri);
+		try {
+			file.transferTo(localFile);
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		petFileDao.updatePetInfoFile(petFile);
+		int fileId = (int)dao.selectOne(idx).get("fileId");
 		//변경사항은 변경되면 새로운 params에 받고  변경되지 않은 내용들은 SelectOne의 내용 그대로
 		HashMap<String, Object> params = new HashMap<>();
-		
 		params.put(Constant.PetInfo.RESIST, resist);
 		params.put(Constant.PetInfo.ID, id);
 		params.put(Constant.PetInfo.NAME, name);
@@ -99,6 +165,8 @@ public class PetInfoService implements IPetinfoService {
 		params.put(Constant.PetInfo.SEX, sex);
 		params.put(Constant.PetInfo.GROOMINGSTART, groomingStart);
 		params.put(Constant.PetInfo.GROOMINGPERIOD, groomingPeriod);
+		params.put("mainPet", mainPet);
+		params.put("fileId", fileId);
 		
 		int result = dao.updatePetInfo(params);
 		if (result > 0)
@@ -243,6 +311,33 @@ public class PetInfoService implements IPetinfoService {
 	      date.put("warningMsg",warningMsg);
 	      
 		return date;
+	}
+
+	@Override
+	public HashMap<String, Object> selectFile(int fileId) {
+		// TODO Auto-generated method stub
+		return petFileDao.selectOne(fileId);
+	}
+	
+	@Override
+	public HashMap<String, Object> selectMainPet(String id){
+		List<HashMap<String, Object>> petList = dao.selectPetList(id);
+		HashMap<String, Object> params = new HashMap<>(); 					
+		
+		for(int i = 0; i < petList.size(); i ++){
+			if(((int)petList.get(i).get("mainPet")) == 1){
+				params.put("name" , petList.get(i).get("name"));
+				params.put("sex" , petList.get(i).get("sex"));
+				params.put("birth" , petList.get(i).get("birthday"));
+				params.put("fileId" , petList.get(i).get("fileId"));
+			}else{
+				params.put("name" , petList.get(0).get("name"));
+				params.put("sex" , petList.get(0).get("sex"));
+				params.put("birth" , petList.get(0).get("birthday"));
+				params.put("fileId" , petList.get(0).get("fileId"));
+			}
+		}
+		return params;
 	}
 
 }

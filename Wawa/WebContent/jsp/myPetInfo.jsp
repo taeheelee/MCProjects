@@ -95,7 +95,7 @@
                   <img src="img/dog_0${idx.count }.jpg" alt=""style="width: 100%;">
                   </p>
                   <p style="text-align: center;">
-                     <input type="button" value="메인펫으로 지정" style="width: 100%"><br><br>
+                     <input type="button" value="메인펫으로 지정" style="width: 100%" onclick=""><br><br>
                   </p>
                   
                </div>

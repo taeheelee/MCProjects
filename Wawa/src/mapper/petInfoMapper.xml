@@ -26,13 +26,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="insertPetInfo" parameterType="java.util.HashMap"
 	useGeneratedKeys="true" keyProperty="idx">
 		insert into petinfo values(0, #{resist}, #{id}, #{name}, #{kind}, #{birthday},
-		#{neutral}, #{weight}, #{sex}, #{groomingStart}, #{groomingPeriod})
+		#{neutral}, #{weight}, #{sex}, #{groomingStart}, #{groomingPeriod}, #{mainPet}, #{fileId})
 	</insert>
 	<update id="updatePetInfo" parameterType="java.util.HashMap">
 		update petinfo set resist=#{resist}, id=#{id}, name=#{name},
 		kind=#{kind}, birthday=#{birthday}, neutral=#{neutral}, weight=#{weight},
 		sex=#{sex}, groomingStart=#{groomingStart}, 
-		groomingPeriod=#{groomingPeriod} where idx=#{idx}
+		groomingPeriod=#{groomingPeriod}, #{mainPet}, #{fileId} where idx=#{idx}
 	</update>
 	<delete id="deletePetInfo" parameterType="int">
 		delete from petinfo where idx=#{idx}

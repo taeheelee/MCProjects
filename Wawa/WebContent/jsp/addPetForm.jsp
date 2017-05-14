@@ -128,7 +128,7 @@ $('#weight').blur(function(){
 										
 
 
-										<form action="addPet.do">
+										<form action="addPet.do" enctype="multipart/form-data" method="post">
 											<input type="hidden" value="${id}" name="id">
 											
                  <!--                                <label class="" for="billing_first_name">애견 프로필 사진 등록</label>
@@ -147,7 +147,7 @@ $('#weight').blur(function(){
 													<td width="10%">
 														<div class="file_input_div">
 															<input type="button" value="파일 선택" class="file_input_button"/>
-															<input type="file" class="file_input_hidden" onchange="javascript:document.getElementById('fileName').value = this.value" />
+															<input type="file" name="ufile" class="file_input_hidden" onchange="javascript:document.getElementById('fileName').value = this.value" />
 														</div>
 													</td>
 													<td width="90%">

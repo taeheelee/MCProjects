@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="interface_dao.IPetInfoFileDao">
+	<insert id="insertPetInfoFile" parameterType="java.util.HashMap"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into petInfoFile
+		values(0,#{originFileName},#{size},#{uri})
+	</insert>
+	<update id="updatePetInfoFile" parameterType="java.util.HashMap">
+		update petInfoFile
+		set originFileName=#{originFileName},
+		size=#{size}, uri=#{uri} where
+		fileId=#{fileId}
+	</update>
+	<delete id="deletePetInfoFile" parameterType="int">
+		delete from
+		petInfoFile where fileId=#{fileId}
+	</delete>
+	<select id="selectOne" parameterType="int" resultType="java.util.HashMap">
+		select *
+		from petInfoFile where fileId=#{fileId}
+	</select>
+	<select id="selectAll" resultType="java.util.HashMap">
+		select * from petInfoFile
+	</select>
+</mapper>

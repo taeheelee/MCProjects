@@ -28,6 +28,18 @@ sex varchar(30),
 groomingStart date,
 groomingPeriod int
 );
+#메인펫 지정유무 컬럼추가
+alter table petinfo add mainPet int default 0;
+#프로필사진 file ID 컬럼추가
+alter table petinfo add fileId int;
+
+#펫프로필사진 저장할 테이블추가
+create table petinfoFile(
+fileId int primary key auto_increment,
+originFileName varchar(50),
+size int,
+uri varchar(200)
+);
 
 create table vaccineinfo(
 vaccineCode int primary key auto_increment,

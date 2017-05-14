@@ -241,29 +241,29 @@ $('#weight').blur(function(){
                                                 
                                                 <br><br>
                                                 
-                                                <label class="" for="billing_state">미용시작일</label>
+                                                <label class="" for="billing_state">미용 알림 시작일</label>
                                                 <input type="text" id="gs" name="groomingStart" value=""  class="datepicker" placeholder="ex) 2017/04/01">
                                                 <span id="gsError"></span>
                                                 
                                                 <br><br>
                                                 
 
-                                                <label class="" for="billing_country">미용 주기 알림</label>
+                                                <label class="" for="billing_country">미용 알림 주기</label>
                                                 
                                                 <select class="country_to_state country_select" id="groomingPeriod" name="groomingPeriod">
                                                 	<option selected="selected" value="0">미설정</option>
-                                                	<option value="30">1달마다</option>
-                                                	<option value="60">2달마다</option>
-                                                	<option value="90">3달마다</option>
-                                                	<option value="120">4달마다</option>
-                                                	<option value="150">5섯달마다</option>
-                                                	<option value="180">6섯달마다</option>
-                                                	<option value="210">7달마다</option>
-                                                	<option value="240">8달마다</option>
-                                                	<option value="270">9달마다</option>
-                                                	<option value="300">10달마다</option>
-                                                	<option value="330">11달마다</option>
-                                                	<option value="365">일년마다</option>
+                                                	<option value="30">1개월 주기</option>
+                                                	<option value="60">2개월 주기</option>
+                                                	<option value="90">3개월 주기</option>
+                                                	<option value="120">4개월 주기</option>
+                                                	<option value="150">5개월 주기</option>
+                                                	<option value="180">6개월 주기</option>
+                                                	<option value="210">7개월 주기</option>
+                                                	<option value="240">8개월 주기</option>
+                                                	<option value="270">9개월 주기</option>	
+                                                	<option value="300">10개월 주기</option>
+                                                	<option value="330">11개월 주기</option>
+                                                	<option value="365">1년 주기</option>
                                                 </select>
                                                 
                                                 

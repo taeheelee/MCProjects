@@ -25,7 +25,7 @@
 #placesList .info .gray {color:#8a8a8a;}
 .jibun {padding-left:26px;background:url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;}
 #placesList .info .tel {color:#009900;}
-#placesList .item .markerbg {float:left;position:absolute;width:36px; height:37px;margin:10px 0 0 10px;background:url(http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;}
+#placesList .item .markerbg {float:left;position:absolute;width:31px; height:30px;margin:10px 0 0 10px;background:url(img/marker_number_orange_mini.png) no-repeat;}
 #placesList .item .marker_1 {background-position: 0 -10px;}
 #placesList .item .marker_2 {background-position: 0 -56px;}
 #placesList .item .marker_3 {background-position: 0 -102px}
@@ -296,8 +296,8 @@ function displayPlaces(places) {
 function getListItem(index, places) {
 
     var el = document.createElement('tbody'),
-    
-    itemStr = '<tr><td style="font-weight: bold; font-size: small; width: 35%""><span style="margin: 0" class="markerbg marker_' + (index+1) + '"></span>';
+
+    itemStr = '<tr><td style="font-weight: bold; font-size: small; width: 35%;"><span style="margin: 0" class="markerbg marker_' + (index+1) + '"></span>';
 
     itemStr += '<span style="margin-left: 30px;">' + places.title + '</span></td>';
 
@@ -318,7 +318,7 @@ function getListItem(index, places) {
 
 // 마커를 생성하고 지도 위에 마커를 표시하는 함수입니다
 function addMarker(position, idx, title) {
-    var imageSrc = 'http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
+    var imageSrc = 'img/marker_number_orange.png', // 마커 이미지 url, 스프라이트 이미지를 씁니다
         imageSize = new daum.maps.Size(36, 37),  // 마커 이미지의 크기
         imgOptions =  {
             spriteSize : new daum.maps.Size(36, 691), // 스프라이트 이미지의 크기

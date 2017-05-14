@@ -27,6 +27,7 @@
 				$('#adultWeightSpan' + petIdx).text(data.adultWeight + "kg");
 				$('#exerciseMsgSpan' + petIdx).text(data.exerciseMsg);
 				$('#warningMsgSpan' + petIdx).text(data.warningMsg);
+				$('#groomingDdaySpan' + petIdx).text(data.d_day);
 			},
 			error: function(data){
 				alert("잠시 후 다시 시도해주세요.");
@@ -135,7 +136,7 @@
                      </tr>
                      <tr>
                         <td>
-                           미용 주기 알림<span>D-00</span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;">
+                        미용 주기 알림   <span id="groomingDdaySpan${pet.idx }"></span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;">
                         </td>
                      </tr>
                      <tr>

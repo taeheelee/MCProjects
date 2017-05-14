@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -310,6 +311,48 @@ public class PetInfoService implements IPetinfoService {
 	      date.put("exerciseMsg",exerciseMsg);
 	      date.put("warningMsg",warningMsg);
 	      
+// 이제 미용 D-day를 계산해보자
+	      
+	      
+	      
+	      //1.D-day 구하기 : 미용알림시작일 + 미용 알림 주기 - 오늘 날짜
+	      Date groomingStart = (Date) temp.get("groomingStart");
+	      System.out.println("groomingStart"+groomingStart);
+	      
+	      String d_day="";
+	      
+	      if(groomingStart == null){
+	    	  d_day="미설정";
+	      }else{
+	    	  int groomingPeriod = (int) temp.get("groomingPeriod");
+	    	  long diffGrooming = groomingStart.getTime() - today.getTime();
+	    	  long dDay = diffGrooming / (24 * 60 * 60 * 1000) +groomingPeriod;
+	    	  d_day = "D-" + String.valueOf(dDay);
+	    	  //2. D-day 가 마이너스가 되면, update 미용알림시작일  = 미용알림시작일 + 미용 알림 주기
+	    	  
+	    	  Calendar cal = Calendar.getInstance();
+	    	  cal.setTime(groomingStart);
+	    	  // if(dDay < 0){
+	    	  while (dDay < 0) {
+	    		  cal.add(Calendar.DATE, groomingPeriod);
+	    		  
+	    		  Date newGroomingStart = new Date(cal.getTimeInMillis());
+	    		  String newGroomingStartString = transFormat.format(newGroomingStart);
+	    		  
+	    		  temp.put(Constant.PetInfo.GROOMINGSTART, newGroomingStartString);
+	    		  dDay += groomingPeriod;
+	    		  d_day = "D-" + String.valueOf(dDay);
+	    	  }
+	    	  
+//		dao.updatePetInfo(temp);
+	    	  // }
+	    	  
+	      }
+	      
+
+		System.out.println("d_day: " + d_day);
+		date.put("d_day", d_day);
+
 		return date;
 	}
 

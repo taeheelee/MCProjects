@@ -56,6 +56,10 @@ foreign key(idx) references petinfo(idx),
 foreign key(vaccineCode) references vaccineinfo(vaccineCode)
 );
 
+# medical 테이블 수정하세요
+alter table medicalManage add nextday date;
+alter table medicalManage add dDay varchar(20);
+
 create table management(
 managementIdx int primary key auto_increment,
 idx int,

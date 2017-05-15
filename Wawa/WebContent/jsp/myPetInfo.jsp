@@ -126,7 +126,8 @@ $(document).ready(function(){
                         <td>
                            <span style="font-weight: bold;">${pet.name }</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;(등록번호 : <span>${pet.resist }</span>)
                            <span style="float: right;">
-                              <input type="button" value="펫 수정" style="font-size: small;">
+                              <input type="button" value="펫 수정" style="font-size: small;"
+                              onclick="location.href='updatePetForm.do?idx=${pet.idx}'">
                               <input type="button" value="펫 삭제" class='petDel'style="font-size: small;">
                               <input type="hidden" value="${pet.idx }" id="petIdx">
                            </span>

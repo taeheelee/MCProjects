@@ -107,6 +107,66 @@ public class PetinfoController {
 		}
 	}
 	
+	@RequestMapping("updatePetForm.do")
+	   public ModelAndView updatePetForm(int idx){
+	      ModelAndView mav = new ModelAndView();
+	      //일단 펫리스트를 가져와
+	      HashMap<String, Object> petInfo = petInfoService.selectOne(idx);
+	      mav.addAllObjects(petInfo);
+	      System.out.println("petInfo : "+petInfo);
+	      
+	      List<HashMap<String, Object>> kindList = dogKindService.selectAllDogKind();
+	      mav.addObject("kindList", kindList);
+	      mav.setViewName("updatePetForm.tiles");
+	      
+	      return mav;
+	   }
+	   
+	   @RequestMapping("updatePet.do")
+	   public String updatePet(String idx, String resist, String id, String name, String kind, 
+	         String birthday, String neutral, double weight, String sex, 
+	         String groomingStart, String groomingPeriod, HttpSession session,
+	         @RequestParam(defaultValue="0")int mainPet ,@RequestParam("ufile") MultipartFile ufile){
+	      
+	      String fromBirth = birthday;
+	      SimpleDateFormat transBirthFormat = new SimpleDateFormat("yyyy-MM-dd");
+	      Date tobirth = null;
+	      try {
+	         tobirth = transBirthFormat.parse(fromBirth);
+	      } catch (ParseException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
+	      
+	      String fromGs = groomingStart;
+	      SimpleDateFormat transGsFormat = new SimpleDateFormat("yyyy-MM-dd");
+	      Date toGs = null;
+	      try {
+	         toGs = transGsFormat.parse(fromGs);
+	      } catch (ParseException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
+	      
+	      int idxInt = Integer.parseInt(idx);
+	      
+	      boolean result = petInfoService.updatePetInfo(idxInt, resist, id, name, kind, 
+	            tobirth, neutral, weight, sex, toGs, groomingPeriod, mainPet, ufile);
+	      if(result){
+	         //만약 세션이 비어있다면 addPet하고 세션에 등록
+	         if(session.getAttribute("petName") == null){
+	            session.setAttribute("petName", name);
+	            session.setAttribute("petSex", sex);   
+	            session.setAttribute("petBirth", fromBirth);   
+	         }
+	         return "redirect:main.do";         
+	      }else {
+	         return "redirect:updatePetForm.do";
+	      }
+	   }
+	
+	
+	
 	@RequestMapping("selectPet.do")
 	public
 	@ResponseBody HashMap<String, Object> selectPet(HttpServletResponse resp,
@@ -164,9 +224,8 @@ public class PetinfoController {
 	}
 	
 	@RequestMapping("mainPetUpdate.do")
-	public String mainPetUpdate(int mainPet){
-		petInfoService.selectMainPet(id) ;
-		
+	public String mainPetUpdate(){
+			
 		return "redirect:myPetInfo.do?";
 	}
 	

@@ -121,7 +121,7 @@ $(document).ready(function(){
                   <table cellspacing="0" class="pet_table">
                      <tr>
                         <td>
-                           <span style="font-weight: bold;">${pet.name } /// ${pet.idx }</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;(등록번호 : <span>${pet.resist }</span>)
+                           <span style="font-weight: bold;">${pet.name }</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;(등록번호 : <span>${pet.resist }</span>)
                            <span style="float: right;">
                               <input type="button" value="펫 수정" style="font-size: small;"
                               onclick="location.href='updatePetForm.do?idx=${pet.idx}'">

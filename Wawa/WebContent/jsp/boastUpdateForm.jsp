@@ -23,7 +23,6 @@ pageEncoding="UTF-8"%>
 			$('#ok').click(function() {
 				var content = $('#summernote').summernote('code');
 				$('#content').val(content);	
-				alert($('#ufile').val());
 			});
 			if(${load != 0}){
 				$('#name').val('${pet.name}');

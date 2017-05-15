@@ -28,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import interface_service.IDogKindService;
 import interface_service.IMedicalService;
@@ -161,7 +163,6 @@ public class PetinfoController {
 	            session.setAttribute("petSex", sex);   
 	            session.setAttribute("petBirth", fromBirth);   
 	         }
-	         System.out.println("id ::"+id );
 	         return "redirect:myPetInfo.do?id="+id;         
 	      }else {
 	         return "redirect:updatePetForm.do";
@@ -189,10 +190,18 @@ public class PetinfoController {
 		return petAge;
 	}
 	@RequestMapping("deletePet.do")
-	public String deletePet(String id, int idx, HttpSession session){
-		petInfoService.deletePetInfo(idx);
-		
-		//일단 펫리스트가 있나없나 확인
+	public ModelAndView deletePet(String id, int idx, String resist, HttpSession session, RedirectAttributes redirectAttr){
+		ModelAndView mav = new ModelAndView();
+		//등록번호가 일치하는지
+		if(petInfoService.selectOne(idx).get("resist").equals(resist)){
+			//일치하면 펫 삭제
+			petInfoService.deletePetInfo(idx);
+			redirectAttr.addFlashAttribute("isDel", "펫 정보가 삭제 되었습니다.");
+			
+		}else{
+			redirectAttr.addFlashAttribute("isDel", "펫 정보 삭제 오류");
+		}
+		//펫 삭제 후 일단 펫리스트가 있나없나 확인
 		List<HashMap<String, Object>> petList = petInfoService.selectPetList(id);
 		if(petList.isEmpty()){
 			//펫리스트가 비어있다면 펫 관련 세션 삭제
@@ -200,7 +209,10 @@ public class PetinfoController {
 			session.removeAttribute("petSex");	
 			session.removeAttribute("petBirth");	
 		}
-		return "redirect:main.do";
+		//삭제 후 다시 마이펫인포로 리다이렉트
+		RedirectView rv = new RedirectView("myPetInfo.do?id=" + id);
+		rv.setExposeModelAttributes(true);
+		return new ModelAndView(rv);
 	}
 	
 	@RequestMapping(value = "/PetInfoImage/{fileId}.do", method = {RequestMethod.GET})

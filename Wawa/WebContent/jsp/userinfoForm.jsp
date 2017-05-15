@@ -233,7 +233,7 @@
                 
                     <tr>
                     	<c:forEach var="pet" items="${petList }" varStatus="idx">
-	                   		<td style="text-align: center;"><img src="img/dog_0${idx.count }.jpg" alt=""style="width: 100%;"></td>
+	                   		<td style="text-align: center;"><img src="PetInfoImage/${pet.idx }.do" onerror="this.src='img/noImage.png'" alt=""></td>
                     	</c:forEach>
                     </tr>
 				</tbody>

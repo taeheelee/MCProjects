@@ -111,6 +111,7 @@ public class PetinfoController {
 	   public ModelAndView updatePetForm(int idx){
 	      ModelAndView mav = new ModelAndView();
 	      //일단 펫리스트를 가져와
+	      System.out.println("updateForm에서의 idx : "+ idx);
 	      HashMap<String, Object> petInfo = petInfoService.selectOne(idx);
 	      mav.addAllObjects(petInfo);
 	      System.out.println("petInfo : "+petInfo);
@@ -122,12 +123,13 @@ public class PetinfoController {
 	      return mav;
 	   }
 	   
+		
 	   @RequestMapping("updatePet.do")
-	   public String updatePet(String idx, String resist, String id, String name, String kind, 
+	   public String updatePet(int idx, String resist, String id, String name, String kind, 
 	         String birthday, String neutral, double weight, String sex, 
 	         String groomingStart, String groomingPeriod, HttpSession session,
 	         @RequestParam(defaultValue="0")int mainPet ,@RequestParam("ufile") MultipartFile ufile){
-	      
+	      System.out.println("여기에서 idx받아오는지 확인해야 함 : "+ idx);
 	      String fromBirth = birthday;
 	      SimpleDateFormat transBirthFormat = new SimpleDateFormat("yyyy-MM-dd");
 	      Date tobirth = null;
@@ -148,9 +150,9 @@ public class PetinfoController {
 	         e.printStackTrace();
 	      }
 	      
-	      int idxInt = Integer.parseInt(idx);
+//	      int idxInt = Integer.parseInt(idx);
 	      
-	      boolean result = petInfoService.updatePetInfo(idxInt, resist, id, name, kind, 
+	      boolean result = petInfoService.updatePetInfo(idx, resist, id, name, kind, 
 	            tobirth, neutral, weight, sex, toGs, groomingPeriod, mainPet, ufile);
 	      if(result){
 	         //만약 세션이 비어있다면 addPet하고 세션에 등록
@@ -159,7 +161,8 @@ public class PetinfoController {
 	            session.setAttribute("petSex", sex);   
 	            session.setAttribute("petBirth", fromBirth);   
 	         }
-	         return "redirect:main.do";         
+	         System.out.println("id ::"+id );
+	         return "redirect:myPetInfo.do?id="+id;         
 	      }else {
 	         return "redirect:updatePetForm.do";
 	      }

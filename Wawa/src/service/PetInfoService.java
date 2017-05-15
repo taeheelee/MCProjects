@@ -156,8 +156,9 @@ public class PetInfoService implements IPetinfoService {
 		int fileId = (int)dao.selectOne(idx).get("fileId");
 		//변경사항은 변경되면 새로운 params에 받고  변경되지 않은 내용들은 SelectOne의 내용 그대로
 		HashMap<String, Object> params = new HashMap<>();
+		params.put(Constant.PetInfo.IDX, idx);//방금 이거 추가함요 
 		params.put(Constant.PetInfo.RESIST, resist);
-		params.put(Constant.PetInfo.ID, id);
+//		params.put(Constant.PetInfo.ID, id);
 		params.put(Constant.PetInfo.NAME, name);
 		params.put(Constant.PetInfo.KIND, kind);
 		params.put(Constant.PetInfo.BIRTHDAY, birthday);
@@ -318,13 +319,13 @@ public class PetInfoService implements IPetinfoService {
 	      //1.D-day 구하기 : 미용알림시작일 + 미용 알림 주기 - 오늘 날짜
 	      Date groomingStart = (Date) temp.get("groomingStart");
 	      System.out.println("groomingStart"+groomingStart);
+	      int groomingPeriod = (int) temp.get("groomingPeriod");
 	      
 	      String d_day="";
 	      
-	      if(groomingStart == null){
+	      if(groomingStart == null || groomingPeriod == 0){
 	    	  d_day="미설정";
 	      }else{
-	    	  int groomingPeriod = (int) temp.get("groomingPeriod");
 	    	  long diffGrooming = groomingStart.getTime() - today.getTime();
 	    	  long dDay = diffGrooming / (24 * 60 * 60 * 1000) +groomingPeriod;
 	    	  d_day = "D-" + String.valueOf(dDay);
@@ -333,6 +334,10 @@ public class PetInfoService implements IPetinfoService {
 	    	  Calendar cal = Calendar.getInstance();
 	    	  cal.setTime(groomingStart);
 	    	  // if(dDay < 0){
+	    	  
+	    	  if (dDay==0){
+	    		  d_day = "D-DAY";
+	    	  }
 	    	  while (dDay < 0) {
 	    		  cal.add(Calendar.DATE, groomingPeriod);
 	    		  

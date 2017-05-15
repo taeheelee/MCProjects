@@ -273,6 +273,40 @@ public class ManagementController {
 		return response;
 	}
 	
+	@RequestMapping("chkDate.do")
+	public 
+	@ResponseBody HashMap<String, Object> chkDate(HttpServletResponse resp,
+			@RequestParam HashMap<String, Object> params){
+		System.out.println(params.get("day")); // 사용자가 적은 날짜를 받아와서
+		String from = (String) params.get("day");
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date to = null;
+		try {
+			to = transFormat.parse(from);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		String from1 = managementService.getToday();
+		Date to1 = null;
+		try {
+			to1= transFormat.parse(from1);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		HashMap<String, Object> response = new HashMap<>();
+		long diff = to1.getTime() - to.getTime(); // 오늘날짜에서 입력날짜빼기
+		if(diff > 0){
+			response.put("result", true);
+		}else {
+			response.put("result", false);
+		}
+		return response;
+	}
+	
 	@RequestMapping("chkDupl.do")
 	public 
 	@ResponseBody HashMap<String, Object> chkDupl(HttpServletResponse resp,

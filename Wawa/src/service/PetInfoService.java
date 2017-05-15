@@ -373,6 +373,7 @@ public class PetInfoService implements IPetinfoService {
 				params.put("sex" , petList.get(i).get("sex"));
 				params.put("birth" , petList.get(i).get("birthday"));
 				params.put("fileId" , petList.get(i).get("fileId"));
+				break;
 			}else{
 				params.put("name" , petList.get(0).get("name"));
 				params.put("sex" , petList.get(0).get("sex"));

@@ -134,13 +134,14 @@
 		<div class="container" style="text-align: right;">
  
 				<form name=form method="post" action="search.do">
-					<select name="type">
+					<select name="type" style="height: 40px; width: 100px">
 						<option selected="selected">전체선택</option>
 						<option value="동물병원">동물병원</option>
 						<option value="애견미용실">애견미용실</option>
 						<option value="애견카페">애견카페</option>
 					</select>
-                   <select name='area' onchange="change(this.selectedIndex);"  class=input >
+					
+                   <select name='area' onchange="change(this.selectedIndex);"  class=input style="height: 40px; width: 80px">
 					   <option value=''>선택</option>
                        <option value='서울'>서울</option>
                        <option value='부산'>부산</option>
@@ -159,11 +160,12 @@
                        <option value='경남'>경남</option>
                        <option value='제주'>제주</option>
                     </select>                                                  
-                       
-                    <select name='county'  class=select>
+                  
+                    <select name='county'  class=select style="height: 40px; width: 80px">
                        <option value=''>선택</option>
                     </select>
-                    <input type="text" placeholder="Seach.." name="search">
+                    
+                    <input type="text" placeholder="Seach.." name="search"style="width: 230px">
                     <input type="submit" value="검색">
 			</form>
 		</div>

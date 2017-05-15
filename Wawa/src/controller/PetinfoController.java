@@ -101,7 +101,9 @@ public class PetinfoController {
 			if(session.getAttribute("petName") == null){
 				session.setAttribute("petName", name);
 				session.setAttribute("petSex", sex);	
-				session.setAttribute("petBirth", fromBirth);	
+				session.setAttribute("petBirth", fromBirth);
+				session.setAttribute("groomingStart", groomingStart);	
+				session.setAttribute("groomingPeriod", groomingPeriod);
 			}
 			return "redirect:main.do";			
 		}else {
@@ -161,7 +163,9 @@ public class PetinfoController {
 	         if(session.getAttribute("petName") == null){
 	            session.setAttribute("petName", name);
 	            session.setAttribute("petSex", sex);   
-	            session.setAttribute("petBirth", fromBirth);   
+	            session.setAttribute("petBirth", fromBirth);  
+	            session.setAttribute("groomingStart", groomingStart);	
+				session.setAttribute("groomingPeriod", groomingPeriod);
 	         }
 	         return "redirect:myPetInfo.do?id="+id;         
 	      }else {
@@ -207,7 +211,9 @@ public class PetinfoController {
 			//펫리스트가 비어있다면 펫 관련 세션 삭제
 			session.removeAttribute("petName");
 			session.removeAttribute("petSex");	
-			session.removeAttribute("petBirth");	
+			session.removeAttribute("petBirth");
+			session.removeAttribute("groomingStart");	
+			session.removeAttribute("groomingPeriod");	
 		}
 		//삭제 후 다시 마이펫인포로 리다이렉트
 		RedirectView rv = new RedirectView("myPetInfo.do?id=" + id);

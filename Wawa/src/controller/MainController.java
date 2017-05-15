@@ -52,6 +52,8 @@ public class MainController {
 			session.setAttribute("petSex", mainPet.get("sex"));	
 			session.setAttribute("petBirth", mainPet.get("birth"));	
 			session.setAttribute("fileId", mainPet.get("fileId"));
+			session.setAttribute("groomingStart", mainPet.get("groomingStart"));
+            session.setAttribute("groomingPeriod", mainPet.get("groomingPeriod"));
 
 		}
 		return "redirect:main.do";
@@ -75,13 +77,17 @@ public class MainController {
 			params.put("name" + i, petList.get(i).get("name"));
 			params.put("sex" + i, petList.get(i).get("sex"));
 			params.put("birth" + i, petList.get(i).get("birthday"));
-		}
+			params.put("groomingStart" + i, petList.get(i).get("groomingStart"));
+	        params.put("groomingPeriod" + i, petList.get(i).get("groomingPeriod"));
+	    }
 		session.setAttribute("id", userInfo.getId());
 		session.setAttribute("name", userInfo.getNickname());
 		session.setAttribute("petName", params.get("name0"));
 		session.setAttribute("petSex", params.get("sex0"));
 		session.setAttribute("petBirth", params.get("birth0"));
-		return "redirect:main.do";
+		session.setAttribute("groomingStart", params.get("groomingStart0"));
+        session.setAttribute("groomingPeriod", params.get("groomingPeriod0"));
+        return "redirect:main.do";
 	}
 
 	@RequestMapping("logout.do")

@@ -111,13 +111,22 @@ public class MainController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "join.do")
-	public String join(String id, String password, String nickname, String sex, String phone,
-			@RequestParam(defaultValue = "0") int adminCheck, String email) {
+	public ModelAndView join(String id, String password, String nickname, String sex, String phone,
+			@RequestParam(defaultValue = "0") int adminCheck, String email, RedirectAttributes redirectAttr) {
+		ModelAndView mav = new ModelAndView();
 		int result = iMemberService.join(id, password, nickname, sex, phone, adminCheck, email);
-		if (result > 0)
-			return "redirect:main.do";
-		else
-			return "redirect:joinForm.do";
+		if (result > 0){
+			redirectAttr.addFlashAttribute("isJoin", "회원가입 완료");
+			RedirectView rv = new RedirectView("loginForm.do");
+			rv.setExposeModelAttributes(false);
+			return new ModelAndView(rv);
+		}
+		else{
+			redirectAttr.addFlashAttribute("isJoin", "회원가입 오류");
+			RedirectView rv = new RedirectView("joinForm.do");
+			rv.setExposeModelAttributes(false);
+			return new ModelAndView(rv);
+		}
 	}
 
 	@RequestMapping("idCheck.do")

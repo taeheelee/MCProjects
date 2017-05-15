@@ -12,6 +12,8 @@
 	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		if('${isJoin}' != '')
+			alert('${isJoin}');
 		$('#login_ck').click(function() {
 			$.ajax({
 				url : "idCheck.do",

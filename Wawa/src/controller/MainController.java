@@ -113,7 +113,6 @@ public class MainController {
 	@RequestMapping(method = RequestMethod.POST, value = "join.do")
 	public ModelAndView join(String id, String password, String nickname, String sex, String phone,
 			@RequestParam(defaultValue = "0") int adminCheck, String email, RedirectAttributes redirectAttr) {
-		ModelAndView mav = new ModelAndView();
 		int result = iMemberService.join(id, password, nickname, sex, phone, adminCheck, email);
 		if (result > 0){
 			redirectAttr.addFlashAttribute("isJoin", "회원가입 완료");
@@ -189,7 +188,6 @@ public class MainController {
 
 		UserInfo tmp = iMemberService.getMember(id);
 		UserInfo userInfo = new UserInfo();
-		ModelAndView mav = new ModelAndView();
 		// 정보수정을 위해 폼에서 입력한 비밀번호와 DB의 비밀번호 비교
 		if (password.equals(tmp.getPassword())) {
 			// 일치한다면 위의 받아온 내용을 모델에 담는다.

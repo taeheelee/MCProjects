@@ -72,6 +72,13 @@ $(document).ready(function(){
         $('li').click(function(){
         	getPetAge($(this).attr('id'), $(this).attr('name'));
 		});
+        $('.petDel').click(function() {
+			var resist = prompt('펫 정보를 삭제 하시나요?', '삭제하시려면 등록번호를 입력해주세요');
+			
+			var petIdx = $(this).attr('id');
+
+			location.href='deletePet.do?id=${sessionScope.id}&idx=' + petIdx + '&resist=' + resist;
+		});
         
     });
 </script>
@@ -125,8 +132,7 @@ $(document).ready(function(){
                            <span style="float: right;">
                               <input type="button" value="펫 수정" style="font-size: small;"
                               onclick="location.href='updatePetForm.do?idx=${pet.idx}'">
-                              <input type="button" value="펫 삭제" class='petDel'style="font-size: small;"
-                              onclick="location.href='deletePet.do?id=${sessionScope.id}&idx=${pet.idx}'">
+                              <input type="button" value="펫 삭제" id='${pet.idx }' class="petDel" style="font-size: small;">
                            </span>
                         </td>
                      </tr>

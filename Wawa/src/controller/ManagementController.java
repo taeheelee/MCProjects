@@ -33,7 +33,7 @@ public class ManagementController {
 	@Autowired
 	private IManagementService managementService;
 	
-	/* 그래프 기능 수정중.
+	/* 그래프 기능 수정중..
 	 * healthcare.do와 dataupload.do 작업중입니다.*/
 	@RequestMapping("healthcare.do")
 	public ModelAndView healthcare(){

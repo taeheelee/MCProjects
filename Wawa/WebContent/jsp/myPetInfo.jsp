@@ -72,7 +72,7 @@ $(document).ready(function(){
         $('li').click(function(){
         	getPetAge($(this).attr('id'), $(this).attr('name'));
 		});
-        $('#petDel').click(function() {
+        $('.petDel').click(function() {
         	location.href="deletePet.do?id=${sessionScope.id}&idx=" + $('#petIdx').val();
 		})
         
@@ -128,7 +128,7 @@ $(document).ready(function(){
                            <span style="float: right;">
                               <input type="button" value="펫 수정" style="font-size: small;"
                               onclick="location.href='updatePetForm.do?idx=${pet.idx}'">
-                              <input type="button" value="펫 삭제" id='petDel'style="font-size: small;">
+                              <input type="button" value="펫 삭제" class='petDel'style="font-size: small;">
                               <input type="hidden" value="${pet.idx }" id="petIdx">
                            </span>
                         </td>

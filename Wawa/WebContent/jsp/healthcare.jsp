@@ -208,7 +208,7 @@ svg {
 	function setManageTable(list, dateList) {
 		$(list).each(function(index, value) {
 // 			var deleteBtn = $('<input>').prop("type", "button").val("삭제").addClass("deleteBtn").
-			attr('name', "addBtn").attr('id', "addBtn").css("padding", "3px 3px");
+// 			attr('name', "addBtn").attr('id', "addBtn").css("padding", "3px 3px");
 			var table = $('#table tbody');
 			var tr = $('<tr>');
 			$('<td>').text(dateList[index]).appendTo(tr);

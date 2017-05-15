@@ -164,7 +164,8 @@ public class PetinfoController {
 	}
 	
 	@RequestMapping("mainPetUpdate.do")
-	public String mainPetUpdate(){
+	public String mainPetUpdate(int mainPet){
+		petInfoService.selectMainPet(id) ;
 		
 		return "redirect:myPetInfo.do?";
 	}

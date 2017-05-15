@@ -28,6 +28,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		insert into petinfo values(0, #{resist}, #{id}, #{name}, #{kind}, #{birthday},
 		#{neutral}, #{weight}, #{sex}, #{groomingStart}, #{groomingPeriod}, #{mainPet}, #{fileId})
 	</insert>
+	<update id="updateWeight" parameterType="java.util.HashMap">
+		update petinfo set weight=#{weight} where idx=#{idx}
+	</update>
 	<update id="updatePetInfo" parameterType="java.util.HashMap">
 		update petinfo set resist=#{resist}, id=#{id}, name=#{name},
 		kind=#{kind}, birthday=#{birthday}, neutral=#{neutral}, weight=#{weight},

@@ -383,4 +383,16 @@ public class PetInfoService implements IPetinfoService {
 		return params;
 	}
 
+
+	@Override
+	public boolean updateWeight(double weight, int idx) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> pet = new HashMap<>();
+		pet.put("weight", weight);
+		pet.put("idx", idx);
+		if(dao.updateWeight(pet) > 0)
+			return true;
+		else return false;
+	}
+
 }

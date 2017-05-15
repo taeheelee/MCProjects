@@ -111,4 +111,23 @@ public class ManagementService implements IManagementService {
 		return dao.selectDate(model);
 	}
 
+	@Override
+	public int selectLastIdx(int idx) {
+		// TODO Auto-generated method stub
+		return dao.selectLastIdx(idx);
+	}
+
+	//public double selectRecentWeight(Date date);
+	@Override
+	public double selectRecentWeight(Date date) {
+		// TODO Auto-generated method stub
+		return dao.selectRecentWeight(date);
+	}
+
+	@Override
+	public Date selectRecentDate(int idx) {
+		// TODO Auto-generated method stub
+		return dao.selectRecentDate(idx);
+	}
+
 }

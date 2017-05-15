@@ -122,8 +122,8 @@ public class ManagementController {
 	@ResponseBody HashMap<String, Object> uploadHealthcare(HttpServletResponse resp,
 			@RequestParam HashMap<String, Object> params){
 	
-		System.out.println("나불럿졍?");
-		int idx = (int) petinfoService.selectByname(params).get("idx");
+		HashMap<String, Object> petinfo = petinfoService.selectByname(params);
+		int idx = (int) petinfo.get("idx");
 		
 		String from = (String) params.get("day");
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -141,10 +141,16 @@ public class ManagementController {
 		model.setIdx(idx);
 		model.setDate(to);
 		model.setWeight(weight);
-		
+	
 		HashMap<String, Object> response = new HashMap<>();
 		if(managementService.insertManagement(model)){
-			response.put("result", true);
+			Date date = managementService.selectRecentDate(idx);
+			double recentWeight = managementService.selectRecentWeight(date);
+			if(petinfoService.updateWeight(recentWeight, idx)){					
+				response.put("result", true);
+			}else {
+				response.put("result", false);
+			}
 		}else {
 			response.put("result", false);
 		}
@@ -156,7 +162,8 @@ public class ManagementController {
 	@ResponseBody HashMap<String, Object> updateHealthcare(HttpServletResponse resp,
 			@RequestParam HashMap<String, Object> params){
 	
-		int idx = (int) petinfoService.selectByname(params).get("idx");
+		HashMap<String, Object> pet = petinfoService.selectByname(params);
+		int idx = (int) pet.get("idx");
 		
 		String from = (String) params.get("day");
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -174,10 +181,16 @@ public class ManagementController {
 		model.setIdx(idx);
 		model.setDate(to);
 		model.setWeight(weight);
-		
+	
 		HashMap<String, Object> response = new HashMap<>();
 		if(managementService.updateWeight(model)){
-			response.put("result", true);
+			Date date = managementService.selectRecentDate(idx);
+			double recentWeight = managementService.selectRecentWeight(date);
+			if(petinfoService.updateWeight(recentWeight, idx)){					
+				response.put("result", true);
+			}else {
+				response.put("result", false);
+			}
 		}else {
 			response.put("result", false);
 		}
@@ -196,6 +209,7 @@ public class ManagementController {
 		
 		int managementIdx = managementService.selectIdx(model);
 
+		
 		HashMap<String, Object> response = new HashMap<>();
 		if(managementService.deleteManagement(managementIdx)){
 			response.put("result", true);
@@ -222,7 +236,6 @@ public class ManagementController {
 			e.printStackTrace();
 		}
 		model.setDate(to);
-		System.out.println("시바어디서오류났어");
 		HashMap<String, Object> response = new HashMap<>();
 		System.out.println(managementService.selectDate(model));
 		if(managementService.selectDate(model).size() != 0){

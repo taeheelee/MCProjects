@@ -15,6 +15,8 @@
     
     <script type="text/javascript">
     	$(document).ready(function(){
+    		if('${isJoin}' != '')
+    			alert('${isJoin}');
     		//정규식
     		var regId =  /^.*(?=^.{4,12}$)(?=.*[a-z]).*$/;
     		var regPassword = /^.*(?=^.{6,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[*!@#$%^&+=]).*$/;

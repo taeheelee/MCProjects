@@ -96,7 +96,7 @@ public class ManagementService implements IManagementService {
 		if(lastIdx <= 5){
 			for(Management m : list){
 				recentList.add(m);
-			}	
+		
 		}else {
 			for(int i = lastIdx-5; i < lastIdx; i ++){
 				recentList.add(list.get(i));
@@ -109,6 +109,14 @@ public class ManagementService implements IManagementService {
 	public List<Management> selectDate(Management model) {
 		// TODO Auto-generated method stub
 		return dao.selectDate(model);
+	}
+
+	@Override
+	public String getToday() { // 현재 날짜 리턴
+		// TODO Auto-generated method stub
+		SimpleDateFormat fm1 = new SimpleDateFormat("yyyy년MM월dd일");
+		String date = fm1.format(new Date());
+		return date;
 	}
 
 }

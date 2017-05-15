@@ -171,6 +171,26 @@ svg {
 		});
 	}
 	
+	// 중복 검사하고 현재 날짜 이후의 날짜를 입력했는지 체크해야돼
+	function chkDate(){ // 날짜를 받아서 계산
+		var day = $('#day').val();
+		$.ajax({
+			type : 'get',
+			url : 'chkDate.do',
+			data : "day=" + day,
+			dataType : 'json',
+			success : function(data) {
+				if (data.result) {
+					// 지난날짜이므로 입력 가능 ㅇㅇ
+				} else {
+					// 이후의 날짜이므로 입력 불가 
+				}
+			},
+			error : function(data) {
+				alert('잠시 후 다시 시도해주세요');
+			}
+		});
+	}
 	
 	function callPetinfo(id, name) { 
 		$.ajax({

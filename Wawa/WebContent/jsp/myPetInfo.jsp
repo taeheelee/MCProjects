@@ -72,9 +72,6 @@ $(document).ready(function(){
         $('li').click(function(){
         	getPetAge($(this).attr('id'), $(this).attr('name'));
 		});
-        $('.petDel').click(function() {
-        	location.href="deletePet.do?id=${sessionScope.id}&idx=" + $('#petIdx').val();
-		})
         
     });
 </script>
@@ -124,12 +121,12 @@ $(document).ready(function(){
                   <table cellspacing="0" class="pet_table">
                      <tr>
                         <td>
-                           <span style="font-weight: bold;">${pet.name }</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;(등록번호 : <span>${pet.resist }</span>)
+                           <span style="font-weight: bold;">${pet.name } /// ${pet.idx }</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;(등록번호 : <span>${pet.resist }</span>)
                            <span style="float: right;">
                               <input type="button" value="펫 수정" style="font-size: small;"
                               onclick="location.href='updatePetForm.do?idx=${pet.idx}'">
-                              <input type="button" value="펫 삭제" class='petDel'style="font-size: small;">
-                              <input type="hidden" value="${pet.idx }" id="petIdx">
+                              <input type="button" value="펫 삭제" class='petDel'style="font-size: small;"
+                              onclick="location.href='deletePet.do?id=${sessionScope.id}&idx=${pet.idx}'">
                            </span>
                         </td>
                      </tr>

@@ -40,48 +40,51 @@ public class MainController {
 	}
 
 	@RequestMapping(method=RequestMethod.POST, value="login.do")
-	public String login(HttpSession session, String id, String pw){
+	public ModelAndView login(HttpSession session, String id, String pw){
 		UserInfo userInfo = iMemberService.getMember(id);
+		ModelAndView mav = new ModelAndView();
 		
 		if(iMemberService.loginMember(id, pw)){
 			HashMap<String, Object> mainPet = IPetinfoService.selectMainPet(id);
+			HashMap<String, Object> header = new HashMap<>();
 			
+			header.put("id", userInfo.getId());
+			header.put("name", userInfo.getNickname());
+			header.put("mainPet", mainPet);
+			mav.addAllObjects(header);
 			session.setAttribute("id", userInfo.getId());
 			session.setAttribute("name", userInfo.getNickname());
-			session.setAttribute("petName", mainPet.get("name"));
-			session.setAttribute("petSex", mainPet.get("sex"));	
-			session.setAttribute("petBirth", mainPet.get("birth"));	
-			session.setAttribute("fileId", mainPet.get("fileId"));
-
+			
 		}
-		return "redirect:main.do";
+		mav.setViewName("main.tiles");
+		return mav;
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "naverLogin.do")
-	public String naverLogin(HttpSession session, String id, String nickname, String email, String sex) {
+	public ModelAndView naverLogin(HttpSession session, String id, String nickname, String email, String sex) {
 		String password = "123456";
 		String phone = "010-0000-0000";
-
+		ModelAndView mav = new ModelAndView();
+		
 		int adminCheck = 0;
 		if (iMemberService.checkId(id)) {
 			int result = iMemberService.join(id, password, nickname, sex, phone, adminCheck, email);
 		}
 
 		UserInfo userInfo = iMemberService.getMember(id);
-		List<HashMap<String, Object>> petList = IPetinfoService.selectPetList(id);
-		HashMap<String, Object> params = new HashMap<>();
 
-		for (int i = 0; i < petList.size(); i++) {
-			params.put("name" + i, petList.get(i).get("name"));
-			params.put("sex" + i, petList.get(i).get("sex"));
-			params.put("birth" + i, petList.get(i).get("birthday"));
-		}
+		HashMap<String, Object> mainPet = IPetinfoService.selectMainPet(id);
+		HashMap<String, Object> header = new HashMap<>();
+		
+		header.put("id", userInfo.getId());
+		header.put("name", userInfo.getNickname());
+		header.put("mainPet", mainPet);
+		mav.addAllObjects(header);
 		session.setAttribute("id", userInfo.getId());
 		session.setAttribute("name", userInfo.getNickname());
-		session.setAttribute("petName", params.get("name0"));
-		session.setAttribute("petSex", params.get("sex0"));
-		session.setAttribute("petBirth", params.get("birth0"));
-		return "redirect:main.do";
+		
+		mav.setViewName("main.tiles");
+		return mav;
 	}
 
 	@RequestMapping("logout.do")

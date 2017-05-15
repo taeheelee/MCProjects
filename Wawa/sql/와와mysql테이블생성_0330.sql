@@ -55,6 +55,8 @@ realShotDate date,
 foreign key(idx) references petinfo(idx),
 foreign key(vaccineCode) references vaccineinfo(vaccineCode)
 );
+alter table medicalManage add nextday Date;
+alter table medicalManage add dday varchar(20);
 
 # medical 테이블 수정하세요
 alter table medicalManage add nextday date;

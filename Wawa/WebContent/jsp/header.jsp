@@ -122,18 +122,18 @@
 			<!-- 우측 미니애견정보창 -->
 			<div class="col-sm-6" style="margin: 0">
 			<c:choose>
-				<c:when test="${sessionScope.id != null and sessionScope.petName != null}">
+				<c:when test="${sessionScope.id != null and mainPet.get('name') != null}">
 					<div class="shopping-item" >
 						<a href="myPetInfo.do?id=${sessionScope.id}"  class="postLink">
 						
 							<table id="mini" style="margin-left: 5px;width:330px; height: 100px;">
 								<tr>
-									<td rowspan="4" style="width: 90px;" id="petmainimage"><img src="imageShow/${sessionScope.fileId }.do" onerror="this.src='img/noImage.png'" alt=""></td>
-									<td colspan="3" id="nickname">${sessionScope.name}</td>
+									<td rowspan="4" style="width: 90px;" id="petmainimage"><img src="PetInfoImage/${mainPet.get('fileId')}.do" onerror="this.src='img/noImage.png'" alt=""></td>
+									<td colspan="3" id="nickname">${name}</td>
 								</tr>
 								<tr style="font-size: small;">
-									<td id="petname">${sessionScope.petName}</td>
-									<td id="petsex">${sessionScope.petSex}</td>
+									<td id="petname">${mainPet.get('name')}</td>
+									<td id="petsex">${mainPet.get('sex')}</td>
 									<td id="petage"><span id="petage_year"></span> <span id="petage_month"></span></td>
 								</tr>
 								<tr style="font-size: small;">

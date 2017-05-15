@@ -33,8 +33,39 @@ public class ManagementController {
 	@Autowired
 	private IManagementService managementService;
 	
+	/* 그래프 기능 수정중.
+	 * healthcare.do와 dataupload.do 작업중입니다.*/
 	@RequestMapping("healthcare.do")
-	public ModelAndView healthcare(HttpSession session){
+	public ModelAndView healthcare(){
+		ModelAndView mav = new ModelAndView();
+//		String id = (String) session.getAttribute("id");
+//		
+//		List<HashMap<String, Object>> petList = petinfoService.selectPetList(id);
+//		
+//		List<Management> weightList = new ArrayList<>();
+//		weightList = managementService.selectList(id);
+//		
+//		Gson gson = new Gson();
+//		String json = "";
+//		json += "[";
+//		
+//		for (int i = 0; i < weightList.size(); i++) {
+//			json += gson.toJson(weightList.get(i));
+//			if(i < weightList.size()-1)
+//				json += ", ";
+//		}
+//		json += "]";
+//		System.out.println(json);
+//		mav.addObject("weightList", json);
+//		mav.addObject("list", petList);
+		mav.setViewName("healthcare.tiles");
+		return mav;
+	}
+	
+	/* 그래프 기능 수정중.
+	 * healthcare.do와 dataupload.do 작업중입니다.*/
+	@RequestMapping("dataupload.do")
+	public ModelAndView dataupload(HttpSession session){
 		ModelAndView mav = new ModelAndView();
 		String id = (String) session.getAttribute("id");
 		
@@ -43,27 +74,10 @@ public class ManagementController {
 		List<Management> weightList = new ArrayList<>();
 		weightList = managementService.selectList(id);
 		
-//		for(Management m : weightList) {
-//			Date temp = m.getDate();
-//			String newDate = new SimpleDateFormat("yy-MM-dd").format(temp);
-//			try {
-//				temp = new SimpleDateFormat("yy-MM-dd").parse(newDate);
-//				m.setDate(temp);
-////				System.out.println(m.getDate());
-//			} catch (ParseException e) {
-//				System.out.println("date format error");
-//				e.printStackTrace();
-//			}
-//		}
 		Gson gson = new Gson();
 		String json = "";
 		json += "[";
 		
-//		for (int i = 0; i < weightList.size(); i++) {
-//			json += "\"pet" + i + "\" : " + gson.toJson(weightList.get(i));
-//			if(i < weightList.size()-1)
-//				json += ", ";
-//		}
 		for (int i = 0; i < weightList.size(); i++) {
 			json += gson.toJson(weightList.get(i));
 			if(i < weightList.size()-1)
@@ -75,27 +89,7 @@ public class ManagementController {
 		mav.addObject("list", petList);
 		mav.setViewName("healthcare.tiles");
 		return mav;
-		
-//		return [
-//		        {
-//		          values: sin,      //values - represents the array of {x,y} data points
-//		          key: 'Sine Wave', //key  - the name of the series.
-//		          color: '#ff7f0e'  //color - optional: choose your own line color.
-//		        },
-//		        {
-//		          values: cos,
-//		          key: 'Cosine Wave',
-//		          color: '#2ca02c'
-//		        },
-//		        {
-//		          values: sin2,
-//		          key: 'Another sine wave',
-//		          color: '#7777ff',
-//		          area: true      //area - set to true if you want this line to turn into a filled area chart.
-//		        }
-//		      ];
 	}
-	
 	@RequestMapping("selectHealthcare.do")
 	public 
 	@ResponseBody HashMap<String, Object> selectHealthcare(HttpServletResponse resp,

@@ -13,6 +13,7 @@ public interface IPetinfoService {
 	public boolean updatePetInfo(int idx, String resist, String id, String name, String kind, 
 			Date birthday, String neutral, double weight, String sex, 
 			Date groomingStart, int groomingPeriod, int mainPet, MultipartFile file);
+	public boolean updateWeight(double weight, int idx);
 	public boolean deletePetInfo(int idx);
 	public List<HashMap<String, Object>> selectPetList(String id);
 	public HashMap<String, Object> selectOne(HashMap<String, Object> params);

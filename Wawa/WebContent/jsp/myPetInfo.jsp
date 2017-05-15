@@ -13,6 +13,25 @@
 <script type="text/javascript" src="./fullcalendar-3.3.1/fullcalendar.js"></script>
 <script type="text/javascript" src="./fullcalendar-3.3.1/locale/ko.js"></script>
 <script type="text/javascript">
+$(document).ready(function(){
+	$('mainPetMk').click(function(){
+		$.ajax({
+			type : 'get',
+			url : 'mainPetUpdate.do',
+			dataType : 'json',
+			data: "mainPet=1",
+			success : function(data){
+				
+			},
+			error : function(xhrReq, status, error){
+//					alert(data);
+				//error 원하는응답이 나오지않으면
+				
+			}
+		});
+	});
+	
+});
 
 	function getPetAge(petBirth, petIdx){
 		$.ajax({
@@ -96,7 +115,7 @@
                   <img src="img/dog_0${idx.count }.jpg" alt=""style="width: 100%;">
                   </p>
                   <p style="text-align: center;">
-                     <input type="button" value="메인펫으로 지정" style="width: 100%" onclick=""><br><br>
+                     <input type="button" value="메인펫으로 지정" style="width: 100%" id="mainPetMk"><br><br>
                   </p>
                   
                </div>

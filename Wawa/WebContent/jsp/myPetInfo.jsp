@@ -14,6 +14,8 @@
 <script type="text/javascript" src="./fullcalendar-3.3.1/locale/ko.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	if('${isDel}' != '')
+		alert('${isDel}');
 	$('mainPetMk').click(function(){
 		$.ajax({
 			type : 'get',

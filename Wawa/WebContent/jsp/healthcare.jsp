@@ -10,39 +10,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>WAWA-healthcare</title>
 <!-- D3 -->
-<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<!-- <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script> -->
 <!-- <script type="text/javascript" src="js/healthD3.js?version=3"></script> -->
-<script type="text/javascript" src="js/d3_test.js?version=3"></script>
-<style type="text/css">
-svg {
-	width: 300px;
-	height: 500px;
-	border: 1px solid black;
-}
-.bar {
-	fill: orange;
-}
-.barNum { /*그래프값 */
-	font-size: 9pt;
-	text-anchor: middle;
-}
-.axis text { /*y축 눈금 글자 크기*/
-	font-family: sans-serif;
-	font-size: 11px
-}
-.axis path, .axis line {
-	fill: none;
-	stroke: black;
-}
-.axis_x line {
-	fill: none;
-	stroke: black;
-}
-.barName { /*그래프 레이블*/
-	font-size: 9pt;
-	text-anchor: middle;
-}
-</style>
+<!-- <script type="text/javascript" src="js/d3_test.js?version=3"></script> -->
+<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/nv.d3.js"></script>
+<script type="text/javascript" src="js/simple.d3.js"></script>
+<link href="js/nv.d3.css" rel="stylesheet">
+
 <script type="text/javascript">
 	var myPet = '';
 	var isPet = false;
@@ -273,7 +248,8 @@ svg {
 		// 	for(var pet in weightList) {
 		// 		console.log(pet);
 		// 	}
-		draw(data);
+// 		draw(data);
+		nv.addGraph();
 	});
 </script>
 </head>

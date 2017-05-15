@@ -161,12 +161,13 @@ $(document).ready(function(){
                      </tr>
                      <tr>
                         <td>
-                        미용 주기 알림   <span id="groomingDdaySpan${pet.idx }"></span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;">
+                        미용 주기 알림   <span style="color: #FF7421;" id="groomingDdaySpan${pet.idx }"></span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;">
                         </td>
                      </tr>
                      <tr>
                         <td>
-                        다음 예방 접종 시기 <span>백신명</span> <span>D-00</span>&nbsp;&nbsp;<input type="button" value="접종관리 GO" style="font-size: small;"onclick = "location.href ='medicalcareForm.do?id=${sessionScope.id}'">
+                        다음 예방 접종 시기 <span style="color: #FF7421; " id="">[백신명]</span> 
+                        <span style="color: #FF7421;"id="">D-00</span>&nbsp;&nbsp;<input type="button" value="접종관리 GO" style="font-size: small;"onclick = "location.href ='medicalcareForm.do?id=${sessionScope.id}'">
                         </td>
                      </tr>
                   </table>

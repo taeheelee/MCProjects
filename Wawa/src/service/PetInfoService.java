@@ -122,7 +122,7 @@ public class PetInfoService implements IPetinfoService {
 	
 	@Override
 	public boolean updatePetInfo(int idx, String resist, String id, String name, String kind, Date birthday, String neutral,
-			double weight, String sex, Date groomingStart, int groomingPeriod, int mainPet, MultipartFile file) {
+			double weight, String sex, Date groomingStart, String groomingPeriod, int mainPet, MultipartFile file) {
 		// TODO Auto-generated method stub
 		//수정할 강아지 목록을 받아와서 출력해주고
 		HashMap<String, Object> tmp = dao.selectOne(idx);
@@ -192,9 +192,9 @@ public class PetInfoService implements IPetinfoService {
 	}
 
 	@Override
-	public HashMap<String, Object> selectOne(HashMap<String, Object> params) {
+	public HashMap<String, Object> selectOne(int idx) {
 		// TODO Auto-generated method stub
-		return dao.selectByName(params);
+		return dao.selectOne(idx);
 	}
 
 	@Override

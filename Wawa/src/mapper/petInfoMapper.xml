@@ -32,7 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update petinfo set resist=#{resist}, id=#{id}, name=#{name},
 		kind=#{kind}, birthday=#{birthday}, neutral=#{neutral}, weight=#{weight},
 		sex=#{sex}, groomingStart=#{groomingStart}, 
-		groomingPeriod=#{groomingPeriod}, #{mainPet}, #{fileId} where idx=#{idx}
+		groomingPeriod=#{groomingPeriod}, mainPet=#{mainPet}, fileId=#{fileId} where idx=#{idx}
 	</update>
 	<delete id="deletePetInfo" parameterType="int">
 		delete from petinfo where idx=#{idx}

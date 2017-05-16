@@ -234,12 +234,12 @@ public class ManagementController {
 		HashMap<String, Object> response = new HashMap<>();
 		long diff = to1.getTime() - to.getTime(); // 오늘날짜에서 입력날짜빼기
 		if(diff > 0){
-			response.put("result", true);
+			response.put("result", true); // 오늘날짜가 더 뒤에있는 거니까 true
 		}else {
-			response.put("result", false);
+			response.put("result", false); // 오늘날짜가 앞에있는거니까 false
 		}
 		return response;
-	}//d
+	}
 	
 	@RequestMapping("chkDupl.do")
 	public 

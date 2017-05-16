@@ -149,6 +149,7 @@ svg {
 			}
 		});
 	}
+	
 	function chkDupl(){
 		var id = '${id }';
 		var day = $('#day').val();
@@ -181,8 +182,10 @@ svg {
 			dataType : 'json',
 			success : function(data) {
 				if (data.result) {
-					// 지난날짜이므로 입력 가능 ㅇㅇ
+					alert("날짜사용가능");
+					chkDupl(); // 지난날짜이므로 입력 가능 ㅇㅇ
 				} else {
+					alert("오늘 이후의 날짜는 입력할 수 없습니다.");
 					// 이후의 날짜이므로 입력 불가 
 				}
 			},
@@ -263,7 +266,7 @@ svg {
 			var flag1 = chkDateFmt($('#day').val());
 			var flag2 = chkNumFmt($('#wt').val());
 			if (flag1 == true && flag2 == true) {
-				chkDupl();
+				chkDate();
 			}
 		});
 		$('#name').change(function() {

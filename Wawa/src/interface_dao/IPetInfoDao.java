@@ -3,7 +3,6 @@ package interface_dao;
 import java.util.HashMap;
 import java.util.List;
 
-
 public interface IPetInfoDao {
 	public int insertPetInfo(HashMap<String, Object> params);
 	public int updatePetInfo(HashMap<String, Object> params);

@@ -18,6 +18,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="deleteManagement" parameterType="int">
 		delete from management where managementIdx=#{managementIdx}
 	</delete>
+	<select id="selectRecentDate" parameterType="int" resultType="Date">
+		select max(date) from management where idx=#{idx}
+	</select>
+	<select id="selectLastIdx" parameterType="int" resultType="int">
+		select MAX(managementIdx) from management where idx=#{idx} order by date
+	</select>
+	<select id="selectRecentWeight" resultType="double" parameterType="Date">
+		select weight from management where date=#{date}
+	</select>
 	<select id="selectOne" parameterType="int" resultType="model.Management">
 		select * from management where managementIdx=#{managementIdx}
 	</select>

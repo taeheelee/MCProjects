@@ -104,7 +104,7 @@ $(document).ready(function(){
 			            <div id="tab${idx.count }">
                <div class="col-md-3">
                   <p style="text-align: center;">
-                  <img src="PetInfoImage/${pet.idx }.do" onerror="this.src='img/noImage.png'" alt=""style="width: 100%;">
+                  <img src="PetInfoImage/${pet.fileId }.do" onerror="this.src='img/noImage.png'" alt=""style="width: 100%;">
                   </p>
                   <p style="text-align: center;">
                      <input type="button" value="메인펫으로 지정" style="width: 100%" class="mainPetMk" onclick="location.href='mainPetUpdate.do?id=${sessionScope.id}&idx=${pet.idx}'"><br><br>

@@ -45,13 +45,12 @@ public class MainController {
 		if (userInfo != null) {
 			if (iMemberService.loginMember(id, pw)) {
 				HashMap<String, Object> mainPet = IPetinfoService.selectMainPet(id);
-
 				session.setAttribute("id", userInfo.getId());
 				session.setAttribute("name", userInfo.getNickname());
 				if (mainPet != null) {
 					session.setAttribute("petName", mainPet.get("name"));
 					session.setAttribute("petSex", mainPet.get("sex"));
-					session.setAttribute("petBirth", mainPet.get("birth"));
+					session.setAttribute("petBirth", mainPet.get("birthday"));
 					session.setAttribute("fileId", mainPet.get("fileId"));
 					session.setAttribute("groomingStart", mainPet.get("groomingStart"));
 					session.setAttribute("groomingPeriod", mainPet.get("groomingPeriod"));

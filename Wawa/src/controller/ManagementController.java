@@ -239,7 +239,7 @@ public class ManagementController {
 			response.put("result", false);
 		}
 		return response;
-	}
+	}//d
 	
 	@RequestMapping("chkDupl.do")
 	public 

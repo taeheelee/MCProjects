@@ -1,17 +1,15 @@
 package controller;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.ibatis.ognl.Ognl;
+import org.apache.el.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -124,9 +122,8 @@ public class ManagementController {
 		Date to = null;
 		try {
 			to = transFormat.parse(from);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 		
 		Double weight = Double.parseDouble((String) params.get("weight"));
@@ -164,9 +161,8 @@ public class ManagementController {
 		Date to = null;
 		try {
 			to = transFormat.parse(from);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 		
 		Double weight = Double.parseDouble((String) params.get("weight"));
@@ -223,18 +219,16 @@ public class ManagementController {
 		Date to = null;
 		try {
 			to = transFormat.parse(from);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 		
 		String from1 = managementService.getToday();
 		Date to1 = null;
 		try {
 			to1= transFormat.parse(from1);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
 		
 		HashMap<String, Object> response = new HashMap<>();
@@ -259,10 +253,10 @@ public class ManagementController {
 		Date to = null;
 		try {
 			to = transFormat.parse(from);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO: handle exception
 		}
+		
 		model.setDate(to);
 		HashMap<String, Object> response = new HashMap<>();
 		System.out.println(managementService.selectDate(model));

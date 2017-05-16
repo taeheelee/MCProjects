@@ -61,7 +61,7 @@ public class ManagementController {
 	}
 	
 	/* 그래프 기능 수정중.
-	 * healthcare.do와 dataupload.do 작업중입니다.*/
+	 * healthcare.do와 dataupload.do 작업중입니다*/
 	@RequestMapping("dataupload.do")
 	public ModelAndView dataupload(HttpSession session) {
 		ModelAndView mav = new ModelAndView();

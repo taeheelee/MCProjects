@@ -367,7 +367,7 @@
  
  
  
-					<!-- 그래프 구역 -->
+					<!-- 그래프 -->
                <div class="col-md-6">
                   <svg id="myGraph"></svg>
                </div>

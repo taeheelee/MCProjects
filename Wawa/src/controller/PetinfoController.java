@@ -194,10 +194,10 @@ public class PetinfoController {
 		return petAge;
 	}
 	@RequestMapping("deletePet.do")
-	public ModelAndView deletePet(String id, int idx, String resist, HttpSession session, RedirectAttributes redirectAttr){
+	public ModelAndView deletePet(String id, int idx, String petname, HttpSession session, RedirectAttributes redirectAttr){
 		ModelAndView mav = new ModelAndView();
-		//등록번호가 일치하는지
-		if(petInfoService.selectOne(idx).get("resist").equals(resist)){
+		//펫 이름이 일치하는지
+		if(petInfoService.selectOne(idx).get("name").equals(petname)){
 			//일치하면 펫 삭제
 			petInfoService.deletePetInfo(idx);
 			redirectAttr.addFlashAttribute("isDel", "펫 정보가 삭제 되었습니다.");

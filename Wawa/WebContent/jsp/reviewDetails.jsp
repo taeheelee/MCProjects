@@ -71,30 +71,30 @@
         <div class="container">
         	<div class="col-md-55">
     			<div class=""style="width: 100%; margin-bottom: 10px">
-                   <span style="font-size: medium;font-weight: bold; color: gray">[${board.category }]</span>
-                   <span style="font-size: medium;font-weight: bold;">
+                 <p>
+                <font style="font-size: medium; font-weight: bold; color: gray">[${board.category }]</font>
+                
+
+                <font style="font-size: large; font-weight: bold; color: red">
                    		<c:if test="${board.starPoint == 5 }"><td>★★★★★</td></c:if>
 	               		<c:if test="${board.starPoint == 4 }"><td>★★★★☆</td></c:if>
 	                    <c:if test="${board.starPoint == 3 }"><td>★★★☆☆</td></c:if>
 	                    <c:if test="${board.starPoint == 2 }"><td>★★☆☆☆</td></c:if>
 	                    <c:if test="${board.starPoint == 1 }"><td>★☆☆☆☆</td></c:if>
-                  </span>
+                </font>
+                </p>
+				<h4 class="sidebar-title" style="text-align: center">${board.title }</h4>
+                <h5 style="text-align: right; color: lightblack">작성자: ${board.writer }</h5> 
+                   
                 </div>
-                <h2 class="sidebar-title">${board.title }</h2>
                 <hr style="border: solid 1px; border-color: lightgray">  
-                <h5 style="text-align: right">${board.writer }</h5> 
-                <div id=boardcontents style="text-align: center">
+                <p style="text-align: right; color: gray" >${board.writeDate }</p>
+                <div id="boardcontents"> 
                 	${board.content }
                 </div>
                  <hr style="border: solid 1px; border-color: lightgray"> 
                  
-                <div style="text-align: center;">
-                <input type="button" value="뒤로가기" onClick="location.href='reviewMain.do'">
-                <c:if test="${board.writer == sessionScope.name }">
-	                <input type="button" value="수정" onclick="location.href='reviewUpdateForm.do?boardIdx=${board.boardIdx}'">
-	                <input type="button" value="삭제" onclick="location.href='reviewDelete.do?boardIdx=${board.boardIdx}'">
-                </c:if>
-                </div>
+               
                 
                 <!-- 댓글 -->
                 <h4>댓글 ${fn:length(reple)}개</h4>

@@ -78,7 +78,7 @@
                
                 <hr style="border: solid 1px; border-color: lightgray">  
                 <p style="text-align: right; color: gray" >${board.writeDate }</p>
-                <div id=boardcontents>
+                <div id="boardcontents">
                 	${board.content }
                 </div>
                 <hr style="border: solid 1px; border-color: lightgray"> 

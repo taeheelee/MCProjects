@@ -185,6 +185,7 @@ svg {
 					alert("날짜사용가능");
 					chkDupl(); // 지난날짜이므로 입력 가능 ㅇㅇ
 				} else {
+					$('#dateError').html('<font color="red">날짜입력오류</font>');
 					alert("오늘 이후의 날짜는 입력할 수 없습니다.");
 					// 이후의 날짜이므로 입력 불가 
 				}
@@ -365,8 +366,8 @@ svg {
 										class="shop_table cart">
 										<thead>
 											<tr>
-												<th>날짜</th>
-												<th>몸무게</th>
+												<th>날짜<span id="dataError"></span></th>
+												<th>몸무게<span id=""></span></th>
 												<td></td>
 											</tr>
 										</thead>

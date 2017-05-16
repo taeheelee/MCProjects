@@ -399,26 +399,24 @@ public class PetInfoService implements IPetinfoService {
 	public HashMap<String, Object> selectMainPet(String id){
 		List<HashMap<String, Object>> petList = dao.selectPetList(id);
 		HashMap<String, Object> params = new HashMap<>(); 					
-		
 		for(int i = 0; i < petList.size(); i ++){
 			if(((int)petList.get(i).get("mainPet")) == 1){
-				params.put("name" , petList.get(i).get("name"));
-				params.put("sex" , petList.get(i).get("sex"));
-				params.put("birth" , petList.get(i).get("birthday"));
-				params.put("fileId" , petList.get(i).get("fileId"));
-				params.put("groomingStart", petList.get(i).get("groomingStart"));
-	            params.put("groomingPeriod", petList.get(i).get("groomingPeriod"));
-	            break;
-			}else{
-				params.put("name" , petList.get(0).get("name"));
-				params.put("sex" , petList.get(0).get("sex"));
-				params.put("birth" , petList.get(0).get("birthday"));
-				params.put("fileId" , petList.get(0).get("fileId"));
-				params.put("groomingStart", petList.get(0).get("groomingStart"));
-	            params.put("groomingPeriod", petList.get(0).get("groomingPeriod"));
-	         }
+				return petList.get(i);
+			}
 		}
-		return params;
+//		if(!petList.isEmpty())
+//			return petList.get(0);
+//		else
+			return null;
+	}
+	
+	@Override
+	public boolean updateMainPet(HashMap<String, Object> params){
+		int result = dao.updateMainPet(params);
+		if(result > 0)
+			return true;
+		else
+			return false;
 	}
 
 

@@ -39,24 +39,40 @@ public class MainController {
 		return "login.tiles";
 	}
 
-	@RequestMapping(method=RequestMethod.POST, value="login.do")
-	public String login(HttpSession session, String id, String pw){
+	@RequestMapping(method = RequestMethod.POST, value = "login.do")
+	public ModelAndView login(HttpSession session, String id, String pw, RedirectAttributes redirectAttr) {
 		UserInfo userInfo = iMemberService.getMember(id);
-		
-		if(iMemberService.loginMember(id, pw)){
-			HashMap<String, Object> mainPet = IPetinfoService.selectMainPet(id);
-			
-			session.setAttribute("id", userInfo.getId());
-			session.setAttribute("name", userInfo.getNickname());
-			session.setAttribute("petName", mainPet.get("name"));
-			session.setAttribute("petSex", mainPet.get("sex"));	
-			session.setAttribute("petBirth", mainPet.get("birth"));	
-			session.setAttribute("fileId", mainPet.get("fileId"));
-			session.setAttribute("groomingStart", mainPet.get("groomingStart"));
-            session.setAttribute("groomingPeriod", mainPet.get("groomingPeriod"));
+		if (userInfo != null) {
+			if (iMemberService.loginMember(id, pw)) {
+				HashMap<String, Object> mainPet = IPetinfoService.selectMainPet(id);
 
+				session.setAttribute("id", userInfo.getId());
+				session.setAttribute("name", userInfo.getNickname());
+				if (mainPet != null) {
+					session.setAttribute("petName", mainPet.get("name"));
+					session.setAttribute("petSex", mainPet.get("sex"));
+					session.setAttribute("petBirth", mainPet.get("birth"));
+					session.setAttribute("fileId", mainPet.get("fileId"));
+					session.setAttribute("groomingStart", mainPet.get("groomingStart"));
+					session.setAttribute("groomingPeriod", mainPet.get("groomingPeriod"));
+				}
+				redirectAttr.addFlashAttribute("isLogin", "로그인 성공");
+
+			} else {
+				redirectAttr.addFlashAttribute("isLogin", "아이디와 비밀번호를 확인하세요");
+				RedirectView rv = new RedirectView("loginForm.do");
+				rv.setExposeModelAttributes(false);
+				return new ModelAndView(rv);
+			}
+		} else {
+			redirectAttr.addFlashAttribute("isLogin", "회원정보가 없습니다.");
+			RedirectView rv = new RedirectView("loginForm.do");
+			rv.setExposeModelAttributes(false);
+			return new ModelAndView(rv);
 		}
-		return "redirect:main.do";
+		RedirectView rv = new RedirectView("main.do");
+		rv.setExposeModelAttributes(false);
+		return new ModelAndView(rv);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "naverLogin.do")
@@ -70,24 +86,19 @@ public class MainController {
 		}
 
 		UserInfo userInfo = iMemberService.getMember(id);
-		List<HashMap<String, Object>> petList = IPetinfoService.selectPetList(id);
-		HashMap<String, Object> params = new HashMap<>();
+		HashMap<String, Object> mainPet = IPetinfoService.selectMainPet(id);
 
-		for (int i = 0; i < petList.size(); i++) {
-			params.put("name" + i, petList.get(i).get("name"));
-			params.put("sex" + i, petList.get(i).get("sex"));
-			params.put("birth" + i, petList.get(i).get("birthday"));
-			params.put("groomingStart" + i, petList.get(i).get("groomingStart"));
-	        params.put("groomingPeriod" + i, petList.get(i).get("groomingPeriod"));
-	    }
 		session.setAttribute("id", userInfo.getId());
 		session.setAttribute("name", userInfo.getNickname());
-		session.setAttribute("petName", params.get("name0"));
-		session.setAttribute("petSex", params.get("sex0"));
-		session.setAttribute("petBirth", params.get("birth0"));
-		session.setAttribute("groomingStart", params.get("groomingStart0"));
-        session.setAttribute("groomingPeriod", params.get("groomingPeriod0"));
-        return "redirect:main.do";
+		if (mainPet != null) {
+			session.setAttribute("petName", mainPet.get("name"));
+			session.setAttribute("petSex", mainPet.get("sex"));
+			session.setAttribute("petBirth", mainPet.get("birthday"));
+			session.setAttribute("fileId", mainPet.get("fileId"));
+			session.setAttribute("groomingStart", mainPet.get("groomingStart"));
+			session.setAttribute("groomingPeriod", mainPet.get("groomingPeriod"));
+		}
+		return "redirect:main.do";
 	}
 
 	@RequestMapping("logout.do")
@@ -120,13 +131,12 @@ public class MainController {
 	public ModelAndView join(String id, String password, String nickname, String sex, String phone,
 			@RequestParam(defaultValue = "0") int adminCheck, String email, RedirectAttributes redirectAttr) {
 		int result = iMemberService.join(id, password, nickname, sex, phone, adminCheck, email);
-		if (result > 0){
+		if (result > 0) {
 			redirectAttr.addFlashAttribute("isJoin", "회원가입 완료");
 			RedirectView rv = new RedirectView("loginForm.do");
 			rv.setExposeModelAttributes(false);
 			return new ModelAndView(rv);
-		}
-		else{
+		} else {
 			redirectAttr.addFlashAttribute("isJoin", "회원가입 오류");
 			RedirectView rv = new RedirectView("joinForm.do");
 			rv.setExposeModelAttributes(false);

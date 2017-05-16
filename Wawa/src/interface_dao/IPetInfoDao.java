@@ -12,4 +12,5 @@ public interface IPetInfoDao {
 	public List<HashMap<String, Object>> selectPetList(String id);
 	public List<HashMap<String, Object>> selectAll();
 	public HashMap<String, Object> selectByName(HashMap<String, Object> params);
+	public int updateMainPet(HashMap<String, Object> params);
 }

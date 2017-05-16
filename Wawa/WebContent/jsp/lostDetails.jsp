@@ -117,47 +117,62 @@
                 </c:if>
                 </div>
                 
-                <div>
-                	<h4>댓글</h4>
+                <!-- 댓글 -->
+                <h4>댓글 ${fn:length(reple)}개</h4>
+                <div style="background-color: lightgray">
 						<c:forEach items="${reple }" var="reple" varStatus="st">
-							<table style="width: 100%" border="1">
+							<table style="width: 100%">
 								<tr>
 								
-								<td align="left" width="25%">
+								<td align="left" width="75%">
 								<c:if test="${reple.groupLv > 0 }">
 									<c:forEach begin="1" end="${reple.groupLv }">
 										&nbsp;&nbsp;&nbsp;
 									</c:forEach>
-										ㄴ
+										<font color="red">ㄴ</font>
+									
 								</c:if>
+								
 								<b>${reple.nickname }</b>
+								<c:if test="${sessionScope.name == reple.nickname && reple.isDelete == 'N'}">
+									<span id="updateForm${st.index }">
+									<a href="##" onclick="update(${st.index},${reple.repleIdx })" style="color: orange">수정</a>
+									<a href="repleDelete.do?boardIdx=${board.boardIdx}
+									&boardCode=${board.boardCode}&repleIdx=${reple.repleIdx}" style="color: orange">삭제</a>
+									</span>
+									</c:if>
+									<c:if test="${sessionScope.id != null && reple.isDelete == 'N'}">
+										<a href="##" onclick="reple(${st.index},${reple.repleIdx })" style="color: orange">답글</a>
+									</c:if>
+									
+								
 								</td>
-								<td align="left" width="50%">
-									<span id="repleContent${st.index }"><!--  
+								<td align="right" width="10%">${reple.writedate }</td>
+								</tr>
+								<tr style="border-bottom: dotted 1px; border-color: gray">
+								<td>
+								<c:forEach begin="1" end="${reple.groupLv }">
+										&nbsp;&nbsp;&nbsp;
+								</c:forEach>
+									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								<span id="repleContent${st.index }"><!--  
 									--><c:if test="${reple.isDelete == 'N' }">${reple.content }</c:if><!--  
 									--><c:if test="${reple.isDelete == 'Y' }"><font color="gray">삭제된 댓글입니다</font></c:if><!--  
 								--></span>
-										<c:if test="${sessionScope.name == reple.nickname && reple.isDelete == 'N'}">
-										<span id="updateForm${st.index }">
-										<a href="##" onclick="update(${st.index},${reple.repleIdx })">수정</a>
-										<a href="repleDelete.do?boardIdx=${board.boardIdx}
-										&boardCode=${board.boardCode}&repleIdx=${reple.repleIdx}" >삭제</a>
-										</span>
-									</c:if>
-								</td>
-								<td align="right" width="10%">${reple.writedate }</td>
-								<td width="10%">
-									<c:if test="${sessionScope.id != null && reple.isDelete == 'N'}">
-										<a href="##" onclick="reple(${st.index},${reple.repleIdx })">답글달기</a>
-									</c:if>
+									
 								</td>
 								</tr>
-								<tr><td colspan="4"><span id="repleForm${st.index }"></span></td></tr>
+								<tr>
+								<td colspan="4"><span id="repleForm${st.index }"></span></td>
+								</tr>
 							</table>
 						</c:forEach>
+					</div>
+					<br>
+					<div>
 	                	<form action="repleWrite.do">
 	                		<c:if test="${sessionScope.id != null }">
-		                		<textarea style="width: 85%; height: 100px; resize: none" name="content"></textarea>
+		                		<textarea style="width: 85%; height: 100px; resize: none" name="content" ></textarea>
 		                		<input type="hidden" name="boardIdx" value="${board.boardIdx }">
 		                		<input type="hidden" name="boardCode" value="${board.boardCode }">
 		                		<input type="hidden" name="nickname" value="${sessionScope.name }">
@@ -169,6 +184,16 @@
 							</c:if>
 						</form>
                 </div>
+                <!-- 여기까지 댓글목록 -->
+                
+                <!-- 댓글쓰기 -->
+                <input type="button" value="목록"  onClick="location.href='infoMain.do'">
+                <c:if test="${board.writer == sessionScope.name }">
+                	<input type="button" value="수정" onclick="location.href='infoUpdateForm.do?boardIdx=${board.boardIdx}'">
+                	<input type="button" value="삭제" onclick="location.href='infoDelete.do?boardIdx=${board.boardIdx}'">
+                </c:if>
+                <!-- 여기까지 댓글쓰기 -->
+                
 			</div>
 		</div>
 	</div>

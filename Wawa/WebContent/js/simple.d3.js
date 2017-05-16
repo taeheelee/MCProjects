@@ -11,14 +11,21 @@ nv.addGraph(function() {
 	.showXAxis(true) // Show the x-axis
 	;
 
-	chart.xAxis // Chart x-axis settings
-	.axisLabel('Day(yymmdd)').tickFormat(d3.format(',r'));
-
+//	chart.xAxis // Chart x-axis settings
+//	.axisLabel('Day(yymmdd)').tickFormat(d3.format(',r'));
+	chart.xAxis // X축 날짜 표시
+    .showMaxMin(false)
+    .tickFormat(function(d) {
+      var dx = data[0].values[d] && data[0].values[d][0] || 0;
+      return d3.time.format('%x')(new Date(dx))
+    });
+	
 	chart.yAxis // Chart y-axis settings
 	.axisLabel('Weight(Kg)').tickFormat(d3.format('.02f'));
 
 	/* Done setting the chart up? Time to render it! */
-	var myData = sinAndCos(); // You need data...
+//	var myData = sinAndCos(); // You need data...
+	var myData = getData(); // You need data...
 
 	d3.select('#chart svg') // Select the <svg> element you want to render the
 							// chart in.
@@ -65,3 +72,50 @@ function sinAndCos() {
     }
   ];
 }
+
+function getData() {
+	var result;
+	$.ajax({
+		async : false,
+		dataType : 'json',
+		url : 'dataupload.do',
+		success : function(data) {
+			var weightList = [];
+			for (var i = 0; i < data.length; i++)
+				weightList.push({
+					key : "Pet " + (i + 1),
+					values : data[i]
+				})
+
+//			$.each(data, function(i, d) {
+//				weightList[(d.class_id) - 1]['values'].push(d)
+//			});
+			result = weightList;
+		}
+	});
+	return result;
+}
+// var result;
+// $.ajax({
+// async:false,
+// dataType:'json',
+// url:'dataupload.do',
+// success: function(data){
+//	        var wines = [];
+//	        for (var i=0; i<3; i++)
+//	          wines.push({key:"Class " + (i+1), values:[]})
+//	        
+//	        $.each(data, function(i, d){
+//	          wines[(d.class_id)-1]['values'].push(
+//	              {
+//	                x: d.Alcohol,
+//	                y: d.Color_intensity,
+//	                size: d.Hue
+//	              }
+//	            )
+//	        });
+//	        result = wines;
+//	      }
+//	    });
+//	  return result;
+//	}

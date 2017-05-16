@@ -10,39 +10,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>WAWA-healthcare</title>
 <!-- D3 -->
-<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<!-- <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script> -->
 <!-- <script type="text/javascript" src="js/healthD3.js?version=3"></script> -->
-<script type="text/javascript" src="js/d3_test.js?version=3"></script>
-<style type="text/css">
-svg {
-	width: 300px;
-	height: 500px;
-	border: 1px solid black;
-}
-.bar {
-	fill: orange;
-}
-.barNum { /*그래프값 */
-	font-size: 9pt;
-	text-anchor: middle;
-}
-.axis text { /*y축 눈금 글자 크기*/
-	font-family: sans-serif;
-	font-size: 11px
-}
-.axis path, .axis line {
-	fill: none;
-	stroke: black;
-}
-.axis_x line {
-	fill: none;
-	stroke: black;
-}
-.barName { /*그래프 레이블*/
-	font-size: 9pt;
-	text-anchor: middle;
-}
-</style>
+<!-- <script type="text/javascript" src="js/d3_test.js?version=3"></script> -->
+<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/nv.d3.js"></script>
+<script type="text/javascript" src="js/simple.d3.js"></script>
+<link href="js/nv.d3.css" rel="stylesheet">
+
 <script type="text/javascript">
 	var myPet = '';
 	var isPet = false;
@@ -149,6 +124,7 @@ svg {
 			}
 		});
 	}
+	
 	function chkDupl(){
 		var id = '${id }';
 		var day = $('#day').val();
@@ -181,8 +157,11 @@ svg {
 			dataType : 'json',
 			success : function(data) {
 				if (data.result) {
-					// 지난날짜이므로 입력 가능 ㅇㅇ
+					alert("날짜사용가능");
+					chkDupl(); // 지난날짜이므로 입력 가능 ㅇㅇ
 				} else {
+					$('#dateError').html('<font color="red">날짜입력오류</font>');
+					alert("오늘 이후의 날짜는 입력할 수 없습니다.");
 					// 이후의 날짜이므로 입력 불가 
 				}
 			},
@@ -263,7 +242,7 @@ svg {
 			var flag1 = chkDateFmt($('#day').val());
 			var flag2 = chkNumFmt($('#wt').val());
 			if (flag1 == true && flag2 == true) {
-				chkDupl();
+				chkDate();
 			}
 		});
 		$('#name').change(function() {
@@ -293,7 +272,8 @@ svg {
 		// 	for(var pet in weightList) {
 		// 		console.log(pet);
 		// 	}
-		draw(data);
+// 		draw(data);
+		nv.addGraph();
 	});
 </script>
 </head>
@@ -309,13 +289,13 @@ svg {
 			</div>
 		</div>
 	</div>
-
+ 
 	<div class="single-product-area">
-
+ 
 		<div class="container">
 			<div class="row">
 				<div class="col-md-3">
-
+ 
 					<form method="post" action="#">
 						<table cellspacing="0" class="shop_table cart" id="lTable">
 							<thead>
@@ -337,11 +317,11 @@ svg {
 							</tbody>
 						</table>
 					</form>
-
-
+ 
+ 
 				</div>
 				<!-- 여기여기여기부터 -->
-
+ 
 				<div class="col-md-9">
 					<div class="product-content-right">
 						<h2 class="sidebar-title">체중 관리</h2>
@@ -351,7 +331,7 @@ svg {
 						</div>
 					</div>
 				</div>
-
+ 
 				<div class="col-md-9">
 					<div class="col-md-6">
 						<div class="product-content-right">
@@ -362,8 +342,8 @@ svg {
 										class="shop_table cart">
 										<thead>
 											<tr>
-												<th>날짜</th>
-												<th>몸무게</th>
+												<th>날짜<span id="dataError"></span></th>
+												<th>몸무게<span id=""></span></th>
 												<td></td>
 											</tr>
 										</thead>
@@ -376,23 +356,23 @@ svg {
 												<td><input type="button" value="추가" class="addBtn"
 													name="addBtn" id="addBtn" style="padding: 3px 3px"></td>
 											</tr>
-
+ 
 										</tbody>
 									</table>
 								</form>
-
+ 
 							</div>
 						</div>
 					</div>
-
-
-
-					<!-- 그래프 구역 -->
-					<div class="col-md-6">
-						<svg id="myGraph"></svg>
-					</div>
+ 
+ 
+ 
+					<!-- 그래프 -->
+               <div class="col-md-6">
+                  <svg id="myGraph"></svg>
+               </div>
 				</div>
-
+ 
 				<div class="col-md-9">
 					<div class="product-content-right">
 						<h2 class="sidebar-title">
@@ -414,17 +394,17 @@ svg {
 						<p>보통 사료 패키지에는 체중에 따른 1일 권장 급여량과 100g당 칼로리가 표시되어있지만 대략적인수치이며,
 							같은 성분이라고 하더라도 애견의 활동량과 체질 등에 따라 급여 칼로리가 달라질 수 있다.</p>
 						<p>하루 필요열량을 급여 할 때, 간식칼로리도 함께 생각해야합니다. 1일 총칼로리 = 밥2끼 + 간식</p>
-
+ 
 						<div class="woocommerce">
 							<form method="post" action="#"></form>
 						</div>
 					</div>
 				</div>
-
+ 
 			</div>
 		</div>
 	</div>
 	<!-- 내용 -->
-
+ 
 </body>
 </html>

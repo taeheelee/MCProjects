@@ -45,6 +45,7 @@ public class MainController {
 		if (userInfo != null) {
 			if (iMemberService.loginMember(id, pw)) {
 				HashMap<String, Object> mainPet = IPetinfoService.selectMainPet(id);
+				session.setAttribute("idx", userInfo.getIdx());
 				session.setAttribute("id", userInfo.getId());
 				session.setAttribute("name", userInfo.getNickname());
 				if (mainPet != null) {
@@ -86,7 +87,7 @@ public class MainController {
 
 		UserInfo userInfo = iMemberService.getMember(id);
 		HashMap<String, Object> mainPet = IPetinfoService.selectMainPet(id);
-
+		session.setAttribute("idx", userInfo.getIdx());
 		session.setAttribute("id", userInfo.getId());
 		session.setAttribute("name", userInfo.getNickname());
 		if (mainPet != null) {

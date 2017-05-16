@@ -135,3 +135,12 @@ ALTER TABLE  `management` DROP FOREIGN KEY  `management_ibfk_1` ;
 ALTER TABLE  `medicalmanage` ADD FOREIGN KEY (  `idx` ) REFERENCES  `wawa_db`.`petinfo` (
 `idx`
 ) ON DELETE CASCADE ON UPDATE CASCADE;
+
+#뽐내기게시판 좋아요를 게시글당 한번만 누를수 있게 하기 위한 테이블
+create table likeCountCheck(
+idx int primary key auto_increment,
+userIdx int,
+boardIdx int,
+foreign key(userIdx) references userinfo(idx) ON DELETE CASCADE ON UPDATE CASCADE,
+foreign key(boardIdx) references board(boardIdx) ON DELETE CASCADE ON UPDATE CASCADE
+);

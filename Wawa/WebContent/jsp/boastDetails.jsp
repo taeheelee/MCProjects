@@ -69,7 +69,11 @@
 <!--         <div class="zigzag-bottom"></div> -->
         <div class="container">
         	<div class="col-md-55">
-        		<h2 class="sidebar-title">${board.title }</h2>
+	        	<p>
+	        		<font style="font-size: medium; font-weight: bold; color: gray">[뽐내기]</font>
+	        	</p>
+        		<h2 class="sidebar-title" style="text-align: center;">${board.title }</h2>
+        		<h5 align="right">작성자: ${board.writer }</h5> 
         		
         		<table class="shop_table cart">
 	                <tbody>
@@ -91,22 +95,14 @@
 							<td style="background-color: #f5f5f5">나이</td>
 							<td id="age">${board.age }</td>
 						</tr>
+						<tr class="cart_item">
+							<td>내용</td>
+							<td colspan="3">${board.content }</td>
+						</tr>
 					</tbody>
 		
 				</table>
         		
-<!--                	df -->
-                <h4 style="color: gray; text-align: center;">${board.title }</h4>
-                <hr style="border: solid 1px; border-color: lightgray">
-                <h5 align="right">${board.writer }</h5>  
-                <div id=boardcontents style="text-align: center">
-                	${board.content }
-                
-                	
-                </div>
-<!--                 d -->
-
-                <hr style="border: solid 1px; border-color: lightgray"> 
 
                 
                 <!-- 댓글 -->

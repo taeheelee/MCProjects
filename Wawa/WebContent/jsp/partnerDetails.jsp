@@ -69,12 +69,16 @@
 <!--         <div class="zigzag-bottom"></div> -->
         <div class="container">
         	<div class="col-md-55">
-        		<h2 class="sidebar-title">${board.title }</h2>
+        		<p>
+	        		<font style="font-size: medium; font-weight: bold; color: gray">[${board.category }]</font>
+	        	</p>
+	        	<h2 class="sidebar-title" style="text-align: center;">${board.title }</h2>
+        		<h5 align="right">작성자: ${board.writer }</h5> 
         		
         		<table class="shop_table cart">
 	                <tbody>
 	                	<tr class="cart_item">
-	                		<td rowspan="5" style="width: 30%"><img src="imageShow/${board.fileId}.do" onerror="this.src='img/no_image.jpg'" alt=""></td>
+	                		<td rowspan="3" style="width: 30%"><img src="imageShow/${board.fileId}.do" onerror="this.src='img/no_image.jpg'" alt=""></td>
 	                        <td style="background-color: #f5f5f5">애견이름</td>
 							<td id="petname">${board.name }</td>
 							<td style="background-color: #f5f5f5">품종/성별</td>
@@ -92,17 +96,17 @@
 							<td style="background-color: #f5f5f5">e-mail</td>
 							<td id="email">${board.email }</td>
 						</tr>
+						<tr>
+							<td colspan="5" style="background-color: #f5f5f5">내용</td>
+						</tr>
+						<tr>
+							<td colspan="5">${board.content }</td>
+						</tr>
 					</tbody>
 				</table>
         		
                	
-                <h4 style="color: gray; text-align: center;">${board.title }</h4>
-                <hr style="border: solid 1px; border-color: lightgray">
-                <h5 align="right">${board.writer }</h5> 
-                <div id=boardcontents style="text-align: center">
-                	${board.content }
-                </div>
-                <hr style="border: solid 1px; border-color: lightgray"> 
+                
                 
                 <!-- 댓글 -->
                 <h4>댓글 ${fn:length(reple)}개</h4>

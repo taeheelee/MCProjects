@@ -221,11 +221,11 @@
                       	<h2 class="sidebar-title">등록된 마이펫</h2>
                    <a href="myPetInfo.do?id=${sessionScope.id}" class="wid-view-more">나의 펫 보러가기</a>
                         
-                    <table style="width: 100%" border="1" >
+                    <table style="width: 100%">
 				<thead>
 					<tr>
 						<c:forEach var="pet" items="${petList }" varStatus="idx">
-							<th width="20%" style="text-align: center;">${pet.name }</th>
+							<th width="20%" style="text-align: center;">${pet.name}</th>
 						</c:forEach>
                     </tr>
                 </thead>
@@ -233,7 +233,7 @@
                 
                     <tr>
                     	<c:forEach var="pet" items="${petList }" varStatus="idx">
-	                   		<td style="text-align: center;"><img src="PetInfoImage/${pet.idx }.do" onerror="this.src='img/noImage.png'" alt=""></td>
+	                   		<td style="text-align: center;"><img src="PetInfoImage/${pet.idx }.do" onerror="this.src='img/noImage.png'" alt="" width="200" height="150"></td>
                     	</c:forEach>
                     </tr>
 				</tbody>

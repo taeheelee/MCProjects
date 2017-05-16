@@ -17,22 +17,10 @@ $(document).ready(function(){
 	if('${isDel}' != '')
 		alert('${isDel}');
 	$('mainPetMk').click(function(){
-		$.ajax({
-			type : 'get',
-			url : 'mainPetUpdate.do',
-			dataType : 'json',
-			data: "mainPet=1",
-			success : function(data){
-				
-			},
-			error : function(xhrReq, status, error){
-//					alert(data);
-				//error 원하는응답이 나오지않으면
-				
-			}
-		});
+		alert('메인펫으로 지정합니다.');
+		var str = "id=${sessionScope.id}&idx="+$('.petIdx').val();
+		location.href="mainPetUpdate.do?"+str
 	});
-	
 });
 
 	function getPetAge(petBirth, petIdx){
@@ -121,6 +109,7 @@ $(document).ready(function(){
                   <img src="PetInfoImage/${pet.idx }.do" onerror="this.src='img/noImage.png'" alt=""style="width: 100%;">
                   </p>
                   <p style="text-align: center;">
+                  	<input type="hidden" value="${pet.idx }" class="petIdx">
                      <input type="button" value="메인펫으로 지정" style="width: 100%" id="mainPetMk"><br><br>
                   </p>
                   

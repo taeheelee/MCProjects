@@ -169,9 +169,12 @@
 						success : function(data) {
 							if (data.dDay != null) {
 								var dDay = data.dDay;
+								alert(dDay);
 								if(flag == 0){
+									alert('수정');
 									updateShotday(ch, date, vGubun, nGubun, vaccineCode, nextDate, dDay);
 								}else {
+									alert('업로드');
 									uploadShotday(ch, date, vGubun, nGubun, vaccineCode, nextDate, dDay);
 								}						
 							} else {
@@ -222,6 +225,7 @@
 					$('#' + ch + 'date').val('');
 					$('#num' + vGubun).val('');
 				} else {
+					alert('실패');
 				}
 			},
 			error : function(data) {

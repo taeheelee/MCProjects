@@ -196,6 +196,10 @@ public class MedicalcareController {
 		medical.put(Constant.MedicalManage.DDAY, params.get("dDay"));			
 		medical.put(Constant.MedicalManage.NEXTDAY, params.get("nextShotday"));
 		
+		System.out.println("씨앙!!");
+		System.out.println("인덱스:"+idx);
+		System.out.println("백신코드:"+vaccineCode);
+		
 		HashMap<String, Object> response = new HashMap<>();
 		if(medicalService.insertRealShotDate(medical)){
 			response.put("result", true);
@@ -211,8 +215,13 @@ public class MedicalcareController {
 			@RequestParam HashMap<String, Object> params){
 		HashMap<String, Object> medical = new HashMap<>();
 
+		
 		int idx = (int)petinfoService.selectByname(params).get("idx");
 		int vaccineCode = Integer.parseInt((String) params.get("vaccineCode"));
+		System.out.println("씨앙!!");
+		System.out.println("인덱스:"+idx);
+		System.out.println("백신코드:"+vaccineCode);
+		
 
 		medical.put(Constant.MedicalManage.VACCINECODE, vaccineCode);
 		medical.put(Constant.MedicalManage.IDX, idx);
@@ -235,6 +244,7 @@ public class MedicalcareController {
 	@ResponseBody HashMap<String, Object> chkDupl(HttpServletResponse resp,
 			@RequestParam HashMap<String, Object> params){
 		HashMap<String, Object> tmp = new HashMap<>();
+		int idx = (int)petinfoService.selectByname(params).get("idx");
 		String vaccineCode = (String) params.get("vaccineCode");
 		tmp.put("vaccineCode", vaccineCode);
 

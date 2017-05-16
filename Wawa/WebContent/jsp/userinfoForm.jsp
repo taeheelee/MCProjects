@@ -114,6 +114,10 @@
 					
 					}
 				});
+				
+				$('#name').change(function() {
+					$('#petImg').attr('src', 'PetInfoImage/' + $('#name').val() + '.do');
+				});
 			});
 				
 	 	
@@ -222,22 +226,24 @@
                    <a href="myPetInfo.do?id=${sessionScope.id}" class="wid-view-more">나의 펫 보러가기</a>
                         
                     <table style="width: 100%">
-				<thead>
-					<tr>
-						<c:forEach var="pet" items="${petList }" varStatus="idx">
-							<th width="20%" style="text-align: center;">${pet.name}</th>
-						</c:forEach>
-                    </tr>
-                </thead>
-                <tbody>
-                
-                    <tr>
-                    	<c:forEach var="pet" items="${petList }" varStatus="idx">
-	                   		<td style="text-align: center;"><img src="PetInfoImage/${pet.idx }.do" onerror="this.src='img/noImage.png'" alt="" width="200" height="150"></td>
-                    	</c:forEach>
-                    </tr>
-				</tbody>
-			</table>    
+                    	<tr>
+                    		<td width="20%" style="text-align: center;"><h3>마이펫 리스트</h3></td>
+                    	</tr>
+						<tr>
+							<td width="20%" style="text-align: center;">
+								<select class="country_to_state country_select" name="name" id="name" style="font-size:14pt">
+								<option value="defaultValue" style="font-size:14pt">선택하세요</option>
+									<c:forEach items="${petList }" var="petinfo" varStatus="idx">
+										<option value="${petinfo.fileId }"  style="font-size:14pt">${petinfo.name }</option>
+									</c:forEach>
+								</select>
+							</td>
+	                    </tr>
+	                    <tr>
+		                   	<td style="text-align: center;"><img onerror="this.src='img/noImage.png'" alt="" width="200" height="150" id="petImg"></td>
+	                    	
+	                    </tr>
+					</table>    
                         <br><br><br><br><br>
                         
                   

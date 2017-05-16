@@ -16,10 +16,8 @@
 $(document).ready(function(){
 	if('${isDel}' != '')
 		alert('${isDel}');
-	$('mainPetMk').click(function(){
+	$('.mainPetMk').click(function(){
 		alert('메인펫으로 지정합니다.');
-		var str = "id=${sessionScope.id}&idx="+$('.petIdx').val();
-		location.href="mainPetUpdate.do?"+str
 	});
 });
 
@@ -109,8 +107,7 @@ $(document).ready(function(){
                   <img src="PetInfoImage/${pet.idx }.do" onerror="this.src='img/noImage.png'" alt=""style="width: 100%;">
                   </p>
                   <p style="text-align: center;">
-                  	<input type="hidden" value="${pet.idx }" class="petIdx">
-                     <input type="button" value="메인펫으로 지정" style="width: 100%" id="mainPetMk"><br><br>
+                     <input type="button" value="메인펫으로 지정" style="width: 100%" class="mainPetMk" onclick="location.href='mainPetUpdate.do?id=${sessionScope.id}&idx=${pet.idx}'"><br><br>
                   </p>
                   
                </div>

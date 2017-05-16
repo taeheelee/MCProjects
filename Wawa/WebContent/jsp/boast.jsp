@@ -66,7 +66,7 @@
 						<input type="text" placeholder="펫이름검색" name="keyword" id="keyword"> 
 						<input type="submit" value="검색">
 						<c:if test="${sessionScope.name != null}">
-						<input type="button" value="뽐내기 후보 등록" onclick="location.href='boastWriteForm.do'">
+						<input type="button" value="뽐내기 후보 등록" onclick="location.href='boastWriteForm.do'" style="height: 42px">
 						</c:if>
 					</form>
 				

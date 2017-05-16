@@ -56,7 +56,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="product-bit-title text-left">
-                        <h2>애견정보/상식</h2>
+                        <h2>자유게시판</h2>
                     </div>
                 </div>
             </div>
@@ -69,25 +69,16 @@
 <!--         <div class="zigzag-bottom"></div> -->
         <div class="container">
         	<div class="col-md-55">
-    			<div class=""style="width: 100%; margin-bottom: 10px">
-                   <span style="font-size: medium;font-weight: bold; color: gray">[${board.category }]</span>
-                </div>
+				<p>
+                <font style="font-size: medium;font-weight: bold; color: gray">[${board.category }]</font>
+                </p>
+				<h4 class="sidebar-title" style="text-align: center">${board.title }</h4>
+                <h5 style="text-align: right; color: lightblack">작성자: ${board.writer }</h5> 
                 
-<!--                 sd -->
-                <h4 style="color: gray; text-align: center;" value="${result.title}"></h4>
-                	<hr style="border: solid 1px; border-color: lightgray">  
-                <div id=boardcontents style="text-align: center">
-                	<h1 value="${result.content}"></h1>
-              
-                	
-                </div>
+                <hr style="border: solid 1px; border-color: lightgray"> 
                 
-<!--                 d -->
-                
-                <h2 class="sidebar-title">${board.title }</h2>
-                <hr style="border: solid 1px; border-color: lightgray">  
-                <h5 style="text-align: right">${board.writer }</h5> 
-                <div id=boardcontents style="text-align: center">
+                <p style="text-align: right; color: gray" >${board.writeDate }</p>
+                <div id="boardcontents">
                 	${board.content }
                 </div>
                 <hr style="border: solid 1px; border-color: lightgray"> 

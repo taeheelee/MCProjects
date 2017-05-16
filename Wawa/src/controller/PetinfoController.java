@@ -114,14 +114,16 @@ public class PetinfoController {
 	@RequestMapping("updatePetForm.do")
 	   public ModelAndView updatePetForm(int idx){
 	      ModelAndView mav = new ModelAndView();
-	      //일단 펫리스트를 가져와
-	      System.out.println("updateForm에서의 idx : "+ idx);
+	      //일단 펫리스트를 가져와      
 	      HashMap<String, Object> petInfo = petInfoService.selectOne(idx);
 	      mav.addAllObjects(petInfo);
-	      System.out.println("petInfo : "+petInfo);
 	      
 	      List<HashMap<String, Object>> kindList = dogKindService.selectAllDogKind();
 	      mav.addObject("kindList", kindList);
+	      
+	      HashMap<String, Object> fileTemp = petInfoService.selectFile((int)petInfo.get("fileId"));
+	      mav.addAllObjects(fileTemp);
+	      
 	      mav.setViewName("updatePetForm.tiles");
 	      
 	      return mav;

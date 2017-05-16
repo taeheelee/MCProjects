@@ -40,23 +40,35 @@ public class MainController {
 	}
 
 	@RequestMapping(method=RequestMethod.POST, value="login.do")
-	public String login(HttpSession session, String id, String pw){
+	public ModelAndView login(HttpSession session, String id, String pw, RedirectAttributes redirectAttr){
 		UserInfo userInfo = iMemberService.getMember(id);
-		
-		if(iMemberService.loginMember(id, pw)){
-			HashMap<String, Object> mainPet = IPetinfoService.selectMainPet(id);
-			
-			session.setAttribute("id", userInfo.getId());
-			session.setAttribute("name", userInfo.getNickname());
-			session.setAttribute("petName", mainPet.get("name"));
-			session.setAttribute("petSex", mainPet.get("sex"));	
-			session.setAttribute("petBirth", mainPet.get("birth"));	
-			session.setAttribute("fileId", mainPet.get("fileId"));
-			session.setAttribute("groomingStart", mainPet.get("groomingStart"));
-            session.setAttribute("groomingPeriod", mainPet.get("groomingPeriod"));
+		if(userInfo != null){
+			if(iMemberService.loginMember(id, pw)){
+				HashMap<String, Object> mainPet = IPetinfoService.selectMainPet(id);
+				
+				session.setAttribute("id", userInfo.getId());
+				session.setAttribute("name", userInfo.getNickname());
+				session.setAttribute("petName", mainPet.get("name"));
+				session.setAttribute("petSex", mainPet.get("sex"));	
+				session.setAttribute("petBirth", mainPet.get("birth"));	
+				session.setAttribute("fileId", mainPet.get("fileId"));
+				session.setAttribute("groomingStart", mainPet.get("groomingStart"));
+	            session.setAttribute("groomingPeriod", mainPet.get("groomingPeriod"));
+	            redirectAttr.addFlashAttribute("isLogin", "로그인 성공");
+	            
 
+			}else {
+				redirectAttr.addFlashAttribute("isLogin", "아이디와 비밀번호를 확인하세요");
+			}
+		}else {
+			redirectAttr.addFlashAttribute("isLogin", "회원정보가 없습니다.");
+			RedirectView rv = new RedirectView("loginForm.do");
+			rv.setExposeModelAttributes(false);
+			return new ModelAndView(rv);
 		}
-		return "redirect:main.do";
+		RedirectView rv = new RedirectView("main.do");
+		rv.setExposeModelAttributes(false);
+		return new ModelAndView(rv);
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "naverLogin.do")

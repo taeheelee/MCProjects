@@ -28,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import interface_service.IDogKindService;
 import interface_service.IMedicalService;
@@ -99,13 +101,79 @@ public class PetinfoController {
 			if(session.getAttribute("petName") == null){
 				session.setAttribute("petName", name);
 				session.setAttribute("petSex", sex);	
-				session.setAttribute("petBirth", fromBirth);	
+				session.setAttribute("petBirth", fromBirth);
+				session.setAttribute("groomingStart", groomingStart);	
+				session.setAttribute("groomingPeriod", groomingPeriod);
 			}
 			return "redirect:main.do";			
 		}else {
 			return "redirect:addPetForm.do";
 		}
 	}
+	
+	@RequestMapping("updatePetForm.do")
+	   public ModelAndView updatePetForm(int idx){
+	      ModelAndView mav = new ModelAndView();
+	      //일단 펫리스트를 가져와
+	      System.out.println("updateForm에서의 idx : "+ idx);
+	      HashMap<String, Object> petInfo = petInfoService.selectOne(idx);
+	      mav.addAllObjects(petInfo);
+	      System.out.println("petInfo : "+petInfo);
+	      
+	      List<HashMap<String, Object>> kindList = dogKindService.selectAllDogKind();
+	      mav.addObject("kindList", kindList);
+	      mav.setViewName("updatePetForm.tiles");
+	      
+	      return mav;
+	   }
+	   
+		
+	   @RequestMapping("updatePet.do")
+	   public String updatePet(int idx, String resist, String id, String name, String kind, 
+	         String birthday, String neutral, double weight, String sex, 
+	         String groomingStart, String groomingPeriod, HttpSession session,
+	         @RequestParam(defaultValue="0")int mainPet ,@RequestParam("ufile") MultipartFile ufile){
+	      System.out.println("여기에서 idx받아오는지 확인해야 함 : "+ idx);
+	      String fromBirth = birthday;
+	      SimpleDateFormat transBirthFormat = new SimpleDateFormat("yyyy-MM-dd");
+	      Date tobirth = null;
+	      try {
+	         tobirth = transBirthFormat.parse(fromBirth);
+	      } catch (ParseException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
+	      
+	      String fromGs = groomingStart;
+	      SimpleDateFormat transGsFormat = new SimpleDateFormat("yyyy-MM-dd");
+	      Date toGs = null;
+	      try {
+	         toGs = transGsFormat.parse(fromGs);
+	      } catch (ParseException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }
+	      
+//	      int idxInt = Integer.parseInt(idx);
+	      
+	      boolean result = petInfoService.updatePetInfo(idx, resist, id, name, kind, 
+	            tobirth, neutral, weight, sex, toGs, groomingPeriod, mainPet, ufile);
+	      if(result){
+	         //만약 세션이 비어있다면 addPet하고 세션에 등록
+	         if(session.getAttribute("petName") == null){
+	            session.setAttribute("petName", name);
+	            session.setAttribute("petSex", sex);   
+	            session.setAttribute("petBirth", fromBirth);  
+	            session.setAttribute("groomingStart", groomingStart);	
+				session.setAttribute("groomingPeriod", groomingPeriod);
+	         }
+	         return "redirect:myPetInfo.do?id="+id;         
+	      }else {
+	         return "redirect:updatePetForm.do";
+	      }
+	   }
+	
+	
 	
 	@RequestMapping("selectPet.do")
 	public
@@ -126,18 +194,31 @@ public class PetinfoController {
 		return petAge;
 	}
 	@RequestMapping("deletePet.do")
-	public String deletePet(String id, int idx, HttpSession session){
-		petInfoService.deletePetInfo(idx);
-		
-		//일단 펫리스트가 있나없나 확인
+	public ModelAndView deletePet(String id, int idx, String resist, HttpSession session, RedirectAttributes redirectAttr){
+		ModelAndView mav = new ModelAndView();
+		//등록번호가 일치하는지
+		if(petInfoService.selectOne(idx).get("resist").equals(resist)){
+			//일치하면 펫 삭제
+			petInfoService.deletePetInfo(idx);
+			redirectAttr.addFlashAttribute("isDel", "펫 정보가 삭제 되었습니다.");
+			
+		}else{
+			redirectAttr.addFlashAttribute("isDel", "펫 정보 삭제 오류");
+		}
+		//펫 삭제 후 일단 펫리스트가 있나없나 확인
 		List<HashMap<String, Object>> petList = petInfoService.selectPetList(id);
 		if(petList.isEmpty()){
 			//펫리스트가 비어있다면 펫 관련 세션 삭제
 			session.removeAttribute("petName");
 			session.removeAttribute("petSex");	
-			session.removeAttribute("petBirth");	
+			session.removeAttribute("petBirth");
+			session.removeAttribute("groomingStart");	
+			session.removeAttribute("groomingPeriod");	
 		}
-		return "redirect:main.do";
+		//삭제 후 다시 마이펫인포로 리다이렉트
+		RedirectView rv = new RedirectView("myPetInfo.do?id=" + id);
+		rv.setExposeModelAttributes(true);
+		return new ModelAndView(rv);
 	}
 	
 	@RequestMapping(value = "/PetInfoImage/{fileId}.do", method = {RequestMethod.GET})
@@ -165,7 +246,7 @@ public class PetinfoController {
 	
 	@RequestMapping("mainPetUpdate.do")
 	public String mainPetUpdate(){
-		
+			
 		return "redirect:myPetInfo.do?";
 	}
 	

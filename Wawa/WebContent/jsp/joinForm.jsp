@@ -15,6 +15,8 @@
     
     <script type="text/javascript">
     	$(document).ready(function(){
+    		if('${isJoin}' != '')
+    			alert('${isJoin}');
     		//정규식
     		var regId =  /^.*(?=^.{4,12}$)(?=.*[a-z]).*$/;
     		var regPassword = /^.*(?=^.{6,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[*!@#$%^&+=]).*$/;
@@ -91,24 +93,32 @@
   				if(!regPassword.test($('#password').val())){
   					$('#pwError').html('<font color="red">비밀번호 오류 (알파벳 대소문자, 숫자, 특수문자를 혼합하여 6~20자 이내)</font>');
   					statusOfPassword = false;
+  					chk();
+  					
   				}else {
+  	  				chk();
   					$('#pwError').html('<font color="green">사용가능</font>');
   					statusOfPassword = true;
   				}
   			});
   			
   			$('#confirmpassword').keyup(function(){
-  				if($('#password').val() != $('#confirmpassword').val()){
-  					//alert('비밀번호가 일치하지 않습니다.');
-  					statusOfConfirmPassword = false;
-  					$('#cpwError').html('<font color="red">불일치</font>');
-  				}else {
-  					$('#cpwError').html('<font color="green">일치</font>');
-  					statusOfConfirmPassword = true;
-  				}
+  				chk();
   			});
-    		
-  			$('#phoneNum').keyup(function(){
+  			
+  			//비밀번호 확인 함수
+  			var chk = function() {
+					if($('#password').val() != $('#confirmpassword').val()){
+	  					//alert('비밀번호가 일치하지 않습니다.');
+	  					statusOfConfirmPassword = false;
+	  					$('#cpwError').html('<font color="red">불일치</font>');
+	  				}else {
+	  					$('#cpwError').html('<font color="green">일치</font>');
+	  					statusOfConfirmPassword = true;
+	  				}
+			};
+  			
+  			$('#phoneNum').blur(function(){
   				if(!regPhoneNum.test($('#phoneNum').val())){
   					//alert('전화번호가 유효하지 않습니다.');	
   					$('#pnumError').html('<font color="red">전화번호 오류 (ex) 000-0000-0000)</font>');
@@ -117,7 +127,7 @@
   				}
   			});
   			
-  			$('#email').keyup(function(){
+  			$('#email').blur(function(){
   				if(!regEmail.test($('#email').val())){
   					//alert('이메일 주소가 유효하지 않습니다.');	
   					$('#emailError').html('<font color="red">이메일 오류 (ex) abc@naver.com)</font>');
@@ -146,20 +156,8 @@
   				}else if (statusOfSex == false){
   					alert('성별을 선택해주세요');
   				}
-  				
-  				
-  				
 			})
-			
-  			
-  			/* $('.input-text').keyup(function(){
-  				if($('#password').val() != $('#confirmpassword').val()){
-  					 $("#delete").attr("disabled",true);
-  				}else {
-  					$('#delete').attr("disabled",false);
-  				}
-  			}); */
-  			
+
     	});
     </script>
     
@@ -190,50 +188,36 @@
      
                     <div class="product-content-right">
                         <div class="woocommerce" >
-                         
-                     
-
-
                                 <div id="customer_details" class="col2-set" >
                                     <div class="col-3">
                                     <h2 class="sidebar-title">회원 정보 입력</h2>
                                         <div class="woocommerce-billing-fields">
-                                            
 			                            <form  action="join.do" class="checkout" method="post" name="checkout">
-                                            
-                                            
                                                 <label class="" for="billing_first_name">ID<abbr title="required" class="required" autofocus>*</abbr>
                                                 </label>
                                                 <input type="text" value="" placeholder="알파벳 소문자, 숫자를 혼합하여 4~12자리" 
                                                 id="id" name="id" class="input-text ">
                                                 <br>
                                                 <span id="idError"></span>
-                                           
                                             <br>
                                                <label class="" for="billing_first_name">닉네임<abbr title="required" class="required">*</abbr>
                                                 </label>
                                                 <input type="text" id="nick" name="nickname" class="input-text ">
                                                 <br>
                                                 <span id="nickError"></span>
-                                          
                                             <br>
-
                                          	    <label class="" for="billing_first_name">비밀번호<abbr title="required" class="required">* <font color="red" size="1"> 사용가능한 특수문자 : *!@#$%^&+=</font></abbr>
                                                 </label>
                                                 <input type="text" value="" placeholder="알파벳 소문자,숫자를 혼합하여 특수문자가능 6~20자" 
                                                 id="password" name="password" class="input-text ">
                                                 <br>
                                                 <span id="pwError"></span>
-                                           
                                             <br>
-                                          
                                                 <label class="" for="billing_first_name">비밀번호 확인<abbr title="required" class="required">*</abbr>
                                                 </label>
                                                 <input type="text" value="" placeholder="" id="confirmpassword" name="confirmpassword" class="input-text ">
                                             	<span id="cpwError"></span>
-                                         
                                             <br>
-                                            
                                                 <label class="" for="billing_first_name">성별 <abbr title="required" class="required">*</abbr></label>
 	                                            <div id="payment">
 													<ul class="payment_methods methods">
@@ -244,51 +228,30 @@
 														</li>
 													</ul>
 												</div>
-                                            
                                             <br>
-                                            
 											    <label class="" for="billing_state">연락처</label>
                                                 <input type="text" id="phoneNum" name="phone" placeholder="000-0000-0000" value="" class="input-text ">
                                                 <br>
                                                 <span id="pnumError"></span>
-                                            
                                             <br>
                                             	<label class="" for="billing_state">이메일</label>
                                                 <input type="text" id="email" name="email" placeholder="abc@naver.com" value="" class="input-text ">
                                                 <br>
                                                 <span id="emailError"></span>
-                                            
                                             <br>
-                                           
-
 <!--<div class="clear"></div> -->
-
-
 											<div class="form-row place-order" style="float: right">
 												<input type="button" data-value="Place order" value="JOIN US" id="join" class="button alt">
 											</div>
-
 										</form>
-
-
 										</div>
                                     </div>
-
-                                   
-
                                 </div>
-
-                                   
                                 </div>
-                            </form>
-
                         </div>                       
                     </div>                    
                 </div>
             </div>
         </div>
-    </div>
-
-  
   </body>
 </html>

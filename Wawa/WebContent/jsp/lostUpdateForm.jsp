@@ -44,6 +44,49 @@ pageEncoding="UTF-8"%>
 		});
 	</script>
 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<link rel="stylesheet" href="summernote/dist/summernote.css">
+<script src="summernote/dist/summernote.js"></script>
+<script src="summernote/dist/summernote.min.js"></script>
+<script>
+	function getResult(){
+		
+		var param = $("#datePicker").val();
+		
+		if(param == ""){
+			alert("날짜를 선택해 주세요.");
+			return;
+		}
+
+	}
+	/* 달력 설정 */
+	$.datepicker.setDefaults({
+		dateFormat: 'yy-mm-dd',
+		prevText: '이전 달',
+		nextText: '다음 달',
+		monthNames: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+		monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+		dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+		dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		showMonthAfterYear: true,
+		showButtonPanel: true,
+		changeMonth: true,
+		changeYear: true,
+		autoSize: true,
+//         showOn: "button",
+//         buttonImage: "/images/team/calendar.png",
+//         buttonImageOnly: true,
+//         buttonText: "날짜 선택"
+});
+	$( function() {
+		$( ".datepicker" ).datepicker();
+	} );
+</script>
 </head>
 <body>
 
@@ -171,7 +214,7 @@ pageEncoding="UTF-8"%>
 				<br>   
 
 				<label class="" for="billing_state">  잃어버린 날짜/ 발견된 날짜</label>
-				<input type="text" id="lostdate" name="lostdate" placeholder="0000-00-00" value="${board.lostDate }" class="input-text ">
+				<input type="text" id="lostdate" name="lostdate" placeholder="0000-00-00" value="${board.lostDate }" class="datepicker">
 
 				<br>   <br>
 				<label class="" for="billing_state">  잃어버린 장소/ 발견된 장소</label>

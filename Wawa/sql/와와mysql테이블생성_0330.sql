@@ -55,8 +55,6 @@ realShotDate date,
 foreign key(idx) references petinfo(idx),
 foreign key(vaccineCode) references vaccineinfo(vaccineCode)
 );
-alter table medicalManage add nextday Date;
-alter table medicalManage add dday varchar(20);
 
 # medical 테이블 수정하세요
 alter table medicalManage add nextday date;
@@ -123,3 +121,17 @@ originFileName varchar(50),
 size int,
 uri varchar(200)
 );
+
+#medicalmanage테이블에서 외래키 설정 변경
+
+ALTER TABLE  `medicalmanage` DROP FOREIGN KEY  `medicalmanage_ibfk_1` ;
+ALTER TABLE  `medicalmanage` ADD FOREIGN KEY (  `idx` ) REFERENCES  `wawa_db`.`petinfo` (
+`idx`
+) ON DELETE CASCADE ON UPDATE CASCADE;
+
+#management 테이블에서 외래키 설정 변경
+
+ALTER TABLE  `management` DROP FOREIGN KEY  `management_ibfk_1` ;
+ALTER TABLE  `medicalmanage` ADD FOREIGN KEY (  `idx` ) REFERENCES  `wawa_db`.`petinfo` (
+`idx`
+) ON DELETE CASCADE ON UPDATE CASCADE;

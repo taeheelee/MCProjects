@@ -20,7 +20,7 @@
   			$('#updateForm'+i).show();
   		}
 		$('#repleForm'+idx).html("<form action='repleWrite.do'>"
-								 +"<textarea style='width: 85%; height: 100px' name='content'></textarea>"
+								 +"<textarea style='width: 85%; height: 100px; resize: none' name='content'></textarea>"
 								 +"<input type='submit' value='답글작성'>"
 								 +"<input type='hidden' name='boardIdx' value='${board.boardIdx }'>"
 								 +"<input type='hidden' name='boardCode' value='${board.boardCode }'>"
@@ -39,7 +39,7 @@
   		}
   		$('#updateForm'+idx).hide();
   		$('#repleContent'+idx).html("<form action='repleUpdate.do'>"
-				 +"<textarea style='width: 85%; height: 100px' name='content'>"+text+"</textarea>"
+				 +"<textarea style='width: 85%; height: 100px; resize: none' name='content'>"+text+"</textarea>"
 				 +"<input type='hidden' name='boardIdx' value='${board.boardIdx }'>"
 				 +"<input type='hidden' name='boardCode' value='${board.boardCode }'>"
 				 +"<input type='hidden' name='repleIdx' value='"+repleIdx+"'>"
@@ -157,7 +157,7 @@
 						</c:forEach>
 	                	<form action="repleWrite.do">
 	                		<c:if test="${sessionScope.id != null }">
-		                		<textarea style="width: 85%; height: 100px" name="content"></textarea>
+		                		<textarea style="width: 85%; height: 100px; resize: none" name="content"></textarea>
 		                		<input type="hidden" name="boardIdx" value="${board.boardIdx }">
 		                		<input type="hidden" name="boardCode" value="${board.boardCode }">
 		                		<input type="hidden" name="nickname" value="${sessionScope.name }">

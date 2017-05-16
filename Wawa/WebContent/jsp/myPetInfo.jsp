@@ -13,6 +13,27 @@
 <script type="text/javascript" src="./fullcalendar-3.3.1/fullcalendar.js"></script>
 <script type="text/javascript" src="./fullcalendar-3.3.1/locale/ko.js"></script>
 <script type="text/javascript">
+$(document).ready(function(){
+	if('${isDel}' != '')
+		alert('${isDel}');
+	$('mainPetMk').click(function(){
+		$.ajax({
+			type : 'get',
+			url : 'mainPetUpdate.do',
+			dataType : 'json',
+			data: "mainPet=1",
+			success : function(data){
+				
+			},
+			error : function(xhrReq, status, error){
+//					alert(data);
+				//error 원하는응답이 나오지않으면
+				
+			}
+		});
+	});
+	
+});
 
 	function getPetAge(petBirth, petIdx){
 		$.ajax({
@@ -53,9 +74,13 @@
         $('li').click(function(){
         	getPetAge($(this).attr('id'), $(this).attr('name'));
 		});
-        $('#petDel').click(function() {
-        	location.href="deletePet.do?id=${sessionScope.id}&idx=" + $('#petIdx').val();
-		})
+        $('.petDel').click(function() {
+			var resist = prompt('펫 정보를 삭제 하시나요?', '삭제하시려면 등록번호를 입력해주세요');
+			
+			var petIdx = $(this).attr('id');
+
+			location.href='deletePet.do?id=${sessionScope.id}&idx=' + petIdx + '&resist=' + resist;
+		});
         
     });
 </script>
@@ -93,10 +118,10 @@
 			            <div id="tab${idx.count }">
                <div class="col-md-3">
                   <p style="text-align: center;">
-                  <img src="img/dog_0${idx.count }.jpg" alt=""style="width: 100%;">
+                  <img src="PetInfoImage/${pet.idx }.do" onerror="this.src='img/noImage.png'" alt=""style="width: 100%;">
                   </p>
                   <p style="text-align: center;">
-                     <input type="button" value="메인펫으로 지정" style="width: 100%" onclick=""><br><br>
+                     <input type="button" value="메인펫으로 지정" style="width: 100%" id="mainPetMk"><br><br>
                   </p>
                   
                </div>
@@ -107,9 +132,9 @@
                         <td>
                            <span style="font-weight: bold;">${pet.name }</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;(등록번호 : <span>${pet.resist }</span>)
                            <span style="float: right;">
-                              <input type="button" value="펫 수정" style="font-size: small;">
-                              <input type="button" value="펫 삭제" id='petDel'style="font-size: small;">
-                              <input type="hidden" value="${pet.idx }" id="petIdx">
+                              <input type="button" value="펫 수정" style="font-size: small;"
+                              onclick="location.href='updatePetForm.do?idx=${pet.idx}'">
+                              <input type="button" value="펫 삭제" id='${pet.idx }' class="petDel" style="font-size: small;">
                            </span>
                         </td>
                      </tr>
@@ -136,12 +161,13 @@
                      </tr>
                      <tr>
                         <td>
-                        미용 주기 알림   <span id="groomingDdaySpan${pet.idx }"></span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;">
+                        미용 주기 알림   <span style="color: #FF7421;" id="groomingDdaySpan${pet.idx }"></span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;">
                         </td>
                      </tr>
                      <tr>
                         <td>
-                        다음 예방 접종 시기 <span>백신명</span> <span>D-00</span>&nbsp;&nbsp;<input type="button" value="접종관리 GO" style="font-size: small;"onclick = "location.href ='medicalcareForm.do?id=${sessionScope.id}'">
+                        다음 예방 접종 시기 <span style="color: #FF7421; " id="">[백신명]</span> 
+                        <span style="color: #FF7421;"id="">D-00</span>&nbsp;&nbsp;<input type="button" value="접종관리 GO" style="font-size: small;"onclick = "location.href ='medicalcareForm.do?id=${sessionScope.id}'">
                         </td>
                      </tr>
                   </table>

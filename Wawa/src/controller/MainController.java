@@ -40,51 +40,54 @@ public class MainController {
 	}
 
 	@RequestMapping(method=RequestMethod.POST, value="login.do")
-	public ModelAndView login(HttpSession session, String id, String pw){
+	public String login(HttpSession session, String id, String pw){
 		UserInfo userInfo = iMemberService.getMember(id);
-		ModelAndView mav = new ModelAndView();
 		
 		if(iMemberService.loginMember(id, pw)){
 			HashMap<String, Object> mainPet = IPetinfoService.selectMainPet(id);
-			HashMap<String, Object> header = new HashMap<>();
 			
-			header.put("id", userInfo.getId());
-			header.put("name", userInfo.getNickname());
-			header.put("mainPet", mainPet);
-			mav.addAllObjects(header);
 			session.setAttribute("id", userInfo.getId());
 			session.setAttribute("name", userInfo.getNickname());
-			
+			session.setAttribute("petName", mainPet.get("name"));
+			session.setAttribute("petSex", mainPet.get("sex"));	
+			session.setAttribute("petBirth", mainPet.get("birth"));	
+			session.setAttribute("fileId", mainPet.get("fileId"));
+			session.setAttribute("groomingStart", mainPet.get("groomingStart"));
+            session.setAttribute("groomingPeriod", mainPet.get("groomingPeriod"));
+
 		}
-		mav.setViewName("main.tiles");
-		return mav;
+		return "redirect:main.do";
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "naverLogin.do")
-	public ModelAndView naverLogin(HttpSession session, String id, String nickname, String email, String sex) {
+	public String naverLogin(HttpSession session, String id, String nickname, String email, String sex) {
 		String password = "123456";
 		String phone = "010-0000-0000";
-		ModelAndView mav = new ModelAndView();
-		
+
 		int adminCheck = 0;
 		if (iMemberService.checkId(id)) {
 			int result = iMemberService.join(id, password, nickname, sex, phone, adminCheck, email);
 		}
 
 		UserInfo userInfo = iMemberService.getMember(id);
+		List<HashMap<String, Object>> petList = IPetinfoService.selectPetList(id);
+		HashMap<String, Object> params = new HashMap<>();
 
-		HashMap<String, Object> mainPet = IPetinfoService.selectMainPet(id);
-		HashMap<String, Object> header = new HashMap<>();
-		
-		header.put("id", userInfo.getId());
-		header.put("name", userInfo.getNickname());
-		header.put("mainPet", mainPet);
-		mav.addAllObjects(header);
+		for (int i = 0; i < petList.size(); i++) {
+			params.put("name" + i, petList.get(i).get("name"));
+			params.put("sex" + i, petList.get(i).get("sex"));
+			params.put("birth" + i, petList.get(i).get("birthday"));
+			params.put("groomingStart" + i, petList.get(i).get("groomingStart"));
+	        params.put("groomingPeriod" + i, petList.get(i).get("groomingPeriod"));
+	    }
 		session.setAttribute("id", userInfo.getId());
 		session.setAttribute("name", userInfo.getNickname());
-		
-		mav.setViewName("main.tiles");
-		return mav;
+		session.setAttribute("petName", params.get("name0"));
+		session.setAttribute("petSex", params.get("sex0"));
+		session.setAttribute("petBirth", params.get("birth0"));
+		session.setAttribute("groomingStart", params.get("groomingStart0"));
+        session.setAttribute("groomingPeriod", params.get("groomingPeriod0"));
+        return "redirect:main.do";
 	}
 
 	@RequestMapping("logout.do")
@@ -114,13 +117,21 @@ public class MainController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "join.do")
-	public String join(String id, String password, String nickname, String sex, String phone,
-			@RequestParam(defaultValue = "0") int adminCheck, String email) {
+	public ModelAndView join(String id, String password, String nickname, String sex, String phone,
+			@RequestParam(defaultValue = "0") int adminCheck, String email, RedirectAttributes redirectAttr) {
 		int result = iMemberService.join(id, password, nickname, sex, phone, adminCheck, email);
-		if (result > 0)
-			return "redirect:main.do";
-		else
-			return "redirect:joinForm.do";
+		if (result > 0){
+			redirectAttr.addFlashAttribute("isJoin", "회원가입 완료");
+			RedirectView rv = new RedirectView("loginForm.do");
+			rv.setExposeModelAttributes(false);
+			return new ModelAndView(rv);
+		}
+		else{
+			redirectAttr.addFlashAttribute("isJoin", "회원가입 오류");
+			RedirectView rv = new RedirectView("joinForm.do");
+			rv.setExposeModelAttributes(false);
+			return new ModelAndView(rv);
+		}
 	}
 
 	@RequestMapping("idCheck.do")
@@ -183,7 +194,6 @@ public class MainController {
 
 		UserInfo tmp = iMemberService.getMember(id);
 		UserInfo userInfo = new UserInfo();
-		ModelAndView mav = new ModelAndView();
 		// 정보수정을 위해 폼에서 입력한 비밀번호와 DB의 비밀번호 비교
 		if (password.equals(tmp.getPassword())) {
 			// 일치한다면 위의 받아온 내용을 모델에 담는다.

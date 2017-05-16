@@ -48,32 +48,71 @@
 		});
 		
 		if(${sessionScope.id != null}){
-		   
-		   var petBirth = "${sessionScope.petBirth}";//생일을 받아온다
-		   var today = new Date();//오늘날짜
+	         
+			//태어난지 몇년 몇개월 됬는지 계산하기
+			         
+			          var petBirth = "${sessionScope.petBirth}";//생일을 받아온다
+			          var today = new Date();//오늘날짜
 
-		    var arrPetBirth = petBirth.split('-');
-		    var PetBirthDateForm = new Date(arrPetBirth[0], arrPetBirth[1]-1, arrPetBirth[2]);
+			          var arrPetBirth = petBirth.split('-');
+			          var PetBirthDateForm = new Date(arrPetBirth[0], arrPetBirth[1]-1, arrPetBirth[2]);
 
-		   // 날짜 차이 알아 내기
-		   var diff = today - PetBirthDateForm; //날짜 빼면?!?!?
-		   var currDay = 24 * 60 * 60 * 1000;// 시 * 분 * 초 * 밀리세컨
-		   var countDay =  parseInt(diff/currDay); //태어난지 몇일째인지
-		   var countYear = parseInt(countDay/365); //몇년
-		   var countMonth = parseInt((countDay- countYear*365) /12);//몇개월
-		   
-//		    alert(countYear+"년"+countMonth+"개월");
-		   //그럼 이제 화면 출력을 바꿔볼까요?!
-		   var petage_year = document.getElementById('petage_year');
-		   var petage_month = document.getElementById('petage_month');
-		   if(countYear != 0){
-			      petage_year.innerHTML = countYear+"년";
-			   }
-			   
-			   if(countMonth != 0){
-			      petage_month.innerHTML = countMonth+"개월";
-			   }
-		}
+			          // 날짜 차이 알아 내기
+			          var diff = today - PetBirthDateForm; //날짜 빼면?!?!?
+			          var currDay = 24 * 60 * 60 * 1000;// 시 * 분 * 초 * 밀리세컨
+			          var countDay =  parseInt(diff/currDay); //태어난지 몇일째인지
+			          var countYear = parseInt(countDay/365); //몇년
+			          var countMonth = parseInt((countDay- countYear*365) /12);//몇개월
+			         
+			          //그럼 이제 화면 출력을 바꿔볼까요?!
+			          var petage_year = document.getElementById('petage_year');
+			          var petage_month = document.getElementById('petage_month');
+			          if(countYear != 0){
+			               petage_year.innerHTML = countYear+"년";
+			            }
+			         if(countMonth != 0){
+			               petage_month.innerHTML = countMonth+"개월";
+			            }
+			      
+			//미용 예정일 계산하기
+			         //1.D-day 구하기 : 미용알림시작일 + 미용 알림 주기 - 오늘 날짜
+			         var groomingStart = "${sessionScope.groomingStart}";
+			         var groomingPeriod = "${sessionScope.groomingPeriod}";
+			         var d_day="";
+			         var arrgroomingStart = groomingStart.split('-');
+			         var groomingStartDateForm = new Date(arrgroomingStart[0], arrgroomingStart[1]-1, arrgroomingStart[2]);
+			            
+			         if(groomingStart == null || groomingPeriod == 0){
+			            d_day="미설정";
+			         }
+			         
+			         else{
+			            var diffGrooming = groomingStartDateForm - today;
+			            var countday = parseInt(diffGrooming/currDay);
+			            var groomingPeriodInt = parseInt(groomingPeriod);
+			            var dDay = countday + groomingPeriodInt;
+			            d_day = "D-" + dDay;
+			            
+			            if(dDay == "0"){//디데이일때
+			               d_day = "D-DAY";
+			            }
+
+//			             //2. D-day 가 마이너스가 되면, 미용알림시작일 += 미용 알림 주기
+			            if(dDay < 0){
+			            var multiple = (parseInt( dDay/groomingPeriodInt))*-1+1;
+			            dDay += multiple *groomingPeriodInt
+			            d_day = "D-" + dDay;      
+			             } 
+
+			          
+			         }
+			         
+			         //그럼 이제 화면 출력을 바꿔볼까요?!
+			          var grooming_dDay = document.getElementById('grooming_dDay');
+
+			          grooming_dDay.innerHTML = d_day;
+
+			      }
 			
 	});
 	
@@ -122,18 +161,18 @@
 			<!-- 우측 미니애견정보창 -->
 			<div class="col-sm-6" style="margin: 0">
 			<c:choose>
-				<c:when test="${sessionScope.id != null and mainPet.get('name') != null}">
+				<c:when test="${sessionScope.id != null and sessionScope.petName != null}">
 					<div class="shopping-item" >
 						<a href="myPetInfo.do?id=${sessionScope.id}"  class="postLink">
 						
 							<table id="mini" style="margin-left: 5px;width:330px; height: 100px;">
 								<tr>
-									<td rowspan="4" style="width: 90px;" id="petmainimage"><img src="PetInfoImage/${mainPet.get('fileId')}.do" onerror="this.src='img/noImage.png'" alt=""></td>
-									<td colspan="3" id="nickname">${name}</td>
+									<td rowspan="4" style="width: 90px;" id="petmainimage"><img src="PetInfoImage/${sessionScope.fileId }.do" onerror="this.src='img/noImage.png'" alt=""></td>
+									<td colspan="3" id="nickname">${sessionScope.name}</td>
 								</tr>
 								<tr style="font-size: small;">
-									<td id="petname">${mainPet.get('name')}</td>
-									<td id="petsex">${mainPet.get('sex')}</td>
+									<td id="petname">${sessionScope.petName}</td>
+									<td id="petsex">${sessionScope.petSex}</td>
 									<td id="petage"><span id="petage_year"></span> <span id="petage_month"></span></td>
 								</tr>
 								<tr style="font-size: small;">
@@ -142,7 +181,7 @@
 								</tr>
 								<tr style="font-size: small;">
 									<td colspan="2">다음 미용예정</td>
-									<td id="grooming" style="text-align: center;">D-00</td>
+                           <td id="" style="text-align: center;"><span id="grooming_dDay"></span></td>
 								</tr>
 							</table>
 						</a>

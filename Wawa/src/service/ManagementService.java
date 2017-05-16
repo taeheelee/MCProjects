@@ -1,6 +1,5 @@
 package service;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -96,7 +95,7 @@ public class ManagementService implements IManagementService {
 		if(lastIdx <= 5){
 			for(Management m : list){
 				recentList.add(m);
-			}	
+			}
 		}else {
 			for(int i = lastIdx-5; i < lastIdx; i ++){
 				recentList.add(list.get(i));
@@ -128,6 +127,13 @@ public class ManagementService implements IManagementService {
 	public Date selectRecentDate(int idx) {
 		// TODO Auto-generated method stub
 		return dao.selectRecentDate(idx);
+	}
+	
+	public String getToday() { // 현재 날짜 리턴
+		// TODO Auto-generated method stub
+		SimpleDateFormat fm1 = new SimpleDateFormat("yyyy년MM월dd일");
+		String date = fm1.format(new Date());
+		return date;
 	}
 
 }

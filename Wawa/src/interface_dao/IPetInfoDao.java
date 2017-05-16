@@ -3,6 +3,8 @@ package interface_dao;
 import java.util.HashMap;
 import java.util.List;
 
+import org.codehaus.jackson.node.NodeCursor.Object;
+
 
 public interface IPetInfoDao {
 	public int insertPetInfo(HashMap<String, Object> params);

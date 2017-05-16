@@ -59,6 +59,9 @@ public class MainController {
 
 			}else {
 				redirectAttr.addFlashAttribute("isLogin", "아이디와 비밀번호를 확인하세요");
+				RedirectView rv = new RedirectView("loginForm.do");
+				rv.setExposeModelAttributes(false);
+				return new ModelAndView(rv);
 			}
 		}else {
 			redirectAttr.addFlashAttribute("isLogin", "회원정보가 없습니다.");

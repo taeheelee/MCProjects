@@ -74,26 +74,39 @@ function sinAndCos() {
 }
 
 function getData() {
-	var result;
+//	alert("getData");
 	$.ajax({
 		async : false,
 		dataType : 'json',
 		url : 'dataupload.do',
 		success : function(data) {
-			var weightList = [];
-			for (var i = 0; i < data.length; i++)
-				weightList.push({
-					key : "Pet " + (i + 1),
-					values : data[i]
-				})
+//			alert(data.data[0].weight);\
+//			alert(data.data.length);
+			
+			alert(data.idx);
+			alert(data.data[0][0]);
+			alert(data.data[0][1]);
+			
+			
+//			var weightList = [];
+//			for(var i = 0; i < data.wList.length; i++) {
+//				var petWeight = [];
+//				petWeight.push(data.wList[i]);
+//			}
+//			for (var i = 0; i < data.length; i++)
+//				weightList.push({
+//					key : "Pet " + (i + 1),
+//					values : data[i]
+//				})
 
 //			$.each(data, function(i, d) {
 //				weightList[(d.class_id) - 1]['values'].push(d)
 //			});
-			result = weightList;
+//			result = weightList;
 		}
 	});
-	return result;
+	return 111;
+	
 }
 // var result;
 // $.ajax({

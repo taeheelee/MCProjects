@@ -40,15 +40,50 @@ $(document).ready(function(){
 			}
 		});
 		}	
-		$("#calendar").fullCalendar({
-	        defaultDate : "2017-04-10"
-	      , editable : true
-	      , eventLimit : true
-	      , lang: 'ko'
-	      , events: [
 	
-	      ]
-	  	});
+	
+	
+	$("#calendar").fullCalendar({
+        defaultDate : new Date()
+      , editable : true
+      , eventLimit : true
+      , lang: 'ko'
+      ,         
+/*            events: [
+      	{
+				title: 'Birthday',
+				start: '2017-04-01'
+			}
+      ]  */
+      events: function(start, end, timezone, callback) {
+          $.ajax({
+             type : 'post',
+             url : 'calendar.do',
+             dataType : 'json',
+             data : 'id=${sessionScope.id}',
+             success : function(petList) {
+
+                var events = [];
+                for (var i = 0; i < 2; i++) {
+                     events.push({
+                         title : petList[i].name+'의 생일',
+                         start : petList[i].birthday,
+                         textColor : "white",
+                         color : "#FF7421"
+                         
+                      });
+                   
+                }
+                callback(events);
+                
+             },
+             error : function() {
+          	   alert('error');
+             }
+          });
+   
+       }//event end 
+  });  //calendar end
 	  
 		var idx = $('#defaultBirth').attr('name');
 		var birth = $('#defaultBirth').val();

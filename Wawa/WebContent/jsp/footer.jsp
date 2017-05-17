@@ -33,7 +33,7 @@ $(document).ready(function(){
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Explore WAWA</h2>
                         <ul class="alertMsg">
-                            <li><a href="#">찾아오시는 길</a></li>
+                            <li><a href="wawaLocation.do">찾아오시는 길</a></li>
                             <li><a href="#">이벤트</a></li>
                             <li><a href="#">개인정보취급방침</a></li>
                             <li><a href="#">회원약관</a></li>

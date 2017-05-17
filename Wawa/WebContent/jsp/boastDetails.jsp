@@ -11,41 +11,41 @@
   src="https://code.jquery.com/jquery-2.2.4.min.js"
   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
   crossorigin="anonymous"></script>
-  <script type="text/javascript">
-  	function reple(idx,repleIdx) {
-  		var repleCount = ${fn:length(reple)};
-  		for(var i=0; i<repleCount; i++){
-  			$('#repleForm'+i).empty();
-  			$('#repleContent'+i).html($('#repleContent'+i).text());
-  			$('#updateForm'+i).show();
-  		}
-		$('#repleForm'+idx).html("<form action='repleWrite.do'>"
-								 +"<textarea style='width: 85%; height: 100px; resize: none' name='content'></textarea>"
+<script type="text/javascript">
+  function reple(idx,repleIdx) {
+		var repleCount = ${fn:length(reple)};
+		for(var i=0; i<repleCount; i++){
+			$('#repleForm'+i).empty();
+			$('#repleContent'+i).html($('#repleContent'+i).text());
+			$('#updateForm'+i).show();
+		}
+		$('#repleForm'+idx).html("<form action='repleWrite.do' method='post'>"
+								 +"<textarea style='width: 85%; height: 100px; border-color: gray; resize: none' name='content' maxlength='1000'></textarea>"
 								 +"<input type='submit' value='답글작성'>"
 								 +"<input type='hidden' name='boardIdx' value='${board.boardIdx }'>"
 								 +"<input type='hidden' name='boardCode' value='${board.boardCode }'>"
-								 +"<input type='hidden' name='nickname' value='${sessionScope.name }'>"
+								 +"<input type='hidden' name='nickname' value='${sessionScope.name}'>"
 								 +"<input type='hidden' name='pIdx' value='"+repleIdx+"'>"
 								 +"</form>");
 	}
-  	
-  	function update(idx,repleIdx){
-  		var text = $('#repleContent'+idx).text();
-  		var repleCount = ${fn:length(reple)};
-  		for(var i=0; i<repleCount; i++){
-  			$('#repleForm'+i).empty();
-  			$('#repleContent'+i).html($('#repleContent'+i).text());
-  			$('#updateForm'+i).show();
-  		}
-  		$('#updateForm'+idx).hide();
-  		$('#repleContent'+idx).html("<form action='repleUpdate.do'>"
-				 +"<textarea style='width: 85%; height: 100px; resize: none' name='content'>"+text+"</textarea>"
+	
+	function update(idx,repleIdx){
+		var text = $('#repleContent'+idx).text();
+		var repleCount = ${fn:length(reple)};
+		for(var i=0; i<repleCount; i++){
+			$('#repleForm'+i).empty();
+			$('#repleContent'+i).html($('#repleContent'+i).text());
+			$('#updateForm'+i).show();
+		}
+		$('#updateForm'+idx).hide();
+		$('#repleContent'+idx).html("<form action='repleUpdate.do' method='post'>"
+				 +"<textarea style='width: 85%; height: 100px; border-color: gray; resize: none' name='content' maxlength='1000'>"+text+"</textarea>"
 				 +"<input type='hidden' name='boardIdx' value='${board.boardIdx }'>"
 				 +"<input type='hidden' name='boardCode' value='${board.boardCode }'>"
 				 +"<input type='hidden' name='repleIdx' value='"+repleIdx+"'>"
 				 +"<input type='submit' value='수정'>"
 				 +"</form>")
-  	}
+	}
   </script>
 </head>
   <body>
@@ -158,9 +158,9 @@
 					</div>
 					<br>
 					<div>
-	                	<form action="repleWrite.do">
+	                	<form action="repleWrite.do" method="post">
 	                		<c:if test="${sessionScope.id != null }">
-		                		<textarea style="width: 85%; height: 100px; resize: none" name="content" ></textarea>
+		                		<textarea style="width: 85%; height: 100px; resize: none" name="content" maxlength="1000"></textarea>
 		                		<input type="hidden" name="boardIdx" value="${board.boardIdx }">
 		                		<input type="hidden" name="boardCode" value="${board.boardCode }">
 		                		<input type="hidden" name="nickname" value="${sessionScope.name }">

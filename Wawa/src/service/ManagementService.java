@@ -132,7 +132,7 @@ public class ManagementService implements IManagementService {
 	
 	public String getToday() { // 현재 날짜 리턴
 		// TODO Auto-generated method stub
-		SimpleDateFormat fm1 = new SimpleDateFormat("yyyy년MM월dd일");
+		SimpleDateFormat fm1 = new SimpleDateFormat("yyyy-MM-dd");
 		String date = fm1.format(new Date());
 		return date;
 	}

@@ -16,23 +16,9 @@
 $(document).ready(function(){
 	if('${isDel}' != '')
 		alert('${isDel}');
-	$('mainPetMk').click(function(){
-		$.ajax({
-			type : 'get',
-			url : 'mainPetUpdate.do',
-			dataType : 'json',
-			data: "mainPet=1",
-			success : function(data){
-				
-			},
-			error : function(xhrReq, status, error){
-//					alert(data);
-				//error 원하는응답이 나오지않으면
-				
-			}
-		});
+	$('.mainPetMk').click(function(){
+		alert('메인펫으로 지정합니다.');
 	});
-	
 });
 
 	function getPetAge(petBirth, petIdx){
@@ -75,11 +61,11 @@ $(document).ready(function(){
         	getPetAge($(this).attr('id'), $(this).attr('name'));
 		});
         $('.petDel').click(function() {
-			var resist = prompt('펫 정보를 삭제 하시나요?', '삭제하시려면 등록번호를 입력해주세요');
+			var petName = prompt('펫 정보를 삭제 하시나요?', '삭제하시려면 펫이름을 입력해주세요');
 			
 			var petIdx = $(this).attr('id');
 
-			location.href='deletePet.do?id=${sessionScope.id}&idx=' + petIdx + '&resist=' + resist;
+			location.href='deletePet.do?id=${sessionScope.id}&idx=' + petIdx + '&petname=' + petName;
 		});
         
     });
@@ -118,10 +104,10 @@ $(document).ready(function(){
 			            <div id="tab${idx.count }">
                <div class="col-md-3">
                   <p style="text-align: center;">
-                  <img src="PetInfoImage/${pet.idx }.do" onerror="this.src='img/noImage.png'" alt=""style="width: 100%;">
+                  <img src="PetInfoImage/${pet.fileId }.do" onerror="this.src='img/noImage.png'" alt=""style="width: 100%;">
                   </p>
                   <p style="text-align: center;">
-                     <input type="button" value="메인펫으로 지정" style="width: 100%" id="mainPetMk"><br><br>
+                     <input type="button" value="메인펫으로 지정" style="width: 100%" class="mainPetMk" onclick="location.href='mainPetUpdate.do?id=${sessionScope.id}&idx=${pet.idx}'"><br><br>
                   </p>
                   
                </div>

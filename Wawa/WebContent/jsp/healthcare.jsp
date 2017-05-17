@@ -397,9 +397,21 @@
  
  
 					<!-- 그래프 -->
-               <div class="col-md-6">
-                  <svg id="myGraph"></svg>
-               </div>
+<!--                <div class="col-md-6"> -->
+<!--                   <svg id="myGraph"></svg> -->
+<!--                </div> -->
+<style>
+
+#chart svg {
+  height: 400px;
+}
+
+</style>
+
+
+<div id="chart">
+  <svg></svg>
+</div>
 				</div>
  
 				<div class="col-md-9">

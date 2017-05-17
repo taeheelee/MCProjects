@@ -28,6 +28,7 @@ public class PetInfoService implements IPetinfoService {
 	
 	@Autowired
 	IPetInfoDao dao;
+	
 	@Autowired
 	IPetInfoFileDao petFileDao;
 	
@@ -126,6 +127,7 @@ public class PetInfoService implements IPetinfoService {
 		// TODO Auto-generated method stub
 		//수정할 강아지 목록을 받아와서 출력해주고
 		HashMap<String, Object> tmp = dao.selectOne(idx);
+		int fileId = (int)dao.selectOne(idx).get("fileId");
 		
 		String path = "UploadPetinfo/";
 		File folder = new File(path);
@@ -134,26 +136,53 @@ public class PetInfoService implements IPetinfoService {
 		
 		UUID uuid = UUID.randomUUID();
 		String fileName = file.getOriginalFilename();
-		int fileSize = (int)file.getSize();
-		String fileuri = path + uuid;
+
 		
-		HashMap<String, Object> petFile = new HashMap<>();
-		petFile.put("originFileName", fileName);
-		petFile.put("size", fileSize);
-		petFile.put("uri", fileuri);
+
+		System.out.println("입력된 오리지날fileName : "+fileName);
 		
-		File localFile = new File(fileuri);
-		try {
-			file.transferTo(localFile);
-		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
+		HashMap<String, Object> fileTemp = petFileDao.selectOne(fileId);
+//		System.out.println("fileTemp : "+fileTemp);
+		String savedFileName = (String)fileTemp.get("originFileName");
+		System.out.println("저장되어있던 파일 이름 : "+savedFileName);
+		
+
+			
+		if(fileName.equals("")){
+			//파일이름이 없다! 그럼 사진 변경 안해염 
+			
+		}else {//파일이름이 생겼으면 그걸로 변경하자
+			
+			int fileSize = (int)file.getSize();
+			String fileuri = path + uuid;
+			
+			HashMap<String, Object> petFile = new HashMap<>();
+			petFile.put("originFileName", fileName);
+			petFile.put("size", fileSize);
+			petFile.put("uri", fileuri);
+			petFile.put("fileId",fileId );
+			
+			File localFile = new File(fileuri);
+			try {
+				file.transferTo(localFile);
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			petFileDao.updatePetInfoFile(petFile);
 		}
-		petFileDao.updatePetInfoFile(petFile);
-		int fileId = (int)dao.selectOne(idx).get("fileId");
+			
+			
+
+		
+		
+		
+		
+		
 		//변경사항은 변경되면 새로운 params에 받고  변경되지 않은 내용들은 SelectOne의 내용 그대로
 		HashMap<String, Object> params = new HashMap<>();
 		params.put(Constant.PetInfo.IDX, idx);//방금 이거 추가함요 
@@ -318,7 +347,6 @@ public class PetInfoService implements IPetinfoService {
 	      
 	      //1.D-day 구하기 : 미용알림시작일 + 미용 알림 주기 - 오늘 날짜
 	      Date groomingStart = (Date) temp.get("groomingStart");
-	      System.out.println("groomingStart"+groomingStart);
 	      int groomingPeriod = (int) temp.get("groomingPeriod");
 	      
 	      String d_day="";
@@ -355,7 +383,7 @@ public class PetInfoService implements IPetinfoService {
 	      }
 	      
 
-		System.out.println("d_day: " + d_day);
+
 		date.put("d_day", d_day);
 
 		return date;
@@ -371,26 +399,24 @@ public class PetInfoService implements IPetinfoService {
 	public HashMap<String, Object> selectMainPet(String id){
 		List<HashMap<String, Object>> petList = dao.selectPetList(id);
 		HashMap<String, Object> params = new HashMap<>(); 					
-		
 		for(int i = 0; i < petList.size(); i ++){
 			if(((int)petList.get(i).get("mainPet")) == 1){
-				params.put("name" , petList.get(i).get("name"));
-				params.put("sex" , petList.get(i).get("sex"));
-				params.put("birth" , petList.get(i).get("birthday"));
-				params.put("fileId" , petList.get(i).get("fileId"));
-				params.put("groomingStart", petList.get(i).get("groomingStart"));
-	            params.put("groomingPeriod", petList.get(i).get("groomingPeriod"));
-	            break;
-			}else{
-				params.put("name" , petList.get(0).get("name"));
-				params.put("sex" , petList.get(0).get("sex"));
-				params.put("birth" , petList.get(0).get("birthday"));
-				params.put("fileId" , petList.get(0).get("fileId"));
-				params.put("groomingStart", petList.get(0).get("groomingStart"));
-	            params.put("groomingPeriod", petList.get(0).get("groomingPeriod"));
-	         }
+				return petList.get(i);
+			}
 		}
-		return params;
+//		if(!petList.isEmpty())
+//			return petList.get(0);
+//		else
+			return null;
+	}
+	
+	@Override
+	public boolean updateMainPet(HashMap<String, Object> params){
+		int result = dao.updateMainPet(params);
+		if(result > 0)
+			return true;
+		else
+			return false;
 	}
 
 

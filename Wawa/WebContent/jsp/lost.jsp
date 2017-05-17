@@ -38,7 +38,7 @@
 					<input type="text" placeholder="Seach.." name="keyword" id="keyword"> 
 					<input type="submit" value="검색">
 					<c:if test="${sessionScope.name != null}">
-					<input type="button" value="유기견 등록" onclick="location.href='/Wawa/lostWriteForm.do'">
+					<input type="button" value="유기견 등록" onclick="location.href='/Wawa/lostWriteForm.do'" style="height: 42px">
 					</c:if>
 				</form>
 		</div>

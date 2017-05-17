@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,7 @@ import com.google.gson.Gson;
 import interface_service.IManagementService;
 import interface_service.IPetinfoService;
 import model.Management;
+import model.PetInfo;
 
 @RestController
 public class ManagementController {
@@ -39,19 +41,45 @@ public class ManagementController {
 		String id = (String) session.getAttribute("id");	
 		System.out.println(id);
 		List<HashMap<String, Object>> petList = petinfoService.selectPetList(id);
-		
+	
+//		String id = (String) session.getAttribute("id");
 //		List<Management> weightList = new ArrayList<>();
 //		weightList = managementService.selectList(id);
 //		
 //		Gson gson = new Gson();
-//		String json = "";
-//		json += "[";
+//		String json = "[";
+//
+//		int tempIdx = -1;
+//		boolean writer = false;
 //		
 //		for (int i = 0; i < weightList.size(); i++) {
-//			json += gson.toJson(weightList.get(i));
-//			if(i < weightList.size()-1)
+//			if(tempIdx == weightList.get(i).getIdx()) {
 //				json += ", ";
+//			} else {
+//				json += "[";
+//			}
+//			
+//			Date oDate = weightList.get(i).getDate();
+//			long t = oDate.getTime();
+//			
+//			json += "[";
+////			json += gson.toJson(weightList.get(i).getDate());
+//			json += gson.toJson(t);
+//			json += ", ";
+//			json += gson.toJson(weightList.get(i).getWeight());
+//			json += "]";
+//			
+//			if(i < weightList.size()-1) {
+//				tempIdx = weightList.get(i).getIdx();
+//				if(weightList.get(i).getIdx() != weightList.get(i+1).getIdx()) {
+//					json += "], ";
+//				}
+//			}
+//			if(i == weightList.size() - 1) {
+//				json += "]";
+//			}
 //		}
+//		
 //		json += "]";
 //		System.out.println(json);
 //		mav.addObject("weightList", json);
@@ -62,52 +90,143 @@ public class ManagementController {
 	
 	/* 그래프 기능 수정중.
 	 * healthcare.do와 dataupload.do 작업중입니다*/
-	@RequestMapping("dataupload.do")
-	public ModelAndView dataupload(HttpSession session) {
-		ModelAndView mav = new ModelAndView();
+	@RequestMapping(value="dataupload.do", method=RequestMethod.GET)
+	public @ResponseBody HashMap<String, Object> dataupload(HttpSession session) {
+//		System.out.println("dataupload.do 요청 받음");
 		String id = (String) session.getAttribute("id");
 		List<Management> weightList = new ArrayList<>();
 		weightList = managementService.selectList(id);
+		System.out.println(weightList);
 		
-		Gson gson = new Gson();
-		String json = "[";
-
-		int tempIdx = -1;
-		boolean writer = false;
+		//펫리스트에서 펫 idx만 뽑아내기
+		List<Integer> petIdxList = new ArrayList<Integer>();
 		
-		for (int i = 0; i < weightList.size(); i++) {
-			if(tempIdx == weightList.get(i).getIdx()) {
-				json += ", ";
-			} else {
-				json += "[";
-			}
-			
-			Date oDate = weightList.get(i).getDate();
-			long t = oDate.getTime();
-			
-			json += "[";
-//			json += gson.toJson(weightList.get(i).getDate());
-			json += gson.toJson(t);
-			json += ", ";
-			json += gson.toJson(weightList.get(i).getWeight());
-			json += "]";
-			
-			if(i < weightList.size()-1) {
-				tempIdx = weightList.get(i).getIdx();
-				if(weightList.get(i).getIdx() != weightList.get(i+1).getIdx()) {
-					json += "], ";
-				}
-			}
-			if(i == weightList.size() - 1) {
-				json += "]";
-			}
+		List<HashMap<String, Object>> petList = petinfoService.selectPetList(id);
+		for(HashMap<String, Object> p : petList) {
+			System.out.println(p.get("idx"));
 		}
 		
-		json += "]";
-		System.out.println(json);
-		mav.addObject("weightList", json);
-		mav.setViewName("healthcare.tiles");
-		return mav;
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("idx", 9);
+		List<Long[]> data = new ArrayList<>();
+		for(Management m : weightList)
+		{
+			Long[] xy = new Long[2];
+			xy[0] = m.getDate().getTime();
+			xy[1] = (long)m.getWeight();
+			data.add(xy);
+			
+		}
+		
+		params.put("data", data);
+		
+		
+//		Gson gson = new Gson();
+//		double[] xy = new double[3];
+//		List<double[]> arr = null;
+//		
+//		int flag = -1;
+//		int cnt = 1;
+//		for (int i = 0; i < weightList.size(); i++) {
+//			if(flag != weightList.get(i).getIdx()) {
+//				arr = new ArrayList<>();
+//				flag = weightList.get(i).getIdx();
+//			} else {
+////				params.put("pet" + cnt++, arr);
+//			}
+//			xy[0] = weightList.get(i).getDate().getTime();
+//			xy[1] = weightList.get(i).getWeight();
+//			xy[2] = weightList.get(i).getIdx();
+//			arr.add(xy);
+//		}
+////		params.put("wList", arr);
+//		System.out.println("params : " + params);
+//		for(int i = 0; i < params.size(); i++) {
+//			System.out.println(params.get("pet" + i+1));
+//		}
+
+		return params;
+		
+		
+		
+//		String json = "[";
+//		int tempIdx = -1;
+//		for (int i = 0; i < weightList.size(); i++) {
+//			if(tempIdx == weightList.get(i).getIdx()) {
+//				json += ", ";
+//			} else {
+//				json += "[";
+//			}
+//			
+//			Date oDate = weightList.get(i).getDate();
+//			long t = oDate.getTime();
+//			
+//			json += "[";
+//			json += gson.toJson(t);
+//			json += ", ";
+//			json += gson.toJson(weightList.get(i).getWeight());
+//			json += "]";
+//			
+//			if(i < weightList.size()-1) {
+//				tempIdx = weightList.get(i).getIdx();
+//				if(weightList.get(i).getIdx() != weightList.get(i+1).getIdx()) {
+//					json += "], ";
+//				}
+//			}
+//			if(i == weightList.size() - 1) {
+//				json += "]";
+//			}
+//		}
+//		
+//		json += "]";
+//		System.out.println(json);
+//		return json;
+
+		
+//		ModelAndView mav = new ModelAndView();
+//		String id = (String) session.getAttribute("id");
+//		List<Management> weightList = new ArrayList<>();
+//		weightList = managementService.selectList(id);
+//		
+//		Gson gson = new Gson();
+//		String json = "[";
+//
+//		int tempIdx = -1;
+//		boolean writer = false;
+//		
+//		for (int i = 0; i < weightList.size(); i++) {
+//			if(tempIdx == weightList.get(i).getIdx()) {
+//				json += ", ";
+//			} else {
+//				json += "[";
+//			}
+//			
+//			Date oDate = weightList.get(i).getDate();
+//			long t = oDate.getTime();
+//			
+//			json += "[";
+////			json += gson.toJson(weightList.get(i).getDate());
+//			json += gson.toJson(t);
+//			json += ", ";
+//			json += gson.toJson(weightList.get(i).getWeight());
+//			json += "]";
+//			
+//			if(i < weightList.size()-1) {
+//				tempIdx = weightList.get(i).getIdx();
+//				if(weightList.get(i).getIdx() != weightList.get(i+1).getIdx()) {
+//					json += "], ";
+//				}
+//			}
+//			if(i == weightList.size() - 1) {
+//				json += "]";
+//			}
+//		}
+//		
+//		json += "]";
+//		System.out.println(json);
+//		mav.addObject("weightList", json);
+//		mav.setViewName("healthcare.tiles");
+//		return mav;
 	}
 	
 //	@RequestMapping("dataupload.do")

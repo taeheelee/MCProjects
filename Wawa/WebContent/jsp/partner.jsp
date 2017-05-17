@@ -36,7 +36,7 @@
 					<input type="text" name="keyword" id="keyword" placeholder="펫이름검색" > 
 					<input type="submit" value="검색">
 					<c:if test="${sessionScope.name != null}">
-					<input type="button" value="짝꿍찾기 등록" onclick="location.href='partnerWriteForm.do'">
+					<input type="button" value="짝꿍찾기 등록" onclick="location.href='partnerWriteForm.do'" style="height: 42px">
 					</c:if>
 				</form>
 		</div>

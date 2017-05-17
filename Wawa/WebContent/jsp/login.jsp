@@ -12,28 +12,19 @@
 	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
+		if('${isLogin}' != '')
+			alert('${isLogin}');
 		if('${isJoin}' != '')
 			alert('${isJoin}');
 		$('#login_ck').click(function() {
-			$.ajax({
-				url : "idCheck.do",
-				type : "GET",
-				data : 'nickname=' + inputNickname,
-				dataType : 'json',
-				success : function(data) {
-					if (data.result) {
-						$('#nickError').html('<font color="green">사용가능</font>');
-						statusOfNickname = true;
-					} else {
-						$('#nickError').html('<font color="red">중복</font>');
-						statusOfNickname = false;
-					}
-				},
-				error : function() {
-					statusOfNickname = false;
-					alert('에러발생');
-				}
-			});
+			if($('#id').val() == '' && $('#pw').val() == ''){
+				alert('ID를 입력해주세요');
+				
+			}else if ($('#pw').val() == '') {
+				alert('비밀번호를 입력해주세요');
+			}else{
+				$('#login_ck').attr('type','submit');
+			}
 		});
 	});
 </script>
@@ -113,9 +104,11 @@ function facebook_btn() {
 					<form action="login.do" method="post">
 						<input type="text" id="id" placeholder="ID"
 							style="width: 400px; height: 50px;" name="id"><br> <br>
+						
 						<input type="password" id="pw" placeholder="Password"
 							style="width: 400px; height: 50px;" name="pw"><br> <br>
-						<input type="submit" value="LOGIN" id="login_ck"
+						
+						<input type="button" value="LOGIN" id="login_ck"
 							style="width: 400px; height: 50px;">
 					</form>
 					<!-- 네이버아이디로로그인 버튼 노출 영역 -->

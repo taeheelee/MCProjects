@@ -34,12 +34,12 @@ public class ManagementController {
 	/* 그래프 기능 수정중..
 	 * healthcare.do와 dataupload.do 작업중입니다.*/
 	@RequestMapping("healthcare.do")
-	public ModelAndView healthcare(){
+	public ModelAndView healthcare(HttpSession session){
 		ModelAndView mav = new ModelAndView();
-//		String id = (String) session.getAttribute("id");
-//		
-//		List<HashMap<String, Object>> petList = petinfoService.selectPetList(id);
-//		
+		String id = (String) session.getAttribute("id");	
+		System.out.println(id);
+		List<HashMap<String, Object>> petList = petinfoService.selectPetList(id);
+		
 //		List<Management> weightList = new ArrayList<>();
 //		weightList = managementService.selectList(id);
 //		
@@ -55,7 +55,7 @@ public class ManagementController {
 //		json += "]";
 //		System.out.println(json);
 //		mav.addObject("weightList", json);
-//		mav.addObject("list", petList);
+		mav.addObject("list", petList);
 		mav.setViewName("healthcare.tiles");
 		return mav;
 	}
@@ -188,7 +188,6 @@ public class ManagementController {
 	   @ResponseBody HashMap<String, Object> uploadHealthcare(HttpServletResponse resp,
 	         @RequestParam HashMap<String, Object> params){
 	   
-	      System.out.println("나불럿졍?");
 	      int idx = (int) petinfoService.selectByname(params).get("idx");
 	      
 	      String from = (String) params.get("day");
@@ -210,7 +209,11 @@ public class ManagementController {
 	      
 	      HashMap<String, Object> response = new HashMap<>();
 	      if(managementService.insertManagement(model)){
-	         response.put("result", true);
+	    	  if(petinfoService.updateWeight(weight, idx)){	    		 
+		    		 response.put("result", true);
+		    	 }else {
+		    		 response.put("result", false);
+		    	 }
 	      }else {
 	         response.put("result", false);
 	      }
@@ -243,7 +246,11 @@ public class ManagementController {
 	      
 	      HashMap<String, Object> response = new HashMap<>();
 	      if(managementService.updateWeight(model)){
-	         response.put("result", true);
+	    	 if(petinfoService.updateWeight(weight, idx)){	    		 
+	    		 response.put("result", true);
+	    	 }else {
+	    		 response.put("result", false);
+	    	 }
 	      }else {
 	         response.put("result", false);
 	      }
@@ -275,8 +282,9 @@ public class ManagementController {
 	   public 
 	   @ResponseBody HashMap<String, Object> chkDate(HttpServletResponse resp,
 	         @RequestParam HashMap<String, Object> params){
-	      System.out.println(params.get("day")); // 사용자가 적은 날짜를 받아와서
-	      String from = (String) params.get("day");
+	      Date birthday = (Date) petinfoService.selectByname(params).get("birthday");
+	  
+		  String from = (String) params.get("day");
 	      SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 	      Date to = null;
 	      try {
@@ -296,8 +304,9 @@ public class ManagementController {
 	      }
 	      
 	      HashMap<String, Object> response = new HashMap<>();
-	      long diff = to1.getTime() - to.getTime(); // 오늘날짜에서 입력날짜빼기
-	      if(diff > 0){
+	      long diff1 = to1.getTime() - to.getTime(); // 오늘날짜에서 입력날짜빼기
+	      long diff2 = to.getTime() - birthday.getTime(); // 생일보다는 이후여야됨
+	      if(diff1 > 0 && diff2 > 0){
 	         response.put("result", true);
 	      }else {
 	         response.put("result", false);
@@ -309,9 +318,9 @@ public class ManagementController {
 	   public 
 	   @ResponseBody HashMap<String, Object> chkDupl(HttpServletResponse resp,
 	         @RequestParam HashMap<String, Object> params){
+		  int idx = (int) petinfoService.selectByname(params).get("idx");
+		      
 	      model.Management model = new model.Management();
-	      
-	      System.out.println(params.get("day"));
 	      String from = (String) params.get("day");
 	      SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 	      Date to = null;
@@ -322,18 +331,17 @@ public class ManagementController {
 	         e.printStackTrace();
 	      }
 	      model.setDate(to);
-	      System.out.println("시바어디서오류났어");
+	      model.setIdx(idx);
+	      
 	      HashMap<String, Object> response = new HashMap<>();
-	      System.out.println(managementService.selectDate(model));
 	      if(managementService.selectDate(model).size() != 0){
+	    	 System.out.println("중복");
 	         response.put("result", true);
-	         System.out.println("중복");
 	      }else {
+	    	  System.out.println("중복아님");
 	         response.put("result", false);
-	         System.out.println("중복아님");
 	      }
 	      return response;
 	   }
-
 }
 

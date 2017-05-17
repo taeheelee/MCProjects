@@ -92,7 +92,7 @@
                                             
 											<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
                                                 <label class="" for="billing_state">글 제목<abbr title="required" class="required">*</abbr></label>
-                                                <input type="text" id="title" name="title" placeholder="" value="${board.title }" class="input-text ">
+                                                <input type="text" id="title" name="title" placeholder="" value="${board.title }" class="input-text " maxlength="20">
                                             </p>
                                             <br>
                                             

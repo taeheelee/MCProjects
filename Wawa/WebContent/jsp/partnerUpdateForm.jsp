@@ -5,10 +5,9 @@ pageEncoding="UTF-8"%>
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<
 	<title>Insert title here</title>
-	<script type="text/javascript" src="js/boardCheck.js"></script>
-	<script type="text/javascript">
+<script type="text/javascript" src="js/boardCheck.js"></script>
+<script type="text/javascript">
 		$(document).ready(function() {
 			$('#summernote').summernote({
 				height : 500,
@@ -21,6 +20,19 @@ pageEncoding="UTF-8"%>
 				}
 			});
 
+			$("#age").keyup(function(event){
+		        if (!(event.keyCode >=37 && event.keyCode<=40)) {
+		            var inputVal = $(this).val();
+		            $(this).val(inputVal.replace(/[^0-9]/gi,''));
+		        }
+		    });
+			$("#age").blur(function(event){
+		        if (!(event.keyCode >=37 && event.keyCode<=40)) {
+		            var inputVal = $(this).val();
+		            $(this).val(inputVal.replace(/[^0-9]/gi,''));
+		        }
+		    });
+			
 			$('#ok').click(function() {
 				var content = $('#summernote').summernote('code');
 				$('#content').val(content);		
@@ -98,7 +110,7 @@ pageEncoding="UTF-8"%>
 
 							<label class="" for="billing_state">애견 이름</label> <input
 							type="text" id="name" name="name" placeholder="" value="${board.name }"
-							class="input-text ">
+							class="input-text " maxlength="20">
 
 							<br><br>
 
@@ -116,17 +128,6 @@ pageEncoding="UTF-8"%>
 													</c:choose>
 												</c:forEach>
 								
-                                                    <!-- <option selected="selected" value="치와와">치와와</option>
-                                                    <option value="요크셔 테리어">요크셔 테리어</option>
-                                                    <option value="말티즈">말티즈</option>
-                                                    <option value="시츄">시츄</option>
-                                                    <option value="비글">비글</option>
-                                                    <option value="퍼그">퍼그</option>
-                                                    <option value="페키니즈">페키니즈</option>
-                                                    <option value="미니어쳐 슈나우저">미니어쳐 슈나우저</option>
-                                                    <option value="기타 소형견">기타 소형견</option>
-                                                    <option value="기타 중형견">기타 중형견</option>
-                                                    <option value="기타 대형견">기타 대형견</option> -->
                                                 </select>
                                                 
                                                 <br><br>
@@ -154,41 +155,29 @@ pageEncoding="UTF-8"%>
 
 						<label class="" for="billing_state">나이</label> <input
 						type="text" id="age" name="age" placeholder="" value="${board.age }"
-						class="input-text ">
+						class="input-text " maxlength="10">
 
 						<br><br>
 
 						<label class="" for="billing_state">몸무게(kg)</label> <input
 						type="text" id="weight" name="weight" placeholder="" value="${board.weight }"
-						class="input-text ">
+						class="input-text " maxlength="10">
 
 						<br><br>
 
 						<label class="" for="billing_state">연락처</label> <input
 						type="text" id="phone" name="phone" placeholder="" value="${board.phone }"
-						class="input-text ">
+						class="input-text " maxlength="13">
 
 						<br><br>
 
 						<label class="" for="billing_state">e-mail</label> <input
 						type="text" id="email" name="email" placeholder="" value="${board.email }"
-						class="input-text ">
+						class="input-text " maxlength="30">
 
 						<br><br>
 
 
-						<!-- 								<p id="billing_first_name_field" -->
-						<!-- 									class="form-row form-row-first validate-required"> -->
-						<!-- 									<label class="" for="billing_first_name">애견 프로필 사진 등록 <abbr -->
-						<!-- 										title="required" class="required">*</abbr> -->
-						<!-- 									</label> -->
-						<!-- 								<div class="form-row place-order"> -->
-						<!-- 									<input type="file" data-value="Place order" value="ADD PHOTO" -->
-						<!-- 										id="ufile" name="ufile" -->
-						<!-- 										class="button alt"> -->
-
-						<!-- 								</div> -->
-						<!-- 								</p> -->
 						<label class="" for="billing_first_name">애견 프로필 사진 등록<abbr title="required" class="required">*</abbr></label>
 						<table border="0">
 							<tr>
@@ -208,7 +197,7 @@ pageEncoding="UTF-8"%>
 						data-o_class="form-row form-row-first address-field validate-state">
 						<label class="" for="billing_state">글 제목</label> <input
 						type="text" id="title" name="title" placeholder="" value="${board.title }"
-						class="input-text ">
+						class="input-text " maxlength="20">
 					</p>
 					<br>
 

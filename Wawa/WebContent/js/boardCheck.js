@@ -10,6 +10,10 @@ function infoBoardCheck() {
 		alert("내용을 입력해주세요");
 		return false;
 	}
+	if (content.length > 1000) {
+		alert("내용은 1000자 이하로 작성가능합니다");
+		return false;
+	}
 	return true;
 }
 
@@ -23,6 +27,10 @@ function reviewBoardCheck() {
 	$('#content').val(content);
 	if (content == "<p><br></p>") {
 		alert("내용을 입력해주세요");
+		return false;
+	}
+	if (content.length > 1000) {
+		alert("내용은 1000자 이하로 작성가능합니다");
 		return false;
 	}
 	return true;
@@ -53,6 +61,10 @@ function boastBoardCheck() {
 	$('#content').val(content);
 	if (content == "<p><br></p>") {
 		alert("내용을 입력해주세요");
+		return false;
+	}
+	if (content.length > 1000) {
+		alert("내용은 1000자 이하로 작성가능합니다");
 		return false;
 	}
 	return true;
@@ -139,6 +151,10 @@ function lostBoardCheck() {
 		alert("내용을 입력해주세요");
 		return false;
 	}
+	if (content.length > 1000) {
+		alert("내용은 1000자 이하로 작성가능합니다");
+		return false;
+	}
 	return true;
 }
 
@@ -177,6 +193,10 @@ function partnerBoardCheck() {
 	$('#content').val(content);
 	if (content == "<p><br></p>") {
 		alert("내용을 입력해주세요");
+		return false;
+	}
+	if (content.length > 1000) {
+		alert("내용은 1000자 이하로 작성가능합니다");
 		return false;
 	}
 	return true;

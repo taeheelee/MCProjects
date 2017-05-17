@@ -65,7 +65,7 @@
                          
                      
 
-                            <form action="infoUpdate.do" enctype="multipart/form-data" class="checkout" method="get" name="checkout">
+                            <form action="infoUpdate.do" enctype="multipart/form-data" class="checkout" method="post" name="checkout">
 								<input type="hidden" name="boardIdx" value="${board.boardIdx }">
 								<input type="hidden" name="readCount" value="${board.readCount }">
 								<input type="hidden" name="writeDate" value="${board.writeDate }">

@@ -19,8 +19,7 @@ $(document).ready(function(){
 	$('.mainPetMk').click(function(){
 		alert('메인펫으로 지정합니다.');
 	});
-});
-
+	
 	function getPetAge(petBirth, petIdx){
 		$.ajax({
 			type: 'get',
@@ -41,6 +40,10 @@ $(document).ready(function(){
 			}
 		});
 	}	
+	
+});
+
+	
 //dsdsafasdf
     jQuery(document).ready(function() {
         jQuery("#calendar").fullCalendar({

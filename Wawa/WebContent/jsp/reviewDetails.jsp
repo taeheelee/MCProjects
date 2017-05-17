@@ -166,7 +166,7 @@
                 <!-- 여기까지 댓글목록 -->
                 
                 <!-- 댓글쓰기 -->
-                <input type="button" value="목록"  onClick="location.href='infoMain.do'">
+                <input type="button" value="목록"  onClick="location.href='reviewMain.do'">
                 <c:if test="${board.writer == sessionScope.name }">
                 	<input type="button" value="수정" onclick="location.href='reviewUpdateForm.do?boardIdx=${board.boardIdx}'">
                 	<input type="button" value="삭제" onclick="location.href='reviewDelete.do?boardIdx=${board.boardIdx}'">

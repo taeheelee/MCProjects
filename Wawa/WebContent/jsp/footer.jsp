@@ -5,6 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.alertMsg').click(function(){
+		alert('준비중입니다.');
+	});
+});
+</script>
 </head>
 <body>
 <div class="footer-top-area">
@@ -26,11 +33,11 @@
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Explore WAWA</h2>
                         <ul class="alertMsg">
-                            <li><a href="#">찾아오시는 길</a></li>
+                            <li><a href="wawaLocation.do">찾아오시는 길</a></li>
                             <li><a href="#">이벤트</a></li>
-                            <li><a href="#">개인정보취급방침</a></li>
-                            <li><a href="#">회원약관</a></li>
-                            <li><a href="#">사이트 문의 : 02-000-0000</a></li>
+                            <li><a href="wawaPersonalInformation.do">개인정보취급방침</a></li>
+                            <li><a href="wawaMembership.do">회원약관</a></li>
+                            <li><a href="wawaTeamMember.do">사이트를 만든 사람들</a></li>
                         </ul>                        
                     </div>
                 </div>

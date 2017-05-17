@@ -19,7 +19,6 @@
 					}
 				}
 			});
-
 			$("#age").keyup(function(event){
 		        if (!(event.keyCode >=37 && event.keyCode<=40)) {
 		            var inputVal = $(this).val();
@@ -37,7 +36,6 @@
 				var content = $('#summernote').summernote('code');
 				$('#content').val(content);		
 			});
-
 			if(${load != 0}){
 				$('#name').val('${pet.name}');
 				$('#weight').val('${pet.weight}');
@@ -49,13 +47,11 @@
 				
 				$('#sex[value=${pet.sex}]').attr('checked', true);
 				$('#sex[value!=${pet.sex}]').attr('checked', false);
-
 				$('#kind > option[value="${pet.kind}"]').attr('selected', true);
 			}
 			else{
 				$('#kind > option[value="${board.kind}"]').attr('selected', true);
 			}
-
 		});
 		
 		
@@ -80,28 +76,40 @@
 
 
 	<div class="single-product-area">
+
 		<div class="container">
+
+
 			<div class="col-md-55">
+
+
 				<form enctype="multipart/form-data" action="partnerUpdate.do"
 					class="checkout" method="post" name="checkout">
 					<input type="hidden" name="boardIdx" value="${board.boardIdx }">
 					<input type="hidden" name="content" id="content"> <input
 						type="hidden" name="boardCode" value="5"> <input
 						type="hidden" name="writer" value="${sessionScope.name }">
+
 					<div id="customer_details" class="col2-set">
 						<div class="col-3">
 							<h2 class="sidebar-title">글쓰기</h2>
 							<div class="woocommerce-billing-fields">
+
+
+
 								<div class="form-row place-order" style="float: right">
 									<input type="button" id="petinfo"
 										onclick="window.open('partnerGetPetinfoForm.do?id=${sessionScope.id}&boardIdx=${board.boardIdx }&boardCode=5&type=Update', 'pet' ,'left=400, top=200, width=500, height=300')"
 										value="애견정보 불러오기" />
 								</div>
-								<label class="" for="billing_state">애견 이름</label> <input
-									type="text" id="name" name="name" placeholder=""
-									value="${board.name }" class="input-text " maxlength="20">
-								<br> <br> <label class="" for="billing_country">품종
-									<abbr title="required" class="required">*</abbr>
+
+
+								<label class="" for="billing_state">애견 이름<abbr
+									title="required" class="required">*</abbr></label> <input type="text"
+									id="name" name="name" placeholder="" value="${board.name }"
+									class="input-text " maxlength="20"> <br>
+								<br> <label class="" for="billing_country">품종 <abbr
+									title="required" class="required">*</abbr>
 								</label> <select class="country_to_state country_select" id="kind"
 									name="kind">
 									<c:forEach var="kindList" items="${kindList }" varStatus="idx">
@@ -115,9 +123,9 @@
 										</c:choose>
 									</c:forEach>
 
-								</select> <br> <br> <label class="" for="billing_first_name">성별
-									<abbr title="required" class="required">*</abbr>
-								</label>
+								</select> <br>
+								<br> <label class="" for="billing_first_name">성별 <abbr
+									title="required" class="required">*</abbr></label>
 								<div id="payment">
 									<ul class="payment_methods methods">
 										<li class="payment_method_paypal"><c:if
@@ -140,25 +148,28 @@
 									</ul>
 								</div>
 
-								<br> <label class="" for="billing_state">나이</label> <input
-									type="text" id="age" name="age" placeholder=""
-									value="${board.age }" class="input-text " maxlength="10">
-
-								<br> <br> <label class="" for="billing_state">몸무게(kg)</label>
-								<input type="text" id="weight" name="weight" placeholder=""
+								<br> <label class="" for="billing_state">나이<abbr
+									title="required" class="required">*</abbr></label> <input type="text"
+									id="age" name="age" placeholder="" value="${board.age }"
+									class="input-text " maxlength="10"> <br>
+								<br> <label class="" for="billing_state">몸무게(kg)<abbr
+									title="required" class="required">*</abbr></label> <input type="text"
+									id="weight" name="weight" placeholder=""
 									value="${board.weight }" class="input-text " maxlength="10">
 
-								<br> <br> <label class="" for="billing_state">연락처</label>
-								<input type="text" id="phone" name="phone" placeholder=""
+								<br>
+								<br> <label class="" for="billing_state">연락처</label> <input
+									type="text" id="phone" name="phone" placeholder=""
 									value="${board.phone }" class="input-text " maxlength="13">
 
-								<br> <br> <label class="" for="billing_state">e-mail</label>
-								<input type="text" id="email" name="email" placeholder=""
+								<br>
+								<br> <label class="" for="billing_state">e-mail</label> <input
+									type="text" id="email" name="email" placeholder=""
 									value="${board.email }" class="input-text " maxlength="30">
 
-								<br> <br> <label class="" for="billing_first_name">애견
-									프로필 사진 등록<abbr title="required" class="required">*</abbr>
-								</label>
+								<br>
+								<br> <label class="" for="billing_first_name">애견
+									프로필 사진 등록</label>
 								<table border="0">
 									<tr>
 										<td width="10%">
@@ -176,9 +187,10 @@
 								<p id="billing_state_field"
 									class="form-row form-row-first address-field validate-state"
 									data-o_class="form-row form-row-first address-field validate-state">
-									<label class="" for="billing_state">글 제목</label> <input
-										type="text" id="title" name="title" placeholder=""
-										value="${board.title }" class="input-text " maxlength="20">
+									<label class="" for="billing_state">글 제목<abbr
+										title="required" class="required">*</abbr></label> <input type="text"
+										id="title" name="title" placeholder="" value="${board.title }"
+										class="input-text " maxlength="20">
 								</p>
 								<br>
 
@@ -203,10 +215,11 @@
 					</div>
 				</form>
 			</div>
+
+
+
 		</div>
 	</div>
-
-
 
 
 

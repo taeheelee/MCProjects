@@ -37,7 +37,6 @@
 			var content = $('#summernote').summernote('code');
 			$('#content').val(content);	
 		});
-
 		if(${load != 0}){
 			$('#name').val('${pet.name}');
 			$('#resist').val('${pet.resist}')
@@ -76,7 +75,6 @@
 			alert("날짜를 선택해 주세요.");
 			return;
 		}
-
 	}
 	/* 달력 설정 */
 	$.datepicker.setDefaults({
@@ -148,12 +146,13 @@
 										value="애견정보 불러오기" />
 								</div>
 
-								<label class="" for="billing_state">애견 이름</label> <input
-									type="text" id="name" name="name" placeholder=""
-									value="${board.name }" class="input-text " maxlength="20">
+								<label class="" for="billing_state">애견 이름<abbr
+									title="required" class="required">*</abbr></label> <input type="text"
+									id="name" name="name" placeholder="" value="${board.name }"
+									class="input-text " maxlength="20"> <br> <br>
 
-								<br> <br> <label class="" for="billing_state">등록번호</label>
-								<input type="text" id="resist" name="resist"
+								<label class="" for="billing_state">등록번호</label> <input
+									type="text" id="resist" name="resist"
 									placeholder="15자리 숫자로 입력해주세요" value="${board.resist }"
 									class="input-text " maxlength="15"> <br> <br>
 
@@ -172,9 +171,9 @@
 										</c:choose>
 									</c:forEach>
 
-								</select> <br>
-								<br> <label class="" for="billing_first_name">성별 <abbr
-									title="required" class="required">*</abbr></label>
+								</select> <br> <br> <label class="" for="billing_first_name">성별
+									<abbr title="required" class="required">*</abbr>
+								</label>
 								<div id="payment">
 									<ul class="payment_methods methods">
 										<li class="payment_method_paypal"><c:if
@@ -198,12 +197,13 @@
 									</ul>
 								</div>
 
-								<br> <label class="" for="billing_state">나이</label> <input
-									type="text" id="age" name="age" placeholder=""
-									value="${board.age }" class="input-text " maxlength="10">
-
-								<br> <br> <label class="" for="billing_state">몸무게(kg)</label>
-								<input type="text" id="weight" name="weight" placeholder=""
+								<br> <label class="" for="billing_state">나이<abbr
+									title="required" class="required">*</abbr></label> <input type="text"
+									id="age" name="age" placeholder="" value="${board.age }"
+									class="input-text " maxlength="10"> <br> <br>
+								<label class="" for="billing_state">몸무게(kg)<abbr
+									title="required" class="required">*</abbr></label> <input type="text"
+									id="weight" name="weight" placeholder=""
 									value="${board.weight }" class="input-text " maxlength="10">
 
 								<br> <br> <label class="" for="billing_country">카테고리
@@ -219,15 +219,23 @@
 										<option selected="selected" value="protect">보호중입니다</option>
 									</c:if>
 								</select> <br> <label class="" for="billing_state"> 잃어버린 날짜/
-									발견된 날짜</label> <input type="text" id="lostdate" name="lostdate"
+									발견된 날짜<abbr title="required" class="required">*</abbr>
+								</label> <input type="text" id="lostdate" name="lostdate"
 									placeholder="0000-00-00" value="${board.lostDate }"
 									class="datepicker" maxlength="10"> <br> <br>
-								<label class="" for="billing_state"> 잃어버린 장소/ 발견된 장소</label> <input
-									type="text" id="lostplace" name="lostplace"
-									value="${board.lostPlace }" class="input-text " maxlength="30">
+								<label class="" for="billing_state"> 잃어버린 장소/ 발견된 장소<abbr
+									title="required" class="required">*</abbr></label> <input type="text"
+									id="lostplace" name="lostplace" value="${board.lostPlace }"
+									class="input-text " maxlength="30"> <br> <br>
 
-								<br> <br> <label class="" for="billing_state">연락처</label>
-								<input type="text" id="phone" name="phone" placeholder=""
+
+
+
+
+
+
+								<label class="" for="billing_state">연락처</label> <input
+									type="text" id="phone" name="phone" placeholder=""
 									value="${board.phone }" class="input-text " maxlength="13">
 
 								<br> <br> <label class="" for="billing_state">e-mail</label>
@@ -235,8 +243,7 @@
 									value="${board.email }" class="input-text " maxlength="30">
 
 								<br> <br> <label class="" for="billing_first_name">애견
-									프로필 사진 등록<abbr title="required" class="required">*</abbr>
-								</label>
+									프로필 사진 등록</label>
 								<table border="0">
 									<tr>
 										<td width="10%">
@@ -251,11 +258,10 @@
 											style="border: 0px;"></td>
 									</tr>
 								</table>
-								<br> <label class="" for="billing_state">글 제목</label> <input
-									type="text" id="title" name="title" placeholder=""
-									value="${board.title }" class="input-text " maxlength="20">
-
-								<br>
+								<br> <label class="" for="billing_state">글 제목<abbr
+									title="required" class="required">*</abbr></label> <input type="text"
+									id="title" name="title" placeholder="" value="${board.title }"
+									class="input-text " maxlength="20"> <br>
 
 
 

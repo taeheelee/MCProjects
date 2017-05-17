@@ -60,6 +60,7 @@ public class MedicalcareController {
 			e.printStackTrace();
 		}
 		
+		System.out.println(from);
 		int period = (int) vaccineService.selectVaccineInfo(vaccineCode).get("vaccinePeriod");
 		
 		Calendar cal = new GregorianCalendar(Locale.KOREA);
@@ -151,7 +152,10 @@ public class MedicalcareController {
 		List<HashMap<String, Object>> careList = medicalService.selectAllShotDate(idx);
 		List<HashMap<String, Object>> list = new ArrayList<HashMap<String,Object>>();
 		
+		//System.out.println("careList : " + careList);
+		
 		String ch = (String) params.get("ch");
+		//System.out.println("jsp에서 드렁온 구분자" + ch);
 		int gubun = 0;
 		if(ch.equals("D")) gubun = 1;
 		else if(ch.equals("C")) gubun = 2;
@@ -159,17 +163,17 @@ public class MedicalcareController {
 		else if(ch.equals("R")) gubun = 4;
 		
 		for(HashMap<String, Object> care : careList){
+			//System.out.println("들어온 구분자" + gubun);
 			if(gubun == ((int)care.get("vaccineCode"))/100){ //앞자리같은지
 				HashMap<String, Object> tmp = new HashMap<>();
 				tmp.put("idx", (int) care.get("idx"));
 				tmp.put("vaccineCode", (int) care.get("vaccineCode"));
 				tmp.put("realShotDate", (Date) care.get("realShotDate"));
-				tmp.put("nextday", (Date) care.get("nextday"));
-				tmp.put("dDay", (String) care.get("dDay"));
 				list.add(tmp);
 			}
 		}
 		
+		//System.out.println("list : " + list);
 		HashMap<String, Object> response = new HashMap<>();
 		response.put("careList", list);
 		return response;
@@ -211,8 +215,6 @@ public class MedicalcareController {
 		medical.put(Constant.MedicalManage.VACCINECODE, vaccineCode);
 		medical.put(Constant.MedicalManage.IDX, idx);
 		medical.put(Constant.MedicalManage.REALSHOTDATE, (String) params.get("shotday"));
-		medical.put(Constant.MedicalManage.DDAY, (String) params.get("dDay"));			
-		medical.put(Constant.MedicalManage.NEXTDAY, (String) params.get("nextShotday"));
 		
 		HashMap<String, Object> response = new HashMap<>();
 		if(medicalService.insertRealShotDate(medical)){
@@ -234,8 +236,6 @@ public class MedicalcareController {
 		medical.put(Constant.MedicalManage.VACCINECODE, vaccineCode);
 		medical.put(Constant.MedicalManage.IDX, idx);
 		medical.put(Constant.MedicalManage.REALSHOTDATE, (String) params.get("shotday"));
-		medical.put(Constant.MedicalManage.NEXTDAY, (String) params.get("nextShotday"));
-		medical.put(Constant.MedicalManage.DDAY, (String) params.get("dDay"));
 		
 		HashMap<String, Object> response = new HashMap<>();
 		

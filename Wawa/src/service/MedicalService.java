@@ -35,8 +35,6 @@ public class MedicalService implements IMedicalService {
 		realDate.put(MedicalManage.IDX, params.get("idx"));
 		realDate.put(MedicalManage.VACCINECODE, params.get("vaccineCode"));
 		realDate.put(MedicalManage.REALSHOTDATE, params.get("realShotDate"));
-		realDate.put(MedicalManage.DDAY, params.get("dDay"));
-		realDate.put(MedicalManage.NEXTDAY, params.get("nextday"));
 		int result = dao.insertRealShotDate(realDate);
 		if (result > 0)
 			return true;
@@ -52,8 +50,6 @@ public class MedicalService implements IMedicalService {
 		realDate.put(MedicalManage.IDX, params.get("idx"));
 		realDate.put(MedicalManage.VACCINECODE, params.get("vaccineCode"));
 		realDate.put(MedicalManage.REALSHOTDATE, params.get("realShotDate"));
-		realDate.put(MedicalManage.DDAY, params.get("dDay"));
-		realDate.put(MedicalManage.NEXTDAY, params.get("nextday"));
 		int result = dao.updateRealShotDate(realDate);
 		if (result > 0)
 			return true;

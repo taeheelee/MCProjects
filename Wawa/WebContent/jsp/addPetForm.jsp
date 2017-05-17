@@ -229,7 +229,7 @@ $('#weight').blur(function(){
                                                 
                                                 <label class="" for="billing_first_name">생일<abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" id="birth"  class="datepicker" name="birthday" placeholder="ex) 2017/04/01">
+                                                <input type="text" id="birth"  class="datepicker" name="birthday" placeholder="ex) 2017-04-01">
                                                 <span id="birthError"></span>
                                                 
                                                 <br><br>
@@ -242,7 +242,7 @@ $('#weight').blur(function(){
                                                 <br><br>
                                                 
                                                 <label class="" for="billing_state">미용 알림 시작일</label>
-                                                <input type="text" id="gs" name="groomingStart" value=""  class="datepicker" placeholder="ex) 2017/04/01">
+                                                <input type="text" id="gs" name="groomingStart" value=""  class="datepicker" placeholder="ex) 2017-04-01">
                                                 <span id="gsError"></span>
                                                 
                                                 <br><br>

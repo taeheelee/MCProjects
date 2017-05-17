@@ -13,6 +13,10 @@
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"
 	integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 	crossorigin="anonymous"></script>
+	<!-- jQuery Datepicker -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
 
 	/* 달력 설정 */
@@ -34,7 +38,10 @@
 	$( function() {
 		$( ".datepicker" ).datepicker();
 	} );
-</script>	
+</script>
+
+
+
 <script type="text/javascript">
 	var myPet = '';
 	var id = '${id}';

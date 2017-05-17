@@ -56,7 +56,7 @@ public class MainController {
 					session.setAttribute("groomingStart", mainPet.get("groomingStart"));
 					session.setAttribute("groomingPeriod", mainPet.get("groomingPeriod"));
 				}
-				redirectAttr.addFlashAttribute("isLogin", "로그인 성공");
+				redirectAttr.addFlashAttribute("isLogin", id + "님 로그인");
 
 			} else {
 				redirectAttr.addFlashAttribute("isLogin", "아이디와 비밀번호를 확인하세요");

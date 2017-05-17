@@ -207,7 +207,16 @@ $(document).ready(function(){
 							<div class="single-product " style="padding: 5px;">
 								<div class="col-md-11"
 									style="background: #E6E6E6; padding: 15px 15px 5px 15px; width: 100%; margin: 0 auto;">
-									<h4>${lost.category }</h4>
+									<c:if test="${lost.category=='찾고있어요'}">
+										<h4>
+											<b style="color: red;">[긴급]</b> ${lost.category } <img alt="" src="./img/Emergency_Light.gif" id="emergency_icon">
+										</h4>
+									</c:if>
+									<c:if test="${lost.category=='보호중입니다'}">
+										<h4>
+											<b style="color: blue;">[안심]</b> ${lost.category } <img alt="" src="./img/angel_wings.png" id="emergency_icon" style="top: -1px;">
+										</h4>
+									</c:if>
 									<hr
 										style="border-color: black; border: solid 1px; margin: 0 0 5px 0">
 									<div align="right">${lost.writer }</div>

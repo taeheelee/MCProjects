@@ -32,9 +32,6 @@
   <body>
   
   
-<!--   <div style="width: 50%; margin: 0 auto;"> -->
-<!--     <div id="summernote"><p>Hello Summernote</p><p>Hello Summernote</p><p>Hello Summernote</p><p>Hello Summernote</p></div> -->
-<!-- 	</div> -->
 	
    
     <div class="product-big-title-area">
@@ -58,8 +55,6 @@
                 
                 <div class="col-md-55">
      
-<!--                     <div class="product-content-right"> -->
-<!--                         <div class="woocommerce" > -->
                          
                      
 
@@ -87,7 +82,7 @@
                                             
 											<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
                                                 <label class="" for="billing_state">글 제목<abbr title="required" class="required">*</abbr></label>
-                                                <input type="text" id="title" name="title" placeholder="" value="" class="input-text ">
+                                                <input type="text" id="title" name="title" placeholder="" value="" class="input-text " maxlength="20">
                                             </p>
                                             <br>
                                             

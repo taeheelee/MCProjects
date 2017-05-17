@@ -177,8 +177,8 @@
                 <!-- 댓글쓰기 -->
                 <input type="button" value="목록"  onClick="location.href='infoMain.do'">
                 <c:if test="${board.writer == sessionScope.name }">
-                	<input type="button" value="수정" onclick="location.href='infoUpdateForm.do?boardIdx=${board.boardIdx}'">
-                	<input type="button" value="삭제" onclick="location.href='infoDelete.do?boardIdx=${board.boardIdx}'">
+                	<input type="button" value="수정" onclick="location.href='boastUpdateForm.do?boardIdx=${board.boardIdx}'">
+                	<input type="button" value="삭제" onclick="location.href='boastDelete.do?boardIdx=${board.boardIdx}'">
                 </c:if>
                 <!-- 여기까지 댓글쓰기 -->
 			</div>

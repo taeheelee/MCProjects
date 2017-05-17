@@ -18,10 +18,9 @@ $(document).ready(function() {
 	              }
 	            }
 	      });
-	      
 	      	$('#ok').click(function() {
 				var content = $('#summernote').summernote('code');
-				$('#content').val(content);	
+				$('#content').val(content);
 			});
 	  });
 	</script>
@@ -56,7 +55,7 @@ $(document).ready(function() {
                          
                      
 
-                            <form action="infoWrite.do" enctype="multipart/form-data" action="infoWrite.do" class="checkout" method="get" name="checkout">
+                            <form action="infoWrite.do" enctype="multipart/form-data" action="infoWrite.do" class="checkout" method="post" name="checkout">
 								<input type="hidden" name="content" id="content">
 								<input type="hidden" name="boardCode" value="1">
 								<input type="hidden" name="writer" value="${sessionScope.name}">
@@ -86,7 +85,7 @@ $(document).ready(function() {
                                             
           
   <div style="width: 100%; margin: 0 auto;">
-    <div id="summernote"></div>
+    <div id="summernote" ></div>
 	</div>
 <br>
 

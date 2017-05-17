@@ -39,39 +39,33 @@ $(document).ready(function(){
 				alert("잠시 후 다시 시도해주세요.");
 			}
 		});
-	}	
+		}	
+		$("#calendar").fullCalendar({
+	        defaultDate : "2017-04-10"
+	      , editable : true
+	      , eventLimit : true
+	      , lang: 'ko'
+	      , events: [
 	
-});
-
-	
-//dsdsafasdf
-    jQuery(document).ready(function() {
-        jQuery("#calendar").fullCalendar({
-              defaultDate : "2017-04-10"
-            , editable : true
-            , eventLimit : true
-            , lang: 'ko'
-            , events: [
-
-            ]
-        });
-        
+	      ]
+	  	});
+	  
 		var idx = $('#defaultBirth').attr('name');
 		var birth = $('#defaultBirth').val();
 		getPetAge(birth, idx);
 		
-        $('li').click(function(){
-        	getPetAge($(this).attr('id'), $(this).attr('name'));
+	  $('li').click(function(){
+	  	getPetAge($(this).attr('id'), $(this).attr('name'));
 		});
-        $('.petDel').click(function() {
+	  $('.petDel').click(function() {
 			var petName = prompt('펫 정보를 삭제 하시나요?', '삭제하시려면 펫이름을 입력해주세요');
 			
 			var petIdx = $(this).attr('id');
-
+	
 			location.href='deletePet.do?id=${sessionScope.id}&idx=' + petIdx + '&petname=' + petName;
 		});
-        
-    });
+		
+});
 </script>
 </head>
 <body>

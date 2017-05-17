@@ -70,7 +70,7 @@
         <div class="container">
         	<div class="col-md-55">
         		<p>
-	        		<font style="font-size: medium; font-weight: bold; color: gray">[${board.category }]</font>
+	        		<font style="font-size: medium; font-weight: bold; color: gray">[짝꿍찾기]</font>
 	        	</p>
 	        	<h2 class="sidebar-title" style="text-align: center;">${board.title }</h2>
         		<h5 align="right">작성자: ${board.writer }</h5> 

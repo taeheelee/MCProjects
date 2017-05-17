@@ -54,6 +54,11 @@ public class PetinfoController {
 		mav.setViewName("myPetInfo.tiles");
 		return mav;
 	}
+	@RequestMapping("calendar.do")
+	@ResponseBody List<HashMap<String, Object>> calendar(String id) {
+		List<HashMap<String, Object>> petList = petInfoService.selectPetList(id);
+		return petList;
+	}
 
 	@RequestMapping("addPetForm.do")
 	public ModelAndView addPetForm() {

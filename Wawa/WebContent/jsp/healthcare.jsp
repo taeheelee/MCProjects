@@ -22,6 +22,8 @@
 	var myPet = '';
 	var isPet = false;
 	function addTable(year, month, petinfo) {
+		var tmp = (petinfo.weight*30)+70;
+		var kcal = tmp*1.8;
 		var table = $('#lTable tbody');
 		$('tr:gt(0)', table).remove();
 		var tr1 = $('<tr>');
@@ -34,15 +36,15 @@
 		$('<td>').text(petinfo.neutral).appendTo(tr2);
 		$('<td>').attr('colspan', '2').text(year + "년" + month + "개월")
 				.appendTo(tr3);
-		$('<td>').attr('colspan', '2').text(petinfo.weight).appendTo(tr4);
-		$('<td>').attr('colspan', '2').text('하루필요열량 000kcal').appendTo(tr5);
+		$('<td>').attr('colspan', '2').attr('id', 'petWeight').text(petinfo.weight + 'kg').appendTo(tr4); 
+		$('<td>').attr('colspan', '2').text(kcal + 'kcal').appendTo(tr5);
 		table.append(tr1);
 		table.append(tr2);
 		table.append(tr3);
 		table.append(tr4);
 		table.append(tr5);
 	}
-	function addPetinfo(pet) { //필수
+	function addPetinfo(pet) {
 		var id = '${id }';
 		var year = 0;
 		var month = 0;
@@ -65,15 +67,15 @@
 	function chkDateFmt(data) { 
 		var regDate = /^(19[7-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
 		if (!regDate.test(data)) {
-			alert('날짜 형식을 확인하세요');
+			alert('날짜 형식을 확인하세요.');
 			return false;
 		}
 		return true;
 	}
-	function chkNumFmt(data) { //ㅇㅇ
+	function chkNumFmt(data) {
 		var regNum = /^[0-9]+[.][0-9]+$/;
 		if (!regNum.test(data)) {
-			alert('숫자 형식을 확인하세요');
+			alert("소수점 첫째자리까지 입력하세요.");
 			return false;
 		}
 		return true;
@@ -149,19 +151,20 @@
 	
 	// 중복 검사하고 현재 날짜 이후의 날짜를 입력했는지 체크해야돼
 	function chkDate(){ // 날짜를 받아서 계산
+		var id = '${id }';
+		var name = myPet;
 		var day = $('#day').val();
 		$.ajax({
 			type : 'get',
 			url : 'chkDate.do',
-			data : "day=" + day,
+			data : "id=" + id + "&name=" + myPet + "&day=" + day,
 			dataType : 'json',
 			success : function(data) {
 				if (data.result) {
-					alert("날짜사용가능");
 					chkDupl(); // 지난날짜이므로 입력 가능 ㅇㅇ
+					// + 생일 이후로 입력해야댐
 				} else {
-					$('#dateError').html('<font color="red">날짜입력오류</font>');
-					alert("오늘 이후의 날짜는 입력할 수 없습니다.");
+					alert('오늘 이후나 생일 이전의 날짜는 입력하실 수 없습니다.');
 					// 이후의 날짜이므로 입력 불가 
 				}
 			},
@@ -188,6 +191,7 @@
 			}
 		});
 	}
+	
 	function addManageTable(day, weight) {
 		$('tr:gt(1)', table).remove();
 		var id = '${id}';
@@ -204,20 +208,19 @@
 			}
 		});
 	}
+	
 	function setManageTable(list, dateList) {
 		$(list).each(function(index, value) {
-// 			var deleteBtn = $('<input>').prop("type", "button").val("삭제").addClass("deleteBtn").
-// 			attr('name', "addBtn").attr('id', "addBtn").css("padding", "3px 3px");
 			var table = $('#table tbody');
 			var tr = $('<tr>');
 			$('<td>').text(dateList[index]).appendTo(tr);
 			$('<td>').text(value.weight).appendTo(tr);
 			$('<td>').appendTo(tr);
-// 			$('<td>').append(deleteBtn).appendTo(tr);
 			table.append(tr);
 		});
 	}
-	function callManageInfo(id, name) { // ㅇ
+	
+	function callManageInfo(id, name) {
 		$.ajax({
 			type : 'get',
 			url : 'selectHealthcare.do',
@@ -233,6 +236,7 @@
 			}
 		});
 	}
+	
 	$(document).ready(function() {
 		$('.addBtn').click(function() {
 			if (isPet == false) {
@@ -245,9 +249,10 @@
 				chkDate();
 			}
 		});
+		
 		$('#name').change(function() {
 			$('tr:gt(1)', table).remove();
-			// 				$("#table tr:not(:first)").remove();
+			//$("#table tr:not(:first)").remove();
 			//$('tr:gt(0)', table).remove();
 			var name = $("#name option:selected").text();
 			myPet = name;
@@ -260,12 +265,34 @@
 			callPetinfo(id, name);
 			callManageInfo(id, name);
 		});
+		
 		var calculate = document.getElementById('calculate');
 		var calculateCalories = document.getElementById('calculateCalories');
 		calculate.onclick = function() {
-			var activity = $("input[name=activity]:checked").val();
-			// 		alert(activity);
-			calculateCalories.innerHTML = Number(activity) * ((5 * 30) + 70);
+			if(isPet == false){
+				alert('강아지를 선택하세요.');	
+			}else {
+				var id = '${id}';
+				var name = myPet;
+				$.ajax({
+					type : 'get',
+					url : 'selectPet.do',
+					data : "id=" + id + "&name=" + name,
+					dataType : "json",
+					success : function(data) {
+						if (data.pet != null) {
+							var activity = $("input[name=activity]:checked").val();
+							//몸무게 가져와서 뿌리기
+							var weight = data.pet.weight;
+							calculateCalories.innerHTML = Number(activity) * ((weight * 30) + 70);
+						} else {
+						}
+					},
+					error : function(data) {
+						alert("잠시 후 다시 시도해주세요.");
+					}
+				});
+			}
 		};
 		// 	alert('${weightList}');
 		var data = '${weightList}';
@@ -326,6 +353,8 @@
 					<div class="product-content-right">
 						<h2 class="sidebar-title">체중 관리</h2>
 						<p>이 홈페이지에서 안내하는 사항은 참고용입니다. 정확한 정보는 전문가와 상담하십시오.</p>
+						<font size="1.5" color="red"> #정보는 상위 5개만 표시됨</font>
+						<font size="1.5" color="red"> #운동량 : 최근 몸무게 기준</font>
 						<div class="woocommerce">
 							<form method="post" action="#"></form>
 						</div>
@@ -342,8 +371,8 @@
 										class="shop_table cart">
 										<thead>
 											<tr>
-												<th>날짜<span id="dataError"></span></th>
-												<th>몸무게<span id=""></span></th>
+												<th>날짜<span id="dtError"></span></th>
+												<th>몸무게<span id="wtError"></span></th>
 												<td></td>
 											</tr>
 										</thead>
@@ -382,13 +411,11 @@
 						<form name="calculate">
 							<input type="radio" name="activity" id="activity" value="1.0">비만
 							<input type="radio" name="activity" id="activity" value="1.4">비만경향
-							<input type="radio" name="activity" id="activity" value="1.8"
-								checked="checked">운동량 없음 <input type="radio"
-								name="activity" id="activity" value="2.0">가벼운 운동 <input
-								type="radio" name="activity" id="activity" value="3.0">적당한
-							운동 <input type="radio" name="activity" id="activity" value="4.0">심한
-							운동 <input type="button" value="Calculate" id="calculate"
-								onclick=""> <br>
+							<input type="radio" name="activity" id="activity" value="1.8" checked="checked">운동량 없음 
+							<input type="radio" name="activity" id="activity" value="2.0">가벼운 운동
+							<input type="radio" name="activity" id="activity" value="3.0">적당한 운동 
+							<input type="radio" name="activity" id="activity" value="4.0">심한 운동 
+							<input type="button" value="Calculate" id="calculate" onclick=""> <br>
 						</form>
 						<p></p>
 						<p>보통 사료 패키지에는 체중에 따른 1일 권장 급여량과 100g당 칼로리가 표시되어있지만 대략적인수치이며,

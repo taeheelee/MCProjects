@@ -108,8 +108,8 @@ pageEncoding="UTF-8"%>
 							</div>
 
 
-							<label class="" for="billing_state">애견 이름</label> <input
-							type="text" id="name" name="name" placeholder="" value="${board.name }"
+							<label class="" for="billing_state">애견 이름<abbr title="required" class="required">*</abbr></label> 
+							<input type="text" id="name" name="name" placeholder="" value="${board.name }"
 							class="input-text " maxlength="20">
 
 							<br><br>
@@ -153,14 +153,14 @@ pageEncoding="UTF-8"%>
 
 						<br>
 
-						<label class="" for="billing_state">나이</label> <input
-						type="text" id="age" name="age" placeholder="" value="${board.age }"
+						<label class="" for="billing_state">나이<abbr title="required" class="required">*</abbr></label> 
+						<input type="text" id="age" name="age" placeholder="" value="${board.age }"
 						class="input-text " maxlength="10">
 
 						<br><br>
 
-						<label class="" for="billing_state">몸무게(kg)</label> <input
-						type="text" id="weight" name="weight" placeholder="" value="${board.weight }"
+						<label class="" for="billing_state">몸무게(kg)<abbr title="required" class="required">*</abbr></label> 
+						<input type="text" id="weight" name="weight" placeholder="" value="${board.weight }"
 						class="input-text " maxlength="10">
 
 						<br><br>
@@ -178,7 +178,7 @@ pageEncoding="UTF-8"%>
 						<br><br>
 
 
-						<label class="" for="billing_first_name">애견 프로필 사진 등록<abbr title="required" class="required">*</abbr></label>
+						<label class="" for="billing_first_name">애견 프로필 사진 등록</label>
 						<table border="0">
 							<tr>
 								<td width="10%">
@@ -195,7 +195,7 @@ pageEncoding="UTF-8"%>
 						<p id="billing_state_field"
 						class="form-row form-row-first address-field validate-state"
 						data-o_class="form-row form-row-first address-field validate-state">
-						<label class="" for="billing_state">글 제목</label> <input
+						<label class="" for="billing_state">글 제목<abbr title="required" class="required">*</abbr></label> <input
 						type="text" id="title" name="title" placeholder="" value="${board.title }"
 						class="input-text " maxlength="20">
 					</p>

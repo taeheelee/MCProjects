@@ -34,7 +34,7 @@ $(document).ready(function(){
                         <h2 class="footer-wid-title">Explore WAWA</h2>
                         <ul class="alertMsg">
                             <li><a href="wawaLocation.do">찾아오시는 길</a></li>
-                            <li><a href="#">이벤트</a></li>
+                            <li><a href="catRunMain.do">이벤트</a></li>
                             <li><a href="wawaPersonalInformation.do">개인정보취급방침</a></li>
                             <li><a href="wawaMembership.do">회원약관</a></li>
                             <li><a href="wawaTeamMember.do">사이트를 만든 사람들</a></li>

@@ -6,6 +6,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.postLink').click(function() {
+	    var p = $(this).attr('href').split('?');
+	    var action = p[0];
+	    var params = p[1].split('&');
+	    var form = $(document.createElement('form')).attr('action', action).attr('method','post');
+	    $('body').append(form);
+	    for (var i in params) {
+	        var tmp= params[i].split('=');
+	        var key = tmp[0], value = tmp[1];
+	        $(document.createElement('input')).attr('type', 'hidden').attr('name', key).attr('value', value).appendTo(form);
+	    }
+	    $(form).submit();
+	    return false;
+	});
+});
+</script>
 </head>
   <body>
   
@@ -27,7 +45,7 @@
 									<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 										<img src="imageShow/${best.fileId}.do" onerror="this.src='img/no_image.jpg'" alt="">
 										<div class="product-hover">
-											<a href="increaseLike.do?boardIdx=${best.boardIdx }&userIdx=${sessionScope.idx}" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
+											<a href="increaseLike.do?boardIdx=${best.boardIdx }&userIdx=${sessionScope.idx}" class="add-to-cart-link postLink"><i class="fa fa-heart"></i> 좋아요</a> 
 											<a href="boastDetails.do?boardIdx=${best.boardIdx }" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 										</div>
 									</div><!--  마우스오버시 검정색 효과 범위 끝 -->

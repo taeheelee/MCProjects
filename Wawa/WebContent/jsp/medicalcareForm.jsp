@@ -75,7 +75,6 @@
 	}
 	
 	function getMedicalTable(list, tableNum, ch){
-		alert(tableNum);
 		var table = $('#table' + tableNum + ' tbody');
 		$('tr:gt(1)', table).remove();
 		var id = '${id }';
@@ -147,7 +146,7 @@
 		$.ajax({
 			type : 'get',
 			url : 'selectMedical.do',
-			data : "id=" + id + "&name=" + myPet + "&ch" + ch,
+			data : "id=" + id + "&name=" + myPet + "&ch=" + ch,
 			dataType : "json",
 			success : function(data) {
 				getMedicalTable(data.careList, vGubun, ch); // 정보가져와서 테이블 만들어라
@@ -265,7 +264,6 @@
 	function chkDupl2(ch, vGubun, nGubun, vaccineCode){
 		var id = '${id }';
 		var date = $('#' + ch + 'date').val();
-		alert("날짜?"+date);
 		$.ajax({
 			type : 'get',
 			url : 'chkDupl2.do',

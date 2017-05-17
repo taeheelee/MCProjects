@@ -153,16 +153,14 @@ public class MedicalcareController {
 		
 		String ch = (String) params.get("ch");
 		int gubun = 0;
+		System.out.println(ch);
 		if(ch.equals("D")) gubun = 1;
 		else if(ch.equals("C")) gubun = 2;
 		else if(ch.equals("K")) gubun = 3;
 		else if(ch.equals("R")) gubun = 4;
 		
-		System.out.println(gubun);
 		for(HashMap<String, Object> care : careList){
 			if(gubun == ((int)care.get("vaccineCode"))/100){ //앞자리같은지
-				
-				System.out.println(((int)care.get("vaccineCode"))/100);
 				HashMap<String, Object> tmp = new HashMap<>();
 				tmp.put("idx", (int) care.get("idx"));
 				tmp.put("vaccineCode", (int) care.get("vaccineCode"));

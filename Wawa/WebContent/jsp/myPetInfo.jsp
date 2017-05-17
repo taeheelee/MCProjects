@@ -56,7 +56,7 @@ $(document).ready(function(){
 			}
       ]  */
       events: function(start, end, timezone, callback) {
-          $.ajax({
+          $.ajax({ 
              type : 'post',
              url : 'calendar.do',
              dataType : 'json',
@@ -64,7 +64,7 @@ $(document).ready(function(){
              success : function(petList) {
 
                 var events = [];
-                for (var i = 0; i < petList.length; i++) {s
+                for (var i = 0; i < petList.length; i++) {
                      events.push({
                          title : petList[i].name+'의 생일',
                          start : petList[i].birthday,

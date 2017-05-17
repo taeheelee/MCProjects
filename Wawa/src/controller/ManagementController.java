@@ -337,6 +337,7 @@ public class ManagementController {
 	         response.put("result", false);
 	      }
 	      return response;
+	      // 헬스케어로 리다이렉트해서 새로고침
 	   }
 	   
 	   @RequestMapping("updateHealthcare.do")

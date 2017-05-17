@@ -204,15 +204,15 @@ public class MedicalcareController {
 	@ResponseBody HashMap<String, Object> uploadMedical(HttpServletResponse resp,
 			@RequestParam HashMap<String, Object> params){
 		HashMap<String, Object> medical = new HashMap<>();
-
+		System.out.println("왜자꾸일로들어가지?");
 		int idx = (int) petinfoService.selectByname(params).get("idx");
 		int vaccineCode = Integer.parseInt((String) params.get("vaccineCode"));
 
 		medical.put(Constant.MedicalManage.VACCINECODE, vaccineCode);
 		medical.put(Constant.MedicalManage.IDX, idx);
-		medical.put(Constant.MedicalManage.REALSHOTDATE, params.get("shotday"));
-		medical.put(Constant.MedicalManage.DDAY, params.get("dDay"));			
-		medical.put(Constant.MedicalManage.NEXTDAY, params.get("nextShotday"));
+		medical.put(Constant.MedicalManage.REALSHOTDATE, (String) params.get("shotday"));
+		medical.put(Constant.MedicalManage.DDAY, (String) params.get("dDay"));			
+		medical.put(Constant.MedicalManage.NEXTDAY, (String) params.get("nextShotday"));
 		
 		HashMap<String, Object> response = new HashMap<>();
 		if(medicalService.insertRealShotDate(medical)){
@@ -227,15 +227,15 @@ public class MedicalcareController {
 	public 
 	@ResponseBody HashMap<String, Object> updateMedical(HttpServletResponse resp,
 			@RequestParam HashMap<String, Object> params){
-		HashMap<String, Object> medical = new HashMap<>();
 		int idx = (int)petinfoService.selectByname(params).get("idx");
 		int vaccineCode = Integer.parseInt((String) params.get("vaccineCode"));
 
+		HashMap<String, Object> medical = new HashMap<>();
 		medical.put(Constant.MedicalManage.VACCINECODE, vaccineCode);
 		medical.put(Constant.MedicalManage.IDX, idx);
-		medical.put(Constant.MedicalManage.REALSHOTDATE, params.get("shotday"));
-		medical.put(Constant.MedicalManage.NEXTDAY, params.get("nextShotday"));
-		medical.put(Constant.MedicalManage.DDAY, params.get("dDay"));
+		medical.put(Constant.MedicalManage.REALSHOTDATE, (String) params.get("shotday"));
+		medical.put(Constant.MedicalManage.NEXTDAY, (String) params.get("nextShotday"));
+		medical.put(Constant.MedicalManage.DDAY, (String) params.get("dDay"));
 		
 		HashMap<String, Object> response = new HashMap<>();
 		
@@ -255,10 +255,13 @@ public class MedicalcareController {
 		int idx = (int)petinfoService.selectByname(params).get("idx");
 		String vaccineCode = (String) params.get("vaccineCode");
 		
+		tmp.put("idx", idx);
 		tmp.put("vaccineCode", vaccineCode);
 		HashMap<String, Object> response = new HashMap<>();
+		System.out.println(medicalService.selectVc(tmp) + "반환값이뭐길래?");
 		if(medicalService.selectVc(tmp) != null){
-		 //중복이거나 
+		 //중복이면 
+			System.out.println("중복체크");
 			response.put("result", true);
 		}else {
 			response.put("result", false);

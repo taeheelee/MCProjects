@@ -75,8 +75,8 @@
 	}
 	
 	function getMedicalTable(list, tableNum, ch){
-		var table = $('#table' + tableNum + ' tbody');
-		$('tr:gt(1)', table).remove();
+		var mtable = $('#table' + tableNum + ' tbody');
+		$('tr:gt(0)', mtable).remove();
 		var id = '${id }';
 		var petname = $("#name option:selected").text();
 		
@@ -85,9 +85,9 @@
 			var tr = $('<tr>');
 			var dDay;
 			if(parseInt(value.dDay) > 0){
-				dDay = '+'+value.dDay;
+				dDay = '+'+Math.abs(value.dDay);
 			}else {
-				dDay = '-'+value.dDay;
+				dDay = '-'+Math.abs(value.dDay);
 			}
 			var code = 0;
 			if(parseInt(vaccineCode%100) < 10){
@@ -101,7 +101,7 @@
 			$('<td>').attr('id', ch + 'next' + parseInt(index+1)).text('D' + dDay).appendTo(tr);
 			$('<td>').attr('id', ch + 'day' + parseInt(index+1)).text(value.realShotDate).appendTo(tr);
 			$('<td>').append(deleteBtn).appendTo(tr);
-			table.append(tr);
+			mtable.append(tr);
 
 			deleteBtn.on('click', function() {
 				$.ajax({

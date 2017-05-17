@@ -8,41 +8,6 @@ pageEncoding="UTF-8"%>
 	<title>Insert title here</title>
 <script type="text/javascript" src="js/boardCheck.js"></script>
 <script type="text/javascript">
-function boastBoardCheck() {
-	if ($('#name').val().replace(/ /gi, "") == "") {
-		alert("애견이름을 입력해주세요");
-		$('#name').focus();
-		return false;
-	}
-	if ($('#age').val().replace(/ /gi, "") == "") {
-		alert("나이를 입력해주세요");
-		$('#age').focus();
-		return false;
-	}
-	var age = $('#age').val().match(/[^0-9]/g);
-	if (age == null) {
-		alert("나이는 숫자로 입력해주세요");
-		$('#age').focus();
-		return false;
-	}
-	if ($.isNumeric($('#age').val()) == false) {
-		alert("나이는 숫자로 입력해주세요");
-		$('#age').focus();
-		return false;
-	}
-	if ($('#title').val().replace(/ /gi, "") == "") {
-		alert("제목을 입력해주세요");
-		$('#title').focus();
-		return false;
-	}
-	var content = $('#summernote').summernote('code');
-	$('#content').val(content);
-	if (content == "<p><br></p>") {
-		alert("내용을 입력해주세요");
-		return false;
-	}
-	return true;
-}
 	$(document).ready(function() {
 		$('#summernote').summernote({
 			height : 500,

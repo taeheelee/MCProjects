@@ -241,13 +241,13 @@
 							<!-- Wrapper for slides -->
 							<div class="carousel-inner" role="listbox">
 									<div class="item active" align="center">	
-										<img src="PetInfoImage/${petList[0].fileId }.do" alt="..." width="200" height="150" >
+										<img src="PetInfoImage/${petList[0].fileId }.do" alt="..." style="width:200px; height:150px;"  >
 										<span><h3>${petList[0].name }</h3></span>
 										<div class="carousel-caption"></div>
 									</div>
 									<c:forEach items="${petList }" var="petinfo" varStatus="idx" begin="1">
 									<div class="item" align="center">
-										<img src="PetInfoImage/${petinfo.fileId }.do" onerror="this.src='img/noImage.png'" alt="..." width="200" height="150" >
+										<img src="PetInfoImage/${petinfo.fileId }.do" onerror="this.src='img/noImage.png'" alt="..." style="width:200px; height:150px;" >
 										<span><h3>${petinfo.name }</h3></span>
 										<div class="carousel-caption"></div>
 									</div>

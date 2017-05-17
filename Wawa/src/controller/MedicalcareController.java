@@ -153,7 +153,6 @@ public class MedicalcareController {
 		
 		String ch = (String) params.get("ch");
 		int gubun = 0;
-		System.out.println(ch);
 		if(ch.equals("D")) gubun = 1;
 		else if(ch.equals("C")) gubun = 2;
 		else if(ch.equals("K")) gubun = 3;

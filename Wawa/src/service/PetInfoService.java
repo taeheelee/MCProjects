@@ -100,19 +100,6 @@ public class PetInfoService implements IPetinfoService {
 		model.setWeight(weight);
 		mmDao.insertManagement(model);
 		
-		
-		HashMap<String, Object> pet = dao.selectByName(params);
-		int petIdx = (int)pet.get("idx");
-		int arr[] = {101, 102, 103, 104, 105, 201, 202, 203, 204, 205, 301, 302, 303, 304, 305, 401, 402, 403, 404, 405};
-		String defaultDate = "0000-00-00";
-		for(int i = 0; i < arr.length; i ++){
-			HashMap<String, Object> tmp = new HashMap<>();
-			tmp.put("idx", petIdx);
-			tmp.put("vaccineCode", arr[i]);
-			tmp.put("realShotDate", defaultDate);
-			mDao.insertRealShotDate(tmp);
-		}
-	
 		if(result > 0)
 			return true;
 		else

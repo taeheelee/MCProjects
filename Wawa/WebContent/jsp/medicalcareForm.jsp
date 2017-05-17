@@ -51,6 +51,8 @@
 
 	
 	function addTable(year, month, petinfo) {
+		var tmp = (petinfo.weight*30)+70;
+		var kcal = tmp*1.8;
 		var table = $('#lTable tbody');
 		$('tr:gt(0)', table).remove();
 		var tr1 = $('<tr>');
@@ -63,8 +65,8 @@
 		$('<td>').text(petinfo.neutral).appendTo(tr2);
 		$('<td>').attr('colspan', '2').text(year + "년" + month + "개월")
 				.appendTo(tr3);
-		$('<td>').attr('colspan', '2').text(petinfo.weight).appendTo(tr4);
-		$('<td>').attr('colspan', '2').text('하루필요열량 000kcal').appendTo(tr5);
+		$('<td>').attr('colspan', '2').text(petinfo.weight+'kg').appendTo(tr4);
+		$('<td>').attr('colspan', '2').text(kcal + 'kcal').appendTo(tr5);
 		table.append(tr1);
 		table.append(tr2);
 		table.append(tr3);
@@ -73,9 +75,9 @@
 	}
 	
 	function getMedicalTable(list, tableNum, ch){
-		var table = $('#table' + tableNum);
-		$('tr:gt(1)', table).remove();
+		alert(tableNum);
 		var table = $('#table' + tableNum + ' tbody');
+		$('tr:gt(1)', table).remove();
 		var id = '${id }';
 		var petname = $("#name option:selected").text();
 		
@@ -88,8 +90,14 @@
 			}else {
 				dDay = '-'+value.dDay;
 			}
+			var code = 0;
+			if(parseInt(vaccineCode%100) < 10){
+				code = parseInt(vaccineCode%10);
+			}else {
+				code = parseInt(vaccineCode%100);
+			}
 			var deleteBtn = $('<input type="button" value="삭제" class="deleteBtn" name="' + parseInt(index+1) + '" id= "delete' + ch + parseInt(index+1) + '" style="padding: 3px 3px">');
-			$('<td>').html('<a>' + parseInt(vaccineCode%10) + '차</a>').appendTo(tr);
+			$('<td>').html('<a>' + code + '차</a>').appendTo(tr);
 			$('<td>').attr('id', ch + 'now' + parseInt(index+1)).text(value.nextday).appendTo(tr);
 			$('<td>').attr('id', ch + 'next' + parseInt(index+1)).text('D' + dDay).appendTo(tr);
 			$('<td>').attr('id', ch + 'day' + parseInt(index+1)).text(value.realShotDate).appendTo(tr);
@@ -123,7 +131,7 @@
 		$.ajax({
 			type : 'get',
 			url : 'selectMedical.do',
-			data : "id=" + id + "&name=" + myPet,
+			data : "id=" + id + "&name=" + myPet + "&ch=" + ch,
 			dataType : "json",
 			success : function(data) {
 				getMedicalTable(data.careList, tableNum, ch); // 정보가져와서 테이블 만들어라
@@ -139,7 +147,7 @@
 		$.ajax({
 			type : 'get',
 			url : 'selectMedical.do',
-			data : "id=" + id + "&name=" + myPet,
+			data : "id=" + id + "&name=" + myPet + "&ch" + ch,
 			dataType : "json",
 			success : function(data) {
 				getMedicalTable(data.careList, vGubun, ch); // 정보가져와서 테이블 만들어라
@@ -169,12 +177,9 @@
 						success : function(data) {
 							if (data.dDay != null) {
 								var dDay = data.dDay;
-								alert(dDay);
 								if(flag == 0){
-									alert('수정');
 									updateShotday(ch, date, vGubun, nGubun, vaccineCode, nextDate, dDay);
 								}else {
-									alert('업로드');
 									uploadShotday(ch, date, vGubun, nGubun, vaccineCode, nextDate, dDay);
 								}						
 							} else {
@@ -260,6 +265,7 @@
 	function chkDupl2(ch, vGubun, nGubun, vaccineCode){
 		var id = '${id }';
 		var date = $('#' + ch + 'date').val();
+		alert("날짜?"+date);
 		$.ajax({
 			type : 'get',
 			url : 'chkDupl2.do',
@@ -301,8 +307,7 @@
 			var vGubun = btnName; // 백신 이름(앞자리)대한 정보
 			var nGubun = $("#num"+btnName).val(); // 백신 이름 (뒷자리) 대한 정보
 			
-			var vaccineCode = parseInt(vGubun*10) + nGubun;
-			 // alert(ch);
+			var vaccineCode = parseInt(vGubun*100) + parseInt(nGubun);
 			var flag = chkDateFmt($('#' + ch + 'date').val());
 			if(flag == true){
 				chkDupl2(ch, vGubun, nGubun, vaccineCode);
@@ -320,6 +325,9 @@
 			}
 			callPetinfo(id, name);
 			addShotday2(1, 'D');
+			addShotday2(2, 'C');
+			addShotday2(3, 'K');
+			addShotday2(4, 'R');
 		});
 		
 	});
@@ -500,9 +508,6 @@
 												</script>
 											</thead>
 											<tbody>
-												<tr class="cart_item">
-													<td class="product-remove" rowspan="2"><a>기초접종</a>
-												</tr>
 												<tr id="tr4">
 													<td>
 														<input type="text" class="VcDate" placeholder="0"

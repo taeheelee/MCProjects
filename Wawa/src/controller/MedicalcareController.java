@@ -2,6 +2,7 @@ package controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -59,8 +60,6 @@ public class MedicalcareController {
 			e.printStackTrace();
 		}
 		
-		System.out.println("백신코드" + vaccineCode);
-		System.out.println("날짜" + to);
 		int period = (int) vaccineService.selectVaccineInfo(vaccineCode).get("vaccinePeriod");
 		
 		Calendar cal = new GregorianCalendar(Locale.KOREA);
@@ -78,8 +77,6 @@ public class MedicalcareController {
 		date.put("realDate", to1);
 		date.put("nextDate", strDate);
 		
-		System.out.println(strDate);
-		System.out.println(to1);
 		return date;
 	}
 	
@@ -150,10 +147,34 @@ public class MedicalcareController {
 			@RequestParam HashMap<String, Object> params){
 		HashMap<String, Object> medical = new HashMap<>();
 		int idx = (int) petinfoService.selectByname(params).get("idx");
+
 		List<HashMap<String, Object>> careList = medicalService.selectAllShotDate(idx);
+		List<HashMap<String, Object>> list = new ArrayList<HashMap<String,Object>>();
+		
+		String ch = (String) params.get("ch");
+		int gubun = 0;
+		if(ch.equals("D")) gubun = 1;
+		else if(ch.equals("C")) gubun = 2;
+		else if(ch.equals("K")) gubun = 3;
+		else if(ch.equals("R")) gubun = 4;
+		
+		System.out.println(gubun);
+		for(HashMap<String, Object> care : careList){
+			if(gubun == ((int)care.get("vaccineCode"))/100){ //앞자리같은지
+				
+				System.out.println(((int)care.get("vaccineCode"))/100);
+				HashMap<String, Object> tmp = new HashMap<>();
+				tmp.put("idx", (int) care.get("idx"));
+				tmp.put("vaccineCode", (int) care.get("vaccineCode"));
+				tmp.put("realShotDate", (Date) care.get("realShotDate"));
+				tmp.put("nextday", (Date) care.get("nextday"));
+				tmp.put("dDay", (String) care.get("dDay"));
+				list.add(tmp);
+			}
+		}
 		
 		HashMap<String, Object> response = new HashMap<>();
-		response.put("careList", careList);
+		response.put("careList", list);
 		return response;
 	}
 	
@@ -196,10 +217,6 @@ public class MedicalcareController {
 		medical.put(Constant.MedicalManage.DDAY, params.get("dDay"));			
 		medical.put(Constant.MedicalManage.NEXTDAY, params.get("nextShotday"));
 		
-		System.out.println("씨앙!!");
-		System.out.println("인덱스:"+idx);
-		System.out.println("백신코드:"+vaccineCode);
-		
 		HashMap<String, Object> response = new HashMap<>();
 		if(medicalService.insertRealShotDate(medical)){
 			response.put("result", true);
@@ -214,14 +231,8 @@ public class MedicalcareController {
 	@ResponseBody HashMap<String, Object> updateMedical(HttpServletResponse resp,
 			@RequestParam HashMap<String, Object> params){
 		HashMap<String, Object> medical = new HashMap<>();
-
-		
 		int idx = (int)petinfoService.selectByname(params).get("idx");
 		int vaccineCode = Integer.parseInt((String) params.get("vaccineCode"));
-		System.out.println("씨앙!!");
-		System.out.println("인덱스:"+idx);
-		System.out.println("백신코드:"+vaccineCode);
-		
 
 		medical.put(Constant.MedicalManage.VACCINECODE, vaccineCode);
 		medical.put(Constant.MedicalManage.IDX, idx);
@@ -246,11 +257,11 @@ public class MedicalcareController {
 		HashMap<String, Object> tmp = new HashMap<>();
 		int idx = (int)petinfoService.selectByname(params).get("idx");
 		String vaccineCode = (String) params.get("vaccineCode");
+		
 		tmp.put("vaccineCode", vaccineCode);
-
 		HashMap<String, Object> response = new HashMap<>();
 		if(medicalService.selectVc(tmp) != null){
-		 //중복
+		 //중복이거나 
 			response.put("result", true);
 		}else {
 			response.put("result", false);

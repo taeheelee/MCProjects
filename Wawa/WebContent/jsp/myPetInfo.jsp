@@ -64,7 +64,7 @@ $(document).ready(function(){
              success : function(petList) {
 
                 var events = [];
-                for (var i = 0; i < petList.length; i++) {
+                for (var i = 0; i < petList.length; i++) {s
                      events.push({
                          title : petList[i].name+'의 생일',
                          start : petList[i].birthday,

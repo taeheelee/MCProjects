@@ -266,7 +266,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                	<c:forEach var="board" items="${boardList }" varStatus="idx">
+                	<c:forEach var="board" items="${boardList }" varStatus="idx" begin="0" end="7">
                     	<tr class="cart_item">
                     	<c:choose>
 					       <c:when test="${board.boardCode == 1}">

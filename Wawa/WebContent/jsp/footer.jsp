@@ -5,13 +5,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript">
-$(document).ready(function(){
-	$('.alertMsg').click(function(){
-		alert('준비중입니다.');
-	});
-});
-</script>
 </head>
 <body>
 <div class="footer-top-area">

@@ -34,7 +34,7 @@
 			var speed = 0;
 			score.value = 0;
 			score.style.position = 'absolute';
-			score.style.top = 220 +'px';
+			score.style.top = 300 +'px';
 			content.appendChild(score);
 			setInterval(function() {
 				score.innerHTML = score.value;
@@ -169,9 +169,18 @@
 </script>
 </head>
 <body>
+	 <div class="product-big-title-area">
+	        <div class="container">
+                <div class="col-md-12">
+                    <div class="product-bit-title text-left">
+                        <h2>이벤트</h2>
+                    </div>
+                </div>
+	        </div>
+	 </div>
 	<div id="content">
 	<center>
-		<div id="content2">
+		<div id="content2" style="height: 435px">
 			<img id="title"></img> <br>
 			<button id="start">시작</button>		
 		</div>

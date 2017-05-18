@@ -156,7 +156,7 @@
 					<div>
 	                	<form action="repleWrite.do" method="post">
 	                		<c:if test="${sessionScope.id != null }">
-		                		<textarea style="width: 85%; height: 100px; resize: none" id="repleContent" name="repleContent"  maxlength="500"></textarea>
+		                		<textarea style="width: 85%; height: 100px; resize: none" id="repleContent" name="content"  maxlength="500"></textarea>
 		                		<input type="hidden" name="boardIdx" value="${board.boardIdx }">
 		                		<input type="hidden" name="boardCode" value="${board.boardCode }">
 		                		<input type="hidden" name="nickname" value="${sessionScope.name }">

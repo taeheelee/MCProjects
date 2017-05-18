@@ -32,12 +32,12 @@ $(document).ready(function(){
                 <div class="col-md-3 col-sm-6">
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Explore WAWA</h2>
-                        <ul class="alertMsg">
-                            <li><a href="#">찾아오시는 길</a></li>
-                            <li><a href="#">이벤트</a></li>
-                            <li><a href="#">개인정보취급방침</a></li>
-                            <li><a href="#">회원약관</a></li>
-                            <li><a href="#">사이트 문의 : 02-000-0000</a></li>
+                        <ul>
+                            <li><a href="wawaLocation.do">찾아오시는 길</a></li>
+                            <li><a href="catRunMain.do">이벤트</a></li>
+                            <li><a href="wawaPersonalInformation.do">개인정보취급방침</a></li>
+                            <li><a href="wawaMembership.do">회원약관</a></li>
+                            <li><a href="wawaTeamMember.do">사이트를 만든 사람들</a></li>
                         </ul>                        
                     </div>
                 </div>
@@ -48,7 +48,7 @@ $(document).ready(function(){
                         <p>T. 010.7780.1234 ㅣ 010.9372.4733</p>
 						<p>평일 · AM 09:00 ~ PM 18:00</p>
                         <div class="newsletter-form">
-                            <form action="#">
+                            <form action="#" class="alertMsg">
                                 <input type="email" placeholder="Type your email">
                                 <input type="submit" value="Subscribe">
                             </form>
@@ -60,11 +60,11 @@ $(document).ready(function(){
                     <div class="footer-about-us">
                      	 <h2 class="footer-wid-title">SNS</h2>
                         <div class="footer-social">
-                            <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-youtube"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-linkedin"></i></a>
-                            <a href="#" target="_blank"><i class="fa fa-pinterest"></i></a>
+                            <a href="#" target="_blank"class="alertMsg"><i class="fa fa-facebook"></i></a>
+                            <a href="#" target="_blank"class="alertMsg"><i class="fa fa-twitter"></i></a>
+                            <a href="#" target="_blank"class="alertMsg"><i class="fa fa-youtube"></i></a>
+                            <a href="#" target="_blank"class="alertMsg"><i class="fa fa-linkedin"></i></a>
+                            <a href="#" target="_blank"class="alertMsg"><i class="fa fa-pinterest"></i></a>
                         </div>
 <!--                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p> -->
                      	<br>

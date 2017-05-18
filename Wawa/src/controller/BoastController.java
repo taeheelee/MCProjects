@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,12 +40,15 @@ public class BoastController {
 	@RequestMapping("boastMain.do")
 	public ModelAndView boastMain(@RequestParam(defaultValue="1") int page,
 			@RequestParam(defaultValue="3") int boardCode, HttpSession session){
-		int userIdx = (int)session.getAttribute("idx");
-		List<HashMap<String, Object>> like = likeService.selectUserLikeCountCheck(userIdx);
 		List<HashMap<String, Object>> best = boardService.selectBoastNum();
 		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("best", best);
-		mav.addObject("like", like);
+		if(session.getAttribute("idx") != null){
+			int userIdx = (int)session.getAttribute("idx");
+			List<HashMap<String, Object>> like = likeService.selectUserLikeCountCheck(userIdx);
+			mav.addObject("like", like);			
+		}
 		mav.addAllObjects(boardService.getBoardList(page, boardCode));
 		mav.setViewName("boast.tiles");
 		return mav;
@@ -167,7 +171,7 @@ public class BoastController {
 	}
 	
 	//뽐내기 좋아요 수 증가시키기
-	@RequestMapping("increaseLike.do")
+	@RequestMapping(method = RequestMethod.POST, value = "increaseLike.do")
 	public String increaseLike(int boardIdx, int userIdx){
 		if(likeService.selectOneLikeCountCheck(userIdx, boardIdx) == null){
 			boardService.increaseBoastNum(boardIdx);

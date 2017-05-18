@@ -26,8 +26,25 @@ table.pet_table th {
 	top: -3px;
 	left: 2px;
 }
-.avatar {
-    border-radius: 50%;
+.circular {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+.circular img {
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 .file_input_textbox{
 	float: left;
@@ -217,7 +234,7 @@ z-index: 999;}
 }
 /* 오른쪽 위 미니정보창 */
 .shopping-item {
-    border: 1px solid #ddd;
+    border: 2px solid #cccccc;
     float: right;
     font-size: 18px;
     margin: 5px 0 0 0;

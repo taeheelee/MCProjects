@@ -225,7 +225,45 @@
                       	<h2 class="sidebar-title">등록된 마이펫</h2>
                    <a href="myPetInfo.do?id=${sessionScope.id}" class="wid-view-more">나의 펫 보러가기</a>
                         
-                    <table style="width: 100%">
+                        <!-- 마이펫 리스트 보여줄 DIV -->
+                        <div id="carousel-example-generic" class="carousel slide"
+							data-ride="carousel">
+							<!-- Indicators -->
+							<ol class="carousel-indicators">
+							<c:forEach items="${petList }" var="petinfo" varStatus="idx">
+								<li data-target="#carousel-example-generic" data-slide-to="${idx.index }"
+									class="active">
+								</li>
+							</c:forEach>
+								
+							</ol>
+					
+							<!-- Wrapper for slides -->
+							<div class="carousel-inner" role="listbox">
+									<div class="item active" align="center">	
+										<img src="PetInfoImage/${petList[0].fileId }.do" alt="..." style="width:200px; height:150px;"  >
+										<span><h3>${petList[0].name }</h3></span>
+										<div class="carousel-caption"></div>
+									</div>
+									<c:forEach items="${petList }" var="petinfo" varStatus="idx" begin="1">
+									<div class="item" align="center">
+										<img src="PetInfoImage/${petinfo.fileId }.do" onerror="this.src='img/noImage.png'" alt="..." style="width:200px; height:150px;" >
+										<span><h3>${petinfo.name }</h3></span>
+										<div class="carousel-caption"></div>
+									</div>
+									</c:forEach>
+							</div>
+					
+							<!-- Controls -->
+							<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+						        <span class="glyphicon glyphicon-chevron-left"></span>
+						    </a>
+						    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+						        <span class="glyphicon glyphicon-chevron-right"></span>
+					        </a>
+						</div>
+                    	<!-- 마이펫 div 끝 -->
+                   <%--  <table style="width: 100%">
                     	<tr>
                     		<td width="20%" style="text-align: center;"><h3>마이펫 리스트</h3></td>
                     	</tr>
@@ -243,7 +281,7 @@
 		                   	<td style="text-align: center;"><img onerror="this.src='img/noImage.png'" alt="" width="200" height="150" id="petImg"></td>
 	                    	
 	                    </tr>
-					</table>    
+					</table> --%>    
                         <br><br><br><br><br>
                         
                   
@@ -266,7 +304,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                	<c:forEach var="board" items="${boardList }" varStatus="idx">
+                	<c:forEach var="board" items="${boardList }" varStatus="idx" begin="0" end="7">
                     	<tr class="cart_item">
                     	<c:choose>
 					       <c:when test="${board.boardCode == 1}">

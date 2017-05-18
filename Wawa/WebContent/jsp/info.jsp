@@ -6,6 +6,38 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"
+	integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+	crossorigin="anonymous"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#info_write_btn').click(function(){
+			var id = '${id}';
+			$.ajax({
+				type : 'get',
+				url : 'checkAdmin.do',
+				data : "id=" + id,
+				dataType : "json",
+				success : function(data) {
+					if(data.result){
+						//infoWriteForm.do
+						$.ajax({
+							type : 'get',
+							url : 'infoWriteForm.do',
+							dataType : 'json',
+							
+						});
+					}else {
+					}
+				},
+				error : function(data) {
+					alert("잠시 후 다시 시도해주세요.");
+				}
+			});
+		});
+	});
+</script>
+
 </head>
 <body>
 
@@ -44,17 +76,12 @@
 						<h2 class="sidebar-title2">글 목록</h2>
 						<div class="form-row place-order" style="float: right">
 							<c:if test="${sessionScope.name != null}">
-							<input type="button" data-value="Place order"
-								onclick="location.href='infoWriteForm.do'" value="WRITE"
-								id="place_order" name="woocommerce_checkout_place_order"
+							<input type="button" data-value="Place order" value="WRITE"
+								id="info_write_btn" name="info_write_btn"
 								class="button alt">
 							</c:if>
 							<h2>&nbsp;</h2>
 						</div>
-
-
-
-
 
 
 

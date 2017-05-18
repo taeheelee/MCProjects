@@ -51,24 +51,29 @@
 				}); 
     			}
     		});
+	 		var chk = function() {
+				if($('#newPassword').val() != $('#confirmpassword').val()){
+  					statusOfConfirmPassword = false;
+  					$('#cpwError').html('<font color="red">불일치</font>');
+  				}else {
+  					$('#cpwError').html('<font color="green">일치</font>');
+  					statusOfConfirmPassword = true;
+  				}
+			};
 		 	$('#newPassword').keyup(function(){
 					if(!regPassword.test($('#newPassword').val())){
+						chk();
 						$('#pwError').html('<font color="red">비밀번호 오류 (영문,숫자를 혼합하여 6~20자 이내)</font>');
 						statusOfNewPassword = false;
 					}else {
+						chk();
 						$('#pwError').html('<font color="green">사용가능</font>');
 						statusOfNewPassword = true;
 					}
 				});
 				
-				$('#confirmPassword').keyup(function(){
-					if($('#newPassword').val() != $('#confirmPassword').val()){
-						$('#cpwError').html('<font color="red">불일치</font>');
-						statusOfconfirmPassword = false;
-					}else {
-						$('#cpwError').html('<font color="green">일치</font>');
-						statusOfconfirmPassword = true;
-					}
+				$('#confirmpassword').keyup(function(){
+						chk();
 				});
 				$('#phoneNum').blur(function(){
 	  				if(!regPhoneNum.test($('#phoneNum').val())){
@@ -118,8 +123,9 @@
 				$('#name').change(function() {
 					$('#petImg').attr('src', 'PetInfoImage/' + $('#name').val() + '.do');
 				});
-			});
-				
+					
+		});
+			
 	 	
 	
  	</script>
@@ -193,7 +199,7 @@
 			<br>
 			<span id="pwError"></span>
 			<label class="" for="billing_state"> 비밀번호 확인<abbr title="required" class="required">*</abbr></label> 
-			<input type="password" id="confirmPassword" name="confirmPassword" placeholder="변경할 비밀번호와 동일하게 입력하세요" class="input-text " size="45">
+			<input type="password" id="confirmpassword" name="confirmPassword" placeholder="변경할 비밀번호와 동일하게 입력하세요" class="input-text " size="45">
 			<br>
 			<span id="cpwError"></span>
 
@@ -241,47 +247,28 @@
 							<!-- Wrapper for slides -->
 							<div class="carousel-inner" role="listbox">
 									<div class="item active" align="center">	
-										<img src="PetInfoImage/${petList[0].fileId }.do" alt="..." style="width:200px; height:150px;"  >
-										<span><h3>${petList[0].name }</h3></span>
+										<img src="PetInfoImage/${petList[0].fileId }.do" alt="..." style="width:300px; height:225px;"  >
 										<div class="carousel-caption"></div>
+										<span><h3><br>${petList[0].name }</h3></span>
 									</div>
 									<c:forEach items="${petList }" var="petinfo" varStatus="idx" begin="1">
 									<div class="item" align="center">
-										<img src="PetInfoImage/${petinfo.fileId }.do" onerror="this.src='img/noImage.png'" alt="..." style="width:200px; height:150px;" >
-										<span><h3>${petinfo.name }</h3></span>
+										<img src="PetInfoImage/${petinfo.fileId }.do" onerror="this.src='img/noImage.png'" alt="..." style="width:300px; height:225px;" >
 										<div class="carousel-caption"></div>
+										<span><h3><br>${petinfo.name }</h3></span>
 									</div>
 									</c:forEach>
 							</div>
 					
 							<!-- Controls -->
 							<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-						        <span class="glyphicon glyphicon-chevron-left"></span>
+						        <span class="glyphicon glyphicon-chevron-left" style="color:#ffc000;"></span>
 						    </a>
 						    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-						        <span class="glyphicon glyphicon-chevron-right"></span>
+						        <span class="glyphicon glyphicon-chevron-right" style="color:#ffc000;"></span>
 					        </a>
 						</div>
                     	<!-- 마이펫 div 끝 -->
-                   <%--  <table style="width: 100%">
-                    	<tr>
-                    		<td width="20%" style="text-align: center;"><h3>마이펫 리스트</h3></td>
-                    	</tr>
-						<tr>
-							<td width="20%" style="text-align: center;">
-								<select class="country_to_state country_select" name="name" id="name" style="font-size:14pt">
-								<option value="defaultValue" style="font-size:14pt">선택하세요</option>
-									<c:forEach items="${petList }" var="petinfo" varStatus="idx">
-										<option value="${petinfo.fileId }"  style="font-size:14pt">${petinfo.name }</option>
-									</c:forEach>
-								</select>
-							</td>
-	                    </tr>
-	                    <tr>
-		                   	<td style="text-align: center;"><img onerror="this.src='img/noImage.png'" alt="" width="200" height="150" id="petImg"></td>
-	                    	
-	                    </tr>
-					</table> --%>    
                         <br><br><br><br><br>
                         
                   

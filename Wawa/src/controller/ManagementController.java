@@ -34,7 +34,10 @@ public class ManagementController {
 	
 	@RequestMapping(method= RequestMethod.POST, value="healthcare.do") // healthcare.jsp 페이지로 보냄
 	public ModelAndView healthcare(HttpSession session){
+		String id = (String) session.getAttribute("id");
 		ModelAndView mav = new ModelAndView();
+		List<HashMap<String, Object>> petlist = petinfoService.selectPetList(id);
+		mav.addObject("list", petlist);
 		mav.setViewName("healthcare.tiles");
 		return mav;
 	}

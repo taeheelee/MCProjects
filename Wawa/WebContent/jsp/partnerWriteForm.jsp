@@ -106,7 +106,7 @@
                                         
                                             
 <!-- 											<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state"> -->
-                                                <label class="" for="billing_state">애견 이름</label>
+                                                <label class="" for="billing_state">애견 이름<abbr title="required" class="required">*</abbr></label>
                                                 <input type="text" id="name" name="name" placeholder="" value="" class="input-text " maxlength="20">
 <!--                                             </p> -->
                                             <br><br>
@@ -150,11 +150,11 @@
 												</div>
                                             <br>
                                             
-                                                <label class="" for="billing_state">나이</label>
-                                                <input type="text" id="age" name="age" placeholder="" value="" class="input-text " maxlength="10">
+                                                <label class="" for="billing_state">나이<abbr title="required" class="required">*</abbr></label>
+                                                <input type="text" id="age" name="age" placeholder="" value="" class="input-text " maxlength="5">
                                             <br><br>
-                                                <label class="" for="billing_state">몸무게(kg)</label>
-                                                <input type="text" id="weight" name="weight" placeholder="" value="" class="input-text " maxlength="10">
+                                                <label class="" for="billing_state">몸무게(kg)<abbr title="required" class="required">*</abbr></label>
+                                                <input type="text" id="weight" name="weight" placeholder="" value="" class="input-text " maxlength="5">
 
                                             <br><br>
                                             
@@ -186,7 +186,7 @@
 <!-- 												</p> -->
      
 <!--                                          <p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state"> -->
-                                                <label class="" for="billing_state">글 제목</label>
+                                                <label class="" for="billing_state">글 제목<abbr title="required" class="required">*</abbr></label>
                                                 <input type="text" id="title" name="title" placeholder="" value="" class="input-text " maxlength="20">
 <!--                                             </p> -->
                                             <br>

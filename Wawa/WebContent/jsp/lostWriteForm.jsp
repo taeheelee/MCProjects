@@ -135,7 +135,7 @@ pageEncoding="UTF-8"%>
                                     <input type="button" id="petinfo" onclick="window.open('lostGetPetinfoForm.do?id=${sessionScope.id}&boardIdx=0&boardCode=4&type=Write', 'pet' ,'left=400, top=200, width=500, height=300')" value="애견정보 불러오기" />
                                 </div>
 
-                                <label class="" for="billing_state">애견 이름</label>
+                                <label class="" for="billing_state">애견 이름<abbr title="required" class="required">*</abbr></label>
                                 <input type="text" id="name" name="name" placeholder="" value="" class="input-text " maxlength="20">
 
                                 <br><br>
@@ -176,12 +176,12 @@ pageEncoding="UTF-8"%>
 
                              <br>
 
-                             <label class="" for="billing_state">나이</label>
-                             <input type="text" id="age" name="age" placeholder="" value="" class="input-text " maxlength="10">
+                             <label class="" for="billing_state">나이<abbr title="required" class="required">*</abbr></label>
+                             <input type="text" id="age" name="age" placeholder="" value="" class="input-text " maxlength="5">
 
                              <br><br>
-                             <label class="" for="billing_state">몸무게(kg)</label>
-                             <input type="text" id="weight" name="weight" placeholder="" value="" class="input-text " maxlength="10">
+                             <label class="" for="billing_state">몸무게(kg)<abbr title="required" class="required">*</abbr></label>
+                             <input type="text" id="weight" name="weight" placeholder="" value="" class="input-text " maxlength="5">
 
                              <br><br>
 
@@ -194,12 +194,12 @@ pageEncoding="UTF-8"%>
 
                             <br><br>
 
-                            <label class="" for="billing_state">  잃어버린 날짜/ 발견된 날짜</label>
+                            <label class="" for="billing_state">  잃어버린 날짜/ 발견된 날짜<abbr title="required" class="required">*</abbr></label>
                             <input type="text" id="lostdate" name="lostdate" placeholder="0000-00-00" value="" class="datepicker" maxlength="10">
 
                             <br>
-                            <label class="" for="billing_state">  잃어버린 장소/ 발견된 장소</label>
-                            <input type="text" id="lostplace" name="lostplace"  value="" class="input-text " maxlength="30">
+                            <label class="" for="billing_state">  잃어버린 장소/ 발견된 장소<abbr title="required" class="required">*</abbr></label>
+                            <input type="text" id="lostplace" name="lostplace"  value="" class="input-text " maxlength="15">
 
                             <br><br>
 
@@ -223,7 +223,7 @@ pageEncoding="UTF-8"%>
 
 
 
-                            <label class="" for="billing_first_name">애견 프로필 사진 등록<abbr title="required" class="required">*</abbr></label>
+                            <label class="" for="billing_first_name">애견 프로필 사진 등록</label>
                             <table border="0">
                               <tr>
                                  <td width="10%">
@@ -238,7 +238,7 @@ pageEncoding="UTF-8"%>
                         </tr>
                     </table>
 
-                    <label class="" for="billing_state">글 제목</label>
+                    <label class="" for="billing_state">글 제목<abbr title="required" class="required">*</abbr></label>
                     <input type="text" id="title" name="title" placeholder="" value="" class="input-text " maxlength="20">
 
                     <br>

@@ -108,12 +108,12 @@ pageEncoding="UTF-8"%>
 											<input type="hidden" name="boardCode" value="3">
 											<input type="hidden" name="writer" value="${sessionScope.name }">
 											
-											<label class="" for="billing_state">애견 이름</label>
+											<label class="" for="billing_state">애견 이름<abbr title="required" class="required">*</abbr></label>
 											<input type="text" id="name" name="name" placeholder="" value="${board.name }" class="input-text " maxlength="20">
 
 											<br><br>
-											<label class="" for="billing_state">나이</label>
-											<input type="text" id="age" name="age" placeholder="" value="${board.age }" class="input-text " maxlength="10">
+											<label class="" for="billing_state">나이<abbr title="required" class="required">*</abbr></label>
+											<input type="text" id="age" name="age" placeholder="" value="${board.age }" class="input-text " maxlength="5">
 
 											<br><br>
 
@@ -154,7 +154,7 @@ pageEncoding="UTF-8"%>
                                                 </select>
                                                 
                                                 <br><br>
-									<label class="" for="billing_first_name">애견 프로필 사진 등록<abbr title="required" class="required">*</abbr></label>
+									<label class="" for="billing_first_name">애견 프로필 사진 등록</label>
 									<table border="0">
 										<tr>
 											<td width="10%">
@@ -169,7 +169,7 @@ pageEncoding="UTF-8"%>
 										</tr>
 									</table>
 
-									<label class="" for="billing_state">글 제목</label>
+									<label class="" for="billing_state">글 제목<abbr title="required" class="required">*</abbr></label>
 									<input type="text" id="title" name="title" placeholder="" value="${board.title }" class="input-text " maxlength="20">
 
 									<br>

@@ -47,7 +47,7 @@
 		    return false;
 		});
 		
-		if(${sessionScope.id != null}){
+		if(${sessionScope.petName != null}){
 	         
 			//태어난지 몇년 몇개월 됬는지 계산하기
 			         

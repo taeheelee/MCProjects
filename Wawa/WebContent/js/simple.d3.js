@@ -1,116 +1,58 @@
 nv.addGraph(function() {
 	var chart = nv.models.lineChart().margin({
 		left : 100
-	}) // Adjust chart margins to give the x-axis some breathing room.
-	.useInteractiveGuideline(true) // We want nice looking tooltips and a
-									// guideline!
-//	.transitionDuration(350) // how fast do you want the lines to transition?
-	.showLegend(true) // Show the legend, allowing users to turn on/off line
-						// series.
-	.showYAxis(true) // Show the y-axis
-	.showXAxis(true) // Show the x-axis
+	}) // x축에 margin을 설정
+	.useInteractiveGuideline(true) // 마우스 올릴 시 가이드라인 출력
+//	.transitionDuration(350) // 애니메이션 효과를 동작시킬 시간, 에러 발생 가능성있으므로 주석처리
+	.showLegend(true) // 범례 출력 여부, 범례는 켜고 끌 수 있음
+	.showYAxis(true) // Y축 출력 여부
+	.showXAxis(true) // X축 출력 여부
 	;
 
-//	chart.xAxis // Chart x-axis settings
-//	.axisLabel('Day(yymmdd)').tickFormat(d3.format(',r'));
-//	chart.xAxis // X축 날짜 표시
-//    .showMaxMin(false)
-//    .tickFormat(function(d) {
-//      var dx = data[0].values[d] && data[0].values[d][0] || 0;
-//      return d3.time.format('%x')(new Date(dx))
-//    });
-	chart.xAxis
+	chart.xAxis // x축 설정
     .showMaxMin(false)
     .tickFormat(function(d) { return d3.time.format('%x')(new Date(d)) });
 	
-	chart.yAxis // Chart y-axis settings
-	.axisLabel('Weight(Kg)').tickFormat(d3.format('.02f'));
+	chart.yAxis // y축 설정
+	.axisLabel('Weight(Kg)').tickFormat(d3.format('.02f')); //소수점 2자리까지
 
-	/* Done setting the chart up? Time to render it! */
+	//세팅값대로 그래프를 render
 	var idxList = getIdx(); //idx 리스트 받아오기
-//	alert(idxList.idx);
+	//idx는 애완동물마다 고유의 값이 있음. 즉, idx리스트는 강아지 목록임
+//	alert(idxList.idx); //idxList.idx는 json 데이터에서 idx 리스트를 저장한 키값임
 	var weightList = [];
-//	getData(idxList.idx); //idxList.idx는 idx 목록 전체임.
-	var myData = []; // You need data...
+	var myData = [];
 
+	// 한 주인이 여러 마리를 기를 수 있기에 for문을 통해 주인이 가진 모든 동물 데이터를 처리함
 	for(var i = 0; i < idxList.idx.length; i++) {
-//		alert("인덱스 잘 받아옴? : " + idxList.idx[i]);	
-		var temp = getData(idxList.idx[i]);
-		var inner = [];
+		var temp = getData(idxList.idx[i]); // idxList.idx[i]는 인덱스번호를 나타냄
+		var inner = []; //날짜와 무게를 뽑아 저장할 배열
 		for (var j = 0; j < temp.length; j++) {
-//			alert(temp[j].date); // temp[j].이름으로 접근가능
+//			alert(temp[j].date); // 'temp[j].key값'으로 value 접근가능
 			inner.push({x : temp[j].date, y : temp[j].weight});
+			//inner에는 x, y 좌표값을 json 형식으로 저장해야 함
 		}
-		weightList.push(inner);
+		weightList.push(inner); // inner에 담긴 x, y 좌표값을 하나로 저장하는 배열
+		//weightList의 인덱스 1개는 애완동물 1마리를 뜻함
 		myData.push({
+			//그래프를 그리기 위한 데이터 형식은 key, values이므로 형식에 맞게 데이터를 입력해줌
 		    values: weightList[i],
 		    key: idxList.idx[i]
 		  });
-//		alert(getData(idxList.idx[i]));
-//		for(var j = 0; j < getData(idxList.idx[i]).length; j++) {
-//			alert("이중for문 " + getData(idxList.idx[i][0]));
-//		}
-//		weightList.push(getData(idxList.idx[i]));
-//		alert("idxList.idx의 for 테스트 : " + idxList.idx[i]);
 	}
-//	alert(myData.length + "myData 길이");
-	
-	//myData 값 테스트
-//	for(var i = 0; i < myData.length; i++) {
-//		alert(myData[i].values[0].x);
-//	}
-//	weightList.push(getData(idxList.idx));
-//	alert("nv.addGraph 끝");
-	
-	
-	
 		
-	d3.select('#chart svg') // Select the <svg> element you want to render the
-							// chart in.
-	.datum(myData) // Populate the <svg> element with chart data...
-	.call(chart); // Finally, render the chart!
+	d3.select('#chart svg') //<svg> 요소 선택
+	.datum(myData) // 데이터 삽입
+	.call(chart); // 그래프 render
 
-	// Update the chart when window resizes.
+	//창 크기가 변경되면 그래프 크기를 변경
 	nv.utils.windowResize(function() {
 		chart.update()
 	});
 	return chart;
 });
-/*******************************************************************************
- * Simple test data generator
- */
-//function sinAndCos() {
-//  var sin = [],sin2 = [],
-//      cos = [];
-//
-//  // Data is represented as an array of {x,y} pairs.
-//  for (var i = 0; i < 100; i++) {
-//    sin.push({x: i, y: Math.sin(i/10)});
-//    sin2.push({x: i, y: Math.sin(i/10) *0.25 + 0.5});
-//    cos.push({x: i, y: .5 * Math.cos(i/10)});
-//  }
-//
-//  //Line chart data should be sent as an array of series objects.
-//  return [
-//    {
-//      values: sin,      //values - represents the array of {x,y} data points
-//      key: 'Sine Wave', //key  - the name of the series.
-//      color: '#ff7f0e'  //color - optional: choose your own line color.
-//    },
-//    {
-//      values: cos,
-//      key: 'Cosine Wave',
-//      color: '#2ca02c'
-//    },
-//    {
-//      values: sin2,
-//      key: 'Another sine wave',
-//      color: '#7777ff',
-//      area: true      //area - set to true if you want this line to turn into a filled area chart.
-//    }
-//  ];
-//}
 
+//한 주인이 기르는 애완동물 목록을 모두 받아옴
 function getIdx() {
 	var idxList;
 	$.ajax({
@@ -118,18 +60,15 @@ function getIdx() {
 		dataType : 'json',
 		url : 'getIdxList.do',
 		success : function(data) {
-//			alert(data.idx);
 			idxList = data;
-//			alert(idxList.idx);
 		}
 	});
 	return idxList;
 }
 
+//애완동물 목록에서 하나씩 선택해 해당 동물의 체중 변화 기록을 가져옴
 function getData(idx) {
-//	alert("getData AJAX 함수 진입, data : " + idx);
 	var result;
-//	var params = {"idxList" : idx};
 	$.ajax({
 		url : 'dataupload.do',
 		async : false,
@@ -139,35 +78,10 @@ function getData(idx) {
 		
 		//idx에 맞는 몸무게 기록들을 받아왔을 경우
 		success : function(data) {
-//			alert("getData AJAX - 성공시 출력");
 			result = data.data;
-//			alert("idx별 몸무게 기록 : " + data.data);
-//			alert(data.data[0].weight);\
-//			alert(data.data.length);
-			
-//			alert(data.idx);
-//			alert(data.data[0][0]);
-//			alert(data.data[0][1]);
-			
-			
-//			var weightList = [];
-//			for(var i = 0; i < data.wList.length; i++) {
-//				var petWeight = [];
-//				petWeight.push(data.wList[i]);
-//			}
-//			for (var i = 0; i < data.length; i++)
-//				weightList.push({
-//					key : "Pet " + (i + 1),
-//					values : data[i]
-//				})
-
-//			$.each(data, function(i, d) {
-//				weightList[(d.class_id) - 1]['values'].push(d)
-//			});
-//			result = weightList;
 		},
 		error : function() {
-//			alert("getData AJAX 에러발생");
+			alert("getData AJAX 에러발생");
 		}
 	});
 	

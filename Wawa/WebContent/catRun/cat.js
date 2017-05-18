@@ -95,16 +95,16 @@ function Cat(parant, posX, posY, width, height, flowers, items){
 						this.span.style.height = 500 + "px";
 						this.img.style.width = 300 + "px";
 						this.img.style.height = 300 + "px";
-						this.span.style.top = 390 + "px";
+						this.span.style.top = 450 + "px";
 						setTimeout(function() {
 							me.audio.src = "./audio/default.mp3";
 							time = 0;
-							me.posY = 620;
+							me.posY = 680;
 							me.span.style.width = 66 + "px";
 							me.span.style.height = 62 + "px";
 							me.img.style.width = 66 + "px";
 							me.img.style.height = 62 + "px";
-							me.span.style.top = 620 + "px";
+							me.span.style.top = 680 + "px";
 						}, 2000);
 					}
 					else {

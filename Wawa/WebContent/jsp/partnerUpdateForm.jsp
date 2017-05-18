@@ -151,11 +151,11 @@
 								<br> <label class="" for="billing_state">나이<abbr
 									title="required" class="required">*</abbr></label> <input type="text"
 									id="age" name="age" placeholder="" value="${board.age }"
-									class="input-text " maxlength="10"> <br>
+									class="input-text " maxlength="5"> <br>
 								<br> <label class="" for="billing_state">몸무게(kg)<abbr
 									title="required" class="required">*</abbr></label> <input type="text"
 									id="weight" name="weight" placeholder=""
-									value="${board.weight }" class="input-text " maxlength="10">
+									value="${board.weight }" class="input-text " maxlength="5">
 
 								<br>
 								<br> <label class="" for="billing_state">연락처</label> <input

@@ -12,6 +12,24 @@
   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
   crossorigin="anonymous"></script>
   <script type="text/javascript">
+/*   function checkByte() {
+	   
+      var totalByte = 0;
+      var limitByte = 500;
+      var message = $('#content').val();
+
+      for(var i =0; i < message.length; i++) {
+              var currentByte = message.charCodeAt(i);
+              if(currentByte > 128) totalByte += 2;
+	else totalByte++;
+      }
+      $('#msgBytes').text(totalByte);
+
+      if(totalByte > limitByte) {
+              alert( limitByte+"바이트까지 전송가능합니다.");
+		$('#content').val(message.substring(0,limitByte));
+      }
+} */
   	function reple(idx,repleIdx) {
   		var repleCount = ${fn:length(reple)};
   		for(var i=0; i<repleCount; i++){
@@ -138,7 +156,7 @@
 					<div>
 	                	<form action="repleWrite.do" method="post">
 	                		<c:if test="${sessionScope.id != null }">
-		                		<textarea style="width: 85%; height: 100px; resize: none" name="content" maxlength="500"></textarea>
+		                		<textarea style="width: 85%; height: 100px; resize: none" id="repleContent" name="repleContent"  maxlength="500"></textarea>
 		                		<input type="hidden" name="boardIdx" value="${board.boardIdx }">
 		                		<input type="hidden" name="boardCode" value="${board.boardCode }">
 		                		<input type="hidden" name="nickname" value="${sessionScope.name }">

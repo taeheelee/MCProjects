@@ -64,7 +64,7 @@
 			<c:forEach items="${boardList }" var="lost">
 				<div class="single-product col-md-4" style="padding: 15px;">
 					<div class="col-md-11"
-						style="background: #E6E6E6; padding: 15px 15px 5px 15px; width: 100%; margin: 0 auto;">
+						style="background: #E6E6E6; padding: 15px 15px 5px 15px; width: 100%; height: 320px; margin: 0 auto;">
 						<h4>${lost.category }</h4>
 						<hr
 							style="border-color: black; border: solid 1px; margin: 0 0 5px 0">

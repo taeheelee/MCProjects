@@ -54,7 +54,7 @@
 			
 			//고양이
 			var posX = 20;
-			var posY = 620;
+			var posY = 680;
 			var cat = new Cat(content, posX, posY, 33 * 2, 31 * 2, flowers, items);
 			cat.init();
 			cat.move();
@@ -84,13 +84,13 @@
 					var ran = parseInt(Math.random() * 3);
 
 					if (ran == 0) {
-						var flower = new Flower(content, window.innerWidth, 620, 70, 100, "./img/flower.png");
+						var flower = new Flower(content, window.innerWidth, 680, 70, 100, "./img/flower.png");
 					}
 					if (ran == 1) {
-						var flower = new Flower(content, window.innerWidth, 620, 100, 100, "./img/flower2.png");
+						var flower = new Flower(content, window.innerWidth, 680, 100, 100, "./img/flower2.png");
 					}
 					if (ran == 2) {
-						var flower = new Flower(content, window.innerWidth, 520, 150, 50, "./img/misile.png");
+						var flower = new Flower(content, window.innerWidth, 580, 150, 50, "./img/misile.png");
 					}
 					
 					speed += 0.15;
@@ -117,7 +117,7 @@
 				
 				var it = function(){
 					var randomItem = parseInt((Math.random()*10000)+8000);
-					var item = new Item(content, window.innerWidth, 620, 70, 70, "./img/star.png", 1);
+					var item = new Item(content, window.innerWidth, 680, 70, 70, "./img/star.png", 1);
 					item.init();
 					item.stepX = -(speed*3)-10;
 					item.move();
@@ -133,7 +133,7 @@
 				//코인
 				var co = function(){
 					var randomCoin = parseInt((Math.random()*1000)+3000);
-					var randomTop = parseInt((Math.random()*100)+520);
+					var randomTop = parseInt((Math.random()*100)+580);
 					var coin = new Item(content, window.innerWidth, randomTop, 50, 50, "./img/coin.png", 2);
 					coin.init();
 					coin.stepX = -(speed*3)-10;

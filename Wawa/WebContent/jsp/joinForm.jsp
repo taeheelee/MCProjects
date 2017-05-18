@@ -91,9 +91,9 @@
     		});
 		    $('#password').keyup(function(){
   				if(!regPassword.test($('#password').val())){
+  					chk();
   					$('#pwError').html('<font color="red">비밀번호 오류 (알파벳 대소문자, 숫자, 특수문자를 혼합하여 6~20자 이내)</font>');
   					statusOfPassword = false;
-  					chk();
   					
   				}else {
   	  				chk();
@@ -152,7 +152,7 @@
   					$('#password').focus();
   				}else if (statusOfConfirmPassword == false){
   					alert('비밀번호가 일치하지 않습니다.');
-  					$('#confirmPassword').focus();
+  					$('#confirmpassword').focus();
   				}else if (statusOfSex == false){
   					alert('성별을 선택해주세요');
   					$('#sex').focus();

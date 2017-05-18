@@ -60,7 +60,7 @@ nv.addGraph(function() {
 //		alert(myData[i].values[0].x);
 //	}
 //	weightList.push(getData(idxList.idx));
-	alert("nv.addGraph 끝");
+//	alert("nv.addGraph 끝");
 	
 	
 	
@@ -127,7 +127,7 @@ function getIdx() {
 }
 
 function getData(idx) {
-	alert("getData AJAX 함수 진입, data : " + idx);
+//	alert("getData AJAX 함수 진입, data : " + idx);
 	var result;
 //	var params = {"idxList" : idx};
 	$.ajax({
@@ -139,7 +139,7 @@ function getData(idx) {
 		
 		//idx에 맞는 몸무게 기록들을 받아왔을 경우
 		success : function(data) {
-			alert("getData AJAX - 성공시 출력");
+//			alert("getData AJAX - 성공시 출력");
 			result = data.data;
 //			alert("idx별 몸무게 기록 : " + data.data);
 //			alert(data.data[0].weight);\
@@ -167,7 +167,7 @@ function getData(idx) {
 //			result = weightList;
 		},
 		error : function() {
-			alert("getData AJAX 에러발생");
+//			alert("getData AJAX 에러발생");
 		}
 	});
 	

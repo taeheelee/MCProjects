@@ -4,16 +4,19 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.jws.WebParam.Mode;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import commons.Constant;
 import interface_service.IBoardService;
+import interface_service.IMemberService;
 import interface_service.IRepleService;
 import model.Board;
 
@@ -23,6 +26,8 @@ public class InfoController {
 		private IBoardService boardService;
 		@Autowired
 		private IRepleService repleService;
+		@Autowired
+		private IMemberService memberService;
 	
 		//애견정보 게시판 메인
 		@RequestMapping("infoMain.do")
@@ -54,6 +59,31 @@ public class InfoController {
 			return mav;
 		}
 		
+		@RequestMapping("checkAdmin.do")
+		public 
+		@ResponseBody HashMap<String, Object> checkAdmin(HttpServletResponse resp,
+				@RequestParam HashMap<String, Object> params){
+			String id = (String) params.get("id");
+			
+
+			System.out.println(id + "들어왔음"); 
+			HashMap<String, Object> response = new HashMap<>();
+			if(memberService.adminCheck(id) == 1){
+				System.out.println("관리자네");
+				response.put("result", true);
+			}else {
+				System.out.println("관리자아니네");
+				response.put("result", false);
+			}
+			return response;
+		}
+
+		//애견정보 게시판 글쓰기 폼
+		@RequestMapping("infoWriteForm.do")
+		public String infoWriteForm(){
+			return "infoWriteForm.tiles";
+		}
+		
 		//애견정보 게시글 상세보기
 		@RequestMapping("infoDetails.do")
 		public ModelAndView infoDetails(int boardIdx){
@@ -64,12 +94,6 @@ public class InfoController {
 			mav.addObject("reple", reple);
 			mav.setViewName("infoDetails.tiles");
 			return mav;
-		}
-		
-		//애견정보 게시판 글쓰기 폼
-		@RequestMapping("infoWriteForm.do")
-		public String infoWriteForm(){
-			return "infoWriteForm.tiles";
 		}
 		
 		//애견정보 게시판 글쓰기

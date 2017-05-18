@@ -11,4 +11,5 @@ public interface IMemberService {
 	public UserInfo getMember(String id);
 	public boolean checkId(String id);
 	public boolean nicknameCheck(String nickname);
+	public int adminCheck(String id);
 }

@@ -40,17 +40,17 @@ public class MainController {
 	}
 
 	@RequestMapping("findId.do")
-	public
-	@ResponseBody HashMap<String, Object> findId(HttpServletResponse resp,
-	      @RequestParam HashMap<String, Object> params){
-	
-		
-		HashMap<String, Object> response = new HashMap<>();
-		
-		return response;
+	public String findId() {
+
+		return "findId.tiles";
+	}
+	@RequestMapping("findPass.do")
+	public String findPass() {
+
+		return "findPass.tiles";
 	}
 	
-	@RequestMapping("findPass.do")
+	/*@RequestMapping("findPass.do")
 	public
 	@ResponseBody HashMap<String, Object> findPass(HttpServletResponse resp,
 	      @RequestParam HashMap<String, Object> params){
@@ -59,7 +59,7 @@ public class MainController {
 		HashMap<String, Object> response = new HashMap<>();
 		
 		return response;
-	}
+	}*/
 	
 	@RequestMapping(method = RequestMethod.POST, value = "login.do")
 	public ModelAndView login(HttpSession session, String id, String pw, RedirectAttributes redirectAttr) {

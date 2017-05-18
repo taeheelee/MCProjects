@@ -32,6 +32,8 @@
 			<mvc:exclude-mapping path="/*Main.do"/>
 			<mvc:exclude-mapping path="/*Detail*"/>
 			<mvc:exclude-mapping path="/*wawa*.do"/>
+			<mvc:exclude-mapping path="/find*.do"/>
+			
 			<ref bean="loginCheckInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

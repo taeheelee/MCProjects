@@ -177,11 +177,11 @@ pageEncoding="UTF-8"%>
                              <br>
 
                              <label class="" for="billing_state">나이</label>
-                             <input type="text" id="age" name="age" placeholder="" value="" class="input-text " maxlength="10">
+                             <input type="text" id="age" name="age" placeholder="" value="" class="input-text " maxlength="5">
 
                              <br><br>
                              <label class="" for="billing_state">몸무게(kg)</label>
-                             <input type="text" id="weight" name="weight" placeholder="" value="" class="input-text " maxlength="10">
+                             <input type="text" id="weight" name="weight" placeholder="" value="" class="input-text " maxlength="5">
 
                              <br><br>
 
@@ -199,7 +199,7 @@ pageEncoding="UTF-8"%>
 
                             <br>
                             <label class="" for="billing_state">  잃어버린 장소/ 발견된 장소</label>
-                            <input type="text" id="lostplace" name="lostplace"  value="" class="input-text " maxlength="30">
+                            <input type="text" id="lostplace" name="lostplace"  value="" class="input-text " maxlength="15">
 
                             <br><br>
 

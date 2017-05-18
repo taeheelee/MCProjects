@@ -113,7 +113,7 @@ pageEncoding="UTF-8"%>
 
 											<br><br>
 											<label class="" for="billing_state">나이</label>
-											<input type="text" id="age" name="age" placeholder="" value="${board.age }" class="input-text " maxlength="10">
+											<input type="text" id="age" name="age" placeholder="" value="${board.age }" class="input-text " maxlength="5">
 
 											<br><br>
 

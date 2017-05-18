@@ -24,7 +24,7 @@
 
 <div class="single-product-area">
 	<div class="container">
-
+<br><br><br><br><br><br>
 	<img src="img/wawa_maze.jpg">
 		</div>	
 

@@ -235,6 +235,17 @@ function partnerBoardCheck() {
 	return true;
 }
 
+function removeTag( str ) {
+	return str.replace(/(<([^>]+)>)/gi, "");
+}
+
+function doRemoveTag() {
+	var beforeText = $('#repleContent').val();
+	var afterText = removeTag( beforeText );
+	$('#repleContent').val( afterText );
+}
+
+
 function sendFile(file, editor, welEditable) {
     var form_data = new FormData();
     form_data.append('file', file);

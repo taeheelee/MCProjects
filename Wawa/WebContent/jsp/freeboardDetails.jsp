@@ -11,7 +11,10 @@
   src="https://code.jquery.com/jquery-2.2.4.min.js"
   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
   crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/boardCheck.js"></script>
   <script type="text/javascript">
+
+
 /*   function checkByte() {
 	   
       var totalByte = 0;
@@ -38,8 +41,8 @@
   			$('#updateForm'+i).show();
   		}
 		$('#repleForm'+idx).html("<form action='repleWrite.do' method='post'>"
-								 +"<textarea style='width: 85%; height: 100px; resize: none' name='content' maxlength='500'></textarea>"
-								 +"<input type='submit' value='답글작성'>"
+								 +"<textarea style='width: 85%; height: 100px; resize: none' id='repleContent' name='content' maxlength='500'></textarea>"
+								 +"<input type='submit' value='답글작성' onclick='doRemoveTag();'>"
 								 +"<input type='hidden' name='boardIdx' value='${board.boardIdx }'>"
 								 +"<input type='hidden' name='boardCode' value='${board.boardCode }'>"
 								 +"<input type='hidden' name='nickname' value='${sessionScope.name }'>"
@@ -57,11 +60,11 @@
   		}
   		$('#updateForm'+idx).hide();
   		$('#repleContent'+idx).html("<form action='repleUpdate.do' method='post'>"
-				 +"<textarea style='width: 85%; height: 100px; resize: none' name='content' maxlength='500'>"+text+"</textarea>"
+				 +"<textarea style='width: 85%; height: 100px; resize: none' id='repleContent' name='content' maxlength='500'>"+text+"</textarea>"
 				 +"<input type='hidden' name='boardIdx' value='${board.boardIdx }'>"
 				 +"<input type='hidden' name='boardCode' value='${board.boardCode }'>"
 				 +"<input type='hidden' name='repleIdx' value='"+repleIdx+"'>"
-				 +"<input type='submit' value='수정'>"
+				 +"<input type='submit' value='수정' onclick='doRemoveTag();'>"
 				 +"</form>")
   	}
   </script>
@@ -161,7 +164,7 @@
 		                		<input type="hidden" name="boardCode" value="${board.boardCode }">
 		                		<input type="hidden" name="nickname" value="${sessionScope.name }">
 		                		<input type="hidden" name="pIdx" value="0">
-								<input type="submit" value="댓글작성">
+								<input type="submit" value="댓글작성" onclick="doRemoveTag();">
 							</c:if>
 							<c:if test="${sessionScope.id == null }">
 								<textarea style="width: 85%; height: 100px" name="content" readonly="readonly">로그인 후 이용해주세요</textarea>

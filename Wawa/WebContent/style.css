@@ -1098,7 +1098,7 @@ div.cart-collaterals ul.products li.product .price ins {
     display: block;
     margin: 0 0 5px;
 }
-#customer_details input[type="text"], #customer_details textarea, .shipping_calculator input[type=text] {
+#customer_details input[type="text"], input[type="password"], #customer_details textarea, .shipping_calculator input[type=text] {
     margin-bottom: 10px;
     width: 100%;
 }

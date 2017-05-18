@@ -209,14 +209,14 @@
                                             <br>
                                          	    <label class="" for="billing_first_name">비밀번호<abbr title="required" class="required">* <font color="red" size="1"> 사용가능한 특수문자 : *!@#$%^&+=</font></abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="알파벳 소문자,숫자를 혼합하여 특수문자가능 6~20자" 
+                                                <input type="password" value="" placeholder="알파벳 소문자,숫자를 혼합하여 특수문자가능 6~20자" 
                                                 id="password" name="password" class="input-text ">
                                                 <br>
                                                 <span id="pwError"></span>
                                             <br>
                                                 <label class="" for="billing_first_name">비밀번호 확인<abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" value="" placeholder="" id="confirmpassword" name="confirmpassword" class="input-text ">
+                                                <input type="password" value="" placeholder="" id="confirmpassword" name="confirmpassword" class="input-text ">
                                             	<span id="cpwError"></span>
                                             <br>
                                                 <label class="" for="billing_first_name">성별 <abbr title="required" class="required">*</abbr></label>

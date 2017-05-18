@@ -35,7 +35,7 @@ public class MedicalcareController {
 	@Autowired
 	private IVaccineInfoService vaccineService;
 	
-	@RequestMapping(method= RequestMethod.POST, value="medicalcareForm.do")
+	@RequestMapping("medicalcareForm.do")
 	public ModelAndView medicalcareForm(String id){
 		ModelAndView mav = new ModelAndView();
 		List<HashMap<String, Object>> petlist = petinfoService.selectPetList(id);

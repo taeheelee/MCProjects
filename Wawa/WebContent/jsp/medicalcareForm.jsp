@@ -13,6 +13,11 @@
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"
 	integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 	crossorigin="anonymous"></script>
+	
+	
+	
+	
+	
 <script type="text/javascript">
 	var myPet = '';
 	var id = '${id}';
@@ -360,7 +365,37 @@
 		
 	});
 </script>
+<!-- jQuery Datepicker -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
 
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+	
+	/* 달력 설정 */
+	$.datepicker.setDefaults({
+		dateFormat: 'yy-mm-dd',
+		prevText: '이전 달',
+		nextText: '다음 달',
+		monthNames: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+		monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+		dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+		dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		showMonthAfterYear: true,
+		showButtonPanel: true,
+		changeMonth: true,
+		changeYear: true,
+		autoSize: true,
+//         showOn: "button",
+//         buttonImage: "/images/team/calendar.png",
+//         buttonImageOnly: true,
+//         buttonText: "날짜 선택"
+});
+	$( function() {
+		$( ".datepicker" ).datepicker();
+	} );
+</script>
 </head>
 <body>
 
@@ -447,7 +482,7 @@
 													<td>
 													</td>
 													<td></td>
-													<td><input type="text" class="VcDate" placeholder="0000-00-00"
+													<td><input type="text" class="datepicker" readonly="readonly"placeholder="0000-00-00"
 														id="Ddate" style="width: 130px; height: 35px"></td>
 													<td><input type="button" value="입력" class="addBtn"
 														name="1" id='Dbutton' style="padding: 3px 3px"></td>
@@ -480,7 +515,7 @@
 													<td>
 													</td>
 													<td></td>
-													<td><input type="text" class="VcDate" placeholder="0000-00-00"
+													<td><input type="text" class="datepicker" readonly="readonly" placeholder="0000-00-00"
 														id="Cdate" style="width: 130px; height: 35px"></td>
 													<td><input type="button" value="입력" class="addBtn"
 														name="2" id='Cbutton' style="padding: 3px 3px"></td>
@@ -512,7 +547,7 @@
 													<td>
 													</td>
 													<td></td>
-													<td><input type="text" class="VcDate" placeholder="0000-00-00"
+													<td><input type="text" class="datepicker" readonly="readonly" placeholder="0000-00-00"
 														id="Kdate" style="width: 130px; height: 35px"></td>
 													<td><input type="button" value="입력" class="addBtn"
 														name="3" id='Kbutton' style="padding: 3px 3px"></td>
@@ -545,7 +580,7 @@
 													<td>
 													</td>
 													<td></td>
-													<td><input type="text" class="VcDate" placeholder="0000-00-00"
+													<td><input type="text" class="datepicker" readonly="readonly" placeholder="0000-00-00"
 														id="Rdate" style="width: 130px; height: 35px"></td>
 													<td><input type="button" value="입력" class="addBtn"
 														name="4" id='Rbutton' style="padding: 3px 3px"></td>

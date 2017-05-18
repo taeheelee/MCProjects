@@ -1,4 +1,8 @@
 function infoBoardCheck() {
+	var beforeTitle = $('#title').val();
+	var afterTitle = removeTag( beforeTitle );
+	$('#title').val( afterTitle );
+	
 	if ($('#title').val().replace(/ /gi, "") == "") {
 		alert("제목을 입력해주세요");
 		$('#title').focus();
@@ -18,6 +22,10 @@ function infoBoardCheck() {
 }
 
 function reviewBoardCheck() {
+	var beforeTitle = $('#title').val();
+	var afterTitle = removeTag( beforeTitle );
+	$('#title').val( afterTitle );
+	
 	if ($('#title').val().replace(/ /gi, "") == "") {
 		alert("제목을 입력해주세요");
 		$('#title').focus();
@@ -37,6 +45,14 @@ function reviewBoardCheck() {
 }
 
 function boastBoardCheck() {
+	var beforeName = $('#name').val();
+	var afterName = removeTag( beforeName );
+	$('#name').val( afterName );
+	
+	var beforeTitle = $('#title').val();
+	var afterTitle = removeTag( beforeTitle );
+	$('#title').val( afterTitle );
+	
 	if ($('#name').val().replace(/ /gi, "") == "") {
 		alert("애견이름을 입력해주세요");
 		$('#name').focus();
@@ -71,6 +87,22 @@ function boastBoardCheck() {
 }
 
 function lostBoardCheck() {
+	var beforeName = $('#name').val();
+	var afterName = removeTag( beforeName );
+	$('#name').val( afterName );
+	
+	var beforeResist = $('#resist').val();
+	var afterResist = removeTag( beforeResist );
+	$('#resist').val( afterResist );
+	
+	var beforePlace = $('#lostplace').val();
+	var afterPlace = removeTag( beforePlace );
+	$('#lostplace').val( afterPlace );
+	
+	var beforeTitle = $('#title').val();
+	var afterTitle = removeTag( beforeTitle );
+	$('#title').val( afterTitle );
+	
 	if ($('#name').val().replace(/ /gi, "") == "") {
 		alert("애견이름을 입력해주세요");
 		$('#name').focus();
@@ -176,6 +208,14 @@ function lostBoardCheck() {
 }
 
 function partnerBoardCheck() {
+	var beforeName = $('#name').val();
+	var afterName = removeTag( beforeName );
+	$('#name').val( afterName );
+	
+	var beforeTitle = $('#title').val();
+	var afterTitle = removeTag( beforeTitle );
+	$('#title').val( afterTitle );
+	
 	if ($('#name').val().replace(/ /gi, "") == "") {
 		alert("애견이름을 입력해주세요");
 		$('#name').focus();
@@ -244,7 +284,6 @@ function doRemoveTag() {
 	var afterText = removeTag( beforeText );
 	$('#repleContent').val( afterText );
 }
-
 
 function sendFile(file, editor, welEditable) {
     var form_data = new FormData();

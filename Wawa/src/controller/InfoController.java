@@ -65,14 +65,10 @@ public class InfoController {
 				@RequestParam HashMap<String, Object> params){
 			String id = (String) params.get("id");
 			
-
-			System.out.println(id + "들어왔음"); 
 			HashMap<String, Object> response = new HashMap<>();
 			if(memberService.adminCheck(id) == 1){
-				System.out.println("관리자네");
 				response.put("result", true);
 			}else {
-				System.out.println("관리자아니네");
 				response.put("result", false);
 			}
 			return response;

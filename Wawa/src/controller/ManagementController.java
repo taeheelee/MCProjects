@@ -44,14 +44,12 @@ public class ManagementController {
 	
 	@RequestMapping(value="getIdxList.do", method=RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> getIdxList(HttpSession session) {
-		System.out.println("getIdxList.do 요청받음");
 		String id = (String) session.getAttribute("id");
 		// 펫리스트에서 펫 idx만 뽑아내기
 		List<Integer> petIdxList = new ArrayList<Integer>();
 
 		List<HashMap<String, Object>> petList = petinfoService.selectPetList(id);
 		for (HashMap<String, Object> p : petList) {
-			// System.out.println(p.get("idx"));
 			petIdxList.add((Integer) p.get("idx"));
 		}
 		HashMap<String, Object> params = new HashMap<>();
@@ -62,8 +60,6 @@ public class ManagementController {
 	@RequestMapping(value="dataupload.do", method=RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> dataupload(HttpSession session,
 			int idx) {
-//		System.out.println(idx);
-		System.out.println("dataupload.do 요청 받음");
 		String id = (String) session.getAttribute("id");
 
 		PetInfo model = new PetInfo();
@@ -71,7 +67,6 @@ public class ManagementController {
 		model.setIdx(idx);
 		List<Management> weightList = new ArrayList<>();
 		weightList = managementService.selectListByIdx(model);
-		System.out.println("idx로 찾아온 무게 목록 : " + weightList);
 			
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("data", weightList); //강아지 idx로 받아 온 강아지 무게변화 기록
@@ -252,10 +247,8 @@ public class ManagementController {
 	      
 	      HashMap<String, Object> response = new HashMap<>();
 	      if(managementService.selectDate(model).size() != 0){
-	    	 System.out.println("중복");
 	         response.put("result", true);
 	      }else {
-	    	  System.out.println("중복아님");
 	         response.put("result", false);
 	      }
 	      return response;

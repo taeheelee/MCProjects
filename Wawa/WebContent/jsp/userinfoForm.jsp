@@ -241,47 +241,28 @@
 							<!-- Wrapper for slides -->
 							<div class="carousel-inner" role="listbox">
 									<div class="item active" align="center">	
-										<img src="PetInfoImage/${petList[0].fileId }.do" alt="..." style="width:200px; height:150px;"  >
-										<span><h3>${petList[0].name }</h3></span>
+										<img src="PetInfoImage/${petList[0].fileId }.do" alt="..." style="width:300px; height:225px;"  >
 										<div class="carousel-caption"></div>
+										<span><h3><br>${petList[0].name }</h3></span>
 									</div>
 									<c:forEach items="${petList }" var="petinfo" varStatus="idx" begin="1">
 									<div class="item" align="center">
-										<img src="PetInfoImage/${petinfo.fileId }.do" onerror="this.src='img/noImage.png'" alt="..." style="width:200px; height:150px;" >
-										<span><h3>${petinfo.name }</h3></span>
+										<img src="PetInfoImage/${petinfo.fileId }.do" onerror="this.src='img/noImage.png'" alt="..." style="width:300px; height:225px;" >
 										<div class="carousel-caption"></div>
+										<span><h3><br>${petinfo.name }</h3></span>
 									</div>
 									</c:forEach>
 							</div>
 					
 							<!-- Controls -->
 							<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-						        <span class="glyphicon glyphicon-chevron-left"></span>
+						        <span class="glyphicon glyphicon-chevron-left" style="color:#ffc000;"></span>
 						    </a>
 						    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-						        <span class="glyphicon glyphicon-chevron-right"></span>
+						        <span class="glyphicon glyphicon-chevron-right" style="color:#ffc000;"></span>
 					        </a>
 						</div>
                     	<!-- 마이펫 div 끝 -->
-                   <%--  <table style="width: 100%">
-                    	<tr>
-                    		<td width="20%" style="text-align: center;"><h3>마이펫 리스트</h3></td>
-                    	</tr>
-						<tr>
-							<td width="20%" style="text-align: center;">
-								<select class="country_to_state country_select" name="name" id="name" style="font-size:14pt">
-								<option value="defaultValue" style="font-size:14pt">선택하세요</option>
-									<c:forEach items="${petList }" var="petinfo" varStatus="idx">
-										<option value="${petinfo.fileId }"  style="font-size:14pt">${petinfo.name }</option>
-									</c:forEach>
-								</select>
-							</td>
-	                    </tr>
-	                    <tr>
-		                   	<td style="text-align: center;"><img onerror="this.src='img/noImage.png'" alt="" width="200" height="150" id="petImg"></td>
-	                    	
-	                    </tr>
-					</table> --%>    
                         <br><br><br><br><br>
                         
                   

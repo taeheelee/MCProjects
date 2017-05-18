@@ -17,34 +17,64 @@ pageEncoding="UTF-8"%>
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
-			
+			addPet
 			var regDate = /^(19[7-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
-			var regWeight = /^[0-9]*$/;
+			var regWeight = /^-?(\d{1,3}([.]\d{0,2})?)?$/;
 			var regName = /^[가-힣a-zA-Z]+$/;
+			
+			var statusOfName = false;
+			var statusOfBirthday = false;
+			var statusOfWeight = false;
+			var statusOfSex = false;
 			
 			$('#name').blur(function(){
 				if(!regName.test($('#name').val()) || $('#name').val().length > 15){
 					$('#nameError').html('<font color="red">이름입력 오류 (15자 미만의 한글, 영문만 가능)</font>');
+					statusOfName = false;
+				}else{
+					$('#nameError').html('');
+					statusOfName = true;
 				}
 			});
 			
-//     		$('#birth').blur(function(){
-//     			if(!regDate.test($('#birth').val())){
-//     				$('#birthError').html('<font color="red">날짜입력 오류(ex) 2017-04-01)</font>');
-//     			}
-//     		});
-
-$('#weight').blur(function(){
-	if(!regWeight.test($('#weight').val())){
-		$('#weightError').html('<font color="red">몸무게입력 오류(ex) 4.3');
-	}
-});
-
-//     		$('#gs').blur(function(){
-//     			if(!regDate.test($('#gs').val())){
-//     				$('#gsError').html('<font color="red">날짜입력 오류(ex) 2017-04-01)</font>');
-//     			}
-//     		});
+	     	$('#birth').change(function(){
+	     		if(!regDate.test($('#birth').val())){
+	     			$('#birthError').html('<font color="red">날짜입력 오류(ex) 2017-04-01)</font>');
+	     			statusOfBirthday = false;
+	     		}else{
+	     			statusOfBirthday = true;
+	     		}
+	     	});
+	
+			$('#weight').blur(function(){
+				if(!regWeight.test($('#weight').val())){
+					$('#weightError').html('<font color="red">소수점 둘째자리까지만 입력해주세요');
+					statusOfWeight = false;
+				}else{
+					$('#weightError').html('');
+					statusOfWeight = true;
+				}
+			});
+			$('.input-radio').click(function() {
+				statusOfSex = true;
+			})
+			$('#addPet').click(function() {
+  				if(statusOfName && statusOfBirthday && statusOfWeight && statusOfSex){
+  					$('#addPet').attr('type','submit');
+  				}else if(statusOfName == false){
+  					alert('펫네임 오류입니다.');
+  					 $('#name').focus();
+  				}else if (statusOfBirthday == false){
+  					alert('생일을 입력해주세요.');
+  					$('#birth').focus();
+  				}else if (statusOfWeight == false){
+  					alert('몸무게를 제대로 입력해주세요');
+  					$('#weight').focus();
+  				}else if (statusOfSex == false){
+  					alert('성별을 선택해주세요');
+  					$('#sex').focus();
+  				}
+			});
 
 });
 </script>
@@ -131,16 +161,6 @@ $('#weight').blur(function(){
 										<form action="addPet.do" enctype="multipart/form-data" method="post">
 											<input type="hidden" value="${id}" name="id">
 											
-                 <!--                                <label class="" for="billing_first_name">애견 프로필 사진 등록</label>
-											<p id="billing_first_name_field" class="form-row form-row-first validate-required">
-												<div class="file_input_div">
-													<input type="button" value="파일 선택" class="file_input_button"/>
-													<input type="file" class="file_input_hidden" onchange="javascript:document.getElementById('fileName').value = this.value" />
-												</div>
-												
-												<input type="text" id="fileName" class="file_input_textbox" readonly="readonly">
-											</p> -->
-											
 											<label class="" for="billing_first_name">애견 프로필 사진 등록<abbr title="required" class="required">*</abbr></label>
 											<table border="0">
 												<tr>
@@ -159,7 +179,7 @@ $('#weight').blur(function(){
 											
 											<label class="" for="billing_state">등록번호</label>
 											<input type="text" id="resist" name="resist" placeholder="등록번호가 있을시에 입력하세요" value="" class="input-text ">
-											<span id="weightError"></span>
+											<span id="resistError"></span>
 											
 											<br><br>
 											
@@ -183,18 +203,6 @@ $('#weight').blur(function(){
 														</c:otherwise>
 													</c:choose>
 												</c:forEach>
-								
-                                                    <!-- <option selected="selected" value="치와와">치와와</option>
-                                                    <option value="요크셔 테리어">요크셔 테리어</option>
-                                                    <option value="말티즈">말티즈</option>
-                                                    <option value="시츄">시츄</option>
-                                                    <option value="비글">비글</option>
-                                                    <option value="퍼그">퍼그</option>
-                                                    <option value="페키니즈">페키니즈</option>
-                                                    <option value="미니어쳐 슈나우저">미니어쳐 슈나우저</option>
-                                                    <option value="기타 소형견">기타 소형견</option>
-                                                    <option value="기타 중형견">기타 중형견</option>
-                                                    <option value="기타 대형견">기타 대형견</option> -->
                                                 </select>
                                                 
                                                 <br><br>
@@ -229,20 +237,20 @@ $('#weight').blur(function(){
                                                 
                                                 <label class="" for="billing_first_name">생일<abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" id="birth"  class="datepicker" name="birthday" placeholder="ex) 2017/04/01">
+                                                <input type="text" readonly="readonly" id="birth"  class="datepicker" name="birthday" placeholder="ex) 2017-04-01">
                                                 <span id="birthError"></span>
                                                 
                                                 <br><br>
                                                 
                                                 
-                                                <label class="" for="billing_state">몸무게(kg)</label>
+                                                <label class="" for="billing_state">몸무게(kg)<abbr title="required" class="required">*</abbr></label>
                                                 <input type="text" id="weight" name="weight" placeholder="숫자만 입력하세요" value="" class="input-text ">
                                                 <span id="weightError"></span>
                                                 
                                                 <br><br>
                                                 
                                                 <label class="" for="billing_state">미용 알림 시작일</label>
-                                                <input type="text" id="gs" name="groomingStart" value=""  class="datepicker" placeholder="ex) 2017/04/01">
+                                                <input type="text" readonly="readonly" id="gs" name="groomingStart" value=""  class="datepicker" placeholder="ex) 2017-04-01">
                                                 <span id="gsError"></span>
                                                 
                                                 <br><br>
@@ -277,7 +285,7 @@ $('#weight').blur(function(){
                                                 <br>
 
                                                 <div class="form-row place-order" style="float: right">
-                                                	<input type="submit" data-value="Place order" value="ADD PET" id="place_order"  class="button alt">
+                                                	<input type="button" data-value="Place order" value="ADD PET" id="addPet"  class="button alt">
                                                 </div>
                                             </form>
                                             

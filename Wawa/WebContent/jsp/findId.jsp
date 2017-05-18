@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="product-bit-title text-left">
-                        <h2>회원가입</h2>
+                        <h2>아이디/비밀번호 찾기</h2>
                     </div>
                 </div>
             </div>

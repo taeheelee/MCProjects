@@ -46,7 +46,7 @@ public class PetinfoController {
 	@Autowired
 	private IDogKindService dogKindService;
 
-	@RequestMapping(method= RequestMethod.POST, value="myPetInfo.do")
+	@RequestMapping("myPetInfo.do")
 	public ModelAndView myPetInfo(String id) {
 		ModelAndView mav = new ModelAndView();
 		List<HashMap<String, Object>> petList = petInfoService.selectPetList(id);

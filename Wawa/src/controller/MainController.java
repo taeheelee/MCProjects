@@ -212,6 +212,7 @@ public class MainController {
 		// 아아디에 해당하는 게시글 리스트 출력
 		List<HashMap<String, Object>> boardList = iBoardService.getBoardByWriter(userInfo.getNickname());
 		mav.addObject("boardList", boardList);
+		System.out.println(boardList);
 		// 아이디에 해당하는 강아지 목록 출력
 		List<HashMap<String, Object>> petList = IPetinfoService.selectPetList(id);
 		mav.addObject("petList", petList);

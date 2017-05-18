@@ -120,6 +120,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	<!-- 아이디로 게시글 목록 검색  -->
 	<select id="selectBoardById" resultType="java.util.HashMap" parameterType="java.lang.String">
-		select boardCode, category, title, readCount, writeDate from board where writer = #{id};
+		select boardIdx, boardCode, category, title, readCount, writeDate from board where writer = #{id};
 	</select>
 </mapper>

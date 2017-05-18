@@ -39,6 +39,28 @@ public class MainController {
 		return "login.tiles";
 	}
 
+	@RequestMapping("findId.do")
+	public
+	@ResponseBody HashMap<String, Object> findId(HttpServletResponse resp,
+	      @RequestParam HashMap<String, Object> params){
+	
+		
+		HashMap<String, Object> response = new HashMap<>();
+		
+		return response;
+	}
+	
+	@RequestMapping("findPass.do")
+	public
+	@ResponseBody HashMap<String, Object> findPass(HttpServletResponse resp,
+	      @RequestParam HashMap<String, Object> params){
+	
+		
+		HashMap<String, Object> response = new HashMap<>();
+		
+		return response;
+	}
+	
 	@RequestMapping(method = RequestMethod.POST, value = "login.do")
 	public ModelAndView login(HttpSession session, String id, String pw, RedirectAttributes redirectAttr) {
 		UserInfo userInfo = iMemberService.getMember(id);

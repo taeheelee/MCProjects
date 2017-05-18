@@ -2,7 +2,9 @@ package interface_service;
 
 import java.util.Date;
 import java.util.List;
+
 import model.Management;
+import model.PetInfo;
 
 public interface IManagementService {
 	public boolean insertManagement(Management model);
@@ -11,6 +13,7 @@ public interface IManagementService {
 	public boolean deleteManagement(int managementIdx);
 	public Management selectOne(int managementIdx);
 	public List<Management> selectList(String id);
+	public List<Management> selectListByIdx(PetInfo model);
 	public int selectIdx(Management model);
 	public List<Management> selectAllHealth(int idx);
 	public List<Management> selectDate(Management model);

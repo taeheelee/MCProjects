@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import model.Management;
+import model.PetInfo;
 
 public interface IManagementDao {
 	public int insertManagement(Management model);
@@ -12,6 +13,7 @@ public interface IManagementDao {
 	public int deleteManagement(int managementIdx);
 	public Management selectOne(int managementIdx);
 	public List<Management> selectList(String id);
+	public List<Management> selectListByIdx(PetInfo model);
 	public int selectIdx(Management model);
 	public int selectLastIdx(int idx);
 	public double selectRecentWeight(Date date);

@@ -126,13 +126,13 @@ public class PetInfoService implements IPetinfoService {
 
 		
 
-		System.out.println("입력된 오리지날fileName : "+fileName);
+		//System.out.println("입력된 오리지날fileName : "+fileName);
 		
 		
 		HashMap<String, Object> fileTemp = petFileDao.selectOne(fileId);
 //		System.out.println("fileTemp : "+fileTemp);
 		String savedFileName = (String)fileTemp.get("originFileName");
-		System.out.println("저장되어있던 파일 이름 : "+savedFileName);
+		//System.out.println("저장되어있던 파일 이름 : "+savedFileName);
 		
 
 			

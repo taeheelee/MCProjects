@@ -353,7 +353,7 @@
 					<div class="product-content-right">
 						<h2 class="sidebar-title">체중 관리</h2>
 						<p>이 홈페이지에서 안내하는 사항은 참고용입니다. 정확한 정보는 전문가와 상담하십시오.</p>
-						<font size=".5" color="red"> #정보는 상위 5개만 표시됨</font>
+						<font size="1.5" color="red"> #정보는 상위 5개만 표시됨</font>
 						<font size="1.5" color="red"> #운동량 : 최근 몸무게 기준</font>
 						<div class="woocommerce">
 							<form method="post" action="#"></form>

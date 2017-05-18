@@ -32,7 +32,7 @@ public class ManagementController {
 	private IManagementService managementService;
 
 	
-	@RequestMapping("healthcare.do") // healthcare.jsp 페이지로 리다이렉트
+	@RequestMapping("healthcare.do") // healthcare.jsp 페이지로 보냄
 	public ModelAndView healthcare(HttpSession session){
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("healthcare.tiles");

@@ -139,7 +139,7 @@ $(document).ready(function(){
                   <img src="PetInfoImage/${pet.fileId }.do" onerror="this.src='img/noImage.png'" alt=""style="width: 100%;">
                   </p>
                   <p style="text-align: center;">
-                     <input type="button" value="메인펫으로 지정" style="width: 100%" class="mainPetMk" onclick="location.href='mainPetUpdate.do?id=${sessionScope.id}&idx=${pet.idx}'"><br><br>
+                     <input type="button" value="메인펫으로 지정" style="width: 100%" class="mainPetMk postLink" onclick="location.href='mainPetUpdate.do?id=${sessionScope.id}&idx=${pet.idx}'"><br><br>
                   </p>
                   
                </div>

@@ -163,7 +163,7 @@
 			<c:choose>
 				<c:when test="${sessionScope.id != null and sessionScope.petName != null}">
 					<div class="shopping-item" >
-						<a href="myPetInfo.do?id=${sessionScope.id}"  class="postLink">
+						<a href="myPetInfo.do?id=${sessionScope.id}"  >
 						
 							<table id="mini" style="margin-left: 5px;width:330px; height: 100px;">
 								<tr>
@@ -235,7 +235,7 @@
 					<li class="dropdown">
 						<a href="single-product.html" class="dropdown-toggle" data-toggle="dropdown">나의펫 <b class="caret"></b></a>
 	                    <ul class="dropdown-menu">
-							<li><a href="myPetInfo.do?id=${sessionScope.id}" class="postLink" >나의 펫 정보</a></li>
+							<li><a href="myPetInfo.do?id=${sessionScope.id}" >나의 펫 정보</a></li>
 							<li><a href="healthcare.do?id=${sessionScope.id}" class="postLink">나의 펫 헬스케어</a></li>
 							<li><a href="medicalcareForm.do?id=${sessionScope.id}" class="postLink">나의 펫 메디컬케어</a></li>		
 	                    </ul>

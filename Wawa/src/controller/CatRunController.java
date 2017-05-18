@@ -27,7 +27,6 @@ public class CatRunController {
 	
 	@RequestMapping("createCat.do")
 	public String createScore(String name, int score){
-		System.out.println("?");
 		catService.insertCat(name, score);
 		return "redirect:catRunMain.do";
 	}

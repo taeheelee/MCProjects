@@ -151,4 +151,4 @@ idx int primary key auto_increment,
 name varchar(10),
 score int
 );
-
+ 

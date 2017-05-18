@@ -54,9 +54,29 @@ public class PetinfoController {
 		mav.setViewName("myPetInfo.tiles");
 		return mav;
 	}
+//	@RequestMapping("calendar.do")
+//	@ResponseBody List<HashMap<String, Object>> calendar(String id) {
+//		List<HashMap<String, Object>> petList = petInfoService.selectPetList(id);
+////		System.out.println(petList.get(0).get("groomingStart"));
+////		System.out.println(petList.get(0).get("groomingPeroid"));
+////		for (int i = 0; i < petList.size(); i++){
+////			String gDay="";
+////			
+////			petList.get(0).get("groomingStart");
+////			petList.get(0).get("groomingPeroid");
+////			
+////			HashMap<String, Object> temp = new HashMap<>();
+////			temp.put("gDay", gDay);
+////			petList.set(i,temp );
+////		}
+//		
+//		return petList;
+//	}
+	
 	@RequestMapping("calendar.do")
 	@ResponseBody List<HashMap<String, Object>> calendar(String id) {
-		List<HashMap<String, Object>> petList = petInfoService.selectPetList(id);
+		List<HashMap<String, Object>> petList = petInfoService.calendarEvent(id);
+		
 		return petList;
 	}
 

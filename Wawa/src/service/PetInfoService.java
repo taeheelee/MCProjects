@@ -2,8 +2,10 @@ package service;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -416,6 +418,94 @@ public class PetInfoService implements IPetinfoService {
 		if(dao.updateWeight(pet) > 0)
 			return true;
 		else return false;
+	}
+
+
+
+	@Override
+	public List<HashMap<String, Object>> calendarEvent(String id) {
+		// TODO Auto-generated method stub
+		List<HashMap<String, Object>> petList = dao.selectPetList(id);
+		List<HashMap<String, Object>> eventDate = new ArrayList<>();
+		Date today = new Date();
+		
+		
+		for (int i = 0 ; i < petList.size(); i++){
+//		HashMap<String, Object> temp = new HashMap<>();
+//		temp.put("idx", petList.get(i).get("idx"));
+//		temp.put("name", petList.get(i).get("name"));
+//		temp.put("birthday", petList.get(i).get("birthday"));
+//		temp.put("groomingDayString", petList.get(i).get("groomingDayString"));
+//		
+//			eventDate.add(temp);
+
+		
+		
+		
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		//새로운 D-day구하기
+		//1.D-day 구하기 : 미용알림시작일 + 미용 알림 주기 - 오늘 날짜
+	      Date groomingStart = (Date) petList.get(0).get("groomingStart");
+	      int groomingPeriod = (int) petList.get(0).get("groomingPeriod");
+	      
+	      int newDDay = 0;      
+	      if(groomingStart == null || groomingPeriod == 0){
+	    	  newDDay = 99999;
+	      }else{
+	    	  int diffGrooming = (int)(groomingStart.getTime() - today.getTime());
+	    	  newDDay = diffGrooming / (24 * 60 * 60 * 1000) +groomingPeriod;
+
+	    	  //2. D-day 가 마이너스가 되면, update 미용알림시작일  = 미용알림시작일 + 미용 알림 주기  
+	    	 Calendar calendar = Calendar.getInstance();
+	    	 calendar.setTime(groomingStart);
+ 	  
+	    	  while (newDDay < 0) {
+	    		  calendar.add(Calendar.DATE, groomingPeriod);
+	    		  Date newGroomingStart = new Date(calendar.getTimeInMillis());
+	    		  newDDay += groomingPeriod;
+	    	  }
+	      }
+		
+		
+		
+		
+		
+		
+
+		
+//		        Date date = df.parse("2013-02-35");
+		        // 오늘날짜에 D-day날짜 더하기
+		        Calendar cal = Calendar.getInstance();
+		        cal.setTime(today);
+		        cal.add(Calendar.DATE, newDDay);
+//		         System.out.println("날짜더하기 : "+ cal);
+
+		
+
+		         Date groomingDay = new Date(cal.getTimeInMillis());
+//		         System.out.println("groomingDay : "+groomingDay);
+	    		 String groomingDayString = transFormat.format(groomingDay);
+//	    		 System.out.println("groomingDayString : "+groomingDayString);
+
+		System.out.println("groomingDayString : "+groomingDayString);
+		
+	    			HashMap<String, Object> temp = new HashMap<>();
+	    			temp.put("idx", petList.get(i).get("idx"));
+	    			temp.put("name", petList.get(i).get("name"));
+	    			temp.put("birthday", petList.get(i).get("birthday"));
+	    			temp.put("groomingDayString", groomingDayString);
+	    			
+	    				eventDate.add(temp);
+
+		
+		
+		
+		System.out.println(temp);
+//		System.out.println(eventDate.get(i).get("name")+'\n 생일 : '+);
+		}
+		
+		return eventDate;
 	}
 
 }

@@ -14,48 +14,51 @@
 <script type="text/javascript" src="./fullcalendar-3.3.1/locale/ko.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	if('${isDel}' != '')
-		alert('${isDel}');
-	$('.mainPetMk').click(function(){
-		alert('메인펫으로 지정합니다.');
-	});
-	
-	function getPetAge(petBirth, petIdx){
-		$.ajax({
-			type: 'get',
-			url: 'getAge.do',
-			data: "birthday="+petBirth+"&petIdx="+petIdx,
-			dataType: "json",
-			success: function(data) {
-				$('#ageSpan' + petIdx).text(data.year + "년" + data.month + "개월");
-				$('#transperAgeSpan' + petIdx).text(data.transperAge + "살");
-				$('#caloriesSpan' + petIdx).text(data.calories + "kcal");
-				$('#adultWeightSpan' + petIdx).text(data.adultWeight + "kg");
-				$('#exerciseMsgSpan' + petIdx).text(data.exerciseMsg);
-				$('#warningMsgSpan' + petIdx).text(data.warningMsg);
-				$('#groomingDdaySpan' + petIdx).text(data.d_day);
-			},
-			error: function(data){
-				alert("잠시 후 다시 시도해주세요.");
-			}
-		});
-		}	
-	
-	
-	
-	$("#calendar").fullCalendar({
+   if('${isDel}' != '')
+      alert('${isDel}');
+   $('.mainPetMk').click(function(){
+      alert('메인펫으로 지정합니다.');
+   });
+   
+   function getPetAge(petBirth, petIdx){
+      $.ajax({
+         type: 'get',
+         url: 'getAge.do',
+         data: "birthday="+petBirth+"&petIdx="+petIdx,
+         dataType: "json",
+         success: function(data) {
+            $('#ageSpan' + petIdx).text(data.year + "년" + data.month + "개월");
+            $('#transperAgeSpan' + petIdx).text(data.transperAge + "살");
+            $('#caloriesSpan' + petIdx).text(data.calories + "kcal");
+            $('#adultWeightSpan' + petIdx).text(data.adultWeight + "kg");
+            $('#exerciseMsgSpan' + petIdx).text(data.exerciseMsg);
+            $('#warningMsgSpan' + petIdx).text(data.warningMsg);
+            $('#groomingDdaySpan' + petIdx).text(data.d_day);
+         },
+         error: function(data){
+            alert("잠시 후 다시 시도해주세요.");
+         }
+      });
+      }   
+   
+   
+   
+   $("#calendar").fullCalendar({
         defaultDate : new Date()
       , editable : true
       , eventLimit : true
       , lang: 'ko'
       ,         
 /*            events: [
-      	{
-				title: 'Birthday',
-				start: '2017-04-01'
-			}
+         {
+            title: 'Birthday',
+            start: '2017-04-01'
+         }
       ]  */
       events: function(start, end, timezone, callback) {
+         var nowDate = $('#calendar').fullCalendar('getDate').format('YYYY-MM-DD');
+         var nowDateSplit = nowDate.split('-');
+         var thisyear = nowDateSplit[0];
           $.ajax({ 
              type : 'post',
              url : 'calendar.do',
@@ -65,41 +68,141 @@ $(document).ready(function(){
 
                 var events = [];
                 for (var i = 0; i < petList.length; i++) {
-                     events.push({
+                     /*  events.push({
                          title : petList[i].name+'의 생일',
                          start : petList[i].birthday,
-                         textColor : "white",
-                         color : "#FF7421"
+                         textColor : "#FF8400",
+                         imageurl : "img/confetti.png", 
+                         color : "#FAE9B5"
                          
-                      });
-                   
+                      });  */
+                      var petBirthdayString = petList[i].birthday;
+                      var petBirthdayStringSplit = petBirthdayString.split('-');
+                      var petYear = Number(petBirthdayStringSplit[1]);
+                      var petDay = petBirthdayStringSplit[2];
+                      var petBirthStart = thisyear+'-0'+petYear+'-'+petDay;
+//          alert("nowDate : "+nowDate+"\n yearSplit : "+ thisyear+"\n petBirthStart : "+petBirthStart); 
+
+                      events.push({
+                          title : petList[i].name+'의 생일',
+                          start : petBirthStart,
+                          textColor : "#606161",
+                          imageurl : "img/birthday.png", 
+                          color : "#FAE9B5"
+                          
+                       }); 
+
+                      events.push({
+                          title : petList[i].name+' 미용예정일',
+                          start : petList[i].groomingDayString,
+                          textColor : "#606161",
+                          imageurl : "img/groomingday.png", 
+                          color : "#e5f8ff"
+//                         	  fee4e9
+                          
+                       }); 
+                      
+                 /*      var petIdx = petList[i].idx;
+                      var petBirth = petList[i].birthday;
+                      var dogName = petList[i].name;
+                     
+                      $.ajax({
+                       type: 'get',
+                       url: 'getAge.do',
+                       data: "birthday="+petBirth+"&petIdx="+petIdx,
+                       dataType: "json",
+                       success: function(data) {
+                          var gDDay = data.d_day;
+                          var gDDaySplit = (data.d_day).split('-');
+                          var gDDayInt = Number(gDDaySplit[1]);
+                          var today = new Date();
+                          var todayDate = Number(today.getDate());   
+                          var gDate = new Date(today.getFullYear(), today.getMonth(), Number(todayDate+gDDayInt) );
+                          
+
+                        
+                    var realGDate = gDate.getFullYear()+'-0'+ gDate.getMonth()+'-'+ gDate.getDate()
+                    alert("디데이 realGDate "+realGDate);
+                    alert("여기 왜안와ㅇㄹㅇㄴㄹ????? "+dogName+'미용예정일');
+                          
+                           events.push({
+                                 title : dogName+'미용예정일',
+                                 start : realGDate,
+                                 textColor : "#FF8400",
+//                                  imageurl : "img/celebrate.png", 
+                                 color : "#FAE9B5"
+                                 
+                              }); 
+                          alert("여기 왜안와????? "+realGDate);
+                           
+//                           alert("ㅎㅇㄹ"+data.d_day);  
+                       },
+                       error: function(data){
+                          alert("잠시 후 다시 시도해주세요?");
+                       }
+                    }); */
+                      
+                      
+                      
+                      
+                      
+                      
+                      
+                      
                 }
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
                 callback(events);
                 
              },
              error : function() {
-          	   alert('error');
+                alert('error');
              }
           });
+          
+          
+          
+          
+
+ 
+          
    
        }//event end 
+         , eventRender:function(event, eventElement) {
+           if(event.imageurl) {
+               eventElement.find("span.fc-title").prepend("<center><img src='" + event.imageurl + "'><center>");
+           }
+       }
   });  //calendar end
-	  
-		var idx = $('#defaultBirth').attr('name');
-		var birth = $('#defaultBirth').val();
-		getPetAge(birth, idx);
-		
-	  $('li').click(function(){
-	  	getPetAge($(this).attr('id'), $(this).attr('name'));
-		});
-	  $('.petDel').click(function() {
-			var petName = prompt('펫 정보를 삭제 하시나요?', '삭제하시려면 펫이름을 입력해주세요');
-			
-			var petIdx = $(this).attr('id');
-	
-			location.href='deletePet.do?id=${sessionScope.id}&idx=' + petIdx + '&petname=' + petName;
-		});
-		
+     
+      var idx = $('#defaultBirth').attr('name');
+      var birth = $('#defaultBirth').val();
+      getPetAge(birth, idx);
+      
+     $('li').click(function(){
+        getPetAge($(this).attr('id'), $(this).attr('name'));
+      });
+     $('.petDel').click(function() {
+         var petName = prompt('펫 정보를 삭제 하시나요?', '삭제하시려면 펫이름을 입력해주세요');
+         
+         var petIdx = $(this).attr('id');
+   
+         location.href='deletePet.do?id=${sessionScope.id}&idx=' + petIdx + '&petname=' + petName;
+      });
+      
 });
 </script>
 </head>
@@ -118,28 +221,28 @@ $(document).ready(function(){
     </div>
 
 <div class="single-product-area">
-	<div class="container">
+   <div class="container">
 
-			<div class="form-row place-order" style="float: right">
-				<input type="button" value="펫 추가하기" onclick = "location.href ='addPetForm.do?id=${sessionScope.id}'">
-			</div>                                          
-			<ul id="tabs">
-				<c:forEach var="pet" items="${petList }" varStatus="idx">
-					<span></span>
-					<li id="${pet.birthday }" name="${pet.idx }"><a href="#" name="#tab${idx.count }" style="font-size: 25px;">${pet.name }</a></li>
-					<input type="hidden" id="defaultBirth" name="${pet.idx }" value="${pet.birthday }">
-					
-				</c:forEach>
-			</ul>
-			<div id="content">
-			<c:forEach var="pet" items="${petList }" varStatus="idx">
-			            <div id="tab${idx.count }">
+         <div class="form-row place-order" style="float: right">
+            <input type="button" value="펫 추가하기" onclick = "location.href ='addPetForm.do?id=${sessionScope.id}'">
+         </div>                                          
+         <ul id="tabs">
+            <c:forEach var="pet" items="${petList }" varStatus="idx">
+               <span></span>
+               <li id="${pet.birthday }" name="${pet.idx }"><a href="#" name="#tab${idx.count }" style="font-size: 25px;">${pet.name }</a></li>
+               <input type="hidden" id="defaultBirth" name="${pet.idx }" value="${pet.birthday }">
+               
+            </c:forEach>
+         </ul>
+         <div id="content">
+         <c:forEach var="pet" items="${petList }" varStatus="idx">
+                     <div id="tab${idx.count }">
                <div class="col-md-3">
                   <p style="text-align: center;">
                   <img src="PetInfoImage/${pet.fileId }.do" onerror="this.src='img/noImage.png'" alt=""style="width: 100%;">
                   </p>
                   <p style="text-align: center;">
-                     <input type="button" value="메인펫으로 지정" style="width: 100%" class="mainPetMk postLink" onclick="location.href='mainPetUpdate.do?id=${sessionScope.id}&idx=${pet.idx}'"><br><br>
+                     <input type="button" value="메인펫으로 지정" style="width: 100%" class="mainPetMk" onclick="location.href='mainPetUpdate.do?id=${sessionScope.id}&idx=${pet.idx}'"><br><br>
                   </p>
                   
                </div>
@@ -179,13 +282,13 @@ $(document).ready(function(){
                      </tr>
                      <tr>
                         <td>
-                        미용 주기 알림   <span style="color: #FF7421;" id="groomingDdaySpan${pet.idx }"></span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;" onclick="location.href='updatePetForm.do?idx=${pet.idx}'">
+                        미용 주기 알림   <span style="color: #FF7421;" id="groomingDdaySpan${pet.idx }"></span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;">
                         </td>
                      </tr>
                      <tr>
                         <td>
                         다음 예방 접종 시기 <span style="color: #FF7421; " id="">[백신명]</span> 
-                        <span style="color: #FF7421;"id="">D-00</span>&nbsp;&nbsp;<input type="button" value="접종관리 GO" style="font-size: small;" onclick = "location.href ='medicalcareForm.do?id=${sessionScope.id}'">
+                        <span style="color: #FF7421;"id="">D-00</span>&nbsp;&nbsp;<input type="button" value="접종관리 GO" style="font-size: small;"onclick = "location.href ='medicalcareForm.do?id=${sessionScope.id}'">
                         </td>
                      </tr>
                   </table>
@@ -195,68 +298,68 @@ $(document).ready(function(){
                </div>
             </div>
 
-				<%-- <div id="tab${idx.count }">
-						<div class="col-md-3">
-							<p style="text-align: center;">
-							<img src="img/dog_0${idx.count }.jpg" alt=""style="width: 100%;">
-							</p>
-							<p style="text-align: center;">
-								<input type="button" value="메인펫으로 지정" style="width: 100%"><br><br>
-	<!-- 							<input type="button" value="펫 수정" style="width: 48%"> -->
-	<!-- 							<input type="button" value="펫 삭제" style="width: 48%"> -->
-							</p>
-							
-						</div>
-						<div class="col-md-9" style="font-size: 18px;">
-						
-					
-								<p style="text-align: right; margin: 0">
-									<input type="button" value="펫 수정" style="font-size: small;">
-									<input type="button" value="펫 삭제" style="font-size: small;">
-								</p>
-							<table>
-								<tr>
-									<td>이름</td> <td style="font-weight: bold;">${pet.name }</td>
-									<td>등록번호</td> <td>${pet.resist }</td>
-								</tr>
-								<tr>
-									<td>품종</td> <td>${pet.kind }</td>
-									<td>성별[중성화여부]</td> <td>${pet.sex }[${pet.neutral }]</td>
-								</tr>
-								<tr>
-									<td>출생일</td> <td>${pet.birthday }</td>
-									<td>나이</td> <td>나중에 계산하기</td>
-								</tr>
-								<tr>
-									<td>몸무게</td> <td>${pet.weight }kg</td>
-									<td>권장 열량</td> <td>나중에 계산하기</td>
-								</tr>
-								<tr>
-									<td>권장 운동량</td> <td>나중에 계산하기</td>
-									<td>미용 주기</td> <td>${pet.groomingPeriod }</td>
-								</tr>
-								<tr>
-									<td>다음 접종일</td> <td colspan="3">나중에 계산[예방접종 이름도 같이 알려주면 좋을듯]</td>
-								</tr>
-							</table>
-					
-							<br> <br> <br> 	
-						</div>
-					</div> --%>
-				
-				</c:forEach>
-		
-			</div><!-- tab end -->
-		</div>
+            <%-- <div id="tab${idx.count }">
+                  <div class="col-md-3">
+                     <p style="text-align: center;">
+                     <img src="img/dog_0${idx.count }.jpg" alt=""style="width: 100%;">
+                     </p>
+                     <p style="text-align: center;">
+                        <input type="button" value="메인펫으로 지정" style="width: 100%"><br><br>
+   <!--                      <input type="button" value="펫 수정" style="width: 48%"> -->
+   <!--                      <input type="button" value="펫 삭제" style="width: 48%"> -->
+                     </p>
+                     
+                  </div>
+                  <div class="col-md-9" style="font-size: 18px;">
+                  
+               
+                        <p style="text-align: right; margin: 0">
+                           <input type="button" value="펫 수정" style="font-size: small;">
+                           <input type="button" value="펫 삭제" style="font-size: small;">
+                        </p>
+                     <table>
+                        <tr>
+                           <td>이름</td> <td style="font-weight: bold;">${pet.name }</td>
+                           <td>등록번호</td> <td>${pet.resist }</td>
+                        </tr>
+                        <tr>
+                           <td>품종</td> <td>${pet.kind }</td>
+                           <td>성별[중성화여부]</td> <td>${pet.sex }[${pet.neutral }]</td>
+                        </tr>
+                        <tr>
+                           <td>출생일</td> <td>${pet.birthday }</td>
+                           <td>나이</td> <td>나중에 계산하기</td>
+                        </tr>
+                        <tr>
+                           <td>몸무게</td> <td>${pet.weight }kg</td>
+                           <td>권장 열량</td> <td>나중에 계산하기</td>
+                        </tr>
+                        <tr>
+                           <td>권장 운동량</td> <td>나중에 계산하기</td>
+                           <td>미용 주기</td> <td>${pet.groomingPeriod }</td>
+                        </tr>
+                        <tr>
+                           <td>다음 접종일</td> <td colspan="3">나중에 계산[예방접종 이름도 같이 알려주면 좋을듯]</td>
+                        </tr>
+                     </table>
+               
+                     <br> <br> <br>    
+                  </div>
+               </div> --%>
+            
+            </c:forEach>
+      
+         </div><!-- tab end -->
+      </div>
 
-	<!-- calendar -->
-	 <div class="container">
+   <!-- calendar -->
+    <div class="container">
          <div class="col-md-3"></div>
          <div class="col-md-8"id="calendar" style="text-align: right;"></div>  
       </div> 
-		
+      
 
-	</div>
+   </div>
 
 
 </body>

@@ -446,8 +446,8 @@ public class PetInfoService implements IPetinfoService {
 		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 		//새로운 D-day구하기
 		//1.D-day 구하기 : 미용알림시작일 + 미용 알림 주기 - 오늘 날짜
-	      Date groomingStart = (Date) petList.get(0).get("groomingStart");
-	      int groomingPeriod = (int) petList.get(0).get("groomingPeriod");
+	      Date groomingStart = (Date) petList.get(i).get("groomingStart");
+	      int groomingPeriod = (int) petList.get(i).get("groomingPeriod");
 	      
 	      int newDDay = 0;      
 	      if(groomingStart == null || groomingPeriod == 0){

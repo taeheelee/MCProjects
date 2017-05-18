@@ -265,7 +265,7 @@ public class PetinfoController {
 		outputStream.close();
 	}
 
-	@RequestMapping(method= RequestMethod.POST, value= "mainPetUpdate.do")
+	@RequestMapping("mainPetUpdate.do")
 	public String mainPetUpdate(String id, int idx, HttpSession session) {
 		HashMap<String, Object> mainPetOrigin = petInfoService.selectMainPet(id);
 		HashMap<String, Object> params = new HashMap<>();

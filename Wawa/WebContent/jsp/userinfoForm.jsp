@@ -51,24 +51,29 @@
 				}); 
     			}
     		});
+	 		var chk = function() {
+				if($('#newPassword').val() != $('#confirmpassword').val()){
+  					statusOfConfirmPassword = false;
+  					$('#cpwError').html('<font color="red">불일치</font>');
+  				}else {
+  					$('#cpwError').html('<font color="green">일치</font>');
+  					statusOfConfirmPassword = true;
+  				}
+			};
 		 	$('#newPassword').keyup(function(){
 					if(!regPassword.test($('#newPassword').val())){
+						chk();
 						$('#pwError').html('<font color="red">비밀번호 오류 (영문,숫자를 혼합하여 6~20자 이내)</font>');
 						statusOfNewPassword = false;
 					}else {
+						chk();
 						$('#pwError').html('<font color="green">사용가능</font>');
 						statusOfNewPassword = true;
 					}
 				});
 				
-				$('#confirmPassword').keyup(function(){
-					if($('#newPassword').val() != $('#confirmPassword').val()){
-						$('#cpwError').html('<font color="red">불일치</font>');
-						statusOfconfirmPassword = false;
-					}else {
-						$('#cpwError').html('<font color="green">일치</font>');
-						statusOfconfirmPassword = true;
-					}
+				$('#confirmpassword').keyup(function(){
+						chk();
 				});
 				$('#phoneNum').blur(function(){
 	  				if(!regPhoneNum.test($('#phoneNum').val())){
@@ -118,8 +123,9 @@
 				$('#name').change(function() {
 					$('#petImg').attr('src', 'PetInfoImage/' + $('#name').val() + '.do');
 				});
-			});
-				
+					
+		});
+			
 	 	
 	
  	</script>
@@ -193,7 +199,7 @@
 			<br>
 			<span id="pwError"></span>
 			<label class="" for="billing_state"> 비밀번호 확인<abbr title="required" class="required">*</abbr></label> 
-			<input type="password" id="confirmPassword" name="confirmPassword" placeholder="변경할 비밀번호와 동일하게 입력하세요" class="input-text " size="45">
+			<input type="password" id="confirmpassword" name="confirmPassword" placeholder="변경할 비밀번호와 동일하게 입력하세요" class="input-text " size="45">
 			<br>
 			<span id="cpwError"></span>
 

@@ -100,11 +100,11 @@ $(document).ready(function(){
 			<div class="container">
 				<c:forEach items="${boardList }" var="boast">
 				<div class="single-product col-md-2" style=" padding: 10px;">
-					<div class="col-md-11 boast-list-petname" style="background: #f4f4f4; padding : 15px;width: 100%; height: 300px; margin: 0 auto;">
+					<div class="col-md-11 boast-list-petname" style="background: #f4f4f4; padding : 15px;width: 100%; height: 320px; margin: 0 auto;">
 							<div class="product-f-image" style="width: 150px; height: 150px"><!-- 마우스오버시 검정색 효과 범위-->
 								<img src="imageShow/${boast.fileId}.do" onerror="this.src='img/no_image.jpg'" alt="" style="margin-bottom: 15px">
 								<div class="product-hover">
-									<a href="increaseLike.do?boardIdx=${boast.boardIdx }&userIdx=${sessionScope.idx}" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
+									<a href="increaseLike.do?boardIdx=${boast.boardIdx }&userIdx=${sessionScope.idx}" class="add-to-cart-link postLink"><i class="fa fa-heart"></i> 좋아요</a> 
 									<a href="boastDetails.do?boardIdx=${boast.boardIdx }" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 								</div>
 							</div><!--  마우스오버시 검정색 효과 범위 끝 -->

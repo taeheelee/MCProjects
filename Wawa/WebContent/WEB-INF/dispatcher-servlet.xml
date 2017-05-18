@@ -29,6 +29,9 @@
 			<mvc:exclude-mapping path="/idCheck.do"/>
 			<mvc:exclude-mapping path="/nicknameCheck.do"/>
 			<mvc:exclude-mapping path="/join.do"/>
+			<mvc:exclude-mapping path="/*Main.do"/>
+			<mvc:exclude-mapping path="/*Detail*"/>
+			<mvc:exclude-mapping path="/*wawa*.do"/>
 			<ref bean="loginCheckInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

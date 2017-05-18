@@ -6,37 +6,50 @@ pageEncoding="UTF-8"%>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
-	<script type="text/javascript" src="js/boardCheck.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#summernote').summernote({
-				height : 500,
-				callbacks: {
-					onImageUpload: function(files, editor, welEditable) {
-						for (var i = files.length - 1; i >= 0; i--) {
-							sendFile(files[i],  editor, welEditable);
-						}
+<script type="text/javascript" src="js/boardCheck.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#summernote').summernote({
+			height : 500,
+			callbacks: {
+				onImageUpload: function(files, editor, welEditable) {
+					for (var i = files.length - 1; i >= 0; i--) {
+						sendFile(files[i],  editor, welEditable);
 					}
 				}
-
-			});
-			$('#ok').click(function() {
-				var content = $('#summernote').summernote('code');
-				$('#content').val(content);	
-			});
-			if(${load != 0}){
-				$('#name').val('${pet.name}');
-				
-				var year = '${pet.birthday}'.split('-');
-				var now = new Date().getFullYear();
-				var age = now - year[0];
-				$('#age').val(age);
-				
-				$('#sex[value=${pet.sex}]').attr('checked', true);
-				$('#sex[value!=${pet.sex}]').attr('checked', false);
-
-				$('#kind > option[value="${pet.kind}"]').attr('selected', true);
 			}
+		});
+		
+		 $("#age").keyup(function(event){
+             if (!(event.keyCode >=37 && event.keyCode<=40)) {
+                 var inputVal = $(this).val();
+                 $(this).val(inputVal.replace(/[^0-9]/gi,''));
+             }
+         });
+		 $("#age").blur(function(event){
+             if (!(event.keyCode >=37 && event.keyCode<=40)) {
+                 var inputVal = $(this).val();
+                 $(this).val(inputVal.replace(/[^0-9]/gi,''));
+             }
+         });
+		 
+		$('#ok').click(function() {
+			var content = $('#summernote').summernote('code');
+			$('#content').val(content);	
+		});
+		if(${load != 0}){
+			$('#name').val('${pet.name}');
+				
+			var year = '${pet.birthday}'.split('-');
+			var now = new Date().getFullYear();
+			var age = now - year[0];
+			$('#age').val(age);
+				
+			$('#sex[value=${pet.sex}]').attr('checked', true);
+			$('#sex[value!=${pet.sex}]').attr('checked', false);
+
+			$('#kind > option[value="${pet.kind}"]').attr('selected', true);
+		}
 		});
 	</script>
 </head>
@@ -78,12 +91,12 @@ pageEncoding="UTF-8"%>
 											<input type="hidden" name="boardCode" value="3">
 											<input type="hidden" name="writer" value="${sessionScope.name}">
 											
-											<label class="" for="billing_state">애견 이름</label>
-											<input type="text" id="name" name="name" placeholder="" value="" class="input-text ">
+											<label class="" for="billing_state">애견 이름<abbr title="required" class="required">*</abbr></label>
+											<input type="text" id="name" name="name" placeholder="" value="" class="input-text " maxlength="20">
 
 											<br><br>
-											<label class="" for="billing_state">나이</label>
-											<input type="text" id="age" name="age" placeholder="" value="" class="input-text ">
+											<label class="" for="billing_state">나이<abbr title="required" class="required">*</abbr></label>
+											<input type="text" id="age" name="age" placeholder="" value="" class="input-text " maxlength="10">
 
 											<br><br>
 
@@ -113,24 +126,12 @@ pageEncoding="UTF-8"%>
 														</c:otherwise>
 													</c:choose>
 												</c:forEach>
-								
-                                                    <!-- <option selected="selected" value="치와와">치와와</option>
-                                                    <option value="요크셔 테리어">요크셔 테리어</option>
-                                                    <option value="말티즈">말티즈</option>
-                                                    <option value="시츄">시츄</option>
-                                                    <option value="비글">비글</option>
-                                                    <option value="퍼그">퍼그</option>
-                                                    <option value="페키니즈">페키니즈</option>
-                                                    <option value="미니어쳐 슈나우저">미니어쳐 슈나우저</option>
-                                                    <option value="기타 소형견">기타 소형견</option>
-                                                    <option value="기타 중형견">기타 중형견</option>
-                                                    <option value="기타 대형견">기타 대형견</option> -->
                                                 </select>
                                                 
                                                 <br><br>
 
-											<label class="" for="billing_first_name">애견 프로필 사진 등록<abbr title="required" class="required">*</abbr></label>
-											<table border="0">
+											<label class="" for="billing_first_name">애견 프로필 사진 등록</label>
+											<table>
 												<tr>
 													<td width="10%">
 														<div class="file_input_div">
@@ -144,8 +145,8 @@ pageEncoding="UTF-8"%>
 												</tr>
 											</table>
 
-											<label class="" for="billing_state">글 제목</label>
-											<input type="text" id="title" name="title" placeholder="" value="" class="input-text ">
+											<label class="" for="billing_state">글 제목<abbr title="required" class="required">*</abbr></label>
+											<input type="text" id="title" name="title" placeholder="" value="" class="input-text " maxlength="20">
 
 											<br>
 

@@ -167,11 +167,14 @@
 						
 							<table id="mini" style="margin-left: 5px;width:330px; height: 100px;">
 								<tr>
-									<td rowspan="4" style="width: 90px;" id="petmainimage"><img src="PetInfoImage/${sessionScope.fileId }.do" onerror="this.src='img/noImage.png'" alt=""></td>
+									<td rowspan="4" style="width: 90px;" id="petmainimage">
+									<div class="circular" style="margin-right: 10px;">
+										<img src="PetInfoImage/${sessionScope.fileId }.do" onerror="this.src='img/noImage.png'" ></td>
+									</div>
 									<td colspan="3" id="nickname">${sessionScope.name}</td>
 								</tr>
 								<tr style="font-size: small;">
-									<td id="petname">${sessionScope.petName}</td>
+									<td id="petname"><b style="font-size: 14px;">${sessionScope.petName}</b></td>
 									<td id="petsex">${sessionScope.petSex}</td>
 									<td id="petage"><span id="petage_year"></span> <span id="petage_month"></span></td>
 								</tr>
@@ -237,7 +240,7 @@
 							<li><a href="medicalcareForm.do?id=${sessionScope.id}" >나의 펫 메디컬케어</a></li>		
 	                    </ul>
 					</li>
-					<li><a href="infoMain.do">애견정보/상식</a></li>
+					<li><a href="infoMain.do?id=${sessionScope.id}">애견정보/상식</a></li>
 					<li><a href="reviewMain.do">제품리뷰</a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">커뮤니티 <b class="caret"></b></a>

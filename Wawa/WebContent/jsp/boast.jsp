@@ -6,6 +6,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.postLink').click(function() {
+	    var p = $(this).attr('href').split('?');
+	    var action = p[0];
+	    var params = p[1].split('&');
+	    var form = $(document.createElement('form')).attr('action', action).attr('method','post');
+	    $('body').append(form);
+	    for (var i in params) {
+	        var tmp= params[i].split('=');
+	        var key = tmp[0], value = tmp[1];
+	        $(document.createElement('input')).attr('type', 'hidden').attr('name', key).attr('value', value).appendTo(form);
+	    }
+	    $(form).submit();
+	    return false;
+	});
+});
+</script>
 </head>
   <body>
   
@@ -27,18 +45,23 @@
 									<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
 										<img src="imageShow/${best.fileId}.do" onerror="this.src='img/no_image.jpg'" alt="">
 										<div class="product-hover">
-											<a href="increaseLike.do?boardIdx=${best.boardIdx }" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
+											<a href="increaseLike.do?boardIdx=${best.boardIdx }&userIdx=${sessionScope.idx}" class="add-to-cart-link postLink"><i class="fa fa-heart"></i> 좋아요</a> 
 											<a href="boastDetails.do?boardIdx=${best.boardIdx }" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 										</div>
-								</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-										<h1 style="text-align: center; color: #FF7F27;">BEST ${st.index+1}</h1>
+									</div><!--  마우스오버시 검정색 효과 범위 끝 -->
+									<h1 style="text-align: center; color: #FF7F27;">BEST ${st.index+1}</h1>
 										
-										<div class="product-carousel-price">
-											<p style="color: #ffc000; text-align: center; font-size: 18px; background-color: white;">${best.name }(${best.sex }) ${best.age }살</p>
-											<p style="color: #777; text-align: center;">♥좋아요 ${best.likeCount }개</p>
-
-										</div>
-										<h4 align="center">주인 : ${best.writer }</h4>
+									<div class="product-carousel-price">
+										<p style="color: #ffc000; text-align: center; font-size: 18px; background-color: white;">${best.name }<br>(${best.sex }) ${best.age }살</p>
+										<p style="color: #777; text-align: center;">♥좋아요 ${best.likeCount }개</p>
+									</div>
+									
+									<h4 align="center">주인 : ${best.writer }</h4>
+									<c:forEach items="${like }" var="like">
+										<c:if test="${like.boardIdx == best.boardIdx}">
+											<div align="center"><font style="color: red">내가 좋아요 한 게시글</font></div>
+										</c:if>
+									</c:forEach>
 									</div><!-- 마우스오버 효과 끝-->	
 							</div>
 						</c:forEach>
@@ -77,19 +100,26 @@
 			<div class="container">
 				<c:forEach items="${boardList }" var="boast">
 				<div class="single-product col-md-2" style=" padding: 10px;">
-					<div class="col-md-11 boast-list-petname" style="background: #f4f4f4; padding : 15px;width: 100%; margin: 0 auto;">
+					<div class="col-md-11 boast-list-petname" style="background: #f4f4f4; padding : 15px;width: 100%; height: 300px; margin: 0 auto;">
 							<div class="product-f-image" style="width: 150px; height: 150px"><!-- 마우스오버시 검정색 효과 범위-->
 								<img src="imageShow/${boast.fileId}.do" onerror="this.src='img/no_image.jpg'" alt="" style="margin-bottom: 15px">
 								<div class="product-hover">
-									<a href="increaseLike.do?boardIdx=${boast.boardIdx }" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
+									<a href="increaseLike.do?boardIdx=${boast.boardIdx }&userIdx=${sessionScope.idx}" class="add-to-cart-link"><i class="fa fa-heart"></i> 좋아요</a> 
 									<a href="boastDetails.do?boardIdx=${boast.boardIdx }" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
 								</div>
 							</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 						<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >
-							<tr><td id="petname" style="color: white; font-weight: bold; font-size: large;"><span>${boast.name }</span>(<span id="petsex">${boast.sex }</span>)<span id="petage">${boast.age }</span>살</td></tr>
+							<tr><td id="petname" style="color: white; font-weight: bold; font-size: large;"><span>${boast.name }</span><br>(<span id="petsex">${boast.sex }</span>)<span id="petage">${boast.age }</span>살</td></tr>
 							<tr><td id="like">♥좋아요 <span style="font-weight: bold">${boast.likeCount }</span>개</td></tr>
 						</table>
-						<div align="center">주인 : ${boast.writer }</div>
+						<div align="center">주인 : ${boast.writer }<br></div>
+						<div align="center">
+							<c:forEach items="${like }" var="like">
+								<c:if test="${like.boardIdx == boast.boardIdx}">
+									<font style="color: red">내가 좋아요 한 게시글</font>
+								</c:if>
+							</c:forEach>
+						</div>
 					</div>
 				</div>
 				</c:forEach>

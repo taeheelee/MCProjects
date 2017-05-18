@@ -3,9 +3,12 @@ package controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,6 +17,7 @@ import commons.Constant;
 import interface_service.IBoardFileService;
 import interface_service.IBoardService;
 import interface_service.IDogKindService;
+import interface_service.ILikeCountCheckService;
 import interface_service.IPetinfoService;
 import interface_service.IRepleService;
 
@@ -29,14 +33,22 @@ public class BoastController {
 	private IDogKindService dogKindService;
 	@Autowired
 	private IBoardFileService fileService;
+	@Autowired
+	private ILikeCountCheckService likeService;
 
 	//뽐내기 게시판 메인
 	@RequestMapping("boastMain.do")
 	public ModelAndView boastMain(@RequestParam(defaultValue="1") int page,
-			@RequestParam(defaultValue="3") int boardCode){
+			@RequestParam(defaultValue="3") int boardCode, HttpSession session){
 		List<HashMap<String, Object>> best = boardService.selectBoastNum();
 		ModelAndView mav = new ModelAndView();
+		
 		mav.addObject("best", best);
+		if(session.getAttribute("idx") != null){
+			int userIdx = (int)session.getAttribute("idx");
+			List<HashMap<String, Object>> like = likeService.selectUserLikeCountCheck(userIdx);
+			mav.addObject("like", like);			
+		}
 		mav.addAllObjects(boardService.getBoardList(page, boardCode));
 		mav.setViewName("boast.tiles");
 		return mav;
@@ -159,9 +171,12 @@ public class BoastController {
 	}
 	
 	//뽐내기 좋아요 수 증가시키기
-	@RequestMapping("increaseLike.do")
-	public String increaseLike(int boardIdx){
-		boardService.increaseBoastNum(boardIdx);
+	@RequestMapping(method = RequestMethod.POST, value = "increaseLike.do")
+	public String increaseLike(int boardIdx, int userIdx){
+		if(likeService.selectOneLikeCountCheck(userIdx, boardIdx) == null){
+			boardService.increaseBoastNum(boardIdx);
+			likeService.insertLikeCountCheck(userIdx, boardIdx);
+		}
 		return "redirect:boastMain.do";
 	}
 

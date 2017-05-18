@@ -32,4 +32,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="nicknameCheck" parameterType="String" resultType="String">
 		select nickname from userinfo where nickname=#{nickname}
 	</select>
+	<select id="adminCheck" parameterType="java.lang.String" resultType="int">
+		select adminCheck from userinfo where id=#{id}
+	</select>
 </mapper>

@@ -7,7 +7,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="js/boardCheck.js"></script>
-      <script type="text/javascript">
+<script type="text/javascript">
 	  $(document).ready(function() {
 	      $('#summernote').summernote({
 	    	  height : 500,
@@ -19,10 +19,25 @@
 	              }
 	            }
 	      });
-	      	$('#ok').click(function() {
-	      		var content = $('#summernote').summernote('code');
-				$('#content').val(content);
-			});
+	      
+	      $("#age").keyup(function(event){
+	          if (!(event.keyCode >=37 && event.keyCode<=40)) {
+	              var inputVal = $(this).val();
+	              $(this).val(inputVal.replace(/[^0-9]/gi,''));
+	          }
+	      });
+	  	  $("#age").blur(function(event){
+	          if (!(event.keyCode >=37 && event.keyCode<=40)) {
+	              var inputVal = $(this).val();
+	              $(this).val(inputVal.replace(/[^0-9]/gi,''));
+	          }
+	      });
+	  	
+	  	  
+	      $('#ok').click(function() {
+	      	var content = $('#summernote').summernote('code');
+			$('#content').val(content);
+		  });
 	      	
 	      	if(${load != 0}){
 				$('#name').val('${pet.name}');
@@ -92,7 +107,7 @@
                                             
 <!-- 											<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state"> -->
                                                 <label class="" for="billing_state">애견 이름</label>
-                                                <input type="text" id="name" name="name" placeholder="" value="" class="input-text ">
+                                                <input type="text" id="name" name="name" placeholder="" value="" class="input-text " maxlength="20">
 <!--                                             </p> -->
                                             <br><br>
                        
@@ -114,17 +129,6 @@
 													</c:choose>
 												</c:forEach>
 								
-                                                    <!-- <option selected="selected" value="치와와">치와와</option>
-                                                    <option value="요크셔 테리어">요크셔 테리어</option>
-                                                    <option value="말티즈">말티즈</option>
-                                                    <option value="시츄">시츄</option>
-                                                    <option value="비글">비글</option>
-                                                    <option value="퍼그">퍼그</option>
-                                                    <option value="페키니즈">페키니즈</option>
-                                                    <option value="미니어쳐 슈나우저">미니어쳐 슈나우저</option>
-                                                    <option value="기타 소형견">기타 소형견</option>
-                                                    <option value="기타 중형견">기타 중형견</option>
-                                                    <option value="기타 대형견">기타 대형견</option> -->
                                                 </select>
                                                 
                                                 <br><br>
@@ -147,45 +151,24 @@
                                             <br>
                                             
                                                 <label class="" for="billing_state">나이</label>
-                                                <input type="text" id="age" name="age" placeholder="" value="" class="input-text ">
+                                                <input type="text" id="age" name="age" placeholder="" value="" class="input-text " maxlength="10">
                                             <br><br>
                                                 <label class="" for="billing_state">몸무게(kg)</label>
-                                                <input type="text" id="weight" name="weight" placeholder="" value="" class="input-text ">
+                                                <input type="text" id="weight" name="weight" placeholder="" value="" class="input-text " maxlength="10">
 
                                             <br><br>
                                             
                                                 <label class="" for="billing_state">연락처</label>
-                                                <input type="text" id="phone" name="phone" placeholder="" value="" class="input-text ">
+                                                <input type="text" id="phone" name="phone" placeholder="" value="" class="input-text " maxlength="13">
 
                                             <br><br>
                                             
                                                 <label class="" for="billing_state">e-mail</label>
-                                                <input type="text" id="email" name="email" placeholder="" value="" class="input-text ">
+                                                <input type="text" id="email" name="email" placeholder="" value="" class="input-text " maxlength="30">
 
                                             <br><br>
                                       
-                                            <!-- <p id="billing_first_name_field" class="form-row form-row-first validate-required">
-												<div class="file_input_div">
-													<input type="button" value="파일 선택" class="file_input_button"/>
-													<input type="file" class="file_input_hidden" onchange="javascript:document.getElementById('fileName').value = this.value" />
-												</div>
-												
-												<input type="text" id="fileName" class="file_input_textbox" readonly="readonly">
-											</p>
-                                            
-                                            
-                                            
-                                            	<p id="billing_first_name_field" class="form-row form-row-first validate-required">
-                                                <label class="" for="billing_first_name">애견 프로필 사진 등록 <abbr title="required" class="required">*</abbr>
-                                                </label>
-                                               
-                                            <div class="form-row place-order">
-												<input type="file" data-value="Place order" value="ADD PHOTO" id="ufile" name="ufile" class="button alt" >
-
-											</div>
-                                            </p> -->
                                                <label class="" for="billing_first_name">애견 프로필 사진 등록<abbr title="required" class="required">*</abbr></label>
-<!-- 											<p id="billing_first_name_field" class="form-row form-row-first validate-required"> -->
 													<table border="0">
 														<tr>
 															<td width="10%">
@@ -204,7 +187,7 @@
      
 <!--                                          <p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state"> -->
                                                 <label class="" for="billing_state">글 제목</label>
-                                                <input type="text" id="title" name="title" placeholder="" value="" class="input-text ">
+                                                <input type="text" id="title" name="title" placeholder="" value="" class="input-text " maxlength="20">
 <!--                                             </p> -->
                                             <br>
                                             

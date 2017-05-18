@@ -14,4 +14,5 @@ public interface IUserInfoDao {
 	public List<HashMap<String, Object>> selectBoardList();
 	public String idCheck(String id);
 	public String nicknameCheck(String nickname);
+	public int adminCheck(String id);
 }

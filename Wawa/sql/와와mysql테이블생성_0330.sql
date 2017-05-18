@@ -144,3 +144,11 @@ boardIdx int,
 foreign key(userIdx) references userinfo(idx) ON DELETE CASCADE ON UPDATE CASCADE,
 foreign key(boardIdx) references board(boardIdx) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+#고양이 달리기 점수 기록을 위한 테이블
+create table catRun(
+idx int primary key auto_increment,
+name varchar(10),
+score int
+);
+ 

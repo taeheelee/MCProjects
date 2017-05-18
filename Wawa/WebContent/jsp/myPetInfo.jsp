@@ -19,8 +19,7 @@ $(document).ready(function(){
 	$('.mainPetMk').click(function(){
 		alert('메인펫으로 지정합니다.');
 	});
-});
-
+	
 	function getPetAge(petBirth, petIdx){
 		$.ajax({
 			type: 'get',
@@ -40,35 +39,68 @@ $(document).ready(function(){
 				alert("잠시 후 다시 시도해주세요.");
 			}
 		});
-	}	
-//dsdsafasdf
-    jQuery(document).ready(function() {
-        jQuery("#calendar").fullCalendar({
-              defaultDate : "2017-04-10"
-            , editable : true
-            , eventLimit : true
-            , lang: 'ko'
-            , events: [
+		}	
+	
+	
+	
+	$("#calendar").fullCalendar({
+        defaultDate : new Date()
+      , editable : true
+      , eventLimit : true
+      , lang: 'ko'
+      ,         
+/*            events: [
+      	{
+				title: 'Birthday',
+				start: '2017-04-01'
+			}
+      ]  */
+      events: function(start, end, timezone, callback) {
+          $.ajax({ 
+             type : 'post',
+             url : 'calendar.do',
+             dataType : 'json',
+             data : 'id=${sessionScope.id}',
+             success : function(petList) {
 
-            ]
-        });
-        
+                var events = [];
+                for (var i = 0; i < petList.length; i++) {
+                     events.push({
+                         title : petList[i].name+'의 생일',
+                         start : petList[i].birthday,
+                         textColor : "white",
+                         color : "#FF7421"
+                         
+                      });
+                   
+                }
+                callback(events);
+                
+             },
+             error : function() {
+          	   alert('error');
+             }
+          });
+   
+       }//event end 
+  });  //calendar end
+	  
 		var idx = $('#defaultBirth').attr('name');
 		var birth = $('#defaultBirth').val();
 		getPetAge(birth, idx);
 		
-        $('li').click(function(){
-        	getPetAge($(this).attr('id'), $(this).attr('name'));
+	  $('li').click(function(){
+	  	getPetAge($(this).attr('id'), $(this).attr('name'));
 		});
-        $('.petDel').click(function() {
+	  $('.petDel').click(function() {
 			var petName = prompt('펫 정보를 삭제 하시나요?', '삭제하시려면 펫이름을 입력해주세요');
 			
 			var petIdx = $(this).attr('id');
-
+	
 			location.href='deletePet.do?id=${sessionScope.id}&idx=' + petIdx + '&petname=' + petName;
 		});
-        
-    });
+		
+});
 </script>
 </head>
 <body>

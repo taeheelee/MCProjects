@@ -6,25 +6,39 @@ pageEncoding="UTF-8"%>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>Insert title here</title>
-  <script type="text/javascript" src="js/boardCheck.js"></script>
-  <script type="text/javascript">
-     $(document).ready(function() {
-         $('#summernote').summernote({
-            height : 500,
-            callbacks: {
-             onImageUpload: function(files, editor, welEditable) {
-               for (var i = files.length - 1; i >= 0; i--) {
-                 sendFile(files[i],  editor, welEditable);
-             }
-         }
-     }
- });
-         $('#ok').click(function() {	      		
-            var content = $('#summernote').summernote('code');
+<script type="text/javascript" src="js/boardCheck.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+        $('#summernote').summernote({
+           height : 500,
+           callbacks: {
+           onImageUpload: function(files, editor, welEditable) {
+              for (var i = files.length - 1; i >= 0; i--) {
+              	sendFile(files[i],  editor, welEditable);
+              }
+           }
+     	}
+ 	});
+        
+    $("#age").keyup(function(event){
+        if (!(event.keyCode >=37 && event.keyCode<=40)) {
+            var inputVal = $(this).val();
+            $(this).val(inputVal.replace(/[^0-9]/gi,''));
+        }
+    });
+	$("#age").blur(function(event){
+        if (!(event.keyCode >=37 && event.keyCode<=40)) {
+            var inputVal = $(this).val();
+            $(this).val(inputVal.replace(/[^0-9]/gi,''));
+        }
+    });
+		 
+    $('#ok').click(function() {	      		
+        var content = $('#summernote').summernote('code');
             $('#content').val(content);	
         });
 
-         if(${load != 0}){
+        if(${load != 0}){
            $('#name').val('${pet.name}');
            $('#resist').val('${pet.resist}')
            var year = '${pet.birthday}'.split('-');
@@ -37,8 +51,8 @@ pageEncoding="UTF-8"%>
 
            $('#weight').val('${pet.weight}');
            $('#kind > option[value="${pet.kind}"]').attr('selected', true);
-     }
- });
+     	}
+    });
 </script>
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -122,12 +136,12 @@ pageEncoding="UTF-8"%>
                                 </div>
 
                                 <label class="" for="billing_state">애견 이름</label>
-                                <input type="text" id="name" name="name" placeholder="" value="" class="input-text ">
+                                <input type="text" id="name" name="name" placeholder="" value="" class="input-text " maxlength="20">
 
                                 <br><br>
 
                                 <label class="" for="billing_state">등록번호</label>
-                                <input type="text" id="resist" name="resist" placeholder="15자리 숫자로 입력해주세요" value="" class="input-text ">
+                                <input type="text" id="resist" name="resist" placeholder="15자리 숫자로 입력해주세요" value="" class="input-text " maxlength="15">
 
                                 <br><br>
 
@@ -145,17 +159,6 @@ pageEncoding="UTF-8"%>
 													</c:choose>
 												</c:forEach>
 								
-                                                    <!-- <option selected="selected" value="치와와">치와와</option>
-                                                    <option value="요크셔 테리어">요크셔 테리어</option>
-                                                    <option value="말티즈">말티즈</option>
-                                                    <option value="시츄">시츄</option>
-                                                    <option value="비글">비글</option>
-                                                    <option value="퍼그">퍼그</option>
-                                                    <option value="페키니즈">페키니즈</option>
-                                                    <option value="미니어쳐 슈나우저">미니어쳐 슈나우저</option>
-                                                    <option value="기타 소형견">기타 소형견</option>
-                                                    <option value="기타 중형견">기타 중형견</option>
-                                                    <option value="기타 대형견">기타 대형견</option> -->
                                                 </select>
                                                 
                                                 <br><br>
@@ -174,11 +177,11 @@ pageEncoding="UTF-8"%>
                              <br>
 
                              <label class="" for="billing_state">나이</label>
-                             <input type="text" id="age" name="age" placeholder="" value="" class="input-text ">
+                             <input type="text" id="age" name="age" placeholder="" value="" class="input-text " maxlength="10">
 
                              <br><br>
                              <label class="" for="billing_state">몸무게(kg)</label>
-                             <input type="text" id="weight" name="weight" placeholder="" value="" class="input-text ">
+                             <input type="text" id="weight" name="weight" placeholder="" value="" class="input-text " maxlength="10">
 
                              <br><br>
 
@@ -192,11 +195,11 @@ pageEncoding="UTF-8"%>
                             <br><br>
 
                             <label class="" for="billing_state">  잃어버린 날짜/ 발견된 날짜</label>
-                            <input type="text" id="lostdate" name="lostdate" placeholder="0000-00-00" value="" class="datepicker">
+                            <input type="text" id="lostdate" name="lostdate" placeholder="0000-00-00" value="" class="datepicker" maxlength="10">
 
                             <br>
                             <label class="" for="billing_state">  잃어버린 장소/ 발견된 장소</label>
-                            <input type="text" id="lostplace" name="lostplace"  value="" class="input-text ">
+                            <input type="text" id="lostplace" name="lostplace"  value="" class="input-text " maxlength="30">
 
                             <br><br>
 
@@ -207,12 +210,12 @@ pageEncoding="UTF-8"%>
 
 
                             <label class="" for="billing_state">연락처</label>
-                            <input type="text" id="phone" name="phone" placeholder="" value="" class="input-text ">
+                            <input type="text" id="phone" name="phone" placeholder="" value="" class="input-text " maxlength="13">
 
                             <br><br>
 
                             <label class="" for="billing_state">e-mail</label>
-                            <input type="text" id="email" name="email" placeholder="" value="" class="input-text ">
+                            <input type="text" id="email" name="email" placeholder="" value="" class="input-text " maxlength="30">
 
                             <br><br>
 
@@ -236,7 +239,7 @@ pageEncoding="UTF-8"%>
                     </table>
 
                     <label class="" for="billing_state">글 제목</label>
-                    <input type="text" id="title" name="title" placeholder="" value="" class="input-text ">
+                    <input type="text" id="title" name="title" placeholder="" value="" class="input-text " maxlength="20">
 
                     <br>
 

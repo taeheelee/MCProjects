@@ -10,6 +10,10 @@ function infoBoardCheck() {
 		alert("내용을 입력해주세요");
 		return false;
 	}
+	if (content.length > 1000) {
+		alert("내용은 1000자 이하로 작성가능합니다");
+		return false;
+	}
 	return true;
 }
 
@@ -23,6 +27,10 @@ function reviewBoardCheck() {
 	$('#content').val(content);
 	if (content == "<p><br></p>") {
 		alert("내용을 입력해주세요");
+		return false;
+	}
+	if (content.length > 1000) {
+		alert("내용은 1000자 이하로 작성가능합니다");
 		return false;
 	}
 	return true;
@@ -55,10 +63,39 @@ function boastBoardCheck() {
 		alert("내용을 입력해주세요");
 		return false;
 	}
+	if (content.length > 1000) {
+		alert("내용은 1000자 이하로 작성가능합니다");
+		return false;
+	}
 	return true;
 }
 
 function lostBoardCheck() {
+	if ($('#name').val().replace(/ /gi, "") == "") {
+		alert("애견이름을 입력해주세요");
+		$('#name').focus();
+		return false;
+	}
+	if ($('#age').val().replace(/ /gi, "") == "") {
+		alert("나이를 입력해주세요");
+		$('#age').focus();
+		return false;
+	}
+	if ($.isNumeric($('#age').val()) == false) {
+		alert("나이는 숫자로 입력해주세요");
+		$('#age').focus();
+		return false;
+	}
+	if ($('#weight').val().replace(/ /gi, "") == "") {
+		alert("몸무게를 입력해주세요");
+		$('#weight').focus();
+		return false;
+	}
+	if ($.isNumeric($('#weight').val()) == false) {
+		alert("몸무게는 숫자로 입력해주세요");
+		$('#weight').focus();
+		return false;
+	}
 	if ($('#lostdate').val().replace(/ /gi, "") == "") {
 		alert("날짜를 입력해주세요");
 		$('#lostdate').focus();
@@ -103,30 +140,22 @@ function lostBoardCheck() {
 		$('#lostplace').focus();
 		return false;
 	}
-	if ($('#name').val().replace(/ /gi, "") == "") {
-		alert("애견이름을 입력해주세요");
-		$('#name').focus();
-		return false;
+	
+	var phoneCheck = /^\d{2,3}-\d{3,4}-\d{4}$/;
+	if(!$('#phone').val().replace(/ /gi, "") == "" ){
+		if(!phoneCheck.test( $('#phone').val() ) ){
+			alert("전화번호 형식이 올바르지 않습니다");
+			$('#phone').focus();
+			return false;
+		}
 	}
-	if ($('#age').val().replace(/ /gi, "") == "") {
-		alert("나이를 입력해주세요");
-		$('#age').focus();
-		return false;
-	}
-	if ($.isNumeric($('#age').val()) == false) {
-		alert("나이는 숫자로 입력해주세요");
-		$('#age').focus();
-		return false;
-	}
-	if ($('#weight').val().replace(/ /gi, "") == "") {
-		alert("몸무게를 입력해주세요");
-		$('#weight').focus();
-		return false;
-	}
-	if ($.isNumeric($('#weight').val()) == false) {
-		alert("몸무게는 숫자로 입력해주세요");
-		$('#weight').focus();
-		return false;
+	var emailCheck = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+	if(!$('#email').val().replace(/ /gi, "") == "" ){
+		if(!emailCheck.test( $('#email').val() ) ){
+			alert("이메일 형식이 올바르지 않습니다");
+			$('#email').focus();
+			return false;
+		}
 	}
 	if ($('#title').val().replace(/ /gi, "") == "") {
 		alert("제목을 입력해주세요");
@@ -137,6 +166,10 @@ function lostBoardCheck() {
 	$('#content').val(content);
 	if (content == "<p><br></p>") {
 		alert("내용을 입력해주세요");
+		return false;
+	}
+	if (content.length > 1000) {
+		alert("내용은 1000자 이하로 작성가능합니다");
 		return false;
 	}
 	return true;
@@ -168,6 +201,22 @@ function partnerBoardCheck() {
 		$('#weight').focus();
 		return false;
 	}
+	var phoneCheck = /^\d{2,3}-\d{3,4}-\d{4}$/;
+	if(!$('#phone').val().replace(/ /gi, "") == "" ){
+		if(!phoneCheck.test( $('#phone').val() ) ){
+			alert("전화번호 형식이 올바르지 않습니다");
+			$('#phone').focus();
+			return false;
+		}
+	}
+	var emailCheck = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+	if(!$('#email').val().replace(/ /gi, "") == "" ){
+		if(!emailCheck.test( $('#email').val() ) ){
+			alert("이메일 형식이 올바르지 않습니다");
+			$('#email').focus();
+			return false;
+		}
+	}
 	if ($('#title').val().replace(/ /gi, "") == "") {
 		alert("제목을 입력해주세요");
 		$('#title').focus();
@@ -177,6 +226,10 @@ function partnerBoardCheck() {
 	$('#content').val(content);
 	if (content == "<p><br></p>") {
 		alert("내용을 입력해주세요");
+		return false;
+	}
+	if (content.length > 1000) {
+		alert("내용은 1000자 이하로 작성가능합니다");
 		return false;
 	}
 	return true;

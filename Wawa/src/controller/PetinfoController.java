@@ -54,6 +54,11 @@ public class PetinfoController {
 		mav.setViewName("myPetInfo.tiles");
 		return mav;
 	}
+	@RequestMapping("calendar.do")
+	@ResponseBody List<HashMap<String, Object>> calendar(String id) {
+		List<HashMap<String, Object>> petList = petInfoService.selectPetList(id);
+		return petList;
+	}
 
 	@RequestMapping("addPetForm.do")
 	public ModelAndView addPetForm() {
@@ -192,8 +197,13 @@ public class PetinfoController {
 	public @ResponseBody HashMap<String, Object> getAge(HttpServletResponse resp,
 			@RequestParam HashMap<String, Object> params) {
 		// TODO Auto-generated method stub
-		HashMap<String, Object> petAge = petInfoService.getAge(params);
-		return petAge;
+		if(params.get("birthday").equals("undefined") || params.get("petIdx").equals("undefined")){
+			HashMap<String, Object> petAge = new HashMap<>();
+			return petAge;
+		}else{
+			HashMap<String, Object> petAge = petInfoService.getAge(params);
+			return petAge;
+		}
 	}
 
 	@RequestMapping("deletePet.do")

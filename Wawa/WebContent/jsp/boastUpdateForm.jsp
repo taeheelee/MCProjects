@@ -20,6 +20,19 @@ pageEncoding="UTF-8"%>
 				}
 			});
 			
+			$("#age").keyup(function(event){
+	             if (!(event.keyCode >=37 && event.keyCode<=40)) {
+	                 var inputVal = $(this).val();
+	                 $(this).val(inputVal.replace(/[^0-9]/gi,''));
+	             }
+	         });
+			 $("#age").blur(function(event){
+	             if (!(event.keyCode >=37 && event.keyCode<=40)) {
+	                 var inputVal = $(this).val();
+	                 $(this).val(inputVal.replace(/[^0-9]/gi,''));
+	             }
+	         });
+			
 			$('#ok').click(function() {
 				var content = $('#summernote').summernote('code');
 				$('#content').val(content);	
@@ -96,11 +109,11 @@ pageEncoding="UTF-8"%>
 											<input type="hidden" name="writer" value="${sessionScope.name }">
 											
 											<label class="" for="billing_state">애견 이름</label>
-											<input type="text" id="name" name="name" placeholder="" value="${board.name }" class="input-text ">
+											<input type="text" id="name" name="name" placeholder="" value="${board.name }" class="input-text " maxlength="20">
 
 											<br><br>
 											<label class="" for="billing_state">나이</label>
-											<input type="text" id="age" name="age" placeholder="" value="${board.age }" class="input-text ">
+											<input type="text" id="age" name="age" placeholder="" value="${board.age }" class="input-text " maxlength="10">
 
 											<br><br>
 
@@ -138,17 +151,6 @@ pageEncoding="UTF-8"%>
 													</c:choose>
 												</c:forEach>
 								
-                                                    <!-- <option selected="selected" value="치와와">치와와</option>
-                                                    <option value="요크셔 테리어">요크셔 테리어</option>
-                                                    <option value="말티즈">말티즈</option>
-                                                    <option value="시츄">시츄</option>
-                                                    <option value="비글">비글</option>
-                                                    <option value="퍼그">퍼그</option>
-                                                    <option value="페키니즈">페키니즈</option>
-                                                    <option value="미니어쳐 슈나우저">미니어쳐 슈나우저</option>
-                                                    <option value="기타 소형견">기타 소형견</option>
-                                                    <option value="기타 중형견">기타 중형견</option>
-                                                    <option value="기타 대형견">기타 대형견</option> -->
                                                 </select>
                                                 
                                                 <br><br>
@@ -168,7 +170,7 @@ pageEncoding="UTF-8"%>
 									</table>
 
 									<label class="" for="billing_state">글 제목</label>
-									<input type="text" id="title" name="title" placeholder="" value="${board.title }" class="input-text ">
+									<input type="text" id="title" name="title" placeholder="" value="${board.title }" class="input-text " maxlength="20">
 
 									<br>
 

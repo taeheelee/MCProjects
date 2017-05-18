@@ -20,6 +20,32 @@ table.pet_table th {
     max-width : 900px;
     margin : 0 auto;
 }
+#emergency_icon{
+	position: relative;
+	width: 30px;
+	top: -3px;
+	left: 2px;
+}
+.circular {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+.circular img {
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 .file_input_textbox{
 	float: left;
 }
@@ -208,7 +234,7 @@ z-index: 999;}
 }
 /* 오른쪽 위 미니정보창 */
 .shopping-item {
-    border: 1px solid #ddd;
+    border: 2px solid #cccccc;
     float: right;
     font-size: 18px;
     margin: 5px 0 0 0;
@@ -312,7 +338,9 @@ z-index: 9;
 .slide-three {background-image: url(img/slide-3.jpg)}
 .slide-text {color: #fff;font-size: 18px;font-weight: 200}
 .slide-text h2 {
-  font-size: 45px;font-weight: 200
+  font-family: 'Hanna', fantasy;
+  font-size: 50px;
+  font-weight: 200;
 }
 
 .slide-content {position: relative;z-index: 9;padding: 30px}
@@ -505,7 +533,7 @@ z-index: 9;
 .product-wid-title {
   font-family: raleway;
   font-size: 30px;
-  font-weight: 100;
+  font-weight: 600;
   margin-bottom: 40px;
 }
 
@@ -560,7 +588,7 @@ z-index: 9;
 .footer-top-area .zigzag-bottom{background: #000}
 .footer-top-area {background: none repeat scroll 0 0 #333;
 color: #999;
-padding: 35px 0 180px;}
+padding: 35px 0 70px;}
 
 
 .footer-bottom-area {background: #000;color: #fff}
@@ -687,7 +715,7 @@ width: 10px;
 }
 
 .copyright > p {
-  margin: 10px 0 0;
+  margin: 20px 0 0;
 }
 
 .product-big-title-area {background: url(img/crossword.png) repeat scroll 0 0 #FFE186}

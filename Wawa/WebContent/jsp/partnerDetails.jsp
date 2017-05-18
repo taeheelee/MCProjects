@@ -19,8 +19,8 @@
   			$('#repleContent'+i).html($('#repleContent'+i).text());
   			$('#updateForm'+i).show();
   		}
-		$('#repleForm'+idx).html("<form action='repleWrite.do'>"
-								 +"<textarea style='width: 85%; height: 100px; resize: none' name='content'></textarea>"
+		$('#repleForm'+idx).html("<form action='repleWrite.do' method='post'>"
+								 +"<textarea style='width: 85%; height: 100px; resize: none' name='content' maxlength='500'></textarea>"
 								 +"<input type='submit' value='답글작성'>"
 								 +"<input type='hidden' name='boardIdx' value='${board.boardIdx }'>"
 								 +"<input type='hidden' name='boardCode' value='${board.boardCode }'>"
@@ -38,8 +38,8 @@
   			$('#updateForm'+i).show();
   		}
   		$('#updateForm'+idx).hide();
-  		$('#repleContent'+idx).html("<form action='repleUpdate.do'>"
-				 +"<textarea style='width: 85%; height: 100px; resize: none' name='content'>"+text+"</textarea>"
+  		$('#repleContent'+idx).html("<form action='repleUpdate.do' method='post'>"
+				 +"<textarea style='width: 85%; height: 100px; resize: none' name='content' maxlength='500'>"+text+"</textarea>"
 				 +"<input type='hidden' name='boardIdx' value='${board.boardIdx }'>"
 				 +"<input type='hidden' name='boardCode' value='${board.boardCode }'>"
 				 +"<input type='hidden' name='repleIdx' value='"+repleIdx+"'>"
@@ -70,7 +70,7 @@
         <div class="container">
         	<div class="col-md-55">
         		<p>
-	        		<font style="font-size: medium; font-weight: bold; color: gray">[${board.category }]</font>
+	        		<font style="font-size: medium; font-weight: bold; color: gray">[짝꿍찾기]</font>
 	        	</p>
 	        	<h2 class="sidebar-title" style="text-align: center;">${board.title }</h2>
         		<h5 align="right">작성자: ${board.writer }</h5> 
@@ -161,9 +161,9 @@
 					</div>
 					<br>
 					<div>
-	                	<form action="repleWrite.do">
+	                	<form action="repleWrite.do" method="post">
 	                		<c:if test="${sessionScope.id != null }">
-		                		<textarea style="width: 85%; height: 100px; resize: none" name="content" ></textarea>
+		                		<textarea style="width: 85%; height: 100px; resize: none" name="content" maxlength="500"></textarea>
 		                		<input type="hidden" name="boardIdx" value="${board.boardIdx }">
 		                		<input type="hidden" name="boardCode" value="${board.boardCode }">
 		                		<input type="hidden" name="nickname" value="${sessionScope.name }">
@@ -178,10 +178,10 @@
                 <!-- 여기까지 댓글목록 -->
                 
                 <!-- 댓글쓰기 -->
-                <input type="button" value="목록"  onClick="location.href='infoMain.do'">
+                <input type="button" value="목록"  onClick="location.href='partnerMain.do'">
                 <c:if test="${board.writer == sessionScope.name }">
-                	<input type="button" value="수정" onclick="location.href='infoUpdateForm.do?boardIdx=${board.boardIdx}'">
-                	<input type="button" value="삭제" onclick="location.href='infoDelete.do?boardIdx=${board.boardIdx}'">
+                	<input type="button" value="수정" onclick="location.href='partnerUpdateForm.do?boardIdx=${board.boardIdx}'">
+                	<input type="button" value="삭제" onclick="location.href='partnerDelete.do?boardIdx=${board.boardIdx}'">
                 </c:if>
                 <!-- 여기까지 댓글쓰기 -->
                 

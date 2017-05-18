@@ -98,4 +98,10 @@ public class MemberService implements IMemberService{
 			return false;
 	}
 
+	@Override
+	public int adminCheck(String id) {
+		// TODO Auto-generated method stub
+		return dao.adminCheck(id);
+	}
+
 }

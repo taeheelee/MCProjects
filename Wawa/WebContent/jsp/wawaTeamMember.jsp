@@ -48,8 +48,8 @@ margin-bottom: -5px;
 			<h3 class="teamMemberName">CHO WOO YEOL</h3>
 			<h4 class="teamMemberEmail">xiaoyoul@naver.com</h4>
 				<div class="footer-social" style="margin : 10px 0 20px 0">
-	                 <a href="http://www.naver.com" target="_blank" style="background-image: url('img/blog-logo.png'); background-size: 38px"></a>
-	                 <a href="#" target="_blank" style="background-image: url('img/sns-logo.png'); background-size: 38px"></a>
+	                 <a href="#" target="_blank" style="background-image: url('img/blog-logo.png'); background-size: 38px"></a>
+	                 <a href="http://www.facebook.com/wooyeol.jo.5" target="_blank" style="background-image: url('img/sns-logo.png'); background-size: 38px"></a>
 
 	             </div>
              </center>

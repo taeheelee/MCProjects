@@ -108,6 +108,8 @@ public class PetinfoController {
 			session.setAttribute("petSex", mp.get("sex"));
 			session.setAttribute("petBirth", mp.get("birthday"));
 			session.setAttribute("fileId", mp.get("fileId"));
+			session.setAttribute("groomingStart", mp.get("groomingStart"));	
+			session.setAttribute("groomingPeriod", mp.get("groomingPeriod"));
 		} else {
 			result = petInfoService.insertPetInfo(0, resist, id, name, kind, tobirth, neutral, weight, sex, toGs,
 					groomingPeriod, mainPet, ufile);
@@ -144,7 +146,6 @@ public class PetinfoController {
 	         String birthday, String neutral, double weight, String sex, 
 	         String groomingStart, String groomingPeriod, HttpSession session,
 	         @RequestParam(defaultValue="0")int mainPet ,@RequestParam("ufile") MultipartFile ufile){
-	      System.out.println("여기에서 idx받아오는지 확인해야 함 : "+ idx);
 	      String fromBirth = birthday;
 	      SimpleDateFormat transBirthFormat = new SimpleDateFormat("yyyy-MM-dd");
 	      Date tobirth = null;
@@ -165,13 +166,12 @@ public class PetinfoController {
 	         e.printStackTrace();
 	      }
 	      
-//	      int idxInt = Integer.parseInt(idx);
-	      
 	      boolean result = petInfoService.updatePetInfo(idx, resist, id, name, kind, 
 	            tobirth, neutral, weight, sex, toGs, groomingPeriod, mainPet, ufile);
 	      if(result){
-	         //만약 세션이 비어있다면 addPet하고 세션에 등록
-	         if(session.getAttribute("petName") == null){
+	    	  //메인펫을 업데이트 한거라면 session에 다시 셋팅
+	    	  HashMap<String, Object> mp =  petInfoService.selectMainPet(id);
+	         if((int)mp.get("idx") == idx){
 	            session.setAttribute("petName", name);
 	            session.setAttribute("petSex", sex);   
 	            session.setAttribute("petBirth", fromBirth);  
@@ -285,6 +285,8 @@ public class PetinfoController {
 		session.setAttribute("petSex", mainPet.get("sex"));
 		session.setAttribute("petBirth", mainPet.get("birthday"));
 		session.setAttribute("fileId", mainPet.get("fileId"));
+		session.setAttribute("groomingStart", mainPet.get("groomingStart"));	
+		session.setAttribute("groomingPeriod", mainPet.get("groomingPeriod"));
 		return "redirect:myPetInfo.do?id="+id;
 	}
 

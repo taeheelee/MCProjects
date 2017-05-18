@@ -31,13 +31,17 @@ margin-bottom: -5px;
             <div class="row">
                 <div class="col-md-12">
                     <div class="product-bit-title text-left">
-                        <h2>만든이들</h2>
+                        <h2>WAWA를 만든 사람들</h2>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+<div class="single-product-area" style="background: #F5F1EA;margin :0; padding : 0 50px 30px 50px">
+	<div class="container" style="margin: 20px 0">
+		<h1 class="sidebar-title2" style="text-align: center; color:#FF9A00">INTRODUCE OUR TEAM MEMBER</h1>
+	</div>
+</div>
 <div class="single-product-area" style="background: #F5F1EA;">
 	<div class="container">
 

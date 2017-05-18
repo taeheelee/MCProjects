@@ -21,13 +21,9 @@
 				success : function(data) {
 					if(data.result){
 						//infoWriteForm.do
-						$.ajax({
-							type : 'get',
-							url : 'infoWriteForm.do',
-							dataType : 'json',
-							
-						});
+						location.href='infoWriteForm.do'; 
 					}else {
+						alert('권한이 없습니다.');
 					}
 				},
 				error : function(data) {

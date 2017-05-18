@@ -73,17 +73,11 @@ public class InfoController {
 				response.put("result", true);
 			}else {
 				System.out.println("관리자아니네");
-				response.put("result", true);
+				response.put("result", false);
 			}
 			return response;
 		}
 
-		@RequestMapping("infoWriteForm.do")
-		public 
-		@ResponseBody HashMap<String, Object> infoWriteForm(HttpServletResponse resp){
-			
-		}
-		
 		//애견정보 게시판 글쓰기 폼
 		@RequestMapping("infoWriteForm.do")
 		public String infoWriteForm(){

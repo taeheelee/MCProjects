@@ -46,7 +46,7 @@ public class PetinfoController {
 	@Autowired
 	private IDogKindService dogKindService;
 
-	@RequestMapping("myPetInfo.do")
+	@RequestMapping(method= RequestMethod.POST, value="myPetInfo.do")
 	public ModelAndView myPetInfo(String id) {
 		ModelAndView mav = new ModelAndView();
 		List<HashMap<String, Object>> petList = petInfoService.selectPetList(id);
@@ -265,7 +265,7 @@ public class PetinfoController {
 		outputStream.close();
 	}
 
-	@RequestMapping("mainPetUpdate.do")
+	@RequestMapping(method= RequestMethod.POST, value= "mainPetUpdate.do")
 	public String mainPetUpdate(String id, int idx, HttpSession session) {
 		HashMap<String, Object> mainPetOrigin = petInfoService.selectMainPet(id);
 		HashMap<String, Object> params = new HashMap<>();

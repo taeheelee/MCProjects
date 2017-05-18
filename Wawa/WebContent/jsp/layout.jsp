@@ -47,8 +47,7 @@
     <script src="summernote/dist/summernote.js"></script>
 	<script src="summernote/dist/summernote.min.js"></script>
 <!-- 	<script src="summernote/dist/lang/summernote-ko-KR.js"></script> -->
-	
-
+	<script type="text/javascript" src="./js/post.js"></script>
   </head>
 <body>
 	<div>

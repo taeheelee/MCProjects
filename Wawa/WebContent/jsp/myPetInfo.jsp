@@ -42,7 +42,6 @@
 
 
 $(document).ready(function(){
-<<<<<<< HEAD
 	if('${isDel}' != '')
 		alert('${isDel}');
 	$('.mainPetMk').click(function(){
@@ -215,7 +214,6 @@ $(document).ready(function(){
            }
        }
   });  //calendar end
-<<<<<<< HEAD
 	  
 		var idx = $('#defaultBirth').attr('name');
 		var birth = $('#defaultBirth').val();
@@ -234,24 +232,6 @@ $(document).ready(function(){
 			location.href='deletePet.do?id=${sessionScope.id}&idx=' + petIdx + '&petname=' + petName;
 		});
 		
-=======
-     
-      var idx = $('#defaultBirth').attr('name');
-      var birth = $('#defaultBirth').val();
-      getPetAge(birth, idx);
-      
-     $('li').click(function(){
-        getPetAge($(this).attr('id'), $(this).attr('name'));
-      });
-     $('.petDel').click(function() {
-         var petName = prompt('펫 정보를 삭제 하시나요?', '삭제하시려면 펫이름을 입력해주세요');
-         
-         var petIdx = $(this).attr('id');
-   
-         location.href='deletePet.do?id=${sessionScope.id}&idx=' + petIdx + '&petname=' + petName;
-      });
-      
->>>>>>> branch 'master' of https://github.com/taeheelee/MCProjects.git
 });
 </script>
 </head>

@@ -31,8 +31,9 @@ public class ManagementController {
 	@Autowired
 	private IManagementService managementService;
 
-	
-	@RequestMapping("healthcare.do") // healthcare.jsp 페이지로 보냄
+
+	@RequestMapping(method= RequestMethod.POST, value="healthcare.do")
+
 	public ModelAndView healthcare(HttpSession session){
 		String id = (String) session.getAttribute("id");
 		ModelAndView mav = new ModelAndView();
@@ -52,6 +53,7 @@ public class ManagementController {
 		for (HashMap<String, Object> p : petList) {
 			petIdxList.add((Integer) p.get("idx"));
 		}
+		
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("idx", petIdxList);
 		return params;
@@ -70,6 +72,10 @@ public class ManagementController {
 			
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("data", weightList); //강아지 idx로 받아 온 강아지 무게변화 기록
+		
+//		List<HashMap<String, Object>> petInfo = new ArrayList<HashMap<String, Object>>();
+//		petInfo = petinfoService.selectPetList(id);
+//		params.put("petinfo", petInfo);
 		return params;
 	}
 	

@@ -29,9 +29,7 @@
 				}else {
 					new_dDay += '+' + Math.abs(dDay);
 				}
-				$('#VNSpan').text('['+vaccineName+']');
-				$('#DDSpan').removeAttr("style");
-				$('#DDSpan').text(new_dDay);
+				$('#DDSpan').text('[' + vaccineName + '] D' +  new_dDay);
 			},
 			error: function(data){
 				alert("잠시 후 다시 시도해주세요.");
@@ -313,13 +311,15 @@ $(document).ready(function(){
                      </tr>
                      <tr>
                         <td>
-                        미용 주기 알림   <span style="color: #FF7421;" id="groomingDdaySpan${pet.idx }"></span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;">
+                        	미용 주기 알림   
+                        <span style="color: #FF7421;" id="groomingDdaySpan${pet.idx }"></span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;">
                         </td>
                      </tr>
                      <tr>
                         <td>
-                        다음 예방 접종 시기 <span style="color: #FF7421; " id="VNSpan"></span> 
-                       	D<span style="color: #FF7421;"id="DDSpan"></span>&nbsp;&nbsp;<input type="button" value="접종관리 GO" style="font-size: small;"onclick = "location.href ='medicalcareForm.do?id=${sessionScope.id}'">
+                       	 다음 예방 접종 시기 
+                       	<span id="DDSpan"></span>&nbsp;&nbsp;
+                       	<input type="button" value="접종관리 GO" style="font-size: small;"onclick = "location.href ='medicalcareForm.do?id=${sessionScope.id}'">
                         </td>
                      </tr>
                   </table>

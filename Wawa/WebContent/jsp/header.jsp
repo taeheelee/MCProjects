@@ -52,9 +52,6 @@
 				$('#dDaySpan').text(new_dDay);
 				
 			},
-			error: function(data){
-				alert("잠시 후 다시 시도해주세요.");
-			}
 		});
 	}
 	

@@ -137,7 +137,7 @@ public class BoastController {
 	}
 	
 	//뽐내기 게시글 삭제
-	@RequestMapping("boastDelete.do")
+	@RequestMapping(value="boastDelete.do", method = {RequestMethod.POST})
 	public String boastDelete(int boardIdx){
 		boardService.deleteBoard(boardIdx);
 		

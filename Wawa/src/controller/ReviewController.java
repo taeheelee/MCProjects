@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -137,7 +138,7 @@ public class ReviewController {
 	}
 	
 	//리뷰 게시글 삭제
-	@RequestMapping("reviewDelete.do")
+	@RequestMapping(value="reviewDelete.do", method = {RequestMethod.POST})
 	public String reviewDelete(int boardIdx){
 		boardService.deleteBoard(boardIdx);
 		return "redirect:reviewMain.do";

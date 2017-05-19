@@ -13,26 +13,22 @@
   crossorigin="anonymous"></script>
   <script type="text/javascript" src="js/boardCheck.js"></script>
   <script type="text/javascript">
+  $(document).ready(function() {
+	  $('#deleteBoard').click(function() {
+  
+		  var $form = $('<form></form>');
+		     $form.attr('action', 'freeboardDelete.do');
+		     $form.attr('method', 'post');
+		     $form.attr('target', 'iFrm');
+		     $form.appendTo('body');
+		     
+		     var idx = $('<input type="hidden" value="${board.boardIdx}" name="boardIdx">');
+			
+		     $form.append(idx);
+		     $form.submit();
 
-
-/*   function checkByte() {
-	   
-      var totalByte = 0;
-      var limitByte = 500;
-      var message = $('#content').val();
-
-      for(var i =0; i < message.length; i++) {
-              var currentByte = message.charCodeAt(i);
-              if(currentByte > 128) totalByte += 2;
-	else totalByte++;
-      }
-      $('#msgBytes').text(totalByte);
-
-      if(totalByte > limitByte) {
-              alert( limitByte+"바이트까지 전송가능합니다.");
-		$('#content').val(message.substring(0,limitByte));
-      }
-} */
+	});
+});
   	function reple(idx,repleIdx) {
   		var repleCount = ${fn:length(reple)};
   		for(var i=0; i<repleCount; i++){
@@ -177,7 +173,7 @@
                 <input type="button" value="목록"  onClick="location.href='freeboardMain.do'">
                 <c:if test="${board.writer == sessionScope.name }">
                 	<input type="button" value="수정" onclick="location.href='freeboardUpdateForm.do?boardIdx=${board.boardIdx}'">
-                	<input type="button" value="삭제" onclick="location.href='freeboardDelete.do?boardIdx=${board.boardIdx}'">
+                	<input type="button" value="삭제" id="deleteBoard">
                 </c:if>
                 <!-- 여기까지 댓글쓰기 -->
                 

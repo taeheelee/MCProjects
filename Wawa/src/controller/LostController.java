@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -181,7 +182,7 @@ public class LostController {
 	}
 	
 	//유기견찾기 게시글 삭제
-	@RequestMapping("lostDelete.do")
+	@RequestMapping(value="lostDelete.do", method = {RequestMethod.POST})
 	public String lostDelete(int boardIdx){
 		boardService.deleteBoard(boardIdx);
 		return "redirect:lostMain.do";	

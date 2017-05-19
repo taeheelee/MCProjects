@@ -13,6 +13,22 @@
   crossorigin="anonymous"></script>
   <script type="text/javascript" src="js/boardCheck.js"></script>
   <script type="text/javascript">
+  $(document).ready(function() {
+	  $('#deleteBoard').click(function() {
+  
+		  var $form = $('<form></form>');
+		     $form.attr('action', 'lostDelete.do');
+		     $form.attr('method', 'post');
+		     $form.attr('target', 'iFrm');
+		     $form.appendTo('body');
+		     
+		     var idx = $('<input type="hidden" value="${board.boardIdx}" name="boardIdx">');
+			
+		     $form.append(idx);
+		     $form.submit();
+
+	});
+});
   	function reple(idx,repleIdx) {
   		var repleCount = ${fn:length(reple)};
   		for(var i=0; i<repleCount; i++){
@@ -186,7 +202,7 @@
                 <input type="button" value="목록"  onClick="location.href='lostMain.do'">
                 <c:if test="${board.writer == sessionScope.name }">
                 	<input type="button" value="수정" onclick="location.href='lostUpdateForm.do?boardIdx=${board.boardIdx}'">
-                	<input type="button" value="삭제" onclick="location.href='lostDelete.do?boardIdx=${board.boardIdx}'">
+                	<input type="button" value="삭제" id="deleteBoard">
                 </c:if>
                 <!-- 여기까지 댓글쓰기 -->
                 

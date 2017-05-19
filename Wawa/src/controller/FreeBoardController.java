@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -108,7 +109,7 @@ public class FreeBoardController {
 	}
 	
 	//자유게시판 게시글 삭제
-	@RequestMapping("freeboardDelete.do")
+	@RequestMapping(value="freeboardDelete.do", method = {RequestMethod.POST})
 	public String infoDelete(int boardIdx){
 		boardService.deleteBoard(boardIdx);
 		return "redirect:freeboardMain.do";

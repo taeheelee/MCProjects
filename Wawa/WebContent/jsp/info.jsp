@@ -98,8 +98,8 @@
 										<tr class="cart_item">
 											<td>${info.boardIdx }</td>
 											<td>[${info.category }]</td>
-											<td><a href="infoDetails.do?boardIdx=${info.boardIdx }">${info.title }</a></td>
-											<td>${info.writer }</td>
+											<td><a href="infoDetails.do?boardIdx=${info.boardIdx }">${info.title.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</a></td>
+											<td>${info.writer.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</td>
 											<td>${info.readCount }</td>
 											<td>${info.writeDate }</td>
 										</tr>

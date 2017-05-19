@@ -11,17 +11,18 @@
   src="https://code.jquery.com/jquery-2.2.4.min.js"
   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
   crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/boardCheck.js"></script>
   <script type="text/javascript">
   	function reple(idx,repleIdx) {
   		var repleCount = ${fn:length(reple)};
   		for(var i=0; i<repleCount; i++){
   			$('#repleForm'+i).empty();
-  			$('#repleContent'+i).html($('#repleContent'+i).text());
+  			$('#repleContent'+i).html($('#repleContent'+i).text().replace(/</gi, "&lt;").replace(/>/gi, "&gt;"));
   			$('#updateForm'+i).show();
   		}
 		$('#repleForm'+idx).html("<form action='repleWrite.do' method='post'>"
-								 +"<textarea style='width: 85%; height: 100px; resize: none' name='content' maxlength='500'></textarea>"
-								 +"<input type='submit' value='답글작성'>"
+								 +"<textarea style='width: 85%; height: 100px; resize: none' id='repleContent' name='content' maxlength='500'></textarea>"
+								 +"<input type='submit' value='답글작성' onclick='doRemoveTag();'>"
 								 +"<input type='hidden' name='boardIdx' value='${board.boardIdx }'>"
 								 +"<input type='hidden' name='boardCode' value='${board.boardCode }'>"
 								 +"<input type='hidden' name='nickname' value='${sessionScope.name }'>"
@@ -34,16 +35,16 @@
   		var repleCount = ${fn:length(reple)};
   		for(var i=0; i<repleCount; i++){
   			$('#repleForm'+i).empty();
-  			$('#repleContent'+i).html($('#repleContent'+i).text());
+  			$('#repleContent'+i).html($('#repleContent'+i).text().replace(/</gi, "&lt;").replace(/>/gi, "&gt;"));
   			$('#updateForm'+i).show();
   		}
   		$('#updateForm'+idx).hide();
   		$('#repleContent'+idx).html("<form action='repleUpdate.do' method='post'>"
-				 +"<textarea style='width: 85%; height: 100px; resize: none' name='content' maxlength='500'>"+text+"</textarea>"
+				 +"<textarea style='width: 85%; height: 100px; resize: none' id='repleContent' name='content' maxlength='500'>"+text+"</textarea>"
 				 +"<input type='hidden' name='boardIdx' value='${board.boardIdx }'>"
 				 +"<input type='hidden' name='boardCode' value='${board.boardCode }'>"
 				 +"<input type='hidden' name='repleIdx' value='"+repleIdx+"'>"
-				 +"<input type='submit' value='수정'>"
+				 +"<input type='submit' value='수정' onclick='doRemoveTag();'>"
 				 +"</form>")
   	}
   </script>
@@ -83,8 +84,8 @@
 	                    <c:if test="${board.starPoint == 1 }"><td>★☆☆☆☆</td></c:if>
                 </font>
                 </p>
-				<h4 class="sidebar-title" style="text-align: center">${board.title }</h4>
-                <h5 style="text-align: right; color: lightblack">작성자: ${board.writer }</h5> 
+				<h4 class="sidebar-title" style="text-align: center">${board.title.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</h4>
+                <h5 style="text-align: right; color: lightblack">작성자: ${board.writer.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</h5> 
                    
                 </div>
                 <hr style="border: solid 1px; border-color: lightgray">  
@@ -118,11 +119,12 @@
 									<a href="##" onclick="update(${st.index},${reple.repleIdx })" style="color: orange">수정</a>
 									<a href="repleDelete.do?boardIdx=${board.boardIdx}
 									&boardCode=${board.boardCode}&repleIdx=${reple.repleIdx}" style="color: orange">삭제</a>
-									</span>
-									</c:if>
 									<c:if test="${sessionScope.id != null && reple.isDelete == 'N'}">
 										<a href="##" onclick="reple(${st.index},${reple.repleIdx })" style="color: orange">답글</a>
 									</c:if>
+									</span>
+									</c:if>
+									
 									
 								
 								</td>
@@ -134,10 +136,7 @@
 										&nbsp;&nbsp;&nbsp;
 								</c:forEach>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<span id="repleContent${st.index }"><!--  
-									--><c:if test="${reple.isDelete == 'N' }">${reple.content }</c:if><!--  
-									--><c:if test="${reple.isDelete == 'Y' }"><font color="gray">삭제된 댓글입니다</font></c:if><!--  
-								--></span>
+								<span id="repleContent${st.index }"><c:if test="${reple.isDelete == 'N' }">${reple.content.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</c:if><c:if test="${reple.isDelete == 'Y' }"><font color="gray">삭제된 댓글입니다</font></c:if></span>
 									
 								</td>
 								</tr>
@@ -151,12 +150,12 @@
 					<div>
 	                	<form action="repleWrite.do" method="post">
 	                		<c:if test="${sessionScope.id != null }">
-		                		<textarea style="width: 85%; height: 100px; resize: none" name="content" maxlength="500"></textarea>
+		                		<textarea style="width: 85%; height: 100px; resize: none" id="repleContent" name="content" maxlength="500"></textarea>
 		                		<input type="hidden" name="boardIdx" value="${board.boardIdx }">
 		                		<input type="hidden" name="boardCode" value="${board.boardCode }">
 		                		<input type="hidden" name="nickname" value="${sessionScope.name }">
 		                		<input type="hidden" name="pIdx" value="0">
-								<input type="submit" value="댓글작성">
+								<input type="submit" value="댓글작성" onclick="doRemoveTag();">
 							</c:if>
 							<c:if test="${sessionScope.id == null }">
 								<textarea style="width: 85%; height: 100px" name="content" readonly="readonly">로그인 후 이용해주세요</textarea>

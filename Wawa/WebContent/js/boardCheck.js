@@ -1,4 +1,4 @@
-function infoBoardCheck() {
+function infoBoardCheck() {	
 	if ($('#title').val().replace(/ /gi, "") == "") {
 		alert("제목을 입력해주세요");
 		$('#title').focus();
@@ -234,6 +234,16 @@ function partnerBoardCheck() {
 	}
 	return true;
 }
+
+//function removeTag( str ) {
+//	return str.replace(/(<([^>]+)>)/gi, "");
+//}
+
+//function doRemoveTag() {
+//	var beforeText = $('#repleContent').val();
+//	var afterText = removeTag( beforeText );
+//	$('#repleContent').val( afterText );
+//}
 
 function sendFile(file, editor, welEditable) {
     var form_data = new FormData();

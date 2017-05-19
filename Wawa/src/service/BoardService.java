@@ -454,8 +454,10 @@ public class BoardService implements IBoardService{
 	public boolean deleteBoard(int boardIdx) {
 		// TODO Auto-generated method stub
 		int result2 = repleDao.deleteBoardReple(boardIdx);
-		int fileid = (int)dao.selectOneBoard(boardIdx).get(Constant.Board.FILEID);
-		fileDao.deleteBoardFile(fileid);
+		if(dao.selectOneBoard(boardIdx).get(Constant.Board.FILEID) != null){
+			int fileid = (int)dao.selectOneBoard(boardIdx).get(Constant.Board.FILEID);
+			fileDao.deleteBoardFile(fileid);			
+		}
 		int result = dao.deleteBoard(boardIdx);
 		if(result > 0 && result2 > 0)
 			return true;

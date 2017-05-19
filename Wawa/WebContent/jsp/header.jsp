@@ -268,6 +268,7 @@
 							<li><a href="mypetInfo.do?id=${sessionScope.id}" >나의 펫 정보</a></li>
 							<li><a href="healthcare.do?id=${sessionScope.id}" class="postLink">나의 펫 헬스케어</a></li>
 							<li><a href="medicalcareForm.do?id=${sessionScope.id}" class="postLink">나의 펫 메디컬케어</a></li>		
+
 	                    </ul>
 					</li>
 					<li><a href="infoMain.do?id=${sessionScope.id}">애견정보/상식</a></li>

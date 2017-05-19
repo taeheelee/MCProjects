@@ -32,7 +32,7 @@ public class ManagementController {
 	private IManagementService managementService;
 
 	
-	@RequestMapping(method= RequestMethod.POST, value="healthcare.do") // healthcare.jsp 페이지로 보냄
+	@RequestMapping("healthcare.do") // healthcare.jsp 페이지로 보냄
 	public ModelAndView healthcare(HttpSession session){
 		String id = (String) session.getAttribute("id");
 		ModelAndView mav = new ModelAndView();

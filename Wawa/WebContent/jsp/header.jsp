@@ -47,6 +47,7 @@
 				}else {
 					new_dDay += '+' + Math.abs(dDay);
 				}
+				$('#VNSpan').text('['+vaccineName+'] ');
 				$('#dDaySpan').removeAttr("style");
 				$('#dDaySpan').text(new_dDay);
 				
@@ -212,7 +213,7 @@
 								</tr>
 								<tr style="font-size: small;">
 									<td colspan="2">다음 예방접종</td>
-									<td id="dDay" style="text-align: center;">D<span id="dDaySpan"></span></td>
+									<td id="dDay" style="text-align: center;"><span id="VNSpan"></span>D<span id="dDaySpan"></span></td>
 								</tr>
 								<tr style="font-size: small;">
 									<td colspan="2">다음 미용예정</td>

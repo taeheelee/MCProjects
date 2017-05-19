@@ -481,20 +481,35 @@ public class BoardService implements IBoardService{
 	@Override
 	public HashMap<String, Object> getBoardList(int page, int boardCode) {
 		// TODO Auto-generated method stub
-		//첫페이지 -> 맨앞페이지
+
+				int count = 0;	//한페이지에 표시할 게시물 개수
+				int skip = 0;	//건너뛸 게시물 개수
+				//뽐내기,짝꿍찾기
+				if(boardCode == 3 || boardCode == 5){	
+					count = 12;
+					skip = (page-1) * count;
+				}
+				//유기견찾기
+				else if(boardCode == 4){
+					count = 9;
+					skip = (page-1) * count;
+				}
+				//애견정보,리뷰,자유게시판
+				else{
+					count = 10;
+					skip = (page-1) * count;
+				}
+				
+				//첫페이지 -> 맨앞페이지
 				int first = 1;
 				//시작페이지 -> 현재 보이는 첫페이지
 				int start = (page-1) / 10 * 10 + 1;
 				//끝페이지 -> 현재 보이는 마지막페이지
 				int end = ((page-1) / 10 + 1) *10;
 				//마지막페이지 -> 맨마지막페이지
-				int last = (dao.getBoardCount(boardCode)-1)/10 + 1;
+				int last = (dao.getBoardCount(boardCode)-1)/count + 1;
 				//마지막페이지가 끝페이지보다 작으면 end=last
 				end = last < end ? last : end;
-				//건너뛸 게시물 개수
-				int skip = (page-1) * 10;
-				//한페이지에 표시할 게시물 개수
-				int count = 10;
 				
 				HashMap<String, Object> params = new HashMap<>();
 				params.put(Constant.Board.BOARDCODE, boardCode);

@@ -17,7 +17,7 @@
   		var repleCount = ${fn:length(reple)};
   		for(var i=0; i<repleCount; i++){
   			$('#repleForm'+i).empty();
-  			$('#repleContent'+i).html($('#repleContent'+i).text());
+  			$('#repleContent'+i).html($('#repleContent'+i).text().replace(/</gi, "&lt;").replace(/>/gi, "&gt;"));
   			$('#updateForm'+i).show();
   		}
 		$('#repleForm'+idx).html("<form action='repleWrite.do' method='post'>"
@@ -35,7 +35,7 @@
   		var repleCount = ${fn:length(reple)};
   		for(var i=0; i<repleCount; i++){
   			$('#repleForm'+i).empty();
-  			$('#repleContent'+i).html($('#repleContent'+i).text());
+  			$('#repleContent'+i).html($('#repleContent'+i).text().replace(/</gi, "&lt;").replace(/>/gi, "&gt;"));
   			$('#updateForm'+i).show();
   		}
   		$('#updateForm'+idx).hide();
@@ -148,7 +148,7 @@
 								</c:forEach>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<span id="repleContent${st.index }"><!--  
-									--><c:if test="${reple.isDelete == 'N' }">${reple.content }</c:if><!--  
+									--><c:if test="${reple.isDelete == 'N' }">${reple.content.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</c:if><!--  
 									--><c:if test="${reple.isDelete == 'Y' }"><font color="gray">삭제된 댓글입니다</font></c:if><!--  
 								--></span>
 									

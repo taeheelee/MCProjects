@@ -44,6 +44,8 @@
 $(document).ready(function(){
 	if('${isDel}' != '')
 		alert('${isDel}');
+	if('${accessErr}' != ''){}
+		alert('${accessErr}');
 	$('.mainPetMk').click(function(){
 		alert('메인펫으로 지정합니다.');
 	});

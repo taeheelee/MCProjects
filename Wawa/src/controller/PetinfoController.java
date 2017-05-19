@@ -47,12 +47,22 @@ public class PetinfoController {
 	private IDogKindService dogKindService;
 
 	@RequestMapping("myPetInfo.do")
-	public ModelAndView myPetInfo(String id) {
+	public ModelAndView myPetInfo(String id, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		List<HashMap<String, Object>> petList = petInfoService.selectPetList(id);
-		mav.addObject("petList", petList);
-		mav.setViewName("myPetInfo.tiles");
-		return mav;
+		if(id.equals(session.getAttribute("id"))){
+			List<HashMap<String, Object>> petList = petInfoService.selectPetList(id);
+			mav.addObject("petList", petList);
+			mav.setViewName("myPetInfo.tiles");
+			return mav;
+		}else{
+			String user = (String)session.getAttribute("id");
+			List<HashMap<String, Object>> petList = petInfoService.selectPetList(user);
+			mav.addObject("petList", petList);
+			mav.addObject("accessErr", "접근금지");
+			mav.setViewName("myPetInfo.tiles");
+			return mav;
+		}
+		
 	}
 //	@RequestMapping("calendar.do")
 //	@ResponseBody List<HashMap<String, Object>> calendar(String id) {

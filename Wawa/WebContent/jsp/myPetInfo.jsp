@@ -45,7 +45,7 @@ $(document).ready(function(){
 	if('${isDel}' != '')
 		alert('${isDel}');
 	if('${accessErr}' != '')
-		alert('${accessErr}'+"요기가 에러난다용");
+		alert('${accessErr}');
 	$('.mainPetMk').click(function(){
 		alert('메인펫으로 지정합니다.');
 	});

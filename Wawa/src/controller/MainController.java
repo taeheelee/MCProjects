@@ -258,7 +258,7 @@ public class MainController {
 		return new ModelAndView(rv);
 	}
 
-	@RequestMapping("deleteCheck.do")
+	@RequestMapping(method = RequestMethod.POST, value = "deleteCheck.do")
 	public @ResponseBody HashMap<String, Object> passCheck(HttpSession session, String id, String password,
 			String chk) {
 		HashMap<String, Object> response = new HashMap<>();

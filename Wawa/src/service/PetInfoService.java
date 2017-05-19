@@ -96,6 +96,7 @@ public class PetInfoService implements IPetinfoService {
 		long insertedPetIdx = (long) params.get("idx");
 		int insertedPetIdxInt = (int)insertedPetIdx;
 		
+		//새로운 펫 등록시 몸무게 DB에도 등록된 날짜로 몸무게 등록되게
 		Management model = new Management();
 		model.setIdx(insertedPetIdxInt);
 		model.setDate(new Date());
@@ -431,13 +432,6 @@ public class PetInfoService implements IPetinfoService {
 		
 		
 		for (int i = 0 ; i < petList.size(); i++){
-//		HashMap<String, Object> temp = new HashMap<>();
-//		temp.put("idx", petList.get(i).get("idx"));
-//		temp.put("name", petList.get(i).get("name"));
-//		temp.put("birthday", petList.get(i).get("birthday"));
-//		temp.put("groomingDayString", petList.get(i).get("groomingDayString"));
-//		
-//			eventDate.add(temp);
 
 		
 		
@@ -468,27 +462,18 @@ public class PetInfoService implements IPetinfoService {
 	      }
 		
 		
-		
-		
-		
-		
 
 		
-//		        Date date = df.parse("2013-02-35");
 		        // 오늘날짜에 D-day날짜 더하기
 		        Calendar cal = Calendar.getInstance();
 		        cal.setTime(today);
 		        cal.add(Calendar.DATE, newDDay);
-//		         System.out.println("날짜더하기 : "+ cal);
 
 		
 
 		         Date groomingDay = new Date(cal.getTimeInMillis());
-//		         System.out.println("groomingDay : "+groomingDay);
 	    		 String groomingDayString = transFormat.format(groomingDay);
-//	    		 System.out.println("groomingDayString : "+groomingDayString);
 
-		System.out.println("groomingDayString : "+groomingDayString);
 		
 	    			HashMap<String, Object> temp = new HashMap<>();
 	    			temp.put("idx", petList.get(i).get("idx"));
@@ -498,11 +483,7 @@ public class PetInfoService implements IPetinfoService {
 	    			
 	    				eventDate.add(temp);
 
-		
-		
-		
-		System.out.println(temp);
-//		System.out.println(eventDate.get(i).get("name")+'\n 생일 : '+);
+
 		}
 		
 		return eventDate;

@@ -19,7 +19,6 @@ pageEncoding="UTF-8"%>
       $(document).ready(function(){
          
          var regDate = /^(19[7-9][0-9]|20\d{2})-(0[0-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
-         var regWeight = /^[0-9]*$/;
          var regName = /^[가-힣a-zA-Z]+$/;
          
          $('#name').blur(function(){
@@ -136,9 +135,9 @@ $('#weight').blur(function(){
                                  </table>
                                  
                                  
-                                 <label class="" for="billing_state">등록번호</label>
+                                 <label class="" for="billing_state">등록번호(15자리)</label>
                                  <input type="text" id="resist" name="resist" placeholder="등록번호가 있을시에 입력하세요" value="${resist}" class="input-text ">
-                                 <span id="weightError"></span>
+                                
                                  
                                  <br><br>
                                  
@@ -227,8 +226,9 @@ $('#weight').blur(function(){
                                                 <br><br>
                                                 
                                                 
-                                                <label class="" for="billing_state">몸무게(kg)</label>
-                                                <input type="text" id="weight" name="weight" placeholder="숫자만 입력하세요" value="${weight }" class="input-text ">
+                                                <label class="" for="billing_state">몸무게(kg)<abbr title="required" class="required">*</abbr></label>
+                                                <span style="color: orange">*몸무게 데이터를 변경 하시려면, <span style="font-weight: bold;">[나의펫] - [나의 펫 헬스케어] - [체중관리]</span>에서 수정해주세요</span>
+                                                <input type="text" id="weight" name="weight" placeholder="숫자만 입력하세요" readonly="readonly" value="${weight }" class="input-text ">
                                                 <span id="weightError"></span>
                                                 
                                                 <br><br>

@@ -13,12 +13,32 @@
 <script type="text/javascript" src="./fullcalendar-3.3.1/fullcalendar.js"></script>
 <script type="text/javascript" src="./fullcalendar-3.3.1/locale/ko.js"></script>
 <script type="text/javascript">
+	
+	function getMedicalInfo(idx, vGubun){
+		$.ajax({
+			type: 'get',
+			url: 'getMedicalInfo.do',
+			data: "idx="+idx+"&vGubun="+vGubun,
+			dataType: "json",
+			success: function(data) {
+				var dDay = data.dDay;
+				alert(dDay);
+			},
+			error: function(data){
+				alert("잠시 후 다시 시도해주세요.");
+			}
+		});
+		
+	}
+
+
 $(document).ready(function(){
 	if('${isDel}' != '')
 		alert('${isDel}');
 	$('.mainPetMk').click(function(){
 		alert('메인펫으로 지정합니다.');
 	});
+	
 	
 	function getPetAge(petBirth, petIdx){
 		$.ajax({
@@ -39,9 +59,7 @@ $(document).ready(function(){
 				alert("잠시 후 다시 시도해주세요.");
 			}
 		});
-		}	
-	
-	
+	}	
 	
 	$("#calendar").fullCalendar({
         defaultDate : new Date()
@@ -88,6 +106,11 @@ $(document).ready(function(){
 		var idx = $('#defaultBirth').attr('name');
 		var birth = $('#defaultBirth').val();
 		getPetAge(birth, idx);
+// 		realShotDay를 어디서얻어오지 
+		getMedicalInfo(idx, 1);
+		getMedicalInfo(idx, 2);
+		getMedicalInfo(idx, 3);
+		getMedicalInfo(idx, 4);
 		
 	  $('li').click(function(){
 	  	getPetAge($(this).attr('id'), $(this).attr('name'));

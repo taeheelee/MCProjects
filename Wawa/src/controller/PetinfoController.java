@@ -122,6 +122,17 @@ public class PetinfoController {
 		}
 	}
 	
+	@RequestMapping("getMedicalInfo.do")
+	public 
+	@ResponseBody HashMap<String, Object> getMedicalInfo(HttpServletResponse resp,
+			@RequestParam HashMap<String, Object> params){
+		// 파라미터에 idx와 vGubun들어있음
+		long dDay = Integer.parseInt((String)medicalService.calcDday(params).get("day"));
+		HashMap<String, Object> response = new HashMap<>();
+		response.put("dDay", dDay);
+		return response;
+	}
+	
 	@RequestMapping("updatePetForm.do")
 	   public ModelAndView updatePetForm(int idx){
 	      ModelAndView mav = new ModelAndView();

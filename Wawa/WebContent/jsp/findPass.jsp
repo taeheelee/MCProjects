@@ -41,15 +41,11 @@
                                                 <input type="text" value="" placeholder="알파벳 소문자, 숫자를 혼합하여 4~12자리" 
                                                 id="id" name="id" class="input-text ">
                                                 <br>
-                                            <br>
-                                               <label class="" for="billing_first_name">닉네임<abbr title="required" class="required">*</abbr>
-                                                </label>
-                                                <input type="text" id="nick" name="nickname" class="input-text ">
+                    						<br>
+											    <label class="" for="billing_state">이름</label>
+                                                <input type="text" id="name" name="name" placeholder="" value="" class="input-text ">
                                                 <br>
-                                                <span id="nickError"></span>
-                                            
-                                          
-                                            
+                                                <span id="nameError"></span>
                                             <br>
 											    <label class="" for="billing_state">연락처</label>
                                                 <input type="text" id="phoneNum" name="phone" placeholder="000-0000-0000" value="" class="input-text ">

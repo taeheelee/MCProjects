@@ -13,10 +13,7 @@
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"
 	integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 	crossorigin="anonymous"></script>
-	
-	
-	
-	
+
 	
 <script type="text/javascript">
 	var myPet = '';
@@ -120,7 +117,7 @@
 	}
 	
 	function getMedicalTable1(nextDate, dDay, tableNum, index, ch, value){
-		var vaccineCode = parseInt(tableNum*100) + parseInt(index+1);
+		var vaccineCode = value.vaccineCode;
 		var mtable = $('#table' + tableNum + ' tbody');
 		var id = '${id }';
 		var petname = $("#name option:selected").text();
@@ -188,7 +185,7 @@
 		var mtable = $('#table' + vGubun + ' tbody');
 		$('tr:gt(0)', mtable).remove();
 		$(list).each(function(index, value) {
-			var vaccineCode = parseInt(tableNum*100) + parseInt(index+1);
+			var vaccineCode = value.vaccineCode; //
 			var date = value.realShotDate;
 			if(index == parseInt($(list).length-1)){
 				//alert(vaccineCode);

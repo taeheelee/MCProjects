@@ -21,6 +21,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.view.RedirectView;
 
 import interface_service.IBoardService;
+import interface_service.IMedicalService;
 import interface_service.IMemberService;
 import interface_service.IPetinfoService;
 import model.UserInfo;
@@ -33,7 +34,9 @@ public class MainController {
 	private IPetinfoService IPetinfoService;
 	@Autowired
 	private IBoardService iBoardService;
-
+	@Autowired
+	private IMedicalService iMedicalService;
+	
 	@RequestMapping("loginForm.do")
 	public String loginForm() {
 		return "login.tiles";
@@ -172,7 +175,7 @@ public class MainController {
 		response.put("result", iMemberService.checkId(id));
 		return response;
 	}
-
+	
 	@RequestMapping("nicknameCheck.do")
 	public @ResponseBody HashMap<String, Object> nicknameCheck(HttpServletResponse resp, String nickname, String id) {
 		HashMap<String, Object> response = new HashMap<>();
@@ -212,6 +215,7 @@ public class MainController {
 		// 아아디에 해당하는 게시글 리스트 출력
 		List<HashMap<String, Object>> boardList = iBoardService.getBoardByWriter(userInfo.getNickname());
 		mav.addObject("boardList", boardList);
+		System.out.println(boardList);
 		// 아이디에 해당하는 강아지 목록 출력
 		List<HashMap<String, Object>> petList = IPetinfoService.selectPetList(id);
 		mav.addObject("petList", petList);
@@ -257,7 +261,7 @@ public class MainController {
 		return new ModelAndView(rv);
 	}
 
-	@RequestMapping("deleteCheck.do")
+	@RequestMapping(method = RequestMethod.POST, value = "deleteCheck.do")
 	public @ResponseBody HashMap<String, Object> passCheck(HttpSession session, String id, String password,
 			String chk) {
 		HashMap<String, Object> response = new HashMap<>();
@@ -286,6 +290,43 @@ public class MainController {
 		iMemberService.getMember(id);
 
 		return mav;
+	}
+	
+	@RequestMapping("getMedical.do")
+	public 
+	@ResponseBody HashMap<String, Object> getMedical(HttpServletResponse resp,
+			@RequestParam HashMap<String, Object> params){
+		HashMap<String, Object> tmp = new HashMap<>();
+		String id = (String) params.get("id");
+		String petName = (String) params.get("petName");
+		
+		tmp.put("id", id);
+		tmp.put("name", petName);
+		
+		int tmp_idx = (int) IPetinfoService.selectByname(tmp).get("idx");
+		String idx = String.valueOf(tmp_idx);
+		HashMap<String, Object> idxParam = new HashMap<>();
+		idxParam.put("idx", idx);
+	
+		long dDay = (long) iMedicalService.calcDday(idxParam).get("dDay");
+		int vaccineCode = (int) iMedicalService.calcDday(idxParam).get("vaccineCode");
+		
+		String vaccineName;
+		int vGubun = vaccineCode/100;
+		if(vGubun == 1){
+			vaccineName = "종합백신";
+		}else if(vGubun == 2){
+			vaccineName = "코로나";
+		}else if(vGubun == 3){
+			vaccineName = "켄넬코프 ";
+		}else {
+			vaccineName = "광견병 ";
+		}
+		
+		HashMap<String, Object> response = new HashMap<>();
+		response.put("dDay", dDay);
+		response.put("vaccineName", vaccineName);
+		return response;
 	}
 
 }

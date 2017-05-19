@@ -51,7 +51,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id="selectByName" parameterType="java.util.HashMap"
 	resultType="java.util.HashMap">
-		select * from petinfo where id=#{id} and name=#{name};
+		select * from petinfo where id=#{id} and name=#{name}
 	</select>
 	<update id="updateMainPet" parameterType="java.util.HashMap">
 		update petinfo set mainPet=#{mainPet} where idx=#{idx}

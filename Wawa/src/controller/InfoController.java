@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -65,14 +66,10 @@ public class InfoController {
 				@RequestParam HashMap<String, Object> params){
 			String id = (String) params.get("id");
 			
-
-			System.out.println(id + "들어왔음"); 
 			HashMap<String, Object> response = new HashMap<>();
 			if(memberService.adminCheck(id) == 1){
-				System.out.println("관리자네");
 				response.put("result", true);
 			}else {
-				System.out.println("관리자아니네");
 				response.put("result", false);
 			}
 			return response;
@@ -140,7 +137,7 @@ public class InfoController {
 		}
 		
 		//애견정보 게시글 삭제
-		@RequestMapping("infoDelete.do")
+		@RequestMapping(value="infoDelete.do", method = {RequestMethod.POST})
 		public String infoDelete(int boardIdx){
 			boardService.deleteBoard(boardIdx);
 			return "redirect:infoMain.do";

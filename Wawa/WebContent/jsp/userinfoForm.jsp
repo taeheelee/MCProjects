@@ -314,7 +314,28 @@
 					       </c:otherwise>
 					   </c:choose>
                         <td>${board.category }</td>
-                        <td><a href="#">${board.title }	</a></td>
+                        <td>
+	                        <c:choose>
+	                        	<c:when test="${board.boardCode == 1 }">
+	                        		<a href="infoDetails.do?boardIdx=${board.boardIdx }">${board.title }	</a>
+	                        	</c:when>
+	                        	<c:when test="${board.boardCode == 2 }">
+	                        		<a href="reviewDetails.do?boardIdx=${board.boardIdx }">${board.title }	</a>
+	                        	</c:when>
+	                        	<c:when test="${board.boardCode == 3 }">
+	                        		<a href="boastDetails.do?boardIdx=${board.boardIdx }">${board.title }	</a>
+	                        	</c:when>
+	                        	<c:when test="${board.boardCode == 4 }">
+	                        		<a href="lostDetails.do?boardIdx=${board.boardIdx }">${board.title }	</a>
+	                        	</c:when>
+	                        	<c:when test="${board.boardCode == 5 }">
+	                        		<a href="partnerDetails.do?boardIdx=${board.boardIdx }">${board.title }	</a>
+	                        	</c:when>
+	                        	<c:otherwise>
+	                        		<a href="freeboardDetail.do?boardIdx=${board.boardIdx }">${board.title }	</a>
+	                        	</c:otherwise>
+	                        </c:choose>
+                        </td>
     					<td>${board.readCount }</td>
                         <td>${board.writeDate }</td>
                     </tr>

@@ -23,4 +23,6 @@ public interface IPetinfoService {
 	public HashMap<String, Object> selectFile(int fileId);
 	public HashMap<String, Object> selectMainPet(String id);
 	public boolean updateMainPet(HashMap<String, Object> params);
+	public List<HashMap<String, Object>> calendarEvent(String id);
+	
 }

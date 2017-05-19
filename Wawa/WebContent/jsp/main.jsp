@@ -126,7 +126,7 @@ $(document).ready(function(){
 								</thead>
 								<tbody>
 									<c:forEach items="${firstBoard.get(\"boardList\") }"
-										var="freeboard" begin="0" end="4">
+										var="freeboard" begin="0" end="6">
 										<tr class="cart_item">
 											<td>${freeboard.boardIdx }</td>
 											<td>${freeboard.category }</td>
@@ -163,7 +163,7 @@ $(document).ready(function(){
 								</thead>
 								<tbody>
 									<c:forEach items="${secondBoard.get(\"boardList\") }"
-										var="reviewboard" begin="0" end="4">
+										var="reviewboard" begin="0" end="6">
 										<tr class="cart_item">
 											<td>${reviewboard.boardIdx }</td>
 											<td>${reviewboard.category }</td>

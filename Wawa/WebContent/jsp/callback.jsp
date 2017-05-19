@@ -12,7 +12,7 @@
 	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
 	var naver_id_login = new naver_id_login("xeQmcW9xQTAgeEhBztgr",
-			"http://localhost:8080/Wawa/jsp/callback.jsp");
+			"http://70.12.109.58:8080/Wawa/jsp/callback.jsp");
 	// 접근 토큰 값 출력
 // 	alert(naver_id_login.oauthParams.access_token);
 	// 네이버 사용자 프로필 조회

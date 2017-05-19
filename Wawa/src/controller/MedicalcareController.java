@@ -35,7 +35,7 @@ public class MedicalcareController {
 	@Autowired
 	private IVaccineInfoService vaccineService;
 	
-	@RequestMapping(method= RequestMethod.POST, value="medicalcareForm.do")
+	@RequestMapping("medicalcareForm.do")
 	public ModelAndView medicalcareForm(String id){
 		ModelAndView mav = new ModelAndView();
 		List<HashMap<String, Object>> petlist = petinfoService.selectPetList(id);
@@ -61,7 +61,6 @@ public class MedicalcareController {
 			e.printStackTrace();
 		}
 		
-		System.out.println(from);
 		int period = (int) vaccineService.selectVaccineInfo(vaccineCode).get("vaccinePeriod");
 		
 		Calendar cal = new GregorianCalendar(Locale.KOREA);
@@ -150,13 +149,12 @@ public class MedicalcareController {
 		HashMap<String, Object> medical = new HashMap<>();
 		int idx = (int) petinfoService.selectByname(params).get("idx");
 
+		System.out.println("인덱스: "+idx);
+		
 		List<HashMap<String, Object>> careList = medicalService.selectAllShotDate(idx);
 		List<HashMap<String, Object>> list = new ArrayList<HashMap<String,Object>>();
 		
-		//System.out.println("careList : " + careList);
-		
 		String ch = (String) params.get("ch");
-		//System.out.println("jsp에서 드렁온 구분자" + ch);
 		int gubun = 0;
 		if(ch.equals("D")) gubun = 1;
 		else if(ch.equals("C")) gubun = 2;
@@ -164,7 +162,6 @@ public class MedicalcareController {
 		else if(ch.equals("R")) gubun = 4;
 		
 		for(HashMap<String, Object> care : careList){
-			//System.out.println("들어온 구분자" + gubun);
 			if(gubun == ((int)care.get("vaccineCode"))/100){ //앞자리같은지
 				HashMap<String, Object> tmp = new HashMap<>();
 				tmp.put("idx", (int) care.get("idx"));
@@ -174,7 +171,6 @@ public class MedicalcareController {
 			}
 		}
 		
-		//System.out.println("list : " + list);
 		HashMap<String, Object> response = new HashMap<>();
 		response.put("careList", list);
 		return response;
@@ -188,8 +184,6 @@ public class MedicalcareController {
 		int idx = (int) petinfoService.selectByname(params).get("idx");
 		int vaccineCode = Integer.parseInt((String) params.get("vaccineCode"));
 		
-		System.out.println("idx:"+idx);
-		System.out.println("vaccineCode:"+vaccineCode);
 		
 		HashMap<String, Object> deleteObject = new HashMap<>();
 		deleteObject.put("idx", idx);
@@ -209,7 +203,6 @@ public class MedicalcareController {
 	@ResponseBody HashMap<String, Object> uploadMedical(HttpServletResponse resp,
 			@RequestParam HashMap<String, Object> params){
 		HashMap<String, Object> medical = new HashMap<>();
-		System.out.println("왜자꾸일로들어가지?");
 		int idx = (int) petinfoService.selectByname(params).get("idx");
 		int vaccineCode = Integer.parseInt((String) params.get("vaccineCode"));
 
@@ -259,10 +252,8 @@ public class MedicalcareController {
 		tmp.put("idx", idx);
 		tmp.put("vaccineCode", vaccineCode);
 		HashMap<String, Object> response = new HashMap<>();
-		System.out.println(medicalService.selectVc(tmp) + "반환값이뭐길래?");
 		if(medicalService.selectVc(tmp) != null){
 		 //중복이면 
-			System.out.println("중복체크");
 			response.put("result", true);
 		}else {
 			response.put("result", false);

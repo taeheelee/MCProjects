@@ -32,7 +32,11 @@ public class ManagementController {
 	private IManagementService managementService;
 
 	
+<<<<<<< HEAD
 	@RequestMapping(method= RequestMethod.POST, value="healthcare.do")
+=======
+	@RequestMapping("healthcare.do") // healthcare.jsp 페이지로 보냄
+>>>>>>> branch 'master' of https://github.com/taeheelee/MCProjects
 	public ModelAndView healthcare(HttpSession session){
 		String id = (String) session.getAttribute("id");
 		ModelAndView mav = new ModelAndView();
@@ -44,14 +48,12 @@ public class ManagementController {
 	
 	@RequestMapping(value="getIdxList.do", method=RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> getIdxList(HttpSession session) {
-		System.out.println("getIdxList.do 요청받음");
 		String id = (String) session.getAttribute("id");
 		// 펫리스트에서 펫 idx만 뽑아내기
 		List<Integer> petIdxList = new ArrayList<Integer>();
 
 		List<HashMap<String, Object>> petList = petinfoService.selectPetList(id);
 		for (HashMap<String, Object> p : petList) {
-			// System.out.println(p.get("idx"));
 			petIdxList.add((Integer) p.get("idx"));
 		}
 		
@@ -63,8 +65,6 @@ public class ManagementController {
 	@RequestMapping(value="dataupload.do", method=RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> dataupload(HttpSession session,
 			int idx) {
-//		System.out.println(idx);
-		System.out.println("dataupload.do 요청 받음");
 		String id = (String) session.getAttribute("id");
 
 		PetInfo model = new PetInfo();
@@ -72,7 +72,6 @@ public class ManagementController {
 		model.setIdx(idx);
 		List<Management> weightList = new ArrayList<>();
 		weightList = managementService.selectListByIdx(model);
-		System.out.println("idx로 찾아온 무게 목록 : " + weightList);
 			
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("data", weightList); //강아지 idx로 받아 온 강아지 무게변화 기록

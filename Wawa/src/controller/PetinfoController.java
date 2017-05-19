@@ -46,17 +46,47 @@ public class PetinfoController {
 	@Autowired
 	private IDogKindService dogKindService;
 
-	@RequestMapping(method= RequestMethod.POST, value="myPetInfo.do")
-	public ModelAndView myPetInfo(String id) {
+	@RequestMapping("myPetInfo.do")
+	public ModelAndView myPetInfo(String id, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		List<HashMap<String, Object>> petList = petInfoService.selectPetList(id);
-		mav.addObject("petList", petList);
-		mav.setViewName("myPetInfo.tiles");
-		return mav;
+		if(id.equals(session.getAttribute("id"))){
+			List<HashMap<String, Object>> petList = petInfoService.selectPetList(id);
+			mav.addObject("petList", petList);
+			mav.setViewName("myPetInfo.tiles");
+			return mav;
+		}else{
+			String user = (String)session.getAttribute("id");
+			List<HashMap<String, Object>> petList = petInfoService.selectPetList(user);
+			mav.addObject("petList", petList);
+			mav.addObject("accessErr", "접근금지");
+			mav.setViewName("myPetInfo.tiles");
+			return mav;
+		}
+		
 	}
+//	@RequestMapping("calendar.do")
+//	@ResponseBody List<HashMap<String, Object>> calendar(String id) {
+//		List<HashMap<String, Object>> petList = petInfoService.selectPetList(id);
+////		System.out.println(petList.get(0).get("groomingStart"));
+////		System.out.println(petList.get(0).get("groomingPeroid"));
+////		for (int i = 0; i < petList.size(); i++){
+////			String gDay="";
+////			
+////			petList.get(0).get("groomingStart");
+////			petList.get(0).get("groomingPeroid");
+////			
+////			HashMap<String, Object> temp = new HashMap<>();
+////			temp.put("gDay", gDay);
+////			petList.set(i,temp );
+////		}
+//		
+//		return petList;
+//	}
+	
 	@RequestMapping("calendar.do")
 	@ResponseBody List<HashMap<String, Object>> calendar(String id) {
-		List<HashMap<String, Object>> petList = petInfoService.selectPetList(id);
+		List<HashMap<String, Object>> petList = petInfoService.calendarEvent(id);
+		
 		return petList;
 	}
 
@@ -120,6 +150,32 @@ public class PetinfoController {
 		} else {
 			return "redirect:addPetForm.do";
 		}
+	}
+	
+	@RequestMapping("getMedicalInfo.do")
+	public 
+	@ResponseBody HashMap<String, Object> getMedicalInfo(HttpServletResponse resp,
+			@RequestParam HashMap<String, Object> params){
+		// 파라미터에 idx와 vGubun들어있음
+		long dDay = (long) medicalService.calcDday(params).get("dDay");
+		int vaccineCode = (int) medicalService.calcDday(params).get("vaccineCode");
+		
+		String vaccineName;
+		int vGubun = vaccineCode/100;
+		if(vGubun == 1){
+			vaccineName = "종합백신";
+		}else if(vGubun == 2){
+			vaccineName = "코로나";
+		}else if(vGubun == 3){
+			vaccineName = "켄넬코프 ";
+		}else {
+			vaccineName = "광견병 ";
+		}
+		
+		HashMap<String, Object> response = new HashMap<>();
+		response.put("dDay", dDay);
+		response.put("vaccineName", vaccineName);
+		return response;
 	}
 	
 	@RequestMapping("updatePetForm.do")
@@ -265,7 +321,7 @@ public class PetinfoController {
 		outputStream.close();
 	}
 
-	@RequestMapping(method= RequestMethod.POST, value= "mainPetUpdate.do")
+	@RequestMapping("mainPetUpdate.do")
 	public String mainPetUpdate(String id, int idx, HttpSession session) {
 		HashMap<String, Object> mainPetOrigin = petInfoService.selectMainPet(id);
 		HashMap<String, Object> params = new HashMap<>();

@@ -73,8 +73,8 @@
 											<td>${freeboard.boardIdx }</td>
 											<td>[${freeboard.category }]</td>
 											<td><a
-												href="freeboardDetail.do?boardIdx=${freeboard.boardIdx }">${freeboard.title }</a></td>
-											<td>${freeboard.writer }</td>
+												href="freeboardDetail.do?boardIdx=${freeboard.boardIdx }">${freeboard.title.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</a></td>
+											<td>${freeboard.writer.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</td>
 											<td>${freeboard.readCount }</td>
 											<td>${freeboard.writeDate }</td>
 										</tr>

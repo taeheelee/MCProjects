@@ -11,35 +11,34 @@
   src="https://code.jquery.com/jquery-2.2.4.min.js"
   integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
   crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/boardCheck.js"></script>
   <script type="text/javascript">
-/*   function checkByte() {
-	   
-      var totalByte = 0;
-      var limitByte = 500;
-      var message = $('#content').val();
+  $(document).ready(function() {
+	  $('#deleteBoard').click(function() {
+  
+		  var $form = $('<form></form>');
+		     $form.attr('action', 'freeboardDelete.do');
+		     $form.attr('method', 'post');
+		     $form.attr('target', 'iFrm');
+		     $form.appendTo('body');
+		     
+		     var idx = $('<input type="hidden" value="${board.boardIdx}" name="boardIdx">');
+			
+		     $form.append(idx);
+		     $form.submit();
 
-      for(var i =0; i < message.length; i++) {
-              var currentByte = message.charCodeAt(i);
-              if(currentByte > 128) totalByte += 2;
-	else totalByte++;
-      }
-      $('#msgBytes').text(totalByte);
-
-      if(totalByte > limitByte) {
-              alert( limitByte+"바이트까지 전송가능합니다.");
-		$('#content').val(message.substring(0,limitByte));
-      }
-} */
+	});
+});
   	function reple(idx,repleIdx) {
   		var repleCount = ${fn:length(reple)};
   		for(var i=0; i<repleCount; i++){
   			$('#repleForm'+i).empty();
-  			$('#repleContent'+i).html($('#repleContent'+i).text());
+  			$('#repleContent'+i).html($('#repleContent'+i).text().replace(/</gi, "&lt;").replace(/>/gi, "&gt;"));
   			$('#updateForm'+i).show();
   		}
 		$('#repleForm'+idx).html("<form action='repleWrite.do' method='post'>"
-								 +"<textarea style='width: 85%; height: 100px; resize: none' name='content' maxlength='500'></textarea>"
-								 +"<input type='submit' value='답글작성'>"
+								 +"<textarea style='width: 85%; height: 100px; resize: none' id='repleContent' name='content' maxlength='500'></textarea>"
+								 +"<input type='submit' value='답글작성' onclick='doRemoveTag();'>"
 								 +"<input type='hidden' name='boardIdx' value='${board.boardIdx }'>"
 								 +"<input type='hidden' name='boardCode' value='${board.boardCode }'>"
 								 +"<input type='hidden' name='nickname' value='${sessionScope.name }'>"
@@ -52,16 +51,16 @@
   		var repleCount = ${fn:length(reple)};
   		for(var i=0; i<repleCount; i++){
   			$('#repleForm'+i).empty();
-  			$('#repleContent'+i).html($('#repleContent'+i).text());
+  			$('#repleContent'+i).html($('#repleContent'+i).text().replace(/</gi, "&lt;").replace(/>/gi, "&gt;"));
   			$('#updateForm'+i).show();
   		}
   		$('#updateForm'+idx).hide();
   		$('#repleContent'+idx).html("<form action='repleUpdate.do' method='post'>"
-				 +"<textarea style='width: 85%; height: 100px; resize: none' name='content' maxlength='500'>"+text+"</textarea>"
+				 +"<textarea style='width: 85%; height: 100px; resize: none' id='repleContent' name='content' maxlength='500'>"+text+"</textarea>"
 				 +"<input type='hidden' name='boardIdx' value='${board.boardIdx }'>"
 				 +"<input type='hidden' name='boardCode' value='${board.boardCode }'>"
 				 +"<input type='hidden' name='repleIdx' value='"+repleIdx+"'>"
-				 +"<input type='submit' value='수정'>"
+				 +"<input type='submit' value='수정' onclick='doRemoveTag();'>"
 				 +"</form>")
   	}
   </script>
@@ -90,8 +89,8 @@
 				<p>
                 <font style="font-size: medium;font-weight: bold; color: gray">[${board.category }]</font>
                 </p>
-				<h4 class="sidebar-title" style="text-align: center">${board.title }</h4>
-                <h5 style="text-align: right; color: lightblack">작성자: ${board.writer }</h5> 
+				<h4 class="sidebar-title" style="text-align: center">${board.title.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</h4>
+                <h5 style="text-align: right; color: lightblack">작성자: ${board.writer.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</h5> 
                 
                 <hr style="border: solid 1px; border-color: lightgray"> 
                 
@@ -140,7 +139,7 @@
 								</c:forEach>
 									&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<span id="repleContent${st.index }"><!--  
-									--><c:if test="${reple.isDelete == 'N' }">${reple.content }</c:if><!--  
+									--><c:if test="${reple.isDelete == 'N' }">${reple.content.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</c:if><!--  
 									--><c:if test="${reple.isDelete == 'Y' }"><font color="gray">삭제된 댓글입니다</font></c:if><!--  
 								--></span>
 									
@@ -156,12 +155,12 @@
 					<div>
 	                	<form action="repleWrite.do" method="post">
 	                		<c:if test="${sessionScope.id != null }">
-		                		<textarea style="width: 85%; height: 100px; resize: none" id="repleContent" name="repleContent"  maxlength="500"></textarea>
+		                		<textarea style="width: 85%; height: 100px; resize: none" id="repleContent" name="content"  maxlength="500"></textarea>
 		                		<input type="hidden" name="boardIdx" value="${board.boardIdx }">
 		                		<input type="hidden" name="boardCode" value="${board.boardCode }">
 		                		<input type="hidden" name="nickname" value="${sessionScope.name }">
 		                		<input type="hidden" name="pIdx" value="0">
-								<input type="submit" value="댓글작성">
+								<input type="submit" value="댓글작성" onclick="doRemoveTag();">
 							</c:if>
 							<c:if test="${sessionScope.id == null }">
 								<textarea style="width: 85%; height: 100px" name="content" readonly="readonly">로그인 후 이용해주세요</textarea>
@@ -174,7 +173,7 @@
                 <input type="button" value="목록"  onClick="location.href='freeboardMain.do'">
                 <c:if test="${board.writer == sessionScope.name }">
                 	<input type="button" value="수정" onclick="location.href='freeboardUpdateForm.do?boardIdx=${board.boardIdx}'">
-                	<input type="button" value="삭제" onclick="location.href='freeboardDelete.do?boardIdx=${board.boardIdx}'">
+                	<input type="button" value="삭제" id="deleteBoard">
                 </c:if>
                 <!-- 여기까지 댓글쓰기 -->
                 

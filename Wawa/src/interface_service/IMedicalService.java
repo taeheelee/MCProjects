@@ -17,4 +17,7 @@ public interface IMedicalService {
 	public List<HashMap<String, Object>> selectAllShotDate(int idx);
 	public HashMap<String, Object> selectDate(HashMap<String, Object> params);
 	public HashMap<String, Object> selectVc(HashMap<String, Object> params);
+	public HashMap<String, Object> calcDday(HashMap<String, Object> params);
+	public List<HashMap<String, Object>> selectShotdayByDate(int idx);
 }
+

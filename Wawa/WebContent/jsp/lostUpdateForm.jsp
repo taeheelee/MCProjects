@@ -222,7 +222,7 @@
 									발견된 날짜<abbr title="required" class="required">*</abbr>
 								</label> <input type="text" id="lostdate" name="lostdate"
 									placeholder="0000-00-00" value="${board.lostDate }"
-									class="datepicker" maxlength="10"> <br> <br>
+									class="datepicker" maxlength="10" readonly="readonly"> <br> <br>
 								<label class="" for="billing_state"> 잃어버린 장소/ 발견된 장소<abbr
 									title="required" class="required">*</abbr></label> <input type="text"
 									id="lostplace" name="lostplace" value="${board.lostPlace }"

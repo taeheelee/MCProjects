@@ -83,7 +83,7 @@
 												<td>${review.boardIdx }</td>
 												<td>[${review.category }]</td>
 												<td><a
-													href="reviewDetails.do?boardIdx=${review.boardIdx }">${review.title }</a></td>
+													href="reviewDetails.do?boardIdx=${review.boardIdx }">${review.title.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</a></td>
 
 												<c:if test="${review.starPoint == 5 }">
 													<td>★★★★★</td>

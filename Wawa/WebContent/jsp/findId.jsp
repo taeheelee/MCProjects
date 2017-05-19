@@ -6,9 +6,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
+
+<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/nv.d3.js"></script>
+<script type="text/javascript" src="js/simple.d3.js"></script>
+ 
+<script type="text/javascript">
+	$(document).ready(function(){
+		var targetNode = document.getElementById("lTable");
+		if(targetNode.hasAttribute("class")){
+		  targetNode.removeAttribute("class");
+		}
+	});
+</script>
 <body>
-	
-	
 	 <div class="product-big-title-area">
         <div class="container">
             <div class="row">
@@ -37,26 +48,63 @@
                                         <div class="woocommerce-billing-fields">
 			                            <form  action="" class="checkout" method="post" name="checkout">
                                              
-                                            <br>
-                                               <label class="" for="billing_first_name">닉네임<abbr title="required" class="required">*</abbr>
-                                                </label>
-                                                <input type="text" id="nick" name="nickname" class="input-text ">
+                                          <table cellspacing="20px" class="shop_table cart" id="lTable">
+								
+											<tr class="cart_item">
+													<td>
+													&nbsp;
+													이름: 
+													&nbsp;
+													</td>
+													<td colspan="2">
+													&nbsp;
+													<input type="text" id="way" name="way" value="" class="input-text ">
+													&nbsp;
+													</td>
+												</tr>
+												<tr>
+													<td>
+													&nbsp;
+													<select class="country_to_state country_select" name="name" id="name">
+														<option value="defaultValue">선택하세요</option>
+														<option value="byPhone">등록된 번호로 찾기</option>
+														<option value="byEmail">등록된 이메일로 찾기</option>
+													</select>
+													&nbsp;
+													</td>
+													<td>
+													&nbsp;
+													<input type="text" id="way" name="way" value="" class="input-text ">
+													&nbsp;
+													</td>
+													<td>
+													&nbsp;
+														<span id="wayError"></span>
+													&nbsp;
+													</td>
+												</tr>
+										</table>
+                                             
+                                             
+                                          	<br>
+											    <label class="" for="billing_state">이름</label>
+                                                <input type="text" id="name" name="name" placeholder="" value="" class="input-text ">
                                                 <br>
-                                                <span id="nickError"></span>
-                                            
-                                          
-                                            
+                                                <span id="nameError"></span>
                                             <br>
-											    <label class="" for="billing_state">연락처</label>
-                                                <input type="text" id="phoneNum" name="phone" placeholder="000-0000-0000" value="" class="input-text ">
+                                            <select class="country_to_state country_select" name="name" id="name">
+												<option value="defaultValue">선택하세요</option>
+												<option value="byPhone">등록된 번호로 찾기</option>
+												<option value="byEmail">등록된 이메일로 찾기</option>
+											</select>
+												<input type="text" id="way" name="way" value="" class="input-text ">
+<!-- 											 placeholder="000-0000-0000" -->
+<!-- 											    <label class="" for="billing_state">연락처</label> -->
+                                                
                                                 <br>
-                                                <span id="pnumError"></span>
+                                                <span id="wayError"></span>
                                             <br>
-                                            	<label class="" for="billing_state">이메일</label>
-                                                <input type="text" id="email" name="email" placeholder="abc@naver.com" value="" class="input-text ">
-                                                <br>
-                                                <span id="emailError"></span>
-                                            <br>
+
 <!--<div class="clear"></div> -->
 											<div class="form-row place-order" style="float: right">
 												<input type="button" data-value="Place order" value="FIND ID" id="find" class="button alt">

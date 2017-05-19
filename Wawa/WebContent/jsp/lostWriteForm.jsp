@@ -195,7 +195,7 @@ pageEncoding="UTF-8"%>
                             <br><br>
 
                             <label class="" for="billing_state">  잃어버린 날짜/ 발견된 날짜<abbr title="required" class="required">*</abbr></label>
-                            <input type="text" id="lostdate" name="lostdate" placeholder="0000-00-00" value="" class="datepicker" maxlength="10">
+                            <input type="text" id="lostdate" name="lostdate" readonly="readonly" placeholder="0000-00-00" value="" class="datepicker" maxlength="10">
 
                             <br>
                             <label class="" for="billing_state">  잃어버린 장소/ 발견된 장소<abbr title="required" class="required">*</abbr></label>

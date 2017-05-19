@@ -44,6 +44,11 @@ $(document).ready(function(){
    
    
    $("#calendar").fullCalendar({
+	    header : {
+	    	      left : 'title',
+// 				  center : 'title',
+				  right : 'prevYear prev,today,next nextYear'
+	              },
         defaultDate : new Date()
       , editable : true
       , eventLimit : true

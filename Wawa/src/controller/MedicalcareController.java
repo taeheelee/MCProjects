@@ -149,6 +149,8 @@ public class MedicalcareController {
 		HashMap<String, Object> medical = new HashMap<>();
 		int idx = (int) petinfoService.selectByname(params).get("idx");
 
+		System.out.println("인덱스: "+idx);
+		
 		List<HashMap<String, Object>> careList = medicalService.selectAllShotDate(idx);
 		List<HashMap<String, Object>> list = new ArrayList<HashMap<String,Object>>();
 		

@@ -14,15 +14,24 @@
 <script type="text/javascript" src="./fullcalendar-3.3.1/locale/ko.js"></script>
 <script type="text/javascript">
 	
-	function getMedicalInfo(idx, vGubun){
+	function getMedicalInfo(idx){
 		$.ajax({
 			type: 'get',
 			url: 'getMedicalInfo.do',
-			data: "idx="+idx+"&vGubun="+vGubun,
+			data: "idx="+idx,
 			dataType: "json",
 			success: function(data) {
 				var dDay = data.dDay;
-				alert(dDay);
+				var vaccineName = data.vaccineName;
+				var new_dDay = '';
+				if(parseInt(dDay) > 0){
+					new_dDay += '-' + Math.abs(dDay);
+				}else {
+					new_dDay += '+' + Math.abs(dDay);
+				}
+				$('#VNSpan').text('['+vaccineName+']');
+				$('#DDSpan').removeAttr("style");
+				$('#DDSpan').text(new_dDay);
 			},
 			error: function(data){
 				alert("잠시 후 다시 시도해주세요.");
@@ -107,11 +116,8 @@ $(document).ready(function(){
 		var birth = $('#defaultBirth').val();
 		getPetAge(birth, idx);
 // 		realShotDay를 어디서얻어오지 
-		getMedicalInfo(idx, 1);
-		getMedicalInfo(idx, 2);
-		getMedicalInfo(idx, 3);
-		getMedicalInfo(idx, 4);
-		
+		getMedicalInfo(idx);
+	
 	  $('li').click(function(){
 	  	getPetAge($(this).attr('id'), $(this).attr('name'));
 		});
@@ -207,8 +213,8 @@ $(document).ready(function(){
                      </tr>
                      <tr>
                         <td>
-                        다음 예방 접종 시기 <span style="color: #FF7421; " id="">[백신명]</span> 
-                        <span style="color: #FF7421;"id="">D-00</span>&nbsp;&nbsp;<input type="button" value="접종관리 GO" style="font-size: small;"onclick = "location.href ='medicalcareForm.do?id=${sessionScope.id}'">
+                        다음 예방 접종 시기 <span style="color: #FF7421; " id="VNSpan"></span> 
+                       	D<span style="color: #FF7421;"id="DDSpan"></span>&nbsp;&nbsp;<input type="button" value="접종관리 GO" style="font-size: small;"onclick = "location.href ='medicalcareForm.do?id=${sessionScope.id}'">
                         </td>
                      </tr>
                   </table>

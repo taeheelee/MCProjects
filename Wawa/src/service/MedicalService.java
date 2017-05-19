@@ -132,12 +132,11 @@ public class MedicalService implements IMedicalService {
 	@Override
 	public HashMap<String, Object> calcDday(HashMap<String, Object> params) {
 		// TODO Auto-generated method stub
-		int idx = Integer.parseInt((String) params.get("idx"));
-		int vGubun = Integer.parseInt((String) params.get("vGubun"));
-		List<HashMap<String, Object>> list = selectAllShotDate(idx);
 		
-		System.out.println("인덱스는: " + idx);
-		System.out.println("구분자는: " + vGubun);
+		int idx = Integer.parseInt((String) params.get("idx"));
+		List<HashMap<String, Object>> list = dao.selectShotdayByDate(idx);
+		
+		System.out.println("!!!인덱스는: " + idx);
 		
 		HashMap<String, Object> recent = list.get(list.size()-1);
 		Date realShotDate = (Date) recent.get("realShotDate"); //실제날짜
@@ -167,9 +166,10 @@ public class MedicalService implements IMedicalService {
 		
 		System.out.println("디데이는" + diffDays); 
 		
-		HashMap<String, Object> day = new HashMap<>();
-		day.put("dDay", diffDays);
-		return day;
+		HashMap<String, Object> info = new HashMap<>();
+		info.put("dDay", diffDays);
+		info.put("vaccineCode", vaccineCode);
+		return info;
 	}
 
 	@Override

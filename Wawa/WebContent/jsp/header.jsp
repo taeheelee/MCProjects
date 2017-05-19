@@ -31,7 +31,38 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript">
+
+	function getMedicalManage(id, petName){
+		$.ajax({
+			type: 'get',
+			url: 'getMedical.do',
+			data: "id="+id+"&petName="+petName,
+			dataType: "json",
+			success: function(data) {
+				var dDay = data.dDay;
+				var vaccineName = data.vaccineName;
+				var new_dDay = '';
+				if(parseInt(dDay) > 0){
+					new_dDay += '-' + Math.abs(dDay);
+				}else {
+					new_dDay += '+' + Math.abs(dDay);
+				}
+				$('#dDaySpan').removeAttr("style");
+				$('#dDaySpan').text(new_dDay);
+				
+			},
+			error: function(data){
+				alert("잠시 후 다시 시도해주세요.");
+			}
+		});
+	}
+	
 	$(document).ready(function(){
+		
+		var id = $('#petInfo').val();
+		var petName = $('#petInfo').attr('name');
+		getMedicalManage(id, petName);
+	
 		$('.postLink').click(function() {
 		    var p = $(this).attr('href').split('?');
 		    var action = p[0];
@@ -162,6 +193,7 @@
 			<div class="col-sm-6" style="margin: 0">
 			<c:choose>
 				<c:when test="${sessionScope.id != null and sessionScope.petName != null}">
+					<input type="hidden" id="petInfo" name="${sessionScope.petName }" value="${sessionScope.id} ">
 					<div class="shopping-item" >
 						<a href="myPetInfo.do?id=${sessionScope.id}"  >
 						
@@ -180,7 +212,7 @@
 								</tr>
 								<tr style="font-size: small;">
 									<td colspan="2">다음 예방접종</td>
-									<td id="dday" style="text-align: center;">D-00</td>
+									<td id="dDay" style="text-align: center;">D<span id="dDaySpan"></span></td>
 								</tr>
 								<tr style="font-size: small;">
 									<td colspan="2">다음 미용예정</td>
@@ -235,7 +267,7 @@
 					<li class="dropdown">
 						<a href="single-product.html" class="dropdown-toggle" data-toggle="dropdown">나의펫 <b class="caret"></b></a>
 	                    <ul class="dropdown-menu">
-							<li><a href="myPetInfo.do?id=${sessionScope.id}" >나의 펫 정보</a></li>
+							<li><a href="mypetInfo.do?id=${sessionScope.id}" >나의 펫 정보</a></li>
 							<li><a href="healthcare.do?id=${sessionScope.id}" class="postLink">나의 펫 헬스케어</a></li>
 							<li><a href="medicalcareForm.do?id=${sessionScope.id}" class="postLink">나의 펫 메디컬케어</a></li>		
 	                    </ul>

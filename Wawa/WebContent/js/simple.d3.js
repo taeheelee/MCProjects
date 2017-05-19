@@ -1,7 +1,7 @@
 nv.addGraph(function() {
 	var chart = nv.models.lineChart().margin({
 		left : 100
-	}) // x축에 margin을 설정
+	}) // x축에 margin을 설정함
 	.useInteractiveGuideline(true) // 마우스 올릴 시 가이드라인 출력
 //	.transitionDuration(350) // 애니메이션 효과를 동작시킬 시간, 에러 발생 가능성있으므로 주석처리
 	.showLegend(true) // 범례 출력 여부, 범례는 켜고 끌 수 있음

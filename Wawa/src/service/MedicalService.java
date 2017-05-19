@@ -71,6 +71,8 @@ public class MedicalService implements IMedicalService {
 			return false;
 	}
 
+	
+	
 	@Override
 	public HashMap<String, Object> selectRealShotDate(HashMap<String, Object> params) {
 		// TODO Auto-generated method stub
@@ -125,6 +127,55 @@ public class MedicalService implements IMedicalService {
 	public HashMap<String, Object> selectVc(HashMap<String, Object> params) {
 		// TODO Auto-generated method stub
 		return dao.selectVc(params);
+	}
+
+	@Override
+	public HashMap<String, Object> calcDday(HashMap<String, Object> params) {
+		// TODO Auto-generated method stub
+		
+		int idx = Integer.parseInt((String) params.get("idx"));
+		List<HashMap<String, Object>> list = dao.selectShotdayByDate(idx);
+		
+		System.out.println("!!!인덱스는: " + idx);
+		
+		HashMap<String, Object> recent = list.get(list.size()-1);
+		Date realShotDate = (Date) recent.get("realShotDate"); //실제날짜
+		int vaccineCode = (int) recent.get("vaccineCode"); // 백신코드
+		
+		System.out.println("실제접종일은: " + realShotDate);
+		System.out.println("백신코드는: " + vaccineCode);
+		
+		HashMap<String, Object> nextday = selectDueShotDate(recent); // 실제접종일과 period 더한 날짜
+		String next = (String) nextday.get("dueShotDate");
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date to = null;
+		try {
+			to = transFormat.parse(next);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Date today = new Date(); // 오늘날짜
+		
+		System.out.println("접종날짜는: " + to);
+		System.out.println("오늘날짜는: " + today);
+		
+		long diff = to.getTime() - today.getTime();
+		long diffDays = diff / (24 * 60 * 60 * 1000);
+		
+		System.out.println("디데이는" + diffDays); 
+		
+		HashMap<String, Object> info = new HashMap<>();
+		info.put("dDay", diffDays);
+		info.put("vaccineCode", vaccineCode);
+		return info;
+	}
+
+	@Override
+	public List<HashMap<String, Object>> selectShotdayByDate(int idx) {
+		// TODO Auto-generated method stub
+		return dao.selectShotdayByDate(idx);
 	}
 
 }

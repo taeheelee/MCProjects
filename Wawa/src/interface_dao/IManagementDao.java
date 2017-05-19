@@ -19,5 +19,5 @@ public interface IManagementDao {
 	public double selectRecentWeight(Date date);
 	public Date selectRecentDate(int idx);
 	public List<Management> selectAllHealth(int idx);
-	public List<Management> selectDate(Management model);	
+	public Management selectDate(Management model);	
 }

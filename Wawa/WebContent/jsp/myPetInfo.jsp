@@ -13,42 +13,64 @@
 <script type="text/javascript" src="./fullcalendar-3.3.1/fullcalendar.js"></script>
 <script type="text/javascript" src="./fullcalendar-3.3.1/locale/ko.js"></script>
 <script type="text/javascript">
+	
+	function getMedicalInfo(idx){
+		$.ajax({
+			type: 'get',
+			url: 'getMedicalInfo.do',
+			data: "idx="+idx,
+			dataType: "json",
+			success: function(data) {
+				var dDay = data.dDay;
+				var vaccineName = data.vaccineName;
+				var new_dDay = '';
+				if(parseInt(dDay) > 0){
+					new_dDay += '-' + Math.abs(dDay);
+				}else {
+					new_dDay += '+' + Math.abs(dDay);
+				}
+				$('#VNSpan').text('['+vaccineName+']');
+				$('#DDSpan').removeAttr("style");
+				$('#DDSpan').text(new_dDay);
+			},
+			error: function(data){
+				alert("잠시 후 다시 시도해주세요.");
+			}
+		});
+		
+	}
+
+
 $(document).ready(function(){
-   if('${isDel}' != '')
-      alert('${isDel}');
-   $('.mainPetMk').click(function(){
-      alert('메인펫으로 지정합니다.');
-   });
-   
-   function getPetAge(petBirth, petIdx){
-      $.ajax({
-         type: 'get',
-         url: 'getAge.do',
-         data: "birthday="+petBirth+"&petIdx="+petIdx,
-         dataType: "json",
-         success: function(data) {
-            $('#ageSpan' + petIdx).text(data.year + "년" + data.month + "개월");
-            $('#transperAgeSpan' + petIdx).text(data.transperAge + "살");
-            $('#caloriesSpan' + petIdx).text(data.calories + "kcal");
-            $('#adultWeightSpan' + petIdx).text(data.adultWeight + "kg");
-            $('#exerciseMsgSpan' + petIdx).text(data.exerciseMsg);
-            $('#warningMsgSpan' + petIdx).text(data.warningMsg);
-            $('#groomingDdaySpan' + petIdx).text(data.d_day);
-         },
-         error: function(data){
-            alert("잠시 후 다시 시도해주세요.");
-         }
-      });
-      }   
-   
-   
-   
-   $("#calendar").fullCalendar({
-	    header : {
-	    	      left : 'title',
-// 				  center : 'title',
-				  right : 'prevYear prev,today,next nextYear'
-	              },
+	if('${isDel}' != '')
+		alert('${isDel}');
+	$('.mainPetMk').click(function(){
+		alert('메인펫으로 지정합니다.');
+	});
+	
+	
+	function getPetAge(petBirth, petIdx){
+		$.ajax({
+			type: 'get',
+			url: 'getAge.do',
+			data: "birthday="+petBirth+"&petIdx="+petIdx,
+			dataType: "json",
+			success: function(data) {
+				$('#ageSpan' + petIdx).text(data.year + "년" + data.month + "개월");
+				$('#transperAgeSpan' + petIdx).text(data.transperAge + "살");
+				$('#caloriesSpan' + petIdx).text(data.calories + "kcal");
+				$('#adultWeightSpan' + petIdx).text(data.adultWeight + "kg");
+				$('#exerciseMsgSpan' + petIdx).text(data.exerciseMsg);
+				$('#warningMsgSpan' + petIdx).text(data.warningMsg);
+				$('#groomingDdaySpan' + petIdx).text(data.d_day);
+			},
+			error: function(data){
+				alert("잠시 후 다시 시도해주세요.");
+			}
+		});
+	}	
+	
+	$("#calendar").fullCalendar({
         defaultDate : new Date()
       , editable : true
       , eventLimit : true
@@ -192,22 +214,24 @@ $(document).ready(function(){
            }
        }
   });  //calendar end
-     
-      var idx = $('#defaultBirth').attr('name');
-      var birth = $('#defaultBirth').val();
-      getPetAge(birth, idx);
-      
-     $('li').click(function(){
-        getPetAge($(this).attr('id'), $(this).attr('name'));
-      });
-     $('.petDel').click(function() {
-         var petName = prompt('펫 정보를 삭제 하시나요?', '삭제하시려면 펫이름을 입력해주세요');
-         
-         var petIdx = $(this).attr('id');
-   
-         location.href='deletePet.do?id=${sessionScope.id}&idx=' + petIdx + '&petname=' + petName;
-      });
-      
+	  
+		var idx = $('#defaultBirth').attr('name');
+		var birth = $('#defaultBirth').val();
+		getPetAge(birth, idx);
+// 		realShotDay를 어디서얻어오지 
+		getMedicalInfo(idx);
+	
+	  $('li').click(function(){
+	  	getPetAge($(this).attr('id'), $(this).attr('name'));
+		});
+	  $('.petDel').click(function() {
+			var petName = prompt('펫 정보를 삭제 하시나요?', '삭제하시려면 펫이름을 입력해주세요');
+			
+			var petIdx = $(this).attr('id');
+	
+			location.href='deletePet.do?id=${sessionScope.id}&idx=' + petIdx + '&petname=' + petName;
+		});
+		
 });
 </script>
 </head>
@@ -292,8 +316,8 @@ $(document).ready(function(){
                      </tr>
                      <tr>
                         <td>
-                        다음 예방 접종 시기 <span style="color: #FF7421; " id="">[백신명]</span> 
-                        <span style="color: #FF7421;"id="">D-00</span>&nbsp;&nbsp;<input type="button" value="접종관리 GO" style="font-size: small;"onclick = "location.href ='medicalcareForm.do?id=${sessionScope.id}'">
+                        다음 예방 접종 시기 <span style="color: #FF7421; " id="VNSpan"></span> 
+                       	D<span style="color: #FF7421;"id="DDSpan"></span>&nbsp;&nbsp;<input type="button" value="접종관리 GO" style="font-size: small;"onclick = "location.href ='medicalcareForm.do?id=${sessionScope.id}'">
                         </td>
                      </tr>
                   </table>

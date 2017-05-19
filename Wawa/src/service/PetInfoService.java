@@ -413,8 +413,16 @@ public class PetInfoService implements IPetinfoService {
 	@Override
 	public boolean updateWeight(double weight, int idx) {
 		// TODO Auto-generated method stub
+		Date recent = mmDao.selectRecentDate(idx);
+		
+		Management model = new Management();
+		model.setIdx(idx);
+		model.setDate(recent);
+		
+		Double new_weight = (Double) mmDao.selectDate(model).getWeight();
+		
 		HashMap<String, Object> pet = new HashMap<>();
-		pet.put("weight", weight);
+		pet.put("weight", new_weight);
 		pet.put("idx", idx);
 		if(dao.updateWeight(pet) > 0)
 			return true;

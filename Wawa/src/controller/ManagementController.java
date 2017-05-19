@@ -218,7 +218,7 @@ public class ManagementController {
 	      HashMap<String, Object> response = new HashMap<>();
 	      long diff1 = to1.getTime() - to.getTime(); // 오늘날짜에서 입력날짜빼기
 	      long diff2 = to.getTime() - birthday.getTime(); // 생일보다는 이후여야됨
-	      if(diff1 > 0 && diff2 > 0){
+	      if(diff1 >= 0 && diff2 >= 0){
 	         response.put("result", true);
 	      }else {
 	         response.put("result", false);

@@ -149,9 +149,10 @@ public class MedicalcareController {
 		HashMap<String, Object> medical = new HashMap<>();
 		int idx = (int) petinfoService.selectByname(params).get("idx");
 
+		System.out.println("인덱스: "+idx);
+		
 		List<HashMap<String, Object>> careList = medicalService.selectAllShotDate(idx);
 		List<HashMap<String, Object>> list = new ArrayList<HashMap<String,Object>>();
-		
 		
 		String ch = (String) params.get("ch");
 		int gubun = 0;
@@ -161,7 +162,7 @@ public class MedicalcareController {
 		else if(ch.equals("R")) gubun = 4;
 		
 		for(HashMap<String, Object> care : careList){
-			if(gubun == ((int)care.get("vaccineCode"))/100){ //앞자리같은지
+			if(gubun == ((int)care.get("vaccinㄴeCode"))/100){ //앞자리같은지
 				HashMap<String, Object> tmp = new HashMap<>();
 				tmp.put("idx", (int) care.get("idx"));
 				tmp.put("vaccineCode", (int) care.get("vaccineCode"));

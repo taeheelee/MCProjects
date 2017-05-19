@@ -263,7 +263,7 @@
 					<li class="active"><a href="main.do">HOME</a></li>
 					<li><a href="userinfoForm.do">내정보</a></li>
 					<li class="dropdown">
-						<a href="single-product.html" class="dropdown-toggle" data-toggle="dropdown">나의펫 <b class="caret"></b></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">나의펫 <b class="caret"></b></a>
 	                    <ul class="dropdown-menu">
 							<li><a href="myPetInfo.do?id=${sessionScope.id}" >나의 펫 정보</a></li>
 							<li><a href="healthcare.do?id=${sessionScope.id}" class="postLink">나의 펫 헬스케어</a></li>

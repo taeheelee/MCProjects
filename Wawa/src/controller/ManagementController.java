@@ -31,12 +31,9 @@ public class ManagementController {
 	@Autowired
 	private IManagementService managementService;
 
-	
-<<<<<<< HEAD
+
 	@RequestMapping(method= RequestMethod.POST, value="healthcare.do")
-=======
-	@RequestMapping("healthcare.do") // healthcare.jsp 페이지로 보냄
->>>>>>> branch 'master' of https://github.com/taeheelee/MCProjects
+
 	public ModelAndView healthcare(HttpSession session){
 		String id = (String) session.getAttribute("id");
 		ModelAndView mav = new ModelAndView();

@@ -255,6 +255,7 @@
 		});
 		
 		$('#name').change(function() {
+			$('#petImg').attr('src', 'PetInfoImage/' + $('#name').val() + '.do');
 			$('tr:gt(1)', table).remove();
 			//$("#table tr:not(:first)").remove();
 			//$('tr:gt(0)', table).remove();
@@ -332,8 +333,8 @@
 						<table cellspacing="0" class="shop_table cart" id="lTable">
 							<thead>
 								<tr>
-									<th colspan="2" id="mypetmainimage"><img
-										src="img/dog_04.jpg" alt=""></th>
+									<th colspan="2" id="mypetmainimage">
+									<img onerror="this.src='img/noImage.png'" alt="" width="200" height="150" id="petImg"></th>
 								</tr>
 							</thead>
 							<tbody>
@@ -342,7 +343,7 @@
 										class="country_to_state country_select" name="name" id="name">
 											<option value="defaultValue">선택하세요</option>
 											<c:forEach items="${list }" var="petinfo">
-												<option value="${petinfo.name }">${petinfo.name }</option>
+												<option value="${petinfo.fileId }">${petinfo.name }</option>
 											</c:forEach>
 									</select></td>
 								</tr>

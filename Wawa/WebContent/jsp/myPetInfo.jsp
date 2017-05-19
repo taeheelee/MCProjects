@@ -49,7 +49,7 @@ $(document).ready(function(){
 	$('.mainPetMk').click(function(){
 		alert('메인펫으로 지정합니다.');
 	});
-	
+
 	
 	function getPetAge(petBirth, petIdx){
 		$.ajax({
@@ -233,6 +233,9 @@ $(document).ready(function(){
 	
 			location.href='deletePet.do?id=${sessionScope.id}&idx=' + petIdx + '&petname=' + petName;
 		});
+	  $('#weight').click(function() {
+		  $('#weight').attr('type','submit');
+	})
 		
 });
 </script>
@@ -302,7 +305,8 @@ $(document).ready(function(){
                      </tr>
                      <tr>
                         <td>
-                           <span>${pet.weight }kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;해당견종 성견 평균무게 <span id="adultWeightSpan${pet.idx }"></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;(기본) 하루 필요열량 <span id="caloriesSpan${pet.idx }"></span>&nbsp;&nbsp;<input type="button" value="체중관리 GO" style="font-size: small;" onclick = "location.href ='healthcare.do?id=${sessionScope.id}'">
+                           <span>${pet.weight }kg</span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;해당견종 성견 평균무게 <span id="adultWeightSpan${pet.idx }"></span>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;(기본) 하루 필요열량 <span id="caloriesSpan${pet.idx }"></span>&nbsp;&nbsp;<form action="healthcare.do" method="post"><input type="button" value="체중관리 GO" style="font-size: small;" id="weight"><input type="hidden" value="${sessionScope.id}" name="id">
+                           </form>
                         </td>
                      </tr>
                      <tr>
@@ -313,7 +317,7 @@ $(document).ready(function(){
                      </tr>
                      <tr>
                         <td>
-                        미용 주기 알림   <span style="color: #FF7421;" id="groomingDdaySpan${pet.idx }"></span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;">
+                        미용 주기 알림   <span style="color: #FF7421;" id="groomingDdaySpan${pet.idx }"></span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;" onclick="location.href='updatePetForm.do?idx=${pet.idx}'">
                         </td>
                      </tr>
                      <tr>

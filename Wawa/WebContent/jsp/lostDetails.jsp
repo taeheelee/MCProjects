@@ -73,17 +73,17 @@
         		<p>
 	        		<font style="font-size: medium; font-weight: bold; color: gray">[${board.category }]</font>
 	        	</p>
-	        	<h2 class="sidebar-title" style="text-align: center;">${board.title }</h2>
-        		<h5 align="right">작성자: ${board.writer }</h5> 
+	        	<h2 class="sidebar-title" style="text-align: center;">${board.title.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</h2>
+        		<h5 align="right">작성자: ${board.writer.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</h5> 
         		
         		<table class="shop_table cart">
 	                <tbody>
 	                	<tr class="cart_item">
 	                		<td rowspan="4" style="width: 30%"><img src="imageShow/${board.fileId}.do" onerror="this.src='img/no_image.jpg'" alt=""></td>
 	                        <td style="background-color: #f5f5f5">애견이름</td>
-							<td id="petname">${board.name }</td>
+							<td id="petname">${board.name.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</td>
 							<td style="background-color: #f5f5f5">등록번호</td>
-							<td id="등록번호">${board.resist }</td>
+							<td id="등록번호">${board.resist.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</td>
 	                    </tr>
 	                    <tr class="cart_item">
 							<td id="lostOrFind" style="background-color: #f5f5f5">잃어버린날짜</td>
@@ -99,7 +99,7 @@
 						</tr>
 						<tr class="cart_item">
 							<td style="background-color: #f5f5f5">e-mail</td>
-							<td id="email">${board.email }</td>
+							<td id="email">${board.email.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</td>
 							<td style="background-color: #f5f5f5">애견 몸무게</td>
 							<td id="weight">${board.weight }kg</td>
 						</tr>

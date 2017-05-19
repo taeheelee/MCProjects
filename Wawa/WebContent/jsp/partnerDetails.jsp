@@ -73,15 +73,15 @@
         		<p>
 	        		<font style="font-size: medium; font-weight: bold; color: gray">[짝꿍찾기]</font>
 	        	</p>
-	        	<h2 class="sidebar-title" style="text-align: center;">${board.title }</h2>
-        		<h5 align="right">작성자: ${board.writer }</h5> 
+	        	<h2 class="sidebar-title" style="text-align: center;">${board.title.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</h2>
+        		<h5 align="right">작성자: ${board.writer.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</h5> 
         		
         		<table class="shop_table cart">
 	                <tbody>
 	                	<tr class="cart_item">
 	                		<td rowspan="3" style="width: 30%"><img src="imageShow/${board.fileId}.do" onerror="this.src='img/no_image.jpg'" alt=""></td>
 	                        <td style="background-color: #f5f5f5">애견이름</td>
-							<td id="petname">${board.name }</td>
+							<td id="petname">${board.name.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</td>
 							<td style="background-color: #f5f5f5">품종/성별</td>
 							<td id="kindandsex"><span id="kind">${board.kind }</span><span id="petsex">(${board.sex })</span></td>
 	                    </tr>
@@ -95,7 +95,7 @@
 							<td style="background-color: #f5f5f5">주인 연락처</td>
 							<td id="phonenumber">${board.phone }</td>
 							<td style="background-color: #f5f5f5">e-mail</td>
-							<td id="email">${board.email }</td>
+							<td id="email">${board.email.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</td>
 						</tr>
 						<tr>
 							<td colspan="5" style="background-color: #f5f5f5">내용</td>

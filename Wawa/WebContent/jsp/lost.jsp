@@ -68,7 +68,7 @@
 						<h4>${lost.category }</h4>
 						<hr
 							style="border-color: black; border: solid 1px; margin: 0 0 5px 0">
-						<div align="right">${lost.writer }</div>
+						<div align="right">${lost.writer.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</div>
 						<div class="col-md-6" id="wanted_photo"
 							style="padding: 0; background: #e6e6e6;">
 
@@ -86,7 +86,7 @@
 						<div class="col-md-6" id="wanted_content"
 							style="padding: 0 0 0 15px;">
 							<ul id="lostPet-ul">
-								<li><b>이름 :</b> ${lost.name }</li>
+								<li><b>이름 :</b> ${lost.name.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</li>
 								<li><b>품종 :</b> ${lost.kind }</li>
 								<li><b>성별 :</b> ${lost.sex }</li>
 								<c:choose>
@@ -100,7 +100,7 @@
 										<li style="margin-bottom: 0px;"><b>장소</b></li>
 									</c:otherwise>
 								</c:choose>
-								<li style="font-size: large; text-align: right;"><b>${lost.lostPlace }</b></li>
+								<li style="font-size: large; text-align: right;"><b>${lost.lostPlace.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</b></li>
 								<c:choose>
 									<c:when test="${lost.category =='찾고있어요'}">
 										<li style="margin-bottom: 0px;"><b>잃어버린 날짜</b></li>

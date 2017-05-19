@@ -69,9 +69,9 @@
 								</div>
 							</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 						<table border="1" style="width: 100%; font-size: small;text-align:center; " >
-							<tr><td colspan="2" id="petname">이름: ${partner.name }</td></tr>
+							<tr><td colspan="2" id="petname">이름: ${partner.name.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</td></tr>
 							<tr><td id="petsex">${partner.sex }</td><td id="petage">${partner.age }</td></tr>
-							<tr><td colspan="2">작성자:${partner.writer }</td></tr>
+							<tr><td colspan="2">작성자:${partner.writer.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</td></tr>
 						</table>
 		
 					</div>

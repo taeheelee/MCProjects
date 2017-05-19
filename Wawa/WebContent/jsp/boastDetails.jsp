@@ -73,8 +73,8 @@
 	        	<p>
 	        		<font style="font-size: medium; font-weight: bold; color: gray">[뽐내기]</font>
 	        	</p>
-        		<h2 class="sidebar-title" style="text-align: center;">${board.title }</h2>
-        		<h5 align="right">작성자: ${board.writer }</h5> 
+        		<h2 class="sidebar-title" style="text-align: center;">${board.title.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</h2>
+        		<h5 align="right">작성자: ${board.writer.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</h5> 
         		
         		<table class="shop_table cart">
 	                <tbody>
@@ -86,7 +86,7 @@
 	                	</tr>
 	                    <tr class="cart_item">
 							<td style="background-color: #f5f5f5">애견이름</td>
-							<td id="petname">${board.name }</td>
+							<td id="petname">${board.name.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</td>
 							<td style="background-color: #f5f5f5">품종</td>
 							<td id="kind">${board.kind }</td>
 						</tr>

@@ -73,8 +73,8 @@
         		<p>
                 <font style="font-size: medium;font-weight: bold; color: gray">[${board.category }]</font>
                 </p>
-				<h4 class="sidebar-title" style="text-align: center">${board.title }</h4>
-                <h5 style="text-align: right; color: lightblack">작성자: ${board.writer }</h5> 
+				<h4 class="sidebar-title" style="text-align: center">${board.title.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</h4>
+                <h5 style="text-align: right; color: lightblack">작성자: ${board.writer.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</h5> 
                 
                
                 <hr style="border: solid 1px; border-color: lightgray">  

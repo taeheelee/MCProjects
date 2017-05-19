@@ -52,11 +52,11 @@ $(document).ready(function(){
 									<h1 style="text-align: center; color: #FF7F27;">BEST ${st.index+1}</h1>
 										
 									<div class="product-carousel-price">
-										<p style="color: #ffc000; text-align: center; font-size: 18px; background-color: white;">${best.name }<br>(${best.sex }) ${best.age }살</p>
+										<p style="color: #ffc000; text-align: center; font-size: 18px; background-color: white;">${best.name.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }<br>(${best.sex }) ${best.age }살</p>
 										<p style="color: #777; text-align: center;">♥좋아요 ${best.likeCount }개</p>
 									</div>
 									
-									<h4 align="center">주인 : ${best.writer }</h4>
+									<h4 align="center">주인 : ${best.writer.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</h4>
 									<c:forEach items="${like }" var="like">
 										<c:if test="${like.boardIdx == best.boardIdx}">
 											<div align="center"><font style="color: red">내가 좋아요 한 게시글</font></div>
@@ -109,10 +109,10 @@ $(document).ready(function(){
 								</div>
 							</div><!--  마우스오버시 검정색 효과 범위 끝 -->
 						<table style="background : #ffc000 ;width: 100%; font-size: small;text-align:center; " >
-							<tr><td id="petname" style="color: white; font-weight: bold; font-size: large;"><span>${boast.name }</span><br>(<span id="petsex">${boast.sex }</span>)<span id="petage">${boast.age }</span>살</td></tr>
+							<tr><td id="petname" style="color: white; font-weight: bold; font-size: large;"><span>${boast.name.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</span><br>(<span id="petsex">${boast.sex }</span>)<span id="petage">${boast.age }</span>살</td></tr>
 							<tr><td id="like">♥좋아요 <span style="font-weight: bold">${boast.likeCount }</span>개</td></tr>
 						</table>
-						<div align="center">주인 : ${boast.writer }<br></div>
+						<div align="center">주인 : ${boast.writer.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }<br></div>
 						<div align="center">
 							<c:forEach items="${like }" var="like">
 								<c:if test="${like.boardIdx == boast.boardIdx}">

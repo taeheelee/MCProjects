@@ -37,7 +37,7 @@ nv.addGraph(function() {
 		myData.push({
 			//그래프를 그리기 위한 데이터 형식은 key, values이므로 형식에 맞게 데이터를 입력해줌
 		    values: weightList[i],
-		    key: idxList.idx[i]
+		    key: idxList.idx[i] // 범례에 표시할 이름.
 		  });
 	}
 		

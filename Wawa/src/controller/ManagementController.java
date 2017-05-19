@@ -54,6 +54,7 @@ public class ManagementController {
 			// System.out.println(p.get("idx"));
 			petIdxList.add((Integer) p.get("idx"));
 		}
+		
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("idx", petIdxList);
 		return params;
@@ -75,6 +76,10 @@ public class ManagementController {
 			
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("data", weightList); //강아지 idx로 받아 온 강아지 무게변화 기록
+		
+//		List<HashMap<String, Object>> petInfo = new ArrayList<HashMap<String, Object>>();
+//		petInfo = petinfoService.selectPetList(id);
+//		params.put("petinfo", petInfo);
 		return params;
 	}
 	
@@ -223,7 +228,7 @@ public class ManagementController {
 	      HashMap<String, Object> response = new HashMap<>();
 	      long diff1 = to1.getTime() - to.getTime(); // 오늘날짜에서 입력날짜빼기
 	      long diff2 = to.getTime() - birthday.getTime(); // 생일보다는 이후여야됨
-	      if(diff1 > 0 && diff2 > 0){
+	      if(diff1 >= 0 && diff2 >= 0){
 	         response.put("result", true);
 	      }else {
 	         response.put("result", false);
@@ -252,10 +257,8 @@ public class ManagementController {
 	      
 	      HashMap<String, Object> response = new HashMap<>();
 	      if(managementService.selectDate(model).size() != 0){
-	    	 System.out.println("중복");
 	         response.put("result", true);
 	      }else {
-	    	  System.out.println("중복아님");
 	         response.put("result", false);
 	      }
 	      return response;

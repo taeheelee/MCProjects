@@ -162,7 +162,7 @@ public class MedicalcareController {
 		else if(ch.equals("R")) gubun = 4;
 		
 		for(HashMap<String, Object> care : careList){
-			if(gubun == ((int)care.get("vaccinㄴeCode"))/100){ //앞자리같은지
+			if(gubun == ((int)care.get("vaccineCode"))/100){ //앞자리같은지
 				HashMap<String, Object> tmp = new HashMap<>();
 				tmp.put("idx", (int) care.get("idx"));
 				tmp.put("vaccineCode", (int) care.get("vaccineCode"));

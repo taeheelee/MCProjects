@@ -113,7 +113,7 @@ public class ManagementService implements IManagementService {
 	}
  
 	@Override
-	public List<Management> selectDate(Management model) {
+	public Management selectDate(Management model) {
 		// TODO Auto-generated method stub
 		return dao.selectDate(model);
 	}

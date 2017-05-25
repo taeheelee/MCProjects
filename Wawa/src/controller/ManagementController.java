@@ -252,7 +252,7 @@ public class ManagementController {
 	      model.setIdx(idx);
 	      
 	      HashMap<String, Object> response = new HashMap<>();
-	      if(managementService.selectDate(model).size() != 0){
+	      if(managementService.selectDate(model) != null){
 	         response.put("result", true);
 	      }else {
 	         response.put("result", false);

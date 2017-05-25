@@ -16,7 +16,7 @@ public interface IManagementService {
 	public List<Management> selectListByIdx(PetInfo model);
 	public int selectIdx(Management model);
 	public List<Management> selectAllHealth(int idx);
-	public List<Management> selectDate(Management model);
+	public Management selectDate(Management model);
 	public int selectLastIdx(int idx);
 	public double selectRecentWeight(Date date);
 	public Date selectRecentDate(int idx);

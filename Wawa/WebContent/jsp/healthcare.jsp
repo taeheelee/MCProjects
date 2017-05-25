@@ -269,6 +269,27 @@
 		callPetinfo(id, name);
 		callManageInfo(id, name);
 		
+		var id = '${id}';
+		var name = myPet;
+		$.ajax({
+			type : 'get',
+			url : 'selectPet.do',
+			data : "id=" + id + "&name=" + name,
+			dataType : "json",
+			success : function(data) {
+				if (data.pet != null) {
+					var activity = $("input[name=activity]:checked").val();
+					//몸무게 가져와서 뿌리기
+					var weight = data.pet.weight;
+					calculateCalories.innerHTML = Number(activity) * ((weight * 30) + 70);
+				} else {
+				}
+			},
+			error : function(data) {
+				alert("잠시 후 다시 시도해주세요.");
+			}
+		});
+		
 		$('#name').change(function() {
 			$('#petImg').attr('src', 'PetInfoImage/' + $('#name').val() + '.do');
 			$('tr:gt(1)', table).remove();
@@ -284,6 +305,27 @@
 			}
 			callPetinfo(id, name);
 			callManageInfo(id, name);
+			
+			var id = '${id}';
+			var name = myPet;
+			$.ajax({
+				type : 'get',
+				url : 'selectPet.do',
+				data : "id=" + id + "&name=" + name,
+				dataType : "json",
+				success : function(data) {
+					if (data.pet != null) {
+						var activity = $("input[name=activity]:checked").val();
+						//몸무게 가져와서 뿌리기
+						var weight = data.pet.weight;
+						calculateCalories.innerHTML = Number(activity) * ((weight * 30) + 70);
+					} else {
+					}
+				},
+				error : function(data) {
+					alert("잠시 후 다시 시도해주세요.");
+				}
+			});
 		});
 		
 		var calculate = document.getElementById('calculate');

@@ -265,9 +265,18 @@
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">나의펫 <b class="caret"></b></a>
 	                    <ul class="dropdown-menu">
-							<li><a href="myPetInfo.do?id=${sessionScope.id}" >나의 펫 정보</a></li>
-							<li><a href="healthcare.do?id=${sessionScope.id}" class="postLink">나의 펫 헬스케어</a></li>
-							<li><a href="medicalcareForm.do?id=${sessionScope.id}" class="postLink">나의 펫 메디컬케어</a></li>		
+	                    	<c:choose>
+	                    		<c:when test="${sessionScope.petName == null && sessionScope.id != null}">
+									<li><a href="addPetForm.do?id=${sessionScope.id}" onclick="alert('펫을 추가해주세요')">나의 펫 정보</a></li>
+									<li><a href="addPetForm.do?id=${sessionScope.id}" onclick="alert('펫을 추가해주세요')" class="postLink">나의 펫 헬스케어</a></li>
+									<li><a href="addPetForm.do?id=${sessionScope.id}" onclick="alert('펫을 추가해주세요')" class="postLink">나의 펫 메디컬케어</a></li>
+								</c:when>
+								<c:otherwise>
+									<li><a href="myPetInfo.do?id=${sessionScope.id}" >나의 펫 정보</a></li>
+									<li><a href="healthcare.do?id=${sessionScope.id}" class="postLink">나의 펫 헬스케어</a></li>
+									<li><a href="medicalcareForm.do?id=${sessionScope.id}" class="postLink">나의 펫 메디컬케어</a></li>
+								</c:otherwise>	
+							</c:choose>	
 
 	                    </ul>
 					</li>

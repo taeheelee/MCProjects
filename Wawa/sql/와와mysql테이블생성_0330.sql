@@ -8,6 +8,11 @@ phone varchar(30),
 adminCheck int,
 email varchar(30)
 );
+# alter table userinfo add question1 varchar(50);
+# alter table userinfo add answer1 varchar(50);
+# alter table userinfo add question2 varchar(50);
+# alter table userinfo add answer2 varchar(50);
+
 
 create table dogKind(
 kind varchar(30) primary key,

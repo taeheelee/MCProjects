@@ -101,13 +101,16 @@ public class MainController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "naverLogin.do")
-	public String naverLogin(HttpSession session, String id, String nickname, String email, String sex) {
+	public String naverLogin(HttpSession session, String id, String nickname, String email, String sex,
+			String question1, String answer1,
+			String question2, String answer2) {
 		String password = "123456";
 		String phone = "010-0000-0000";
 
 		int adminCheck = 0;
 		if (iMemberService.checkId(id)) {
-			int result = iMemberService.join(id, password, nickname, sex, phone, adminCheck, email);
+			int result = iMemberService.join(id, password, nickname, sex, phone, adminCheck, email,
+					question1, answer1, question2, answer2);
 		}
 
 		UserInfo userInfo = iMemberService.getMember(id);
@@ -154,8 +157,14 @@ public class MainController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "join.do")
 	public ModelAndView join(String id, String password, String nickname, String sex, String phone,
-			@RequestParam(defaultValue = "0") int adminCheck, String email, RedirectAttributes redirectAttr) {
-		int result = iMemberService.join(id, password, nickname, sex, phone, adminCheck, email);
+			@RequestParam(defaultValue = "0") int adminCheck, String email, 
+			String question1, String answer1,
+			String question2, String answer2,
+			RedirectAttributes redirectAttr) {
+		int result = iMemberService.join(id, password, nickname, sex, phone, adminCheck, email,
+				question1, answer1, question2, answer2);
+		System.out.println(question1);
+		System.out.println(question2);
 		if (result > 0) {
 			redirectAttr.addFlashAttribute("isJoin", "회원가입 완료");
 			RedirectView rv = new RedirectView("loginForm.do");
@@ -226,7 +235,8 @@ public class MainController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "userUpdate.do")
 	public ModelAndView userUpdate(String id, String password, String nickname, String sex, String phone, String email,
-			String newPassword, HttpSession session, RedirectAttributes redirectAttr) {
+			String newPassword, HttpSession session, RedirectAttributes redirectAttr,
+			String question1, String answer1, String question2, String answer2) {
 
 		UserInfo tmp = iMemberService.getMember(id);
 		UserInfo userInfo = new UserInfo();
@@ -239,6 +249,10 @@ public class MainController {
 			userInfo.setNickname(nickname);
 			userInfo.setPhone(phone);
 			userInfo.setSex(sex);
+			userInfo.setQuestion1(question1);
+			userInfo.setAnswer1(answer1);
+			userInfo.setQuestion2(question2);
+			userInfo.setAnswer2(answer2);
 			// 닉네임이 변경되었을지도 모르니 헤더에 있는 세션도 업데이트
 			session.setAttribute("name", userInfo.getNickname());
 			// 비밀번호를 변경하였는지 확인

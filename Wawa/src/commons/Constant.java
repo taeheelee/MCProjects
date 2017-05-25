@@ -11,6 +11,10 @@ public class Constant {
 		public static final String PHONE = "phone";
 		public static final String ADMINCHECK = "adminCheck";
 		public static final String EMAIL = "email";
+		public static final String QUESTION1 = "question1";
+		public static final String ANSWER1 = "answer1";
+		public static final String QUESTION2 = "question2"; 
+		public static final String ANSWER2 = "answer2";	
 	}
 	public class PetInfo{
 		public static final String IDX = "idx";

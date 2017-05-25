@@ -15,6 +15,17 @@
     
     <script type="text/javascript">
     	$(document).ready(function(){
+    		
+    		$('#select_question1').change(function() {
+    			var option_selected = $("#select_question1 option:selected").val();
+    			$('#question1').val(option_selected);
+    		});
+    		
+    		$('#select_question2').change(function() {
+    			var option_selected = $("#select_question2 option:selected").val();
+    			$('#question2').val(option_selected);
+    		});
+    		
     		if('${isJoin}' != '')
     			alert('${isJoin}');
     		//정규식
@@ -218,6 +229,40 @@
                                                 </label>
                                                 <input type="password" value="" placeholder="" id="confirmpassword" name="confirmpassword" class="input-text ">
                                             	<span id="cpwError"></span>
+                                            <br>
+                                           		<label class="" for="billing_first_name">비밀번호 찾기 질문<abbr title="required" class="required">*</abbr>
+                                                </label>
+                                                <label style="width:5px;height:20px;" class="" for="billing_first_name">1.<abbr title="required" class="required">*</abbr>
+                                                </label>
+                                            	<select id="select_question1" name="select_question1" style="width:350px;height:40px;" class="country_to_state country_select">
+													<option value="defaultValue">선택하세요</option>
+													<option value="1">가장 좋아했던 초등학교 선생님 성함은?</option>
+													<option value="2">가장 기억에 남는 장소는?</option>
+													<option value="3">자주 가는 식당이름은?</option>
+													<option value="4">가장 좋아하는 친구 이름은?</option>
+													<option value="5">가장 기억에 남는 애인 이름은?</option>
+													<option value="6">가장 좋아하는 음식은?</option>
+												</select>   
+												&nbsp;
+												&nbsp;
+                                            	<input type="hidden" name="question1" id="question1" value="">
+                                                <input id="answer1" name="answer1" style="width:450px;height:40px;" type="text" value="" placeholder="질문의 답을 입력하세요" class="input-text ">
+                                            <br>
+                                            	<label style="width:5px;height:20px;" class="" for="billing_first_name">2.<abbr title="required" class="required">*</abbr>
+                                                </label>
+                                            	<select id="select_question2" name="select_question2" style="width:350px;height:40px;" class="country_to_state country_select">
+													<option value="defaultValue">선택하세요</option>
+													<option value="1">가장 좋아했던 초등학교 선생님 성함은?</option>
+													<option value="2">가장 기억에 남는 장소는?</option>
+													<option value="3">자주 가는 식당이름은?</option>
+													<option value="4">가장 좋아하는 친구 이름은?</option>
+													<option value="5">가장 기억에 남는 애인 이름은?</option>
+													<option value="6">가장 좋아하는 음식은?</option>
+												</select>
+												&nbsp;
+												&nbsp;   
+                                            	<input type="hidden" name="question2" id="question2" value="">
+                                                <input id="answer2" name="answer2" style="width:450px;height:40px;" type="text" value="" placeholder="질문의 답을 입력하세요" class="input-text ">
                                             <br>
                                                 <label class="" for="billing_first_name">성별 <abbr title="required" class="required">*</abbr></label>
 	                                            <div id="payment">

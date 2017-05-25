@@ -14,7 +14,9 @@ public class MemberService implements IMemberService{
 	private IUserInfoDao dao;
 	@Override
 	public int join(String id, String password, String nickname,
-			String sex, String phone, int adminCheck, String email) {
+			String sex, String phone, int adminCheck, String email,
+			String question1, String answer1,
+			String question2, String answer2) {
 		// TODO Auto-generated method stub
 		UserInfo chk = dao.selectOneUserInfo(id);
 		if (chk == null){
@@ -26,6 +28,10 @@ public class MemberService implements IMemberService{
 			userinfo.put("phone", phone);
 			userinfo.put("adminCheck", adminCheck);
 			userinfo.put("email", email);
+			userinfo.put("question1", question1);
+			userinfo.put("answer1", answer1);
+			userinfo.put("question2", question2);
+			userinfo.put("answer2", answer2);
 			return dao.insertUserInfo(userinfo);
 		}else{
 			return 0;
@@ -43,6 +49,10 @@ public class MemberService implements IMemberService{
 		params.put(commons.Constant.UserInfo.PHONE, userInfo.getPhone());
 		params.put(commons.Constant.UserInfo.SEX, userInfo.getSex());
 		params.put(commons.Constant.UserInfo.EMAIL, userInfo.getEmail());
+		params.put(commons.Constant.UserInfo.QUESTION1, userInfo.getQuestion1());
+		params.put(commons.Constant.UserInfo.ANSWER1, userInfo.getAnswer1());
+		params.put(commons.Constant.UserInfo.QUESTION2, userInfo.getQuestion2());
+		params.put(commons.Constant.UserInfo.ANSWER2, userInfo.getAnswer2());
 		int result = dao.updateUserInfo(params);
 		if(result > 0)
 			return true;

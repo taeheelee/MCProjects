@@ -16,16 +16,6 @@
     <script type="text/javascript">
     	$(document).ready(function(){
     		
-    		$('#select_question1').change(function() {
-    			var option_selected = $("#select_question1 option:selected").val();
-    			$('#question1').val(option_selected);
-    		});
-    		
-    		$('#select_question2').change(function() {
-    			var option_selected = $("#select_question2 option:selected").val();
-    			$('#question2').val(option_selected);
-    		});
-    		
     		if('${isJoin}' != '')
     			alert('${isJoin}');
     		//정규식
@@ -38,11 +28,82 @@
 			var statusOfNickname = false;
 			var statusOfPassword = false;
 			var statusOfConfirmPassword = false;
+	
 			//이 두개는 필수정보가아니라 일단 제외
 			//var statusOfEmail = false;
 			//var statusOfPhoneNum = false;
 			var statusOfSex = false;
 			
+			var statusOfquestion1 = false;
+			var statusOfquestion2 = false;
+			var statusOfquestionEQ = false;
+			
+			$('#select_question1').change(function() {
+    			var option_selected = $("#select_question1 option:selected").val();
+    			
+    			if(option_selected != "default1"){
+    				$('#question1').val(option_selected);
+    				statusOfquestion1 = false;
+    			}
+    			if($('#select_question1').val() == $('#select_question2').val()){
+    				$("#select_question1").val("default1").attr("selected", "selected");	
+    				alert('서로 다른 질문을 선택해주세요');
+    				statusOfquestionEQ = false;
+    			}else {				
+	    			statusOfquestionEQ = true;
+    			}
+			});
+			
+    		$('#select_question2').change(function() {
+				var option_selected = $("#select_question2 option:selected").val();
+    			
+    			if(option_selected != "default2"){
+    				$('#question2').val(option_selected);
+    				statusOfquestion2 = false;
+    			}
+    			if($('#select_question1').val() == $('#select_question2').val()){
+    				$("#select_question2").val("default2").attr("selected", "selected");	
+    				alert('서로 다른 질문을 선택해주세요');
+    				statusOfquestion2 = false;
+    			}else {				
+	    			statusOfquestionEQ = true;
+    			}
+    		});
+    		
+    		$('#answer1').blur(function(){
+    			var flag = true;
+    			if($("#select_question1 option:selected").val() == "default1"){
+    				alert('질문을 먼저 선택해주세요');
+    				statusOfquestion1 = false;
+    				flag = false;
+    			}
+    			if($('#answer1').val() == ""){
+    				alert('답을 입력해주세요');
+    				statusOfquestion1 = false;
+    				flag = false;
+    			}
+    			if(flag){
+    				statusOfquestion1 = true;
+    			}
+    		});
+
+			$('#answer2').blur(function(){
+				var flag = true;
+				if($("#select_question2 option:selected").val() == "default2"){
+    				alert('질문을 먼저 선택해주세요');
+    				statusOfquestion2 = false;
+    				flag = false;
+    			}
+				if($('#answer2').val() == ""){
+    				alert('답을 입력해주세요');
+    				statusOfquestion2 = false;
+    				flag =  false;
+    			}
+				if(flag){
+					statusOfquestion2 = true;
+				}
+    		});
+    		
     		$('#id').blur(function(){
     			
     			if(!regId.test($('#id').val())){
@@ -150,7 +211,8 @@
 				statusOfSex = true;
 			})
   			$('#join').click(function() {
-  				if(statusOfId && statusOfNickname && statusOfConfirmPassword && statusOfPassword && statusOfSex){
+  				if(statusOfId && statusOfNickname && statusOfConfirmPassword && statusOfPassword && 
+  						statusOfSex && statusOfquestion1 && statusOfquestion2 && statusOfquestionEQ){
   					$('#join').attr('type','submit');
   				}else if(statusOfId == false){
   					alert('ID 오류입니다.');
@@ -167,6 +229,15 @@
   				}else if (statusOfSex == false){
   					alert('성별을 선택해주세요');
   					$('#sex').focus();
+  				}else if(statusOfquestion1 == false){
+  					alert('질문1을 입력해주세요');
+  					$('#question1').focus();
+  				}else if(statusOfquestion2 == false){
+  					alert('질문2을 입력해주세요');
+  					$('#question2').focus();
+  				}else if(statusOfquestionEQ == false){
+  					alert('서로 다른 질문을 선택해주세요');
+  					$('#question1').focus();
   				}
 			})
 
@@ -235,7 +306,7 @@
                                                 <label style="width:5px;height:20px;" class="" for="billing_first_name">1.<abbr title="required" class="required">*</abbr>
                                                 </label>
                                             	<select id="select_question1" name="select_question1" style="width:350px;height:40px;" class="country_to_state country_select">
-													<option value="defaultValue">선택하세요</option>
+													<option id="default1" value="default1">선택하세요</option>
 													<option value="1">가장 좋아했던 초등학교 선생님 성함은?</option>
 													<option value="2">가장 기억에 남는 장소는?</option>
 													<option value="3">자주 가는 식당이름은?</option>
@@ -251,7 +322,7 @@
                                             	<label style="width:5px;height:20px;" class="" for="billing_first_name">2.<abbr title="required" class="required">*</abbr>
                                                 </label>
                                             	<select id="select_question2" name="select_question2" style="width:350px;height:40px;" class="country_to_state country_select">
-													<option value="defaultValue">선택하세요</option>
+													<option id="default2" value="default2">선택하세요</option>
 													<option value="1">가장 좋아했던 초등학교 선생님 성함은?</option>
 													<option value="2">가장 기억에 남는 장소는?</option>
 													<option value="3">자주 가는 식당이름은?</option>

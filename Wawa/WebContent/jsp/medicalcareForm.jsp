@@ -343,6 +343,22 @@
 			}
 		});
 		
+		
+		$('#petImg').attr('src', 'PetInfoImage/' + $('#name').val() + '.do');
+		var name = $("#name option:selected").text();
+		myPet = name;
+		var id = '${id }';
+		if (name == ' 선택하세요 ') {
+			isPet = false;
+		} else {
+			isPet = true;
+		}
+		callPetinfo(id, name);
+		addShotday(1, 'D');
+		addShotday(2, 'C');
+		addShotday(3, 'K');
+		addShotday(4, 'R');
+		
 		$('#name').change(function() {
 			$('#petImg').attr('src', 'PetInfoImage/' + $('#name').val() + '.do');
 			var name = $("#name option:selected").text();
@@ -429,9 +445,15 @@
 								<tr class="cart_item">
 									<td colspan="2"><select
 										class="country_to_state country_select" name="name" id="name">
-											<option value="defaultValue">선택하세요</option>
 											<c:forEach items="${list }" var="petinfo">
-												<option value="${petinfo.fileId }">${petinfo.name }</option>
+												<c:choose>
+													<c:when test="${petinfo.mainPet == 1 }">
+														<option value="${petinfo.fileId }" selected="selected">${petinfo.name }</option>
+													</c:when>
+													<c:otherwise>
+														<option value="${petinfo.fileId }">${petinfo.name }</option>
+													</c:otherwise>
+												</c:choose>
 											</c:forEach>
 											<input type="hidden" id="selectedPet" val="">
 									</select></td>

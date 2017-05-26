@@ -30,13 +30,16 @@
 			var statusOfConfirmPassword = false;
 	
 			//이 두개는 필수정보가아니라 일단 제외
-			//var statusOfEmail = false;
-			//var statusOfPhoneNum = false;
+			
 			var statusOfSex = false;
 			
 			var statusOfquestion1 = false;
 			var statusOfquestion2 = false;
 			var statusOfquestionEQ = false;
+			
+			var statusOfEmail = false;
+			var statusOfPhoneNum = false;
+			var statusOfAddtion = false;
 			
 			$('#select_question1').change(function() {
     			var option_selected = $("#select_question1 option:selected").val();
@@ -191,28 +194,77 @@
 			};
   			
   			$('#phoneNum').blur(function(){
-  				if(!regPhoneNum.test($('#phoneNum').val())){
+  				var phonenum = $('#phoneNum').val();
+  				if(!regPhoneNum.test(phonenum)){
   					//alert('전화번호가 유효하지 않습니다.');	
   					$('#pnumError').html('<font color="red">전화번호 오류 (ex) 000-0000-0000)</font>');
   				}else {
   					$('#pnumError').html('<font color="green">사용가능</font>');
+  					 $.ajax({
+  						url : "phonenumCheck.do",
+  						type : "GET",
+  						data : 'phone=' + phonenum,
+  						dataType : 'json',
+  						success : function (data){
+  							if(data.result){
+  								$('#pnumError').html('<font color="green">사용가능</font>');
+  								statusOfPhoneNum = true;
+  							}
+  							else{
+  								$('#pnumError').html('<font color="red">중복</font>');
+  								statusOfPhoneNum = false;
+  							}
+  						},
+  						error : function(){
+  							statusOfPhoneNum = false;
+  							alert('에러발생');
+  						}
+  					}); 
   				}
   			});
   			
   			$('#email').blur(function(){
-  				if(!regEmail.test($('#email').val())){
+  				var email = $('#email').val();
+  				if(!regEmail.test(email)){
   					//alert('이메일 주소가 유효하지 않습니다.');	
   					$('#emailError').html('<font color="red">이메일 오류 (ex) abc@naver.com)</font>');
   				}else {
   					$('#emailError').html('<font color="green">사용가능</font>');
+  					 $.ajax({
+  						url : "emailCheck.do",
+  						type : "GET",
+  						data : 'email=' + email,
+  						dataType : 'json',
+  						success : function (data){
+  							if(data.result){
+  								$('#emailError').html('<font color="green">사용가능</font>');
+  								statusOfEmail = true;
+  							}
+  							else{
+  								$('#emailError').html('<font color="red">중복</font>');
+  								statusOfEmail = false;
+  							}
+  						},
+  						error : function(){
+  							statusOfEmail = false;
+  							alert('에러발생');
+  						}
+  					}); 
   				}
   			});
+  			
   			$('.input-radio').click(function() {
 				statusOfSex = true;
-			})
+			});
+			
   			$('#join').click(function() {
+  				if(statusOfEmail == true || statusOfPhoneNum == true){
+  					statusOfAddtion = true;
+  				}
+  				
   				if(statusOfId && statusOfNickname && statusOfConfirmPassword && statusOfPassword && 
-  						statusOfSex && statusOfquestion1 && statusOfquestion2 && statusOfquestionEQ){
+  						statusOfSex && statusOfquestion1 && statusOfquestion2 && statusOfquestionEQ
+  						&& statusOfAddtion){
   					$('#join').attr('type','submit');
   				}else if(statusOfId == false){
   					alert('ID 오류입니다.');
@@ -238,6 +290,9 @@
   				}else if(statusOfquestionEQ == false){
   					alert('서로 다른 질문을 선택해주세요');
   					$('#question1').focus();
+  				}else if(statusOfAddtion == false){
+  					alert('이메일이나 폰번호 중 하나는 필수입니다');
+  					$('#phoneNum').focus();
   				}
 			})
 
@@ -275,7 +330,8 @@
                                     <div class="col-3">
                                     <h2 class="sidebar-title">회원 정보 입력</h2>
                                         <div class="woocommerce-billing-fields">
-			                            <form  action="join.do" class="checkout" method="post" name="checkout">
+			                            <form  class="checkout" method="post" name="checkout">
+                                            <br>   
                                                 <label class="" for="billing_first_name">ID<abbr title="required" class="required" autofocus>*</abbr>
                                                 </label>
                                                 <input type="text" value="" placeholder="알파벳 소문자, 숫자를 혼합하여 4~12자리" 

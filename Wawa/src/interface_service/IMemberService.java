@@ -13,5 +13,7 @@ public interface IMemberService {
 	public UserInfo getMember(String id);
 	public boolean checkId(String id);
 	public boolean nicknameCheck(String nickname);
+	public boolean phonenumCheck(String phone);
+	public boolean emailCheck(String email);
 	public int adminCheck(String id);
 }

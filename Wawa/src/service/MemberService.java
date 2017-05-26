@@ -109,9 +109,28 @@ public class MemberService implements IMemberService{
 	}
 
 	@Override
+	public boolean phonenumCheck(String phone) {
+		// TODO Auto-generated method stub
+		if(dao.phonenumCheck(phone) == null)
+			return true;
+		else 
+			return false;
+	}
+	
+	@Override
+	public boolean emailCheck(String email) {
+		// TODO Auto-generated method stub
+		if(dao.emailCheck(email) == null)
+			return true;
+		else 
+			return false;
+	}
+
+	@Override
 	public int adminCheck(String id) {
 		// TODO Auto-generated method stub
 		return dao.adminCheck(id);
 	}
+
 
 }

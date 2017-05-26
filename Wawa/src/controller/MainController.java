@@ -43,13 +43,20 @@ public class MainController {
 	}
 
 	@RequestMapping("findId.do")
-	public String findId() {
-
+	public String findId(String inputName, 
+			String question1, String answer1,
+			String question2, String answer2) {
+		
+		
 		return "findId.tiles";
 	}
+	
 	@RequestMapping("findPass.do")
-	public String findPass() {
-
+	public String findPass(String inputName, String inputId,
+			String question1, String answer1,
+			String question2, String answer2) {
+		
+			
 		return "findPass.tiles";
 	}
 	
@@ -182,6 +189,20 @@ public class MainController {
 	public @ResponseBody HashMap<String, Object> idCheck(HttpServletResponse resp, String id) {
 		HashMap<String, Object> response = new HashMap<>();
 		response.put("result", iMemberService.checkId(id));
+		return response;
+	}
+	
+	@RequestMapping("emailCheck.do")
+	public @ResponseBody HashMap<String, Object> emailCheck(HttpServletResponse resp, String email) {
+		HashMap<String, Object> response = new HashMap<>();
+		response.put("result", iMemberService.emailCheck(email));
+		return response;
+	}
+	
+	@RequestMapping("phonenumCheck.do")
+	public @ResponseBody HashMap<String, Object> phonenumCheck(HttpServletResponse resp, String phone) {
+		HashMap<String, Object> response = new HashMap<>();
+		response.put("result", iMemberService.phonenumCheck(phone));
 		return response;
 	}
 	

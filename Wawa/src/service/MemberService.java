@@ -132,5 +132,38 @@ public class MemberService implements IMemberService{
 		return dao.adminCheck(id);
 	}
 
+	@Override
+	public String selectByEmailAndName(String nickname, String email) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> userinfo = new HashMap<>();
+		userinfo.put("nickname", nickname);
+		userinfo.put("email", email);
+		return (String) dao.selectByEmailAndName(userinfo);
+	}
+
+	@Override
+	public String selectByPhoneAndName(String nickname, String phone) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> userinfo = new HashMap<>();
+		userinfo.put("nickname", nickname);
+		userinfo.put("phone", phone);
+		return (String) dao.selectByPhoneAndName(userinfo);
+	}
+
+	@Override
+	public boolean Questioncheck(String question1, String answer1, String question2, String answer2) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> questions = new HashMap<>();
+		questions.put("question1", question1);
+		questions.put("answer1", answer1);
+		questions.put("question2", question2);
+		questions.put("answer2", answer2);
+		if(dao.Questioncheck(questions) == null){
+			//그런 문제가 없는거네
+			return false;
+		}else {
+			return true;
+		}
+	}
 
 }

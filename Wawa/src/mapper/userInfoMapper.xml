@@ -44,5 +44,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="emailCheck" parameterType="String" resultType="String">
 		select email from userinfo where email=#{email}
 	</select>	
-
+	<select id="selectByEmailAndName" parameterType="java.util.HashMap" resultType="String">
+		select id from userinfo where nickname=#{nickname} and email=#{email}
+	</select>
+	<select id="selectByPhoneAndName" parameterType="java.util.HashMap" resultType="String">
+		select id from userinfo where nickname=#{nickname} and phone=#{phone}
+	</select>
+	<select id="Questioncheck" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select * from userinfo where question1=#{question1} and answer1=#{answer1}
+		and question2=#{question2} and answer2=#{answer2}
+	</select>
 </mapper>

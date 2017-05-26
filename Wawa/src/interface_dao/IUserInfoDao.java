@@ -17,4 +17,7 @@ public interface IUserInfoDao {
 	public String phonenumCheck(String phone);
 	public String emailCheck(String email);
 	public int adminCheck(String id);
+	public String selectByEmailAndName(HashMap<String, Object> params);
+	public String selectByPhoneAndName(HashMap<String, Object> params);
+	public HashMap<String, Object> Questioncheck(HashMap<String, Object> params);
 }

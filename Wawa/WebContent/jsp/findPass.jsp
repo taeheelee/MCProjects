@@ -15,11 +15,6 @@
 
 	$(document).ready(function(){
 		
-		var regId =  /^.*(?=^.{4,12}$)(?=.*[a-z]).*$/;
-		var regPassword = /^.*(?=^.{6,20}$)(?=.*\d)(?=.*[a-zA-Z])(?=.*[*!@#$%^&+=]).*$/;
-		var regEmail = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-		var regPhoneNum = /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/;
-		
 		var statusOfQuestion1 = false;
 		var statusOfQuestion2 = false;
 		var statusOfAddtion = false;
@@ -27,6 +22,13 @@
 		$('#select_addtion').change(function() {
 			var option_selected = $("#select_addtion option:selected").val();
 			$('#question1').val(option_selected);
+			if(option_selected == 1){
+				$('#addQuestion').val('1');
+				$('#addAnswer').attr('placeholder', 'abc@naver.com');
+			}else {
+				$('#addQuestion').val('2');
+				$('#addAnswer').attr('placeholder', '010-0000-0000');
+			}
 			statusOfAddtion = false;
 		});
 		
@@ -145,7 +147,7 @@
 			                            	<table>
 			                            		<tr>
 			                            			<td width="100px" height="20px">	
-			                            				<label style="width:50px;height:20px;" class="" for="billing_first_name">이름: <abbr title="required" class="required">*</abbr>
+			                            				<label style="width:50px;height:20px;" class="" for="billing_first_name">닉네임: <abbr title="required" class="required">*</abbr>
                                                 		</label>
                                                 	</td>
 			                            			<td> 

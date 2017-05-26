@@ -1,5 +1,7 @@
 package interface_service;
 
+import java.util.HashMap;
+
 import model.UserInfo;
 
 public interface IMemberService {
@@ -16,4 +18,7 @@ public interface IMemberService {
 	public boolean phonenumCheck(String phone);
 	public boolean emailCheck(String email);
 	public int adminCheck(String id);
+	public String selectByEmailAndName(String nickname, String email);
+	public String selectByPhoneAndName(String nickname, String phone);
+	public boolean Questioncheck(String question1, String answer1, String question2, String answer2);
 }

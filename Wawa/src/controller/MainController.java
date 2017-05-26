@@ -42,20 +42,43 @@ public class MainController {
 		return "login.tiles";
 	}
 
+	//에이작스 요청으로
 	@RequestMapping("findId.do")
-	public String findId(String inputName, 
+	public String findId(String inputName,
+			String addQuestion, String addAnswer,
 			String question1, String answer1,
 			String question2, String answer2) {
+		String id = null;
+		if(addQuestion.equals(1)){
+			id = iMemberService.selectByEmailAndName(inputName, addAnswer);
+		}else {
+			id = iMemberService.selectByPhoneAndName(inputName, addAnswer);
+		}
 		
+		if()
 		
 		return "findId.tiles";
 	}
 	
 	@RequestMapping("findPass.do")
 	public String findPass(String inputName, String inputId,
+			String addQuestion, String addAnswer,
 			String question1, String answer1,
 			String question2, String answer2) {
+		String id = null;
+		//아이디가 유효한지 먼저 검사
+		// 아이디에 맞는 정보 불러오기
+		if(iMemberService.checkId(inputId)){
+			// 아이디 존재 x
+		}else {
+			//아이디 존재! -> 이거여야대
+		}
 		
+		if(addQuestion.equals(1)){
+			id = iMemberService.
+		}else {
+			
+		}
 			
 		return "findPass.tiles";
 	}

@@ -172,6 +172,7 @@ public class MemberService implements IMemberService{
 			num = 6;
 			break;
 		}
+		System.out.println(num);
 		return num;
 	}
 	
@@ -181,15 +182,15 @@ public class MemberService implements IMemberService{
 		// TODO Auto-generated method stub
 		UserInfo userinfo = dao.selectOneUserInfo(id);
 		
-		int q1 = getIntFromQuestion(question1);
-		int q2 = getIntFromQuestion(question2);
+		System.out.println("서비스로 들어온 첫번째질문:" + question1);
+		System.out.println("서비스로 들어온 두번째질문:" + question2);
 		
-		System.out.println(q1);
-		System.out.println(q2);
+		int q1 = getIntFromQuestion(userinfo.getQuestion1());
+		int q2 = getIntFromQuestion(userinfo.getQuestion2());
 		
-		if(Integer.parseInt(userinfo.getQuestion1()) == q1
+		if(Integer.parseInt(question1) == q1
 				&& userinfo.getAnswer1().equals(answer1)
-				&& Integer.parseInt(userinfo.getQuestion2()) == q2
+				&& Integer.parseInt(question2) == q2
 				&& userinfo.getAnswer2().equals(answer2)){
 			return true;
 		}else {

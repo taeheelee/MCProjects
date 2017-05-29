@@ -19,6 +19,13 @@
 		var statusOfQuestion2 = false;
 		var statusOfAddtion = false;
 		
+		var msg = '${msg}';
+		if(msg == ''){
+			
+		}else {
+			alert(msg);
+		}
+		
 		$('#select_addtion').change(function() {
 			var option_selected = $("#select_addtion option:selected").val();
 			$('#question1').val(option_selected);
@@ -52,47 +59,50 @@
 		$('#select_question1').change(function() {
 			var option_selected = $("#select_question1 option:selected").val();
 			$('#question1').val(option_selected);
-			statusOfQuestion1 = false;
+			if(option_selected == "default1")
+				statusOfQuestion1 = false;
+			else 
+				statusOfQuestion1 = true;
 		});
 		
 		$('#select_question2').change(function() {
 			var option_selected = $("#select_question2 option:selected").val();
 			$('#question2').val(option_selected);
-			statusOfQuestion2 = false;
+			if(option_selected == "default2")
+				statusOfQuestion2 = false;
+			else 
+				statusOfQuestion2 = true;
 		});
 		
+		var flag1 = true;
 		$('#answer1').blur(function(){
-			var flag = true;
-			if($("#select_question1 option:selected").val() == "default1"){
+			if(statusOfQuestion1 == false){
 				alert('질문을 먼저 선택해주세요');
-				statusOfquestion1 = false;
-				flag = false;
-			}
-			if($('#answer1').val() == ""){
+				flag1 = false;
+			}else if($('#answer1').val() == ""){
 				alert('답을 입력해주세요');
-				statusOfquestion1 = false;
-				flag = false;
-			}
-			if(flag){
-				statusOfquestion1 = true;
+				flag1 = false;
+			}else {
+				flag1 = true;
 			}
 		});
 
+		var flag2 = true;
 		$('#answer2').blur(function(){
-			var flag = true;
-			if($("#select_question2 option:selected").val() == "default2"){
+			if(statusOfQuestion2 == false){
 				alert('질문을 먼저 선택해주세요');
-				statusOfquestion2 = false;
-				flag = false;
-			}
-			if($('#answer2').val() == ""){
+				flag2 = false;
+			}else if($('#answer2').val() == ""){
 				alert('답을 입력해주세요');
-				statusOfquestion2 = false;
-				flag =  false;
+				flag2 = false;
+			}else {
+				flag2 = true;
 			}
-			if(flag){
-				statusOfquestion2 = true;
-			}
+			
+		});
+		
+		$('#checkId').click(function(){
+			
 		});
 		
 		$('#findPass').click(function() {
@@ -101,10 +111,10 @@
 			}else if(statusOfAddtion == false){
 				alert('본인인증은 필수입니다');
 				$('#addQuestion').focus();
-			}else if(statusOfQuestion1 == false){
+			}else if(statusOfQuestion1 == false || flag1 == false){
 				alert('질문1을 입력해주세요');
 				$('#question1').focus();
-			}else if(statusOfQuestion2 == false){
+			}else if(statusOfQuestion2 == false || flag2 == false){
 				alert('질문2을 입력해주세요');
 				$('#question2').focus();
 			}
@@ -147,7 +157,7 @@
 			                            	<table>
 			                            		<tr>
 			                            			<td width="100px" height="20px">	
-			                            				<label style="width:50px;height:20px;" class="" for="billing_first_name">닉네임: <abbr title="required" class="required">*</abbr>
+			                            				<label style="width:100px;height:20px;" class="" for="billing_first_name">닉네임: <abbr title="required" class="required">*</abbr>
                                                 		</label>
                                                 	</td>
 			                            			<td> 
@@ -156,11 +166,12 @@
 			                            		</tr>
 			                            		<tr>
 			                            			<td width="100px" height="20px">	
-			                            				<label style="width:50px;height:20px;" class="" for="billing_first_name">아이디: <abbr title="required" class="required">*</abbr>
+			                            				<label style="width:100px;height:20px;" class="" for="billing_first_name">아이디: <abbr title="required" class="required">*</abbr>
      		                                           </label>
                                                 	</td>
 			                            			<td> 
 			                            				  <input id="inputId" name="inputId" style="width:200px;height:40px;" type="text" value="" placeholder="" class="input-text ">
+			                            				  &nbsp; <input type="button" data-value="Place order" value="확인" id="checkId" class="button alt">
 			                            			</td>
 			                            		</tr>
 			                            	</table>

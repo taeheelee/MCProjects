@@ -193,17 +193,16 @@
 	  				}
 			};
   			
-  			$('#phoneNum').blur(function(){
-  				var phonenum = $('#phoneNum').val();
-  				if(!regPhoneNum.test(phonenum)){
+  			$('#phone').blur(function(){
+  				var phone = $('#phone').val();
+  				if(!regPhoneNum.test(phone)){
   					//alert('전화번호가 유효하지 않습니다.');	
   					$('#pnumError').html('<font color="red">전화번호 오류 (ex) 000-0000-0000)</font>');
   				}else {
-  					$('#pnumError').html('<font color="green">사용가능</font>');
-  					 $.ajax({
+  					$.ajax({
   						url : "phonenumCheck.do",
   						type : "GET",
-  						data : 'phone=' + phonenum,
+  						data : 'phone=' + phone,
   						dataType : 'json',
   						success : function (data){
   							if(data.result){
@@ -216,7 +215,6 @@
   							}
   						},
   						error : function(){
-  							statusOfPhoneNum = false;
   							alert('에러발생');
   						}
   					}); 
@@ -229,8 +227,7 @@
   					//alert('이메일 주소가 유효하지 않습니다.');	
   					$('#emailError').html('<font color="red">이메일 오류 (ex) abc@naver.com)</font>');
   				}else {
-  					$('#emailError').html('<font color="green">사용가능</font>');
-  					 $.ajax({
+  					$.ajax({
   						url : "emailCheck.do",
   						type : "GET",
   						data : 'email=' + email,
@@ -246,7 +243,6 @@
   							}
   						},
   						error : function(){
-  							statusOfEmail = false;
   							alert('에러발생');
   						}
   					}); 
@@ -330,7 +326,7 @@
                                     <div class="col-3">
                                     <h2 class="sidebar-title">회원 정보 입력</h2>
                                         <div class="woocommerce-billing-fields">
-			                            <form  class="checkout" method="post" name="checkout">
+			                            <form action="join.do" class="checkout" method="post" name="checkout">
                                             <br>   
                                                 <label class="" for="billing_first_name">ID<abbr title="required" class="required" autofocus>*</abbr>
                                                 </label>
@@ -341,7 +337,7 @@
                                             <br>
                                                <label class="" for="billing_first_name">닉네임<abbr title="required" class="required">*</abbr>
                                                 </label>
-                                                <input type="text" id="nick" name="nickname" class="input-text ">
+                                                <input type="text" id="nick" name="nick" class="input-text ">
                                                 <br>
                                                 <span id="nickError"></span>
                                             <br>
@@ -403,7 +399,7 @@
 												</div>
                                             <br>
 											    <label class="" for="billing_state">연락처</label>
-                                                <input type="text" id="phoneNum" name="phone" placeholder="000-0000-0000" value="" class="input-text ">
+                                                <input type="text" id="phone" name="phone" placeholder="000-0000-0000" value="" class="input-text ">
                                                 <br>
                                                 <span id="pnumError"></span>
                                             <br>

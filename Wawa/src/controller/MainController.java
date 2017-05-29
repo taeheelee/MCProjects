@@ -42,14 +42,31 @@ public class MainController {
 		return "login.tiles";
 	}
 
+	@RequestMapping("findIdForm.do")
+	public ModelAndView findIdForm(@RequestParam(defaultValue="") String msg){
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msg", msg);
+		mav.setViewName("findIdForm.tiles");
+		return mav;
+	}
+	
+	@RequestMapping("findPassForm.do")
+	public ModelAndView findPassForm(@RequestParam(defaultValue="") String msg){
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("msg", msg);
+		mav.setViewName("findPassForm.tiles");
+		return mav;
+	}
+	
 	//에이작스 요청으로
 	@RequestMapping("findId.do")
-	public String findId(String inputName,
+	public ModelAndView findId(String inputName,
 			String addQuestion, String addAnswer,
 			String question1, String answer1,
 			String question2, String answer2) {
 		int flag1 = 0; // 0 이 정상
 		int flag2 = 0;
+		
 		String id = null;
 		if(addQuestion.equals(1)){
 			id = iMemberService.selectByEmailAndName(inputName, addAnswer);
@@ -64,24 +81,29 @@ public class MainController {
 			}
 		}
 		
-		if(iMemberService.Questioncheck(question1, answer1, question2, answer2, id)){
-			flag2 = 0;
-		}else {
-			flag2 = 1;
+		if(flag1 == 0){
+			if(iMemberService.Questioncheck(question1, answer1, question2, answer2, id)){
+				flag2 = 0;
+			}else {
+				flag2 = 1;
+			}			
 		}
 		
-		if(flag1 == 0 && flag2 == 0){			
-			return "login.tiles";
+		ModelAndView mav = new ModelAndView();
+		if(flag1 == 0 && flag2 == 0){
+			mav.setViewName("login.tiles");
+		}else {
+			mav.addObject("msg", "회원정보가 없습니다");
+			mav.setViewName("findIdForm.tiles");
 		}
-		else return "findId.tiles";
+		return mav;
 	}
 	
 	@RequestMapping("findPass.do")
-	public String findPass(String inputName, String inputId,
+	public ModelAndView findPass(String inputName, String inputId,
 			String addQuestion, String addAnswer,
 			String question1, String answer1,
 			String question2, String answer2) {
-		String id = null;
 		//아이디가 유효한지 먼저 검사
 		// 아이디에 맞는 정보 불러오기
 		int flag1 = 0;
@@ -95,29 +117,37 @@ public class MainController {
 			//아이디 존재! -> 이거여야대
 			flag1 = 0;
 		}
-		
-		if(addQuestion.equals(1)){
-			id = iMemberService.selectByEmailAndName(inputName, addAnswer);
-			if(id == null){
-				flag2 = 1;
+		if(flag1 == 0){
+			UserInfo userinfo = iMemberService.getMember(inputId);
+			if(addQuestion.equals(1)){
+				if(inputId.equals(iMemberService.selectByEmailAndName(inputName, addAnswer))){
+					flag2 = 0;
+				}else {
+					flag2 = 1;
+				}
+			}else if(addQuestion.equals(2)){
+				if(inputId.equals(iMemberService.selectByPhoneAndName(inputName, addAnswer))){
+					flag2 = 0;
+				}else {
+					flag2 = 1;
+				}
 			}
-		}else {
-			id = iMemberService.selectByPhoneAndName(inputName, addAnswer);
-			if(id == null){
-				flag2 = 1;
+			
+			if(iMemberService.Questioncheck(question1, answer1, question2, answer2, inputId)){
+				flag3 = 0;
+			}else {
+				flag3 = 1;
 			}
 		}
 		
-		if(iMemberService.Questioncheck(question1, answer1, question2, answer2, id)){
-			flag3 = 0;
-		}else {
-			flag3 = 1;
-		}
-		
+		ModelAndView mav = new ModelAndView();
 		if(flag1 == 0 && flag2 == 0 && flag3 == 0){
-			return "login.tiles";
+			mav.setViewName("login.tiles");
+			return mav;
 		}else {
-			return "findPass.tiles";			
+			mav.addObject("msg", "회원정보가 없습니다");
+			mav.setViewName("findPassForm.tiles");
+			return mav;			
 		}
 	}
 	
@@ -224,15 +254,14 @@ public class MainController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "join.do")
-	public ModelAndView join(String id, String password, String nickname, String sex, String phone,
-			@RequestParam(defaultValue = "0") int adminCheck, String email, 
+	public ModelAndView join(String id, String nick, String password, String sex,
+			@RequestParam(defaultValue = "0") int adminCheck,
+			String phone, String email,
 			String question1, String answer1,
 			String question2, String answer2,
 			RedirectAttributes redirectAttr) {
-		int result = iMemberService.join(id, password, nickname, sex, phone, adminCheck, email,
+		int result = iMemberService.join(id, password, nick, sex, phone, adminCheck, email,
 				question1, answer1, question2, answer2);
-		System.out.println(question1);
-		System.out.println(question2);
 		if (result > 0) {
 			redirectAttr.addFlashAttribute("isJoin", "회원가입 완료");
 			RedirectView rv = new RedirectView("loginForm.do");

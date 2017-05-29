@@ -28,11 +28,11 @@
 		});
 
 		$('#find_id').click(function(){
-			location.href='findId.do'; 
+			location.href='findIdForm.do'; 
 		});
 		
 		$('#find_pass').click(function(){
-			location.href='findPass.do'; 
+			location.href='findPassForm.do'; 
 		});
 		
 	});

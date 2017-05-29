@@ -52,6 +52,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id="Questioncheck" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		select * from userinfo where question1=#{question1} and answer1=#{answer1}
-		and question2=#{question2} and answer2=#{answer2}
+		and question2=#{question2} and answer2=#{answer2} and id=#{id}
 	</select>
 </mapper>

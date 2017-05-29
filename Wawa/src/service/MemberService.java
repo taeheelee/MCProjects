@@ -150,19 +150,50 @@ public class MemberService implements IMemberService{
 		return (String) dao.selectByPhoneAndName(userinfo);
 	}
 
+	public int getIntFromQuestion(String str){
+		int num = 0;
+		switch (str) {
+		case "가장 좋아했던 초등학교 선생님 성함은?":
+			num = 1;
+			break;
+		case "가장 기억에 남는 장소는?":
+			num = 2;
+			break;
+		case "자주 가는 식당이름은?":
+			num = 3;
+			break;
+		case "가장 좋아하는 친구 이름은?":
+			num = 4;
+			break;
+		case "가장 기억에 남는 애인 이름은?":
+			num = 5;
+			break;
+		case "가장 좋아하는 음식은?":
+			num = 6;
+			break;
+		}
+		return num;
+	}
+	
 	@Override
-	public boolean Questioncheck(String question1, String answer1, String question2, String answer2) {
+	public boolean Questioncheck(String question1, String answer1, 
+			String question2, String answer2, String id) {
 		// TODO Auto-generated method stub
-		HashMap<String, Object> questions = new HashMap<>();
-		questions.put("question1", question1);
-		questions.put("answer1", answer1);
-		questions.put("question2", question2);
-		questions.put("answer2", answer2);
-		if(dao.Questioncheck(questions) == null){
-			//그런 문제가 없는거네
-			return false;
-		}else {
+		UserInfo userinfo = dao.selectOneUserInfo(id);
+		
+		int q1 = getIntFromQuestion(question1);
+		int q2 = getIntFromQuestion(question2);
+		
+		System.out.println(q1);
+		System.out.println(q2);
+		
+		if(Integer.parseInt(userinfo.getQuestion1()) == q1
+				&& userinfo.getAnswer1().equals(answer1)
+				&& Integer.parseInt(userinfo.getQuestion2()) == q2
+				&& userinfo.getAnswer2().equals(answer2)){
 			return true;
+		}else {
+			return false;
 		}
 	}
 

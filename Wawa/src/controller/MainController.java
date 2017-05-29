@@ -48,16 +48,32 @@ public class MainController {
 			String addQuestion, String addAnswer,
 			String question1, String answer1,
 			String question2, String answer2) {
+		int flag1 = 0; // 0 이 정상
+		int flag2 = 0;
 		String id = null;
 		if(addQuestion.equals(1)){
 			id = iMemberService.selectByEmailAndName(inputName, addAnswer);
+			if(id == null){
+				// 아이디 없으면 끝이지뭐
+				flag1 = 1; // 아이디 찾기 실패
+			}
 		}else {
 			id = iMemberService.selectByPhoneAndName(inputName, addAnswer);
+			if(id == null){
+				flag1 = 1;
+			}
 		}
 		
-		if()
+		if(iMemberService.Questioncheck(question1, answer1, question2, answer2, id)){
+			flag2 = 0;
+		}else {
+			flag2 = 1;
+		}
 		
-		return "findId.tiles";
+		if(flag1 == 0 && flag2 == 0){			
+			return "login.tiles";
+		}
+		else return "findId.tiles";
 	}
 	
 	@RequestMapping("findPass.do")
@@ -68,19 +84,41 @@ public class MainController {
 		String id = null;
 		//아이디가 유효한지 먼저 검사
 		// 아이디에 맞는 정보 불러오기
+		int flag1 = 0;
+		int flag2 = 0;
+		int flag3 = 0;
+		
 		if(iMemberService.checkId(inputId)){
 			// 아이디 존재 x
+			flag1 = 1;
 		}else {
 			//아이디 존재! -> 이거여야대
+			flag1 = 0;
 		}
 		
 		if(addQuestion.equals(1)){
-			id = iMemberService.
+			id = iMemberService.selectByEmailAndName(inputName, addAnswer);
+			if(id == null){
+				flag2 = 1;
+			}
 		}else {
-			
+			id = iMemberService.selectByPhoneAndName(inputName, addAnswer);
+			if(id == null){
+				flag2 = 1;
+			}
 		}
-			
-		return "findPass.tiles";
+		
+		if(iMemberService.Questioncheck(question1, answer1, question2, answer2, id)){
+			flag3 = 0;
+		}else {
+			flag3 = 1;
+		}
+		
+		if(flag1 == 0 && flag2 == 0 && flag3 == 0){
+			return "login.tiles";
+		}else {
+			return "findPass.tiles";			
+		}
 	}
 	
 	/*@RequestMapping("findPass.do")

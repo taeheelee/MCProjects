@@ -65,55 +65,17 @@ public class MainController {
 	}
 	
 	@RequestMapping("findPass.do")
-	public ModelAndView findPass(String inputName, String inputId,
-			String addQuestion, String addAnswer,
-			String question1, String answer1,
-			String question2, String answer2) {
-		//아이디가 유효한지 먼저 검사
-		// 아이디에 맞는 정보 불러오기
-		int flag1 = 0;
-		int flag2 = 0;
-		int flag3 = 0;
-		
-		if(iMemberService.checkId(inputId)){
-			// 아이디 존재 x
-			flag1 = 1;
-		}else {
-			//아이디 존재! -> 이거여야대
-			flag1 = 0;
-		}
-		if(flag1 == 0){
-			UserInfo userinfo = iMemberService.getMember(inputId);
-			if(addQuestion.equals(1)){
-				if(inputId.equals(iMemberService.selectByEmailAndName(inputName, addAnswer))){
-					flag2 = 0;
-				}else {
-					flag2 = 1;
-				}
-			}else if(addQuestion.equals(2)){
-				if(inputId.equals(iMemberService.selectByPhoneAndName(inputName, addAnswer))){
-					flag2 = 0;
-				}else {
-					flag2 = 1;
-				}
-			}
-			
-			if(iMemberService.Questioncheck(question1, answer1, question2, answer2, inputId)){
-				flag3 = 0;
-			}else {
-				flag3 = 1;
-			}
-		}
-		
+	public String findPass(String inputPass, String id) {
+		iMemberService.updatePass(id, inputPass);
+		return "redirect:loginForm.do";
+	}
+	
+	@RequestMapping("newPasswordForm.do")
+	public ModelAndView newPasswordForm(String myId){
 		ModelAndView mav = new ModelAndView();
-		if(flag1 == 0 && flag2 == 0 && flag3 == 0){
-			mav.setViewName("login.tiles");
-			return mav;
-		}else {
-			mav.addObject("msg", "회원정보가 없습니다");
-			mav.setViewName("findPassForm.tiles");
-			return mav;			
-		}
+		mav.addObject("id", myId);
+		mav.setViewName("newPasswordForm.tiles");
+		return mav;
 	}
 	
 	/*@RequestMapping("findPass.do")

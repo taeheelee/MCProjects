@@ -70,6 +70,7 @@
 					success : function (data){
 						if(data.result){
 							flag = 0;
+							$('#myId').val(id);
 							$('#identify').html('<font color="green">본인인증성공</font>');
 						}else {
 							flag = 1;
@@ -218,8 +219,9 @@
                                     <h2 class="sidebar-title">비밀번호 찾기</h2>
                                         <div class="woocommerce-billing-fields">
                                              	
-			                      		   <form action="findPass.do" class="checkout" method="post" name="checkout">
-			                            	
+                                           <input type="hidden" id="myId" name="myId" value="">
+			                      		   <form action="newPasswordForm.do?id='${myId }'" class="checkout" method="post" name="checkout">
+<!-- 			                            	myId보내는 법 맞나 -->
 			                            	<br>
 			                            	<table>
 			                            		<tr>

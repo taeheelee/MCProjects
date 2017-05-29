@@ -15,6 +15,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		question2=#{question2}, answer2=#{answer2}
 		where id=#{id}
 	</update>
+	
+	<update id="updatePass" parameterType="java.util.HashMap">
+		update userinfo set password=#{password} where id=#{id}
+	</update>
+	
 	<delete id="deleteUserInfo" parameterType="java.lang.String">
 		delete from userinfo where id=#{id}
 	</delete>

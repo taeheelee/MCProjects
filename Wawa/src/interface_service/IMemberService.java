@@ -10,6 +10,7 @@ public interface IMemberService {
 			String question1, String answer1,
 			String question2, String answer2);
 	public boolean modifyInfo(UserInfo userInfo);
+	public boolean updatePass(String id, String password);
 	public boolean deleteMember(String id);
 	public boolean loginMember(String id, String pw);
 	public UserInfo getMember(String id);

@@ -204,6 +204,16 @@ public class MemberService implements IMemberService{
 		userinfo.put("nickname", nickname);
 		return dao.selectByNameId(userinfo);
 	}
+
+	@Override
+	public boolean updatePass(String id, String password) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> userinfo = new HashMap<>();
+		userinfo.put("id", id);
+		userinfo.put("password", password);
+		if(dao.updatePass(userinfo) > 0) return true;
+		else return false;
+	}
 	
 
 }

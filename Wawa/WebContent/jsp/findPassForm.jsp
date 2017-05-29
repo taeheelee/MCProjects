@@ -26,58 +26,69 @@
 			alert(msg);
 		}
 		
-		$('#nameCheck').click(function(){
-			var nickname = $('#inputName').val();
-			$.ajax({
-					type : 'get',
-					url : 'nicknameCheck.do',
-					data : 'nickname=' + nickname,
-					dataType : 'json',
-					success : function (data){
-						if(data.result){
-							$('#nameError').html('<font color="red">존재하지않음</font>');
-						}
-						else{
-							$('#nameError').html('<font color="green">존재</font>');
-						}
-					},
-					error : function(){
-						alert('에러발생');
-					}
-				}); 
-		});
-		
 		$('#select_addtion').change(function() {
 			var option_selected = $("#select_addtion option:selected").val();
 			$('#question1').val(option_selected);
 			if(option_selected == 1){
 				$('#addQuestion').val('1');
 				$('#addAnswer').attr('placeholder', 'abc@naver.com');
-			}else {
+				statusOfAddtion = true;
+			}else if(option_selected == 2){
 				$('#addQuestion').val('2');
 				$('#addAnswer').attr('placeholder', '010-0000-0000');
+				statusOfAddtion = true;
+			}else {				
+				statusOfAddtion = false;
 			}
-			statusOfAddtion = false;
 		});
 		
+		var flag1 = true;
 		$('#addAnswer').blur(function(){
-			var flag = true;
-			if($("#select_addtion option:selected").val() == "addDefault"){
+			if(statusOfAddtion == false){
 				alert('질문을 먼저 선택해주세요');
-				statusOfAddtion = false;
-				flag = false;
-			}
-			if($('#addAnswer').val() == ""){
+				flag1 = false;
+			}else if($('#addAnswer').val() == ""){
 				alert('답을 입력해주세요');
-				statusOfAddtion = false;
-				flag = false;
+				flag1 = false;
+			}else {
+				flag1 = true;
 			}
-			if(flag){
-				statusOfAddtion = true;
+		});
+
+		var flag = 1;
+		$('#checkInfo').click(function(){
+			var id=$('#inputId').val();
+			var nickname = $('#inputName').val();
+			var addQuestion = $("#addQuestion").val();
+			var addAnswer = $("#addAnswer").val();
+			if(id != '' && nickname != "" && statusOfAddtion == true && flag1 == true){
+				$.ajax({
+					type : 'get',
+					url : 'verifyPerson.do',
+					data : 'nickname=' + nickname + '&id=' + id + "&addQuestion=" + addQuestion + "&addAnswer=" + addAnswer,
+					dataType : 'json',
+					success : function (data){
+						if(data.result){
+							flag = 0;
+							$('#identify').html('<font color="green">본인인증성공</font>');
+						}else {
+							flag = 1;
+							$('#identify').html('<font color="red">본인인증실패</font>');
+						}
+					}
+					,error : function(){
+			    		alert('잠시 후 다시 시도해주세요');
+			     	}
+				});
 			}
 		});
 		
 		$('#select_question1').change(function() {
+			if(flag == 1){
+				alert('본인 인증을 먼저 진행해주세요');
+				$("#select_question1").val("default1");
+			}
+			
 			var option_selected = $("#select_question1 option:selected").val();
 			$('#question1').val(option_selected);
 			if(option_selected == "default1")
@@ -86,7 +97,26 @@
 				statusOfQuestion1 = true;
 		});
 		
+		var flag2 = true;
+		$('#answer1').blur(function(){
+			if(statusOfQuestion1 == false){
+				alert('질문을 먼저 선택해주세요');
+				flag2 = false;
+			}else if($('#answer1').val() == ""){
+				alert('답을 입력해주세요');
+				flag2 = false;
+			}
+		});
+		
 		$('#select_question2').change(function() {
+			if(flag == 1){
+				alert('본인 인증을 먼저 진행해주세요');
+				$("#select_question2").val("default2");
+			}
+			else if(statusOfQuestion1 == false || flag2 == false){
+				alert('1번 질문을 먼저 작성하세요');
+			}
+			
 			var option_selected = $("#select_question2 option:selected").val();
 			$('#question2').val(option_selected);
 			if(option_selected == "default2")
@@ -94,40 +124,53 @@
 			else 
 				statusOfQuestion2 = true;
 		});
-		
-		var flag1 = true;
-		$('#answer1').blur(function(){
-			if(statusOfQuestion1 == false){
-				alert('질문을 먼저 선택해주세요');
-				flag1 = false;
-			}else if($('#answer1').val() == ""){
-				alert('답을 입력해주세요');
-				flag1 = false;
-			}else {
-				flag1 = true;
-			}
-		});
 
-		var flag2 = true;
+		var myId;
+		var result = false;
+		function checkQA(question1, answer1, question2, answer2, nickname){
+				$.ajax({ 
+			 	    url : "chkQuestion.do",
+			    	type : 'get',
+			     	data : 'question1=' + question1 + "&answer1=" + answer1
+				     	+ "&question2=" + question2 + "&answer2=" + answer2
+				     	+ "&nickname=" + nickname,
+			     	dataType: 'json',
+	   			    success : function (data) {
+	   			    	if(data.result){
+	   			    		myId = data.id;
+	   			    		result = true;
+	   			    	}else{
+	   			    		result = false;
+	   			    	}
+	   			    },
+			     	error : function(){
+			    		alert('잠시 후 다시 시도해주세요');
+			     	}
+			 	});
+		}
+		
+		var flag3 = true;
 		$('#answer2').blur(function(){
 			if(statusOfQuestion2 == false){
 				alert('질문을 먼저 선택해주세요');
-				flag2 = false;
+				flag3 = false;
 			}else if($('#answer2').val() == ""){
 				alert('답을 입력해주세요');
-				flag2 = false;
+				flag3 =  false;
 			}else {
-				flag2 = true;
+				flag3 = true;
+				var nickname = $('#inputName').val();
+				var question1 = $("#question1").val();
+				var answer1 = $("#answer1").val();
+				var question2 = $("#question2").val();
+				var answer2 = $("#answer2").val();
+				checkQA(question1, answer1, question2, answer2, nickname);
 			}
-			
-		});
-		
-		$('#checkId').click(function(){
-			
 		});
 		
 		$('#findPass').click(function() {
-			if(statusOfAddtion && statusOfQuestion1 && statusOfQuestion2){
+			if(result && statusOfAddtion && statusOfQuestion1 && statusOfQuestion2){
+				//비밀번호 새로 설정하기
 				$('#findPass').attr('type','submit');
 			}else if(statusOfAddtion == false){
 				alert('본인인증은 필수입니다');
@@ -138,6 +181,9 @@
 			}else if(statusOfQuestion2 == false || flag2 == false){
 				alert('질문2을 입력해주세요');
 				$('#question2').focus();
+			}else if(result == false){
+				alert('사용자 정보와 일치하지 않습니다');
+				$("#question1").focus();
 			}
 		});
 	});
@@ -216,6 +262,8 @@
 	                                               		<td>
                                              			    <input id="addAnswer" align="top" name="addAnswer" style="width:300px;height:38px;" type="text" value="" placeholder="" class="input-text ">
 	                                               			<input type="hidden" name="addQuestion" id="addQuestion" value="">
+	                                               			&nbsp; <input type="button" id="checkInfo" name="checkInfo" value="인증"> 
+			                            					<span id="identify"></span>
 	                                               		</td>
 	                                               	</tr>
 	                                              

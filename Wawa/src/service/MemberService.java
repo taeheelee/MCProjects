@@ -196,4 +196,14 @@ public class MemberService implements IMemberService{
 		return dao.selectByNickname(nickname);
 	}
 
+	@Override
+	public HashMap<String, Object> selectByNameId(String id, String nickname) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> userinfo = new HashMap<>();
+		userinfo.put("id", id);
+		userinfo.put("nickname", nickname);
+		return dao.selectByNameId(userinfo);
+	}
+	
+
 }

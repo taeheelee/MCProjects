@@ -57,65 +57,30 @@
 			}
 		});
 		
+		
 		var flag = 1;
 		$('#checkInfo').click(function(){
+			var id=$('#inputId').val();
 			var nickname = $('#inputName').val();
 			var addQuestion = $("#addQuestion").val();
 			var addAnswer = $("#addAnswer").val();
-			if(nickname != "" && statusOfAddtion == true && flag1 == true){
+			if(id != '' && nickname != "" && statusOfAddtion == true && flag1 == true){
 				$.ajax({
 					type : 'get',
-					url : 'findNickname.do',
-					data : 'nickname=' + nickname,
+					url : 'verifyPerson.do',
+					data : 'nickname=' + nickname + '&id=' + id + "&addQuestion=" + addQuestion + "&addAnswer=" + addAnswer,
 					dataType : 'json',
 					success : function (data){
-						if(data.result == false){
-							if(addQuestion == 1){
-								$.ajax({
-				 					type : 'get',
-				 					url : 'emailCheck.do',
-				 					data : "email=" + addAnswer,
-				 					dataType : 'json',
-				 					success : function (data){
-				 						if(data.result){
-				 							$('#identify').html('<font color="red">본인인증실패</font>');
-				 							flag = 1;
-				 						}else{
-				 							$('#identify').html('<font color="green">본인인증성공</font>');
-				 							flag = 0;
-				 						}
-				 					},
-				 					error : function(){
-				 						alert('에러발생');
-				 					}
-				 				}); 
-							}else if(addQuestion == 2){
-								$.ajax({
-				 					type : 'get',
-				 					url : 'phonenumCheck.do',
-				 					data : "phone=" + addAnswer,
-				 					dataType : 'json',
-				 					success : function (data){
-				 						if(data.result){
-				 							$('#identify').html('<font color="red">본인인증실패</font>');
-				 							flag = 1;
-				 						}else{
-				 							$('#identify').html('<font color="green">본인인증성공</font>');
-				 							flag = 0;
-				 						}
-				 					},
-				 					error : function(){
-				 						alert('에러발생');
-				 					}
-				 				});
-							}
+						if(data.result){
+							flag = 0;
+							$('#identify').html('<font color="green">본인인증성공</font>');
 						}else {
+							flag = 1;
 							$('#identify').html('<font color="red">본인인증실패</font>');
 						}
 					}
 					,error : function(){
 			    		alert('잠시 후 다시 시도해주세요');
-			    		statusOfId = false;
 			     	}
 				});
 			}

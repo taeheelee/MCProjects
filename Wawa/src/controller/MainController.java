@@ -294,7 +294,69 @@ public class MainController {
 		}
 		return response;
 	}
-
+	
+	@RequestMapping("verifyPerson.do")
+	public @ResponseBody HashMap<String, Object> verifyPerson(HttpServletResponse resp, String nickname, String id,
+			String addQuestion, String addAnswer){
+		HashMap<String, Object> response = new HashMap<>();
+		if(iMemberService.selectByNameId(id, nickname) == null){
+			//존재하는 정보 없음
+			// null로 받아지나 size로해야되나 
+			response.put("result", false);
+		}else {
+			if(addQuestion.equals(1)){
+				 // 이메일 검사
+				if(iMemberService.selectByEmailAndName(nickname, addAnswer).equals(id)){
+					// 정보 확인 완료
+					response.put("result", true);
+				}else {
+					response.put("result", false);
+				}
+			}else{
+				//전화번호로 검사
+				if(iMemberService.selectByPhoneAndName(nickname, addAnswer).equals(id)){
+					// 정보 확인 완료
+					response.put("result", true);
+				}else {
+					response.put("result", false);
+				}
+			}
+		}
+		
+		return response;
+	}
+	
+	@RequestMapping("verifyByName.do")
+	public @ResponseBody HashMap<String, Object> verifyByName(HttpServletResponse resp, String nickname,
+			String addQuestion, String addAnswer){
+		HashMap<String, Object> response = new HashMap<>();
+		if(iMemberService.selectByNickname(nickname) == null){
+			//존재하는 정보 없음
+			// null로 받아지나 size로해야되나 
+			response.put("result", false);
+		}else {
+			String id = (String) iMemberService.selectByNickname(nickname).get("id");
+			if(addQuestion.equals(1)){
+				 // 이메일 검사
+				if(iMemberService.selectByEmailAndName(nickname, addAnswer).equals(id)){
+					// 정보 확인 완료
+					response.put("result", true);
+				}else {
+					response.put("result", false);
+				}
+			}else{
+				//전화번호로 검사
+				if(iMemberService.selectByPhoneAndName(nickname, addAnswer).equals(id)){
+					// 정보 확인 완료
+					response.put("result", true);
+				}else {
+					response.put("result", false);
+				}
+			}
+		}
+		
+		return response;
+	}
 	@RequestMapping("chkQuestion.do")
 	public @ResponseBody HashMap<String, Object> chkQuestion(
 			String nickname, 

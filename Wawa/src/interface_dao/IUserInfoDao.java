@@ -21,4 +21,5 @@ public interface IUserInfoDao {
 	public String selectByPhoneAndName(HashMap<String, Object> params);
 	public HashMap<String, Object> Questioncheck(HashMap<String, Object> params);
 	public HashMap<String, Object> selectByNickname(String nickname);
+	public HashMap<String, Object> selectByNameId(HashMap<String, Object> params);
 }

@@ -24,4 +24,5 @@ public interface IMemberService {
 			String question2, String answer2, String id);
 	public HashMap<String, Object> selectByNickname(String nickname);
 	public int getIntFromQuestion(String str);
+	public HashMap<String, Object> selectByNameId(String id, String nickname);
 }

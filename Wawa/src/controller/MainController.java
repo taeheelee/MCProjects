@@ -25,6 +25,7 @@ import interface_service.IMedicalService;
 import interface_service.IMemberService;
 import interface_service.IPetinfoService;
 import model.UserInfo;
+import service.MemberService;
 
 @Controller
 public class MainController {
@@ -58,45 +59,9 @@ public class MainController {
 		return mav;
 	}
 	
-	//에이작스 요청으로
 	@RequestMapping("findId.do")
-	public ModelAndView findId(String inputName,
-			String addQuestion, String addAnswer,
-			String question1, String answer1,
-			String question2, String answer2) {
-		int flag1 = 0; // 0 이 정상
-		int flag2 = 0;
-		
-		String id = null;
-		if(addQuestion.equals(1)){
-			id = iMemberService.selectByEmailAndName(inputName, addAnswer);
-			if(id == null){
-				// 아이디 없으면 끝이지뭐
-				flag1 = 1; // 아이디 찾기 실패
-			}
-		}else {
-			id = iMemberService.selectByPhoneAndName(inputName, addAnswer);
-			if(id == null){
-				flag1 = 1;
-			}
-		}
-		
-		if(flag1 == 0){
-			if(iMemberService.Questioncheck(question1, answer1, question2, answer2, id)){
-				flag2 = 0;
-			}else {
-				flag2 = 1;
-			}			
-		}
-		
-		ModelAndView mav = new ModelAndView();
-		if(flag1 == 0 && flag2 == 0){
-			mav.setViewName("login.tiles");
-		}else {
-			mav.addObject("msg", "회원정보가 없습니다");
-			mav.setViewName("findIdForm.tiles");
-		}
-		return mav;
+	public String findId() {
+		return "redirect:loginForm.do";
 	}
 	
 	@RequestMapping("findPass.do")
@@ -161,7 +126,6 @@ public class MainController {
 		
 		return response;
 	}*/
-	
 	@RequestMapping(method = RequestMethod.POST, value = "login.do")
 	public ModelAndView login(HttpSession session, String id, String pw, RedirectAttributes redirectAttr) {
 		UserInfo userInfo = iMemberService.getMember(id);
@@ -283,14 +247,16 @@ public class MainController {
 	}
 	
 	@RequestMapping("emailCheck.do")
-	public @ResponseBody HashMap<String, Object> emailCheck(HttpServletResponse resp, String email) {
+	public @ResponseBody HashMap<String, Object> emailCheck(String email) {
+		System.out.println("이메일:" + email);
 		HashMap<String, Object> response = new HashMap<>();
 		response.put("result", iMemberService.emailCheck(email));
 		return response;
 	}
 	
 	@RequestMapping("phonenumCheck.do")
-	public @ResponseBody HashMap<String, Object> phonenumCheck(HttpServletResponse resp, String phone) {
+	public @ResponseBody HashMap<String, Object> phonenumCheck(String phone) {
+		System.out.println("폰넘버:" + phone); 
 		HashMap<String, Object> response = new HashMap<>();
 		response.put("result", iMemberService.phonenumCheck(phone));
 		return response;
@@ -317,7 +283,38 @@ public class MainController {
 		}
 
 	}
+	
+	@RequestMapping("findNickname.do")
+	public @ResponseBody HashMap<String, Object> findNickname(HttpServletResponse resp, String nickname) {
+		HashMap<String, Object> response = new HashMap<>();
+		if(iMemberService.nicknameCheck(nickname)){
+			response.put("result", true);
+		}else {
+			response.put("result", false);
+		}
+		return response;
+	}
 
+	@RequestMapping("chkQuestion.do")
+	public @ResponseBody HashMap<String, Object> chkQuestion(
+			String nickname, 
+			String question1, String answer1,
+			String question2, String answer2){
+		HashMap<String, Object> userinfo = iMemberService.selectByNickname(nickname);
+		
+		HashMap<String, Object> response = new HashMap<>();
+
+		if(Integer.parseInt((String)userinfo.get("question1")) == Integer.parseInt(question1) 
+				&& Integer.parseInt((String)userinfo.get("question2")) == Integer.parseInt(question2)){
+			response.put("result", true);
+			response.put("id", (String)userinfo.get("id"));
+		}else {
+			response.put("result", false);
+		}
+		return response;
+	}
+	
+	
 	@RequestMapping("userinfoForm.do")
 	public ModelAndView userinfoForm(HttpSession session) {
 		ModelAndView mav = new ModelAndView();

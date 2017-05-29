@@ -35,14 +35,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="nicknameCheck" parameterType="String" resultType="String">
 		select nickname from userinfo where nickname=#{nickname}
 	</select>
+	<select id="selectByNickname" parameterType="String" resultType="java.util.HashMap">
+		select * from userinfo where nickname=#{nickname}
+	</select>
 	<select id="adminCheck" parameterType="java.lang.String" resultType="int">
 		select adminCheck from userinfo where id=#{id}
 	</select>
-	<select id="phonenumCheck" parameterType="String" resultType="String">
-		select phone from userinfo where phone=#{phone}
+	<select id="phonenumCheck" parameterType="String" resultType="java.util.HashMap">
+		select * from userinfo where phone=#{phone}
 	</select>
-	<select id="emailCheck" parameterType="String" resultType="String">
-		select email from userinfo where email=#{email}
+	<select id="emailCheck" parameterType="String" resultType="java.util.HashMap">
+		select * from userinfo where email=#{email}
 	</select>	
 	<select id="selectByEmailAndName" parameterType="java.util.HashMap" resultType="String">
 		select id from userinfo where nickname=#{nickname} and email=#{email}

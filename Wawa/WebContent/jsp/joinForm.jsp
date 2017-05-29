@@ -196,12 +196,12 @@
   			$('#phone').blur(function(){
   				var phone = $('#phone').val();
   				if(!regPhoneNum.test(phone)){
-  					//alert('전화번호가 유효하지 않습니다.');	
+  					alert('전화번호가 유효하지 않습니다.');	
   					$('#pnumError').html('<font color="red">전화번호 오류 (ex) 000-0000-0000)</font>');
-  				}else {
+  				}else {  
   					$.ajax({
-  						url : "phonenumCheck.do",
-  						type : "GET",
+  						type : 'get',
+  						url : 'phonenumCheck.do',
   						data : 'phone=' + phone,
   						dataType : 'json',
   						success : function (data){
@@ -214,9 +214,11 @@
   								statusOfPhoneNum = false;
   							}
   						},
-  						error : function(){
-  							alert('에러발생');
-  						}
+  						error : function(request,status,error){
+  						    alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+  					   }
+
+
   					}); 
   				}
   			});
@@ -224,12 +226,12 @@
   			$('#email').blur(function(){
   				var email = $('#email').val();
   				if(!regEmail.test(email)){
-  					//alert('이메일 주소가 유효하지 않습니다.');	
+  					alert('이메일 주소가 유효하지 않습니다.');	
   					$('#emailError').html('<font color="red">이메일 오류 (ex) abc@naver.com)</font>');
   				}else {
   					$.ajax({
-  						url : "emailCheck.do",
-  						type : "GET",
+  						type : 'get',
+  						url : 'emailCheck.do',
   						data : 'email=' + email,
   						dataType : 'json',
   						success : function (data){

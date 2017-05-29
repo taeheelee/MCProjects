@@ -22,4 +22,6 @@ public interface IMemberService {
 	public String selectByPhoneAndName(String nickname, String phone);
 	public boolean Questioncheck(String question1, String answer1, 
 			String question2, String answer2, String id);
+	public HashMap<String, Object> selectByNickname(String nickname);
+	public int getIntFromQuestion(String str);
 }

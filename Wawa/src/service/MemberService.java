@@ -150,29 +150,24 @@ public class MemberService implements IMemberService{
 		return (String) dao.selectByPhoneAndName(userinfo);
 	}
 
+	@Override
 	public int getIntFromQuestion(String str){
+		System.out.println("질문"+str);
 		int num = 0;
-		switch (str) {
-		case "가장 좋아했던 초등학교 선생님 성함은?":
+		if(str.equals("가장 좋아했던 초등학교 선생님 성함은?")){
 			num = 1;
-			break;
-		case "가장 기억에 남는 장소는?":
+		}else if(str.equals("가장 기억에 남는 장소는?")){
 			num = 2;
-			break;
-		case "자주 가는 식당이름은?":
+		}else if(str.equals("자주 가는 식당이름은?")){
 			num = 3;
-			break;
-		case "가장 좋아하는 친구 이름은?":
+		}else if(str.equals("가장 좋아하는 친구 이름은?")){
 			num = 4;
-			break;
-		case "가장 기억에 남는 애인 이름은?":
+		}else if(str.equals("가장 기억에 남는 애인 이름은?")){
 			num = 5;
-			break;
-		case "가장 좋아하는 음식은?":
+		}else if(str.equals("가장 좋아하는 음식은?")){
 			num = 6;
-			break;
 		}
-		System.out.println(num);
+		System.out.println("선택된 질문" + num);
 		return num;
 	}
 	
@@ -181,9 +176,6 @@ public class MemberService implements IMemberService{
 			String question2, String answer2, String id) {
 		// TODO Auto-generated method stub
 		UserInfo userinfo = dao.selectOneUserInfo(id);
-		
-		System.out.println("서비스로 들어온 첫번째질문:" + question1);
-		System.out.println("서비스로 들어온 두번째질문:" + question2);
 		
 		int q1 = getIntFromQuestion(userinfo.getQuestion1());
 		int q2 = getIntFromQuestion(userinfo.getQuestion2());
@@ -196,6 +188,12 @@ public class MemberService implements IMemberService{
 		}else {
 			return false;
 		}
+	}
+
+	@Override
+	public HashMap<String, Object> selectByNickname(String nickname) {
+		// TODO Auto-generated method stub
+		return dao.selectByNickname(nickname);
 	}
 
 }

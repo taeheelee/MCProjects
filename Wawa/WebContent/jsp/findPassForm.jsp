@@ -26,6 +26,27 @@
 			alert(msg);
 		}
 		
+		$('#nameCheck').click(function(){
+			var nickname = $('#inputName').val();
+			$.ajax({
+					type : 'get',
+					url : 'nicknameCheck.do',
+					data : 'nickname=' + nickname,
+					dataType : 'json',
+					success : function (data){
+						if(data.result){
+							$('#nameError').html('<font color="red">존재하지않음</font>');
+						}
+						else{
+							$('#nameError').html('<font color="green">존재</font>');
+						}
+					},
+					error : function(){
+						alert('에러발생');
+					}
+				}); 
+		});
+		
 		$('#select_addtion').change(function() {
 			var option_selected = $("#select_addtion option:selected").val();
 			$('#question1').val(option_selected);
@@ -162,6 +183,7 @@
                                                 	</td>
 			                            			<td> 
 			                            				<input id="inputName" name="inputName" style="width:200px;height:40px;" type="text" value="" placeholder="" class="input-text ">
+			                            				
 			                            			</td>
 			                            		</tr>
 			                            		<tr>

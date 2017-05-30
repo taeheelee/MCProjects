@@ -57,7 +57,7 @@
   					$('#cpwError').html('<font color="red">불일치</font>');
   				}else {
   					$('#cpwError').html('<font color="green">일치</font>');
-  					statusOfConfirmPassword = true;
+  					statusOfconfirmPassword = true;
   				}
 			};
 		 	$('#newPassword').keyup(function(){

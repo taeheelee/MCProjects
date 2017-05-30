@@ -79,11 +79,10 @@ function getData(idx) {
 		//idx에 맞는 몸무게 기록들을 받아왔을 경우
 		success : function(data) {
 			result = data.data;
+			return result;
 		},
 		error : function() {
 			alert("getData AJAX 에러발생");
 		}
 	});
-	
-	return result;
 }

@@ -77,9 +77,9 @@
 		return true;
 	}
 	function chkNumFmt(data) {
-		var regNum = /^[0-9]+[.][0-9]+$/;
+		var regNum = /^[0-9]+[.][0-9]+$|[0-9]/;
 		if (!regNum.test(data)) {
-			alert("소수점 첫째자리까지 입력하세요.");
+			alert("숫자만 입력하세요.");
 			return false;
 		}
 		return true;

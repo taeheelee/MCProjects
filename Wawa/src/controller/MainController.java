@@ -258,7 +258,8 @@ public class MainController {
 	}
 	
 	@RequestMapping("verifyPerson.do")
-	public @ResponseBody HashMap<String, Object> verifyPerson(HttpServletResponse resp, String nickname, String id,
+	public @ResponseBody HashMap<String, Object> verifyPerson(HttpServletResponse resp, 
+			String nickname, String id,
 			String addQuestion, String addAnswer){
 		HashMap<String, Object> response = new HashMap<>();
 		if(iMemberService.selectByNameId(id, nickname) == null){
@@ -266,25 +267,26 @@ public class MainController {
 			// null로 받아지나 size로해야되나 
 			response.put("result", false);
 		}else {
-			if(addQuestion.equals(1)){
+			if(addQuestion.equals("1")){
 				 // 이메일 검사
-				if(iMemberService.selectByEmailAndName(nickname, addAnswer).equals(id)){
+				if(iMemberService.selectByEmailAndName(nickname, addAnswer) == null){
 					// 정보 확인 완료
-					response.put("result", true);
-				}else {
 					response.put("result", false);
+				}else {
+					response.put("result", true);
 				}
-			}else{
+			}else if(addQuestion.equals("2")){
 				//전화번호로 검사
-				if(iMemberService.selectByPhoneAndName(nickname, addAnswer).equals(id)){
+				if(iMemberService.selectByPhoneAndName(nickname, addAnswer) == null){
 					// 정보 확인 완료
-					response.put("result", true);
-				}else {
 					response.put("result", false);
+				}else {
+					response.put("result", true);
 				}
+			}else {
+				response.put("result", false);
 			}
 		}
-		
 		return response;
 	}
 	
@@ -298,21 +300,21 @@ public class MainController {
 			response.put("result", false);
 		}else {
 			String id = (String) iMemberService.selectByNickname(nickname).get("id");
-			if(addQuestion.equals(1)){
+			if(addQuestion.equals("1")){
 				 // 이메일 검사
-				if(iMemberService.selectByEmailAndName(nickname, addAnswer).equals(id)){
+				if(iMemberService.selectByEmailAndName(nickname, addAnswer) == null){
 					// 정보 확인 완료
-					response.put("result", true);
-				}else {
 					response.put("result", false);
+				}else {
+					response.put("result", true);
 				}
 			}else{
 				//전화번호로 검사
-				if(iMemberService.selectByPhoneAndName(nickname, addAnswer).equals(id)){
+				if(iMemberService.selectByPhoneAndName(nickname, addAnswer) == null){
 					// 정보 확인 완료
-					response.put("result", true);
-				}else {
 					response.put("result", false);
+				}else {
+					response.put("result", true);
 				}
 			}
 		}

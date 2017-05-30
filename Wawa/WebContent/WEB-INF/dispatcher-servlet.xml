@@ -37,6 +37,9 @@
 			<mvc:exclude-mapping path="/emailCheck.do"/>
 			<mvc:exclude-mapping path="/findNickname.do"/>
 			<mvc:exclude-mapping path="/chkQuestion.do"/>
+			<mvc:exclude-mapping path="/verifyPerson.do"/>
+			<mvc:exclude-mapping path="/verifyByName.do"/>
+			<mvc:exclude-mapping path="/newPasswordForm.do"/>
 			
 			<ref bean="loginCheckInterceptor" />
 		</mvc:interceptor>

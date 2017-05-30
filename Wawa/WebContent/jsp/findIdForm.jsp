@@ -60,15 +60,14 @@
 		
 		var flag = 1;
 		$('#checkInfo').click(function(){
-			var id=$('#inputId').val();
 			var nickname = $('#inputName').val();
 			var addQuestion = $("#addQuestion").val();
 			var addAnswer = $("#addAnswer").val();
-			if(id != '' && nickname != "" && statusOfAddtion == true && flag1 == true){
+			if(nickname != "" && statusOfAddtion == true && flag1 == true){
 				$.ajax({
 					type : 'get',
-					url : 'verifyPerson.do',
-					data : 'nickname=' + nickname + '&id=' + id + "&addQuestion=" + addQuestion + "&addAnswer=" + addAnswer,
+					url : 'verifyByName.do',
+					data : 'nickname=' + nickname + "&addQuestion=" + addQuestion + "&addAnswer=" + addAnswer,
 					dataType : 'json',
 					success : function (data){
 						if(data.result){

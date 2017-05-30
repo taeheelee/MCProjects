@@ -80,7 +80,7 @@
                         <div class="woocommerce" >
                                 <div id="customer_details" class="col2-set" >
                                     <div class="col-3">
-                                    <h2 class="sidebar-title">아이디 찾기</h2>
+                                    <h2 class="sidebar-title">비밀번호 설정하기</h2>
                                         <div class="woocommerce-billing-fields">
 			                            <form  action="findPass.do?id='${id }'" class="checkout" method="post" name="checkout">
 <!-- 			                            	id이렇게보내는거맞나 	 -->
@@ -88,23 +88,23 @@
 			                            	
 			                            	<table>
 			                            		<tr>
-			                            			<td width="100px" height="20px">	
-			                            				<label style="width:100px;height:20px;" class="" for="billing_first_name">새로운 비밀번호:<abbr title="required" class="required">*</abbr>
+			                            			<td width="160px" height="20px">	
+			                            				<label style="width:160px;height:20px;" class="" for="billing_first_name">새로운 비밀번호:<abbr title="required" class="required">*</abbr>
                                                 		</label>
                                                 	</td>
 			                            			<td> 
-			                            				<input type="password" value="" style="width:200px;height:40px;" placeholder="알파벳 소문자,숫자를 혼합하여 특수문자가능 6~20자" 
+			                            				<input type="password" value="" style="width:350px;height:40px;" placeholder="알파벳 소문자,숫자를 혼합하여 특수문자가능 6~20자" 
 		                                                id="inputPass" name="inputPass" class="input-text ">
 		                                                <span id="pwError"></span>
 			                            			</td>
 			                            		</tr>
 			                            		<tr>
-			                            			<td width="100px" height="20px">	
-			                            				<label style="width:100px;height:20px;" class="" for="billing_first_name">비밀번호 확인:<abbr title="required" class="required">*</abbr>
+			                            			<td width="160px" height="20px">	
+			                            				<label style="width:160px;height:20px;" class="" for="billing_first_name">비밀번호 확인:<abbr title="required" class="required">*</abbr>
                                                 		</label>
                                                 	</td>
 			                            			<td> 
-			                            				<input type="password" style="width:200px;height:40px;" value="" placeholder="" 
+			                            				<input type="password" style="width:350px;height:40px;" value="" placeholder="" 
 			                            				id="inputConfirmPass" name="inputConfirmPass" class="input-text ">
                                             			<span id="cpwError"></span>
 			                            			</td>

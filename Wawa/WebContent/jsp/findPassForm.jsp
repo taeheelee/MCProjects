@@ -57,20 +57,31 @@
 
 		var flag = 1;
 		$('#checkInfo').click(function(){
-			var id=$('#inputId').val();
-			var nickname = $('#inputName').val();
+			
+			var myid=$('#inputId').val();
+			var mynickname = $('#inputName').val();
 			var addQuestion = $("#addQuestion").val();
 			var addAnswer = $("#addAnswer").val();
-			if(id != '' && nickname != "" && statusOfAddtion == true && flag1 == true){
+			
+			if(myid == ''){
+				alert("아이디를 입력하세요");
+				return false;
+			}
+			if(mynickname == ''){
+				alert("닉네임을 입력하세요");
+				return false;
+			}
+			
+			if(myid != '' && mynickname != "" && statusOfAddtion == true && flag1 == true){
 				$.ajax({
-					type : 'get',
+					type : 'post',
 					url : 'verifyPerson.do',
-					data : 'nickname=' + nickname + '&id=' + id + "&addQuestion=" + addQuestion + "&addAnswer=" + addAnswer,
+					data : 'nickname=' + mynickname + '&id=' + myid + "&addQuestion=" + addQuestion + "&addAnswer=" + addAnswer,
 					dataType : 'json',
 					success : function (data){
 						if(data.result){
 							flag = 0;
-							$('#myId').val(id);
+							$('#myId').val(myId);
 							$('#identify').html('<font color="green">본인인증성공</font>');
 						}else {
 							flag = 1;
@@ -220,10 +231,20 @@
                                         <div class="woocommerce-billing-fields">
                                              	
                                            <input type="hidden" id="myId" name="myId" value="">
-			                      		   <form action="newPasswordForm.do?id='${myId }'" class="checkout" method="post" name="checkout">
+			                      		   <form action="newPasswordForm.do?id=${myId }" class="checkout" method="post" name="checkout">
 <!-- 			                            	myId보내는 법 맞나 -->
 			                            	<br>
 			                            	<table>
+			                            		<tr>
+			                            			<td width="100px" height="20px">	
+			                            				<label style="width:100px;height:20px;" class="" for="billing_first_name">아이디: <abbr title="required" class="required">*</abbr>
+     		                                           </label>
+                                                	</td>
+			                            			<td> 
+			                            				  <input id="inputId" name="inputId" style="width:200px;height:40px;" type="text" value="" placeholder="" class="input-text ">
+			                            				 
+			                            			</td>
+			                            		</tr>
 			                            		<tr>
 			                            			<td width="100px" height="20px">	
 			                            				<label style="width:100px;height:20px;" class="" for="billing_first_name">닉네임: <abbr title="required" class="required">*</abbr>
@@ -232,16 +253,6 @@
 			                            			<td> 
 			                            				<input id="inputName" name="inputName" style="width:200px;height:40px;" type="text" value="" placeholder="" class="input-text ">
 			                            				
-			                            			</td>
-			                            		</tr>
-			                            		<tr>
-			                            			<td width="100px" height="20px">	
-			                            				<label style="width:100px;height:20px;" class="" for="billing_first_name">아이디: <abbr title="required" class="required">*</abbr>
-     		                                           </label>
-                                                	</td>
-			                            			<td> 
-			                            				  <input id="inputId" name="inputId" style="width:200px;height:40px;" type="text" value="" placeholder="" class="input-text ">
-			                            				  &nbsp; <input type="button" data-value="Place order" value="확인" id="checkId" class="button alt">
 			                            			</td>
 			                            		</tr>
 			                            	</table>

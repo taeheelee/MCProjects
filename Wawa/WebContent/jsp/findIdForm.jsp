@@ -57,7 +57,6 @@
 			}
 		});
 		
-		
 		var flag = 1;
 		$('#checkInfo').click(function(){
 			var nickname = $('#inputName').val();

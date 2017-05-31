@@ -281,7 +281,7 @@
 					var activity = $("input[name=activity]:checked").val();
 					//몸무게 가져와서 뿌리기
 					var weight = data.pet.weight;
-					calculateCalories.innerHTML = Number(activity) * ((weight * 30) + 70);
+					calculateCalories.innerHTML = Math.round(Number(activity) * ((weight * 30) + 70));
 				} else {
 				}
 			},

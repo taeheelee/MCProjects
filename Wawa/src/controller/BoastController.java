@@ -1,5 +1,6 @@
 package controller;
 
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -40,15 +41,20 @@ public class BoastController {
 	@RequestMapping("boastMain.do")
 	public ModelAndView boastMain(@RequestParam(defaultValue="1") int page,
 			@RequestParam(defaultValue="3") int boardCode, HttpSession session){
-		List<HashMap<String, Object>> best = boardService.selectBoastNum();
-		ModelAndView mav = new ModelAndView();
 		
+		Calendar c = Calendar.getInstance(); 
+		String year = String.valueOf(c.get(Calendar.YEAR));
+		String month = String.valueOf(c.get(Calendar.MONTH)+1);
+		List<HashMap<String, Object>> best = boardService.selectBoastNum(year, month);
+		ModelAndView mav = new ModelAndView();
 		mav.addObject("best", best);
+		
 		if(session.getAttribute("idx") != null){
 			int userIdx = (int)session.getAttribute("idx");
 			List<HashMap<String, Object>> like = likeService.selectUserLikeCountCheck(userIdx);
 			mav.addObject("like", like);			
 		}
+		
 		mav.addAllObjects(boardService.getBoardList(page, boardCode));
 		mav.setViewName("boast.tiles");
 		return mav;

@@ -44,7 +44,7 @@ public interface IBoardService {
 	//좋아요 수 증가
 	public boolean increaseBoastNum(int boardIdx);
 	//좋아요 순으로 정렬
-	public List<HashMap<String, Object>> selectBoastNum();
+	public List<HashMap<String, Object>> selectBoastNum(String year, String month);
 	
 	//게시글 검색
 	public HashMap<String, Object> searchBoard(String category, int type, String keyword, int page, int boardCode);

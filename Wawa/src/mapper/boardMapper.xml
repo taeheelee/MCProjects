@@ -70,9 +70,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by boardIdx desc limit #{skip}, #{count}
 	</select>
 
-	<select id="selectByBoastnum" resultType="java.util.HashMap">
-		<!-- 좋아요 많은순으로 정렬 -->
-		select * from board where boardCode=3 order by likeCount desc 
+	<select id="selectByBoastnum" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		<!-- 월별 좋아요 많은순으로 정렬 -->
+		select * from board where
+		boardCode=3 and year(writeDate)=#{year} and month(writeDate)=#{month} 
+		order by likeCount desc;
 	</select>
 	<select id="selectBoardLimit" parameterType="java.util.HashMap" resultType="java.util.HashMap">
 		<!-- 한페이지에 보여줄 게시물 수  -->

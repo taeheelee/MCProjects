@@ -545,9 +545,12 @@ public class BoardService implements IBoardService{
 	
 	//================================좋아요 수로 정렬========================================================	
 	@Override
-	public List<HashMap<String, Object>> selectBoastNum() {
+	public List<HashMap<String, Object>> selectBoastNum(String year, String month) {
 		// TODO Auto-generated method stub
-		return dao.selectByBoastnum();
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("year", year);
+		params.put("month", month);
+		return dao.selectByBoastnum(params);
 	}
 	
 	//================================게시글 검색========================================================	

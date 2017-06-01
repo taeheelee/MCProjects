@@ -39,32 +39,36 @@ $(document).ready(function(){
 <!--                         <div class="row"> -->
 						<div class="best3">
 						
-						<c:forEach items="${best }" begin="0" end="2" var="best" varStatus="st">
-							<div class="col-md-3 col-sm-6">
-								<div class="single-product"><!-- 마우스오버 효과-->
-									<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
-										<img src="imageShow/${best.fileId}.do" onerror="this.src='img/no_image.jpg'" alt="">
-										<div class="product-hover">
-											<a href="increaseLike.do?boardIdx=${best.boardIdx }&userIdx=${sessionScope.idx}" class="add-to-cart-link postLink"><i class="fa fa-heart"></i> 좋아요</a> 
-											<a href="boastDetails.do?boardIdx=${best.boardIdx }" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
-										</div>
-									</div><!--  마우스오버시 검정색 효과 범위 끝 -->
-									<h1 style="text-align: center; color: #FF7F27;">BEST ${st.index+1}</h1>
-										
-									<div class="product-carousel-price">
-										<p style="color: #ffc000; text-align: center; font-size: 18px; background-color: white;">${best.name.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }<br>(${best.sex }) ${best.age }살</p>
-										<p style="color: #777; text-align: center;">♥좋아요 ${best.likeCount }개</p>
+							<c:forEach items="${best }" begin="0" end="2" var="best" varStatus="st">
+								<c:if test="${best.likeCount != 0 }">
+									<div class="col-md-3 col-sm-6">
+										<div class="single-product"><!-- 마우스오버 효과-->
+											<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
+												<img src="imageShow/${best.fileId}.do" onerror="this.src='img/no_image.jpg'" alt="">
+												<div class="product-hover">
+													<a href="increaseLike.do?boardIdx=${best.boardIdx }&userIdx=${sessionScope.idx}" class="add-to-cart-link postLink"><i class="fa fa-heart"></i> 좋아요</a> 
+													<a href="boastDetails.do?boardIdx=${best.boardIdx }" class="view-details-link"><i class="fa fa-link"></i>상세보기</a>
+												</div>
+											</div><!--  마우스오버시 검정색 효과 범위 끝 -->
+											<h1 style="text-align: center; color: #FF7F27;">BEST ${st.index+1}</h1>
+												
+											<div class="product-carousel-price">
+												<p style="color: #ffc000; text-align: center; font-size: 18px; background-color: white;">${best.name.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }<br>(${best.sex }) ${best.age }살</p>
+												<p style="color: #777; text-align: center;">♥좋아요 ${best.likeCount }개</p>
+											</div>
+											
+											<h4 align="center">주인 : ${best.writer.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</h4>
+											<c:forEach items="${like }" var="like">
+												<c:if test="${like.boardIdx == best.boardIdx}">
+													<div align="center"><font style="color: red">내가 좋아요 한 게시글</font></div>
+												</c:if>
+											</c:forEach>
+											</div><!-- 마우스오버 효과 끝-->	
+											<div align="center">${best.writeDate }</div>
 									</div>
-									
-									<h4 align="center">주인 : ${best.writer.replaceAll("<", "&lt;").replaceAll(">", "&gt;") }</h4>
-									<c:forEach items="${like }" var="like">
-										<c:if test="${like.boardIdx == best.boardIdx}">
-											<div align="center"><font style="color: red">내가 좋아요 한 게시글</font></div>
-										</c:if>
-									</c:forEach>
-									</div><!-- 마우스오버 효과 끝-->	
-							</div>
-						</c:forEach>
+								</c:if>
+							</c:forEach>
+						
 			</div>
 
 		
@@ -120,6 +124,7 @@ $(document).ready(function(){
 								</c:if>
 							</c:forEach>
 						</div>
+						<div align="center">${boast.writeDate }</div>
 					</div>
 				</div>
 				</c:forEach>

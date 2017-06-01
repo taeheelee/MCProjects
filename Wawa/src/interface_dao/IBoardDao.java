@@ -12,7 +12,7 @@ public interface IBoardDao {
 	public List<HashMap<String, Object>> selectBoardList(int boardCode);
 	public List<HashMap<String, Object>> selectAllBoard();
 	public List<HashMap<String, Object>> searchBoard(HashMap<String, Object> params);
-	public List<HashMap<String, Object>> selectByBoastnum();
+	public List<HashMap<String, Object>> selectByBoastnum(HashMap<String, Object> params);
 	public List<HashMap<String, Object>> selectBoardLimit(HashMap<String, Object> params);
 	public int getBoardCount(int boardCode);
 	public int getSearchCount(HashMap<String, Object> params);

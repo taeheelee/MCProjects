@@ -36,11 +36,13 @@ $(document).ready(function(){
                 <div class="col-md-12">
                     <div class="product-bit-title text-left">
                         <h2>이달의 뽐내기</h2>
+                        <c:if test="${best == '[]'}">
+							<marquee scrollamount="20"><h1>이달의 뽐내기 BEST가 없습니다.</h1></marquee>
+						</c:if> 
 <!--                         <div class="row"> -->
 						<div class="best3">
 						
 							<c:forEach items="${best }" begin="0" end="2" var="best" varStatus="st">
-								<c:if test="${best.likeCount != 0 }">
 									<div class="col-md-3 col-sm-6">
 										<div class="single-product"><!-- 마우스오버 효과-->
 											<div class="product-f-image"><!-- 마우스오버시 검정색 효과 범위-->
@@ -66,8 +68,9 @@ $(document).ready(function(){
 											</div><!-- 마우스오버 효과 끝-->	
 											<div align="center">${best.writeDate }</div>
 									</div>
-								</c:if>
 							</c:forEach>
+						
+						
 						
 			</div>
 

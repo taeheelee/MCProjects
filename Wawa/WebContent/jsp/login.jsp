@@ -135,8 +135,10 @@
 
   function attachSignin(element) {
     console.log(element.id);
+    alert('attachSignin 진입' + element.id);
     auth2.attachClickHandler(element, {},
         function(googleUser) {
+    	alert('attachClickHandler 진입');
           var id = googleUser.getBasicProfile().getId();
           var name = googleUser.getBasicProfile().getName();
           var img = googleUser.getBasicProfile().getImageUrl();
@@ -173,6 +175,7 @@
 //           document.getElementById('name').innerText = "Signed in: " +
 //               googleUser.getBasicProfile().getName();
         }, function(error) {
+        	alert('google login func err');
           //alert(JSON.stringify(error, undefined, 2));
         });
   }
@@ -229,7 +232,7 @@
                  successful sign in -->
                  <div id="gSignInWrapper">
                    <div id="customBtn" class="customGPlusSignIn">
-                     <a href="javascript:startApp()"><img src="img/googleLoginBtn.png" style="margin-top: 10px; width: 330px; height: 47px"></a>
+                     <a href="javascript:startApp()"><img src="img/googleLoginBtn.png" style="margin-top: 10px; width: 330px; height: 47px; cursor:pointer"></a>
                    </div>
                  </div>
                <br>

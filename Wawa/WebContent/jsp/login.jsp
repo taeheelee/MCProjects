@@ -115,6 +115,69 @@
 	}(document, 'script', 'facebook-jssdk'));
 </script>
 
+<!-- 구글 로그인 스크립트 -->
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+  <script src="https://apis.google.com/js/api:client.js"></script>
+  <script>
+  var googleUser = {};
+  var startApp = function() {
+    gapi.load('auth2', function(){
+      // Retrieve the singleton for the GoogleAuth library and set up the client.
+      auth2 = gapi.auth2.init({
+        client_id: '283762508474-hqasfntcb8j5fr2cejmtn06ihd6j4j1f.apps.googleusercontent.com',
+        cookiepolicy: 'single_host_origin',
+        // Request scopes in addition to 'profile' and 'email'
+        //scope: 'additional_scope'
+      });
+      attachSignin(document.getElementById('customBtn'));
+    });
+  };
+
+  function attachSignin(element) {
+    console.log(element.id);
+    auth2.attachClickHandler(element, {},
+        function(googleUser) {
+          var id = googleUser.getBasicProfile().getId();
+          var name = googleUser.getBasicProfile().getName();
+          var img = googleUser.getBasicProfile().getImageUrl();
+          var email = googleUser.getBasicProfile().getEmail();
+//           var user = {id : id,
+//                 name : name,
+//                 img : img,
+//                 email : email
+//              };
+//           var jsontext = JSON.stringify(user); 
+//           alert(jsontext);
+//           alert(user.name);
+//           alert(googleUser.getBasicProfile().getName());
+          
+          $.ajax({
+             url : 'googleLogin.do',
+                type : 'POST',
+                dataType : 'text',
+                data : {id : id,
+                name : name,
+                img : img,
+                email : email
+             },
+                success : function(data) {
+                	window.location.href = data;
+                    //alert("ajax 성공!");
+                },
+                error : function() {
+                	alert("실패");
+                    //alert("ajax 실패!");
+                }
+          });
+
+//           document.getElementById('name').innerText = "Signed in: " +
+//               googleUser.getBasicProfile().getName();
+        }, function(error) {
+          //alert(JSON.stringify(error, undefined, 2));
+        });
+  }
+  </script>
+
 
 </head>
 <body>
@@ -160,6 +223,17 @@
 						<img style="margin-top: 10px; cursor: pointer"
 						src="img/naver_loginBtn.png">
 					</span> <br>
+					
+					<!-- 구글 로그인 영역 -->
+               <!-- In the callback, you would hide the gSignInWrapper element on a
+                 successful sign in -->
+                 <div id="gSignInWrapper">
+                   <div id="customBtn" class="customGPlusSignIn">
+                     <a href="javascript:startApp()"><img src="img/googleLoginBtn.png" style="margin-top: 10px; width: 330px; height: 47px"></a>
+                   </div>
+                 </div>
+               <br>
+               
 				</div>
 			</div>
 		</div>

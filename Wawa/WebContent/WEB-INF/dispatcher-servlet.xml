@@ -24,6 +24,7 @@
 			<mvc:exclude-mapping path="/login.do"/>
 			<mvc:exclude-mapping path="/loginForm.do"/>
 			<mvc:exclude-mapping path="/naverLogin.do"/>
+			<mvc:exclude-mapping path="/googleLogin.do"/>
 			<mvc:exclude-mapping path="/joinForm.do"/>
 			<mvc:exclude-mapping path="/join.do"/>
 			<mvc:exclude-mapping path="/idCheck.do"/>

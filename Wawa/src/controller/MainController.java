@@ -152,6 +152,43 @@ public class MainController {
 		}
 		return "redirect:main.do";
 	}
+	
+	   @RequestMapping(method = RequestMethod.POST, value = "googleLogin.do")
+	   public @ResponseBody String googleLogin(HttpSession session, String id, String email, String name, String img) {
+//	      System.out.println(id);
+//	      System.out.println(email);
+//	      System.out.println(name);
+//	      System.out.println(img);
+	      String nickname = "EX" + name;
+	      String password = "123456";
+	      String phone = "010-0000-0000";
+	      String sex = "male";
+	      String question1 = "";
+	      String question2 = "";
+	      String answer1 = "";
+	      String answer2 = "";
+	      
+	      int adminCheck = 0;
+	      if (iMemberService.checkId(id)) {
+	         int result = iMemberService.join(id, password, nickname, sex, phone, adminCheck, email,
+	               question1, answer1, question2, answer2);
+	      }
+	      
+	      UserInfo userInfo = iMemberService.getMember(id);
+	      HashMap<String, Object> mainPet = IPetinfoService.selectMainPet(id);
+	      session.setAttribute("idx", userInfo.getIdx());
+	      session.setAttribute("id", userInfo.getId());
+	      session.setAttribute("name", userInfo.getNickname());
+	      if (mainPet != null) {
+	         session.setAttribute("petName", mainPet.get("name"));
+	         session.setAttribute("petSex", mainPet.get("sex"));
+	         session.setAttribute("petBirth", mainPet.get("birthday"));
+	         session.setAttribute("fileId", mainPet.get("fileId"));
+	         session.setAttribute("groomingStart", mainPet.get("groomingStart"));
+	         session.setAttribute("groomingPeriod", mainPet.get("groomingPeriod"));
+	      }
+	      return "main.do";
+	   }
 
 	@RequestMapping("logout.do")
 	public String login(HttpSession session) {

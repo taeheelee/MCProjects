@@ -43,23 +43,35 @@ public class ManagementController {
 		return mav;
 	}
 	
-	@RequestMapping(value="getIdxList.do", method=RequestMethod.GET)
+	@RequestMapping(value="getPetList.do", method=RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> getIdxList(HttpSession session) {
 		String id = (String) session.getAttribute("id");
-		// 펫리스트에서 펫 idx만 뽑아내기
-		List<Integer> petIdxList = new ArrayList<Integer>();
-
 		List<HashMap<String, Object>> petList = petinfoService.selectPetList(id);
-		for (HashMap<String, Object> p : petList) {
-			petIdxList.add((Integer) p.get("idx"));
-		}
-		
 		HashMap<String, Object> params = new HashMap<>();
-		params.put("idx", petIdxList);
+		params.put("petList", petList);
+		System.out.println("getPetList.do 요청 진입");
+		System.out.println(petList);
 		return params;
 	}
 	
-	@RequestMapping(value="dataupload.do", method=RequestMethod.GET)
+//	백업용	
+//	@RequestMapping(value="getIdxList.do", method=RequestMethod.GET)
+//	public @ResponseBody HashMap<String, Object> getIdxList(HttpSession session) {
+//		String id = (String) session.getAttribute("id");
+//		// 펫리스트에서 펫 idx만 뽑아내기
+//		List<Integer> petIdxList = new ArrayList<Integer>();
+//		
+//		List<HashMap<String, Object>> petList = petinfoService.selectPetList(id);
+//		for (HashMap<String, Object> p : petList) {
+//			petIdxList.add((Integer) p.get("idx"));
+//		}
+//		
+//		HashMap<String, Object> params = new HashMap<>();
+//		params.put("idx", petIdxList);
+//		return params;
+//	}
+	
+	@RequestMapping(value="getPetWeightList.do", method=RequestMethod.GET)
 	public @ResponseBody HashMap<String, Object> dataupload(HttpSession session,
 			int idx) {
 		String id = (String) session.getAttribute("id");
@@ -67,15 +79,12 @@ public class ManagementController {
 		PetInfo model = new PetInfo();
 		model.setId(id);
 		model.setIdx(idx);
-		List<Management> weightList = new ArrayList<>();
-		weightList = managementService.selectListByIdx(model);
+		List<HashMap<String, Object>> weightList = managementService.selectListByIdx(model);
 			
 		HashMap<String, Object> params = new HashMap<>();
-		params.put("data", weightList); //강아지 idx로 받아 온 강아지 무게변화 기록
-		
-//		List<HashMap<String, Object>> petInfo = new ArrayList<HashMap<String, Object>>();
-//		petInfo = petinfoService.selectPetList(id);
-//		params.put("petinfo", petInfo);
+		params.put("weightList", weightList); //강아지 idx로 받아 온 강아지 무게변화 기록
+		System.out.println("getPetWeightList.do 진입");
+		System.out.println(weightList);
 		return params;
 	}
 	

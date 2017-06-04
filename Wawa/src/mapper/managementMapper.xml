@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectList" parameterType="java.lang.String" resultType="model.Management">
 		select m.managementIdx, m.idx, m.date, m.weight from management m, petinfo p where m.idx = p.idx and p.id=#{id} order by m.idx, m.managementIdx;
 	</select>
-	<select id="selectListByIdx" parameterType="model.PetInfo" resultType="model.Management">
+	<select id="selectListByIdx" parameterType="model.PetInfo" resultType="java.util.HashMap">
 		select m.managementIdx, m.idx, m.date, m.weight from management m, petinfo p where m.idx = p.idx and p.id=#{id} and m.idx = #{idx} order by m.idx, m.managementIdx;
 	</select>
 	<select id="selectAllHealth" parameterType="int" resultType="model.Management">

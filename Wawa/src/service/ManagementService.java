@@ -3,6 +3,7 @@ package service;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,8 +82,8 @@ public class ManagementService implements IManagementService {
 	}
 	
 	@Override
-	public List<Management> selectListByIdx(PetInfo model) {
-		List<model.Management> list = dao.selectListByIdx(model);
+	public List<HashMap<String, Object>> selectListByIdx(PetInfo model) {
+		List<HashMap<String, Object>> list = dao.selectListByIdx(model);
 		return list;
 	}
  

@@ -1,6 +1,7 @@
 package interface_service;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import model.Management;
@@ -13,7 +14,7 @@ public interface IManagementService {
 	public boolean deleteManagement(int managementIdx);
 	public Management selectOne(int managementIdx);
 	public List<Management> selectList(String id);
-	public List<Management> selectListByIdx(PetInfo model);
+	public List<HashMap<String, Object>> selectListByIdx(PetInfo model);
 	public int selectIdx(Management model);
 	public List<Management> selectAllHealth(int idx);
 	public Management selectDate(Management model);

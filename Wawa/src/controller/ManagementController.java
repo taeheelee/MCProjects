@@ -54,6 +54,28 @@ public class ManagementController {
 		return params;
 	}
 	
+	@RequestMapping(value="getPetWeightList.do", method=RequestMethod.GET)
+	public @ResponseBody HashMap<String, Object> dataupload(HttpSession session,
+			int idx) {
+		String id = (String) session.getAttribute("id");
+
+		PetInfo model = new PetInfo();
+		model.setId(id);
+		model.setIdx(idx);
+		List<HashMap<String, Object>> weightList = managementService.selectListByIdx(model);
+		
+		for(HashMap<String, Object> h : weightList) {
+			long timemil = ((Date) h.get("date")).getTime();
+			h.put("timemil", timemil);
+		}
+		
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("weightList", weightList); //강아지 idx로 받아 온 강아지 무게변화 기록
+		System.out.println("getPetWeightList.do 진입");
+		System.out.println(weightList);
+		return params;
+	}
+	
 //	백업용	
 //	@RequestMapping(value="getIdxList.do", method=RequestMethod.GET)
 //	public @ResponseBody HashMap<String, Object> getIdxList(HttpSession session) {
@@ -70,23 +92,6 @@ public class ManagementController {
 //		params.put("idx", petIdxList);
 //		return params;
 //	}
-	
-	@RequestMapping(value="getPetWeightList.do", method=RequestMethod.GET)
-	public @ResponseBody HashMap<String, Object> dataupload(HttpSession session,
-			int idx) {
-		String id = (String) session.getAttribute("id");
-
-		PetInfo model = new PetInfo();
-		model.setId(id);
-		model.setIdx(idx);
-		List<HashMap<String, Object>> weightList = managementService.selectListByIdx(model);
-			
-		HashMap<String, Object> params = new HashMap<>();
-		params.put("weightList", weightList); //강아지 idx로 받아 온 강아지 무게변화 기록
-		System.out.println("getPetWeightList.do 진입");
-		System.out.println(weightList);
-		return params;
-	}
 	
 	@RequestMapping("selectHealthcare.do")
 	   public 

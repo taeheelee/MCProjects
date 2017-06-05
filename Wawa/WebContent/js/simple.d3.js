@@ -5,13 +5,18 @@ nv.addGraph(function() {
 	.useInteractiveGuideline(true) // 마우스 올릴 시 가이드라인 출력
 //	.transitionDuration(350) // 애니메이션 효과를 동작시킬 시간, 에러 발생 가능성있으므로 주석처리
 	.showLegend(true) // 범례 출력 여부, 범례는 켜고 끌 수 있음
-	.showYAxis(true) // Y축 출력 여부
 	.showXAxis(true) // X축 출력 여부
+	.showYAxis(true) // Y축 출력 여부
 	;
 
 	chart.xAxis // x축 설정
     .showMaxMin(false)
+    .axisLabel('Day')
     .tickFormat(function(d) { return d3.time.format('%x')(new Date(d)) });
+//	chart.xAxis
+//    .tickFormat(function(d) {
+//      return d3.time.format('%x')(new Date(d))
+//    });
 	
 	chart.yAxis // y축 설정
 	.axisLabel('Weight(Kg)').tickFormat(d3.format('.02f')); //소수점 2자리까지
@@ -27,12 +32,14 @@ nv.addGraph(function() {
 //		alert("getPetList 인덱스 출력 : " + param.petList[i].idx);
 		var temp = getData(param.petList[i].idx);
 		var inner = []; //날짜와 무게를 뽑아 저장할 배열
-//		alert(temp.weightList[i].weight);
-		for (var j = 0; j < temp.weightList[i].length; j++) {
+//		alert(temp.weightList.length);
+		for (var j = 0; j < temp.weightList.length; j++) {
 //			alert(temp[j].date); // 'temp[j].key값'으로 value 접근가능
-			inner.push({x : temp.weightList[j].date, y : temp.weightList[j].weight});
+//			alert(temp.weightList[j].weight);
+			inner.push({x : temp.weightList[j].timemil, y : temp.weightList[j].weight});
 			//inner에는 x, y 좌표값을 json 형식으로 저장해야 함
 		}
+		
 		weightList.push(inner); // inner에 담긴 x, y 좌표값을 하나로 저장하는 배열
 		//weightList의 인덱스 1개는 애완동물 1마리를 뜻함
 		myData.push({
@@ -40,8 +47,9 @@ nv.addGraph(function() {
 			values: weightList[i],
 			key: param.petList[i].name // 범례에 표시할 이름.
 		});
-//		alert("데이터 로딩 끝?");
 	}
+
+////////////////////////////////////////////////////////////////////////
 //	//세팅값대로 그래프를 render
 //	var idxList = getIdx(); //idx 리스트 받아오기
 //	//idx는 애완동물마다 고유의 값이 있음. 즉, idx리스트는 강아지 목록임
@@ -66,6 +74,7 @@ nv.addGraph(function() {
 //			key: idxList.idx[i] // 범례에 표시할 이름.
 //		});
 //	}
+/////////////////////////////////////////////////////////
 		
 	d3.select('#chart svg') //<svg> 요소 선택
 	.datum(myData) // 데이터 삽입
@@ -119,10 +128,10 @@ function getData(idx) {
 		//idx에 맞는 몸무게 기록들을 받아왔을 경우
 		success : function(data) {
 			result = data;
-			return result;
 		},
 		error : function() {
 			alert("getData AJAX 에러발생");
 		}
 	});
+	return result;
 }

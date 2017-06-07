@@ -213,10 +213,7 @@
                <!-- In the callback, you would hide the gSignInWrapper element on a
                  successful sign in -->
                  <div id="gSignInWrapper">
-<!--                    <div id="customBtn" class="customGPlusSignIn"> -->
-<!--                      <a href="javascript:startApp()"><img src="img/googleLoginBtn.png" style="margin-top: 10px; width: 330px; height: 47px; cursor:pointer"></a> -->
                      <a href="#" id="customBtn" class="customGPlusSignIn"><img src="img/googleLoginBtn.png" style="margin-top: 10px; width: 330px; height: 47px; cursor:pointer"><script>startApp();</script></a>
-<!--                    </div> -->
                  </div>
                <br>
                

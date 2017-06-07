@@ -35,14 +35,15 @@ public class MedicalcareController {
 	@Autowired
 	private IVaccineInfoService vaccineService;
 	
-	@RequestMapping("medicalcareForm.do")
-	public ModelAndView medicalcareForm(String id){
-		ModelAndView mav = new ModelAndView();
-		List<HashMap<String, Object>> petlist = petinfoService.selectPetList(id);
-		mav.addObject("list", petlist);
-		mav.setViewName("medicalcareForm.tiles");
-		return mav;
-	}
+
+//	@RequestMapping("medicalcareForm.do")
+//	public ModelAndView medicalcareForm(String id){
+//		ModelAndView mav = new ModelAndView();
+//		List<HashMap<String, Object>> petlist = petinfoService.selectPetList(id);
+//		mav.addObject("list", petlist);
+//		mav.setViewName("medicalcareForm.tiles");
+//		return mav;
+//	}
 	
 	@RequestMapping("calcShotday.do")
 	public 
@@ -260,4 +261,112 @@ public class MedicalcareController {
 		}
 		return response;
 	}
+	
+	
+	
+	////////////////////////////////////
+		@RequestMapping("medicalcareForm.do")
+		public ModelAndView selectPetMedicalcare(String id, @RequestParam(defaultValue = "0") int petIdx){
+			ModelAndView mav = new ModelAndView();
+			List<HashMap<String, Object>> petList = petinfoService.selectPetList(id);
+			mav.addObject("list", petList);
+			
+			if(petIdx == 0){
+				for(int i = 0 ; i <petList.size(); i ++){
+					int mainPet = (int)petList.get(i).get("mainPet");
+					if(mainPet == 1){
+						petIdx = (int)petList.get(i).get("idx");
+					}
+				}
+			}
+			HashMap<String, Object> petDetail = petinfoService.selectOne(petIdx);
+			mav.addObject("petDetail", petDetail);
+			
+			
+			HashMap<String, Object> vaccineRecord = medicalService.selectVaccine(petIdx);
+			mav.addObject("vaccineRecord", vaccineRecord);
+
+			
+			
+			HashMap<String, Object> params = new HashMap<>();
+			Date birthDATE = (Date)petDetail.get("birthday");
+			SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
+			String birth = transFormat.format(birthDATE);
+			String petIdxString =  Integer.toString(petIdx);
+			params.put("birthday", birth);
+			params.put("petIdx", petIdxString);
+			HashMap<String, Object> getAge = petinfoService.getAge(params);
+			mav.addObject("calculate", getAge);
+			
+			
+			
+			List<HashMap<String, Object>> additionalHDPPL = medicalService.selectAdditionalVaccine(petIdx, 1, 0);
+			mav.addObject("additionalHDPPL", additionalHDPPL);
+//			System.out.println("additionalHDPPL : "+additionalHDPPL);
+			List<HashMap<String, Object>> additionalCorona = medicalService.selectAdditionalVaccine(petIdx, 2, 0);
+			mav.addObject("additionalCorona", additionalCorona);
+			List<HashMap<String, Object>> additionalKennel = medicalService.selectAdditionalVaccine(petIdx, 3, 0);
+			mav.addObject("additionalKennel", additionalKennel);
+			List<HashMap<String, Object>> additionalRadies = medicalService.selectAdditionalVaccine(petIdx, 4, 0);
+			mav.addObject("additionalRadies", additionalRadies);
+			
+			HashMap<String, Object> nextSchedules = medicalService.calculateNextSchedules(petIdx);
+			mav.addObject("nextSchedules", nextSchedules);
+			
+			List<HashMap<String, Object>> nextHDPPL = medicalService.selectNextSchedules(petIdx, 1);
+			mav.addObject("nextHDPPL", nextHDPPL);
+			List<HashMap<String, Object>> nextCorona = medicalService.selectNextSchedules(petIdx, 2);
+			mav.addObject("nextCorona", nextCorona);
+			List<HashMap<String, Object>> nextKennel = medicalService.selectNextSchedules(petIdx, 3);
+			mav.addObject("nextKennel", nextKennel);
+			List<HashMap<String, Object>> nextRadies = medicalService.selectNextSchedules(petIdx, 4);
+			mav.addObject("nextRadies", nextRadies);
+			
+			HashMap<String, Object> lastHDPPL = medicalService.selectLastSchedules(petIdx, 1);
+			mav.addObject("lastHDPPL", lastHDPPL);
+			System.out.println(lastHDPPL+"라스트팡");
+			HashMap<String, Object> lastCorona = medicalService.selectLastSchedules(petIdx, 2);
+			mav.addObject("lastCorona", lastCorona);
+			HashMap<String, Object> lastKennel = medicalService.selectLastSchedules(petIdx, 3);
+			mav.addObject("lastKennel", lastKennel);
+			HashMap<String, Object> lastRadies = medicalService.selectLastSchedules(petIdx, 4);
+			mav.addObject("lastRadies", lastRadies);
+			
+			HashMap<String, Object> DDay = medicalService.DDay(petIdx);
+			mav.addObject("DDay", DDay);
+			System.out.println("DDay : "+DDay);
+
+			mav.setViewName("medicalcareForm.tiles");
+
+			return mav;
+		}
+		
+		
+	
+		@RequestMapping("insertVaccine.do")
+		public String insertVaccine(HttpServletResponse resp,@RequestParam HashMap<String, Object> params){
+			String petIdx = (String)params.get("petIdx");
+			medicalService.insertMedicalcare(params);
+			
+			int petIdxInt = Integer.parseInt(petIdx);
+			HashMap<String, Object> temp = petinfoService.selectOne(petIdxInt);
+			String userId = (String)temp.get("id");
+			
+			return "redirect:medicalcareForm.do?id="+userId+"&petIdx="+petIdx;
+
+		}
+		@RequestMapping("deleteVaccine.do")
+		public String deleteVaccine(HttpServletResponse resp,@RequestParam HashMap<String, Object> params){
+			String petIdx = (String)params.get("petIdx");
+			String idxString = (String)params.get("idx");
+			int idx = Integer.parseInt(idxString);
+			medicalService.deleteMedicalcare(idx);
+			
+			int petIdxInt = Integer.parseInt(petIdx);
+			HashMap<String, Object> temp = petinfoService.selectOne(petIdxInt);
+			String userId = (String)temp.get("id");
+			
+			return "redirect:medicalcareForm.do?id="+userId+"&petIdx="+petIdx;
+
+		}
 }

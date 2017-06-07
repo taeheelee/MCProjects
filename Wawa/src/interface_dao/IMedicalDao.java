@@ -12,4 +12,19 @@ public interface IMedicalDao {
 	public HashMap<String, Object> selectDate(HashMap<String, Object> params);
 	public HashMap<String, Object> selectVc(HashMap<String, Object> params);
 	public List<HashMap<String, Object>> selectShotdayByDate(int idx);
+	
+	////////////////////////////////////////////////////////////////
+	public int insertMedicalcare(HashMap<String, Object> params);
+//	public int updateMedicalcare(HashMap<String, Object> params);
+	public int deleteMedicalcare(int idx);
+	public HashMap<String, Object> selectOne(int idx);
+	public List<HashMap<String, Object>> selectAdditionalVaccine(HashMap<String, Object> params);
+	public List<HashMap<String, Object>> selectNextSchedules(HashMap<String, Object> params);	
+	public HashMap<String, Object> selectLastSchedules(HashMap<String, Object> params);
+	public HashMap<String, Object> selectLastSchedulesOfAll(HashMap<String, Object> params);
+
+	public List<HashMap<String, Object>> selectPetMedicalcare(int idx);
+	public List<HashMap<String, Object>> selectVaccine(int idx);
+//	public List<HashMap<String, Object>> select(int idx);
+//	public List<HashMap<String, Object>> selectAll(int idx);
 }

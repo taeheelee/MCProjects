@@ -33,4 +33,38 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	resultType="java.util.HashMap">
 		select * from medicalmanage where vaccineCode=#{vaccineCode} and idx=#{idx}
 	</select>
+	
+	
+	
+	<insert id="insertMedicalcare" parameterType="java.util.HashMap">
+		insert into medicalManagement values(0, #{petIdx}, #{vaccineCode},#{vaccineType}, #{degree}, #{realShotDate}, #{nextDate}, #{nextSchedules})		
+	</insert>
+	<delete id="deleteMedicalcare" parameterType="int">
+		delete from medicalManagement where idx = #{idx}
+	</delete>
+	<select id="selectOne" parameterType="int" resultType="java.util.HashMap">
+		select * from medicalManagement where idx = #{idx}
+	</select>
+	<select id="selectAdditionalVaccine" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select * from medicalManagement 
+		where petIdx = #{petIdx} and vaccineCode = #{vaccineCode} and degree = #{degree} 
+		order by realShotDate
+	</select>
+	<select id="selectNextSchedules" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select * from medicalManagement 
+		where petIdx = #{petIdx} and vaccineCode = #{vaccineCode}
+		order by nextSchedules is null ASC, nextSchedules ASC
+	</select>
+	<select id="selectLastSchedules" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select MAX(nextSchedules) AS lastPang from medicalManagement 
+		where petIdx = #{petIdx} and vaccineCode = #{vaccineCode}
+	</select>
+	<select id="selectLastSchedulesOfAll" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select MAX(nextDate) AS lastPang from medicalManagement 
+		where petIdx = #{petIdx} and vaccineCode = #{vaccineCode}
+	</select>
+	<select id="selectVaccine" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+		select * from medicalManagement where petIdx = #{petIdx}
+	</select>
+	
 </mapper>

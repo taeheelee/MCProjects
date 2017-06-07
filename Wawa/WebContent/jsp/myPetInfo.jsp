@@ -316,8 +316,8 @@ $(document).ready(function(){
                      <tr>
                         <td>
                         	미용 주기 알림   
-                        <span style="color: #FF7421;" id="groomingDdaySpan${pet.idx }"></span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;">
-                        미용 주기 알림   <span style="color: #FF7421;" id="groomingDdaySpan${pet.idx }"></span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;" onclick="location.href='updatePetForm.do?idx=${pet.idx}'">
+                        <span style="color: #FF7421;" id="groomingDdaySpan${pet.idx }"></span>&nbsp;
+                       &nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;" onclick="location.href='updatePetForm.do?idx=${pet.idx}'">
                         </td>
                      </tr>
                      <tr>

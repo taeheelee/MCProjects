@@ -211,7 +211,7 @@
 								</tr>
 								<tr style="font-size: small;">
 									<td colspan="2">다음 예방접종</td>
-									<td id="dDay" style="text-align: center;"><span id="VNSpan"></span><span id="dDaySpan"></span></td>
+									<td id="dDay" style="text-align: center;"><span id="VNSpan" style="color: #FF7421"></span><span id="dDaySpan" style="color: #FFC000"></span></td>
 								</tr>
 								<tr style="font-size: small;">
 									<td colspan="2">다음 미용예정</td>

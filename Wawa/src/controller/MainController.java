@@ -150,10 +150,10 @@ public class MainController {
 	
 	@RequestMapping(method = RequestMethod.POST, value = "googleLogin.do")
 	public @ResponseBody String googleLogin(HttpSession session, String id, String email, String name, String img) {
-		// System.out.println(id);
-		// System.out.println(email);
-		// System.out.println(name);
-		// System.out.println(img);
+		 System.out.println(id);
+		 System.out.println(email);
+		 System.out.println(name);
+		 System.out.println(img);
 		String nickname = "GG" + name;
 		String password = "123456";
 		String phone = "010-0000-0000";

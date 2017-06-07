@@ -152,31 +152,31 @@ public class PetinfoController {
 		}
 	}
 	
-	@RequestMapping("getMedicalInfo.do")
-	public 
-	@ResponseBody HashMap<String, Object> getMedicalInfo(HttpServletResponse resp,
-			@RequestParam HashMap<String, Object> params){
-		// 파라미터에 idx와 vGubun들어있음
-		long dDay = (long) medicalService.calcDday(params).get("dDay");
-		int vaccineCode = (int) medicalService.calcDday(params).get("vaccineCode");
-		
-		String vaccineName;
-		int vGubun = vaccineCode/100;
-		if(vGubun == 1){
-			vaccineName = "종합백신";
-		}else if(vGubun == 2){
-			vaccineName = "코로나";
-		}else if(vGubun == 3){
-			vaccineName = "켄넬코프 ";
-		}else {
-			vaccineName = "광견병 ";
-		}
-		
-		HashMap<String, Object> response = new HashMap<>();
-		response.put("dDay", dDay);
-		response.put("vaccineName", vaccineName);
-		return response;
-	}
+//	@RequestMapping("getMedicalInfo.do")
+//	public 
+//	@ResponseBody HashMap<String, Object> getMedicalInfo(HttpServletResponse resp,
+//			@RequestParam HashMap<String, Object> params){
+//		// 파라미터에 idx와 vGubun들어있음
+//		long dDay = (long) medicalService.calcDday(params).get("dDay");
+//		int vaccineCode = (int) medicalService.calcDday(params).get("vaccineCode");
+//		
+//		String vaccineName;
+//		int vGubun = vaccineCode/100;
+//		if(vGubun == 1){
+//			vaccineName = "종합백신";
+//		}else if(vGubun == 2){
+//			vaccineName = "코로나";
+//		}else if(vGubun == 3){
+//			vaccineName = "켄넬코프 ";
+//		}else {
+//			vaccineName = "광견병 ";
+//		}
+//		
+//		HashMap<String, Object> response = new HashMap<>();
+//		response.put("dDay", dDay);
+//		response.put("vaccineName", vaccineName);
+//		return response;
+//	}
 	
 	@RequestMapping("updatePetForm.do")
 	   public ModelAndView updatePetForm(int idx){

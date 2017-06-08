@@ -52,6 +52,9 @@ public class PetinfoController {
 		if(id.equals(session.getAttribute("id"))){
 			List<HashMap<String, Object>> petList = petInfoService.selectPetList(id);
 			mav.addObject("petList", petList);
+			
+			
+			
 			mav.setViewName("myPetInfo.tiles");
 			return mav;
 		}else{
@@ -254,10 +257,18 @@ public class PetinfoController {
 			@RequestParam HashMap<String, Object> params) {
 		// TODO Auto-generated method stub
 		if(params.get("birthday").equals("undefined") || params.get("petIdx").equals("undefined")){
-			HashMap<String, Object> petAge = new HashMap<>();
+			HashMap<String, Object> petAge = new HashMap<>();		
 			return petAge;
 		}else{
 			HashMap<String, Object> petAge = petInfoService.getAge(params);
+			
+			String petIdxString = (String)params.get("petIdx");
+			int petIdx = Integer.parseInt(petIdxString);
+			HashMap<String, Object> medi = medicalService.DDayForHeader(petIdx);
+//			System.out.println("medi : "+ medi);
+			petAge.put("vName", medi.get("vName"));
+			petAge.put("minDDayString", medi.get("minDDayString"));
+//			System.out.println("petAge : "+ petAge);
 			return petAge;
 		}
 	}

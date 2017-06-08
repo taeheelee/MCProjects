@@ -445,7 +445,6 @@ public class MedicalService implements IMedicalService {
 	public HashMap<String, Object> DDayForHeader(int petIdx) {
 
 		HashMap<String, Integer> DDay = new HashMap<>();
-
 		for (int i = 1; i < 5; i++) {
 			HashMap<String, Object> params = new HashMap<>();
 			params.put("petIdx", petIdx);
@@ -480,47 +479,44 @@ public class MedicalService implements IMedicalService {
 			} // end if
 
 		}
-		Collection<Integer> values = DDay.values();// value값들 넣기
-
-//		System.out.println("d-day for header 얍 : " + DDay);
-		int minDDay = Collections.min(values);// 최소값
-		
-		
 		String vName = "";
-		int count = 0;
-		for (String s : DDay.keySet()) {
-			if (DDay.get(s).equals(minDDay)) {
-				vName = "["+s+"] ";
-				count ++;
+		String minDDayString ="";
+		if(DDay.size() != 0){
+			Collection<Integer> values = DDay.values();// value값들 넣기
+
+//			System.out.println("d-day for header 얍 : " + DDay);
+			int minDDay = Collections.min(values);// 최소값
+			
+			
+			int count = 0;
+			for (String s : DDay.keySet()) {
+				if (DDay.get(s).equals(minDDay)) {
+					vName = "["+s+"] ";
+					count ++;
+				}
+			}
+			if(count ==2){
+				vName = vName+" 외1 ";
+			}else if( count ==3){
+				vName = vName+" 외2 ";
+			}else if( count ==4){
+				vName = vName+" 외3 ";
+			}
+			
+			
+			
+			
+			if(minDDay<0){
+				minDDay = minDDay*-1;
+				minDDayString = "D +"+minDDay;
+			}else if(minDDay==0){
+				minDDayString = "D-day!";
+			}else if (minDDay>0) {
+				minDDayString = "D -"+minDDay;
+			}else {
+				System.out.println("NULL일수 있지");
 			}
 		}
-		if(count ==2){
-			vName = vName+" 외1 ";
-		}else if( count ==3){
-			vName = vName+" 외2 ";
-		}else if( count ==4){
-			vName = vName+" 외3 ";
-		}
-		
-		
-		
-		String minDDayString ="";
-		
-		if(minDDay<0){
-			minDDay = minDDay*-1;
-			minDDayString = "D +"+minDDay;
-		}else if(minDDay==0){
-			minDDayString = "D-day!";
-		}else if (minDDay>0) {
-			minDDayString = "D -"+minDDay;
-		}else {
-			System.out.println("NULL일수 있지");
-		}
-//		
-//		System.out.println("minDDay : "+minDDay);
-//
-//		System.out.println("vName : "+vName);
-
 
 		HashMap<String, Object> temp = new HashMap<>();
 

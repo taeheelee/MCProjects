@@ -372,9 +372,15 @@ public class PetInfoService implements IPetinfoService {
 	    	  
 	      }
 	      
-
-
+//	      petIdx;
+	      
+//	      int mainPetIdx = (int)IPetinfoService.selectMainPet(id).get("idx");
+			
+//			HashMap<String, Object> temp = iMedicalService.DDayForHeader(mainPetIdx);
 		date.put("d_day", d_day);
+		
+		
+		
 
 		return date;
 	}

@@ -201,12 +201,12 @@
 					<br> <br> 아직 계정이 없으신가요?? &nbsp; <a href="joinForm.do">
 						회원가입하기 </a><br> <br> <br> <a
 						href="javascript:facebook_btn();"><img
-						src="img/facebook_loginBtn.png"></a> <br>
+						src="img/loginFacebook.png"></a> <br>
 					<div id="naver_id_login" style="display: none"></div>
 					<span
 						onclick="document.getElementById('naver_id_login_anchor').click();")>
 						<img style="margin-top: 10px; cursor: pointer"
-						src="img/naver_loginBtn.png">
+						src="img/loginNaver.png">
 					</span> <br>
 					
 					<!-- 구글 로그인 영역 -->
@@ -214,7 +214,7 @@
                  successful sign in -->
                  <div id="gSignInWrapper">
                    <div id="customBtn" class="customGPlusSignIn">
-                     <a href="javascript:startApp()"><img src="img/googleLoginBtn.png" style="margin-top: 10px; width: 330px; height: 47px; cursor:pointer"></a>
+                     <a href="javascript:startApp()"><img src="img/loginGoogle.png" style="margin-top: 10px; cursor:pointer"></a>
 <!--                      <a href="javascript:startApp()">Google Login test</a> -->
                    </div>
                  </div>

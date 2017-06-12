@@ -146,7 +146,7 @@ public class PetinfoController {
 		}
 
 		if (result) {
-			return "redirect:main.do";
+			return "redirect:myPetInfo.do?id="+id;
 		} else {
 			return "redirect:addPetForm.do";
 		}

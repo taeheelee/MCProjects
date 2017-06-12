@@ -1,3 +1,6 @@
+create database wawa_db;
+use wawa_db;
+
 create table userinfo(
 idx int primary key auto_increment,
 id varchar(30),

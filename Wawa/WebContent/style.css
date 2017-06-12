@@ -455,6 +455,24 @@ z-index: 9;
 #lostPet-ul li{
 	margin-bottom: 5px;
 }
+#partner-ul{
+	list-style: none; 
+	padding: 0; 
+	font-size: 16px; 
+	width: 150px;
+}
+#partner-ul li{
+	margin-bottom: 5px;
+	display: inline-block;
+	color: black; 
+	font-size: 18px; 
+	text-align: left;
+	padding-left: 10px; 
+	width: 235px;
+	overflow:hidden;
+	white-space: nowrap; 
+	text-overflow: ellipsis;
+}
 
 .product-f-image {
     position: relative;

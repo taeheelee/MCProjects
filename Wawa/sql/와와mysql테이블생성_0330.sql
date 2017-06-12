@@ -160,3 +160,28 @@ name varchar(10),
 score int
 );
  
+
+#백신 기본정보 테이블_170607
+create table vaccineInformation(
+vaccineCode int primary key auto_increment,
+vaccineName varchar(30),
+firstVaccineAge int,
+basic int
+);
+insert into vaccineInformation values(1,'종합백신', 42, 5);
+insert into vaccineInformation values(2,'코로나', 42, 2);
+insert into vaccineInformation values(3,'켄넬코프', 70, 2);
+insert into vaccineInformation values(4,'광견병', 98, 1);
+#백신 정보 저장하는 테이블_170607
+create table medicalManagement(
+idx int primary key auto_increment,
+petIdx int,
+vaccineCode int,
+vaccineType varchar(20),
+degree int,
+realShotDate date,
+nextDate date,
+nextSchedules date,
+foreign key(petIdx) references petinfo(idx),
+foreign key(vaccineCode) references vaccineInformation(vaccineCode)
+);

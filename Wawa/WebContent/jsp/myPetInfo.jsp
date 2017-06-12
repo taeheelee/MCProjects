@@ -63,6 +63,9 @@ $(document).ready(function(){
 				$('#exerciseMsgSpan' + petIdx).text(data.exerciseMsg);
 				$('#warningMsgSpan' + petIdx).text(data.warningMsg);
 				$('#groomingDdaySpan' + petIdx).text(data.d_day);
+				$('#vNameSpan' + petIdx).text(data.vName);
+				$('#minDDayStringSpan' + petIdx).text(data.minDDayString);
+				
 			},
 			error: function(data){
 				alert("잠시 후 다시 시도해주세요.");
@@ -316,14 +319,14 @@ $(document).ready(function(){
                      <tr>
                         <td>
                         	미용 주기 알림   
-                        <span style="color: #FF7421;" id="groomingDdaySpan${pet.idx }"></span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;">
-                        미용 주기 알림   <span style="color: #FF7421;" id="groomingDdaySpan${pet.idx }"></span>&nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;" onclick="location.href='updatePetForm.do?idx=${pet.idx}'">
+                        <span style="color: #FF7421;" id="groomingDdaySpan${pet.idx }"></span>&nbsp;
+                       &nbsp;&nbsp;<input type="button" value="주기수정" style="font-size: small;" onclick="location.href='updatePetForm.do?idx=${pet.idx}'">
                         </td>
                      </tr>
                      <tr>
                         <td>
                        	 다음 예방 접종 시기 
-                       	<span id="DDSpan"></span>&nbsp;&nbsp;
+                       	<span id="vNameSpan${pet.idx }"></span>&nbsp;&nbsp;<span id="minDDayStringSpan${pet.idx }"></span>&nbsp;&nbsp;
                        	<input type="button" value="접종관리 GO" style="font-size: small;"onclick = "location.href ='medicalcareForm.do?id=${sessionScope.id}'">
                         </td>
                      </tr>

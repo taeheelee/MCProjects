@@ -1,8 +1,8 @@
 package commons;
 
 public class Constant {
-	
-	public class UserInfo{
+
+	public class UserInfo {
 		public static final String IDX = "idx";
 		public static final String ID = "id";
 		public static final String PASSWORD = "password";
@@ -13,10 +13,11 @@ public class Constant {
 		public static final String EMAIL = "email";
 		public static final String QUESTION1 = "question1";
 		public static final String ANSWER1 = "answer1";
-		public static final String QUESTION2 = "question2"; 
-		public static final String ANSWER2 = "answer2";	
+		public static final String QUESTION2 = "question2";
+		public static final String ANSWER2 = "answer2";
 	}
-	public class PetInfo{
+
+	public class PetInfo {
 		public static final String IDX = "idx";
 		public static final String RESIST = "resist";
 		public static final String ID = "id";
@@ -29,16 +30,15 @@ public class Constant {
 		public static final String GROOMINGSTART = "groomingStart";
 		public static final String GROOMINGPERIOD = "groomingPeriod";
 	}
-	
 
-	public class Management{
+	public class Management {
 		public static final String IDX = "idx";
 		public static final String DATE = "date";
 		public static final String WEIGHT = "weight";
 	}
-	
-	public class Board{
-		
+
+	public class Board {
+
 		public static final String BOARDCODE = "boardCode";
 		public static final String BOARDIDX = "boardIdx";
 		public static final String TITLE = "title";
@@ -63,14 +63,14 @@ public class Constant {
 		public static final String FILEURI = "fileUri";
 		public static final String FILEID = "fileId";
 	}
-	
-	public class DogKind{
+
+	public class DogKind {
 		public static final String KIND = "kind";
 		public static final String DOGSIZE = "dogSize";
 		public static final String ADULTWEIGHT = "adultWeight";
 	}
 
-	public class MedicalManage{
+	public class MedicalManage {
 		public static final String IDX = "idx";
 		public static final String VACCINECODE = "vaccineCode";
 		public static final String REALSHOTDATE = "realShotDate";
@@ -78,22 +78,22 @@ public class Constant {
 		public static final String DDAY = "dDay";
 	}
 
-	public class VaccineInfo{
+	public class VaccineInfo {
 		public static final String VACCINECODE = "vaccineCode";
 		public static final String VACCINENAME = "vaccineName";
 		public static final String VACCINEPERIOD = "vaccinePeriod";
 		public static final String VACCINEAGE = "vaccineAge";
 	}
-	
-	public class image{
+
+	public class image {
 		public static final String IMGIDX = "imgIdx";
 		public static final String PHYSICALNAME = "physicalName";
 		public static final String NAME = "name";
 		public static final String PATH = "path";
-		
+
 	}
-	
-	public class Reple{
+
+	public class Reple {
 		public static final String REPLEIDX = "repleIdx";
 		public static final String BOARDIDX = "boardIdx";
 		public static final String NICKNAME = "nickname";
@@ -103,11 +103,22 @@ public class Constant {
 		public static final String GROUPSEQ = "groupSeq";
 		public static final String GROUPLV = "groupLv";
 	}
-	
-	public class BoardFile{
+
+	public class BoardFile {
 		public static final String FILEID = "fileId";
 		public static final String ORIGINFILENAME = "originFileName";
 		public static final String SIZE = "size";
 		public static final String URI = "uri";
+	}
+
+	////////////////
+	public class MedicalManagement {
+		public static final String PETIDX = "petIdx";
+		public static final String VACCINECODE = "vaccineCode";
+		public static final String VACCINETYPE = "vaccineType";
+		public static final String DEGREE = "degree";
+		public static final String REALSHOTDATE = "realShotDate";
+		public static final String NEXTSCHEDULES = "nextSchedules";
+		public static final String NEXTDATE = "nextDate";
 	}
 }

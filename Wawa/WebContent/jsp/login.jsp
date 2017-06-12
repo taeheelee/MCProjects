@@ -117,9 +117,9 @@
 
 	function attachSignin(element) {
 		console.log(element.id);
-		alert('attachSignin 진입' + element.id);
+// 		alert('attachSignin 진입' + element.id);
 		auth2.attachClickHandler(element, {}, function(googleUser) {
-			alert('attachClickHandler 진입');
+// 			alert('attachClickHandler 진입');
 			var id = googleUser.getBasicProfile().getId();
 			var name = googleUser.getBasicProfile().getName();
 			var img = googleUser.getBasicProfile().getImageUrl();

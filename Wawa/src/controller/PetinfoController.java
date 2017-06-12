@@ -52,6 +52,9 @@ public class PetinfoController {
 		if(id.equals(session.getAttribute("id"))){
 			List<HashMap<String, Object>> petList = petInfoService.selectPetList(id);
 			mav.addObject("petList", petList);
+			
+			
+			
 			mav.setViewName("myPetInfo.tiles");
 			return mav;
 		}else{
@@ -152,31 +155,31 @@ public class PetinfoController {
 		}
 	}
 	
-	@RequestMapping("getMedicalInfo.do")
-	public 
-	@ResponseBody HashMap<String, Object> getMedicalInfo(HttpServletResponse resp,
-			@RequestParam HashMap<String, Object> params){
-		// 파라미터에 idx와 vGubun들어있음
-		long dDay = (long) medicalService.calcDday(params).get("dDay");
-		int vaccineCode = (int) medicalService.calcDday(params).get("vaccineCode");
-		
-		String vaccineName;
-		int vGubun = vaccineCode/100;
-		if(vGubun == 1){
-			vaccineName = "종합백신";
-		}else if(vGubun == 2){
-			vaccineName = "코로나";
-		}else if(vGubun == 3){
-			vaccineName = "켄넬코프 ";
-		}else {
-			vaccineName = "광견병 ";
-		}
-		
-		HashMap<String, Object> response = new HashMap<>();
-		response.put("dDay", dDay);
-		response.put("vaccineName", vaccineName);
-		return response;
-	}
+//	@RequestMapping("getMedicalInfo.do")
+//	public 
+//	@ResponseBody HashMap<String, Object> getMedicalInfo(HttpServletResponse resp,
+//			@RequestParam HashMap<String, Object> params){
+//		// 파라미터에 idx와 vGubun들어있음
+//		long dDay = (long) medicalService.calcDday(params).get("dDay");
+//		int vaccineCode = (int) medicalService.calcDday(params).get("vaccineCode");
+//		
+//		String vaccineName;
+//		int vGubun = vaccineCode/100;
+//		if(vGubun == 1){
+//			vaccineName = "종합백신";
+//		}else if(vGubun == 2){
+//			vaccineName = "코로나";
+//		}else if(vGubun == 3){
+//			vaccineName = "켄넬코프 ";
+//		}else {
+//			vaccineName = "광견병 ";
+//		}
+//		
+//		HashMap<String, Object> response = new HashMap<>();
+//		response.put("dDay", dDay);
+//		response.put("vaccineName", vaccineName);
+//		return response;
+//	}
 	
 	@RequestMapping("updatePetForm.do")
 	   public ModelAndView updatePetForm(int idx){
@@ -254,10 +257,18 @@ public class PetinfoController {
 			@RequestParam HashMap<String, Object> params) {
 		// TODO Auto-generated method stub
 		if(params.get("birthday").equals("undefined") || params.get("petIdx").equals("undefined")){
-			HashMap<String, Object> petAge = new HashMap<>();
+			HashMap<String, Object> petAge = new HashMap<>();		
 			return petAge;
 		}else{
 			HashMap<String, Object> petAge = petInfoService.getAge(params);
+			
+			String petIdxString = (String)params.get("petIdx");
+			int petIdx = Integer.parseInt(petIdxString);
+			HashMap<String, Object> medi = medicalService.DDayForHeader(petIdx);
+//			System.out.println("medi : "+ medi);
+			petAge.put("vName", medi.get("vName"));
+			petAge.put("minDDayString", medi.get("minDDayString"));
+//			System.out.println("petAge : "+ petAge);
 			return petAge;
 		}
 	}

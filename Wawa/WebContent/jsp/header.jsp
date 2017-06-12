@@ -39,17 +39,18 @@
 			data: "id="+id+"&petName="+petName,
 			dataType: "json",
 			success: function(data) {
-				var dDay = data.dDay;
-				var vaccineName = data.vaccineName;
-				var new_dDay = '';
-				if(parseInt(dDay) > 0){
-					new_dDay += '-' + Math.abs(dDay);
-				}else {
-					new_dDay += '+' + Math.abs(dDay);
-				}
-				$('#VNSpan').text('['+vaccineName+'] ');
+				
+				var dDay = data.minDDayString;
+				var vaccineName = data.vName;
+// 				var new_dDay = '';
+// 				if(parseInt(dDay) > 0){
+// 					new_dDay += '-' + Math.abs(dDay);
+// 				}else {
+// 					new_dDay += '+' + Math.abs(dDay);
+// 				}
+				$('#VNSpan').text(vaccineName+'  ');
 				$('#dDaySpan').removeAttr("style");
-				$('#dDaySpan').text(new_dDay);
+				$('#dDaySpan').text(dDay);
 				
 			},
 		});
@@ -210,7 +211,7 @@
 								</tr>
 								<tr style="font-size: small;">
 									<td colspan="2">다음 예방접종</td>
-									<td id="dDay" style="text-align: center;"><span id="VNSpan"></span>D<span id="dDaySpan"></span></td>
+									<td id="dDay" style="text-align: center;"><span id="VNSpan" style="color: #FF7421"></span><span id="dDaySpan" style="color: #FFC000"></span></td>
 								</tr>
 								<tr style="font-size: small;">
 									<td colspan="2">다음 미용예정</td>

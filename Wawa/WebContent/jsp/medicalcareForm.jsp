@@ -20,6 +20,103 @@
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
+
+	function dataCheck(){
+		alert("dataCheck에 들어옴");
+		var test = document.getElementById('realShotDate');
+		alert("입력된 날짜 : "+test);
+		if(test.value ==""){
+			alert("날짜를 입력해주세요");
+			return false;
+		}else{
+			alert("굿");
+			return true;
+		}
+	}
+	function dataCheck2(){
+		alert("dataCheck에 들어옴2222");
+		var test = document.getElementById('realShotDate2');
+		alert("입력된 날짜2222 : "+test);
+		if(test.value ==""){
+			alert("날짜를 입력해주세요2222");
+			return false;
+		}else{
+			alert("굿2222");
+			return true;
+		}
+	}
+	function dataCheck3(){
+		alert("dataCheck에 들어옴333");
+		var test = document.getElementById('realShotDate3');
+		alert("입력된 날짜3 : "+test);
+		if(test.value ==""){
+			alert("날짜를 입력해주세요3");
+			return false;
+		}else{
+			alert("굿3");
+			return true;
+		}
+	}
+	function dataCheck4(){
+		alert("dataCheck에 들어옴444");
+		var test = document.getElementById('realShotDate4');
+		alert("입력된 날짜 : "+test);
+		if(test.value ==""){
+			alert("날짜를 입력해주세요");
+			return false;
+		}else{
+			alert("굿");
+			return true;
+		}
+	}
+	function dataCheck5(){
+		alert("dataCheck에 들어옴555");
+		var test = document.getElementById('realShotDate5');
+		alert("입력된 날짜 : "+test);
+		if(test.value ==""){
+			alert("날짜를 입력해주세요");
+			return false;
+		}else{
+			alert("굿");
+			return true;
+		}
+	}
+	function dataCheck6(){
+		alert("dataCheck에 들어옴666");
+		var test = document.getElementById('realShotDate6');
+		alert("입력된 날짜 : "+test);
+		if(test.value ==""){
+			alert("날짜를 입력해주세요");
+			return false;
+		}else{
+			alert("굿");
+			return true;
+		}
+	}
+	function dataCheck7(){
+		alert("dataCheck에 들어옴777");
+		var test = document.getElementById('realShotDate7');
+		alert("입력된 날짜 : "+test);
+		if(test.value ==""){
+			alert("날짜를 입력해주세요");
+			return false;
+		}else{
+			alert("굿");
+			return true;
+		}
+	}
+	function dataCheck8(){
+		alert("dataCheck에 들어옴888");
+		var test = document.getElementById('realShotDate8');
+		alert("입력된 날짜 : "+test);
+		if(test.value ==""){
+			alert("날짜를 입력해주세요");
+			return false;
+		}else{
+			alert("굿");
+			return true;
+		}
+	}
 	
 	/* 달력 설정 */
 	$.datepicker.setDefaults({
@@ -237,14 +334,14 @@
 	                       				<td rowspan="5" style="color: #ffc000">기초접종</td>
 				                        <td style="color: #ffc000">1차</td>
 				                        <td>${nextSchedules.d101}</td>
-				                        <form method="post" action="insertVaccine.do">
+				                        <form method="post" action="insertVaccine.do" onsubmit="return dataCheck()">
 					                        <td>
 					                        
 						                        <input type="hidden" value="${petDetail.idx }" name="petIdx">
 						                        <input type="hidden" value="1" name="vaccineCode">
 						                        <input type="hidden" value="기초" name="vaccineType">
 						                        <input type="hidden" value="1" name="degree">
-					                        	<input type="text" placeholder="0000-00-00" value="" id="" readonly="readonly"class="datepicker" name="realShotDate"style="width: 150px;text-align: center;">
+					                        	<input type="text" placeholder="0000-00-00" value="" id="realShotDate" readonly="readonly"class="datepicker" name="realShotDate"style="width: 150px;text-align: center;">
 					                        </td>
 						                    <td><input type="submit" value="등록" name="update_cart" class="button" style="padding: 5px 5px"></td>
 					               		</form>
@@ -278,13 +375,13 @@
 					                    	<td></td>
 					                    	</c:when>
 					                    	<c:otherwise>
-					                    		<form method="post" action="insertVaccine.do">
+					                    		<form method="post" action="insertVaccine.do" onsubmit="return dataCheck()">
 						                    		 <td>
 							                    		 <input type="hidden" value="${petDetail.idx }" name="petIdx">
 								                         <input type="hidden" value="1" name="vaccineCode">
 								                         <input type="hidden" value="기초" name="vaccineType">
 								                         <input type="hidden" value="2" name="degree">
-							                        	 <input type="text" placeholder="0000-00-00" value="" id="" readonly="readonly"class="datepicker" name="realShotDate"style="width: 150px;text-align: center;">
+							                        	 <input type="text" placeholder="0000-00-00" value="" id="realShotDate" readonly="readonly"class="datepicker" name="realShotDate"style="width: 150px;text-align: center;">
 						                        
 						                    		 
 						                    		 </td>
@@ -320,13 +417,13 @@
 					                    	<td></td>
 					                    	</c:when>
 					                    	<c:otherwise>
-					                    		<form method="post" action="insertVaccine.do">
+					                    		<form method="post" action="insertVaccine.do" onsubmit="return dataCheck()">
 						                    		 <td>
 							                    		 <input type="hidden" value="${petDetail.idx }" name="petIdx">
 								                         <input type="hidden" value="1" name="vaccineCode">
 								                         <input type="hidden" value="기초" name="vaccineType">
 								                         <input type="hidden" value="3" name="degree">
-							                        	 <input type="text" placeholder="0000-00-00" value="" id="" readonly="readonly"class="datepicker" name="realShotDate"style="width: 150px;text-align: center;">
+							                        	 <input type="text" placeholder="0000-00-00" value="" id="realShotDate" readonly="readonly"class="datepicker" name="realShotDate"style="width: 150px;text-align: center;">
 						                        
 						                    		 
 						                    		 </td>
@@ -362,13 +459,13 @@
 					                    	<td></td>
 					                    	</c:when>
 					                    	<c:otherwise>
-					                    		<form method="post" action="insertVaccine.do">
+					                    		<form method="post" action="insertVaccine.do" onsubmit="return dataCheck()">
 						                    		 <td>
 							                    		 <input type="hidden" value="${petDetail.idx }" name="petIdx">
 								                         <input type="hidden" value="1" name="vaccineCode">
 								                         <input type="hidden" value="기초" name="vaccineType">
 								                         <input type="hidden" value="4" name="degree">
-							                        	 <input type="text" placeholder="0000-00-00" value="" id="" readonly="readonly"class="datepicker" name="realShotDate"style="width: 150px;text-align: center;">
+							                        	 <input type="text" placeholder="0000-00-00" value="" id="realShotDate" readonly="readonly"class="datepicker" name="realShotDate"style="width: 150px;text-align: center;">
 						                        
 						                    		 
 						                    		 </td>
@@ -408,13 +505,13 @@
 					                    	<td></td>
 					                    	</c:when>
 					                    	<c:otherwise>
-					                    		<form method="post" action="insertVaccine.do">
+					                    		<form method="post" action="insertVaccine.do" onsubmit="return dataCheck()">
 						                    		 <td>
 							                    		 <input type="hidden" value="${petDetail.idx }" name="petIdx">
 								                         <input type="hidden" value="1" name="vaccineCode">
 								                         <input type="hidden" value="기초" name="vaccineType">
 								                         <input type="hidden" value="5" name="degree">
-							                        	 <input type="text" placeholder="0000-00-00" value="" id="" readonly="readonly"class="datepicker" name="realShotDate"style="width: 150px;text-align: center;">
+							                        	 <input type="text" placeholder="0000-00-00" value="" id="realShotDate" readonly="readonly"class="datepicker" name="realShotDate"style="width: 150px;text-align: center;">
 						                        
 						                    		 
 						                    		 </td>
@@ -477,7 +574,7 @@
 	                    		
 							</c:forEach>
             
-                    <form method="post" action="insertVaccine.do">
+                    <form method="post" action="insertVaccine.do" onsubmit="return dataCheck2()">
                     <tr>
                         <td colspan="2" style="color: #ffc000">추가접종</td>
 						<td>${lastHDPPL.lastPang }</td>
@@ -486,7 +583,7 @@
                         <input type="hidden" value="1" name="vaccineCode">
                         <input type="hidden" value="추가" name="vaccineType">
                         <input type="hidden" value="0" name="degree">
-                        <input type="text" placeholder="0000-00-00" id="" readonly="readonly" class="datepicker" name="realShotDate"style="width: 150px;text-align: center;"></td>
+                        <input type="text" placeholder="0000-00-00" id="realShotDate2" readonly="readonly" class="datepicker" name="realShotDate"style="width: 150px;text-align: center;"></td>
                         <td><input type="submit" value="등록" name="insertVaccine " class="button" style="padding: 5px 5px"></td>
                     </tr>
                     </form>
@@ -521,14 +618,14 @@
 							                       				<td rowspan="2" style="color: #ffc000">기초접종</td>
 										                        <td style="color: #ffc000">1차</td>
 										                        <td>${nextSchedules.d201}</td>
-										                        <form method="post" action="insertVaccine.do">
+										                        <form method="post" action="insertVaccine.do" onsubmit="return dataCheck3()">
 											                        <td>
 											                        
 												                        <input type="hidden" value="${petDetail.idx }" name="petIdx">
 												                        <input type="hidden" value="2" name="vaccineCode">
 												                        <input type="hidden" value="기초" name="vaccineType">
 												                        <input type="hidden" value="1" name="degree">
-											                        	<input type="text" placeholder="0000-00-00" value="" id="" readonly="readonly"class="datepicker" name="realShotDate"style="width: 150px;text-align: center;">
+											                        	<input type="text" placeholder="0000-00-00" value="" id="realShotDate3" readonly="readonly"class="datepicker" name="realShotDate"style="width: 150px;text-align: center;">
 											                        </td>
 												                    <td><input type="submit" value="등록" name="update_cart" class="button" style="padding: 5px 5px"></td>
 											               		</form>
@@ -562,13 +659,13 @@
 											                    	<td></td>
 											                    	</c:when>
 											                    	<c:otherwise>
-											                    		<form method="post" action="insertVaccine.do">
+											                    		<form method="post" action="insertVaccine.do" onsubmit="return dataCheck3()">
 												                    		 <td>
 													                    		 <input type="hidden" value="${petDetail.idx }" name="petIdx">
 														                         <input type="hidden" value="2" name="vaccineCode">
 														                         <input type="hidden" value="기초" name="vaccineType">
 														                         <input type="hidden" value="2" name="degree">
-													                        	 <input type="text" placeholder="0000-00-00" value="" id="" readonly="readonly"class="datepicker" name="realShotDate"style="width: 150px;text-align: center;">
+													                        	 <input type="text" placeholder="0000-00-00" value="" id="realShotDate3" readonly="readonly"class="datepicker" name="realShotDate"style="width: 150px;text-align: center;">
 												                        
 												                    		 
 												                    		 </td>
@@ -620,7 +717,7 @@
 							                    		</tr>
 													</c:forEach>
 						            
-						                    <form method="post" action="insertVaccine.do">
+						                    <form method="post" action="insertVaccine.do" onsubmit="return dataCheck4()">
 						                    <tr>
 						                        <td colspan="2" style="color: #ffc000">추가접종</td>
 												<td>${lastCorona.lastPang }</td>
@@ -629,7 +726,7 @@
 						                        <input type="hidden" value="2" name="vaccineCode">
 						                        <input type="hidden" value="추가" name="vaccineType">
 						                        <input type="hidden" value="0" name="degree">
-						                        <input type="text" placeholder="0000-00-00" id="" readonly="readonly" class="datepicker" name="realShotDate"style="width: 150px;text-align: center;"></td>
+						                        <input type="text" placeholder="0000-00-00" id="realShotDate4" readonly="readonly" class="datepicker" name="realShotDate"style="width: 150px;text-align: center;"></td>
 						                        <td><input type="submit" value="등록" name="insertVaccine " class="button" style="padding: 5px 5px"></td>
 						                    </tr>
 						                    </form>
@@ -659,14 +756,14 @@
 							                       				<td rowspan="2" style="color: #ffc000">기초접종</td>
 										                        <td style="color: #ffc000">1차</td>
 										                        <td>${nextSchedules.d301}</td>
-										                        <form method="post" action="insertVaccine.do">
+										                        <form method="post" action="insertVaccine.do" onsubmit="return dataCheck5()">
 											                        <td>
 											                        
 												                        <input type="hidden" value="${petDetail.idx }" name="petIdx">
 												                        <input type="hidden" value="3" name="vaccineCode">
 												                        <input type="hidden" value="기초" name="vaccineType">
 												                        <input type="hidden" value="1" name="degree">
-											                        	<input type="text" placeholder="0000-00-00" value="" id="" readonly="readonly"class="datepicker" name="realShotDate"style="width: 150px;text-align: center;">
+											                        	<input type="text" placeholder="0000-00-00" value="" id="realShotDate5" readonly="readonly"class="datepicker" name="realShotDate"style="width: 150px;text-align: center;">
 											                        </td>
 												                    <td><input type="submit" value="등록" name="update_cart" class="button" style="padding: 5px 5px"></td>
 											               		</form>
@@ -700,13 +797,13 @@
 											                    	<td></td>
 											                    	</c:when>
 											                    	<c:otherwise>
-											                    		<form method="post" action="insertVaccine.do">
+											                    		<form method="post" action="insertVaccine.do" onsubmit="return dataCheck5()">
 												                    		 <td>
 													                    		 <input type="hidden" value="${petDetail.idx }" name="petIdx">
 														                         <input type="hidden" value="3" name="vaccineCode">
 														                         <input type="hidden" value="기초" name="vaccineType">
 														                         <input type="hidden" value="2" name="degree">
-													                        	 <input type="text" placeholder="0000-00-00" value="" id="" readonly="readonly"class="datepicker" name="realShotDate"style="width: 150px;text-align: center;">
+													                        	 <input type="text" placeholder="0000-00-00" value="" id="realShotDate5" readonly="readonly"class="datepicker" name="realShotDate"style="width: 150px;text-align: center;">
 												                        
 												                    		 
 												                    		 </td>
@@ -758,7 +855,7 @@
 							                    		</tr>
 													</c:forEach>
 						            
-						                    <form method="post" action="insertVaccine.do">
+						                    <form method="post" action="insertVaccine.do" onsubmit="return dataCheck6()">
 						                    <tr>
 						                        <td colspan="2" style="color: #ffc000">추가접종</td>
 												<td>${lastKennel.lastPang }</td>
@@ -767,7 +864,7 @@
 						                        <input type="hidden" value="3" name="vaccineCode">
 						                        <input type="hidden" value="추가" name="vaccineType">
 						                        <input type="hidden" value="0" name="degree">
-						                        <input type="text" placeholder="0000-00-00" id="" readonly="readonly" class="datepicker" name="realShotDate"style="width: 150px;text-align: center;"></td>
+						                        <input type="text" placeholder="0000-00-00" id="realShotDate6" readonly="readonly" class="datepicker" name="realShotDate"style="width: 150px;text-align: center;"></td>
 						                        <td><input type="submit" value="등록" name="insertVaccine " class="button" style="padding: 5px 5px"></td>
 						                    </tr>
 						                    </form>
@@ -798,14 +895,14 @@
 							                       				<td rowspan="1" style="color: #ffc000">기초접종</td>
 										                        <td style="color: #ffc000">1차</td>
 										                        <td>${nextSchedules.d401}</td>
-										                        <form method="post" action="insertVaccine.do">
+										                        <form method="post" action="insertVaccine.do" onsubmit="return dataCheck7()">
 											                        <td>
 											                        
 												                        <input type="hidden" value="${petDetail.idx }" name="petIdx">
 												                        <input type="hidden" value="4" name="vaccineCode">
 												                        <input type="hidden" value="기초" name="vaccineType">
 												                        <input type="hidden" value="1" name="degree">
-											                        	<input type="text" placeholder="0000-00-00" value="" id="" readonly="readonly"class="datepicker" name="realShotDate"style="width: 150px;text-align: center;">
+											                        	<input type="text" placeholder="0000-00-00" value="" id="realShotDate7" readonly="readonly"class="datepicker" name="realShotDate"style="width: 150px;text-align: center;">
 											                        </td>
 												                    <td><input type="submit" value="등록" name="update_cart" class="button" style="padding: 5px 5px"></td>
 											               		</form>
@@ -856,7 +953,7 @@
 							                    		</tr>
 													</c:forEach>
 						            
-						                    <form method="post" action="insertVaccine.do">
+						                    <form method="post" action="insertVaccine.do" onsubmit="return dataCheck8()">
 						                    <tr>
 						                        <td colspan="2" style="color: #ffc000">추가접종</td>
 												<td>${lastRadies.lastPang }</td>
@@ -865,7 +962,7 @@
 						                        <input type="hidden" value="4" name="vaccineCode">
 						                        <input type="hidden" value="추가" name="vaccineType">
 						                        <input type="hidden" value="0" name="degree">
-						                        <input type="text" placeholder="0000-00-00" id="" readonly="readonly" class="datepicker" name="realShotDate"style="width: 150px;text-align: center;"></td>
+						                        <input type="text" placeholder="0000-00-00" id="realShotDate8" readonly="readonly" class="datepicker" name="realShotDate"style="width: 150px;text-align: center;"></td>
 						                        <td><input type="submit" value="등록" name="insertVaccine " class="button" style="padding: 5px 5px"></td>
 						                    </tr>
 						                    </form>

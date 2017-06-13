@@ -324,7 +324,6 @@ public class MedicalcareController {
 			
 			HashMap<String, Object> lastHDPPL = medicalService.selectLastSchedules(petIdx, 1);
 			mav.addObject("lastHDPPL", lastHDPPL);
-			System.out.println(lastHDPPL+"라스트팡");
 			HashMap<String, Object> lastCorona = medicalService.selectLastSchedules(petIdx, 2);
 			mav.addObject("lastCorona", lastCorona);
 			HashMap<String, Object> lastKennel = medicalService.selectLastSchedules(petIdx, 3);
@@ -334,7 +333,6 @@ public class MedicalcareController {
 			
 			HashMap<String, Object> DDay = medicalService.DDay(petIdx);
 			mav.addObject("DDay", DDay);
-			System.out.println("DDay : "+DDay);
 
 			mav.setViewName("medicalcareForm.tiles");
 

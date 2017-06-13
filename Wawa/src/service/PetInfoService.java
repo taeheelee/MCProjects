@@ -22,6 +22,7 @@ import interface_dao.IManagementDao;
 import interface_dao.IMedicalDao;
 import interface_dao.IPetInfoDao;
 import interface_dao.IPetInfoFileDao;
+import interface_service.IMedicalService;
 import interface_service.IPetinfoService;
 import model.Management;
 
@@ -43,6 +44,9 @@ public class PetInfoService implements IPetinfoService {
 	@Autowired
 	IManagementDao mmDao;
 	
+	@Autowired
+	IMedicalService medicalService;
+		
 	@Override
 	public boolean insertPetInfo(int idx, String resist, String id, String name, String kind, Date birthday, String neutral,
 			double weight, String sex, Date groomingStart, String groomingPeriod, int mainPet, MultipartFile file) {
@@ -476,7 +480,7 @@ public class PetInfoService implements IPetinfoService {
 	      }
 		
 		
-
+	
 		
 		        // 오늘날짜에 D-day날짜 더하기
 		        Calendar cal = Calendar.getInstance();
@@ -495,11 +499,32 @@ public class PetInfoService implements IPetinfoService {
 	    			temp.put("birthday", petList.get(i).get("birthday"));
 	    			temp.put("groomingDayString", groomingDayString);
 	    			
+	    		      HashMap<String, Object> DDay = medicalService.DDay((int)petList.get(i).get("idx")); 
+	    		      for( int j = 1 ; j<5 ; j++){
+	    		    	  Date vaccine = (Date)DDay.get("백신"+j);
+	    		    	  if(vaccine != null){
+//	    		    		  System.out.println("여기여기22");
+	    		    		  String vaccineName = "vName";
+	    		    		  if(j==1){
+	    		    			  vaccineName = "dhppl";
+	    		    		  }else if(j==2){
+	    		    			  vaccineName = "corona";
+	    		    		  }else if(j==3){
+	    		    			  vaccineName = "kennel";
+	    		    		  }else if(j==4){
+	    		    			  vaccineName = "rabies";
+	    		    		  }
+
+	    		    		  temp.put(vaccineName,vaccine);
+	    		    	  }
+	    		    	  
+	    		      }
+	    			
 	    				eventDate.add(temp);
 
 
 		}
-		
+
 		return eventDate;
 	}
 

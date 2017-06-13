@@ -421,7 +421,7 @@ public class MedicalService implements IMedicalService {
 				int d_dayInt = (int) d_day;
 
 				d_dayString = "다음 접종 : D-" + String.valueOf(d_day);
-
+				DDay.put("백신"+i, lastPang);//기록 마지막에 대한 예정일 Date
 				if (d_dayInt == 0) {
 					d_dayString = "D-DAY";
 				} else if (d_dayInt < 0) {
@@ -432,10 +432,11 @@ public class MedicalService implements IMedicalService {
 				d_dayString = "";
 			}
 
-			DDay.put("abc" + i, d_dayString);
+			DDay.put("abc" + i, d_dayString);//몇일남았는지 알려주는 문자열
+			
+			
 		}
 
-//		System.out.println("d-day 얍 : " + DDay);
 
 		return DDay;
 

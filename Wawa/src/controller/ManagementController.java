@@ -49,8 +49,8 @@ public class ManagementController {
 		List<HashMap<String, Object>> petList = petinfoService.selectPetList(id);
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("petList", petList);
-		System.out.println("getPetList.do 요청 진입");
-		System.out.println(petList);
+//		System.out.println("getPetList.do 요청 진입");
+//		System.out.println(petList);
 		return params;
 	}
 	
@@ -71,8 +71,8 @@ public class ManagementController {
 		
 		HashMap<String, Object> params = new HashMap<>();
 		params.put("weightList", weightList); //강아지 idx로 받아 온 강아지 무게변화 기록
-		System.out.println("getPetWeightList.do 진입");
-		System.out.println(weightList);
+//		System.out.println("getPetWeightList.do 진입");
+//		System.out.println(weightList);
 		return params;
 	}
 	

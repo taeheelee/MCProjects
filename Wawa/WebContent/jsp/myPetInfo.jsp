@@ -78,6 +78,7 @@ $(document).ready(function(){
       , editable : true
       , eventLimit : true
       , lang: 'ko'
+      , displayEventTime: false //시간 표시 없애기
       ,         
 /*            events: [
          {
@@ -131,52 +132,46 @@ $(document).ready(function(){
 //                         	  fee4e9
                           
                        }); 
-                      
-                 /*      var petIdx = petList[i].idx;
-                      var petBirth = petList[i].birthday;
-                      var dogName = petList[i].name;
                      
-                      $.ajax({
-                       type: 'get',
-                       url: 'getAge.do',
-                       data: "birthday="+petBirth+"&petIdx="+petIdx,
-                       dataType: "json",
-                       success: function(data) {
-                          var gDDay = data.d_day;
-                          var gDDaySplit = (data.d_day).split('-');
-                          var gDDayInt = Number(gDDaySplit[1]);
-                          var today = new Date();
-                          var todayDate = Number(today.getDate());   
-                          var gDate = new Date(today.getFullYear(), today.getMonth(), Number(todayDate+gDDayInt) );
-                          
+                      if(petList[i].dhppl != null){
+                    	  events.push({
+                              title : '['+petList[i].name+']'+'종합백신',
+                              start : petList[i].dhppl+'T12:00:00',
+                              textColor : "#606161",
+                              imageurl : "img/vaccineday.png", 
+                              color : "#F5D4D4"
+                           }); 
+                      }
+                      if(petList[i].corona != null){
+                    	  events.push({
+                              title : '['+petList[i].name+']'+'코로나',
+                              start : petList[i].corona,
+                              textColor : "#606161",
+                              imageurl : "img/vaccineday.png", 
+                              color : "#F5D4D4"
+                           }); 
+                      }
+                      if(petList[i].kennel != null){
+                    	  events.push({
+                              title : '['+petList[i].name+']'+'켄넬코프',
+                              start : petList[i].kennel,
+                              textColor : "#606161",
+                              imageurl : "img/vaccineday.png", 
+                              color : "#F5D4D4"
+                           }); 
+                      }
+                      if(petList[i].rabies != null){
+                    	  events.push({
+                              title : '['+petList[i].name+']'+'광견병',
+                              start : petList[i].rabies,
+                              textColor : "#606161",
+                              imageurl : "img/vaccineday.png", 
+                              color : "#F5D4D4"
+                           }); 
+                      }
+                      
+                      
 
-                        
-                    var realGDate = gDate.getFullYear()+'-0'+ gDate.getMonth()+'-'+ gDate.getDate()
-                    alert("디데이 realGDate "+realGDate);
-                    alert("여기 왜안와ㅇㄹㅇㄴㄹ????? "+dogName+'미용예정일');
-                          
-                           events.push({
-                                 title : dogName+'미용예정일',
-                                 start : realGDate,
-                                 textColor : "#FF8400",
-//                                  imageurl : "img/celebrate.png", 
-                                 color : "#FAE9B5"
-                                 
-                              }); 
-                          alert("여기 왜안와????? "+realGDate);
-                           
-//                           alert("ㅎㅇㄹ"+data.d_day);  
-                       },
-                       error: function(data){
-                          alert("잠시 후 다시 시도해주세요?");
-                       }
-                    }); */
-                      
-                      
-                      
-                      
-                      
-                      
                       
                       
                 }
@@ -337,54 +332,7 @@ $(document).ready(function(){
                </div>
             </div>
 
-            <%-- <div id="tab${idx.count }">
-                  <div class="col-md-3">
-                     <p style="text-align: center;">
-                     <img src="img/dog_0${idx.count }.jpg" alt=""style="width: 100%;">
-                     </p>
-                     <p style="text-align: center;">
-                        <input type="button" value="메인펫으로 지정" style="width: 100%"><br><br>
-   <!--                      <input type="button" value="펫 수정" style="width: 48%"> -->
-   <!--                      <input type="button" value="펫 삭제" style="width: 48%"> -->
-                     </p>
-                     
-                  </div>
-                  <div class="col-md-9" style="font-size: 18px;">
-                  
-               
-                        <p style="text-align: right; margin: 0">
-                           <input type="button" value="펫 수정" style="font-size: small;">
-                           <input type="button" value="펫 삭제" style="font-size: small;">
-                        </p>
-                     <table>
-                        <tr>
-                           <td>이름</td> <td style="font-weight: bold;">${pet.name }</td>
-                           <td>등록번호</td> <td>${pet.resist }</td>
-                        </tr>
-                        <tr>
-                           <td>품종</td> <td>${pet.kind }</td>
-                           <td>성별[중성화여부]</td> <td>${pet.sex }[${pet.neutral }]</td>
-                        </tr>
-                        <tr>
-                           <td>출생일</td> <td>${pet.birthday }</td>
-                           <td>나이</td> <td>나중에 계산하기</td>
-                        </tr>
-                        <tr>
-                           <td>몸무게</td> <td>${pet.weight }kg</td>
-                           <td>권장 열량</td> <td>나중에 계산하기</td>
-                        </tr>
-                        <tr>
-                           <td>권장 운동량</td> <td>나중에 계산하기</td>
-                           <td>미용 주기</td> <td>${pet.groomingPeriod }</td>
-                        </tr>
-                        <tr>
-                           <td>다음 접종일</td> <td colspan="3">나중에 계산[예방접종 이름도 같이 알려주면 좋을듯]</td>
-                        </tr>
-                     </table>
-               
-                     <br> <br> <br>    
-                  </div>
-               </div> --%>
+           
             
             </c:forEach>
       

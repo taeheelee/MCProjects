@@ -22,98 +22,74 @@
 <script>
 
 	function dataCheck(){
-		alert("dataCheck에 들어옴");
 		var test = document.getElementById('realShotDate');
-		alert("입력된 날짜 : "+test);
 		if(test.value ==""){
 			alert("날짜를 입력해주세요");
 			return false;
 		}else{
-			alert("굿");
 			return true;
 		}
 	}
 	function dataCheck2(){
-		alert("dataCheck에 들어옴2222");
 		var test = document.getElementById('realShotDate2');
-		alert("입력된 날짜2222 : "+test);
 		if(test.value ==""){
-			alert("날짜를 입력해주세요2222");
+			alert("날짜를 입력해주세요");
 			return false;
 		}else{
-			alert("굿2222");
 			return true;
 		}
 	}
 	function dataCheck3(){
-		alert("dataCheck에 들어옴333");
 		var test = document.getElementById('realShotDate3');
-		alert("입력된 날짜3 : "+test);
 		if(test.value ==""){
-			alert("날짜를 입력해주세요3");
+			alert("날짜를 입력해주세요");
 			return false;
 		}else{
-			alert("굿3");
 			return true;
 		}
 	}
 	function dataCheck4(){
-		alert("dataCheck에 들어옴444");
 		var test = document.getElementById('realShotDate4');
-		alert("입력된 날짜 : "+test);
 		if(test.value ==""){
 			alert("날짜를 입력해주세요");
 			return false;
 		}else{
-			alert("굿");
 			return true;
 		}
 	}
 	function dataCheck5(){
-		alert("dataCheck에 들어옴555");
 		var test = document.getElementById('realShotDate5');
-		alert("입력된 날짜 : "+test);
 		if(test.value ==""){
 			alert("날짜를 입력해주세요");
 			return false;
 		}else{
-			alert("굿");
 			return true;
 		}
 	}
 	function dataCheck6(){
-		alert("dataCheck에 들어옴666");
 		var test = document.getElementById('realShotDate6');
-		alert("입력된 날짜 : "+test);
 		if(test.value ==""){
 			alert("날짜를 입력해주세요");
 			return false;
 		}else{
-			alert("굿");
 			return true;
 		}
 	}
 	function dataCheck7(){
-		alert("dataCheck에 들어옴777");
 		var test = document.getElementById('realShotDate7');
-		alert("입력된 날짜 : "+test);
 		if(test.value ==""){
 			alert("날짜를 입력해주세요");
 			return false;
 		}else{
-			alert("굿");
 			return true;
 		}
 	}
 	function dataCheck8(){
-		alert("dataCheck에 들어옴888");
 		var test = document.getElementById('realShotDate8');
-		alert("입력된 날짜 : "+test);
 		if(test.value ==""){
 			alert("날짜를 입력해주세요");
 			return false;
 		}else{
-			alert("굿");
 			return true;
 		}
 	}

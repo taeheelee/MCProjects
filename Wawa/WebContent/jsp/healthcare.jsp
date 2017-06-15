@@ -390,11 +390,6 @@
 	});
 </script>
 
-<script type="text/javascript">
-$( function() {
-	$( ".datepicker" ).datepicker();
-} );
-</script>
 
 </head>
 <body>

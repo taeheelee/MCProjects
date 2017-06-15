@@ -23,12 +23,12 @@
 	crossorigin="anonymous"></script>
 	
 <!-- jQuery Datepicker -->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 
 <script type="text/javascript">
 /* 달력 설정 */
-	$.datepicker.setDefaults({
+/* 	$.datepicker.setDefaults({
 		dateFormat: 'yy-mm-dd',
 		prevText: '이전 달',
 		nextText: '다음 달',
@@ -45,7 +45,7 @@
 });
 	$( function() {
 		$( ".datepicker" ).datepicker();
-	} );
+	} ); */
 
 	var myPet = '';
 	var isPet = false;

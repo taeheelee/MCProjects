@@ -1,6 +1,7 @@
 nv.addGraph(function() {
 	var chart = nv.models.lineChart().margin({
-		left : 100
+		left : 40,
+		bottom : 75
 	}) // x축에 margin을 설정함
 	.useInteractiveGuideline(true) // 마우스 올릴 시 가이드라인 출력
 //	.transitionDuration(350) // 애니메이션 효과를 동작시킬 시간, 에러 발생 가능성있으므로 주석처리
@@ -10,16 +11,17 @@ nv.addGraph(function() {
 	;
 
 	chart.xAxis // x축 설정
-    .showMaxMin(false)
-    .axisLabel('Day')
-    .tickFormat(function(d) { return d3.time.format('%x')(new Date(d)) });
+	.showMaxMin(false)
+	. rotateLabels(-60)
+//    .axisLabel('Day')
+    .tickFormat(function(d) { return d3.time.format('%Y-%m-%d')(new Date(d)) });
 //	chart.xAxis
 //    .tickFormat(function(d) {
 //      return d3.time.format('%x')(new Date(d))
 //    });
 	
 	chart.yAxis // y축 설정
-	.axisLabel('Weight(Kg)').tickFormat(d3.format('.02f')); //소수점 2자리까지
+	.axisLabelDistance(-25).axisLabel('Weight(Kg)').tickFormat(d3.format('.01f')); //소수점 1자리까지
 	
 ////////////////////////////////////////
 	//세팅값대로 그래프를 render
@@ -38,6 +40,7 @@ nv.addGraph(function() {
 //			alert(temp.weightList[j].weight);
 			inner.push({x : temp.weightList[j].timemil, y : temp.weightList[j].weight});
 			//inner에는 x, y 좌표값을 json 형식으로 저장해야 함
+			
 		}
 		
 		weightList.push(inner); // inner에 담긴 x, y 좌표값을 하나로 저장하는 배열

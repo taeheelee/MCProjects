@@ -21,8 +21,32 @@
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"
 	integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 	crossorigin="anonymous"></script>
+	
+<!-- jQuery Datepicker -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script type="text/javascript">
+/* 달력 설정 */
+	$.datepicker.setDefaults({
+		dateFormat: 'yy-mm-dd',
+		prevText: '이전 달',
+		nextText: '다음 달',
+		monthNames: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+		monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+		dayNames: ['일', '월', '화', '수', '목', '금', '토'],
+		dayNamesShort: ['일', '월', '화', '수', '목', '금', '토'],
+		dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+		showMonthAfterYear: true,
+		showButtonPanel: true,
+		changeMonth: true,
+		changeYear: true,
+		autoSize: true
+});
+	$( function() {
+		$( ".datepicker" ).datepicker();
+	} );
+
 	var myPet = '';
 	var isPet = false;
 	function addTable(year, month, petinfo) {
@@ -366,6 +390,12 @@
 	});
 </script>
 
+<script type="text/javascript">
+$( function() {
+	$( ".datepicker" ).datepicker();
+} );
+</script>
+
 </head>
 <body>
 	<div class="product-big-title-area">
@@ -414,17 +444,18 @@
 							</tbody>
 						</table>
 					</form>
- 
+ 				<br><br><br><br><br><br><br><br><br><br>
  
 				</div>
 				<!-- 여기여기여기부터 -->
- 
+
 				<div class="col-md-9">
 					<div class="product-content-right">
-						<h2 class="sidebar-title">체중 관리</h2>
-						<p>이 홈페이지에서 안내하는 사항은 참고용입니다. 정확한 정보는 전문가와 상담하십시오.</p>
-						<font size="1.5" color="red"> #정보는 상위 5개만 표시됨</font>
-						<font size="1.5" color="red"> #운동량 : 최근 몸무게 기준</font>
+						<h2 class="sidebar-title" style="margin-bottom: 15px">체중 관리</h2>
+						<p style="margin-bottom: 5px">이 홈페이지에서 안내하는 사항은 참고용입니다. 정확한 정보는 전문가와 상담하십시오.</p>
+						<span style="font-size: 11px;color: #FF7421;">#정보는 상위 5개만 표시됨 #운동량 : 최근 몸무게 기준</span>
+<!-- 						<font size="1.5" color="red"> #정보는 상위 5개만 표시됨</font> -->
+<!-- 						<font size="1.5" color="red"> #운동량 : 최근 몸무게 기준</font> -->
 						<div class="woocommerce">
 							<form method="post" action="#"></form>
 						</div>
@@ -443,15 +474,13 @@
 											<tr>
 												<th>날짜<span id="dtError"></span></th>
 												<th>몸무게<span id="wtError"></span></th>
-												<td></td>
+												<th></th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr class="cart_item">
-												<td><input type="text" placeholder="0000-00-00"
-													id="day" style="width: 130px; height: 35px"></td>
-												<td><input type="text" class="VcDate" placeholder="0.0"
-													id="wt" style="width: 100px; height: 35px"> kg</td>
+												<td><input type="text" placeholder="0000-00-00" id="day" class="datepicker" style="width: 130px; height: 35px;text-align: center"></td>
+												<td><input type="text" class="VcDate" placeholder="0.0" id="wt" style="width: 100px; height: 35px;text-align: center"> kg</td>
 												<td><input type="button" value="추가" class="addBtn"
 													name="addBtn" id="addBtn" style="padding: 3px 3px"></td>
 											</tr>
@@ -463,10 +492,11 @@
 							</div>
 						</div>
 					</div>
+					<div class="col-md-6" style="padding: 0">
 <style>
 #chart svg {
-  height: 150px;
-  width: 300px;
+  height: 380px;
+  width: 100%;
 }
 </style>
  
@@ -474,11 +504,14 @@
 <div id="chart">
   <svg></svg>
 </div>
+					
+					
+					</div>
 				</div>
  
 				<div class="col-md-9">
 					<div class="product-content-right">
-						<h2 class="sidebar-title">
+						<h2 class="sidebar-title" style="margin-bottom: 15px">
 							하루 필요열량(kcal) = <span id="calculateCalories" style="color: gray">
 								000</span>kcal
 						</h2>
@@ -491,7 +524,7 @@
 							<input type="radio" name="activity" id="activity" value="4.0">심한 운동 
 							<input type="button" value="Calculate" id="calculate" onclick=""> <br>
 						</form>
-						<p></p>
+						<p></p><p></p>
 						<p>보통 사료 패키지에는 체중에 따른 1일 권장 급여량과 100g당 칼로리가 표시되어 있지만 대략적인 수치이며,
 							같은 성분이라고 하더라도 애견의 활동량과 체질 등에 따라 급여 칼로리가 달라질 수 있습니다.</p>
 						<p>하루 필요 열량을 급여할 때, 간식 칼로리도 함께 생각해야 합니다.</p>

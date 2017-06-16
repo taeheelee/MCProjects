@@ -82,28 +82,7 @@ public class MedicalcareController {
 //		return date;
 //	}
 //	
-//	@RequestMapping("calcAge.do")
-//	public 
-//	@ResponseBody HashMap<String, Object> calcAge(HttpServletResponse resp,
-//			@RequestParam HashMap<String, Object> params){
-//		
-//		HashMap<String, Object> pet = petinfoService.selectByname(params);
-//	
-//		Date birthday = (Date) pet.get("birthday");
-//		Date today = new Date();
-//		
-//		long diff = Math.abs(birthday.getTime() - today.getTime());
-//		long diffDays = diff / (24 * 60 * 60 * 1000);
-//		
-//		int year = (int) diffDays/365;
-//		long month = (int) diffDays%365/30;
-//		
-//		HashMap<String, Object> date = new HashMap<>();
-//		date.put("year", year);
-//		date.put("month", month);
-//		
-//		return date;
-//	}
+
 //	
 //	@RequestMapping("calcDday.do")
 //	public 

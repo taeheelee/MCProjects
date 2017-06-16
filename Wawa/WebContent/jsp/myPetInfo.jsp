@@ -32,7 +32,7 @@
 				$('#DDSpan').text('[' + vaccineName + '] D' +  new_dDay);
 			},
 			error: function(data){
-				alert("잠시 후 다시 시도해주세요.");
+				
 			}
 		});
 		
@@ -68,7 +68,6 @@ $(document).ready(function(){
 				
 			},
 			error: function(data){
-				alert("잠시 후 다시 시도해주세요.");
 			}
 		});
 	}	

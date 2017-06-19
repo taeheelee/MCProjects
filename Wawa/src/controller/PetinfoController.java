@@ -31,6 +31,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 import interface_service.IDogKindService;
 import interface_service.IMedicalService;
 import interface_service.IPetinfoService;
@@ -46,6 +50,18 @@ public class PetinfoController {
 	@Autowired
 	private IDogKindService dogKindService;
 
+	@RequestMapping(value="/myPetInfoJson/{id}.do", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String PetInfoJson(@PathVariable("id") String id){
+//		String id="ddoddoia";
+		List<HashMap<String, Object>> petList = petInfoService.selectPetList(id);
+		Gson gson = new Gson();
+		String result = gson.toJson(petList);
+//		JsonParser parser = new JsonParser();
+//		Object obj = parser.parse(result);
+//		JsonObject jsonObj = (JsonObject) obj;
+		return result;
+	}
+	
 	@RequestMapping("myPetInfo.do")
 	public ModelAndView myPetInfo(String id, HttpSession session) {
 		ModelAndView mav = new ModelAndView();

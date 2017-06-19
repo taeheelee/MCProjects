@@ -41,7 +41,7 @@
 			<mvc:exclude-mapping path="/verifyPerson.do"/>
 			<mvc:exclude-mapping path="/verifyByName.do"/>
 			<mvc:exclude-mapping path="/newPasswordForm.do"/>
-			
+			<mvc:exclude-mapping path="/myPetInfoJson.do"/>
 			<ref bean="loginCheckInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

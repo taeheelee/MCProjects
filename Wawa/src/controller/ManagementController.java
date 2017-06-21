@@ -11,12 +11,17 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonFormatTypes;
+import com.google.gson.Gson;
 
 import interface_service.IManagementService;
 import interface_service.IPetinfoService;
@@ -31,6 +36,24 @@ public class ManagementController {
 	@Autowired
 	private IManagementService managementService;
 
+	
+	@RequestMapping(value="/petWeightListJson/{id}/{idx}.do", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String petWeightListJson(@PathVariable("id")String id,
+			@PathVariable("idx")int idx) {
+		PetInfo model = new PetInfo();
+		model.setId(id);
+		model.setIdx(idx);
+		List<HashMap<String, Object>> weightList = managementService.selectListByIdx(model);
+		
+		for(HashMap<String, Object> h : weightList) {
+			long timemil = ((Date) h.get("date")).getTime();
+			h.put("timemil", timemil);
+		}
+		Gson gson = new Gson();
+		String result = gson.toJson(weightList);
+
+		return result;
+	}
 
 	@RequestMapping(method= RequestMethod.POST, value="healthcare.do")
 

@@ -62,6 +62,32 @@ public class PetinfoController {
 		return result;
 	}
 	
+	@RequestMapping(value = "/getAgeJson/{birthday}/{petIdx}.do", produces="text/plain;charset=UTF-8")
+	public @ResponseBody String getAgeJson(HttpServletResponse resp,
+			@PathVariable("birthday")String birthday, @PathVariable("petIdx")String petIdx) {
+		// TODO Auto-generated method stub
+		HashMap<String, Object> params = new HashMap<>();
+		params.put("birthday", birthday);
+		params.put("petIdx", petIdx);
+//		if(params.get("birthday").equals("undefined") || params.get("petIdx").equals("undefined")){
+//			HashMap<String, Object> petAge = new HashMap<>();		
+//			return petAge;
+//		}else{
+			HashMap<String, Object> petAge = petInfoService.getAge(params);
+			
+//			String petIdxString = (String)params.get("petIdx");
+//			int petIdx = Integer.parseInt(petIdxString);
+			HashMap<String, Object> medi = medicalService.DDayForHeader(Integer.parseInt(petIdx));
+//			System.out.println("medi : "+ medi);
+			petAge.put("vName", medi.get("vName"));
+			petAge.put("minDDayString", medi.get("minDDayString"));
+//			System.out.println("petAge : "+ petAge);
+			Gson gson = new Gson();
+			String result = gson.toJson(petAge);
+			return result;
+//		}
+	}
+	
 	@RequestMapping("myPetInfo.do")
 	public ModelAndView myPetInfo(String id, HttpSession session) {
 		ModelAndView mav = new ModelAndView();

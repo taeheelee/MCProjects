@@ -88,6 +88,23 @@ public class PetinfoController {
 //		}
 	}
 	
+	@RequestMapping("/deletePetAndroid/{id}/{idx}.do")
+	public String deletePetAndroid(@PathVariable("id") String id, @PathVariable("idx") int idx){
+
+		petInfoService.deletePetInfo(idx);
+
+		if (petInfoService.selectMainPet(id) == null) {
+			// 메인펫을 삭제했을경우 첫번째 팻을 메인펫으로 지정
+			HashMap<String, Object> params = petInfoService.selectPetList(id).get(0);
+			params.put("idx", (int) params.get("idx"));
+			params.put("mainPet", 1);
+			petInfoService.updateMainPet(params);
+		}
+		
+		return "";
+		
+	}
+	
 	@RequestMapping("myPetInfo.do")
 	public ModelAndView myPetInfo(String id, HttpSession session) {
 		ModelAndView mav = new ModelAndView();

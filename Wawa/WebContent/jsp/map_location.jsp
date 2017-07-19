@@ -182,7 +182,8 @@
 					
 				</div>
 				
-				<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=c32ae918e9d23fdef57268cd2825a898&libraries=services"></script>
+				<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d68ba555a3ddb48c6629128edac0e9b9"></script>
+
 <script>
 // 마커를 담을 배열입니다
 var markers = [];
